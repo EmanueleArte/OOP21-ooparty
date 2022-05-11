@@ -25,11 +25,20 @@ public abstract class MinigameAbstr<U> implements Minigame<U> {
 	}
 	
 	/**
-     * This method manages the draws at the end of the minigame
+     * This method manages the draws at the end of the minigame.
      * @return a list of players ordered by their classification in the minigame and draws already managed
 	 */
 	private List<U> playoff() {
 		return null;
+	}
+	
+	/**
+     * This method associate a player to his score.
+     * @param score
+     * 			the score of the player at the minigame
+	 */
+	private void scoreMapper(final Integer score) {
+		
 	}
 	
 }
