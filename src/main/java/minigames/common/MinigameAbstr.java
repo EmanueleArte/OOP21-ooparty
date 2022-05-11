@@ -25,10 +25,18 @@ public abstract class MinigameAbstr<U> implements Minigame<U> {
 		this(null);
 	}
 	
+	/**
+     * @return a map with players as keys and their score as values
+	 */
 	public Map<U, Integer> getPlayersClassification() {
 		return this.playersClassification;
 	}
 	
+	/**
+     * This method sets the map of players associated to their scores.
+     * @param playersClassification
+     * 			a map with players as keys and their score as values
+	 */
 	public void setPlayersClassification(final Map<U, Integer> playersClassification) {
 		this.playersClassification = playersClassification;
 	}
