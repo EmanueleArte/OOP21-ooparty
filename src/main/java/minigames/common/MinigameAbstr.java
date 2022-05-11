@@ -34,11 +34,13 @@ public abstract class MinigameAbstr<U> implements Minigame<U> {
 	
 	/**
      * This method associate a player to his score.
+     * @param player
+     * 			the current player
      * @param score
      * 			the score of the player at the minigame
 	 */
-	private void scoreMapper(final Integer score) {
-		
+	private void scoreMapper(final U player, final Integer score) {
+		this.playersClassification.put(player, score);
 	}
 	
 }
