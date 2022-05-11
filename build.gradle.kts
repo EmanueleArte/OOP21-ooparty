@@ -58,5 +58,5 @@ tasks.withType<Test> {
 
 application {
     // Define the main class for the application
-    mainClass.set("Prova")
+    mainClass.set("App")
 }
