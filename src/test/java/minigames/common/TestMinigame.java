@@ -25,15 +25,30 @@ class TestMinigame {
 		
 		MinigameImpl<String> m = new MinigameImpl<String>(players);
 		players.forEach(p -> m.scoreMapper(p, scores.get(players.indexOf(p))));
-		Map<String, Integer> correctMap = new HashMap<>();
-		players.forEach(p -> correctMap.put(p, scores.get(players.indexOf(p))));
+		Map<String, Integer> correctMap = Map.of("Luca", 4, "Giovanni", 7, "Lorenzo", 5, "Marco", 2);
 		assertEquals(correctMap, m.getPlayersClassification());
 	}
 
 	
 	@Test
 	void testSortPlayerByScore() {
+		class MinigameImpl<U> extends MinigameAbstr<U> {
+			
+			public MinigameImpl() {
+				super();
+			}
+			
+		}
 		
+		MinigameImpl<String> m = new MinigameImpl<String>();
+		Map<String, Integer> simpleMap = Map.of("Luca", 4, "Giovanni", 7, "Lorenzo", 5, "Marco", 2);
+		m.setPlayersClassification(simpleMap);
+		List<String> orderedList = List.of("Giovanni", "Lorenzo", "Luca", "Marco");
+		assertEquals(orderedList, m.gameResults());
+		Map<String, Integer> duplMap = Map.of("Luca", 2, "Giovanni", 7, "Lorenzo", 2, "Marco", 6);
+		m.setPlayersClassification(duplMap);
+		List<String> orderedDuplList = List.of("Giovanni", "Marco", "Luca", "Lorenzo");
+		assertEquals(orderedDuplList, m.gameResults());
 	}
 
 }
