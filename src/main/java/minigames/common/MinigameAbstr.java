@@ -59,7 +59,6 @@ public abstract class MinigameAbstr<U> implements Minigame<U> {
 						return 1;
 					}
 				})
-				//.flatMap(player -> player.getKey())
 				.collect(Collectors.toMap(player -> player.getKey(), player -> player.getValue()))
 				.keySet()
 				.stream()
