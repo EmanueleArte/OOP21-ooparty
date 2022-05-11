@@ -3,6 +3,7 @@ package minigames.common;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
@@ -11,15 +12,24 @@ import java.util.stream.Collectors;
 public abstract class MinigameAbstr<U> implements Minigame<U> {
 
 	private final List<U> players;
-	private Map<U, Integer> playersClassification = new HashMap<>();
+	private Map<U, Integer> playersClassification;
 
 
 	public MinigameAbstr(final List<U> players) {
 		this.players = players;
+		this.playersClassification = new HashMap<>();
+	}
+	
+	public MinigameAbstr() {
+		this(null);
 	}
 	
 	public Map<U, Integer> getPlayersClassification() {
 		return this.playersClassification;
+	}
+	
+	public void setPlayersClassification(final Map<U, Integer> playersClassification) {
+		this.playersClassification = playersClassification;
 	}
 
 	@Override
@@ -31,7 +41,7 @@ public abstract class MinigameAbstr<U> implements Minigame<U> {
 	@Override
 	public List<U> gameResults() {
 		
-		return null;
+		return this.sortPlayersByScore();
 	}
 	
 	/**
@@ -67,7 +77,7 @@ public abstract class MinigameAbstr<U> implements Minigame<U> {
 					}
 				})*/
 				.sorted(Map.Entry.comparingByValue(Comparator.reverseOrder()))
-				.collect(Collectors.toMap(player -> player.getKey(), player -> player.getValue()))
+				.collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue, (x, y) -> y, LinkedHashMap::new))
 				.keySet()
 				.stream()
 				.toList();
