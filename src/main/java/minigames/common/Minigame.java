@@ -9,7 +9,7 @@ import java.util.List;
 public interface Minigame<U> {
 	
 	/**
-     * This method runs the minigame
+     * This method runs the minigame.
 	 * @return gameResults() output
 	 */
 	List<U> runGame();
