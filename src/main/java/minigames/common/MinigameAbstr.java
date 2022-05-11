@@ -1,6 +1,8 @@
 package minigames.common;
 
 import java.util.ArrayList;
+import java.util.Comparator;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
@@ -9,10 +11,15 @@ import java.util.stream.Collectors;
 public abstract class MinigameAbstr<U> implements Minigame<U> {
 
 	private final List<U> players;
-	private Map<U, Integer> playersClassification;
+	private Map<U, Integer> playersClassification = new HashMap<>();
+
 
 	public MinigameAbstr(final List<U> players) {
 		this.players = players;
+	}
+	
+	public Map<U, Integer> getPlayersClassification() {
+		return this.playersClassification;
 	}
 
 	@Override
@@ -42,7 +49,7 @@ public abstract class MinigameAbstr<U> implements Minigame<U> {
      * @param score
      * 			the score of the player at the minigame
 	 */
-	private void scoreMapper(final U player, final Integer score) {
+	public void scoreMapper(final U player, final Integer score) {
 		this.playersClassification.put(player, score);
 	}
 	
@@ -52,13 +59,14 @@ public abstract class MinigameAbstr<U> implements Minigame<U> {
 	 */
 	private List<U> sortPlayersByScore() {
 		return this.playersClassification.entrySet().stream()
-				.sorted((a, b) -> {
+				/*.sorted((a, b) -> {
 					if(a.getValue() >= b.getValue()) {
 						return -1;
 					} else {
 						return 1;
 					}
-				})
+				})*/
+				.sorted(Map.Entry.comparingByValue(Comparator.reverseOrder()))
 				.collect(Collectors.toMap(player -> player.getKey(), player -> player.getValue()))
 				.keySet()
 				.stream()
