@@ -42,15 +42,17 @@ public abstract class MinigameAbstr<U> implements Minigame<U> {
 	}
 
 	@Override
-	public List<U> runGame() {
-		
-		return this.gameResults();
-	}
+	abstract public List<U> runGame();
 
 	@Override
 	public List<U> gameResults() {
 		
 		return this.sortPlayersByScore();
+	}
+	
+	@Override
+	public void scoreMapper(final U player, final Integer score) {
+		this.playersClassification.put(player, score);
 	}
 	
 	/**
@@ -59,17 +61,6 @@ public abstract class MinigameAbstr<U> implements Minigame<U> {
 	 */
 	private List<U> playoff() {
 		return null;
-	}
-	
-	/**
-     * This method associates a player to his score.
-     * @param player
-     * 			the current player
-     * @param score
-     * 			the score of the player at the minigame
-	 */
-	public void scoreMapper(final U player, final Integer score) {
-		this.playersClassification.put(player, score);
 	}
 	
 	/**

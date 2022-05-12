@@ -19,5 +19,14 @@ public interface Minigame<U> {
 	 * @return a list of players ordered by their classification in the minigame with no draws
 	 */
 	List<U> gameResults();
+	
+	/**
+     * This method associates a player to his score.
+     * @param player
+     * 			the current player
+     * @param score
+     * 			the score of the player at the minigame
+	 */
+	void scoreMapper(U player, Integer score);
 
 }
