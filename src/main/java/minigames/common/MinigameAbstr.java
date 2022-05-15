@@ -73,7 +73,7 @@ public abstract class MinigameAbstr<U> implements Minigame<U> {
 				.collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue, (x, y) -> y, LinkedHashMap::new))
 				.keySet()
 				.stream()
-				.toList();
+				.collect(Collectors.toList());
 	}
 	
 }
