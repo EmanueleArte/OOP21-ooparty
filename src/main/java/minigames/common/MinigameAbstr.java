@@ -69,13 +69,6 @@ public abstract class MinigameAbstr<U> implements Minigame<U> {
 	 */
 	private List<U> sortPlayersByScore() {
 		return this.playersClassification.entrySet().stream()
-				/*.sorted((a, b) -> {
-					if(a.getValue() >= b.getValue()) {
-						return -1;
-					} else {
-						return 1;
-					}
-				})*/
 				.sorted(Map.Entry.comparingByValue(Comparator.reverseOrder()))
 				.collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue, (x, y) -> y, LinkedHashMap::new))
 				.keySet()
