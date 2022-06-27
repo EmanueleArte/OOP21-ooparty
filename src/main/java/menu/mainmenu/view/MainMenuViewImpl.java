@@ -14,10 +14,22 @@ import javafx.stage.Stage;
 public class MainMenuViewImpl extends Application implements MainMenuView {
 
 	private Stage primaryStage;
+	private Button gameButton;
+	private Button exitButton;
 	static final Font fontButton = new Font(50);
 	static final Font fontTitle = new Font(70);
 	static final Insets insets = new Insets(40);
 
+	@Override
+	public Button getGameButton() {
+		return this.gameButton;
+	}
+
+	@Override
+	public Button getExitButton() {
+		return this.exitButton;
+	}
+	
 	/**
 	 * This method shows the graphical interface of the main menu.
 	 */
@@ -27,9 +39,9 @@ public class MainMenuViewImpl extends Application implements MainMenuView {
 
 	@Override
 	public void start(final Stage primaryStage) throws Exception {
-		final Button gameButton = new Button("Create game");
+		this.gameButton = new Button("Create game");
 		gameButton.setFont(MainMenuViewImpl.fontButton);
-		final Button exitButton = new Button("Exit");
+		this.exitButton = new Button("Exit");
 		exitButton.setFont(MainMenuViewImpl.fontButton);
         final Label gameTitle = new Label("OOParty");
         gameTitle.setFont(MainMenuViewImpl.fontTitle);
