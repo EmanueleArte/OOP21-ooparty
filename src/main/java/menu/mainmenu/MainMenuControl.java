@@ -1,18 +1,25 @@
 package menu.mainmenu;
 
-/**
- * This interface models the main menu control of the game.
- */
-public interface MainMenuControl {
-	
+public class MainMenuControl {
+
+	public MainMenuControl() {
+		// TODO Auto-generated constructor stub
+	}
+
 	/**
 	 * This method exits from the game.
 	 */
-	void exitGame();
-	
+	private void exitGame() {
+		// TODO Auto-generated method stub
+
+	}
+
 	/**
 	 * This method creates a new game.
 	 */
-	void createGame();
-	
+	private void createGame() {
+		// TODO Auto-generated method stub
+
+	}
+
 }

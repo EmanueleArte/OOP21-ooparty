@@ -1,3 +1,6 @@
+import menu.mainmenu.MainMenuControl;
+import menu.mainmenu.MainMenuControl;
+
 public class App {
 
     /**
@@ -6,7 +9,7 @@ public class App {
      * @param args command line args.
      */
     public static void main(final String[] args) {
-        System.out.println("OK");
+        MainMenuControl mainMenu = new MainMenuControl();
     }
     
 }
