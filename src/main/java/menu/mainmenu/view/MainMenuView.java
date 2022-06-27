@@ -6,7 +6,7 @@ package menu.mainmenu.view;
 public interface MainMenuView {
 
 	/**
-	 * This method runs the javaFX gui.
+	 * This method starts the javaFX gui.
 	 */
 	void run(String[] args);
 	
