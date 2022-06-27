@@ -1,15 +1,20 @@
 package menu.mainmenu.model;
 
+import javafx.application.Platform;
+import javafx.stage.Stage;
+
 public class MainMenuModelImpl implements MainMenuModel {
 
-	public MainMenuModelImpl() {
-		// TODO Auto-generated constructor stub
+	private final Stage primaryStage;
+	
+	public MainMenuModelImpl(final Stage stage) {
+		this.primaryStage = stage;
 	}
 
 	@Override
 	public void exit() {
-		// TODO Auto-generated method stub
-		
+		Platform.exit();
+		System.exit(0);
 	}
 
 	@Override

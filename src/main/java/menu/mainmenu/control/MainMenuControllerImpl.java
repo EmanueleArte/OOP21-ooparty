@@ -1,6 +1,7 @@
 package menu.mainmenu.control;
 
 import menu.mainmenu.model.MainMenuModel;
+import menu.mainmenu.model.MainMenuModelImpl;
 import menu.mainmenu.view.MainMenuView;
 import menu.mainmenu.view.MainMenuViewImpl;
 
@@ -11,9 +12,15 @@ public class MainMenuControllerImpl implements MainMenuController {
 	
 	public MainMenuControllerImpl() {
 		this.menuView = new MainMenuViewImpl();
-		this.menuView.getGameButton().setOnMouseClicked(this.createGame());
-		this.menuView.getExitButton().setOnMouseClicked(this.exitGame());
 		this.menuView.run(null);
+		this.menuModel = new MainMenuModelImpl(this.menuView.getStage());
+		/*this.menuView.getGameButton().setOnMouseClicked(mouseEvent -> {
+			this.createGame();
+		});*/
+		this.menuView.getExitButton().setOnMouseClicked(mouseEvent -> {
+			this.menuView.getExitButton().setText("ok");
+			//this.exitGame();
+		});
 	}
 
 	@Override
@@ -25,8 +32,7 @@ public class MainMenuControllerImpl implements MainMenuController {
 	 * This method exits from the game.
 	 */
 	private void exitGame() {
-		// TODO Auto-generated method stub
-
+		this.menuModel.exit();
 	}
 
 	/**

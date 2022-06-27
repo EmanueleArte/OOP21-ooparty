@@ -63,6 +63,7 @@ public class MainMenuViewImpl extends Application implements MainMenuView {
         primaryStage.setTitle("OOParty");
         primaryStage.setMaximized(true);
         this.primaryStage = primaryStage;
+        this.primaryStage.setOnCloseRequest(e -> System.exit(0));
         this.showView();
 	}
 	
