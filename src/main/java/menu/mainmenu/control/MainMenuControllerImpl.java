@@ -2,6 +2,7 @@ package menu.mainmenu.control;
 
 import menu.mainmenu.model.MainMenuModel;
 import menu.mainmenu.view.MainMenuView;
+import menu.mainmenu.view.MainMenuViewImpl;
 
 public class MainMenuControllerImpl implements MainMenuController {
 
@@ -9,13 +10,13 @@ public class MainMenuControllerImpl implements MainMenuController {
 	private MainMenuModel menuModel;
 	
 	public MainMenuControllerImpl() {
-		
+		this.menuView = new MainMenuViewImpl();
+		this.menuView.run(null);
 	}
 
 	@Override
 	public void showMenu() {
-		// TODO Auto-generated method stub
-		
+		menuView.showView();
 	}
 	
 	/**

@@ -1,6 +1,9 @@
 package menu.mainmenu.view;
 
 import javafx.application.Application;
+import javafx.scene.Scene;
+import javafx.scene.control.Button;
+import javafx.scene.text.Font;
 import javafx.stage.Stage;
 
 public class MainMenuViewImpl extends Application implements MainMenuView {
@@ -14,10 +17,15 @@ public class MainMenuViewImpl extends Application implements MainMenuView {
 
 	@Override
 	public void start(final Stage primaryStage) throws Exception {
-		this.primaryStage = primaryStage;
+		final Button button = new Button("Create a new stage!");
+        button.setFont(new Font(100));
+        primaryStage.setScene(new Scene(button));
+        primaryStage.setTitle("Hello");
+        this.primaryStage = primaryStage;
 	}
 	
-	public static void run(final String[] args) {
+	@Override
+	public void run(final String[] args) {
         launch();
     }
 

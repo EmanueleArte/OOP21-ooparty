@@ -11,4 +11,9 @@ public interface MainMenuView {
 	 */
 	void showView();
 	
+	/**
+	 * This method runs the javaFX gui.
+	 */
+	void run(String[] args);
+	
 }
