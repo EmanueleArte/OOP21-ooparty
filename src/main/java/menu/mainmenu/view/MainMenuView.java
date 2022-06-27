@@ -1,4 +1,4 @@
-package menu.mainmenu;
+package menu.mainmenu.view;
 
 /**
  * This interface models the main menu view of the game.

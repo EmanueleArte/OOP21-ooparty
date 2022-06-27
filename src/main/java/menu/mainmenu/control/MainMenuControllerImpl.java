@@ -1,11 +1,14 @@
-package menu.mainmenu;
+package menu.mainmenu.control;
 
-public class MainMenuControlImpl implements MainMenuControl {
+import menu.mainmenu.model.MainMenuModel;
+import menu.mainmenu.view.MainMenuView;
+
+public class MainMenuControllerImpl implements MainMenuController {
 
 	private MainMenuView menuView;
 	private MainMenuModel menuModel;
 	
-	public MainMenuControlImpl() {
+	public MainMenuControllerImpl() {
 		
 	}
 

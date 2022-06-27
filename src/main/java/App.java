@@ -1,5 +1,5 @@
-import menu.mainmenu.MainMenuControl;
-import menu.mainmenu.MainMenuControlImpl;
+import menu.mainmenu.control.MainMenuController;
+import menu.mainmenu.control.MainMenuControllerImpl;
 
 public class App {
 
@@ -9,7 +9,7 @@ public class App {
      * @param args command line args.
      */
     public static void main(final String[] args) {
-        final MainMenuControl mainMenu = new MainMenuControlImpl();
+        final MainMenuController mainMenu = new MainMenuControllerImpl();
         mainMenu.showMenu();
     }
     

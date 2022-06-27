@@ -1,9 +1,9 @@
-package menu.mainmenu;
+package menu.mainmenu.control;
 
 /**
  * This interface models the main menu control of the game.
  */
-public interface MainMenuControl {
+public interface MainMenuController {
 	
 	/**
 	 * This method shows the main menu.
