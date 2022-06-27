@@ -11,6 +11,8 @@ public class MainMenuControllerImpl implements MainMenuController {
 	
 	public MainMenuControllerImpl() {
 		this.menuView = new MainMenuViewImpl();
+		this.menuView.getGameButton().setOnMouseClicked(this.createGame());
+		this.menuView.getExitButton().setOnMouseClicked(this.exitGame());
 		this.menuView.run(null);
 	}
 

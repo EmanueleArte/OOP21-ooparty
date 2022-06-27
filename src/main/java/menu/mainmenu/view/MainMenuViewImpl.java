@@ -30,6 +30,11 @@ public class MainMenuViewImpl extends Application implements MainMenuView {
 		return this.exitButton;
 	}
 	
+	@Override
+	public Stage getStage() {
+		return this.primaryStage;
+	}
+	
 	/**
 	 * This method shows the graphical interface of the main menu.
 	 */

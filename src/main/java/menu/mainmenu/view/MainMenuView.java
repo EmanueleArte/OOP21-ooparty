@@ -1,6 +1,7 @@
 package menu.mainmenu.view;
 
 import javafx.scene.control.Button;
+import javafx.stage.Stage;
 
 /**
  * This interface models the main menu view of the game.
@@ -18,6 +19,12 @@ public interface MainMenuView {
 	 * @return the button that exits the game
 	 */
 	Button getExitButton();
+	
+	/**
+	 * This method returns the menu primary stage.
+	 * @return the stage of the main menu
+	 */
+	Stage getStage();
 
 	/**
 	 * This method starts the javaFX gui.
