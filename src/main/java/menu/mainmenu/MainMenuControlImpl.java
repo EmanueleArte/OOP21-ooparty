@@ -1,8 +1,8 @@
 package menu.mainmenu;
 
-public class MainMenuImpl implements MainMenu {
+public class MainMenuControlImpl implements MainMenuControl {
 
-	public MainMenuImpl() {
+	public MainMenuControlImpl() {
 		// TODO Auto-generated constructor stub
 	}
 

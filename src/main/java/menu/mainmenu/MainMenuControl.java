@@ -1,9 +1,9 @@
 package menu.mainmenu;
 
 /**
- * This interface models the main menu of the game.
+ * This interface models the main menu control of the game.
  */
-public interface MainMenu {
+public interface MainMenuControl {
 	
 	/**
 	 * This method exits from the game.
@@ -11,7 +11,8 @@ public interface MainMenu {
 	void exitGame();
 	
 	/**
-	 * This method create a new game.
+	 * This method creates a new game.
 	 */
 	void createGame();
+	
 }
