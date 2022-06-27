@@ -2,7 +2,7 @@ package minigames.common;
 
 import java.util.List;
 
-/*
+/**
  * This interface models a generic minigame, which has to be implemented
  * in the main game
  */
