@@ -6,12 +6,6 @@ package menu.mainmenu.view;
 public interface MainMenuView {
 
 	/**
-	 * This method shows the graphical interface of the
-	 * main menu.
-	 */
-	void showView();
-	
-	/**
 	 * This method runs the javaFX gui.
 	 */
 	void run(String[] args);

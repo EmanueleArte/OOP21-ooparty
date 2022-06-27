@@ -10,7 +10,7 @@ public class App {
      */
     public static void main(final String[] args) {
         final MainMenuController mainMenu = new MainMenuControllerImpl();
-        mainMenu.showMenu();
+        mainMenu.start();
     }
     
 }

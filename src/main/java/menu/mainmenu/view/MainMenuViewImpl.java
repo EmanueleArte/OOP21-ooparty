@@ -10,8 +10,11 @@ public class MainMenuViewImpl extends Application implements MainMenuView {
 
 	private Stage primaryStage;
 
-	@Override
-	public void showView() {
+	/**
+	 * This method shows the graphical interface of the
+	 * main menu.
+	 */
+	private void showView() {
 		this.primaryStage.show();
 	}
 
@@ -22,6 +25,7 @@ public class MainMenuViewImpl extends Application implements MainMenuView {
         primaryStage.setScene(new Scene(button));
         primaryStage.setTitle("Hello");
         this.primaryStage = primaryStage;
+        this.showView();
 	}
 	
 	@Override

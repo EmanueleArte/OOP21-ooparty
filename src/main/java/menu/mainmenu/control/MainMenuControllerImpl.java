@@ -15,8 +15,8 @@ public class MainMenuControllerImpl implements MainMenuController {
 	}
 
 	@Override
-	public void showMenu() {
-		menuView.showView();
+	public void start() {
+		this.menuView.run(null);
 	}
 	
 	/**

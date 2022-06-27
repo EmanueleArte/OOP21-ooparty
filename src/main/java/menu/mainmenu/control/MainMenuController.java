@@ -8,6 +8,6 @@ public interface MainMenuController {
 	/**
 	 * This method shows the main menu.
 	 */
-	void showMenu();
+	void start();
 	
 }
