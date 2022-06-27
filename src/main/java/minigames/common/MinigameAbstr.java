@@ -15,7 +15,6 @@ public abstract class MinigameAbstr<U> implements Minigame<U> {
 	private final List<U> players;
 	private Map<U, Integer> playersClassification;
 
-
 	public MinigameAbstr(final List<U> players) {
 		this.players = players;
 		this.playersClassification = new HashMap<>();
