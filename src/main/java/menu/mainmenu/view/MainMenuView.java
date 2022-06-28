@@ -1,17 +1,12 @@
 package menu.mainmenu.view;
 
-import javafx.stage.Stage;
+import java.util.List;
 
 /**
  * This interface models the main menu view of the game.
+ * @param <S> the scenes of the stage
  */
-public interface MainMenuView {
-
-	/**
-	 * This method returns the primary stage.
-	 * @return the primary stage
-	 */
-	Stage getStage();
+public interface MainMenuView<S> {
 	
 	/**
 	 * This method starts the javaFX gui.

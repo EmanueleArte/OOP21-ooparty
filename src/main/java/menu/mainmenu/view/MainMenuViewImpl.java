@@ -1,6 +1,8 @@
 package menu.mainmenu.view;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -11,12 +13,13 @@ import javafx.stage.Stage;
 /**
  * Implementation of {@link MainMenuView}.
  */
-public class MainMenuViewImpl extends Application implements MainMenuView {
+public class MainMenuViewImpl<S> extends Application implements MainMenuView<S> {
 
-	private Stage primaryStage;
+	final private List<S> stages;
 	
 	public MainMenuViewImpl() {
 		super();
+		this.stages = new ArrayList<S>();
 	}
 	
 	/**
@@ -25,15 +28,10 @@ public class MainMenuViewImpl extends Application implements MainMenuView {
 	private void showView() {
 		this.primaryStage.show();
 	}
-	
-	@Override
-	public Stage getStage() {
-		return this.primaryStage;
-	}
 
 	@Override
 	public void start(final Stage primaryStage) throws Exception {
-		final String fxmlUrl = "main_menu.fxml";
+		final String fxmlUrl = "menu/main_menu.fxml";
         Parent root = FXMLLoader.load(getClass().getClassLoader().getResource(fxmlUrl));
         final Scene scene = new Scene(root);
         primaryStage.setScene(scene);

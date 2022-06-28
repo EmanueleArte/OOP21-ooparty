@@ -2,18 +2,26 @@ package utils;
 
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+
+import java.util.ArrayList;
+import java.util.List;
+
 import javafx.application.Application;
 
-public class StageManagerAbstr extends Application implements StageManager {
+/**
+ * Implementation of {@link StageManager}.
+ */
+public class StageManagerAbstr<S> extends Application implements StageManager<S> {
 
+	final private List<S> scenes;
+	
 	public StageManagerAbstr() {
-		// TODO Auto-generated constructor stub
+		this.scenes = new ArrayList<S>();
 	}
 
 	@Override
-	public void addScene() {
-		// TODO Auto-generated method stub
-
+	public void addScene(final Scene s) {
+		
 	}
 
 	@Override
@@ -35,7 +43,6 @@ public class StageManagerAbstr extends Application implements StageManager {
 
 	@Override
 	public void start(Stage primaryStage) throws Exception {
-		// TODO Auto-generated method stub
 		
 	}
 
