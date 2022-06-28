@@ -1,7 +1,5 @@
 package menu.mainmenu.view;
 
-import java.util.List;
-
 /**
  * This interface models the main menu view of the game.
  * @param <S> the scenes of the stage
@@ -9,8 +7,8 @@ import java.util.List;
 public interface MainMenuView<S> {
 	
 	/**
-	 * This method starts the javaFX gui.
+	 * This method creates the main menu scene.
 	 */
-	void run(String[] args);
+	void createMainMenu();
 	
 }

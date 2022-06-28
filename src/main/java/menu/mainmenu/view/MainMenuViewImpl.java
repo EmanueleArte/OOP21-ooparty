@@ -1,50 +1,41 @@
 package menu.mainmenu.view;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
 
-import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.stage.Stage;
+import utils.graphics.StageManager;
 
 /**
  * Implementation of {@link MainMenuView}.
  */
-public class MainMenuViewImpl<S> extends Application implements MainMenuView<S> {
+public class MainMenuViewImpl<S> implements MainMenuView<S> {
 
-	final private List<S> stages;
+	final private StageManager<S> stageManager;
 	
-	public MainMenuViewImpl() {
+	public MainMenuViewImpl(final StageManager<S> s) {
 		super();
-		this.stages = new ArrayList<S>();
-	}
-	
-	/**
-	 * This method shows the graphical interface of the main menu.
-	 */
-	private void showView() {
-		this.primaryStage.show();
+		this.stageManager = s;
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
-	public void start(final Stage primaryStage) throws Exception {
+	public void createMainMenu() {
 		final String fxmlUrl = "menu/main_menu.fxml";
-        Parent root = FXMLLoader.load(getClass().getClassLoader().getResource(fxmlUrl));
-        final Scene scene = new Scene(root);
-        primaryStage.setScene(scene);
-        primaryStage.setTitle("OOParty");
-        primaryStage.setMaximized(true);
-        this.primaryStage = primaryStage;
-        this.primaryStage.setOnCloseRequest(e -> System.exit(0));     
-        this.showView();
-	}
-
-	@Override
-	public void run(final String[] args) {
-        launch();
+		Parent root = null;
+		try {
+			root = FXMLLoader.load(getClass().getClassLoader().getResource(fxmlUrl));
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		if (root != null) {
+			this.stageManager.addScene((S) new Scene(root));
+		} else {
+			System.exit(1);
+		}
+        
+        
 	}
 
 }

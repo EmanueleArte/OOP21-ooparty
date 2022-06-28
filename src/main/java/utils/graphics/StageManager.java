@@ -28,7 +28,7 @@ public interface StageManager<S> {
 	 * This method starts the javafx gui.
 	 * @param args
 	 */
-	void run(String[] args);
+	void run();
 	
 	/**
 	 *  This method returns the list of all scenes.
