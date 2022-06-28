@@ -1,19 +1,22 @@
 package menu.mainmenu.model;
 
-import javafx.application.Platform;
-import javafx.stage.Stage;
+import menu.mainmenu.view.MainMenuView;
 
 public class MainMenuModelImpl implements MainMenuModel {
 
-	private final Stage primaryStage;
+	private MainMenuView menuView;
 	
-	public MainMenuModelImpl(final Stage stage) {
-		this.primaryStage = stage;
+	public MainMenuModelImpl() {
+		super();
+	}
+	
+	@Override
+	public void setMenuView(final MainMenuView menuView) {
+		this.menuView = menuView;
 	}
 
 	@Override
 	public void exit() {
-		Platform.exit();
 		System.exit(0);
 	}
 

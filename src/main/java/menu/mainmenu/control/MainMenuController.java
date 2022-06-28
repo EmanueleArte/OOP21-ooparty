@@ -10,4 +10,14 @@ public interface MainMenuController {
 	 */
 	void start();
 	
+	/**
+	 * This method exits from the game.
+	 */
+	public void exitGame();
+
+	/**
+	 * This method creates a new game.
+	 */
+	public void createGame();
+	
 }

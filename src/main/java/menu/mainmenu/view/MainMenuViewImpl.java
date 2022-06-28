@@ -1,8 +1,10 @@
 package menu.mainmenu.view;
 
 import javafx.application.Application;
+import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -19,6 +21,10 @@ public class MainMenuViewImpl extends Application implements MainMenuView {
 	static final Font fontButton = new Font(50);
 	static final Font fontTitle = new Font(70);
 	static final Insets insets = new Insets(40);
+	
+	public MainMenuViewImpl() {
+		super();
+	}
 
 	@Override
 	public Button getGameButton() {
@@ -28,6 +34,16 @@ public class MainMenuViewImpl extends Application implements MainMenuView {
 	@Override
 	public Button getExitButton() {
 		return this.exitButton;
+	}
+	
+	@Override
+	public void setGameButton(final Button b) {
+		this.gameButton = b;
+	}
+	
+	@Override
+	public void setExitButton(final Button b) {
+		this.exitButton = b;
 	}
 	
 	@Override
@@ -44,21 +60,24 @@ public class MainMenuViewImpl extends Application implements MainMenuView {
 
 	@Override
 	public void start(final Stage primaryStage) throws Exception {
-		this.gameButton = new Button("Create game");
-		gameButton.setFont(MainMenuViewImpl.fontButton);
+		/*this.gameButton = new Button("Create game");
+		this.gameButton.setFont(MainMenuViewImpl.fontButton);
 		this.exitButton = new Button("Exit");
-		exitButton.setFont(MainMenuViewImpl.fontButton);
+		this.exitButton.setFont(MainMenuViewImpl.fontButton);
         final Label gameTitle = new Label("OOParty");
         gameTitle.setFont(MainMenuViewImpl.fontTitle);
         final BorderPane menuPane = new BorderPane();
         BorderPane.setAlignment(gameTitle, Pos.CENTER);
-        final VBox vbox = new VBox(gameButton, exitButton);
-        VBox.setMargin(gameButton, MainMenuViewImpl.insets); 
+        final VBox vbox = new VBox(this.gameButton, this.exitButton);
+        VBox.setMargin(this.gameButton, MainMenuViewImpl.insets); 
         vbox.setAlignment(Pos.CENTER);
         menuPane.setTop(gameTitle);
         BorderPane.setMargin(gameTitle, MainMenuViewImpl.insets);
         menuPane.setCenter(vbox);
-        final Scene scene = new Scene(menuPane);
+        final Scene scene = new Scene(menuPane);*/
+		final String fxmlUrl = "main_menu.fxml";
+        Parent root = FXMLLoader.load(getClass().getClassLoader().getResource(fxmlUrl));
+        final Scene scene = new Scene(root);
         primaryStage.setScene(scene);
         primaryStage.setTitle("OOParty");
         primaryStage.setMaximized(true);
@@ -66,10 +85,10 @@ public class MainMenuViewImpl extends Application implements MainMenuView {
         this.primaryStage.setOnCloseRequest(e -> System.exit(0));
         this.showView();
 	}
-	
+
 	@Override
 	public void run(final String[] args) {
         launch();
-    }
+	}
 
 }

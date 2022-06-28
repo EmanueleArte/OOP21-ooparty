@@ -21,6 +21,18 @@ public interface MainMenuView {
 	Button getExitButton();
 	
 	/**
+	 * This method sets the game creation button.
+	 * @param b game creation button
+	 */
+	void setGameButton(Button b);
+
+	/**
+	 * This method sets the game exit button.
+	 * @param b game exit button
+	 */
+	void setExitButton(Button b);
+	
+	/**
 	 * This method returns the menu primary stage.
 	 * @return the stage of the main menu
 	 */
