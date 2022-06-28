@@ -29,7 +29,7 @@ public class GameCreationMenuControllerImpl implements GameCreationMenuControlle
 	}
 
 	@Override
-	public void exitGame() {
+	public void returnToMainMenu() {
 		// TODO Auto-generated method stub
 		
 	}

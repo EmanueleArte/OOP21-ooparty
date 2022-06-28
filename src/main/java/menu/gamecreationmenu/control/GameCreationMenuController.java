@@ -13,7 +13,7 @@ public interface GameCreationMenuController {
 	/**
 	 * This method returns to the main menu of the game.
 	 */
-	void exitGame();
+	void returnToMainMenu();
 
 	/**
 	 * This method starts a new game.
