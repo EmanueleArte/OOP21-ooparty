@@ -6,18 +6,18 @@ package menu.mainmenu.control;
 public interface MainMenuController {
 	
 	/**
-	 * This method shows the main menu.
+	 * This method shows the game creation menu.
 	 */
 	void start();
 	
 	/**
-	 * This method exits from the game.
+	 * This method returns to the main menu.
 	 */
-	public void exitGame();
+	void exitGame();
 
 	/**
-	 * This method creates a new game.
+	 * This method starts a new game.
 	 */
-	public void createGame();
+	void startGame();
 	
 }

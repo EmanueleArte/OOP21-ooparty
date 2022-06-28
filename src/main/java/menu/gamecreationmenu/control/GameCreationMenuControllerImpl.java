@@ -1,4 +1,4 @@
-package menu.mainmenu.control;
+package menu.gamecreationmenu.control;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -10,33 +10,36 @@ import menu.mainmenu.view.MainMenuViewImpl;
 /**
  * Implementation of {@link MainMenuController}.
  */
-public class MainMenuControllerImpl implements MainMenuController {
+public class GameCreationMenuControllerImpl implements GameCreationMenuController {
 
-	private MainMenuView menuView;
-	private MainMenuModel menuModel;
+	private MainMenuView creationMenuView;
+	private MainMenuModel creationMenuModel;
 	@FXML private Button exitButton;
 	@FXML private Button createGameButton;
 	
-	public MainMenuControllerImpl() {
+	public GameCreationMenuControllerImpl() {
 		super();
-		this.menuView = new MainMenuViewImpl();
-		this.menuModel = new MainMenuModelImpl();
+		this.creationMenuView = new MainMenuViewImpl();
+		this.creationMenuModel = new MainMenuModelImpl();
 	}
 	
 	@Override
 	public void start() {
-        this.menuView.run(null);
+        
 	}
-	
+
 	@Override
 	public void exitGame() {
-		this.menuModel.exit();
+		// TODO Auto-generated method stub
+		
 	}
 
 	@Override
 	public void createGame() {
-		this.menuModel.setMenuView(this.menuView);
-		this.menuModel.gameCreationMenu();
+		// TODO Auto-generated method stub
+		
 	}
+	
+	
 
 }

@@ -2,6 +2,9 @@ package menu.mainmenu.model;
 
 import menu.mainmenu.view.MainMenuView;
 
+/**
+ * Implementation of {@link MainMenuModel}.
+ */
 public class MainMenuModelImpl implements MainMenuModel {
 
 	private MainMenuView menuView;
@@ -22,7 +25,6 @@ public class MainMenuModelImpl implements MainMenuModel {
 
 	@Override
 	public void gameCreationMenu() {
-		// TODO Auto-generated method stub
 		
 	}
 

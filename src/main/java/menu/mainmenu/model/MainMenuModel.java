@@ -18,7 +18,7 @@ public interface MainMenuModel {
 	void exit();
 	
 	/**
-	 * This method open the game creation menu.
+	 * This method opens the game creation menu.
 	 */
 	void gameCreationMenu();
 
