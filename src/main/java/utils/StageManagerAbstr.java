@@ -1,39 +1,38 @@
 package utils;
 
-import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import javafx.application.Application;
+import javafx.scene.Scene;
 
 /**
  * Implementation of {@link StageManager}.
  */
-public class StageManagerAbstr<S> extends Application implements StageManager<S> {
+public abstract class StageManagerAbstr<S> extends Application implements StageManager<S> {
 
 	final private List<S> scenes;
+	private Stage primaryStage;
 	
 	public StageManagerAbstr() {
 		this.scenes = new ArrayList<S>();
 	}
 
 	@Override
-	public void addScene(final Scene s) {
-		
+	public void addScene(final S s) {
+		this.scenes.add(s);
 	}
-
+	
 	@Override
-	public Scene popScene() {
-		// TODO Auto-generated method stub
-		return null;
+	public S popScene() {
+		return this.scenes.remove(this.lastSceneIndex());
 	}
 
 	@Override
 	public void setScene() {
-		// TODO Auto-generated method stub
-
+		this.primaryStage.setScene((Scene) this.scenes.get(this.lastSceneIndex()));
 	}
 
 	@Override
@@ -44,6 +43,19 @@ public class StageManagerAbstr<S> extends Application implements StageManager<S>
 	@Override
 	public void start(Stage primaryStage) throws Exception {
 		
+	}
+
+	@Override
+	public List<S> getScenes() {
+		return this.scenes;
+	}
+	
+	/**
+	 * This method calculates the index of the last added scene.
+	 * @return the index of the last added scene
+	 */
+	private int lastSceneIndex() {
+		return this.scenes.size() - 1;
 	}
 
 }
