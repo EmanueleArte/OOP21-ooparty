@@ -1,24 +1,20 @@
-package utils;
+package utils.graphics;
 
 import javafx.stage.Stage;
-
 import java.util.ArrayList;
 import java.util.List;
-
 import javafx.application.Application;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
 
 /**
  * Implementation of {@link StageManager}.
  */
-public abstract class StageManagerAbstr<S> extends Application implements StageManager<S> {
+public class StageManagerImpl<S> extends Application implements StageManager<S> {
 
 	final private List<S> scenes;
 	private Stage primaryStage;
 	
-	public StageManagerAbstr() {
+	public StageManagerImpl() {
 		this.scenes = new ArrayList<S>();
 	}
 
