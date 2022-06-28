@@ -21,6 +21,7 @@ public class MainMenuControllerImpl<S> implements MainMenuController<S> {
 
 	public MainMenuControllerImpl() {
 		super();
+		this.menuModel = new MainMenuModelImpl();
 	}
 	
 	@Override

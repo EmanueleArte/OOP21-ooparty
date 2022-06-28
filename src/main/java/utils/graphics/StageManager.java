@@ -11,7 +11,7 @@ public interface StageManager<S> {
 	/**
 	 * This method adds a scene to the scene list.
 	 */
-	void addScene(S s);
+	void addScene(String fxmlUrl);
 	
 	/**
 	 * This method pops a scene from the scene list.

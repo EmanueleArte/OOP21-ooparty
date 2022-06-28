@@ -1,8 +1,4 @@
 import javafx.scene.Scene;
-import menu.mainmenu.control.MainMenuController;
-import menu.mainmenu.control.MainMenuControllerImpl;
-import menu.mainmenu.view.MainMenuView;
-import menu.mainmenu.view.MainMenuViewImpl;
 import utils.graphics.StageManager;
 import utils.graphics.StageManagerImpl;
 

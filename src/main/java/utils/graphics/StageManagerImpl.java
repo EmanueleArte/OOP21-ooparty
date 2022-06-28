@@ -1,15 +1,9 @@
 package utils.graphics;
 
-import javafx.stage.Stage;
-
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-
 import javax.swing.JFrame;
-import javax.swing.SwingUtilities;
-
-import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.embed.swing.JFXPanel;
 import javafx.fxml.FXMLLoader;
@@ -23,15 +17,26 @@ public class StageManagerImpl<S> extends JFrame implements StageManager<S> {
 
 	private static final long serialVersionUID = -2502020530541111808L;
 	final private List<S> scenes;
-	private Stage primaryStage;
+	private JFXPanel mainStage;
 	
 	public StageManagerImpl() {
 		this.scenes = new ArrayList<S>();
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
-	public void addScene(final S s) {
-		this.scenes.add(s);
+	public void addScene(final String fxmlUrl) {
+		Platform.runLater(() -> {
+			Parent root = null;
+			FXMLLoader loader = new FXMLLoader(getClass().getClassLoader().getResource(fxmlUrl));
+			try {
+				root = loader.load();
+			} catch (IOException e1) {
+				e1.printStackTrace();
+			}
+			this.scenes.add((S) new Scene(root));
+			this.setScene();
+        });
 	}
 	
 	@Override
@@ -41,27 +46,14 @@ public class StageManagerImpl<S> extends JFrame implements StageManager<S> {
 
 	@Override
 	public void setScene() {
-		this.primaryStage.setScene((Scene) this.scenes.get(this.lastSceneIndex()));
+		this.mainStage.setScene((Scene) this.scenes.get(this.lastSceneIndex()));
 	}
 
 	@Override
 	public void run() {
 		final JFrame frame = new JFrame("OOParty");
-		final JFXPanel jfxPanel = new JFXPanel();
-        Platform.runLater(() -> {
-            final String fxmlUrl = "menu/main_menu.fxml";
-    		Parent root = null;
-			try {
-				root = FXMLLoader.load(getClass().getClassLoader().getResource(fxmlUrl));
-			} catch (IOException e1) {
-				e1.printStackTrace();
-			}
-			jfxPanel.setScene(new Scene(root));
-            this.primaryStage.setMaximized(true);
-            this.primaryStage.setOnCloseRequest(e -> System.exit(0));
-    		this.primaryStage.show();
-        });
-        frame.add(jfxPanel);
+		this.mainStage = new JFXPanel();
+        frame.add(this.mainStage);
         frame.pack();
         frame.setExtendedState(JFrame.MAXIMIZED_BOTH); 
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
