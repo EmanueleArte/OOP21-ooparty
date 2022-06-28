@@ -1,8 +1,5 @@
 package menu.mainmenu.view;
 
-import javafx.scene.control.Button;
-import javafx.stage.Stage;
-
 /**
  * This interface models the main menu view of the game.
  */
