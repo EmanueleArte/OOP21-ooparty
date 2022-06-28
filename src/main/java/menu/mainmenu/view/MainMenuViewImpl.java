@@ -25,31 +25,6 @@ public class MainMenuViewImpl extends Application implements MainMenuView {
 	public MainMenuViewImpl() {
 		super();
 	}
-
-	@Override
-	public Button getGameButton() {
-		return this.gameButton;
-	}
-
-	@Override
-	public Button getExitButton() {
-		return this.exitButton;
-	}
-	
-	@Override
-	public void setGameButton(final Button b) {
-		this.gameButton = b;
-	}
-	
-	@Override
-	public void setExitButton(final Button b) {
-		this.exitButton = b;
-	}
-	
-	@Override
-	public Stage getStage() {
-		return this.primaryStage;
-	}
 	
 	/**
 	 * This method shows the graphical interface of the main menu.
@@ -60,21 +35,6 @@ public class MainMenuViewImpl extends Application implements MainMenuView {
 
 	@Override
 	public void start(final Stage primaryStage) throws Exception {
-		/*this.gameButton = new Button("Create game");
-		this.gameButton.setFont(MainMenuViewImpl.fontButton);
-		this.exitButton = new Button("Exit");
-		this.exitButton.setFont(MainMenuViewImpl.fontButton);
-        final Label gameTitle = new Label("OOParty");
-        gameTitle.setFont(MainMenuViewImpl.fontTitle);
-        final BorderPane menuPane = new BorderPane();
-        BorderPane.setAlignment(gameTitle, Pos.CENTER);
-        final VBox vbox = new VBox(this.gameButton, this.exitButton);
-        VBox.setMargin(this.gameButton, MainMenuViewImpl.insets); 
-        vbox.setAlignment(Pos.CENTER);
-        menuPane.setTop(gameTitle);
-        BorderPane.setMargin(gameTitle, MainMenuViewImpl.insets);
-        menuPane.setCenter(vbox);
-        final Scene scene = new Scene(menuPane);*/
 		final String fxmlUrl = "main_menu.fxml";
         Parent root = FXMLLoader.load(getClass().getClassLoader().getResource(fxmlUrl));
         final Scene scene = new Scene(root);
