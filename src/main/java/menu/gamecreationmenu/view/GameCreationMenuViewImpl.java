@@ -7,14 +7,14 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 /**
- * Implementation of {@link MainMenuView}.
+ * Implementation of {@link GameCreationMenuView}.
  */
-public class CreationMenuViewImpl extends Application implements CreationMenuView {
+public class GameCreationMenuViewImpl extends Application implements GameCreationMenuView {
 
 	private Stage creationStage;
 	private final Stage primaryStage;
 	
-	public CreationMenuViewImpl(final Stage s) {
+	public GameCreationMenuViewImpl(final Stage s) {
 		super();
 		this.primaryStage = s;
 	}
@@ -29,7 +29,7 @@ public class CreationMenuViewImpl extends Application implements CreationMenuVie
 
 	@Override
 	public void start(final Stage primaryStage) throws Exception {
-		final String fxmlUrl = "main_menu.fxml";
+		final String fxmlUrl = "creation_menu.fxml";
         Parent root = FXMLLoader.load(getClass().getClassLoader().getResource(fxmlUrl));
         final Scene scene = new Scene(root);
         primaryStage.setScene(scene);

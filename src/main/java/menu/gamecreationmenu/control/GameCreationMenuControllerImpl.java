@@ -2,25 +2,24 @@ package menu.gamecreationmenu.control;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.stage.Stage;
+import menu.gamecreationmenu.view.GameCreationMenuView;
+import menu.gamecreationmenu.view.GameCreationMenuViewImpl;
 import menu.mainmenu.model.MainMenuModel;
-import menu.mainmenu.model.MainMenuModelImpl;
-import menu.mainmenu.view.MainMenuView;
-import menu.mainmenu.view.MainMenuViewImpl;
 
 /**
- * Implementation of {@link CreationMenuController}.
+ * Implementation of {@link GameCreationMenuController}.
  */
 public class GameCreationMenuControllerImpl implements GameCreationMenuController {
 
-	private MainMenuView creationMenuView;
+	private GameCreationMenuView creationMenuView;
 	private MainMenuModel creationMenuModel;
 	@FXML private Button exitButton;
 	@FXML private Button createGameButton;
 	
-	public GameCreationMenuControllerImpl() {
+	public GameCreationMenuControllerImpl(final Stage s) {
 		super();
-		this.creationMenuView = new MainMenuViewImpl();
-		this.creationMenuModel = new MainMenuModelImpl();
+		this.creationMenuView = new GameCreationMenuViewImpl(s);
 	}
 	
 	@Override
