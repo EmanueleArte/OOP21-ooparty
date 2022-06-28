@@ -1,5 +1,7 @@
 package menu.mainmenu.view;
 
+import java.io.IOException;
+
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -38,7 +40,7 @@ public class MainMenuViewImpl extends Application implements MainMenuView {
         primaryStage.setTitle("OOParty");
         primaryStage.setMaximized(true);
         this.primaryStage = primaryStage;
-        this.primaryStage.setOnCloseRequest(e -> System.exit(0));
+        this.primaryStage.setOnCloseRequest(e -> System.exit(0));     
         this.showView();
 	}
 

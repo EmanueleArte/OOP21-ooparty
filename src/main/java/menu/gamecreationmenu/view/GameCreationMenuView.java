@@ -6,8 +6,9 @@ package menu.gamecreationmenu.view;
 public interface GameCreationMenuView {
 
 	/**
-	 * This method starts the javaFX gui.
+	 * This method shows the game creation menu
+	 * into the javafx gui.
 	 */
-	void run(String[] args);
+	void startGameCreationMenu();
 	
 }

@@ -27,9 +27,10 @@ public class MainMenuModelImpl implements MainMenuModel {
 
 	@Override
 	public void gameCreationMenu() {
-		final GameCreationMenuController creationMenu = 
+		
+		/*final GameCreationMenuController creationMenu = 
 				new GameCreationMenuControllerImpl(this.menuView.getStage());
-		creationMenu.start();
+		creationMenu.start();*/
 	}
 
 }

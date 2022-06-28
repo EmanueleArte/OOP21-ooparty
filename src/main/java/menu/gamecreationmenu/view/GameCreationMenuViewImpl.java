@@ -1,5 +1,7 @@
 package menu.gamecreationmenu.view;
 
+import java.io.IOException;
+
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -9,10 +11,11 @@ import javafx.stage.Stage;
 /**
  * Implementation of {@link GameCreationMenuView}.
  */
-public class GameCreationMenuViewImpl extends Application implements GameCreationMenuView {
+public class GameCreationMenuViewImpl implements GameCreationMenuView {
 
-	private Stage creationStage;
-	private final Stage primaryStage;
+	private Scene creationScene;
+	private Stage primaryStage;
+	private Scene backupScene;
 	
 	public GameCreationMenuViewImpl(final Stage s) {
 		super();
@@ -20,29 +23,24 @@ public class GameCreationMenuViewImpl extends Application implements GameCreatio
 	}
 	
 	/**
-	 * This method shows the graphical interface of the main menu.
+	 * This method shows the graphical interface of the game creation menu.
 	 */
 	private void showView() {
-		this.primaryStage.hide();
-		this.creationStage.show();
+		this.backupScene = this.primaryStage.getScene();
+		this.primaryStage.setScene(this.creationScene);
 	}
 
 	@Override
-	public void start(final Stage primaryStage) throws Exception {
+	public void startGameCreationMenu() {
 		final String fxmlUrl = "creation_menu.fxml";
-        Parent root = FXMLLoader.load(getClass().getClassLoader().getResource(fxmlUrl));
-        final Scene scene = new Scene(root);
-        primaryStage.setScene(scene);
-        primaryStage.setTitle("OOParty");
-        primaryStage.setMaximized(true);
-        this.creationStage = primaryStage;
-        this.creationStage.setOnCloseRequest(e -> System.exit(0));
+        Parent root = null;
+		try {
+			root = FXMLLoader.load(getClass().getClassLoader().getResource(fxmlUrl));
+		} catch (IOException e1) {
+			e1.printStackTrace();
+		}
+        this.creationScene = new Scene(root);
         this.showView();
-	}
-
-	@Override
-	public void run(final String[] args) {
-        launch();
 	}
 
 }

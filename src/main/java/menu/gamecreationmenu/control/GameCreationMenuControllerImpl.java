@@ -14,8 +14,6 @@ public class GameCreationMenuControllerImpl implements GameCreationMenuControlle
 
 	private GameCreationMenuView creationMenuView;
 	private MainMenuModel creationMenuModel;
-	@FXML private Button exitButton;
-	@FXML private Button createGameButton;
 	
 	public GameCreationMenuControllerImpl(final Stage s) {
 		super();
@@ -24,7 +22,7 @@ public class GameCreationMenuControllerImpl implements GameCreationMenuControlle
 	
 	@Override
 	public void start() {
-        this.creationMenuView.run(null);
+        this.creationMenuView.startGameCreationMenu();
 	}
 
 	@Override

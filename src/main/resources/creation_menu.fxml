@@ -39,7 +39,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox prefHeight="400.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="menu.mainmenu.control.MainMenuControllerImpl">
+<VBox prefHeight="400.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
   <children>
       <BorderPane prefHeight="200.0" prefWidth="200.0">
          <center>
@@ -53,15 +53,7 @@
                         <Insets />
                      </opaqueInsets>
                   </Label>
-                  <Button fx:id="createGameButton" alignment="CENTER" mnemonicParsing="false" onAction="#createGame" text="Create game">
-                     <font>
-                        <Font size="36.0" />
-                     </font>
-                     <VBox.margin>
-                        <Insets top="120.0" />
-                     </VBox.margin>
-                  </Button>
-                  <Button fx:id="exitButton" alignment="CENTER" mnemonicParsing="false" onAction="#exitGame" text="Exit">
+                  <Button alignment="CENTER" mnemonicParsing="false" text="Exit">
                      <font>
                         <Font size="36.0" />
                      </font>
@@ -78,6 +70,16 @@
                </BorderPane.margin>
             </VBox>
          </center>
+         <top>
+            <Button alignment="CENTER" mnemonicParsing="false" text="Return main menu" BorderPane.alignment="CENTER">
+               <font>
+                  <Font size="36.0" />
+               </font>
+               <BorderPane.margin>
+                  <Insets top="80.0" />
+               </BorderPane.margin>
+            </Button>
+         </top>
       </BorderPane>
   </children>
 </VBox>
