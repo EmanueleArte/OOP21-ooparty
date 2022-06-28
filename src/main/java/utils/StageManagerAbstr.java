@@ -6,6 +6,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javafx.application.Application;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 
 /**
@@ -42,7 +44,14 @@ public abstract class StageManagerAbstr<S> extends Application implements StageM
 
 	@Override
 	public void start(Stage primaryStage) throws Exception {
-		
+        primaryStage.setTitle("OOParty");
+        primaryStage.setMaximized(true);
+        this.primaryStage = primaryStage;
+        this.primaryStage.setOnCloseRequest(e -> System.exit(0));     
+        this.primaryStage.show();
+        while (true) {
+        	this.setScene();
+        }
 	}
 
 	@Override
