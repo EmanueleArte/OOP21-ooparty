@@ -50,7 +50,9 @@ public abstract class StageManagerAbstr<S> extends Application implements StageM
         this.primaryStage.setOnCloseRequest(e -> System.exit(0));     
         this.primaryStage.show();
         while (true) {
-        	this.setScene();
+        	if(!this.primaryStage.getScene().equals(this.scenes.get(this.lastSceneIndex()))) {
+        		this.setScene();
+        	}
         }
 	}
 
