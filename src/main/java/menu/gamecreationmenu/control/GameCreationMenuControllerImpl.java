@@ -8,7 +8,7 @@ import menu.mainmenu.view.MainMenuView;
 import menu.mainmenu.view.MainMenuViewImpl;
 
 /**
- * Implementation of {@link MainMenuController}.
+ * Implementation of {@link CreationMenuController}.
  */
 public class GameCreationMenuControllerImpl implements GameCreationMenuController {
 
@@ -35,11 +35,9 @@ public class GameCreationMenuControllerImpl implements GameCreationMenuControlle
 	}
 
 	@Override
-	public void createGame() {
+	public void startGame() {
 		// TODO Auto-generated method stub
 		
 	}
-	
-	
 
 }

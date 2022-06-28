@@ -1,7 +1,7 @@
 package menu.gamecreationmenu.control;
 
 /**
- * This interface models the main menu control of the game.
+ * This interface models the game creation menu control of the game.
  */
 public interface GameCreationMenuController {
 	
@@ -11,13 +11,13 @@ public interface GameCreationMenuController {
 	void start();
 	
 	/**
-	 * This method exits from the game.
+	 * This method returns to the main menu of the game.
 	 */
 	void exitGame();
 
 	/**
-	 * This method creates a new game.
+	 * This method starts a new game.
 	 */
-	void createGame();
+	void startGame();
 	
 }

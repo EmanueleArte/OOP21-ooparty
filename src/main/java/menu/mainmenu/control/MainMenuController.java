@@ -1,23 +1,23 @@
 package menu.mainmenu.control;
 
 /**
- * This interface models the main menu control of the game.
+ * This interface models the main menu controller of the game.
  */
 public interface MainMenuController {
 	
 	/**
-	 * This method shows the game creation menu.
+	 * This method shows the game main menu.
 	 */
 	void start();
 	
 	/**
-	 * This method returns to the main menu.
+	 * This method exits the game.
 	 */
 	void exitGame();
 
 	/**
-	 * This method starts a new game.
+	 * This method creates a new game.
 	 */
-	void startGame();
+	void createGame();
 	
 }
