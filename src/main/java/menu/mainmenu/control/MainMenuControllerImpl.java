@@ -18,28 +18,10 @@ public class MainMenuControllerImpl implements MainMenuController {
 		this.menuView = new MainMenuViewImpl();
 		this.menuModel = new MainMenuModelImpl();
 	}
-
-	/**
-	 * This method sets the listeners for the main menu buttons.
-	 */
-	private void setListeners() {
-		this.menuView.setGameButton(new Button("Create game"));
-		this.menuView.getGameButton().setOnMouseClicked(mouseEvent -> {
-			this.createGame();
-		});
-		this.menuView.setExitButton(new Button("Exit"));
-		this.menuView.getExitButton().setOnMouseClicked(mouseEvent -> {
-			this.exitGame();
-		});
-	}
 	
 	@Override
 	public void start() {
-		//final Thread thread = new Thread(this.menuView);
-        //thread.start();
         this.menuView.run(null);
-		
-		//this.setListeners();
 	}
 	
 	@Override
