@@ -25,7 +25,7 @@ public class GameCreationMenuControllerImpl implements GameCreationMenuControlle
 	
 	@Override
 	public void start() {
-        
+        this.creationMenuView.run(null);
 	}
 
 	@Override

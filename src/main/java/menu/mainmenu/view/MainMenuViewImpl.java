@@ -23,6 +23,11 @@ public class MainMenuViewImpl extends Application implements MainMenuView {
 	private void showView() {
 		this.primaryStage.show();
 	}
+	
+	@Override
+	public Stage getStage() {
+		return this.primaryStage;
+	}
 
 	@Override
 	public void start(final Stage primaryStage) throws Exception {

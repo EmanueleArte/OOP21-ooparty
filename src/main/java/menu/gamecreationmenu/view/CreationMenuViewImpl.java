@@ -11,17 +11,20 @@ import javafx.stage.Stage;
  */
 public class CreationMenuViewImpl extends Application implements CreationMenuView {
 
-	private Stage primaryStage;
+	private Stage creationStage;
+	private final Stage primaryStage;
 	
-	public CreationMenuViewImpl() {
+	public CreationMenuViewImpl(final Stage s) {
 		super();
+		this.primaryStage = s;
 	}
 	
 	/**
 	 * This method shows the graphical interface of the main menu.
 	 */
 	private void showView() {
-		this.primaryStage.show();
+		this.primaryStage.hide();
+		this.creationStage.show();
 	}
 
 	@Override
@@ -32,8 +35,8 @@ public class CreationMenuViewImpl extends Application implements CreationMenuVie
         primaryStage.setScene(scene);
         primaryStage.setTitle("OOParty");
         primaryStage.setMaximized(true);
-        this.primaryStage = primaryStage;
-        this.primaryStage.setOnCloseRequest(e -> System.exit(0));
+        this.creationStage = primaryStage;
+        this.creationStage.setOnCloseRequest(e -> System.exit(0));
         this.showView();
 	}
 
