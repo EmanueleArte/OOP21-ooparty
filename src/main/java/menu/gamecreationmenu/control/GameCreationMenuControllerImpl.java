@@ -1,28 +1,14 @@
 package menu.gamecreationmenu.control;
 
-import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.stage.Stage;
-import menu.gamecreationmenu.view.GameCreationMenuView;
-import menu.gamecreationmenu.view.GameCreationMenuViewImpl;
-import menu.mainmenu.model.MainMenuModel;
-
 /**
  * Implementation of {@link GameCreationMenuController}.
  */
-public class GameCreationMenuControllerImpl implements GameCreationMenuController {
+public class GameCreationMenuControllerImpl<S> implements GameCreationMenuController<S> {
 
-	private GameCreationMenuView creationMenuView;
-	private MainMenuModel creationMenuModel;
-	
-	public GameCreationMenuControllerImpl(final Stage s) {
-		super();
-		this.creationMenuView = new GameCreationMenuViewImpl(s);
-	}
-	
 	@Override
 	public void start() {
-        this.creationMenuView.startGameCreationMenu();
+		// TODO Auto-generated method stub
+		
 	}
 
 	@Override
@@ -36,5 +22,7 @@ public class GameCreationMenuControllerImpl implements GameCreationMenuControlle
 		// TODO Auto-generated method stub
 		
 	}
+
+	
 
 }

@@ -3,7 +3,7 @@ package menu.gamecreationmenu.control;
 /**
  * This interface models the game creation menu control of the game.
  */
-public interface GameCreationMenuController {
+public interface GameCreationMenuController<S> {
 	
 	/**
 	 * This method shows the main menu.
