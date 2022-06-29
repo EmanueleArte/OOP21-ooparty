@@ -16,7 +16,12 @@ public class ControllerFactoryImpl<S> implements ControllerFactory<S> {
 	
 	@Override
 	public GenericController<S> createMainMenuController() {
-		return new GenericController<S>(this.stageManager, MainMenuControllerImpl.class);	
+		return new GenericController<S>(this.stageManager, MainMenuControllerImpl.class);
+	}
+
+	@Override
+	public GenericController<S> createGameCreationMenuController() {
+		return new GenericController<S>(this.stageManager, null);
 	}
 
 }

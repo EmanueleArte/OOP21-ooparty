@@ -1,23 +1,17 @@
 package menu.mainmenu.model;
 
-import menu.gamecreationmenu.control.GameCreationMenuController;
-import menu.gamecreationmenu.control.GameCreationMenuControllerImpl;
-import menu.mainmenu.view.MainMenuView;
+import utils.graphics.StageManager;
 
 /**
  * Implementation of {@link MainMenuModel}.
  */
-public class MainMenuModelImpl implements MainMenuModel {
+public class MainMenuModelImpl<S> implements MainMenuModel<S> {
 
-	private MainMenuView menuView;
+	private StageManager<S> stageManager;
 	
-	public MainMenuModelImpl() {
+	public MainMenuModelImpl(final StageManager<S> s) {
 		super();
-	}
-	
-	@Override
-	public void setMenuView(final MainMenuView menuView) {
-		this.menuView = menuView;
+		this.stageManager = s;
 	}
 
 	@Override

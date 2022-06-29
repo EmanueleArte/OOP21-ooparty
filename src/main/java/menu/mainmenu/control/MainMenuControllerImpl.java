@@ -22,9 +22,8 @@ public class MainMenuControllerImpl<S> implements MainMenuController<S> {
 
 	public MainMenuControllerImpl(final StageManager<S> s) {
 		super();
-		System.out.println("ok");
 		this.stageManager = s;
-		this.menuModel = new MainMenuModelImpl();
+		this.menuModel = new MainMenuModelImpl<>(s);
 		this.menuView = new MainMenuViewImpl<>(s);
 	}
 	
