@@ -8,7 +8,7 @@ public interface GameCreationMenuModel<S> {
 	/**
 	 * This method returns to the main menu of the game.
 	 */
-	void returnMainMenu();
+	void returnToMainMenu();
 	
 	/**
 	 * This method starts the game.

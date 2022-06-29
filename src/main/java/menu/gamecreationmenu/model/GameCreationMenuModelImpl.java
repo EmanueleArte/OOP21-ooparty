@@ -15,7 +15,7 @@ public class GameCreationMenuModelImpl<S> implements GameCreationMenuModel<S> {
 	}
 
 	@Override
-	public void returnMainMenu() {
+	public void returnToMainMenu() {
 		this.stageManager.popScene();
 	}
 

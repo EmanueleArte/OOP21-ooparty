@@ -2,8 +2,9 @@ package menu.gamecreationmenu.control;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
-import menu.mainmenu.model.MainMenuModel;
-import menu.mainmenu.model.MainMenuModelImpl;
+import menu.gamecreationmenu.model.GameCreationMenuModel;
+import menu.gamecreationmenu.model.GameCreationMenuModelImpl;
+import utils.graphics.StageManager;
 
 /**
  * Implementation of {@link GameCreationMenuController}.
@@ -14,14 +15,14 @@ public class GameCreationMenuControllerImpl<S> implements GameCreationMenuContro
 	@FXML private Button returnMainMenuButton;
 	@FXML private Button startGameButton;
 	
-	public GameCreationMenuControllerImpl<S>() {
+	public GameCreationMenuControllerImpl(final StageManager<S> s) {
 		super();
-		this.gameCreationMenuModel = new gameCreationMenuModelImpl<>(s);
+		this.gameCreationMenuModel = new GameCreationMenuModelImpl<>(s);
 	}
 	
 	@Override
 	public void returnToMainMenu() {
-		
+		this.gameCreationMenuModel.returnToMainMenu();
 	}
 
 	@Override
