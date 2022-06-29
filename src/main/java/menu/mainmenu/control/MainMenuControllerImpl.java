@@ -12,13 +12,11 @@ import utils.graphics.StageManager;
 public class MainMenuControllerImpl<S> implements MainMenuController<S> {
 
 	private MainMenuModel<S> menuModel;
-	private StageManager<S> stageManager;
 	@FXML private Button exitButton;
 	@FXML private Button createGameButton;
 
 	public MainMenuControllerImpl(final StageManager<S> s) {
 		super();
-		this.stageManager = s;
 		this.menuModel = new MainMenuModelImpl<>(s);
 	}
 	
