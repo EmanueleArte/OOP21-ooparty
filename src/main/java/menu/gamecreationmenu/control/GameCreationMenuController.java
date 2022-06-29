@@ -6,11 +6,6 @@ package menu.gamecreationmenu.control;
 public interface GameCreationMenuController<S> {
 	
 	/**
-	 * This method shows the main menu.
-	 */
-	void start();
-	
-	/**
 	 * This method returns to the main menu of the game.
 	 */
 	void returnToMainMenu();

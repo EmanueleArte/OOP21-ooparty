@@ -20,7 +20,6 @@ public interface StageManager<S> {
 	 * @return the last scene added
 	 */
 	S popScene();
-	
 		
 	/**
 	 * This method starts the javafx gui.
