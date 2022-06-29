@@ -1,6 +1,7 @@
 package menu.mainmenu.control;
 
 import javafx.fxml.FXML;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import menu.mainmenu.model.MainMenuModel;
 import menu.mainmenu.model.MainMenuModelImpl;
@@ -19,16 +20,15 @@ public class MainMenuControllerImpl<S> implements MainMenuController<S> {
 	@FXML private Button exitButton;
 	@FXML private Button createGameButton;
 
-	public MainMenuControllerImpl() {
+	public MainMenuControllerImpl(final StageManager<S> s) {
 		super();
+		this.stageManager = s;
 		this.menuModel = new MainMenuModelImpl();
+		this.menuView = new MainMenuViewImpl<>(s);
 	}
 	
 	@Override
-	public void start(final StageManager<S> s) {
-		this.stageManager = s;
-		//this.menuView = new MainMenuViewImpl<>(s);
-		this.menuModel = new MainMenuModelImpl();
+	public void start() {
         this.menuView.createMainMenu();
 	}
 	
