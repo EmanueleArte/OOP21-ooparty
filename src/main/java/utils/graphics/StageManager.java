@@ -21,11 +21,7 @@ public interface StageManager<S> {
 	 */
 	S popScene();
 	
-	/**
-	 * This method shows a scene.
-	 */
-	void setScene();
-	
+		
 	/**
 	 * This method starts the javafx gui.
 	 * @param args

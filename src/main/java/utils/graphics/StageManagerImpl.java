@@ -53,12 +53,9 @@ public class StageManagerImpl<S> extends JFrame implements StageManager<S> {
 	
 	@Override
 	public S popScene() {
-		return this.scenes.remove(this.lastSceneIndex());
-	}
-
-	@Override
-	public void setScene() {
-		this.mainStage.setScene((Scene) this.scenes.get(this.lastSceneIndex()));
+		var poppedScene = this.scenes.remove(this.lastSceneIndex());
+		this.setScene();
+		return poppedScene;
 	}
 
 	@Override
@@ -74,6 +71,13 @@ public class StageManagerImpl<S> extends JFrame implements StageManager<S> {
 	@Override
 	public List<S> getScenes() {
 		return this.scenes;
+	}
+	
+	/**
+	 * This method shows the actual scene.
+	 */
+	private void setScene() {
+		this.mainStage.setScene((Scene) this.scenes.get(this.lastSceneIndex()));
 	}
 	
 	/**
