@@ -22,9 +22,9 @@ public class MainMenuModelImpl<S> implements MainMenuModel<S> {
 
 	@Override
 	public void gameCreationMenu() {
-		final GameCreationMenuView creationMenu = 
+		/*final GameCreationMenuView creationMenu = 
 				new GameCreationMenuViewImpl(this.stageManager);
-		creationMenu.start();
+		creationMenu.start();*/
 	}
 
 }

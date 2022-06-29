@@ -39,7 +39,7 @@ public class MainMenuControllerImpl<S> implements MainMenuController<S> {
 	
 	@Override
 	public void createGame() {
-		this.menuModel.setMenuView(this.menuView);
+		//this.menuModel.setMenuView(this.menuView);
 		this.menuModel.gameCreationMenu();
 	}
 
