@@ -14,8 +14,8 @@ public class App {
     public static void main(final String[] args) {
     	final StageManager<Scene> stageManager = new StageManagerImpl<>("OOparty");
         stageManager.run();
-        //final MainMenuView<Scene> mainMenu = new MainMenuViewImpl<>(stageManager);
-        //mainMenu.createMainMenu();
+        final MainMenuView<Scene> mainMenu = new MainMenuViewImpl<>(stageManager);
+        mainMenu.createMainMenu();
     }
     
 }

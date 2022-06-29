@@ -23,12 +23,11 @@ class GenericController<S> implements Callback<Class<?>, Object> {
 	@Override
 	public Object call(Class<?> param) {
 		try {
-			return this.controllerClass.getConstructor().newInstance(this.stageManager);
+			return this.controllerClass.getConstructor(StageManager.class).newInstance(this.stageManager);
 		} catch (InstantiationException | IllegalAccessException | IllegalArgumentException
 				| InvocationTargetException | NoSuchMethodException | SecurityException e) {
 			e.printStackTrace();
 		}
-		//return new MainMenuControllerImpl<>(this.s);
 		return null;
 	}
 	

@@ -9,6 +9,8 @@ import javafx.embed.swing.JFXPanel;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.util.Callback;
+import utils.enums.Controller;
 import utils.factories.ControllerFactory;
 import utils.factories.ControllerFactoryImpl;
 
@@ -32,12 +34,11 @@ public class StageManagerImpl<S> extends JFrame implements StageManager<S> {
 	
 	@SuppressWarnings("unchecked")
 	@Override
-	public void addScene(final String fxmlUrl) {
+	public void addScene(final String fxmlUrl, final Controller c) {
 		Platform.runLater(() -> {
 			Parent root = null;
 			this.loader = new FXMLLoader(getClass().getClassLoader().getResource(fxmlUrl));
-			//Prova<S> a = new Prova<S>(this);
-			//this.loader.setControllerFactory(a);
+			this.loader.setControllerFactory(this.controllerCallback(c));
 			try {
 				root = loader.load();
 			} catch (IOException e1) {
@@ -81,6 +82,19 @@ public class StageManagerImpl<S> extends JFrame implements StageManager<S> {
 	 */
 	private int lastSceneIndex() {
 		return this.scenes.size() - 1;
+	}
+	
+	/**
+	 * This method chooses the right controller to be implemented.
+	 * @return the right controller callback
+	 */
+	private Callback<Class<?>, Object> controllerCallback(final Controller controller) {
+		switch(controller) {
+			case MAIN_MENU:
+				return this.controlFactory.createMainMenuController();
+			default:
+				return null;
+		}
 	}
 
 }

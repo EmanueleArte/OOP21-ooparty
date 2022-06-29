@@ -2,6 +2,8 @@ package utils.graphics;
 
 import java.util.List;
 
+import utils.enums.Controller;
+
 /**
  * This interface models a stage manager for javafx.
  * @param <S> the scenes of the stage
@@ -11,7 +13,7 @@ public interface StageManager<S> {
 	/**
 	 * This method adds a scene to the scene list.
 	 */
-	void addScene(String fxmlUrl);
+	void addScene(String fxmlUrl, Controller c);
 	
 	/**
 	 * This method pops a scene from the scene list.
