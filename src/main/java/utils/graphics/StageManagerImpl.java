@@ -92,6 +92,8 @@ public class StageManagerImpl<S> extends JFrame implements StageManager<S> {
 		switch(controller) {
 			case MAIN_MENU:
 				return this.controlFactory.createMainMenuController();
+			case GAME_CREATION_MENU:
+				return this.controlFactory.createGameCreationMenuController();
 			default:
 				return null;
 		}

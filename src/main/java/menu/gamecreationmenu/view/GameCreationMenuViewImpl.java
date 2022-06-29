@@ -18,7 +18,7 @@ final private StageManager<S> stageManager;
 	@Override
 	public void createGameCreationMenu() {
 		final String fxmlUrl = "menu/creation_menu.fxml";
-		this.stageManager.addScene(fxmlUrl, Controller.MAIN_MENU);
+		this.stageManager.addScene(fxmlUrl, Controller.GAME_CREATION_MENU);
 	}
 
 }
