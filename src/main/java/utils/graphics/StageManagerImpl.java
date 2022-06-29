@@ -9,9 +9,8 @@ import javafx.embed.swing.JFXPanel;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.util.Callback;
-import menu.mainmenu.control.MainMenuController;
-import menu.mainmenu.control.MainMenuControllerImpl;
+import utils.factories.ControllerFactory;
+import utils.factories.ControllerFactoryImpl;
 
 /**
  * Implementation of {@link StageManager}.
@@ -23,26 +22,12 @@ public class StageManagerImpl<S> extends JFrame implements StageManager<S> {
 	private JFXPanel mainStage;
 	private FXMLLoader loader;
 	private final JFrame frame;
+	private final ControllerFactory<S> controlFactory;
 	
 	public StageManagerImpl(final String title) {
 		this.scenes = new ArrayList<S>();
 		this.frame = new JFrame(title);
-	}
-
-	class Prova<S> implements Callback {
-		
-		final StageManager<S> s;
-		
-		public Prova(final StageManager<S> s) {
-			super();
-			this.s = s;
-		}
-		
-		@Override
-		public Object call(Object param) {
-			return new MainMenuControllerImpl<>(this.s);
-		}
-		
+		this.controlFactory = new ControllerFactoryImpl<>(this);
 	}
 	
 	@SuppressWarnings("unchecked")
@@ -51,8 +36,8 @@ public class StageManagerImpl<S> extends JFrame implements StageManager<S> {
 		Platform.runLater(() -> {
 			Parent root = null;
 			this.loader = new FXMLLoader(getClass().getClassLoader().getResource(fxmlUrl));
-			Prova<S> a = new Prova<S>(this);
-			this.loader.setControllerFactory(a);
+			//Prova<S> a = new Prova<S>(this);
+			//this.loader.setControllerFactory(a);
 			try {
 				root = loader.load();
 			} catch (IOException e1) {

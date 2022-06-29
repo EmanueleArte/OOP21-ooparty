@@ -1,10 +1,6 @@
 package utils.enums;
 
 public enum Controller {
-	MAINMENU(),
-	
-	Controller() {
-        
-    }
-
+	MAIN_MENU,
+	GAME_CREATION_MENU
 }
