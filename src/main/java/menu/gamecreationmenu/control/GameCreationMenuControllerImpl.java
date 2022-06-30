@@ -1,34 +1,50 @@
 package menu.gamecreationmenu.control;
 
+import java.util.List;
+import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
-import javafx.stage.Stage;
-import menu.gamecreationmenu.view.GameCreationMenuView;
-import menu.gamecreationmenu.view.GameCreationMenuViewImpl;
-import menu.mainmenu.model.MainMenuModel;
+import javafx.scene.control.ComboBox;
+import javafx.scene.control.Control;
+import javafx.scene.control.Spinner;
+import javafx.scene.control.TextField;
+import javafx.scene.layout.VBox;
+import menu.gamecreationmenu.model.GameCreationMenuModel;
+import menu.gamecreationmenu.model.GameCreationMenuModelImpl;
+import utils.enums.PlayerColor;
+import utils.graphics.StageManager;
 
 /**
  * Implementation of {@link GameCreationMenuController}.
  */
-public class GameCreationMenuControllerImpl implements GameCreationMenuController {
+public class GameCreationMenuControllerImpl<S> implements GameCreationMenuController<S> {
 
-	private GameCreationMenuView creationMenuView;
-	private MainMenuModel creationMenuModel;
+	private GameCreationMenuModel<S> gameCreationMenuModel;
+	@FXML private Button returnMainMenuButton;
+	@FXML private Button startGameButton;
+	@FXML private Spinner<Integer> numberOfPlayers;
+	@FXML private Spinner<Integer> turnsNumber;
+	@FXML private List<TextField> PlayersNicknames;
+	@FXML private List<ComboBox<PlayerColor>> playerColors;
+	@FXML private List<VBox> playersForms;
 	
-	public GameCreationMenuControllerImpl(final Stage s) {
+	public GameCreationMenuControllerImpl(final StageManager<S> s) {
 		super();
-		this.creationMenuView = new GameCreationMenuViewImpl(s);
+		this.gameCreationMenuModel = new GameCreationMenuModelImpl<>(s);
 	}
 	
-	@Override
-	public void start() {
-        this.creationMenuView.startGameCreationMenu();
+	@FXML
+	private void initialize() {
+		this.gameCreationMenuModel.setNumberOfPlayersSpinner(this.numberOfPlayers);
+		this.gameCreationMenuModel.setTurnsNumberSpinner(this.turnsNumber);
+		this.gameCreationMenuModel.fillColorsBoxes(this.playerColors);
+		this.numberOfPlayers.getValueFactory().valueProperty().addListener(value -> this.showPlayersForms());
+		this.showPlayersForms();
 	}
-
+	
 	@Override
 	public void returnToMainMenu() {
-		// TODO Auto-generated method stub
-		
+		this.gameCreationMenuModel.returnToMainMenu();
 	}
 
 	@Override
@@ -36,5 +52,12 @@ public class GameCreationMenuControllerImpl implements GameCreationMenuControlle
 		// TODO Auto-generated method stub
 		
 	}
+
+	@Override
+	public void showPlayersForms() {
+		this.gameCreationMenuModel.showForms(this.playersForms, this.numberOfPlayers.getValue());
+	}
+
+	
 
 }
