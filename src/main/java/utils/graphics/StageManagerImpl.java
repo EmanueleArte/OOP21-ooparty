@@ -1,5 +1,8 @@
 package utils.graphics;
 
+import java.awt.Dimension;
+import java.awt.GraphicsDevice;
+import java.awt.GraphicsEnvironment;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -25,6 +28,8 @@ public class StageManagerImpl<S> extends JFrame implements StageManager<S> {
 	private FXMLLoader loader;
 	private final JFrame frame;
 	private final ControllerFactory<S> controlFactory;
+	static GraphicsDevice device = GraphicsEnvironment
+	        .getLocalGraphicsEnvironment().getDefaultScreenDevice();
 	
 	public StageManagerImpl(final String title) {
 		this.scenes = new ArrayList<S>();
@@ -61,9 +66,12 @@ public class StageManagerImpl<S> extends JFrame implements StageManager<S> {
 	@Override
 	public void run() {
 		this.mainStage = new JFXPanel();
+		this.mainStage.setMinimumSize(new Dimension(device.getDisplayMode().getWidth(), device.getDisplayMode().getHeight()));
+		this.mainStage.setMaximumSize(new Dimension(device.getDisplayMode().getWidth(), device.getDisplayMode().getHeight()));
         this.frame.add(this.mainStage);
         this.frame.pack();
-        this.frame.setExtendedState(JFrame.MAXIMIZED_BOTH); 
+        //this.frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
+        device.setFullScreenWindow(frame);
         this.frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.frame.setVisible(true);
 	}

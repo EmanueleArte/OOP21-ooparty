@@ -2,6 +2,7 @@ package menu.gamecreationmenu.control;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.TextField;
 import menu.gamecreationmenu.model.GameCreationMenuModel;
 import menu.gamecreationmenu.model.GameCreationMenuModelImpl;
 import utils.graphics.StageManager;
@@ -14,6 +15,7 @@ public class GameCreationMenuControllerImpl<S> implements GameCreationMenuContro
 	private GameCreationMenuModel<S> gameCreationMenuModel;
 	@FXML private Button returnMainMenuButton;
 	@FXML private Button startGameButton;
+	@FXML private TextField nickname1;
 	
 	public GameCreationMenuControllerImpl(final StageManager<S> s) {
 		super();

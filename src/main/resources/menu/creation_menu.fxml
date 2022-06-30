@@ -34,42 +34,15 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox prefHeight="400.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="menu.gamecreationmenu.control.GameCreationMenuControllerImpl">
+<VBox alignment="TOP_CENTER" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="menu.gamecreationmenu.control.GameCreationMenuControllerImpl">
   <children>
       <BorderPane prefHeight="200.0" prefWidth="200.0">
-         <center>
-            <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" spacing="20.0" BorderPane.alignment="CENTER">
-               <children>
-                  <Label alignment="CENTER" prefHeight="79.0" prefWidth="286.0" text="OOParty">
-                     <font>
-                        <Font size="64.0" />
-                     </font>
-                     <opaqueInsets>
-                        <Insets />
-                     </opaqueInsets>
-                  </Label>
-                  <Button fx:id="startGameButton" alignment="CENTER" mnemonicParsing="false" onAction="#startGame" text="Exit">
-                     <font>
-                        <Font size="36.0" />
-                     </font>
-                     <VBox.margin>
-                        <Insets top="10.0" />
-                     </VBox.margin>
-                  </Button>
-               </children>
-               <padding>
-                  <Insets top="40.0" />
-               </padding>
-               <BorderPane.margin>
-                  <Insets bottom="40.0" top="40.0" />
-               </BorderPane.margin>
-            </VBox>
-         </center>
          <top>
             <Button fx:id="returnMainMenuButton" alignment="CENTER" mnemonicParsing="false" onAction="#returnToMainMenu" text="Return main menu" BorderPane.alignment="CENTER">
                <font>
@@ -80,6 +53,43 @@
                </BorderPane.margin>
             </Button>
          </top>
+         <bottom>
+            <Button fx:id="startGameButton" alignment="CENTER" mnemonicParsing="false" onAction="#startGame" text="Start game" BorderPane.alignment="CENTER">
+               <font>
+                  <Font size="36.0" />
+               </font>
+            </Button>
+         </bottom>
+         <center>
+            <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
+               <children>
+                  <HBox alignment="CENTER" spacing="20.0">
+                     <children>
+                        <VBox alignment="TOP_CENTER">
+                           <children>
+                              <TextField fx:id="nickname1" />
+                           </children>
+                        </VBox>
+                        <VBox alignment="TOP_CENTER">
+                           <children>
+                              <TextField fx:id="nickname2" />
+                           </children>
+                        </VBox>
+                        <VBox alignment="CENTER">
+                           <children>
+                              <TextField fx:id="nickname3" />
+                           </children>
+                        </VBox>
+                        <VBox alignment="CENTER">
+                           <children>
+                              <TextField fx:id="nickname4" />
+                           </children>
+                        </VBox>
+                     </children>
+                  </HBox>
+               </children>
+            </VBox>
+         </center>
       </BorderPane>
   </children>
 </VBox>
