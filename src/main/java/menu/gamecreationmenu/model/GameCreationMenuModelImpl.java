@@ -52,8 +52,14 @@ public class GameCreationMenuModelImpl<S> implements GameCreationMenuModel<S> {
 	@Override
 	public void showForms(List<VBox> playersForms, Integer nPlayers) {
 		for (int i = GameCreationMenuModelImpl.nMaxPlayers - 1; i > nPlayers - 1; i--) {
-			playersForms.get(i).setVisible(false);
-			playersForms.get(i).setManaged(false);
+			var form = playersForms.get(i);
+			if (form.isVisible()) {
+				form.setVisible(false);
+				form.setManaged(false);
+			} else {
+				form.setVisible(true);
+				form.setManaged(true);
+			}
 		}
 	}
 

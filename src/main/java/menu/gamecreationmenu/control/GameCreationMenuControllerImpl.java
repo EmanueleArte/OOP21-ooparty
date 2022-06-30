@@ -37,6 +37,8 @@ public class GameCreationMenuControllerImpl<S> implements GameCreationMenuContro
 	private void initialize() {
 		this.gameCreationMenuModel.setNumberOfPlayersSpinner(this.numberOfPlayers);
 		this.gameCreationMenuModel.fillColorsBoxes(this.playerColors);
+		this.numberOfPlayers.getValueFactory().valueProperty().addListener(value -> this.showPlayersForms());
+		this.showPlayersForms();
 	}
 	
 	@Override
