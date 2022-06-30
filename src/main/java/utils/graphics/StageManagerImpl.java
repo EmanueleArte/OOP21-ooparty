@@ -1,6 +1,5 @@
 package utils.graphics;
 
-import java.awt.Dimension;
 import java.awt.GraphicsDevice;
 import java.awt.GraphicsEnvironment;
 import java.io.IOException;
@@ -66,8 +65,6 @@ public class StageManagerImpl<S> extends JFrame implements StageManager<S> {
 	@Override
 	public void run() {
 		this.mainStage = new JFXPanel();
-		this.mainStage.setMinimumSize(new Dimension(device.getDisplayMode().getWidth(), device.getDisplayMode().getHeight()));
-		this.mainStage.setMaximumSize(new Dimension(device.getDisplayMode().getWidth(), device.getDisplayMode().getHeight()));
         this.frame.add(this.mainStage);
         this.frame.pack();
         //this.frame.setExtendedState(JFrame.MAXIMIZED_BOTH);

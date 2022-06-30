@@ -40,7 +40,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox alignment="TOP_CENTER" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="menu.gamecreationmenu.control.GameCreationMenuControllerImpl">
+<VBox alignment="TOP_CENTER" prefHeight="2160.0" prefWidth="3840.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="menu.gamecreationmenu.control.GameCreationMenuControllerImpl">
   <children>
       <BorderPane prefHeight="200.0" prefWidth="200.0">
          <top>
