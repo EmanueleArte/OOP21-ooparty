@@ -1,10 +1,19 @@
 package game.player;
 
+import java.util.List;
+
+import game.powerup.Powerup;
+
 /**
  * This interface models one player
  */
 public interface Player {
 
+	/**
+	 * resets player to default values, at end of turn
+	 */
+	void reset();
+	
 	/**
 	 * @return the name of the player
 	 */
@@ -63,4 +72,14 @@ public interface Player {
 	 * @return number of player'stars
 	 */
 	int getStarsCount();
+	
+	void setDicesNumber(int n);
+	
+	int getDicesNumber();
+	
+	void usePowerup(Powerup p);
+	
+	void addPowerup(Powerup p);
+	
+	List<Powerup> getPowerupsList();
 }

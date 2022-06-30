@@ -5,6 +5,7 @@ import java.util.List;
 import game.dice.model.DiceModel;
 import game.dice.model.DiceModelImpl;
 import game.player.Player;
+import game.powerup.DoubleDicePowerup;
 import utils.graphics.StageManager;
 
 public class GameHandlerImpl<S> implements GameHandler {
@@ -25,7 +26,7 @@ public class GameHandlerImpl<S> implements GameHandler {
 	@Override
 	public void start() {
 		for (int turn = 1; turn <= turnsNumber; turn++) {
-			System.out.println("Turno " + turn);
+			System.out.println("\n-- TURNO " + turn);
 			players.forEach(p -> {
 				playTurn(p);
 			});
@@ -36,10 +37,16 @@ public class GameHandlerImpl<S> implements GameHandler {
 
 	@Override
 	public void playTurn(Player player) {
-		System.out.println("Turno di " + player.getName() + " - posizione: "+player.getPosition());
-		int roll = dice.rollDice(player);
-		System.out.println("Lancio del dado: " + roll);
-		player.moveForward(roll);
+		System.out.println("\nTurno di " + player.getName() + " - posizione: " + player.getPosition());
+		player.addPowerup(new DoubleDicePowerup());
+		player.usePowerup(player.getPowerupsList().get(0));
+		int movement = 0;
+		for (int i = 0; i < player.getDicesNumber(); i++) {
+			int roll = dice.rollDice(player);
+			System.out.println("Lancio del dado: " + roll);
+			movement += roll;
+		}
+		player.moveForward(movement);
 		System.out.println("Nuova posizione: " + player.getPosition());
 	}
 
