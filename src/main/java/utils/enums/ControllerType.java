@@ -1,6 +1,9 @@
 package utils.enums;
 
-public enum Controller {
+/**
+ * This enum defines the different controller types.
+ */
+public enum ControllerType {
 	MAIN_MENU,
 	GAME_CREATION_MENU
 }

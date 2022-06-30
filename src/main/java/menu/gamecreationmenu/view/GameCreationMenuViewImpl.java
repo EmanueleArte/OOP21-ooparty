@@ -1,6 +1,6 @@
 package menu.gamecreationmenu.view;
 
-import utils.enums.Controller;
+import utils.enums.ControllerType;
 import utils.graphics.StageManager;
 
 /**
@@ -18,7 +18,7 @@ final private StageManager<S> stageManager;
 	@Override
 	public void createGameCreationMenu() {
 		final String fxmlUrl = "menu/creation_menu.fxml";
-		this.stageManager.addScene(fxmlUrl, Controller.GAME_CREATION_MENU);
+		this.stageManager.addScene(fxmlUrl, ControllerType.GAME_CREATION_MENU);
 	}
 
 }

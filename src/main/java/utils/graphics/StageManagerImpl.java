@@ -11,7 +11,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.util.Callback;
-import utils.enums.Controller;
+import utils.enums.ControllerType;
 import utils.factories.ControllerFactory;
 import utils.factories.ControllerFactoryImpl;
 
@@ -35,7 +35,7 @@ public class StageManagerImpl<S> extends JFrame implements StageManager<S> {
 	
 	@SuppressWarnings("unchecked")
 	@Override
-	public void addScene(final String fxmlUrl, final Controller c) {
+	public void addScene(final String fxmlUrl, final ControllerType c) {
 		Platform.runLater(() -> {
 			Parent root = null;
 			this.loader = new FXMLLoader(getClass().getClassLoader().getResource(fxmlUrl));
@@ -94,7 +94,7 @@ public class StageManagerImpl<S> extends JFrame implements StageManager<S> {
 	 * This method chooses the right controller to be implemented.
 	 * @return the right controller callback
 	 */
-	private Callback<Class<?>, Object> controllerCallback(final Controller controller) {
+	private Callback<Class<?>, Object> controllerCallback(final ControllerType controller) {
 		switch(controller) {
 			case MAIN_MENU:
 				return this.controlFactory.createMainMenuController();
