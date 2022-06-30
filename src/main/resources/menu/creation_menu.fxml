@@ -74,7 +74,7 @@
                               <Font size="24.0" />
                            </font>
                         </Label>
-                        <Spinner fx:id="numberOfPlayers" editable="true" />
+                        <Spinner fx:id="numberOfPlayers" />
                      </children>
                   </HBox>
                   <HBox alignment="CENTER" spacing="40.0">
@@ -136,16 +136,16 @@
   
   <fx:define>
     <ArrayList fx:id="playerColors">
-      <fx:reference source="color1"/>
-      <fx:reference source="color2"/>
-      <fx:reference source="color3"/>
-      <fx:reference source="color4"/>
+      <fx:reference source="color1" />
+      <fx:reference source="color2" />
+      <fx:reference source="color3" />
+      <fx:reference source="color4" />
     </ArrayList>
     <ArrayList fx:id="playersNicknames">
-      <fx:reference source="nickname1"/>
-      <fx:reference source="nickname2"/>
-      <fx:reference source="nickname3"/>
-      <fx:reference source="nickname4"/>
+      <fx:reference source="nickname1" />
+      <fx:reference source="nickname2" />
+      <fx:reference source="nickname3" />
+      <fx:reference source="nickname4" />
     </ArrayList>
   </fx:define>
   
