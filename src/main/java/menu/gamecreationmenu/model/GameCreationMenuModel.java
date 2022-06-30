@@ -34,6 +34,12 @@ public interface GameCreationMenuModel<S> {
 	void setNumberOfPlayersSpinner(Spinner<Integer> numberOfPlayers);
 	
 	/**
+	 * This method sets the value factory for the number of turns spinner.
+	 * @param playerColors the available colors
+	 */
+	void setTurnsNumberSpinner(Spinner<Integer> turnsNumber);
+	
+	/**
 	 * This method shows only the necessary players forms.
 	 * @param playersForms the list of players forms
 	 * @param nPlayers the selected number of players

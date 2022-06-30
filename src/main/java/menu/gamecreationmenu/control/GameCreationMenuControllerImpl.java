@@ -11,7 +11,6 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.VBox;
 import menu.gamecreationmenu.model.GameCreationMenuModel;
 import menu.gamecreationmenu.model.GameCreationMenuModelImpl;
-import utils.IntSpinnerValueFactory;
 import utils.enums.PlayerColor;
 import utils.graphics.StageManager;
 
@@ -24,6 +23,7 @@ public class GameCreationMenuControllerImpl<S> implements GameCreationMenuContro
 	@FXML private Button returnMainMenuButton;
 	@FXML private Button startGameButton;
 	@FXML private Spinner<Integer> numberOfPlayers;
+	@FXML private Spinner<Integer> turnsNumber;
 	@FXML private List<TextField> PlayersNicknames;
 	@FXML private List<ComboBox<PlayerColor>> playerColors;
 	@FXML private List<VBox> playersForms;
@@ -36,6 +36,7 @@ public class GameCreationMenuControllerImpl<S> implements GameCreationMenuContro
 	@FXML
 	private void initialize() {
 		this.gameCreationMenuModel.setNumberOfPlayersSpinner(this.numberOfPlayers);
+		this.gameCreationMenuModel.setTurnsNumberSpinner(this.turnsNumber);
 		this.gameCreationMenuModel.fillColorsBoxes(this.playerColors);
 		this.numberOfPlayers.getValueFactory().valueProperty().addListener(value -> this.showPlayersForms());
 		this.showPlayersForms();

@@ -32,7 +32,6 @@
   OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 -->
 
-<?import java.util.ArrayList?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ComboBox?>
@@ -43,6 +42,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
+<?import java.util.ArrayList?>
 
 <VBox alignment="TOP_CENTER" prefHeight="2160.0" prefWidth="3840.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="menu.gamecreationmenu.control.GameCreationMenuControllerImpl">
   <children>
@@ -76,6 +76,14 @@
                         </Label>
                         <Spinner fx:id="numberOfPlayers" />
                      </children>
+                     <children>
+                        <Label text="Number of turns:">
+                           <font>
+                              <Font size="24.0" />
+                           </font>
+                        </Label>
+                        <Spinner fx:id="turnsNumber" />
+                     </children>
                   </HBox>
                   <HBox alignment="CENTER" spacing="40.0">
                      <children>
@@ -86,7 +94,17 @@
                                     <Font size="24.0" />
                                  </font>
                               </Label>
+                              <Label text="Color:">
+                                 <font>
+                                    <Font size="18.0" />
+                                 </font>
+                              </Label>
                               <ComboBox fx:id="color1" prefWidth="200.0" />
+                              <Label text="Nickname:">
+                                 <font>
+                                    <Font size="18.0" />
+                                 </font>
+                              </Label>
                               <TextField fx:id="nickname1" />
                            </children>
                         </VBox>
@@ -97,7 +115,17 @@
                                     <Font size="24.0" />
                                  </font>
                               </Label>
+                              <Label text="Color:">
+                                 <font>
+                                    <Font size="18.0" />
+                                 </font>
+                              </Label>
                               <ComboBox fx:id="color2" prefWidth="200.0" />
+                              <Label text="Nickname:">
+                                 <font>
+                                    <Font size="18.0" />
+                                 </font>
+                              </Label>
                               <TextField fx:id="nickname2" />
                            </children>
                         </VBox>
@@ -108,7 +136,17 @@
                                     <Font size="24.0" />
                                  </font>
                               </Label>
+                              <Label text="Color:">
+                                 <font>
+                                    <Font size="18.0" />
+                                 </font>
+                              </Label>
                               <ComboBox fx:id="color3" prefWidth="200.0" />
+                              <Label text="Nickname:">
+                                 <font>
+                                    <Font size="18.0" />
+                                 </font>
+                              </Label>
                               <TextField fx:id="nickname3" />
                            </children>
                         </VBox>
@@ -119,7 +157,17 @@
                                     <Font size="24.0" />
                                  </font>
                               </Label>
+                              <Label text="Color:">
+                                 <font>
+                                    <Font size="18.0" />
+                                 </font>
+                              </Label>
                               <ComboBox fx:id="color4" prefWidth="200.0" />
+                              <Label text="Nickname:">
+                                 <font>
+                                    <Font size="18.0" />
+                                 </font>
+                              </Label>
                               <TextField fx:id="nickname4" />
                            </children>
                         </VBox>

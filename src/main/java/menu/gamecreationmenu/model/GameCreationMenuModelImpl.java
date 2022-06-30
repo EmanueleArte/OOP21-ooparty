@@ -17,6 +17,8 @@ public class GameCreationMenuModelImpl<S> implements GameCreationMenuModel<S> {
 
 	public static final int nMinPlayers = 2;
 	public static final int nMaxPlayers = 4;
+	public static final int nMinTurns = 1;
+	public static final int nMaxTurns = 20;
 	private StageManager<S> stageManager;
 	private int actualNPlayers;
 	
@@ -38,21 +40,25 @@ public class GameCreationMenuModelImpl<S> implements GameCreationMenuModel<S> {
 	}
 
 	@Override
-	public void fillColorsBoxes(List<ComboBox<PlayerColor>> playerColors) {
+	public void fillColorsBoxes(final List<ComboBox<PlayerColor>> playerColors) {
 		playerColors.forEach(color -> {
 			color.setItems(FXCollections.observableArrayList(PlayerColor.values()));
 			color.getSelectionModel().selectFirst();
 		});
 	}
-
+	
 	@Override
-	public void setNumberOfPlayersSpinner(Spinner<Integer> numberOfPlayers) {
-		numberOfPlayers.setValueFactory(new IntSpinnerValueFactory(GameCreationMenuModelImpl.nMinPlayers, 
-				GameCreationMenuModelImpl.nMaxPlayers, GameCreationMenuModelImpl.nMinPlayers));
+	public void setNumberOfPlayersSpinner(final Spinner<Integer> numberOfPlayers) {
+		this.setSpinnerControls(numberOfPlayers, GameCreationMenuModelImpl.nMinPlayers, GameCreationMenuModelImpl.nMaxPlayers);
+	}
+	
+	@Override
+	public void setTurnsNumberSpinner(Spinner<Integer> turnsNumber) {
+		this.setSpinnerControls(turnsNumber, GameCreationMenuModelImpl.nMinTurns, GameCreationMenuModelImpl.nMaxTurns);
 	}
 
 	@Override
-	public void showForms(List<VBox> playersForms, Integer nPlayers) {
+	public void showForms(final List<VBox> playersForms, Integer nPlayers) {
 		for (int i = GameCreationMenuModelImpl.nMinPlayers; i < GameCreationMenuModelImpl.nMaxPlayers; i++) {
 			var form = playersForms.get(i);
 			if (i >= nPlayers) {
@@ -80,6 +86,16 @@ public class GameCreationMenuModelImpl<S> implements GameCreationMenuModel<S> {
 	private void hideForm(final VBox form) {
 		form.setVisible(false);
 		form.setManaged(false);
+	}
+	
+	/**
+	 * This method sets the value factory for a generic number spinner.
+	 * @param spinner the spinner to be set
+	 * @param min the min value
+	 * @param max the max value
+	 */
+	private void setSpinnerControls(final Spinner<Integer> spinner, final int min, final int max) {
+		spinner.setValueFactory(new IntSpinnerValueFactory(min, max, min));
 	}
 
 }

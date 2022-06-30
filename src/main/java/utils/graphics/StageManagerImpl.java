@@ -66,7 +66,7 @@ public class StageManagerImpl<S> extends JFrame implements StageManager<S> {
         this.frame.add(this.mainStage);
         this.frame.pack();
         this.frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
-        this.frame.setMinimumSize(new Dimension(1000, 600));
+        this.frame.setMinimumSize(new Dimension(1000, 700));
         this.frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.frame.setVisible(true);
 	}
