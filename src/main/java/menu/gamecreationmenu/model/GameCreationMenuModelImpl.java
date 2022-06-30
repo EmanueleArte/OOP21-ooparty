@@ -5,6 +5,7 @@ import java.util.List;
 import javafx.collections.FXCollections;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Spinner;
+import javafx.scene.layout.VBox;
 import utils.IntSpinnerValueFactory;
 import utils.enums.PlayerColor;
 import utils.graphics.StageManager;
@@ -15,6 +16,8 @@ import utils.graphics.StageManager;
 public class GameCreationMenuModelImpl<S> implements GameCreationMenuModel<S> {
 
 	private StageManager<S> stageManager;
+	public static final int nMinPlayers = 2;
+	public static final int nMaxPlayers = 4;
 	
 	public GameCreationMenuModelImpl(final StageManager<S> s) {
 		super();
@@ -42,7 +45,16 @@ public class GameCreationMenuModelImpl<S> implements GameCreationMenuModel<S> {
 
 	@Override
 	public void setNumberOfPlayersSpinner(Spinner<Integer> numberOfPlayers) {
-		numberOfPlayers.setValueFactory(new IntSpinnerValueFactory(2, 4, 2));
+		numberOfPlayers.setValueFactory(new IntSpinnerValueFactory(GameCreationMenuModelImpl.nMinPlayers, 
+				GameCreationMenuModelImpl.nMaxPlayers, GameCreationMenuModelImpl.nMinPlayers));
+	}
+
+	@Override
+	public void showForms(List<VBox> playersForms, Integer nPlayers) {
+		for (int i = GameCreationMenuModelImpl.nMaxPlayers - 1; i > nPlayers - 1; i--) {
+			playersForms.get(i).setVisible(false);
+			playersForms.get(i).setManaged(false);
+		}
 	}
 
 	

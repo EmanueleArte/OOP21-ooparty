@@ -5,8 +5,10 @@ import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.Control;
 import javafx.scene.control.Spinner;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.VBox;
 import menu.gamecreationmenu.model.GameCreationMenuModel;
 import menu.gamecreationmenu.model.GameCreationMenuModelImpl;
 import utils.IntSpinnerValueFactory;
@@ -24,6 +26,7 @@ public class GameCreationMenuControllerImpl<S> implements GameCreationMenuContro
 	@FXML private Spinner<Integer> numberOfPlayers;
 	@FXML private List<TextField> PlayersNicknames;
 	@FXML private List<ComboBox<PlayerColor>> playerColors;
+	@FXML private List<VBox> playersForms;
 	
 	public GameCreationMenuControllerImpl(final StageManager<S> s) {
 		super();
@@ -34,8 +37,6 @@ public class GameCreationMenuControllerImpl<S> implements GameCreationMenuContro
 	private void initialize() {
 		this.gameCreationMenuModel.setNumberOfPlayersSpinner(this.numberOfPlayers);
 		this.gameCreationMenuModel.fillColorsBoxes(this.playerColors);
-		//this.color1.setItems(FXCollections.observableArrayList(PlayerColor.values()));
-		//this.color1.getSelectionModel().selectFirst();
 	}
 	
 	@Override
@@ -47,6 +48,11 @@ public class GameCreationMenuControllerImpl<S> implements GameCreationMenuContro
 	public void startGame() {
 		// TODO Auto-generated method stub
 		
+	}
+
+	@Override
+	public void showPlayersForms() {
+		this.gameCreationMenuModel.showForms(this.playersForms, this.numberOfPlayers.getValue());
 	}
 
 	

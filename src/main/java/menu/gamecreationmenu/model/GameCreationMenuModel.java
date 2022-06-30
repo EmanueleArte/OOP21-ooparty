@@ -3,6 +3,7 @@ package menu.gamecreationmenu.model;
 import java.util.List;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Spinner;
+import javafx.scene.layout.VBox;
 import utils.enums.PlayerColor;
 
 /**
@@ -31,5 +32,12 @@ public interface GameCreationMenuModel<S> {
 	 * @param playerColors the available colors
 	 */
 	void setNumberOfPlayersSpinner(Spinner<Integer> numberOfPlayers);
+	
+	/**
+	 * This method shows only the necessary players forms.
+	 * @param playersForms the list of players forms
+	 * @param nPlayers the selected number of players
+	 */
+	void showForms(List<VBox> playersForms, Integer nPlayers);
 
 }

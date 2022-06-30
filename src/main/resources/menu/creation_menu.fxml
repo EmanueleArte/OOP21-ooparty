@@ -32,6 +32,7 @@
   OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 -->
 
+<?import java.util.ArrayList?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ComboBox?>
@@ -42,7 +43,6 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
-<?import java.util.ArrayList?>
 
 <VBox alignment="TOP_CENTER" prefHeight="2160.0" prefWidth="3840.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="menu.gamecreationmenu.control.GameCreationMenuControllerImpl">
   <children>
@@ -79,7 +79,7 @@
                   </HBox>
                   <HBox alignment="CENTER" spacing="40.0">
                      <children>
-                        <VBox alignment="CENTER" minWidth="200.0" spacing="20.0">
+                        <VBox fx:id="pForm1" alignment="CENTER" minWidth="200.0" spacing="20.0">
                            <children>
                               <Label text="Player 1">
                                  <font>
@@ -90,7 +90,7 @@
                               <TextField fx:id="nickname1" />
                            </children>
                         </VBox>
-                        <VBox alignment="TOP_CENTER" minWidth="200.0" spacing="20.0">
+                        <VBox fx:id="pForm2" alignment="CENTER" minWidth="200.0" spacing="20.0">
                            <children>
                               <Label text="Player 2">
                                  <font>
@@ -101,7 +101,7 @@
                               <TextField fx:id="nickname2" />
                            </children>
                         </VBox>
-                        <VBox alignment="CENTER" minWidth="200.0" spacing="20.0">
+                        <VBox fx:id="pForm3" alignment="CENTER" minWidth="200.0" spacing="20.0">
                            <children>
                               <Label text="Player 3">
                                  <font>
@@ -112,7 +112,7 @@
                               <TextField fx:id="nickname3" />
                            </children>
                         </VBox>
-                        <VBox alignment="CENTER" minWidth="200.0" spacing="20.0">
+                        <VBox fx:id="pForm4" alignment="CENTER" minWidth="200.0" spacing="20.0">
                            <children>
                               <Label text="Player 4">
                                  <font>
@@ -146,6 +146,12 @@
       <fx:reference source="nickname2" />
       <fx:reference source="nickname3" />
       <fx:reference source="nickname4" />
+    </ArrayList>
+    <ArrayList fx:id="playersForms">
+      <fx:reference source="pForm1" />
+      <fx:reference source="pForm2" />
+      <fx:reference source="pForm3" />
+      <fx:reference source="pForm4" />
     </ArrayList>
   </fx:define>
   
