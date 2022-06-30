@@ -32,11 +32,8 @@ public class GameCreationMenuControllerImpl<S> implements GameCreationMenuContro
 	
 	@FXML
 	private void initialize() {
-		this.numberOfPlayers.setValueFactory(new IntSpinnerValueFactory(2, 4, 2));
-		this.playerColors.forEach(color -> {
-			color.setItems(FXCollections.observableArrayList(PlayerColor.values()));
-			color.getSelectionModel().selectFirst();
-		});
+		this.gameCreationMenuModel.setNumberOfPlayersSpinner(this.numberOfPlayers);
+		this.gameCreationMenuModel.fillColorsBoxes(this.playerColors);
 		//this.color1.setItems(FXCollections.observableArrayList(PlayerColor.values()));
 		//this.color1.getSelectionModel().selectFirst();
 	}
