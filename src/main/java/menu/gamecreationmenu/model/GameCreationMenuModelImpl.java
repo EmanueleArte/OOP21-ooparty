@@ -15,13 +15,15 @@ import utils.graphics.StageManager;
  */
 public class GameCreationMenuModelImpl<S> implements GameCreationMenuModel<S> {
 
-	private StageManager<S> stageManager;
 	public static final int nMinPlayers = 2;
 	public static final int nMaxPlayers = 4;
+	private StageManager<S> stageManager;
+	private int actualNPlayers;
 	
 	public GameCreationMenuModelImpl(final StageManager<S> s) {
 		super();
 		this.stageManager = s;
+		this.actualNPlayers = GameCreationMenuModelImpl.nMinPlayers;
 	}
 
 	@Override
@@ -51,18 +53,33 @@ public class GameCreationMenuModelImpl<S> implements GameCreationMenuModel<S> {
 
 	@Override
 	public void showForms(List<VBox> playersForms, Integer nPlayers) {
-		for (int i = GameCreationMenuModelImpl.nMaxPlayers - 1; i > nPlayers - 1; i--) {
+		for (int i = GameCreationMenuModelImpl.nMinPlayers; i < GameCreationMenuModelImpl.nMaxPlayers; i++) {
 			var form = playersForms.get(i);
-			if (form.isVisible()) {
-				form.setVisible(false);
-				form.setManaged(false);
+			if (i >= nPlayers) {
+				this.hideForm(form);
 			} else {
-				form.setVisible(true);
-				form.setManaged(true);
+				this.showForm(form);
 			}
 		}
+		this.actualNPlayers = nPlayers;
 	}
-
 	
+	/**
+	 * This method shows a player form.
+	 * @param form the player form
+	 */
+	private void showForm(final VBox form) {
+		form.setVisible(true);
+		form.setManaged(true);
+	}
+	
+	/**
+	 * This method hides a player form.
+	 * @param form the player form
+	 */
+	private void hideForm(final VBox form) {
+		form.setVisible(false);
+		form.setManaged(false);
+	}
 
 }
