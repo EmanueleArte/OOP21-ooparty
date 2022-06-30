@@ -1,15 +1,15 @@
 package menu.gamecreationmenu.control;
 
 import java.util.List;
-
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.Spinner;
 import javafx.scene.control.TextField;
 import menu.gamecreationmenu.model.GameCreationMenuModel;
 import menu.gamecreationmenu.model.GameCreationMenuModelImpl;
-import utils.enums.ControllerType;
+import utils.enums.PlayerColor;
 import utils.graphics.StageManager;
 
 /**
@@ -20,8 +20,9 @@ public class GameCreationMenuControllerImpl<S> implements GameCreationMenuContro
 	private GameCreationMenuModel<S> gameCreationMenuModel;
 	@FXML private Button returnMainMenuButton;
 	@FXML private Button startGameButton;
+	@FXML private Spinner numberOfPlayers;
 	@FXML private TextField nickname1;
-	@FXML private ComboBox<ControllerType> color1;
+	@FXML private List<ComboBox<PlayerColor>> playerColors;
 	
 	public GameCreationMenuControllerImpl(final StageManager<S> s) {
 		super();
@@ -30,8 +31,12 @@ public class GameCreationMenuControllerImpl<S> implements GameCreationMenuContro
 	
 	@FXML
 	private void initialize() {
-		this.color1.setItems(FXCollections.observableArrayList(ControllerType.values()));
-		this.color1.getSelectionModel().selectFirst();
+		this.playerColors.forEach(color -> {
+			color.setItems(FXCollections.observableArrayList(PlayerColor.values()));
+			color.getSelectionModel().selectFirst();
+		});
+		//this.color1.setItems(FXCollections.observableArrayList(PlayerColor.values()));
+		//this.color1.getSelectionModel().selectFirst();
 	}
 	
 	@Override
