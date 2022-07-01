@@ -1,6 +1,12 @@
 package menu.gamecreationmenu.model;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.function.Function;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
+import java.util.stream.Stream;
 
 import javafx.collections.FXCollections;
 import javafx.scene.control.ComboBox;
@@ -21,11 +27,22 @@ public class GameCreationMenuModelImpl<S> implements GameCreationMenuModel<S> {
 	public static final int nMaxTurns = 20;
 	private StageManager<S> stageManager;
 	private int actualNPlayers;
+	private final Map<Integer, List<PlayerColor>> unavailableColors;
 	
 	public GameCreationMenuModelImpl(final StageManager<S> s) {
 		super();
 		this.stageManager = s;
 		this.actualNPlayers = GameCreationMenuModelImpl.nMinPlayers;
+		this.unavailableColors = IntStream
+			      .range(0, GameCreationMenuModelImpl.nMaxPlayers)
+			      .boxed()
+			      .collect(Collectors.toMap(Function.identity(), i -> {
+			    	  return Stream.of(PlayerColor.values())
+			    			  .limit(GameCreationMenuModelImpl.nMaxPlayers)
+			    			  .filter(color -> color.ordinal() != i)
+			    			  .collect(Collectors.toList());
+			      }));
+		System.out.println(this.unavailableColors);
 	}
 
 	@Override
@@ -42,8 +59,9 @@ public class GameCreationMenuModelImpl<S> implements GameCreationMenuModel<S> {
 	@Override
 	public void fillColorsBoxes(final List<ComboBox<PlayerColor>> playerColors) {
 		playerColors.forEach(color -> {
+			final List<PlayerColor> availableColors;
 			color.setItems(FXCollections.observableArrayList(PlayerColor.values()));
-			color.getSelectionModel().selectFirst();
+ 			color.getSelectionModel().selectFirst();
 		});
 	}
 	

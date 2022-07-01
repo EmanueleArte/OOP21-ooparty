@@ -39,7 +39,6 @@ public class GameCreationMenuControllerImpl<S> implements GameCreationMenuContro
 		this.gameCreationMenuModel.setTurnsNumberSpinner(this.turnsNumber);
 		this.gameCreationMenuModel.fillColorsBoxes(this.playerColors);
 		this.numberOfPlayers.getValueFactory().valueProperty().addListener(value -> this.showPlayersForms());
-		this.playersNicknames.get(0).setText(this.playerColors.get(0).getValue().getColor().toString());
 		this.showPlayersForms();
 	}
 	
