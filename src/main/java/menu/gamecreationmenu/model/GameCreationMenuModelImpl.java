@@ -1,5 +1,6 @@
 package menu.gamecreationmenu.model;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
@@ -7,7 +8,9 @@ import java.util.stream.Collectors;
 
 import javafx.collections.FXCollections;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.ComboBoxBase;
 import javafx.scene.control.Spinner;
+import javafx.scene.control.SpinnerValueFactory;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.VBox;
 import utils.IntSpinnerValueFactory;
@@ -43,7 +46,7 @@ public class GameCreationMenuModelImpl<S> implements GameCreationMenuModel<S> {
 		//final List<TextField> playersNicknames = allPlayersNicknames.subList(0, this.actualNPlayers);
 		//final List<ComboBox<PlayerColor>> playerColors = allPlayerColors.subList(0, this.actualNPlayers);
 		if (!controlForms(allPlayersNicknames.subList(0, this.actualNPlayers), allPlayerColors.subList(0, this.actualNPlayers))) {
-			System.out.println("There are some nicknames or/and colors duplicated.");
+			System.out.println("There are some nicknames or/and colors duplicated or empty.");
 		}
 	}
 	
@@ -55,20 +58,43 @@ public class GameCreationMenuModelImpl<S> implements GameCreationMenuModel<S> {
 	 */
 	private boolean controlForms(final List<TextField> playersNicknames, final List<ComboBox<PlayerColor>> playerColors) {
 		boolean formsCorrect = true;
-		int[] presences = new int[this.actualNPlayers];
-		Arrays.fill(presences, 0);
-		final int nDiffNicknames = playersNicknames.stream()
+		final int nDiffNicknames = this.getNicknamesValues(playersNicknames)
+				.stream()
 				.distinct()
 				.collect(Collectors.toList())
 				.size();
-		final int nDiffColors = playerColors.stream()
+		final int nDiffColors = this.getColorsValues(playerColors)
+				.stream()
 				.distinct()
 				.collect(Collectors.toList())
 				.size();
-		if (nDiffNicknames < this.actualNPlayers || nDiffColors < this.actualNPlayers) {
+		if (nDiffNicknames < this.actualNPlayers || nDiffColors < this.actualNPlayers 
+				|| this.getNicknamesValues(playersNicknames).contains("")) {
 			formsCorrect = false;
 		}
 		return formsCorrect;
+	}
+	
+	/**
+	 * This method gets the players colors values.
+	 * @param list the list of players colors combo box.
+	 * @return the list of players colors
+	 */
+	private List<PlayerColor> getColorsValues(List<ComboBox<PlayerColor>> list) {
+		final List<PlayerColor> valuesList = new ArrayList<>();
+		list.forEach(element -> valuesList.add(element.getValue()));
+		return valuesList;
+	}
+	
+	/**
+	 * This method gets the players nicknames values.
+	 * @param list the list of players nicknames text fields.
+	 * @return the list of players nicknames
+	 */
+	private List<String> getNicknamesValues(List<TextField> list) {
+		final List<String> valuesList = new ArrayList<>();
+		list.forEach(element -> valuesList.add(element.getText()));
+		return valuesList;
 	}
 
 	@Override
