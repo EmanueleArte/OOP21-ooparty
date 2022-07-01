@@ -9,11 +9,13 @@ import java.util.stream.Collectors;
 import javafx.collections.FXCollections;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.ComboBoxBase;
+import javafx.scene.control.Label;
 import javafx.scene.control.Spinner;
 import javafx.scene.control.SpinnerValueFactory;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.VBox;
 import utils.IntSpinnerValueFactory;
+import utils.enums.Notice;
 import utils.enums.PlayerColor;
 import utils.graphics.StageManager;
 
@@ -42,12 +44,19 @@ public class GameCreationMenuModelImpl<S> implements GameCreationMenuModel<S> {
 
 	@Override
 	public void startGame(final List<TextField> allPlayersNicknames, final List<ComboBox<PlayerColor>> allPlayerColors, 
-			Spinner<Integer> turnsNumber) {
-		//final List<TextField> playersNicknames = allPlayersNicknames.subList(0, this.actualNPlayers);
-		//final List<ComboBox<PlayerColor>> playerColors = allPlayerColors.subList(0, this.actualNPlayers);
+			final Spinner<Integer> turnsNumber, final Label adviceLabel) {
 		if (!controlForms(allPlayersNicknames.subList(0, this.actualNPlayers), allPlayerColors.subList(0, this.actualNPlayers))) {
-			System.out.println("There are some nicknames or/and colors duplicated or empty.");
+			this.showNotice(adviceLabel, Notice.GAME_CREATION_ERROR.getNotice());
 		}
+	}
+	
+	/**
+	 * This method shows a notice into the gui.
+	 * @param adviceLabel the label present into the gui
+	 * @param notice the notice to show
+	 */
+	private void showNotice(final Label adviceLabel, final String notice) {
+		adviceLabel.setText(notice);
 	}
 	
 	/**

@@ -2,6 +2,7 @@ package menu.gamecreationmenu.model;
 
 import java.util.List;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.Label;
 import javafx.scene.control.Spinner;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.VBox;
@@ -23,7 +24,7 @@ public interface GameCreationMenuModel<S> {
 	 * @param playerColors the colors of the players
 	 * @param turnsNumber the number of turns of the game
 	 */
-	void startGame(List<TextField> playersNicknames, List<ComboBox<PlayerColor>> playerColors, Spinner<Integer> turnsNumber);
+	void startGame(List<TextField> playersNicknames, List<ComboBox<PlayerColor>> playerColors, Spinner<Integer> turnsNumber, Label adviceLabel);
 	
 	/**
 	 * This method fills the the combo box with colors which can be choose.

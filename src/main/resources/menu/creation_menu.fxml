@@ -53,21 +53,14 @@
                   <Font size="36.0" />
                </font>
                <BorderPane.margin>
-                  <Insets top="80.0" />
+                  <Insets top="60.0" />
                </BorderPane.margin>
             </Button>
          </top>
-         <bottom>
-            <Button fx:id="startGameButton" alignment="CENTER" mnemonicParsing="false" onAction="#startGame" text="Start game" BorderPane.alignment="CENTER">
-               <font>
-                  <Font size="36.0" />
-               </font>
-            </Button>
-         </bottom>
          <center>
             <VBox alignment="CENTER" minHeight="100.0" BorderPane.alignment="CENTER">
                <children>
-                  <HBox alignment="TOP_CENTER" prefHeight="100.0" prefWidth="200.0" spacing="40.0">
+                  <HBox alignment="TOP_CENTER" prefHeight="70.0" prefWidth="200.0" spacing="40.0">
                      <children>
                         <Label text="Number of players:">
                            <font>
@@ -179,6 +172,25 @@
                </BorderPane.margin>
             </VBox>
          </center>
+         <bottom>
+            <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
+               <children>
+                  <Button fx:id="startGameButton" alignment="CENTER" mnemonicParsing="false" onAction="#startGame" text="Start game">
+                     <font>
+                        <Font size="36.0" />
+                     </font>
+                  </Button>
+                  <Label fx:id="adviceLabel">
+                     <VBox.margin>
+                        <Insets top="30.0" />
+                     </VBox.margin>
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Label>
+               </children>
+            </VBox>
+         </bottom>
       </BorderPane>
   </children>
   
