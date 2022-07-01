@@ -1,5 +1,6 @@
 package menu.gamecreationmenu.model;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -33,16 +34,7 @@ public class GameCreationMenuModelImpl<S> implements GameCreationMenuModel<S> {
 		super();
 		this.stageManager = s;
 		this.actualNPlayers = GameCreationMenuModelImpl.nMinPlayers;
-		this.unavailableColors = IntStream
-			      .range(0, GameCreationMenuModelImpl.nMaxPlayers)
-			      .boxed()
-			      .collect(Collectors.toMap(Function.identity(), i -> {
-			    	  return Stream.of(PlayerColor.values())
-			    			  .limit(GameCreationMenuModelImpl.nMaxPlayers)
-			    			  .filter(color -> color.ordinal() != i)
-			    			  .collect(Collectors.toList());
-			      }));
-		System.out.println(this.unavailableColors);
+		this.unavailableColors = this.mapUnavailableColors();
 	}
 
 	@Override
@@ -58,10 +50,17 @@ public class GameCreationMenuModelImpl<S> implements GameCreationMenuModel<S> {
 
 	@Override
 	public void fillColorsBoxes(final List<ComboBox<PlayerColor>> playerColors) {
-		playerColors.forEach(color -> {
-			final List<PlayerColor> availableColors;
-			color.setItems(FXCollections.observableArrayList(PlayerColor.values()));
- 			color.getSelectionModel().selectFirst();
+		final List<PlayerColor> availableColors = new ArrayList<>();
+		availableColors.addAll(Stream.of(PlayerColor.values())
+				.collect(Collectors.toList()));
+		availableColors.removeAll(this.unavailableColors.get(0));
+		for (int i = 1; i < GameCreationMenuModelImpl.nMaxPlayers; i++) {
+			availableColors.addAll(this.unavailableColors.get(i - 1));
+			availableColors.removeAll(this.unavailableColors.get(i));
+		}
+		playerColors.forEach(colors -> {
+			colors.setItems(FXCollections.observableArrayList(availableColors));
+ 			colors.getSelectionModel().selectLast();
 		});
 	}
 	
@@ -114,6 +113,23 @@ public class GameCreationMenuModelImpl<S> implements GameCreationMenuModel<S> {
 	 */
 	private void setSpinnerControls(final Spinner<Integer> spinner, final int min, final int max) {
 		spinner.setValueFactory(new IntSpinnerValueFactory(min, max, min));
+	}
+	
+	/**
+	 * This method creates a map where the index represents the player number
+	 * and the value is his list of unavailable colors.
+	 * @return the map of unavailable colors
+	 */
+	private Map<Integer, List<PlayerColor>> mapUnavailableColors() {
+		return IntStream
+			      .range(0, GameCreationMenuModelImpl.nMaxPlayers)
+			      .boxed()
+			      .collect(Collectors.toMap(Function.identity(), i -> {
+			    	  return Stream.of(PlayerColor.values())
+			    			  .limit(GameCreationMenuModelImpl.nMaxPlayers)
+			    			  .filter(color -> color.ordinal() != i)
+			    			  .collect(Collectors.toList());
+			      }));
 	}
 
 }
