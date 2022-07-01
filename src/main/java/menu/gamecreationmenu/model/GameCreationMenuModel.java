@@ -3,6 +3,7 @@ package menu.gamecreationmenu.model;
 import java.util.List;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Spinner;
+import javafx.scene.control.TextField;
 import javafx.scene.layout.VBox;
 import utils.enums.PlayerColor;
 
@@ -17,9 +18,12 @@ public interface GameCreationMenuModel<S> {
 	void returnToMainMenu();
 	
 	/**
-	 * This method starts the game.
+	 * This method starts the game if the forms have correct values.
+	 * @param playersNicknames the nicknames of the players
+	 * @param playerColors the colors of the players
+	 * @param turnsNumber the number of turns of the game
 	 */
-	void startGame();
+	void startGame(List<TextField> playersNicknames, List<ComboBox<PlayerColor>> playerColors, Spinner<Integer> turnsNumber);
 	
 	/**
 	 * This method fills the the combo box with colors which can be choose.

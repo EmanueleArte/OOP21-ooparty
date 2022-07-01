@@ -47,8 +47,7 @@ public class GameCreationMenuControllerImpl<S> implements GameCreationMenuContro
 
 	@Override
 	public void startGame() {
-		// TODO Auto-generated method stub
-		
+		this.gameCreationMenuModel.startGame(this.playersNicknames, this.playerColors, this.turnsNumber);
 	}
 
 	@Override

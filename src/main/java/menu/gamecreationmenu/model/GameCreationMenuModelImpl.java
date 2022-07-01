@@ -1,6 +1,7 @@
 package menu.gamecreationmenu.model;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -12,6 +13,7 @@ import java.util.stream.Stream;
 import javafx.collections.FXCollections;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Spinner;
+import javafx.scene.control.TextField;
 import javafx.scene.layout.VBox;
 import utils.IntSpinnerValueFactory;
 import utils.enums.PlayerColor;
@@ -41,9 +43,20 @@ public class GameCreationMenuModelImpl<S> implements GameCreationMenuModel<S> {
 	}
 
 	@Override
-	public void startGame() {
-		// TODO Auto-generated method stub
-		
+	public void startGame(final List<TextField> allPlayersNicknames, final List<ComboBox<PlayerColor>> allPlayerColors, 
+			Spinner<Integer> turnsNumber) {
+		final List<TextField> playersNicknames = allPlayersNicknames.subList(0, this.actualNPlayers);
+		final List<ComboBox<PlayerColor>> playerColors = allPlayerColors.subList(0, this.actualNPlayers);
+		//controlForms(playersNicknames, playerColors);
+	}
+	
+	private boolean controlForms(final List<TextField> playersNicknames, final List<ComboBox<PlayerColor>> playerColors) {
+		Boolean formsCorrect = true;
+		int[] presences = new int[this.actualNPlayers];
+		Arrays.fill(presences, 42);
+		System.out.println(presences);
+		playersNicknames.forEach(null);
+		return formsCorrect;
 	}
 
 	@Override
