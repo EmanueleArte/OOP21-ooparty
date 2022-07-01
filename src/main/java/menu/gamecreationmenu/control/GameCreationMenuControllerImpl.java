@@ -1,11 +1,10 @@
 package menu.gamecreationmenu.control;
 
 import java.util.List;
-import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
-import javafx.scene.control.Control;
+import javafx.scene.control.Label;
 import javafx.scene.control.Spinner;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.VBox;
@@ -24,9 +23,10 @@ public class GameCreationMenuControllerImpl<S> implements GameCreationMenuContro
 	@FXML private Button startGameButton;
 	@FXML private Spinner<Integer> numberOfPlayers;
 	@FXML private Spinner<Integer> turnsNumber;
-	@FXML private List<TextField> PlayersNicknames;
+	@FXML private List<TextField> playersNicknames;
 	@FXML private List<ComboBox<PlayerColor>> playerColors;
 	@FXML private List<VBox> playersForms;
+	@FXML private Label adviceLabel;
 	
 	public GameCreationMenuControllerImpl(final StageManager<S> s) {
 		super();
@@ -49,8 +49,7 @@ public class GameCreationMenuControllerImpl<S> implements GameCreationMenuContro
 
 	@Override
 	public void startGame() {
-		// TODO Auto-generated method stub
-		
+		this.gameCreationMenuModel.startGame(this.playersNicknames, this.playerColors, this.turnsNumber, this.adviceLabel);
 	}
 
 	@Override
@@ -58,6 +57,9 @@ public class GameCreationMenuControllerImpl<S> implements GameCreationMenuContro
 		this.gameCreationMenuModel.showForms(this.playersForms, this.numberOfPlayers.getValue());
 	}
 
+	@Override
+	public void clearNotice() {
+		this.gameCreationMenuModel.clearNotice();
+	}
 	
-
 }
