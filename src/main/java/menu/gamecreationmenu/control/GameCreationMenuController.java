@@ -1,8 +1,5 @@
 package menu.gamecreationmenu.control;
 
-import java.util.List;
-import javafx.scene.layout.VBox;
-
 /**
  * This interface models the game creation menu control of the game.
  */

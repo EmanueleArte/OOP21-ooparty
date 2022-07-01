@@ -24,7 +24,7 @@ public class GameCreationMenuControllerImpl<S> implements GameCreationMenuContro
 	@FXML private Button startGameButton;
 	@FXML private Spinner<Integer> numberOfPlayers;
 	@FXML private Spinner<Integer> turnsNumber;
-	@FXML private List<TextField> PlayersNicknames;
+	@FXML private List<TextField> playersNicknames;
 	@FXML private List<ComboBox<PlayerColor>> playerColors;
 	@FXML private List<VBox> playersForms;
 	
@@ -39,6 +39,7 @@ public class GameCreationMenuControllerImpl<S> implements GameCreationMenuContro
 		this.gameCreationMenuModel.setTurnsNumberSpinner(this.turnsNumber);
 		this.gameCreationMenuModel.fillColorsBoxes(this.playerColors);
 		this.numberOfPlayers.getValueFactory().valueProperty().addListener(value -> this.showPlayersForms());
+		this.playersNicknames.get(0).setText(this.playerColors.get(0).getValue().getColor().toString());
 		this.showPlayersForms();
 	}
 	
