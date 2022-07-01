@@ -1,14 +1,9 @@
 package menu.gamecreationmenu.model;
 
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.HashMap;
+import java.util.Collections;
 import java.util.List;
-import java.util.Map;
-import java.util.function.Function;
 import java.util.stream.Collectors;
-import java.util.stream.IntStream;
-import java.util.stream.Stream;
 
 import javafx.collections.FXCollections;
 import javafx.scene.control.ComboBox;
@@ -45,17 +40,34 @@ public class GameCreationMenuModelImpl<S> implements GameCreationMenuModel<S> {
 	@Override
 	public void startGame(final List<TextField> allPlayersNicknames, final List<ComboBox<PlayerColor>> allPlayerColors, 
 			Spinner<Integer> turnsNumber) {
-		final List<TextField> playersNicknames = allPlayersNicknames.subList(0, this.actualNPlayers);
-		final List<ComboBox<PlayerColor>> playerColors = allPlayerColors.subList(0, this.actualNPlayers);
-		//controlForms(playersNicknames, playerColors);
+		//final List<TextField> playersNicknames = allPlayersNicknames.subList(0, this.actualNPlayers);
+		//final List<ComboBox<PlayerColor>> playerColors = allPlayerColors.subList(0, this.actualNPlayers);
+		if (!controlForms(allPlayersNicknames.subList(0, this.actualNPlayers), allPlayerColors.subList(0, this.actualNPlayers))) {
+			System.out.println("There are some nicknames or/and colors duplicated.");
+		}
 	}
 	
+	/**
+	 * This method controls that there aren't duplicates into the forms information.
+	 * @param playersNicknames the list of players nicknames
+	 * @param playerColors the list of players colors
+	 * @return true if there aren't duplicates else false
+	 */
 	private boolean controlForms(final List<TextField> playersNicknames, final List<ComboBox<PlayerColor>> playerColors) {
-		Boolean formsCorrect = true;
+		boolean formsCorrect = true;
 		int[] presences = new int[this.actualNPlayers];
-		Arrays.fill(presences, 42);
-		System.out.println(presences);
-		playersNicknames.forEach(null);
+		Arrays.fill(presences, 0);
+		final int nDiffNicknames = playersNicknames.stream()
+				.distinct()
+				.collect(Collectors.toList())
+				.size();
+		final int nDiffColors = playerColors.stream()
+				.distinct()
+				.collect(Collectors.toList())
+				.size();
+		if (nDiffNicknames < this.actualNPlayers || nDiffColors < this.actualNPlayers) {
+			formsCorrect = false;
+		}
 		return formsCorrect;
 	}
 
