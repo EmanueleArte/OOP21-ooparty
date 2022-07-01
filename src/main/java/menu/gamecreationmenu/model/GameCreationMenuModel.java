@@ -50,5 +50,10 @@ public interface GameCreationMenuModel<S> {
 	 * @param nPlayers the selected number of players
 	 */
 	void showForms(List<VBox> playersForms, Integer nPlayers);
+	
+	/**
+	 * This method clears the notice into the gui.
+	 */
+	public void clearNotice();
 
 }

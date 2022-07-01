@@ -57,6 +57,9 @@ public class GameCreationMenuControllerImpl<S> implements GameCreationMenuContro
 		this.gameCreationMenuModel.showForms(this.playersForms, this.numberOfPlayers.getValue());
 	}
 
+	@Override
+	public void clearNotice() {
+		this.gameCreationMenuModel.clearNotice();
+	}
 	
-
 }

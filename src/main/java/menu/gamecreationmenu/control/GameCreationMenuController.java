@@ -20,4 +20,9 @@ public interface GameCreationMenuController<S> {
 	 */
 	void showPlayersForms();
 	
+	/**
+	 * This method clears the notice.
+	 */
+	void clearNotice();
+	
 }
