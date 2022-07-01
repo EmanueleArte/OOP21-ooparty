@@ -34,7 +34,7 @@ public class GameCreationMenuModelImpl<S> implements GameCreationMenuModel<S> {
 		super();
 		this.stageManager = s;
 		this.actualNPlayers = GameCreationMenuModelImpl.nMinPlayers;
-		this.unavailableColors = this.mapUnavailableColors();
+		this.unavailableColors = this.mapAvailableColors(List.of(PlayerColor.RED, PlayerColor.BLUE, PlayerColor.GREEN, PlayerColor.YELLOW));
 	}
 
 	@Override
@@ -63,7 +63,7 @@ public class GameCreationMenuModelImpl<S> implements GameCreationMenuModel<S> {
  			colors.getSelectionModel().selectLast();
 		});
 	}
-	
+		
 	@Override
 	public void setNumberOfPlayersSpinner(final Spinner<Integer> numberOfPlayers) {
 		this.setSpinnerControls(numberOfPlayers, GameCreationMenuModelImpl.nMinPlayers, GameCreationMenuModelImpl.nMaxPlayers);
@@ -118,18 +118,30 @@ public class GameCreationMenuModelImpl<S> implements GameCreationMenuModel<S> {
 	/**
 	 * This method creates a map where the index represents the player number
 	 * and the value is his list of unavailable colors.
+	 * @param the actual selected colors
 	 * @return the map of unavailable colors
 	 */
-	private Map<Integer, List<PlayerColor>> mapUnavailableColors() {
-		return IntStream
-			      .range(0, GameCreationMenuModelImpl.nMaxPlayers)
+	private Map<Integer, List<PlayerColor>> mapAvailableColors(final List<PlayerColor> selectedColors) {
+		/*return IntStream
+			      .range(0, this.actualNPlayers)
 			      .boxed()
 			      .collect(Collectors.toMap(Function.identity(), i -> {
 			    	  return Stream.of(PlayerColor.values())
-			    			  .limit(GameCreationMenuModelImpl.nMaxPlayers)
+			    			  .limit(this.actualNPlayers)
 			    			  .filter(color -> color.ordinal() != i)
 			    			  .collect(Collectors.toList());
-			      }));
+			      }));*/
+		// available
+		final List<PlayerColor> availableColors = new ArrayList<>();
+		availableColors.addAll(Stream.of(PlayerColor.values())
+				.collect(Collectors.toList()));
+		availableColors.stream()
+				.filter(color -> !selectedColors.contains(color))
+				.collect(Collectors.toList());
+		return IntStream
+			      .range(0, this.actualNPlayers)
+			      .boxed()
+			      .collect(Collectors.toMap(Function.identity(), i -> availableColors));
 	}
 
 }
