@@ -28,13 +28,11 @@ public class GameCreationMenuModelImpl<S> implements GameCreationMenuModel<S> {
 	public static final int nMaxTurns = 20;
 	private StageManager<S> stageManager;
 	private int actualNPlayers;
-	private final Map<Integer, List<PlayerColor>> unavailableColors;
 	
 	public GameCreationMenuModelImpl(final StageManager<S> s) {
 		super();
 		this.stageManager = s;
 		this.actualNPlayers = GameCreationMenuModelImpl.nMinPlayers;
-		this.unavailableColors = this.mapAvailableColors(List.of(PlayerColor.RED, PlayerColor.BLUE, PlayerColor.GREEN, PlayerColor.YELLOW));
 	}
 
 	@Override
@@ -50,17 +48,9 @@ public class GameCreationMenuModelImpl<S> implements GameCreationMenuModel<S> {
 
 	@Override
 	public void fillColorsBoxes(final List<ComboBox<PlayerColor>> playerColors) {
-		final List<PlayerColor> availableColors = new ArrayList<>();
-		availableColors.addAll(Stream.of(PlayerColor.values())
-				.collect(Collectors.toList()));
-		availableColors.removeAll(this.unavailableColors.get(0));
-		for (int i = 1; i < GameCreationMenuModelImpl.nMaxPlayers; i++) {
-			availableColors.addAll(this.unavailableColors.get(i - 1));
-			availableColors.removeAll(this.unavailableColors.get(i));
-		}
 		playerColors.forEach(colors -> {
-			colors.setItems(FXCollections.observableArrayList(availableColors));
- 			colors.getSelectionModel().selectLast();
+			colors.setItems(FXCollections.observableArrayList(PlayerColor.values()));
+ 			colors.getSelectionModel().selectFirst();
 		});
 	}
 		
@@ -113,35 +103,6 @@ public class GameCreationMenuModelImpl<S> implements GameCreationMenuModel<S> {
 	 */
 	private void setSpinnerControls(final Spinner<Integer> spinner, final int min, final int max) {
 		spinner.setValueFactory(new IntSpinnerValueFactory(min, max, min));
-	}
-	
-	/**
-	 * This method creates a map where the index represents the player number
-	 * and the value is his list of unavailable colors.
-	 * @param the actual selected colors
-	 * @return the map of unavailable colors
-	 */
-	private Map<Integer, List<PlayerColor>> mapAvailableColors(final List<PlayerColor> selectedColors) {
-		/*return IntStream
-			      .range(0, this.actualNPlayers)
-			      .boxed()
-			      .collect(Collectors.toMap(Function.identity(), i -> {
-			    	  return Stream.of(PlayerColor.values())
-			    			  .limit(this.actualNPlayers)
-			    			  .filter(color -> color.ordinal() != i)
-			    			  .collect(Collectors.toList());
-			      }));*/
-		// available
-		final List<PlayerColor> availableColors = new ArrayList<>();
-		availableColors.addAll(Stream.of(PlayerColor.values())
-				.collect(Collectors.toList()));
-		availableColors.stream()
-				.filter(color -> !selectedColors.contains(color))
-				.collect(Collectors.toList());
-		return IntStream
-			      .range(0, this.actualNPlayers)
-			      .boxed()
-			      .collect(Collectors.toMap(Function.identity(), i -> availableColors));
 	}
 
 }
