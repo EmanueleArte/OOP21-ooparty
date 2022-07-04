@@ -1,4 +1,4 @@
-package minigames.common;
+package minigames.common.model;
 
 import java.util.List;
 
@@ -10,9 +10,8 @@ public interface MinigameModel<U> {
 	
 	/**
      * This method runs the minigame.
-	 * @return Minigame.gameResults() output
 	 */
-	List<U> runGame();
+	void runGame();
 	
 	/**
      * This method returns the results of the minigame that are necessary for points assignment, etc...

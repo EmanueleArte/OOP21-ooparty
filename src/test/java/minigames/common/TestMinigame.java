@@ -5,6 +5,8 @@ import java.util.List;
 import java.util.Map;
 import org.junit.jupiter.api.Test;
 
+import minigames.common.model.MinigameModelAbstr;
+
 class TestMinigame {
 	
 	final List<String> players = List.of("Luca", "Giovanni", "Lorenzo", "Marco");

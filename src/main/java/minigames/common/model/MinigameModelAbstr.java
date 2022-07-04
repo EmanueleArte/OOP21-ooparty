@@ -1,4 +1,4 @@
-package minigames.common;
+package minigames.common.model;
 
 import java.util.Comparator;
 import java.util.HashMap;
@@ -33,7 +33,7 @@ public abstract class MinigameModelAbstr<U> implements MinigameModel<U> {
 	}
 
 	@Override
-	abstract public List<U> runGame();
+	abstract public void runGame();
 
 	@Override
 	public List<U> gameResults() {
