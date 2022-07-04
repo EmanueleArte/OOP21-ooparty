@@ -12,22 +12,21 @@ class TestMinigame {
 	final List<String> players = List.of("Luca", "Giovanni", "Lorenzo", "Marco");
 	final List<Integer> scores = List.of(4, 7, 5, 2);
 
-	class MinigameModelImpl<U> extends MinigameModelAbstr<U> {
+	class MinigameModelImpl<S, U> extends MinigameModelAbstr<S, U> {
 
 		public MinigameModelImpl(final List<U> players) {
 			super(players);
 		}
 
 		@Override
-		public List<U> runGame() {
-			return List.of();
+		public void runGame() {
 		}
 		
 	}
 	
 	@Test
 	void testScoreMapper() {
-		final MinigameModelImpl<String> m = new MinigameModelImpl<>(players);
+		final MinigameModelImpl<Integer, String> m = new MinigameModelImpl<>(players);
 		players.forEach(p -> m.scoreMapper(p, scores.get(players.indexOf(p))));
 		final Map<String, Integer> correctMap = Map.of("Luca", 4, "Giovanni", 7, "Lorenzo", 5, "Marco", 2);
 		assertEquals(correctMap, m.getPlayersClassification());
@@ -36,7 +35,7 @@ class TestMinigame {
 	
 	@Test
 	void testSortPlayerByScore() {
-		final MinigameModelImpl<String> m = new MinigameModelImpl<>(players);
+		final MinigameModelImpl<Integer, String> m = new MinigameModelImpl<>(players);
 		players.forEach(p -> m.scoreMapper(p, scores.get(players.indexOf(p))));
 		final List<String> orderedList = List.of("Giovanni", "Lorenzo", "Luca", "Marco");
 		assertEquals(orderedList, m.gameResults());
