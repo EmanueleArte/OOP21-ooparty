@@ -10,7 +10,7 @@ import utils.graphics.StageManager;
 public class MainMenuModelImpl<S> implements MainMenuModel<S> {
 
 	private StageManager<S> stageManager;
-	
+
 	public MainMenuModelImpl(final StageManager<S> s) {
 		super();
 		this.stageManager = s;
@@ -23,8 +23,7 @@ public class MainMenuModelImpl<S> implements MainMenuModel<S> {
 
 	@Override
 	public void gameCreationMenu() {
-		final GameCreationMenuView<S> creationMenu = 
-				new GameCreationMenuViewImpl<>(this.stageManager);
+		final GameCreationMenuView<S> creationMenu = new GameCreationMenuViewImpl<>(this.stageManager);
 		creationMenu.createGameCreationMenu();
 	}
 
