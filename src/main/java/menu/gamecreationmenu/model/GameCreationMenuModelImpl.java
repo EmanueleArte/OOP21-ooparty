@@ -47,6 +47,8 @@ public class GameCreationMenuModelImpl<S> implements GameCreationMenuModel<S> {
 				this.noticeLabel = noticeLabel;
 			}
 			this.showNotice(Notice.GAME_CREATION_ERROR.getNotice());
+		} else {
+			
 		}
 	}
 

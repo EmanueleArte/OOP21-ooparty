@@ -8,7 +8,7 @@ public interface Player {
 	/**
 	 * @return the name of the player
 	 */
-	String getName();
+	String getNickName();
 	
 	/**
 	 * Moves the player forward

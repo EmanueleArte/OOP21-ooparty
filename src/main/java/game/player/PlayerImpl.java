@@ -1,22 +1,25 @@
 package game.player;
 
+/**
+ * The implementation of {@link Player}
+ */
 public class PlayerImpl implements Player {
 
-	private final String name;
+	private final String nickName;
 	private int position; // da modificare quando ci saranno le caselle
 	private int coins;
 	private int stars;
 
 	public PlayerImpl(String name) {
-		this.name = name;
+		this.nickName = name;
 		this.coins = 0;
 		this.stars = 0;
 		this.position = 0;
 	}
 
 	@Override
-	public String getName() {
-		return this.name;
+	public String getNickName() {
+		return this.nickName;
 	}
 
 	@Override
