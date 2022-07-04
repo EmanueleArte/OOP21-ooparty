@@ -10,7 +10,7 @@ public interface Player {
 	/**
 	 * @return the name of the player
 	 */
-	String getNickName();
+	String getNickname();
 	
 	/**
 	 * @return the color of the player

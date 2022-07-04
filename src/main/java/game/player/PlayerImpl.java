@@ -7,14 +7,14 @@ import javafx.scene.paint.Color;
  */
 public class PlayerImpl implements Player {
 
-	private final String nickName;
+	private final String nickname;
 	private final Color color;
 	private int position; // da modificare quando ci saranno le caselle
 	private int coins;
 	private int stars;
 
-	public PlayerImpl(final String nickName, final Color color) {
-		this.nickName = nickName;
+	public PlayerImpl(final String nickname, final Color color) {
+		this.nickname = nickname;
 		this.color = color;
 		this.coins = 0;
 		this.stars = 0;
@@ -22,8 +22,8 @@ public class PlayerImpl implements Player {
 	}
 
 	@Override
-	public String getNickName() {
-		return this.nickName;
+	public String getNickname() {
+		return this.nickname;
 	}
 	
 	@Override

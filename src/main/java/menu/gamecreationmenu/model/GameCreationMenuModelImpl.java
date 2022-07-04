@@ -42,7 +42,9 @@ public class GameCreationMenuModelImpl<S> implements GameCreationMenuModel<S> {
 	@Override
 	public void startGame(final List<TextField> allPlayersNicknames, final List<ComboBox<PlayerColor>> allPlayerColors, 
 			final Spinner<Integer> turnsNumber, final Label noticeLabel) {
-		if (!controlForms(allPlayersNicknames.subList(0, this.actualNPlayers), allPlayerColors.subList(0, this.actualNPlayers))) {
+		final List<String> playersNicknames = this.getNicknamesValues(allPlayersNicknames.subList(0, this.actualNPlayers));
+		final List<PlayerColor> playersColors = this.getColorsValues(allPlayerColors.subList(0, this.actualNPlayers));
+		if (!controlForms(playersNicknames, playersColors)) {
 			if (this.noticeLabel == null) {
 				this.noticeLabel = noticeLabel;
 			}
@@ -125,25 +127,25 @@ public class GameCreationMenuModelImpl<S> implements GameCreationMenuModel<S> {
 	}
 	
 	/**
-	 * This method controls that there aren't duplicates into the forms information.
+	 * This method controls that there aren't duplicates or blank nicknames into the forms information.
 	 * @param playersNicknames the list of players nicknames
 	 * @param playerColors the list of players colors
-	 * @return true if there aren't duplicates else false
+	 * @return true if there aren't any duplicates or blank nicknames else false
 	 */
-	private boolean controlForms(final List<TextField> playersNicknames, final List<ComboBox<PlayerColor>> playerColors) {
+	private boolean controlForms(final List<String> playersNicknames, final List<PlayerColor> playerColors) {
 		boolean formsCorrect = true;
-		final int nDiffNicknames = this.getNicknamesValues(playersNicknames)
+		final int nDiffNicknames = playersNicknames
 				.stream()
 				.distinct()
 				.collect(Collectors.toList())
 				.size();
-		final int nDiffColors = this.getColorsValues(playerColors)
+		final int nDiffColors = playerColors
 				.stream()
 				.distinct()
 				.collect(Collectors.toList())
 				.size();
 		if (nDiffNicknames < this.actualNPlayers || nDiffColors < this.actualNPlayers 
-				|| this.getNicknamesValues(playersNicknames).contains("")) {
+				|| playersNicknames.contains("")) {
 			formsCorrect = false;
 		}
 		return formsCorrect;
