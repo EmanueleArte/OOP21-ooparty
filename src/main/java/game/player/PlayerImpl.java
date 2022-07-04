@@ -20,6 +20,10 @@ public class PlayerImpl implements Player {
 		this.stars = 0;
 		this.position = 0;
 	}
+	
+	public PlayerImpl(final String nickname) {
+		this(nickname, null);
+	}
 
 	@Override
 	public String getNickname() {

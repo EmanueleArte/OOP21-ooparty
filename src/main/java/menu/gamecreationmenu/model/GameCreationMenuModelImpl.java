@@ -3,6 +3,9 @@ package menu.gamecreationmenu.model;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
+
+import game.player.Player;
+import game.player.PlayerImpl;
 import javafx.collections.FXCollections;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
@@ -51,6 +54,7 @@ public class GameCreationMenuModelImpl<S> implements GameCreationMenuModel<S> {
 			this.showNotice(Notice.GAME_CREATION_ERROR.getNotice());
 		} else {
 			// To complete with game constructor (parameters: playersList, stageManager, turnsNumber)
+			this.createPlayersList(playersNicknames, playersColors);
 		}
 	}
 
@@ -172,5 +176,19 @@ public class GameCreationMenuModelImpl<S> implements GameCreationMenuModel<S> {
 		list.forEach(element -> valuesList.add(element.getText()));
 		return valuesList;
 	}
-
+	
+	/**
+	 * This method creates the list of players that will join the game.
+	 * @param playersNicknames the list of players nicknames
+	 * @param playerColors the list of players colors
+	 * @return the list of the players
+	 */
+	private List<Player> createPlayersList(final List<String> playersNicknames, final List<PlayerColor> playerColors) {
+		final List<Player> playersList = new ArrayList<>();
+		playersNicknames.forEach(nickname -> {
+			playersList.add(new PlayerImpl(nickname, playerColors.get(playersNicknames.indexOf(nickname)).getColor()));
+		});
+		return playersList;
+	}
+	
 }
