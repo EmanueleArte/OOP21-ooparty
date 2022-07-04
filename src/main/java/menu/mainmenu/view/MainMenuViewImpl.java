@@ -6,7 +6,7 @@ import utils.graphics.StageManager;
 /**
  * Implementation of {@link MainMenuView}.
  */
-public class MainMenuViewImpl<S, U> implements MainMenuView<S, U> {
+public class MainMenuViewImpl<S> implements MainMenuView<S> {
 
 	final private StageManager<S> stageManager;
 	
