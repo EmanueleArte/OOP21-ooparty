@@ -5,5 +5,6 @@ package utils.enums;
  */
 public enum ControllerType {
 	MAIN_MENU,
-	GAME_CREATION_MENU
+	GAME_CREATION_MENU,
+	MASTERMIND
 }

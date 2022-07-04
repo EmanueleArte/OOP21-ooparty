@@ -12,8 +12,12 @@ public interface StageManager<S> {
 	
 	/**
 	 * This method adds a scene to the scene list.
+	 * @param fxmlUrl the url of the fxml file to load
+	 * @param c the type of the controller
+	 * @param players the list of the players; put null if you haven't 
+	 * 			any list of players to pass
 	 */
-	void addScene(String fxmlUrl, ControllerType c);
+	<U> void addScene(String fxmlUrl, ControllerType c, List<U> players);
 	
 	/**
 	 * This method pops a scene from the scene list.

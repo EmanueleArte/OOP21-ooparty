@@ -1,8 +1,10 @@
 package utils.factories;
 
+import java.util.List;
+
 /**
  * This interface models the controller factory of the game.
- * @param <S> the scenes of the stage
+ * @param <S> the {@link javafx.scene.Scene} of the stage
  */
 public interface ControllerFactory<S> {
 	

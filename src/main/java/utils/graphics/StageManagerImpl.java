@@ -35,11 +35,11 @@ public class StageManagerImpl<S> extends JFrame implements StageManager<S> {
 	
 	@SuppressWarnings("unchecked")
 	@Override
-	public void addScene(final String fxmlUrl, final ControllerType c) {
+	public <U> void addScene(final String fxmlUrl, final ControllerType c, final List<U> players) {
 		Platform.runLater(() -> {
 			Parent root = null;
 			this.loader = new FXMLLoader(getClass().getClassLoader().getResource(fxmlUrl));
-			this.loader.setControllerFactory(this.controllerCallback(c));
+			this.loader.setControllerFactory(this.controllerCallback(c, players));
 			try {
 				root = loader.load();
 			} catch (IOException e1) {
@@ -94,12 +94,14 @@ public class StageManagerImpl<S> extends JFrame implements StageManager<S> {
 	 * This method chooses the right controller to be implemented.
 	 * @return the right controller callback
 	 */
-	private Callback<Class<?>, Object> controllerCallback(final ControllerType controller) {
+	private <U> Callback<Class<?>, Object> controllerCallback(final ControllerType controller, final List<U> players) {
 		switch(controller) {
 			case MAIN_MENU:
 				return this.controlFactory.createMainMenuController();
 			case GAME_CREATION_MENU:
 				return this.controlFactory.createGameCreationMenuController();
+			case MASTERMIND:
+				return this.controlFactory.createMastermind(players);
 			default:
 				return null;
 		}

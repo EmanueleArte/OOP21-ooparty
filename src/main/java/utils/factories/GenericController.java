@@ -17,7 +17,6 @@ class GenericController<S> implements Callback<Class<?>, Object> {
 		super();
 		this.stageManager = s;
 		this.controllerClass = controllerClass;
-		
 	}
 
 	@Override
