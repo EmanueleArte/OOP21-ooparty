@@ -11,7 +11,6 @@ import utils.graphics.StageManager;
 
 /**
  * Implementation of {@link MinigameModel}.
- * @param <U> 
  */
 public abstract class MinigameModelAbstr<S, U> implements MinigameModel<S, U> {
 
