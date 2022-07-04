@@ -3,7 +3,7 @@ package game.player;
 import javafx.scene.paint.Color;
 
 /**
- * This interface models one player
+ * This interface models one player.
  */
 public interface Player {
 

@@ -10,7 +10,7 @@ public interface Minigame<U> {
 	
 	/**
      * This method runs the minigame.
-	 * @return gameResults() output
+	 * @return Minigame.gameResults() output
 	 */
 	List<U> runGame();
 	
@@ -22,10 +22,8 @@ public interface Minigame<U> {
 	
 	/**
      * This method associates a player to his score.
-     * @param player
-     * 			the current player
-     * @param score
-     * 			the score of the player at the minigame
+     * @param player the current {@link game.player.Player}
+     * @param score the score of the player at the minigame
 	 */
 	void scoreMapper(U player, Integer score);
 
