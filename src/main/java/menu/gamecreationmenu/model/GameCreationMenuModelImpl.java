@@ -48,7 +48,7 @@ public class GameCreationMenuModelImpl<S> implements GameCreationMenuModel<S> {
 			}
 			this.showNotice(Notice.GAME_CREATION_ERROR.getNotice());
 		} else {
-			
+			// To complete with game constructor (parameters: playersList, stageManager, turnsNumber)
 		}
 	}
 

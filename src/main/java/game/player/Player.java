@@ -1,5 +1,7 @@
 package game.player;
 
+import javafx.scene.paint.Color;
+
 /**
  * This interface models one player
  */
@@ -9,6 +11,11 @@ public interface Player {
 	 * @return the name of the player
 	 */
 	String getNickName();
+	
+	/**
+	 * @return the color of the player
+	 */
+	Color getColor();
 	
 	/**
 	 * Moves the player forward
