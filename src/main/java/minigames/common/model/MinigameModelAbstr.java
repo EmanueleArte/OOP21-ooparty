@@ -26,8 +26,7 @@ public abstract class MinigameModelAbstr<S, U> implements MinigameModel<S, U> {
 	}
 	
 	public MinigameModelAbstr(final List<U> players) {
-		this.players = players;
-		this.playersClassification = new HashMap<>();
+		this(players, null);
 	}
 	
 	/**
