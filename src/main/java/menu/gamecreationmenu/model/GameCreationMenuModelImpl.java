@@ -26,7 +26,7 @@ public class GameCreationMenuModelImpl<S> implements GameCreationMenuModel<S> {
 	public static final int nMaxPlayers = 4;
 	public static final int nMinTurns = 1;
 	public static final int nMaxTurns = 20;
-	private StageManager<S> stageManager;
+	private final StageManager<S> stageManager;
 	private int actualNPlayers;
 	private Label noticeLabel;
 	

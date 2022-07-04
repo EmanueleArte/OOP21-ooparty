@@ -3,10 +3,9 @@ package minigames.common.model;
 import java.util.List;
 
 /**
- * This interface models a generic minigame, which has to be implemented
- * in the main game
+ * This interface models a minigame model
  */
-public interface MinigameModel<U> {
+public interface MinigameModel<S, U> {
 	
 	/**
      * This method runs the minigame.

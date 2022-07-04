@@ -7,11 +7,24 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
-public abstract class MinigameModelAbstr<U> implements MinigameModel<U> {
+import utils.graphics.StageManager;
+
+/**
+ * Implementation of {@link MinigameModel}.
+ * @param <U> 
+ */
+public abstract class MinigameModelAbstr<S, U> implements MinigameModel<S, U> {
 
 	private final List<U> players;
+	private final StageManager<S> stageManager;
 	private Map<U, Integer> playersClassification;
 
+	public MinigameModelAbstr(final List<U> players, final StageManager<S> s) {
+		this.players = players;
+		this.playersClassification = new HashMap<>();
+		this.stageManager = s;
+	}
+	
 	public MinigameModelAbstr(final List<U> players) {
 		this.players = players;
 		this.playersClassification = new HashMap<>();

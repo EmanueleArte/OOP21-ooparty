@@ -9,7 +9,7 @@ import utils.graphics.StageManager;
  */
 public class MainMenuModelImpl<S> implements MainMenuModel<S> {
 
-	private StageManager<S> stageManager;
+	private final StageManager<S> stageManager;
 
 	public MainMenuModelImpl(final StageManager<S> s) {
 		super();
