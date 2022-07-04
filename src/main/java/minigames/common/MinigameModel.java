@@ -6,7 +6,7 @@ import java.util.List;
  * This interface models a generic minigame, which has to be implemented
  * in the main game
  */
-public interface Minigame<U> {
+public interface MinigameModel<U> {
 	
 	/**
      * This method runs the minigame.

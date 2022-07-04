@@ -1,27 +1,20 @@
 package minigames.common;
 
-import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Map.Entry;
-import java.util.Optional;
 import java.util.stream.Collectors;
 
-public abstract class MinigameAbstr<U> implements Minigame<U> {
+public abstract class MinigameModelAbstr<U> implements MinigameModel<U> {
 
 	private final List<U> players;
 	private Map<U, Integer> playersClassification;
 
-	public MinigameAbstr(final List<U> players) {
+	public MinigameModelAbstr(final List<U> players) {
 		this.players = players;
 		this.playersClassification = new HashMap<>();
-	}
-	
-	public MinigameAbstr() {
-		this(null);
 	}
 	
 	/**
@@ -33,8 +26,7 @@ public abstract class MinigameAbstr<U> implements Minigame<U> {
 	
 	/**
      * This method sets the map of players associated to their scores.
-     * @param playersClassification
-     * 			a map with players as keys and their score as values
+     * @param playersClassification a map with players as keys and their score as values
 	 */
 	public void setPlayersClassification(final Map<U, Integer> playersClassification) {
 		this.playersClassification = playersClassification;
