@@ -36,7 +36,7 @@ public class GameHandlerImpl<S> implements GameHandler {
 
 	@Override
 	public void playTurn(Player player) {
-		System.out.println("Turno di " + player.getName() + " - posizione: "+player.getPosition());
+		System.out.println("Turno di " + player.getNickname() + " - posizione: "+player.getPosition());
 		int roll = dice.rollDice(player);
 		System.out.println("Lancio del dado: " + roll);
 		player.moveForward(roll);
