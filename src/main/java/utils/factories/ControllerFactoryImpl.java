@@ -1,5 +1,7 @@
 package utils.factories;
 
+import java.util.List;
+
 import menu.gamecreationmenu.control.GameCreationMenuControllerImpl;
 import menu.mainmenu.control.MainMenuControllerImpl;
 import utils.graphics.StageManager;
@@ -16,13 +18,18 @@ public class ControllerFactoryImpl<S> implements ControllerFactory<S> {
 	}
 	
 	@Override
-	public GenericController<S> createMainMenuController() {
-		return new GenericController<S>(this.stageManager, MainMenuControllerImpl.class);
+	public <U> GenericController<S, U> createMainMenuController() {
+		return new GenericController<S, U>(this.stageManager, MainMenuControllerImpl.class);
 	}
 
 	@Override
-	public GenericController<S> createGameCreationMenuController() {
-		return new GenericController<S>(this.stageManager, GameCreationMenuControllerImpl.class);
+	public <U> GenericController<S, U> createGameCreationMenuController() {
+		return new GenericController<S, U>(this.stageManager, GameCreationMenuControllerImpl.class);
+	}
+
+	@Override
+	public <U> GenericController<S, U> createMastermind(List<U> players) {
+		return new GenericController<S, U>(this.stageManager, players, GameCreationMenuControllerImpl.class);
 	}
 
 }

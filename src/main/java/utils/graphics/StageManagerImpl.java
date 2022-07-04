@@ -92,6 +92,7 @@ public class StageManagerImpl<S> extends JFrame implements StageManager<S> {
 	
 	/**
 	 * This method chooses the right controller to be implemented.
+	 * @param <U> the {@link game.player.Player}
 	 * @return the right controller callback
 	 */
 	private <U> Callback<Class<?>, Object> controllerCallback(final ControllerType controller, final List<U> players) {

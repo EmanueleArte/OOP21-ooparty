@@ -12,6 +12,7 @@ public interface StageManager<S> {
 	
 	/**
 	 * This method adds a scene to the scene list.
+	 * @param <U> the {@link game.player.Player}
 	 * @param fxmlUrl the url of the fxml file to load
 	 * @param c the type of the controller
 	 * @param players the list of the players; put null if you haven't 
