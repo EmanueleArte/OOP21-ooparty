@@ -9,8 +9,7 @@ import utils.graphics.StageManager;
  */
 public abstract class MinigameViewAbstr<S, U> implements MinigameView<S, U> {
 
-	@SuppressWarnings("unused")
-	final private StageManager<S> stageManager;
+	protected final StageManager<S> stageManager;
 	
 	public MinigameViewAbstr(final StageManager<S> s) {
 		super();

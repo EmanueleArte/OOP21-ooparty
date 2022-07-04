@@ -3,7 +3,7 @@ package game.player;
 import javafx.scene.paint.Color;
 
 /**
- * The implementation of {@link Player}
+ * The implementation of {@link Player}.
  */
 public class PlayerImpl implements Player {
 
