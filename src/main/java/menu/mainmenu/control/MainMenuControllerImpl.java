@@ -29,5 +29,5 @@ public class MainMenuControllerImpl<S> implements MainMenuController<S> {
 	public void createGame() {
 		this.menuModel.gameCreationMenu();
 	}
-
+	
 }

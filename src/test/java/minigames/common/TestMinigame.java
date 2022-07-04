@@ -9,8 +9,8 @@ class TestMinigame {
 
 	@Test
 	void testScoreMapper() {
-		List<String> players = List.of("Luca", "Giovanni", "Lorenzo", "Marco");
-		List<Integer> scores = List.of(4, 7, 5, 2);
+		final List<String> players = List.of("Luca", "Giovanni", "Lorenzo", "Marco");
+		final List<Integer> scores = List.of(4, 7, 5, 2);
 		
 		class MinigameImpl<U> extends MinigameAbstr<U> {
 
@@ -20,14 +20,14 @@ class TestMinigame {
 
 			@Override
 			public List<U> runGame() {
-				return null;
+				return List.of();
 			}
 			
 		}
 		
-		MinigameImpl<String> m = new MinigameImpl<String>(players);
+		final MinigameImpl<String> m = new MinigameImpl<String>(players);
 		players.forEach(p -> m.scoreMapper(p, scores.get(players.indexOf(p))));
-		Map<String, Integer> correctMap = Map.of("Luca", 4, "Giovanni", 7, "Lorenzo", 5, "Marco", 2);
+		final Map<String, Integer> correctMap = Map.of("Luca", 4, "Giovanni", 7, "Lorenzo", 5, "Marco", 2);
 		assertEquals(correctMap, m.getPlayersClassification());
 	}
 
@@ -42,15 +42,15 @@ class TestMinigame {
 
 			@Override
 			public List<U> runGame() {
-				return null;
+				return List.of();
 			}
 			
 		}
 		
-		MinigameImpl<String> m = new MinigameImpl<String>();
-		Map<String, Integer> simpleMap = Map.of("Luca", 4, "Giovanni", 7, "Lorenzo", 5, "Marco", 2);
+		final MinigameImpl<String> m = new MinigameImpl<String>();
+		final Map<String, Integer> simpleMap = Map.of("Luca", 4, "Giovanni", 7, "Lorenzo", 5, "Marco", 2);
 		m.setPlayersClassification(simpleMap);
-		List<String> orderedList = List.of("Giovanni", "Lorenzo", "Luca", "Marco");
+		final List<String> orderedList = List.of("Giovanni", "Lorenzo", "Luca", "Marco");
 		assertEquals(orderedList, m.gameResults());
 		/*Map<Optional<String>, Integer> duplMap = Map.of(Optional.of("Luca"), 2, Optional.of("Giovanni"), 7, 
 				Optional.of("Lorenzo"), 2, Optional.of("Marco"), 6);
