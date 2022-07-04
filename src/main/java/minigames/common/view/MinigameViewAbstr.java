@@ -1,11 +1,13 @@
 package minigames.common.view;
 
+import java.util.List;
+
 import utils.graphics.StageManager;
 
 /**
  * Implementation of {@link MinigameView}.
  */
-public abstract class MinigameViewAbstr<S> implements MinigameView<S> {
+public abstract class MinigameViewAbstr<S, U> implements MinigameView<S, U> {
 
 	@SuppressWarnings("unused")
 	final private StageManager<S> stageManager;
@@ -16,6 +18,6 @@ public abstract class MinigameViewAbstr<S> implements MinigameView<S> {
 	}
 
 	@Override
-	public abstract void startMinigame();
+	public abstract void startMinigame(final List<U> players);
 
 }
