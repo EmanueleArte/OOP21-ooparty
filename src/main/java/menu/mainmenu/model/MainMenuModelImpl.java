@@ -1,6 +1,7 @@
 package menu.mainmenu.model;
 
-import menu.gamecreationmenu.control.GameCreationMenuController;
+import menu.gamecreationmenu.view.GameCreationMenuView;
+import menu.gamecreationmenu.view.GameCreationMenuViewImpl;
 import utils.graphics.StageManager;
 
 /**
@@ -9,7 +10,7 @@ import utils.graphics.StageManager;
 public class MainMenuModelImpl<S> implements MainMenuModel<S> {
 
 	private StageManager<S> stageManager;
-	
+
 	public MainMenuModelImpl(final StageManager<S> s) {
 		super();
 		this.stageManager = s;
@@ -22,9 +23,8 @@ public class MainMenuModelImpl<S> implements MainMenuModel<S> {
 
 	@Override
 	public void gameCreationMenu() {
-		/*final GameCreationMenuView creationMenu = 
-				new GameCreationMenuViewImpl(this.stageManager);
-		creationMenu.start();*/
+		final GameCreationMenuView<S> creationMenu = new GameCreationMenuViewImpl<>(this.stageManager);
+		creationMenu.createGameCreationMenu();
 	}
 
 }

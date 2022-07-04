@@ -7,11 +7,6 @@ package menu.mainmenu.control;
 public interface MainMenuController<S> {
 	
 	/**
-	 * This method shows the game main menu.
-	 */
-	void start();
-	
-	/**
 	 * This method exits the game.
 	 */
 	void exitGame();

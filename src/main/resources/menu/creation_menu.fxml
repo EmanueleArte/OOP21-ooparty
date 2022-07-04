@@ -32,54 +32,187 @@
   OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 -->
 
+<?import java.util.ArrayList?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Spinner?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox prefHeight="400.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
+<VBox alignment="TOP_CENTER" prefHeight="2160.0" prefWidth="3840.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="menu.gamecreationmenu.control.GameCreationMenuControllerImpl">
   <children>
-      <BorderPane prefHeight="200.0" prefWidth="200.0">
-         <center>
-            <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" spacing="20.0" BorderPane.alignment="CENTER">
-               <children>
-                  <Label alignment="CENTER" prefHeight="79.0" prefWidth="286.0" text="OOParty">
-                     <font>
-                        <Font size="64.0" />
-                     </font>
-                     <opaqueInsets>
-                        <Insets />
-                     </opaqueInsets>
-                  </Label>
-                  <Button alignment="CENTER" mnemonicParsing="false" text="Exit">
-                     <font>
-                        <Font size="36.0" />
-                     </font>
-                     <VBox.margin>
-                        <Insets top="10.0" />
-                     </VBox.margin>
-                  </Button>
-               </children>
-               <padding>
-                  <Insets top="40.0" />
-               </padding>
-               <BorderPane.margin>
-                  <Insets bottom="40.0" top="40.0" />
-               </BorderPane.margin>
-            </VBox>
-         </center>
+      <BorderPane prefWidth="3840.0">
          <top>
-            <Button alignment="CENTER" mnemonicParsing="false" text="Return main menu" BorderPane.alignment="CENTER">
+            <Button fx:id="returnMainMenuButton" alignment="CENTER" mnemonicParsing="false" onAction="#returnToMainMenu" text="Return main menu" BorderPane.alignment="CENTER">
                <font>
                   <Font size="36.0" />
                </font>
                <BorderPane.margin>
-                  <Insets top="80.0" />
+                  <Insets top="60.0" />
                </BorderPane.margin>
             </Button>
          </top>
+         <center>
+            <VBox alignment="CENTER" minHeight="100.0" BorderPane.alignment="CENTER">
+               <children>
+                  <HBox alignment="TOP_CENTER" prefHeight="70.0" prefWidth="200.0" spacing="40.0">
+                     <children>
+                        <Label text="Number of players:">
+                           <font>
+                              <Font size="24.0" />
+                           </font>
+                        </Label>
+                        <Spinner fx:id="numberOfPlayers" />
+                     </children>
+                     <children>
+                        <Label text="Number of turns:">
+                           <font>
+                              <Font size="24.0" />
+                           </font>
+                        </Label>
+                        <Spinner fx:id="turnsNumber" />
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER" spacing="40.0">
+                     <children>
+                        <VBox fx:id="pForm1" alignment="CENTER" minWidth="200.0" spacing="20.0">
+                           <children>
+                              <Label text="Player 1">
+                                 <font>
+                                    <Font size="24.0" />
+                                 </font>
+                              </Label>
+                              <Label text="Color:">
+                                 <font>
+                                    <Font size="18.0" />
+                                 </font>
+                              </Label>
+                              <ComboBox fx:id="color1" prefWidth="200.0" onMouseClicked="#clearNotice" />
+                              <Label text="Nickname:">
+                                 <font>
+                                    <Font size="18.0" />
+                                 </font>
+                              </Label>
+                              <TextField fx:id="nickname1" onMouseClicked="#clearNotice" />
+                           </children>
+                        </VBox>
+                        <VBox fx:id="pForm2" alignment="CENTER" minWidth="200.0" spacing="20.0">
+                           <children>
+                              <Label text="Player 2">
+                                 <font>
+                                    <Font size="24.0" />
+                                 </font>
+                              </Label>
+                              <Label text="Color:">
+                                 <font>
+                                    <Font size="18.0" />
+                                 </font>
+                              </Label>
+                              <ComboBox fx:id="color2" prefWidth="200.0" onMouseClicked="#clearNotice" />
+                              <Label text="Nickname:">
+                                 <font>
+                                    <Font size="18.0" />
+                                 </font>
+                              </Label>
+                              <TextField fx:id="nickname2" onMouseClicked="#clearNotice" />
+                           </children>
+                        </VBox>
+                        <VBox fx:id="pForm3" alignment="CENTER" minWidth="200.0" spacing="20.0">
+                           <children>
+                              <Label text="Player 3">
+                                 <font>
+                                    <Font size="24.0" />
+                                 </font>
+                              </Label>
+                              <Label text="Color:">
+                                 <font>
+                                    <Font size="18.0" />
+                                 </font>
+                              </Label>
+                              <ComboBox fx:id="color3" prefWidth="200.0" onMouseClicked="#clearNotice" />
+                              <Label text="Nickname:">
+                                 <font>
+                                    <Font size="18.0" />
+                                 </font>
+                              </Label>
+                              <TextField fx:id="nickname3" onMouseClicked="#clearNotice" />
+                           </children>
+                        </VBox>
+                        <VBox fx:id="pForm4" alignment="CENTER" minWidth="200.0" spacing="20.0">
+                           <children>
+                              <Label text="Player 4">
+                                 <font>
+                                    <Font size="24.0" />
+                                 </font>
+                              </Label>
+                              <Label text="Color:">
+                                 <font>
+                                    <Font size="18.0" />
+                                 </font>
+                              </Label>
+                              <ComboBox fx:id="color4" prefWidth="200.0" onMouseClicked="#clearNotice" />
+                              <Label text="Nickname:">
+                                 <font>
+                                    <Font size="18.0" />
+                                 </font>
+                              </Label>
+                              <TextField fx:id="nickname4" onMouseClicked="#clearNotice" />
+                           </children>
+                        </VBox>
+                     </children>
+                  </HBox>
+               </children>
+               <BorderPane.margin>
+                  <Insets bottom="60.0" left="60.0" right="60.0" top="60.0" />
+               </BorderPane.margin>
+            </VBox>
+         </center>
+         <bottom>
+            <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
+               <children>
+                  <Button fx:id="startGameButton" alignment="CENTER" mnemonicParsing="false" onAction="#startGame" text="Start game">
+                     <font>
+                        <Font size="36.0" />
+                     </font>
+                  </Button>
+                  <Label fx:id="adviceLabel">
+                     <VBox.margin>
+                        <Insets top="30.0" />
+                     </VBox.margin>
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Label>
+               </children>
+            </VBox>
+         </bottom>
       </BorderPane>
   </children>
+  
+  <fx:define>
+    <ArrayList fx:id="playerColors">
+      <fx:reference source="color1" />
+      <fx:reference source="color2" />
+      <fx:reference source="color3" />
+      <fx:reference source="color4" />
+    </ArrayList>
+    <ArrayList fx:id="playersNicknames">
+      <fx:reference source="nickname1" />
+      <fx:reference source="nickname2" />
+      <fx:reference source="nickname3" />
+      <fx:reference source="nickname4" />
+    </ArrayList>
+    <ArrayList fx:id="playersForms">
+      <fx:reference source="pForm1" />
+      <fx:reference source="pForm2" />
+      <fx:reference source="pForm3" />
+      <fx:reference source="pForm4" />
+    </ArrayList>
+  </fx:define>
+  
 </VBox>

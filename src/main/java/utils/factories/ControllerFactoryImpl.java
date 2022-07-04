@@ -1,5 +1,6 @@
 package utils.factories;
 
+import menu.gamecreationmenu.control.GameCreationMenuControllerImpl;
 import menu.mainmenu.control.MainMenuControllerImpl;
 import utils.graphics.StageManager;
 
@@ -21,7 +22,7 @@ public class ControllerFactoryImpl<S> implements ControllerFactory<S> {
 
 	@Override
 	public GenericController<S> createGameCreationMenuController() {
-		return new GenericController<S>(this.stageManager, null);
+		return new GenericController<S>(this.stageManager, GameCreationMenuControllerImpl.class);
 	}
 
 }

@@ -1,5 +1,6 @@
 package utils.graphics;
 
+import java.awt.Dimension;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -9,13 +10,14 @@ import javafx.embed.swing.JFXPanel;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.SpinnerValueFactory.IntegerSpinnerValueFactory;
 import javafx.util.Callback;
-import utils.enums.Controller;
+import utils.enums.ControllerType;
 import utils.factories.ControllerFactory;
 import utils.factories.ControllerFactoryImpl;
 
 /**
- * Implementation of {@link StageManager}.
+ * Implementation of {@link StageManager} and extension of {@link JFrame}.
  */
 public class StageManagerImpl<S> extends JFrame implements StageManager<S> {
 
@@ -34,7 +36,7 @@ public class StageManagerImpl<S> extends JFrame implements StageManager<S> {
 	
 	@SuppressWarnings("unchecked")
 	@Override
-	public void addScene(final String fxmlUrl, final Controller c) {
+	public void addScene(final String fxmlUrl, final ControllerType c) {
 		Platform.runLater(() -> {
 			Parent root = null;
 			this.loader = new FXMLLoader(getClass().getClassLoader().getResource(fxmlUrl));
@@ -53,12 +55,9 @@ public class StageManagerImpl<S> extends JFrame implements StageManager<S> {
 	
 	@Override
 	public S popScene() {
-		return this.scenes.remove(this.lastSceneIndex());
-	}
-
-	@Override
-	public void setScene() {
-		this.mainStage.setScene((Scene) this.scenes.get(this.lastSceneIndex()));
+		var poppedScene = this.scenes.remove(this.lastSceneIndex());
+		this.setScene();
+		return poppedScene;
 	}
 
 	@Override
@@ -66,7 +65,8 @@ public class StageManagerImpl<S> extends JFrame implements StageManager<S> {
 		this.mainStage = new JFXPanel();
         this.frame.add(this.mainStage);
         this.frame.pack();
-        this.frame.setExtendedState(JFrame.MAXIMIZED_BOTH); 
+        this.frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
+        this.frame.setMinimumSize(new Dimension(1000, 700));
         this.frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.frame.setVisible(true);
 	}
@@ -74,6 +74,13 @@ public class StageManagerImpl<S> extends JFrame implements StageManager<S> {
 	@Override
 	public List<S> getScenes() {
 		return this.scenes;
+	}
+	
+	/**
+	 * This method shows the actual scene.
+	 */
+	private void setScene() {
+		this.mainStage.setScene((Scene) this.scenes.get(this.lastSceneIndex()));
 	}
 	
 	/**
@@ -88,10 +95,12 @@ public class StageManagerImpl<S> extends JFrame implements StageManager<S> {
 	 * This method chooses the right controller to be implemented.
 	 * @return the right controller callback
 	 */
-	private Callback<Class<?>, Object> controllerCallback(final Controller controller) {
+	private Callback<Class<?>, Object> controllerCallback(final ControllerType controller) {
 		switch(controller) {
 			case MAIN_MENU:
 				return this.controlFactory.createMainMenuController();
+			case GAME_CREATION_MENU:
+				return this.controlFactory.createGameCreationMenuController();
 			default:
 				return null;
 		}
