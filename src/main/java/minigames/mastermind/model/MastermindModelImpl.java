@@ -24,9 +24,9 @@ public class MastermindModelImpl<S, U> extends MinigameModelAbstr<S, U> implemen
 
 	@Override
 	public void runGame() {
-		for (U player : players) {
-			
-		}
+		this.players.forEach(player -> {
+			this.hideAttempts();
+		});
 	}
 
 	@Override
@@ -50,6 +50,16 @@ public class MastermindModelImpl<S, U> extends MinigameModelAbstr<S, U> implemen
 	 */
 	public void setInputField(final TextField inputField) {
 		this.inputField = inputField;
+	}
+	
+	/**
+	 * This method hides all attempts labels.
+	 */
+	private void hideAttempts() {
+		this.attempts.forEach(attempt -> {
+			attempt.setVisible(false);
+			attempt.setManaged(false);
+		});
 	}
 
 }
