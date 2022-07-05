@@ -14,6 +14,7 @@ import utils.graphics.StageManager;
 public class MastermindModelImpl<S, U> extends MinigameModelAbstr<S, U> implements NoticeUser {
 
 	private final List<Label> attempts;
+	private Label noticeLabel;
 	
 	public MastermindModelImpl(final List<U> players, final StageManager<S> s, final List<Label> attempts) {
 		super(players, s);
@@ -28,20 +29,17 @@ public class MastermindModelImpl<S, U> extends MinigameModelAbstr<S, U> implemen
 
 	@Override
 	public void setNotice(Label noticeLabel) {
-		// TODO Auto-generated method stub
-		
+		this.noticeLabel = noticeLabel;
 	}
 
 	@Override
 	public void clearNotice() {
-		// TODO Auto-generated method stub
-		
+		this.noticeLabel.setText("");
 	}
 	
 	@Override
 	public void showNotice(String notice) {
-		// TODO Auto-generated method stub
-		
+		this.noticeLabel.setText(notice);
 	}
 	
 	/**
