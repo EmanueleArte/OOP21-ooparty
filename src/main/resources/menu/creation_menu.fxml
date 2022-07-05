@@ -180,7 +180,7 @@
                         <Font size="36.0" />
                      </font>
                   </Button>
-                  <Label fx:id="adviceLabel">
+                  <Label fx:id="noticeLabel">
                      <VBox.margin>
                         <Insets top="30.0" />
                      </VBox.margin>

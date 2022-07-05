@@ -26,7 +26,7 @@ public class GameCreationMenuControllerImpl<S> implements GameCreationMenuContro
 	@FXML private List<TextField> playersNicknames;
 	@FXML private List<ComboBox<PlayerColor>> playerColors;
 	@FXML private List<VBox> playersForms;
-	@FXML private Label adviceLabel;
+	@FXML private Label noticeLabel;
 	
 	public GameCreationMenuControllerImpl(final StageManager<S> s) {
 		super();
@@ -49,7 +49,7 @@ public class GameCreationMenuControllerImpl<S> implements GameCreationMenuContro
 
 	@Override
 	public void startGame() {
-		this.gameCreationMenuModel.startGame(this.playersNicknames, this.playerColors, this.turnsNumber, this.adviceLabel);
+		this.gameCreationMenuModel.startGame(this.playersNicknames, this.playerColors, this.turnsNumber, this.noticeLabel);
 	}
 
 	@Override
