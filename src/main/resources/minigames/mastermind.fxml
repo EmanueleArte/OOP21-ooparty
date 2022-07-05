@@ -11,101 +11,105 @@
 <?import javafx.scene.text.Font?>
 
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="2160.0" prefWidth="3840.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="minigames.mastermind.control.MastermindControllerImpl">
-   <center>
-      <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0" spacing="30.0" BorderPane.alignment="CENTER">
-         <children>
-            <Label text="Mastermind">
-               <font>
-                  <Font size="64.0" />
-               </font>
-            </Label>
-            <Label text="You have 10 attempts to guess a 4 digit number with all the digits different." />
-            <VBox prefHeight="200.0" prefWidth="100.0">
+<VBox alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="2160.0" prefWidth="3840.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="minigames.mastermind.control.MastermindControllerImpl">
+   <children>
+      <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="2160.0" prefWidth="3840.0">
+         <center>
+            <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0" spacing="30.0" BorderPane.alignment="CENTER">
                <children>
-                  <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="40.0">
+                  <Label text="Mastermind">
+                     <font>
+                        <Font size="64.0" />
+                     </font>
+                  </Label>
+                  <Label text="You have 10 attempts to guess a 4 digit number with all the digits different." />
+                  <VBox prefHeight="200.0" prefWidth="100.0">
                      <children>
-                        <Label fx:id="attempt1" text="Label">
-                           <font>
-                              <Font size="18.0" />
-                           </font>
-                        </Label>
-                        <Label fx:id="attempt2" text="Label">
-                           <font>
-                              <Font size="18.0" />
-                           </font>
-                        </Label>
-                        <Label fx:id="attempt3" text="Label">
-                           <font>
-                              <Font size="18.0" />
-                           </font>
-                        </Label>
-                        <Label fx:id="attempt4" text="Label">
-                           <font>
-                              <Font size="18.0" />
-                           </font>
-                        </Label>
-                        <Label fx:id="attempt5" text="Label">
-                           <font>
-                              <Font size="18.0" />
-                           </font>
-                        </Label>
+                        <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="40.0">
+                           <children>
+                              <Label fx:id="attempt1" text="Label">
+                                 <font>
+                                    <Font size="18.0" />
+                                 </font>
+                              </Label>
+                              <Label fx:id="attempt2" text="Label">
+                                 <font>
+                                    <Font size="18.0" />
+                                 </font>
+                              </Label>
+                              <Label fx:id="attempt3" text="Label">
+                                 <font>
+                                    <Font size="18.0" />
+                                 </font>
+                              </Label>
+                              <Label fx:id="attempt4" text="Label">
+                                 <font>
+                                    <Font size="18.0" />
+                                 </font>
+                              </Label>
+                              <Label fx:id="attempt5" text="Label">
+                                 <font>
+                                    <Font size="18.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </HBox>
+                        <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="40.0">
+                           <children>
+                              <Label fx:id="attempt6" text="Label">
+                                 <font>
+                                    <Font size="18.0" />
+                                 </font>
+                              </Label>
+                              <Label fx:id="attempt7" text="Label">
+                                 <font>
+                                    <Font size="18.0" />
+                                 </font>
+                              </Label>
+                              <Label fx:id="attempt8" text="Label">
+                                 <font>
+                                    <Font size="18.0" />
+                                 </font>
+                              </Label>
+                              <Label fx:id="attempt9" text="Label">
+                                 <font>
+                                    <Font size="18.0" />
+                                 </font>
+                              </Label>
+                              <Label fx:id="attempt10" text="Label">
+                                 <font>
+                                    <Font size="18.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </HBox>
+                     </children>
+                  </VBox>
+                  <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="20.0">
+                     <children>
+                        <TextField fx:id="inputField" maxWidth="-Infinity" onKeyReleased="#tryGuess" prefWidth="200.0" />
+                        <Button mnemonicParsing="false" onAction="#tryGuess" text="Enter" />
                      </children>
                   </HBox>
-                  <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="40.0">
-                     <children>
-                        <Label fx:id="attempt6" text="Label">
-                           <font>
-                              <Font size="18.0" />
-                           </font>
-                        </Label>
-                        <Label fx:id="attempt7" text="Label">
-                           <font>
-                              <Font size="18.0" />
-                           </font>
-                        </Label>
-                        <Label fx:id="attempt8" text="Label">
-                           <font>
-                              <Font size="18.0" />
-                           </font>
-                        </Label>
-                        <Label fx:id="attempt9" text="Label">
-                           <font>
-                              <Font size="18.0" />
-                           </font>
-                        </Label>
-                        <Label fx:id="attempt10" text="Label">
-                           <font>
-                              <Font size="18.0" />
-                           </font>
-                        </Label>
-                     </children>
-                  </HBox>
+                  <Label fx:id="noticeLabel">
+                     <VBox.margin>
+                        <Insets top="30.0" />
+                     </VBox.margin>
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Label>
                </children>
+               <BorderPane.margin>
+                  <Insets top="40.0" />
+               </BorderPane.margin>
+               <padding>
+                  <Insets top="40.0" />
+               </padding>
             </VBox>
-            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="20.0">
-               <children>
-                  <TextField fx:id="inputField" maxWidth="-Infinity" onKeyReleased="#tryGuess" prefWidth="200.0" />
-                  <Button mnemonicParsing="false" onAction="#tryGuess" text="Enter" />
-               </children>
-            </HBox>
-            <Label fx:id="noticeLabel">
-               <VBox.margin>
-                  <Insets top="30.0" />
-               </VBox.margin>
-               <font>
-                  <Font size="18.0" />
-               </font>
-            </Label>
-         </children>
-         <BorderPane.margin>
-            <Insets top="40.0" />
-         </BorderPane.margin>
-         <padding>
-            <Insets top="40.0" />
-         </padding>
-      </VBox>
-   </center>
+         </center>
+      </BorderPane>
+   </children>
    
    <fx:define>
     <ArrayList fx:id="attempts">
@@ -120,6 +124,6 @@
       <fx:reference source="attempt9" />
       <fx:reference source="attempt10" />
     </ArrayList>
-   </fx:define>
+  </fx:define>
    
-</BorderPane>
+</VBox>
