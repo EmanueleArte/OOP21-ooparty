@@ -24,8 +24,9 @@ public class MastermindModelImpl<S, U> extends MinigameModelAbstr<S, U> implemen
 
 	@Override
 	public void runGame() {
-		// TODO Auto-generated method stub
-		
+		for (U player : players) {
+			
+		}
 	}
 
 	@Override

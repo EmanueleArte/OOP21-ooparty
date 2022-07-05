@@ -14,9 +14,9 @@ import utils.graphics.StageManager;
  */
 public abstract class MinigameModelAbstr<S, U> implements MinigameModel<S, U> {
 
-	private final List<U> players;
-	private final StageManager<S> stageManager;
-	private Map<U, Integer> playersClassification;
+	protected final List<U> players;
+	protected final StageManager<S> stageManager;
+	protected Map<U, Integer> playersClassification;
 
 	public MinigameModelAbstr(final List<U> players, final StageManager<S> s) {
 		this.players = players;
