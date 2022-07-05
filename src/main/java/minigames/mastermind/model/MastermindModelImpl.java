@@ -10,7 +10,7 @@ import utils.graphics.StageManager;
 /**
  * Implementation of {@link MastermindModel} and extension of {@link minigames.common.model.MinigameModelAbstr}.
  */
-public class MastermindModelImpl<S, U> extends MinigameModelAbstr<S, U> implements MastermindModel<S, U> {
+public class MastermindModelImpl<S, U> extends MinigameModelAbstr<S, U> implements MastermindModel {
 
 	private final List<Label> attempts;
 	

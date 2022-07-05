@@ -5,10 +5,8 @@ import javafx.scene.control.TextField;
 
 /**
  * This interface models the mastermind model.
- * @param <S> the scenes of the stage
- * @param <U> the {@link game.player.Player}
  */
-public interface MastermindModel<S, U> {
+public interface MastermindModel {
 
 	/**
 	 * This method sets the input field.
