@@ -12,6 +12,8 @@ import javafx.scene.control.Label;
 import javafx.scene.control.Spinner;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.VBox;
+import minigames.common.view.MinigameView;
+import minigames.mastermind.view.MastermindViewImpl;
 import utils.IntSpinnerValueFactory;
 import utils.enums.Notice;
 import utils.enums.PlayerColor;
@@ -51,7 +53,9 @@ public class GameCreationMenuModelImpl<S> implements GameCreationMenuModel<S> {
 			this.showNotice(Notice.GAME_CREATION_ERROR.getNotice());
 		} else {
 			// To complete with game constructor (parameters: playersList, stageManager, turnsNumber)
-			this.createPlayersList(playersNicknames, playersColors);
+			// Test minigames
+			final MinigameView<S, Player> m = new MastermindViewImpl<>(this.stageManager);
+			m.startMinigame(this.createPlayersList(playersNicknames, playersColors));
 		}
 	}
 

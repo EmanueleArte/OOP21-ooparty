@@ -39,6 +39,7 @@ public class GameCreationMenuControllerImpl<S> implements GameCreationMenuContro
 		this.gameCreationMenuModel.setTurnsNumberSpinner(this.turnsNumber);
 		this.gameCreationMenuModel.fillColorsBoxes(this.playerColors);
 		this.numberOfPlayers.getValueFactory().valueProperty().addListener(value -> this.showPlayersForms());
+		this.gameCreationMenuModel.setNotice(this.noticeLabel);
 		this.showPlayersForms();
 	}
 	
@@ -49,7 +50,6 @@ public class GameCreationMenuControllerImpl<S> implements GameCreationMenuContro
 
 	@Override
 	public void startGame() {
-		this.gameCreationMenuModel.setNotice(this.noticeLabel);
 		this.gameCreationMenuModel.startGame(this.playersNicknames, this.playerColors, this.turnsNumber);
 	}
 

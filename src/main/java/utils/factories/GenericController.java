@@ -31,7 +31,11 @@ class GenericController<S, U> implements Callback<Class<?>, Object> {
 	@Override
 	public Object call(Class<?> param) {
 		try {
-			return this.controllerClass.getConstructor(StageManager.class).newInstance(this.stageManager);
+			if (this.players != null) {
+				return this.controllerClass.getConstructor(StageManager.class, List.class).newInstance(this.stageManager, this.players);
+			} else {
+				return this.controllerClass.getConstructor(StageManager.class).newInstance(this.stageManager);
+			}
 		} catch (InstantiationException | IllegalAccessException | IllegalArgumentException
 				| InvocationTargetException | NoSuchMethodException | SecurityException e) {
 			e.printStackTrace();

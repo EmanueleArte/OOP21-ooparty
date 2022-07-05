@@ -4,6 +4,7 @@ import java.util.List;
 
 import menu.gamecreationmenu.control.GameCreationMenuControllerImpl;
 import menu.mainmenu.control.MainMenuControllerImpl;
+import minigames.mastermind.control.MastermindControllerImpl;
 import utils.graphics.StageManager;
 
 /**
@@ -29,7 +30,7 @@ public class ControllerFactoryImpl<S> implements ControllerFactory<S> {
 
 	@Override
 	public <U> GenericController<S, U> createMastermind(List<U> players) {
-		return new GenericController<S, U>(this.stageManager, players, GameCreationMenuControllerImpl.class);
+		return new GenericController<S, U>(this.stageManager, players, MastermindControllerImpl.class);
 	}
 
 }
