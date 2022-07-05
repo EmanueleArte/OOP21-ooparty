@@ -89,6 +89,14 @@
                   <Button mnemonicParsing="false" onAction="#enterAttempt" text="Enter" />
                </children>
             </HBox>
+            <Label fx:id="noticeLabel">
+               <VBox.margin>
+                  <Insets top="30.0" />
+               </VBox.margin>
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
          </children>
          <BorderPane.margin>
             <Insets top="40.0" />

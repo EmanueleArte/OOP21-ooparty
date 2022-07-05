@@ -11,7 +11,7 @@ import utils.graphics.StageManager;
  */
 public class MainMenuControllerImpl<S> implements MainMenuController<S> {
 
-	private MainMenuModel<S> menuModel;
+	private final MainMenuModel<S> menuModel;
 	@FXML private Button exitButton;
 	@FXML private Button createGameButton;
 

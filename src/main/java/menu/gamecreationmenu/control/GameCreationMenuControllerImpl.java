@@ -18,7 +18,7 @@ import utils.graphics.StageManager;
  */
 public class GameCreationMenuControllerImpl<S> implements GameCreationMenuController<S> {
 
-	private GameCreationMenuModel<S> gameCreationMenuModel;
+	private final GameCreationMenuModel<S> gameCreationMenuModel;
 	@FXML private Button returnMainMenuButton;
 	@FXML private Button startGameButton;
 	@FXML private Spinner<Integer> numberOfPlayers;

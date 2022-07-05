@@ -3,7 +3,6 @@ package minigames.mastermind.model;
 import java.util.List;
 
 import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
 import minigames.common.model.MinigameModelAbstr;
 import utils.graphics.StageManager;
 

@@ -4,19 +4,22 @@ import java.util.List;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
-import minigames.common.model.MinigameModel;
+import minigames.mastermind.model.MastermindModelImpl;
+import utils.graphics.StageManager;
 
 /**
  * Implementation of {@link MastermindController}.
  */
 public class MastermindControllerImpl<S, U> implements MastermindController<S, U> {
 
-	private MinigameModel<S, U> mastermindModel;
-	@FXML private List<Label> playersNicknames;
+	private final MastermindModelImpl<S, U> mastermindModel;
+	@FXML private List<Label> attempts;
 	@FXML private TextField inputField;
+	@FXML private Label noticeLabel;
 	
-	public MastermindControllerImpl() {
-		// TODO Auto-generated constructor stub
+	public MastermindControllerImpl(final StageManager<S> s, final List<U> players) {
+		super();
+		this.mastermindModel = new MastermindModelImpl<>(players, s, this.attempts);
 	}
 
 	@Override
