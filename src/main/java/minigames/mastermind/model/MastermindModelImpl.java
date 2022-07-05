@@ -2,13 +2,17 @@ package minigames.mastermind.model;
 
 import java.util.List;
 
+import javafx.scene.control.TextField;
 import minigames.common.model.MinigameModelAbstr;
 import utils.graphics.StageManager;
 
 public class MastermindModelImpl<S, U> extends MinigameModelAbstr<S, U> {
 
-	public MastermindModelImpl(final List<U> players, final StageManager<S> s) {
+	private final List<TextField> attempts;
+	
+	public MastermindModelImpl(final List<U> players, final StageManager<S> s, final List<TextField> attempts) {
 		super(players, s);
+		this.attempts = attempts;
 	}
 
 	@Override
