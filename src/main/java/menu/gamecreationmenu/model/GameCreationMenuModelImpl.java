@@ -44,13 +44,10 @@ public class GameCreationMenuModelImpl<S> implements GameCreationMenuModel<S> {
 
 	@Override
 	public void startGame(final List<TextField> allPlayersNicknames, final List<ComboBox<PlayerColor>> allPlayerColors, 
-			final Spinner<Integer> turnsNumber, final Label noticeLabel) {
+			final Spinner<Integer> turnsNumber) {
 		final List<String> playersNicknames = this.getNicknamesValues(allPlayersNicknames.subList(0, this.actualNPlayers));
 		final List<PlayerColor> playersColors = this.getColorsValues(allPlayerColors.subList(0, this.actualNPlayers));
 		if (!controlForms(playersNicknames, playersColors)) {
-			if (this.noticeLabel == null) {
-				this.noticeLabel = noticeLabel;
-			}
 			this.showNotice(Notice.GAME_CREATION_ERROR.getNotice());
 		} else {
 			// To complete with game constructor (parameters: playersList, stageManager, turnsNumber)
@@ -94,6 +91,16 @@ public class GameCreationMenuModelImpl<S> implements GameCreationMenuModel<S> {
 		this.noticeLabel.setText("");
 	}
 	
+	@Override
+	public void setNotice(final Label noticeLabel) {
+		this.noticeLabel = noticeLabel;
+	}
+
+	@Override
+	public void showNotice(String notice) {
+		this.noticeLabel.setText(notice);
+	}
+	
 	/**
 	 * This method shows a player form.
 	 * @param form the player form
@@ -120,14 +127,6 @@ public class GameCreationMenuModelImpl<S> implements GameCreationMenuModel<S> {
 	 */
 	private void setSpinnerControls(final Spinner<Integer> spinner, final int min, final int max) {
 		spinner.setValueFactory(new IntSpinnerValueFactory(min, max, min));
-	}
-	
-	/**
-	 * This method shows a notice into the gui.
-	 * @param notice the notice to show
-	 */
-	private void showNotice(final String notice) {
-		this.noticeLabel.setText(notice);
 	}
 	
 	/**

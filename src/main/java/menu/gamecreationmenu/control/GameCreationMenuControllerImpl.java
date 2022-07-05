@@ -49,7 +49,8 @@ public class GameCreationMenuControllerImpl<S> implements GameCreationMenuContro
 
 	@Override
 	public void startGame() {
-		this.gameCreationMenuModel.startGame(this.playersNicknames, this.playerColors, this.turnsNumber, this.noticeLabel);
+		this.gameCreationMenuModel.setNotice(this.noticeLabel);
+		this.gameCreationMenuModel.startGame(this.playersNicknames, this.playerColors, this.turnsNumber);
 	}
 
 	@Override

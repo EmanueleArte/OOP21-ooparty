@@ -1,19 +1,12 @@
-package minigames.mastermind.model;
+package utils;
 
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 
 /**
- * This interface models the mastermind model.
+ * This interface models the a class which uses a notice label.
  */
-public interface MastermindModel {
-
-	/**
-	 * This method sets the input field.
-	 * @param inputField the {@link TextField} where a player puts
-	 * 			his input
-	 */
-	void setInputField(TextField inputField);
+public interface NoticeUser {
 	
 	/**
 	 * This method sets the notice label.
@@ -25,5 +18,11 @@ public interface MastermindModel {
 	 * This method clears the notice label.
 	 */
 	void clearNotice();
+	
+	/**
+	 * This method shows a notice into the notice label.
+	 * @param notice the notice to show
+	 */
+	void showNotice(String notice);
 	
 }

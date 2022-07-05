@@ -6,12 +6,13 @@ import javafx.scene.control.Label;
 import javafx.scene.control.Spinner;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.VBox;
+import utils.NoticeUser;
 import utils.enums.PlayerColor;
 
 /**
  * This interface models the game creation menu model of the game.
  */
-public interface GameCreationMenuModel<S> {
+public interface GameCreationMenuModel<S> extends NoticeUser {
 	
 	/**
 	 * This method returns to the main menu of the game.
@@ -24,7 +25,7 @@ public interface GameCreationMenuModel<S> {
 	 * @param playerColors the colors of the players
 	 * @param turnsNumber the number of turns of the game
 	 */
-	void startGame(List<TextField> playersNicknames, List<ComboBox<PlayerColor>> playerColors, Spinner<Integer> turnsNumber, Label adviceLabel);
+	void startGame(List<TextField> playersNicknames, List<ComboBox<PlayerColor>> playerColors, Spinner<Integer> turnsNumber);
 	
 	/**
 	 * This method fills the the combo box with colors which can be choose.
@@ -50,10 +51,5 @@ public interface GameCreationMenuModel<S> {
 	 * @param nPlayers the selected number of players
 	 */
 	void showForms(List<VBox> playersForms, Integer nPlayers);
-	
-	/**
-	 * This method clears the notice into the gui.
-	 */
-	public void clearNotice();
 
 }
