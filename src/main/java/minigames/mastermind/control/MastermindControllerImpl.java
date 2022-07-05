@@ -24,8 +24,9 @@ public class MastermindControllerImpl<S, U> implements MastermindController<S, U
 
 	@Override
 	public void startGame() {
-		// TODO Auto-generated method stub
-		
+		this.mastermindModel.setNotice(this.noticeLabel);
+		this.mastermindModel.setInputField(this.inputField);
+		this.mastermindModel.runGame();
 	}
 
 	@Override

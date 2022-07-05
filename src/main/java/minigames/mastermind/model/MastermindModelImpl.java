@@ -15,6 +15,7 @@ public class MastermindModelImpl<S, U> extends MinigameModelAbstr<S, U> implemen
 
 	private final List<Label> attempts;
 	private Label noticeLabel;
+	private TextField inputField;
 	
 	public MastermindModelImpl(final List<U> players, final StageManager<S> s, final List<Label> attempts) {
 		super(players, s);
@@ -28,7 +29,7 @@ public class MastermindModelImpl<S, U> extends MinigameModelAbstr<S, U> implemen
 	}
 
 	@Override
-	public void setNotice(Label noticeLabel) {
+	public void setNotice(final Label noticeLabel) {
 		this.noticeLabel = noticeLabel;
 	}
 
@@ -38,7 +39,7 @@ public class MastermindModelImpl<S, U> extends MinigameModelAbstr<S, U> implemen
 	}
 	
 	@Override
-	public void showNotice(String notice) {
+	public void showNotice(final String notice) {
 		this.noticeLabel.setText(notice);
 	}
 	
@@ -46,8 +47,8 @@ public class MastermindModelImpl<S, U> extends MinigameModelAbstr<S, U> implemen
 	 * This method sets the input field.
 	 * @param inputField the {@link TextField} where a player puts his input
 	 */
-	void setInputField(TextField inputField) {
-		
+	public void setInputField(final TextField inputField) {
+		this.inputField = inputField;
 	}
 
 }
