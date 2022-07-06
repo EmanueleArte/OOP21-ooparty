@@ -2,7 +2,6 @@ package menu.gamecreationmenu.model;
 
 import java.util.List;
 import javafx.scene.control.ComboBox;
-import javafx.scene.control.Label;
 import javafx.scene.control.Spinner;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.VBox;

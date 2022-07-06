@@ -61,5 +61,13 @@ public class MastermindModelImpl<S, U> extends MinigameModelAbstr<S, U> implemen
 			attempt.setManaged(false);
 		});
 	}
+	
+	/**
+	 * This method gets the content of the input field.
+	 * @return the {@link String} into the input field
+	 */
+	private String getGuessAttempt() {
+		return this.inputField.getText();
+	}
 
 }
