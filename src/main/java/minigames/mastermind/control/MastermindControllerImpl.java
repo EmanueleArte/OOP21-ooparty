@@ -12,7 +12,7 @@ import utils.graphics.StageManager;
  */
 public class MastermindControllerImpl<S, U> implements MastermindController<S, U> {
 
-	private final MastermindModelImpl<S, U> mastermindModel;
+    private final MastermindModelImpl<S, U> mastermindModel;
 	@FXML private List<Label> attempts;
 	@FXML private TextField inputField;
 	@FXML private Label noticeLabel;
