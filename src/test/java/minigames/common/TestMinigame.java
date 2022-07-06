@@ -8,43 +8,44 @@ import org.junit.jupiter.api.Test;
 import minigames.common.model.MinigameModelAbstr;
 
 class TestMinigame {
-	
-	final List<String> players = List.of("Luca", "Giovanni", "Lorenzo", "Marco");
-	final List<Integer> scores = List.of(4, 7, 5, 2);
 
-	class MinigameModelImpl<S, U> extends MinigameModelAbstr<S, U> {
+    private final List<String> players = List.of("Luca", "Giovanni", "Lorenzo", "Marco");
+    private final List<Integer> scores = List.of(4, 7, 5, 2);
 
-		public MinigameModelImpl(final List<U> players) {
-			super(players);
-		}
+    class MinigameModelImpl<S, U> extends MinigameModelAbstr<S, U> {
 
-		@Override
-		public void runGame() {
-		}
-		
-	}
-	
-	@Test
-	void testScoreMapper() {
-		final MinigameModelImpl<Integer, String> m = new MinigameModelImpl<>(players);
-		players.forEach(p -> m.scoreMapper(p, scores.get(players.indexOf(p))));
-		final Map<String, Integer> correctMap = Map.of("Luca", 4, "Giovanni", 7, "Lorenzo", 5, "Marco", 2);
-		assertEquals(correctMap, m.getPlayersClassification());
-	}
+        MinigameModelImpl(final List<U> players) {
+            super(players);
+        }
 
-	
-	@Test
-	void testSortPlayerByScore() {
-		final MinigameModelImpl<Integer, String> m = new MinigameModelImpl<>(players);
-		players.forEach(p -> m.scoreMapper(p, scores.get(players.indexOf(p))));
-		final List<String> orderedList = List.of("Giovanni", "Lorenzo", "Luca", "Marco");
-		assertEquals(orderedList, m.gameResults());
-		/*Map<Optional<String>, Integer> duplMap = Map.of(Optional.of("Luca"), 2, Optional.of("Giovanni"), 7, 
-				Optional.of("Lorenzo"), 2, Optional.of("Marco"), 6);
-		m.setPlayersClassification(duplMap);
-		List<Optional<String>> orderedDuplList = List.of(Optional.of("Giovanni"), Optional.of("Marco"), 
-				Optional.of("Luca"), Optional.of("Lorenzo"));
-		assertEquals(orderedDuplList, m.gameResults());*/
-	}
+        @Override
+        public void runGame() {
+        }
+
+    }
+
+    @Test
+    void testScoreMapper() {
+        final MinigameModelImpl<Integer, String> m = new MinigameModelImpl<>(players);
+        players.forEach(p -> m.scoreMapper(p, scores.get(players.indexOf(p))));
+        final Map<String, Integer> correctMap = Map.of("Luca", 4, "Giovanni", 7, "Lorenzo", 5, "Marco", 2);
+        assertEquals(correctMap, m.getPlayersClassification());
+    }
+
+    @Test
+    void testSortPlayerByScore() {
+        final MinigameModelImpl<Integer, String> m = new MinigameModelImpl<>(players);
+        players.forEach(p -> m.scoreMapper(p, scores.get(players.indexOf(p))));
+        final List<String> orderedList = List.of("Giovanni", "Lorenzo", "Luca", "Marco");
+        assertEquals(orderedList, m.gameResults());
+        /*
+         * Map<Optional<String>, Integer> duplMap = Map.of(Optional.of("Luca"), 2,
+         * Optional.of("Giovanni"), 7, Optional.of("Lorenzo"), 2, Optional.of("Marco"),
+         * 6); m.setPlayersClassification(duplMap); List<Optional<String>>
+         * orderedDuplList = List.of(Optional.of("Giovanni"), Optional.of("Marco"),
+         * Optional.of("Luca"), Optional.of("Lorenzo")); assertEquals(orderedDuplList,
+         * m.gameResults());
+         */
+    }
 
 }

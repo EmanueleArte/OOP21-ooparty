@@ -7,19 +7,20 @@ import utils.graphics.StageManager;
 
 /**
  * Extension of {@link minigames.common.view.MinigameViewAbstr}.
+ * 
+ * @param <S> the scenes of the stage
+ * @param <U> the {@link game.player.Player}
  */
 public class MastermindViewImpl<S, U> extends MinigameViewAbstr<S, U> {
 
-	public MastermindViewImpl(StageManager<S> s) {
-		super(s);
-	}
+    public MastermindViewImpl(final StageManager<S> s) {
+        super(s);
+    }
 
-	@Override
-	public void startMinigame(List<U> players) {
-		final String fxmlUrl = "minigames/mastermind.fxml";
-		this.stageManager.addScene(fxmlUrl, ControllerType.MASTERMIND, players);
-	}
-
-	
+    @Override
+    public final void startMinigame(final List<U> players) {
+        final String fxmlUrl = "minigames/mastermind.fxml";
+        this.getStageManager().addScene(fxmlUrl, ControllerType.MASTERMIND, players);
+    }
 
 }

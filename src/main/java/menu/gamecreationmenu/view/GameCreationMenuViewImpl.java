@@ -5,20 +5,22 @@ import utils.graphics.StageManager;
 
 /**
  * Implementation of {@link GameCreationMenuView}.
+ * 
+ * @param <S> the scenes of the stage
  */
 public class GameCreationMenuViewImpl<S> implements GameCreationMenuView<S> {
 
-final private StageManager<S> stageManager;
-	
-	public GameCreationMenuViewImpl(final StageManager<S> s) {
-		super();
-		this.stageManager = s;
-	}
+    private final StageManager<S> stageManager;
 
-	@Override
-	public void createGameCreationMenu() {
-		final String fxmlUrl = "menu/creation_menu.fxml";
-		this.stageManager.addScene(fxmlUrl, ControllerType.GAME_CREATION_MENU, null);
-	}
+    public GameCreationMenuViewImpl(final StageManager<S> s) {
+        super();
+        this.stageManager = s;
+    }
+
+    @Override
+    public final void createGameCreationMenu() {
+        final String fxmlUrl = "menu/creation_menu.fxml";
+        this.stageManager.addScene(fxmlUrl, ControllerType.GAME_CREATION_MENU, null);
+    }
 
 }

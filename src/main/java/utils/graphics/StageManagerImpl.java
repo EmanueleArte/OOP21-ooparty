@@ -17,95 +17,99 @@ import utils.factories.ControllerFactoryImpl;
 
 /**
  * Implementation of {@link StageManager} and extension of {@link JFrame}.
+ * 
+ * @param <S> the scenes of the stage
  */
 public class StageManagerImpl<S> extends JFrame implements StageManager<S> {
 
-	private static final long serialVersionUID = -2502020530541111808L;
-	final private List<S> scenes;
-	private JFXPanel mainStage;
-	private FXMLLoader loader;
-	private final JFrame frame;
-	private final ControllerFactory<S> controlFactory;
-	
-	public StageManagerImpl(final String title) {
-		this.scenes = new ArrayList<S>();
-		this.frame = new JFrame(title);
-		this.controlFactory = new ControllerFactoryImpl<>(this);
-	}
-	
-	@SuppressWarnings("unchecked")
-	@Override
-	public <U> void addScene(final String fxmlUrl, final ControllerType c, final List<U> players) {
-		Platform.runLater(() -> {
-			Parent root = null;
-			this.loader = new FXMLLoader(getClass().getClassLoader().getResource(fxmlUrl));
-			this.loader.setControllerFactory(this.controllerCallback(c, players));
-			try {
-				root = loader.load();
-			} catch (IOException e1) {
-				e1.printStackTrace();
-			}
-			if (root != null) {
-				this.scenes.add((S) new Scene(root));
-				this.setScene();
-			}
-        });
-	}
-	
-	@Override
-	public S popScene() {
-		var poppedScene = this.scenes.remove(this.lastSceneIndex());
-		this.setScene();
-		return poppedScene;
-	}
+    private static final long serialVersionUID = -2502020530541111808L;
+    private final List<S> scenes;
+    private JFXPanel mainStage;
+    private FXMLLoader loader;
+    private final JFrame frame;
+    private final ControllerFactory<S> controlFactory;
 
-	@Override
-	public void run() {
-		this.mainStage = new JFXPanel();
+    public StageManagerImpl(final String title) {
+        this.scenes = new ArrayList<S>();
+        this.frame = new JFrame(title);
+        this.controlFactory = new ControllerFactoryImpl<>(this);
+    }
+
+    @SuppressWarnings("unchecked")
+    @Override
+    public final <U> void addScene(final String fxmlUrl, final ControllerType c, final List<U> players) {
+        Platform.runLater(() -> {
+            Parent root = null;
+            this.loader = new FXMLLoader(getClass().getClassLoader().getResource(fxmlUrl));
+            this.loader.setControllerFactory(this.controllerCallback(c, players));
+            try {
+                root = loader.load();
+            } catch (IOException e1) {
+                e1.printStackTrace();
+            }
+            if (root != null) {
+                this.scenes.add((S) new Scene(root));
+                this.setScene();
+            }
+        });
+    }
+
+    @Override
+    public final S popScene() {
+        var poppedScene = this.scenes.remove(this.lastSceneIndex());
+        this.setScene();
+        return poppedScene;
+    }
+
+    @Override
+    public final void run() {
+        this.mainStage = new JFXPanel();
         this.frame.add(this.mainStage);
         this.frame.pack();
         this.frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
         this.frame.setMinimumSize(new Dimension(1000, 700));
         this.frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.frame.setVisible(true);
-	}
+    }
 
-	@Override
-	public List<S> getScenes() {
-		return this.scenes;
-	}
-	
-	/**
-	 * This method shows the actual scene.
-	 */
-	private void setScene() {
-		this.mainStage.setScene((Scene) this.scenes.get(this.lastSceneIndex()));
-	}
-	
-	/**
-	 * This method calculates the index of the last added scene.
-	 * @return the index of the last added scene
-	 */
-	private int lastSceneIndex() {
-		return this.scenes.size() - 1;
-	}
-	
-	/**
-	 * This method chooses the right controller to be implemented.
-	 * @param <U> the {@link game.player.Player}
-	 * @return the right controller callback
-	 */
-	private <U> Callback<Class<?>, Object> controllerCallback(final ControllerType controller, final List<U> players) {
-		switch(controller) {
-			case MAIN_MENU:
-				return this.controlFactory.createMainMenuController();
-			case GAME_CREATION_MENU:
-				return this.controlFactory.createGameCreationMenuController();
-			case MASTERMIND:
-				return this.controlFactory.createMastermind(players);
-			default:
-				return null;
-		}
-	}
+    @Override
+    public final List<S> getScenes() {
+        return this.scenes;
+    }
+
+    /**
+     * This method shows the actual scene.
+     */
+    private void setScene() {
+        this.mainStage.setScene((Scene) this.scenes.get(this.lastSceneIndex()));
+    }
+
+    /**
+     * This method calculates the index of the last added scene.
+     * 
+     * @return the index of the last added scene
+     */
+    private int lastSceneIndex() {
+        return this.scenes.size() - 1;
+    }
+
+    /**
+     * This method chooses the right controller to be implemented.
+     * 
+     * @param <U> the {@link game.player.Player}
+     * @return the right controller callback
+     */
+    private <U> Callback<Class<?>, Object> controllerCallback(final ControllerType controller, final List<U> players) {
+        switch (controller) {
+        case MAIN_MENU:
+            return this.controlFactory.createMainMenuController();
+        case GAME_CREATION_MENU:
+            return this.controlFactory.createGameCreationMenuController();
+        case MASTERMIND:
+            return this.controlFactory.createMastermind(players);
+        default:
+            return null;
+        }
+    }
 
 }

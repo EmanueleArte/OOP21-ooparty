@@ -7,86 +7,86 @@ import javafx.scene.paint.Color;
  */
 public class PlayerImpl implements Player {
 
-	private final String nickname;
-	private final Color color;
-	private int position; // da modificare quando ci saranno le caselle
-	private int coins;
-	private int stars;
+    private final String nickname;
+    private final Color color;
+    private int position; // da modificare quando ci saranno le caselle
+    private int coins;
+    private int stars;
 
-	public PlayerImpl(final String nickname, final Color color) {
-		this.nickname = nickname;
-		this.color = color;
-		this.coins = 0;
-		this.stars = 0;
-		this.position = 0;
-	}
-	
-	public PlayerImpl(final String nickname) {
-		this(nickname, null);
-	}
+    public PlayerImpl(final String nickname, final Color color) {
+        this.nickname = nickname;
+        this.color = color;
+        this.coins = 0;
+        this.stars = 0;
+        this.position = 0;
+    }
 
-	@Override
-	public String getNickname() {
-		return this.nickname;
-	}
-	
-	@Override
-	public Color getColor() {
-		return this.color;
-	}
+    public PlayerImpl(final String nickname) {
+        this(nickname, null);
+    }
 
-	@Override
-	public void moveForward(int n) {
-		this.position += n;
-	}
+    @Override
+    public final String getNickname() {
+        return this.nickname;
+    }
 
-	@Override
-	public void goTo() {
-		// da completare quando ci saranno le caselle
-	}
+    @Override
+    public final Color getColor() {
+        return this.color;
+    }
 
-	@Override
-	public int getPosition() {
-		// da modificare quando ci saranno le caselle
-		return this.position;
-	}
+    @Override
+    public final void moveForward(final int n) {
+        this.position += n;
+    }
 
-	@Override
-	public void earnCoins(int n) {
-		this.coins = getCoinsCount() + n;
-	}
+    @Override
+    public void goTo() {
+        // da completare quando ci saranno le caselle
+    }
 
-	@Override
-	public void loseCoins(int n) {
-		this.coins = getCoinsCount() - n;
-		if (this.coins < 0) {
-			this.coins = 0;
-		}
-	}
+    @Override
+    public final int getPosition() {
+        // da modificare quando ci saranno le caselle
+        return this.position;
+    }
 
-	@Override
-	public void updateCoins(int n) {
-		this.coins = n;
-	}
+    @Override
+    public final void earnCoins(final int n) {
+        this.coins = getCoinsCount() + n;
+    }
 
-	@Override
-	public int getCoinsCount() {
-		return this.coins;
-	}
+    @Override
+    public final void loseCoins(final int n) {
+        this.coins = getCoinsCount() - n;
+        if (this.coins < 0) {
+            this.coins = 0;
+        }
+    }
 
-	@Override
-	public void earnStar() {
-		this.stars++;
-	}
+    @Override
+    public final void updateCoins(final int n) {
+        this.coins = n;
+    }
 
-	@Override
-	public void loseStar() {
-		this.stars--;
-	}
+    @Override
+    public final int getCoinsCount() {
+        return this.coins;
+    }
 
-	@Override
-	public int getStarsCount() {
-		return this.stars;
-	}
+    @Override
+    public final void earnStar() {
+        this.stars++;
+    }
+
+    @Override
+    public final void loseStar() {
+        this.stars--;
+    }
+
+    @Override
+    public final int getStarsCount() {
+        return this.stars;
+    }
 
 }

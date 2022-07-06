@@ -9,7 +9,7 @@ import menu.mainmenu.view.MainMenuViewImpl;
 import utils.graphics.StageManager;
 import utils.graphics.StageManagerImpl;
 
-public class App {
+public final class App {
 
     /**
      * Entry point.
@@ -17,13 +17,18 @@ public class App {
      * @param args command line args.
      */
     public static void main(final String[] args) {
-    	final StageManager<Scene> stageManager = new StageManagerImpl<>("OOparty");
+        final StageManager<Scene> stageManager = new StageManagerImpl<>("OOparty");
         stageManager.run();
         final MainMenuView<Scene> mainMenu = new MainMenuViewImpl<>(stageManager);
         mainMenu.createMainMenu();
-        
-        GameHandler game = new GameHandlerImpl(stageManager, List.of(new PlayerImpl("Mario"), new PlayerImpl("Luigi"), new PlayerImpl("Yoshi")));
+
+        GameHandler game = new GameHandlerImpl(stageManager,
+                List.of(new PlayerImpl("Mario"), new PlayerImpl("Luigi"), new PlayerImpl("Yoshi")));
         game.start();
     }
-    
+
+    private App() {
+
+    }
+
 }
