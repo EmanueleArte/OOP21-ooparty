@@ -9,13 +9,19 @@ import utils.graphics.StageManager;
 
 /**
  * Implementation of {@link MastermindController}.
+ * 
+ * @param <S> the scenes of the stage
+ * @param <U> the {@link game.player.Player}
  */
 public class MastermindControllerImpl<S, U> implements MastermindController<S, U> {
 
     private final MastermindModelImpl<S, U> mastermindModel;
-    @FXML private List<Label> attempts;
-    @FXML private TextField inputField;
-    @FXML private Label noticeLabel;
+    @FXML
+    private List<Label> attempts;
+    @FXML
+    private TextField inputField;
+    @FXML
+    private Label noticeLabel;
 
     public MastermindControllerImpl(final StageManager<S> s, final List<U> players) {
         super();
@@ -23,20 +29,20 @@ public class MastermindControllerImpl<S, U> implements MastermindController<S, U
     }
 
     @Override
-    public void startGame() {
+    public final void startGame() {
         this.mastermindModel.setNotice(this.noticeLabel);
         this.mastermindModel.setInputField(this.inputField);
         this.mastermindModel.runGame();
     }
 
     @Override
-    public void tryGuess() {
+    public final void tryGuess() {
         // TODO Auto-generated method stub
 
     }
 
     @Override
-    public void clearNotice() {
+    public final void clearNotice() {
         this.mastermindModel.clearNotice();
     }
 
