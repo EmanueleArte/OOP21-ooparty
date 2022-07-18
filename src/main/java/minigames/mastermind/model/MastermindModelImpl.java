@@ -184,12 +184,22 @@ public class MastermindModelImpl<S, U> extends MinigameModelAbstr<S, U> implemen
         return nDigit;
     }
 
+    /**
+     * Setter for continueButton.
+     * 
+     * @param continueButton the {@link Button} to the next turn
+     */
     public void setContinueButton(final Button continueButton) {
         this.continueButton = continueButton;
     }
 
+    /**
+     * Setter for playerLabel.
+     * 
+     * @param playerLabel the {@link Label} whit the name of the current player
+     */
     public void setPlayerLabel(final Label playerLabel) {
-        this.playerLabel(playerLabel);
+        this.playerLabel = playerLabel;
     }
 
 }
