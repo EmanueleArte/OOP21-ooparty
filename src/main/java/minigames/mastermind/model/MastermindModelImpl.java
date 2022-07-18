@@ -2,6 +2,7 @@ package minigames.mastermind.model;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.Optional;
 import java.util.Random;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -79,6 +80,25 @@ public class MastermindModelImpl<S, U> extends MinigameModelAbstr<S, U> implemen
             attempt.setVisible(false);
             attempt.setManaged(false);
         });
+    }
+
+    /**
+     * This method shows an attempt label.
+     * 
+     * @param attemptLabel the label with the attempt information
+     */
+    private void showAttempt(final String attemptLabel) {
+        this.attempts.forEach(attempt -> {
+            attempt.setVisible(true);
+            attempt.setManaged(true);
+        });
+        Optional<Label> currAttempt = this.attempts.stream()
+                .filter(attempt -> {
+                    return !attempt.isVisible();
+                })
+                .findFirst();
+        currAttempt.get().setVisible(true);
+        currAttempt.get().setManaged(true);
     }
 
     /**
