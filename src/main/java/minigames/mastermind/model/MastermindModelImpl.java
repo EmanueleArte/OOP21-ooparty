@@ -1,5 +1,6 @@
 package minigames.mastermind.model;
 
+import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 import java.util.Random;
@@ -10,7 +11,6 @@ import game.player.Player;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
-import javafx.scene.paint.Color;
 import minigames.common.model.MinigameModelAbstr;
 import utils.NoticeUser;
 import utils.enums.Notice;
@@ -141,7 +141,7 @@ public class MastermindModelImpl<S, U> extends MinigameModelAbstr<S, U> implemen
      * @param nDigitExact the number of common digits in the same position
      * @return the attempt label to show
      */
-    private String createAttempLabel(final String attempt, final Integer nDigitPresent, final Integer nDigitExact) {
+    private String createAttemptLabel(final String attempt, final Integer nDigitPresent, final Integer nDigitExact) {
         return attempt + "\n" + nDigitPresent + " common digits of \nwhich " + nDigitExact + " in correct position.";
     }
 
@@ -155,7 +155,14 @@ public class MastermindModelImpl<S, U> extends MinigameModelAbstr<S, U> implemen
         if (attempt.length() != 4) {
             return false;
         }
-        if (attempt.chars().distinct().toString().length() < 4) {
+        for (char c : attempt.toCharArray()) {
+            if (Character.isLetter(c)) {
+                return false;
+            }
+        }
+        StringBuilder sb = new StringBuilder();
+        attempt.chars().distinct().forEach(c -> sb.append((char) c));
+        if (sb.length() < 4) {
             return false;
         }
         return true;
@@ -169,7 +176,7 @@ public class MastermindModelImpl<S, U> extends MinigameModelAbstr<S, U> implemen
         if (this.controlAttempt(attempt)) {
             Integer nDigitPresent = this.controlDigitsPresence(attempt);
             Integer nDigitExact = this.controlDigitsPosition(attempt);
-            String attemptLabel = this.createAttempLabel(attempt, nDigitPresent, nDigitExact);
+            String attemptLabel = this.createAttemptLabel(attempt, nDigitPresent, nDigitExact);
             this.showAttempt(attemptLabel);
         } else {
             this.showNotice(Notice.MASTERMIND_INPUT_ERROR.getNotice());
@@ -234,7 +241,5 @@ public class MastermindModelImpl<S, U> extends MinigameModelAbstr<S, U> implemen
         this.continueButton.setVisible(true);
         this.continueButton.setManaged(true);
     }
-
-    
 
 }
