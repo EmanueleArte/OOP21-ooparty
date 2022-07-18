@@ -86,6 +86,13 @@ public abstract class MinigameModelAbstr<S, U> implements MinigameModel<S, U> {
         this.playersClassification.put(player, score);
     }
 
+    @Override
+    public final void nextTurn() {
+        if (this.hasNextPlayer()) {
+            this.runGame();
+        }
+    }
+
     /**
      * This method manages the draws at the end of the minigame.
      * 

@@ -63,4 +63,9 @@ public interface MinigameModel<S, U> {
      */
     boolean hasNextPlayer();
 
+    /**
+     * This method starts a new turn if there is another player who has to play.
+     */
+    void nextTurn();
+
 }
