@@ -35,6 +35,8 @@ public class MastermindModelImpl<S, U> extends MinigameModelAbstr<S, U> implemen
     public final void runGame() {
         this.solution = this.generateSolution();
         this.hideAttempts();
+        
+        this.showNotice(solution);
     }
 
     @Override
@@ -124,10 +126,60 @@ public class MastermindModelImpl<S, U> extends MinigameModelAbstr<S, U> implemen
     }
 
     /**
+     * This method creates an attempt label.
+     * 
+     * @param attempt the 4-digit number written by the player
+     * @param nDigitPresent the number of common digits
+     * @param nDigitExact the number of common digits in the same position
+     * @return the attempt label to show
+     */
+    private String createAttempLabel(final String attempt, final Integer nDigitPresent, final Integer nDigitExact) {
+        return attempt + "\n" + nDigitPresent + " common digits of which " + nDigitExact + " in correct position.";
+    }
+
+    /**
      * This method controls the attempt of the player.
      */
     public void doAttempt() {
+        String attempt = this.getGuessAttempt();
+        Integer nDigitPresent = this.controlDigitsPresence(attempt);
+        Integer nDigitExact = this.controlDigitsPosition(attempt);
+        String attemptLabel = this.createAttempLabel(attempt, nDigitPresent, nDigitExact);
+        this.showAttempt(attemptLabel);
+    }
 
+    /**
+     * This method controls the number of digit that are present in the solution
+     * and in the attempt.
+     * 
+     * @param attempt the 4-digit number written by the player
+     * @return nDigit the number of common digits
+     */
+    private Integer controlDigitsPresence(final String attempt) {
+        Integer nDigit = 0;
+        for (int i = 0; i < 4; i++) {
+            if (this.solution.contains(String.valueOf(attempt.charAt(i)))) {
+                nDigit++;
+            }
+        }
+        return nDigit;
+    }
+
+    /**
+     * This method controls the number of digit which are in common between the solution
+     * and the attempt that are also in the same position.
+     * 
+     * @param attempt the 4-digit number written by the player
+     * @return nDigit the number of common and equal positioned digits
+     */
+    private Integer controlDigitsPosition(final String attempt) {
+        Integer nDigit = 0;
+        for (int i = 0; i < 4; i++) {
+            if (this.solution.charAt(i) == attempt.charAt(i)) {
+                nDigit++;
+            }
+        }
+        return nDigit;
     }
 
 }
