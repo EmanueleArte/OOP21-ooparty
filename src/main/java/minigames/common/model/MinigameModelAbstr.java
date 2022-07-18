@@ -4,6 +4,7 @@ import java.util.Comparator;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.ListIterator;
 import java.util.Map;
 import java.util.stream.Collectors;
 
@@ -18,11 +19,13 @@ import utils.graphics.StageManager;
 public abstract class MinigameModelAbstr<S, U> implements MinigameModel<S, U> {
 
     private final List<U> players;
+    private final ListIterator<U> player;
     private final StageManager<S> stageManager;
     private final Map<U, Integer> playersClassification;
 
     public MinigameModelAbstr(final List<U> players, final StageManager<S> s) {
         this.players = players;
+        this.player = this.players.listIterator();
         this.playersClassification = new HashMap<>();
         this.stageManager = s;
     }
@@ -52,6 +55,16 @@ public abstract class MinigameModelAbstr<S, U> implements MinigameModel<S, U> {
     @Override
     public final List<U> getPlayers() {
         return this.players;
+    }
+
+    @Override
+    public final U getNextPlayer() {
+        return this.player.next();
+    }
+
+    @Override
+    public final boolean hasNextPlayer() {
+        return this.player.hasNext();
     }
 
     @Override

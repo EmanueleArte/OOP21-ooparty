@@ -1,6 +1,7 @@
 package minigames.common.model;
 
 import java.util.List;
+import java.util.ListIterator;
 
 import utils.graphics.StageManager;
 
@@ -47,5 +48,19 @@ public interface MinigameModel<S, U> {
      * @return the list of players
      */
     List<U> getPlayers();
+
+    /**
+     * Getter for the actual player.
+     * 
+     * @return the actual {@link game.player.Player}
+     */
+    U getNextPlayer();
+
+    /**
+     * This method controls if there is at least another {@link game.player.Player}.
+     * 
+     * @return true if there is at least another player, false otherwise
+     */
+    boolean hasNextPlayer();
 
 }

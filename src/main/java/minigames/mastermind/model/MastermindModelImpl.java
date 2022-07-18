@@ -30,11 +30,7 @@ public class MastermindModelImpl<S, U> extends MinigameModelAbstr<S, U> implemen
 
     @Override
     public final void runGame() {
-        final ListIterator<U> player = this.getPlayers().listIterator();
-        while (player.hasNext()) {
-            this.hideAttempts();
-            while (!this.endTurn);
-        }
+        this.hideAttempts();
     }
 
     @Override
