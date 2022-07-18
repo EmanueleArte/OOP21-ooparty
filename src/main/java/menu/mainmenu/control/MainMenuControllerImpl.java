@@ -14,21 +14,19 @@ import utils.graphics.StageManager;
 public class MainMenuControllerImpl<S> implements MainMenuController<S> {
 
     private final MainMenuModel<S> menuModel;
-    @FXML
-    private Button exitButton;
-    @FXML
-    private Button createGameButton;
 
     public MainMenuControllerImpl(final StageManager<S> s) {
         super();
         this.menuModel = new MainMenuModelImpl<>(s);
     }
 
+    @FXML
     @Override
     public final void exitGame() {
         this.menuModel.exit();
     }
 
+    @FXML
     @Override
     public final void createGame() {
         this.menuModel.gameCreationMenu();

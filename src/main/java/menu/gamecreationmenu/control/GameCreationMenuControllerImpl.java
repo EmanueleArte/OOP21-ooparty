@@ -22,10 +22,6 @@ public class GameCreationMenuControllerImpl<S> implements GameCreationMenuContro
 
     private final GameCreationMenuModel<S> gameCreationMenuModel;
     @FXML
-    private Button returnMainMenuButton;
-    @FXML
-    private Button startGameButton;
-    @FXML
     private Spinner<Integer> numberOfPlayers;
     @FXML
     private Spinner<Integer> turnsNumber;
@@ -53,11 +49,13 @@ public class GameCreationMenuControllerImpl<S> implements GameCreationMenuContro
         this.showPlayersForms();
     }
 
+    @FXML
     @Override
     public final void returnToMainMenu() {
         this.gameCreationMenuModel.returnToMainMenu();
     }
 
+    @FXML
     @Override
     public final void startGame() {
         this.gameCreationMenuModel.startGame(this.playersNicknames, this.playerColors, this.turnsNumber);

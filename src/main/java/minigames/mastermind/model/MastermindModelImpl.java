@@ -1,12 +1,12 @@
 package minigames.mastermind.model;
 
-import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 import java.util.Random;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import minigames.common.model.MinigameModelAbstr;
@@ -24,8 +24,10 @@ public class MastermindModelImpl<S, U> extends MinigameModelAbstr<S, U> implemen
 
     private List<Label> attempts;
     private Label noticeLabel;
+    private Label playerLabel;
     private TextField inputField;
     private String solution;
+    private Button continueButton;
 
     public MastermindModelImpl(final List<U> players, final StageManager<S> s) {
         super(players, s);
@@ -134,7 +136,7 @@ public class MastermindModelImpl<S, U> extends MinigameModelAbstr<S, U> implemen
      * @return the attempt label to show
      */
     private String createAttempLabel(final String attempt, final Integer nDigitPresent, final Integer nDigitExact) {
-        return attempt + "\n" + nDigitPresent + " common digits of which " + nDigitExact + " in correct position.";
+        return attempt + "\n" + nDigitPresent + " common digits of \nwhich " + nDigitExact + " in correct position.";
     }
 
     /**
@@ -180,6 +182,14 @@ public class MastermindModelImpl<S, U> extends MinigameModelAbstr<S, U> implemen
             }
         }
         return nDigit;
+    }
+
+    public void setContinueButton(final Button continueButton) {
+        this.continueButton = continueButton;
+    }
+
+    public void setPlayerLabel(final Label playerLabel) {
+        this.playerLabel(playerLabel);
     }
 
 }

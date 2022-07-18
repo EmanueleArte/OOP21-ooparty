@@ -2,6 +2,7 @@ package minigames.mastermind.control;
 
 import java.util.List;
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import minigames.mastermind.model.MastermindModelImpl;
@@ -22,6 +23,10 @@ public class MastermindControllerImpl<S, U> implements MastermindController<S, U
     private TextField inputField;
     @FXML
     private Label noticeLabel;
+    @FXML
+    private Label playerLabel;
+    @FXML
+    private Button continueButton;
 
     public MastermindControllerImpl(final StageManager<S> s, final List<U> players) {
         super();
@@ -34,6 +39,7 @@ public class MastermindControllerImpl<S, U> implements MastermindController<S, U
         this.startGame();
     }
 
+    @FXML
     @Override
     public final void tryGuess() {
         this.mastermindModel.doAttempt();
@@ -50,6 +56,8 @@ public class MastermindControllerImpl<S, U> implements MastermindController<S, U
     private void startGame() {
         this.mastermindModel.setNotice(this.noticeLabel);
         this.mastermindModel.setInputField(this.inputField);
+        this.mastermindModel.setContinueButton(this.continueButton);
+        this.mastermindModel.setPlayerLabel(this.playerLabel);
         this.mastermindModel.runGame();
     }
 
