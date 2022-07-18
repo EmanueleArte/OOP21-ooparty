@@ -36,8 +36,7 @@ public class MastermindControllerImpl<S, U> implements MastermindController<S, U
 
     @Override
     public final void tryGuess() {
-        // TODO Auto-generated method stub
-
+        this.mastermindModel.doAttempt();
     }
 
     @Override

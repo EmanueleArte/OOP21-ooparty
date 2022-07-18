@@ -1,7 +1,10 @@
 package minigames.mastermind.model;
 
+import java.util.Arrays;
 import java.util.List;
-import java.util.ListIterator;
+import java.util.Random;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
@@ -21,15 +24,16 @@ public class MastermindModelImpl<S, U> extends MinigameModelAbstr<S, U> implemen
     private List<Label> attempts;
     private Label noticeLabel;
     private TextField inputField;
-    private boolean endTurn;
+    private String solution;
 
     public MastermindModelImpl(final List<U> players, final StageManager<S> s) {
         super(players, s);
-        this.endTurn = false;
     }
 
     @Override
     public final void runGame() {
+        this.solution = this.generateSolution();
+        System.out.println(this.solution);
         this.hideAttempts();
     }
 
@@ -60,7 +64,8 @@ public class MastermindModelImpl<S, U> extends MinigameModelAbstr<S, U> implemen
     /**
      * This method sets the attempts list.
      * 
-     * @param attempts the list of {@link Label} that are the guess attempts of a player
+     * @param attempts the list of {@link Label} that are the guess attempts of a
+     *                 player
      */
     public void setAttempts(final List<Label> attempts) {
         this.attempts = attempts;
@@ -83,6 +88,30 @@ public class MastermindModelImpl<S, U> extends MinigameModelAbstr<S, U> implemen
      */
     private String getGuessAttempt() {
         return this.inputField.getText();
+    }
+
+    /**
+     * This method generates the 4-digit to guess.
+     * 
+     * @return number the 4-digit number generated
+     */
+    private String generateSolution() {
+        String number = "";
+        String[] digitArray = {"0", "1", "2", "3", "4", "5", "6", "7", "8", "9"};
+        List<String> digits = Stream.of(digitArray).collect(Collectors.toList());
+        while (number.length() < 4) {
+            int index = new Random().nextInt(digits.size());
+            number += digits.get(index);
+            digits.remove(index);
+        }
+        return number;
+    }
+
+    /**
+     * This method controls the attempt of the player.
+     */
+    public void doAttempt() {
+
     }
 
 }
