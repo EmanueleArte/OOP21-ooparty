@@ -37,6 +37,7 @@ public class MastermindModelImpl<S, U> extends MinigameModelAbstr<S, U> implemen
     public final void runGame() {
         this.solution = this.generateSolution();
         this.hideAttempts();
+        this.hideContinueButton();
         
         this.showNotice(solution);
     }
@@ -191,6 +192,14 @@ public class MastermindModelImpl<S, U> extends MinigameModelAbstr<S, U> implemen
      */
     public void setContinueButton(final Button continueButton) {
         this.continueButton = continueButton;
+    }
+
+    /**
+     * This method hides the continue button.
+     */
+    private void hideContinueButton() {
+        this.continueButton.setVisible(false);
+        this.continueButton.setManaged(false);
     }
 
     /**
