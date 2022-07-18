@@ -24,7 +24,6 @@ public class MastermindModelImpl<S, U> extends MinigameModelAbstr<S, U> implemen
 
     private List<Label> attempts;
     private Label noticeLabel;
-    private Label playerLabel;
     private TextField inputField;
     private String solution;
     private Button continueButton;
@@ -38,7 +37,7 @@ public class MastermindModelImpl<S, U> extends MinigameModelAbstr<S, U> implemen
         this.solution = this.generateSolution();
         this.hideAttempts();
         this.hideContinueButton();
-        this.playerLabel.setText("");
+        this.getPlayerLabel().setText("");
         
         this.showNotice(solution);
     }
@@ -157,7 +156,7 @@ public class MastermindModelImpl<S, U> extends MinigameModelAbstr<S, U> implemen
      * and in the attempt.
      * 
      * @param attempt the 4-digit number written by the player
-     * @return nDigit the number of common digits
+     * @return the number of common digits
      */
     private Integer controlDigitsPresence(final String attempt) {
         Integer nDigit = 0;
@@ -174,7 +173,7 @@ public class MastermindModelImpl<S, U> extends MinigameModelAbstr<S, U> implemen
      * and the attempt that are also in the same position.
      * 
      * @param attempt the 4-digit number written by the player
-     * @return nDigit the number of common and equal positioned digits
+     * @return the number of common and equal positioned digits
      */
     private Integer controlDigitsPosition(final String attempt) {
         Integer nDigit = 0;
@@ -211,13 +210,6 @@ public class MastermindModelImpl<S, U> extends MinigameModelAbstr<S, U> implemen
         this.continueButton.setManaged(true);
     }
 
-    /**
-     * Setter for playerLabel.
-     * 
-     * @param playerLabel the {@link Label} whit the name of the current player
-     */
-    public void setPlayerLabel(final Label playerLabel) {
-        this.playerLabel = playerLabel;
-    }
+    
 
 }

@@ -8,6 +8,7 @@ import java.util.ListIterator;
 import java.util.Map;
 import java.util.stream.Collectors;
 
+import javafx.scene.control.Label;
 import utils.graphics.StageManager;
 
 /**
@@ -22,6 +23,7 @@ public abstract class MinigameModelAbstr<S, U> implements MinigameModel<S, U> {
     private final ListIterator<U> player;
     private final StageManager<S> stageManager;
     private final Map<U, Integer> playersClassification;
+    private Label playerLabel;
 
     public MinigameModelAbstr(final List<U> players, final StageManager<S> s) {
         this.players = players;
@@ -123,6 +125,24 @@ public abstract class MinigameModelAbstr<S, U> implements MinigameModel<S, U> {
         if (this.hasNextPlayer()) {
             this.runGame();
         }
+    }
+
+    /**
+     * Getter for playerLabel.
+     * 
+     * @return the player {@link Label}.
+     */
+    public final Label getPlayerLabel() {
+        return this.playerLabel;
+    }
+
+    /**
+     * Setter for playerLabel.
+     * 
+     * @param playerLabel the {@link Label} whit the name of the current player
+     */
+    public final void setPlayerLabel(final Label playerLabel) {
+        this.playerLabel = playerLabel;
     }
 
 }

@@ -3,6 +3,7 @@ package minigames.common.model;
 import java.util.List;
 import java.util.ListIterator;
 
+import javafx.scene.control.Label;
 import utils.graphics.StageManager;
 
 /**
@@ -48,5 +49,19 @@ public interface MinigameModel<S, U> {
      * @return the list of players
      */
     List<U> getPlayers();
+
+    /**
+     * Getter for playerLabel.
+     * 
+     * @return the player {@link Label}.
+     */
+    Label getPlayerLabel();
+
+    /**
+     * Setter for playerLabel.
+     * 
+     * @param playerLabel the {@link Label} whit the name of the current player
+     */
+    void setPlayerLabel(Label playerLabel); 
 
 }
