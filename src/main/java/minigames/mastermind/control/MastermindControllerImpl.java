@@ -25,11 +25,12 @@ public class MastermindControllerImpl<S, U> implements MastermindController<S, U
 
     public MastermindControllerImpl(final StageManager<S> s, final List<U> players) {
         super();
-        this.mastermindModel = new MastermindModelImpl<>(players, s, this.attempts);
+        this.mastermindModel = new MastermindModelImpl<>(players, s);
     }
 
     @FXML
     private void initialize() {
+        this.mastermindModel.setAttempts(this.attempts);
         this.startGame();
     }
 

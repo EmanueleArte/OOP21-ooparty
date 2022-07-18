@@ -1,6 +1,7 @@
 package minigames.mastermind.model;
 
 import java.util.List;
+import java.util.ListIterator;
 
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
@@ -17,20 +18,23 @@ import utils.graphics.StageManager;
  */
 public class MastermindModelImpl<S, U> extends MinigameModelAbstr<S, U> implements NoticeUser {
 
-    private final List<Label> attempts;
+    private List<Label> attempts;
     private Label noticeLabel;
     private TextField inputField;
+    private boolean endTurn;
 
-    public MastermindModelImpl(final List<U> players, final StageManager<S> s, final List<Label> attempts) {
+    public MastermindModelImpl(final List<U> players, final StageManager<S> s) {
         super(players, s);
-        this.attempts = attempts;
+        this.endTurn = false;
     }
 
     @Override
     public final void runGame() {
-        this.getPlayers().forEach(player -> {
+        final ListIterator<U> player = this.getPlayers().listIterator();
+        while (player.hasNext()) {
             this.hideAttempts();
-        });
+            while (!this.endTurn);
+        }
     }
 
     @Override
@@ -55,6 +59,15 @@ public class MastermindModelImpl<S, U> extends MinigameModelAbstr<S, U> implemen
      */
     public void setInputField(final TextField inputField) {
         this.inputField = inputField;
+    }
+
+    /**
+     * This method sets the attempts list.
+     * 
+     * @param attempts the list of {@link Label} that are the guess attempts of a player
+     */
+    public void setAttempts(final List<Label> attempts) {
+        this.attempts = attempts;
     }
 
     /**

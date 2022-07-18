@@ -42,7 +42,7 @@ public interface MinigameModel<S, U> {
     StageManager<S> getStageManager();
 
     /**
-     * Getter for the list of {@link Player}.
+     * Getter for the list of {@link game.player.Player}.
      * 
      * @return the list of players
      */
