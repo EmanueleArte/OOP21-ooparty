@@ -203,6 +203,14 @@ public class MastermindModelImpl<S, U> extends MinigameModelAbstr<S, U> implemen
     }
 
     /**
+     * This method shows the continue button.
+     */
+    private void showContinueButton() {
+        this.continueButton.setVisible(true);
+        this.continueButton.setManaged(true);
+    }
+
+    /**
      * Setter for playerLabel.
      * 
      * @param playerLabel the {@link Label} whit the name of the current player
