@@ -28,6 +28,11 @@ public class MastermindControllerImpl<S, U> implements MastermindController<S, U
         this.mastermindModel = new MastermindModelImpl<>(players, s, this.attempts);
     }
 
+    @FXML
+    private void initialize() {
+        this.startGame();
+    }
+
     @Override
     public final void startGame() {
         this.mastermindModel.setNotice(this.noticeLabel);
