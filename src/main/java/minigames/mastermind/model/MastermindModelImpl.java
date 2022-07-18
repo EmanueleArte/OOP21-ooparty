@@ -6,9 +6,11 @@ import java.util.Random;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
+import game.player.Player;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.paint.Color;
 import minigames.common.model.MinigameModelAbstr;
 import utils.NoticeUser;
 import utils.graphics.StageManager;
@@ -37,7 +39,9 @@ public class MastermindModelImpl<S, U> extends MinigameModelAbstr<S, U> implemen
         this.solution = this.generateSolution();
         this.hideAttempts();
         this.hideContinueButton();
-        this.getPlayerLabel().setText("");
+        var currPlayer = (Player) this.getNextPlayer();
+        this.getPlayerLabel().setTextFill(currPlayer.getColor());
+        this.getPlayerLabel().setText(currPlayer.getNickname() + " turn");
         
         this.showNotice(solution);
     }
