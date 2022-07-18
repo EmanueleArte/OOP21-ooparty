@@ -34,7 +34,6 @@ public class MastermindModelImpl<S, U> extends MinigameModelAbstr<S, U> implemen
     @Override
     public final void runGame() {
         this.solution = this.generateSolution();
-        System.out.println(this.solution);
         this.hideAttempts();
     }
 
@@ -88,15 +87,12 @@ public class MastermindModelImpl<S, U> extends MinigameModelAbstr<S, U> implemen
      * @param attemptLabel the label with the attempt information
      */
     private void showAttempt(final String attemptLabel) {
-        this.attempts.forEach(attempt -> {
-            attempt.setVisible(true);
-            attempt.setManaged(true);
-        });
         Optional<Label> currAttempt = this.attempts.stream()
                 .filter(attempt -> {
                     return !attempt.isVisible();
                 })
                 .findFirst();
+        currAttempt.get().setText(attemptLabel);
         currAttempt.get().setVisible(true);
         currAttempt.get().setManaged(true);
     }
