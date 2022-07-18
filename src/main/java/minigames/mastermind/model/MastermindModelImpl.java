@@ -13,6 +13,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.paint.Color;
 import minigames.common.model.MinigameModelAbstr;
 import utils.NoticeUser;
+import utils.enums.Notice;
 import utils.graphics.StageManager;
 
 /**
@@ -145,14 +146,34 @@ public class MastermindModelImpl<S, U> extends MinigameModelAbstr<S, U> implemen
     }
 
     /**
+     * This method controls if the attempt is valid.
+     * 
+     * @param attempt the 4-digit number written by the player
+     * @return true if the attempt is a 4-digit number with all different digits
+     */
+    private boolean controlAttempt(final String attempt) {
+        if (attempt.length() != 4) {
+            return false;
+        }
+        if (attempt.chars().distinct().toString().length() < 4) {
+            return false;
+        }
+        return true;
+    }
+
+    /**
      * This method controls the attempt of the player.
      */
     public void doAttempt() {
         String attempt = this.getGuessAttempt();
-        Integer nDigitPresent = this.controlDigitsPresence(attempt);
-        Integer nDigitExact = this.controlDigitsPosition(attempt);
-        String attemptLabel = this.createAttempLabel(attempt, nDigitPresent, nDigitExact);
-        this.showAttempt(attemptLabel);
+        if (this.controlAttempt(attempt)) {
+            Integer nDigitPresent = this.controlDigitsPresence(attempt);
+            Integer nDigitExact = this.controlDigitsPosition(attempt);
+            String attemptLabel = this.createAttempLabel(attempt, nDigitPresent, nDigitExact);
+            this.showAttempt(attemptLabel);
+        } else {
+            this.showNotice(Notice.MASTERMIND_INPUT_ERROR.getNotice());
+        }
     }
 
     /**
