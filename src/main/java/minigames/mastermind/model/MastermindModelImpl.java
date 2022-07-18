@@ -38,6 +38,7 @@ public class MastermindModelImpl<S, U> extends MinigameModelAbstr<S, U> implemen
         this.solution = this.generateSolution();
         this.hideAttempts();
         this.hideContinueButton();
+        this.playerLabel.setText("");
         
         this.showNotice(solution);
     }

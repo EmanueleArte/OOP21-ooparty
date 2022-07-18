@@ -49,23 +49,4 @@ public interface MinigameModel<S, U> {
      */
     List<U> getPlayers();
 
-    /**
-     * Getter for the actual player.
-     * 
-     * @return the actual {@link game.player.Player}
-     */
-    U getNextPlayer();
-
-    /**
-     * This method controls if there is at least another {@link game.player.Player}.
-     * 
-     * @return true if there is at least another player, false otherwise
-     */
-    boolean hasNextPlayer();
-
-    /**
-     * This method starts a new turn if there is another player who has to play.
-     */
-    void nextTurn();
-
 }

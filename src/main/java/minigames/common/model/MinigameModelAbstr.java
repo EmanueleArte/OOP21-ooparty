@@ -58,16 +58,6 @@ public abstract class MinigameModelAbstr<S, U> implements MinigameModel<S, U> {
     }
 
     @Override
-    public final U getNextPlayer() {
-        return this.player.next();
-    }
-
-    @Override
-    public final boolean hasNextPlayer() {
-        return this.player.hasNext();
-    }
-
-    @Override
     public final StageManager<S> getStageManager() {
         return this.stageManager;
     }
@@ -84,13 +74,6 @@ public abstract class MinigameModelAbstr<S, U> implements MinigameModel<S, U> {
     @Override
     public final void scoreMapper(final U player, final Integer score) {
         this.playersClassification.put(player, score);
-    }
-
-    @Override
-    public final void nextTurn() {
-        if (this.hasNextPlayer()) {
-            this.runGame();
-        }
     }
 
     /**
@@ -113,6 +96,33 @@ public abstract class MinigameModelAbstr<S, U> implements MinigameModel<S, U> {
                 .sorted(Map.Entry.comparingByValue(Comparator.reverseOrder()))
                 .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue, (x, y) -> y, LinkedHashMap::new))
                 .keySet().stream().collect(Collectors.toList());
+    }
+
+    /**
+     * Getter for the actual player.
+     * 
+     * @return the actual {@link game.player.Player}
+     */
+    protected U getNextPlayer() {
+        return this.player.next();
+    }
+
+    /**
+     * This method controls if there is at least another {@link game.player.Player}.
+     * 
+     * @return true if there is at least another player, false otherwise
+     */
+    protected boolean hasNextPlayer() {
+        return this.player.hasNext();
+    }
+
+    /**
+     * This method starts a new turn if there is another player who has to play.
+     */
+    protected void nextTurn() {
+        if (this.hasNextPlayer()) {
+            this.runGame();
+        }
     }
 
 }
