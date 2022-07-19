@@ -2,6 +2,7 @@ package utils.graphics;
 
 import java.util.List;
 
+import minigames.common.control.MinigameController;
 import utils.enums.ControllerType;
 
 /**
@@ -42,5 +43,12 @@ public interface StageManager<S> {
      * @return the scenes of the stage
      */
     List<S> getScenes();
+
+    /**
+     * This method returns the last controller generated using FXML.
+     * 
+     * @return the last controller created
+     */
+    MinigameController getLastController();
 
 }
