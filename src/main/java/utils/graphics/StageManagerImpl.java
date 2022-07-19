@@ -23,6 +23,14 @@ import utils.factories.ControllerFactoryImpl;
 public class StageManagerImpl<S> extends JFrame implements StageManager<S> {
 
     private static final long serialVersionUID = -2502020530541111808L;
+    /**
+     * Minimum window width.
+     */
+    public static final int MIN_WIDTH = 1000;
+    /**
+     * Minimum window height.
+     */
+    public static final int MIN_HEIGHT = 730;
     private final List<S> scenes;
     private JFXPanel mainStage;
     private FXMLLoader loader;
@@ -67,7 +75,7 @@ public class StageManagerImpl<S> extends JFrame implements StageManager<S> {
         this.frame.add(this.mainStage);
         this.frame.pack();
         this.frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
-        this.frame.setMinimumSize(new Dimension(1000, 700));
+        this.frame.setMinimumSize(new Dimension(StageManagerImpl.MIN_WIDTH, StageManagerImpl.MIN_HEIGHT));
         this.frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.frame.setVisible(true);
     }
