@@ -30,22 +30,23 @@ public class MastermindModelImpl<S, U> extends MinigameModelAbstr<S, U> implemen
     private TextField inputField;
     private String solution;
     private Button continueButton;
+    private int nAttempts;
+    private U currPlayer;
 
     public MastermindModelImpl(final List<U> players, final StageManager<S> s) {
         super(players, s);
     }
 
-    @SuppressWarnings("unchecked")
     @Override
     public final void runGame() {
+        this.nAttempts = 0;
         this.solution = this.generateSolution();
         this.hideAttempts();
         this.hideContinueButton();
-        var currPlayer = (Player) this.getNextPlayer();
-        this.getPlayerLabel().setTextFill(currPlayer.getColor());
-        this.getPlayerLabel().setText(currPlayer.getNickname() + "'s turn");
-        this.scoreMapper((U) currPlayer, 0);
-        this.getPlayersClassification();
+        this.clearNotice();
+        this.currPlayer = this.getNextPlayer();
+        this.getPlayerLabel().setTextFill(((Player) this.currPlayer).getColor());
+        this.getPlayerLabel().setText(((Player) this.currPlayer).getNickname() + "'s turn");
         
         this.showNotice(solution);
     }
@@ -177,11 +178,12 @@ public class MastermindModelImpl<S, U> extends MinigameModelAbstr<S, U> implemen
     public void doAttempt() {
         String attempt = this.getGuessAttempt();
         if (this.controlAttempt(attempt)) {
+            this.nAttempts++;
             Integer nDigitPresent = this.controlDigitsPresence(attempt);
             Integer nDigitExact = this.controlDigitsPosition(attempt);
             String attemptLabel = this.createAttemptLabel(attempt, nDigitPresent, nDigitExact);
             this.showAttempt(attemptLabel);
-            
+            this.endTurnControl(nDigitExact);
         } else {
             this.showNotice(Notice.MASTERMIND_INPUT_ERROR.getNotice());
         }
@@ -194,8 +196,10 @@ public class MastermindModelImpl<S, U> extends MinigameModelAbstr<S, U> implemen
      */
     private void endTurnControl(final Integer nDigitExact) {
         if (nDigitExact == 4) {
-            this.scoreMapper(getNextPlayer(), nDigitExact);
-            this.runGame();
+            final int score = this.attempts.size() - this.nAttempts + 1;
+            this.scoreMapper(this.currPlayer, score);
+            this.showContinueButton();
+            this.showNotice("You won with " + this.nAttempts + " attempts. Your score is " + score + ".");
         }
     }
 
