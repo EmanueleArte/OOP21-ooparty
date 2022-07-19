@@ -18,4 +18,9 @@ public interface MastermindController<S, U> {
      */
     void clearNotice();
 
+    /**
+     * This method starts the next player's turn.
+     */
+    void startNextTurn();
+
 }

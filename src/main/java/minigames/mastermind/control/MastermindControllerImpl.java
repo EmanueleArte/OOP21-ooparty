@@ -45,9 +45,16 @@ public class MastermindControllerImpl<S, U> implements MastermindController<S, U
         this.mastermindModel.doAttempt();
     }
 
+    @FXML
     @Override
     public final void clearNotice() {
         this.mastermindModel.clearNotice();
+    }
+
+    @FXML
+    @Override
+    public final void startNextTurn() {
+        this.mastermindModel.runGame();
     }
 
     /**

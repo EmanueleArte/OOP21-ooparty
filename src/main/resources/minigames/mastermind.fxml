@@ -99,7 +99,7 @@
                            <font>
                               <Font size="14.0" />
                            </font></Button>
-                        <Button fx:id="continueButton" mnemonicParsing="false" text="Continue">
+                        <Button fx:id="continueButton" mnemonicParsing="false" onAction="#startNextTurn" text="Continue">
                            <font>
                               <Font size="14.0" />
                            </font>
