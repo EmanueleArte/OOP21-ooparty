@@ -59,6 +59,11 @@ public class MastermindControllerImpl<S, U> implements MastermindController<S, U
         this.mastermindModel.runGame();
     }
 
+    @Override
+    public final List<U> getGameResults() {
+        return this.mastermindModel.gameResults();
+    }
+
     /**
      * This method starts the mastermind minigame.
      */

@@ -11,8 +11,9 @@ public interface MinigameController {
     /**
      * This method returns the results of the minigame.
      * 
-     * @return the list of players ordered by their score in the minigame (from higher to lower)
+     * @return the list of players ordered by their score in the minigame (from
+     *         higher to lower)
      */
-    <U> List<U> getGameResults();
+    List<?> getGameResults();
 
 }
