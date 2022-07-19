@@ -37,7 +37,7 @@ public class StageManagerImpl<S> extends JFrame implements StageManager<S> {
     private FXMLLoader loader;
     private final JFrame frame;
     private final ControllerFactory<S> controlFactory;
-    private MinigameController lastController;
+    private MinigameController lastGameController;
 
     public StageManagerImpl(final String title) {
         this.scenes = new ArrayList<S>();
@@ -60,7 +60,10 @@ public class StageManagerImpl<S> extends JFrame implements StageManager<S> {
             if (root != null) {
                 this.scenes.add((S) new Scene(root));
                 this.setScene();
-                this.lastController = this.loader.getController();
+                var controller = this.loader.getController();
+                if (controller.getClass().getInterfaces().toString().contains("MinigameController")) {
+                    this.lastGameController = (MinigameController) controller;
+                }
             }
         });
     }
