@@ -1,12 +1,14 @@
 package minigames.mastermind.control;
 
+import minigames.common.control.MinigameController;
+
 /**
  * This interface models the mastermind controller.
  * 
  * @param <S> the scenes of the stage
  * @param <U> the {@link game.player.Player}
  */
-public interface MastermindController<S, U> {
+public interface MastermindController<S, U> extends MinigameController {
 
     /**
      * This method tries a guess.

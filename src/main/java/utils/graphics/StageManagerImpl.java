@@ -11,6 +11,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.util.Callback;
+import minigames.common.control.MinigameController;
 import utils.enums.ControllerType;
 import utils.factories.ControllerFactory;
 import utils.factories.ControllerFactoryImpl;
@@ -36,6 +37,7 @@ public class StageManagerImpl<S> extends JFrame implements StageManager<S> {
     private FXMLLoader loader;
     private final JFrame frame;
     private final ControllerFactory<S> controlFactory;
+    private MinigameController lastController;
 
     public StageManagerImpl(final String title) {
         this.scenes = new ArrayList<S>();
@@ -58,6 +60,7 @@ public class StageManagerImpl<S> extends JFrame implements StageManager<S> {
             if (root != null) {
                 this.scenes.add((S) new Scene(root));
                 this.setScene();
+                this.lastController = this.loader.getController();
             }
         });
     }
@@ -83,6 +86,11 @@ public class StageManagerImpl<S> extends JFrame implements StageManager<S> {
     @Override
     public final List<S> getScenes() {
         return this.scenes;
+    }
+
+    @Override
+    public final MinigameController getLastController() {
+        return this.lastController;
     }
 
     /**
