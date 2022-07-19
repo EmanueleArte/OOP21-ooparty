@@ -183,7 +183,7 @@ public class MastermindModelImpl<S, U> extends MinigameModelAbstr<S, U> implemen
             Integer nDigitExact = this.controlDigitsPosition(attempt);
             String attemptLabel = this.createAttemptLabel(attempt, nDigitPresent, nDigitExact);
             this.showAttempt(attemptLabel);
-            this.endTurnControl(nDigitExact);
+            this.winControl(nDigitExact);
         } else {
             this.showNotice(Notice.MASTERMIND_INPUT_ERROR.getNotice());
         }
@@ -194,12 +194,26 @@ public class MastermindModelImpl<S, U> extends MinigameModelAbstr<S, U> implemen
      * 
      * @param nDigitExact the number of correct digits in correct position
      */
-    private void endTurnControl(final Integer nDigitExact) {
+    private void winControl(final Integer nDigitExact) {
         if (nDigitExact == 4) {
             final int score = this.attempts.size() - this.nAttempts + 1;
             this.scoreMapper(this.currPlayer, score);
             this.showContinueButton();
             this.showNotice("You won with " + this.nAttempts + " attempts. Your score is " + score + ".");
+        } else {
+            this.loseControl();
+        }
+    }
+
+    /**
+     * This method controls if the attempts are ended without guessing the 4-digit number.
+     */
+    private void loseControl() {
+        if (this.nAttempts == this.attempts.size()) {
+            final int score = this.attempts.size() - this.nAttempts;
+            this.scoreMapper(this.currPlayer, score);
+            this.showContinueButton();
+            this.showNotice("You ended the attempts without guessing the number. Your score is " + score + ".");
         }
     }
 
