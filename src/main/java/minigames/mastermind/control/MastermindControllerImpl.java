@@ -26,6 +26,8 @@ public class MastermindControllerImpl<S, U> implements MastermindController<S, U
     @FXML
     private Label playerLabel;
     @FXML
+    private Button enterButton;
+    @FXML
     private Button continueButton;
 
     public MastermindControllerImpl(final StageManager<S> s, final List<U> players) {
@@ -64,6 +66,7 @@ public class MastermindControllerImpl<S, U> implements MastermindController<S, U
         this.mastermindModel.setNotice(this.noticeLabel);
         this.mastermindModel.setInputField(this.inputField);
         this.mastermindModel.setContinueButton(this.continueButton);
+        this.mastermindModel.setEnterButton(this.enterButton);
         this.mastermindModel.setPlayerLabel(this.playerLabel);
         this.mastermindModel.runGame();
     }

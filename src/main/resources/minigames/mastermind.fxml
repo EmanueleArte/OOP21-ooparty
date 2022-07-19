@@ -95,7 +95,7 @@
                            <font>
                               <Font size="14.0" />
                            </font></TextField>
-                        <Button mnemonicParsing="false" onAction="#tryGuess" text="Enter">
+                        <Button fx:id="enterButton" mnemonicParsing="false" onAction="#tryGuess" text="Enter">
                            <font>
                               <Font size="14.0" />
                            </font></Button>

@@ -1,6 +1,5 @@
 package minigames.mastermind.model;
 
-import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 import java.util.Random;
@@ -30,6 +29,7 @@ public class MastermindModelImpl<S, U> extends MinigameModelAbstr<S, U> implemen
     private TextField inputField;
     private String solution;
     private Button continueButton;
+    private Button enterButton;
     private int nAttempts;
     private U currPlayer;
 
@@ -45,6 +45,7 @@ public class MastermindModelImpl<S, U> extends MinigameModelAbstr<S, U> implemen
             this.hideAttempts();
             this.hideContinueButton();
             this.clearNotice();
+            this.enableInput();
             this.currPlayer = this.getNextPlayer();
             this.getPlayerLabel().setTextFill(((Player) this.currPlayer).getColor());
             this.getPlayerLabel().setText(((Player) this.currPlayer).getNickname() + "'s turn");
@@ -122,7 +123,7 @@ public class MastermindModelImpl<S, U> extends MinigameModelAbstr<S, U> implemen
     }
 
     /**
-     * This method generates the 4-digit to guess.
+     * This method generates the 4-digit number to guess.
      * 
      * @return number the 4-digit number generated
      */
@@ -200,7 +201,8 @@ public class MastermindModelImpl<S, U> extends MinigameModelAbstr<S, U> implemen
             final int score = this.attempts.size() - this.nAttempts + 1;
             this.scoreMapper(this.currPlayer, score);
             this.showContinueButton();
-            this.showNotice("You won with " + this.nAttempts + " attempts. Your score is " + score + ".");
+            this.showNotice("You guessed with " + this.nAttempts + " attempts. Your score is " + score + ".");
+            this.disableInput();
         } else {
             this.loseControl();
         }
@@ -215,6 +217,7 @@ public class MastermindModelImpl<S, U> extends MinigameModelAbstr<S, U> implemen
             this.scoreMapper(this.currPlayer, score);
             this.showContinueButton();
             this.showNotice("You ended the attempts without guessing the number. Your score is " + score + ".");
+            this.disableInput();
         }
     }
 
@@ -275,6 +278,32 @@ public class MastermindModelImpl<S, U> extends MinigameModelAbstr<S, U> implemen
     private void showContinueButton() {
         this.continueButton.setVisible(true);
         this.continueButton.setManaged(true);
+    }
+
+    /**
+     * This method disables the input when the current turn is ended.
+     */
+    private void disableInput() {
+        this.inputField.setText("");
+        this.inputField.setDisable(true);
+        this.enterButton.setDisable(true);
+    }
+
+    /**
+     * This method enables the input when the current turn is started.
+     */
+    private void enableInput() {
+        this.inputField.setDisable(false);
+        this.enterButton.setDisable(false);
+    }
+
+    /**
+     * Setter for continueButton.
+     * 
+     * @param enterButton the {@link Button} to pass the input to the game.
+     */
+    public void setEnterButton(final Button enterButton) {
+        this.enterButton = enterButton;
     }
 
 }
