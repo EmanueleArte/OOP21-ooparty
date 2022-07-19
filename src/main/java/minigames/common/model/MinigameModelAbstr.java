@@ -1,81 +1,147 @@
 package minigames.common.model;
 
 import java.util.Comparator;
-import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.ListIterator;
 import java.util.Map;
 import java.util.stream.Collectors;
 
+import javafx.scene.control.Label;
 import utils.graphics.StageManager;
 
 /**
  * Implementation of {@link MinigameModel}.
+ * 
+ * @param <S> the scenes of the stage
+ * @param <U> the {@link game.player.Player}
  */
 public abstract class MinigameModelAbstr<S, U> implements MinigameModel<S, U> {
 
-	private final List<U> players;
-	private final StageManager<S> stageManager;
-	private Map<U, Integer> playersClassification;
+    private final List<U> players;
+    private final ListIterator<U> player;
+    private final StageManager<S> stageManager;
+    private final Map<U, Integer> playersClassification;
+    private Label playerLabel;
 
-	public MinigameModelAbstr(final List<U> players, final StageManager<S> s) {
-		this.players = players;
-		this.playersClassification = new HashMap<>();
-		this.stageManager = s;
-	}
-	
-	public MinigameModelAbstr(final List<U> players) {
-		this(players, null);
-	}
-	
-	/**
+    public MinigameModelAbstr(final List<U> players, final StageManager<S> s) {
+        this.players = players;
+        this.player = this.players.listIterator();
+        this.playersClassification = new LinkedHashMap<>();
+        this.stageManager = s;
+    }
+
+    public MinigameModelAbstr(final List<U> players) {
+        this(players, null);
+    }
+
+    /**
      * @return a map with players as keys and their score as values
-	 */
-	public Map<U, Integer> getPlayersClassification() {
-		return this.playersClassification;
-	}
-	
-	/**
+     */
+    public Map<U, Integer> getPlayersClassification() {
+        return this.playersClassification;
+    }
+
+    /**
      * This method sets the map of players associated to their scores.
-     * @param playersClassification a map with players as keys and their score as values
-	 */
-	public void setPlayersClassification(final Map<U, Integer> playersClassification) {
-		this.playersClassification = playersClassification;
-	}
+     * 
+     * @param playersClassification a map with players as keys and their score as
+     *                              values
+     */
+    public void setPlayersClassification(final Map<U, Integer> playersClassification) {
+        this.playersClassification.clear();
+        this.playersClassification.putAll(playersClassification);
+    }
 
-	@Override
-	abstract public void runGame();
+    @Override
+    public final List<U> getPlayers() {
+        return this.players;
+    }
 
-	@Override
-	public List<U> gameResults() {
-		
-		return this.sortPlayersByScore();
-	}
-	
-	@Override
-	public void scoreMapper(final U player, final Integer score) {
-		this.playersClassification.put(player, score);
-	}
-	
-	/**
+    @Override
+    public final StageManager<S> getStageManager() {
+        return this.stageManager;
+    }
+
+    @Override
+    public abstract void runGame();
+
+    @Override
+    public final List<U> gameResults() {
+
+        return this.sortPlayersByScore();
+    }
+
+    @Override
+    public final void scoreMapper(final U player, final Integer score) {
+        this.playersClassification.put(player, score);
+    }
+
+    /**
      * This method manages the draws at the end of the minigame.
-     * @return a list of players ordered by their classification in the minigame and draws already managed
-	 */
-	private List<U> playoff() {
-		return null;
-	}
-	
-	/**
+     * 
+     * @return a list of players ordered by their classification in the minigame and
+     *         draws already managed
+     */
+    private List<U> playoff() {
+        return null;
+    }
+
+    /**
      * This method orders the list of players by their score (higher to lower).
+     * 
      * @return a list of players ordered by their score
-	 */
-	private List<U> sortPlayersByScore() {
-		return this.playersClassification.entrySet().stream()
-				.sorted(Map.Entry.comparingByValue(Comparator.reverseOrder()))
-				.collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue, (x, y) -> y, LinkedHashMap::new))
-				.keySet()
-				.stream()
-				.collect(Collectors.toList());
-	}
-	
+     */
+    private List<U> sortPlayersByScore() {
+        return this.playersClassification.entrySet().stream()
+                .sorted(Map.Entry.comparingByValue(Comparator.reverseOrder()))
+                .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue, (x, y) -> y, LinkedHashMap::new))
+                .keySet().stream().collect(Collectors.toList());
+    }
+
+    /**
+     * Getter for the actual player.
+     * 
+     * @return the actual {@link game.player.Player}
+     */
+    protected U getNextPlayer() {
+        return this.player.next();
+    }
+
+    /**
+     * This method controls if there is at least another {@link game.player.Player}.
+     * 
+     * @return true if there is at least another player, false otherwise
+     */
+    protected boolean hasNextPlayer() {
+        return this.player.hasNext();
+    }
+
+    /**
+     * This method starts a new turn if there is another player who has to play.
+     */
+    protected void nextTurn() {
+        if (this.hasNextPlayer()) {
+            this.runGame();
+        }
+    }
+
+    /**
+     * Getter for playerLabel.
+     * 
+     * @return the player {@link Label}.
+     */
+    public final Label getPlayerLabel() {
+        return this.playerLabel;
+    }
+
+    /**
+     * Setter for playerLabel.
+     * 
+     * @param playerLabel the {@link Label} whit the name of the current player
+     */
+    public final void setPlayerLabel(final Label playerLabel) {
+        this.playerLabel = playerLabel;
+    }
+
 }

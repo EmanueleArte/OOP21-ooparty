@@ -1,28 +1,38 @@
 package utils.factories;
 
+import java.util.List;
+
 import menu.gamecreationmenu.control.GameCreationMenuControllerImpl;
 import menu.mainmenu.control.MainMenuControllerImpl;
+import minigames.mastermind.control.MastermindControllerImpl;
 import utils.graphics.StageManager;
 
 /**
  * Implementation of {@link ControllerFactory}.
+ * 
+ * @param <S> the scenes of the stage
  */
 public class ControllerFactoryImpl<S> implements ControllerFactory<S> {
-	
-	private final StageManager<S> stageManager;
-	
-	public ControllerFactoryImpl(final StageManager<S> s) {
-		this.stageManager = s;
-	}
-	
-	@Override
-	public GenericController<S> createMainMenuController() {
-		return new GenericController<S>(this.stageManager, MainMenuControllerImpl.class);
-	}
 
-	@Override
-	public GenericController<S> createGameCreationMenuController() {
-		return new GenericController<S>(this.stageManager, GameCreationMenuControllerImpl.class);
-	}
+    private final StageManager<S> stageManager;
+
+    public ControllerFactoryImpl(final StageManager<S> s) {
+        this.stageManager = s;
+    }
+
+    @Override
+    public final <U> GenericController<S, U> createMainMenuController() {
+        return new GenericController<S, U>(this.stageManager, MainMenuControllerImpl.class);
+    }
+
+    @Override
+    public final <U> GenericController<S, U> createGameCreationMenuController() {
+        return new GenericController<S, U>(this.stageManager, GameCreationMenuControllerImpl.class);
+    }
+
+    @Override
+    public final <U> GenericController<S, U> createMastermind(final List<U> players) {
+        return new GenericController<S, U>(this.stageManager, players, MastermindControllerImpl.class);
+    }
 
 }

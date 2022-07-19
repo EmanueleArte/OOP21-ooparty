@@ -15,51 +15,60 @@ import utils.graphics.StageManager;
 
 /**
  * Implementation of {@link GameCreationMenuController}.
+ * 
+ * @param <S> the scenes of the stage
  */
 public class GameCreationMenuControllerImpl<S> implements GameCreationMenuController<S> {
 
-	private GameCreationMenuModel<S> gameCreationMenuModel;
-	@FXML private Button returnMainMenuButton;
-	@FXML private Button startGameButton;
-	@FXML private Spinner<Integer> numberOfPlayers;
-	@FXML private Spinner<Integer> turnsNumber;
-	@FXML private List<TextField> playersNicknames;
-	@FXML private List<ComboBox<PlayerColor>> playerColors;
-	@FXML private List<VBox> playersForms;
-	@FXML private Label adviceLabel;
-	
-	public GameCreationMenuControllerImpl(final StageManager<S> s) {
-		super();
-		this.gameCreationMenuModel = new GameCreationMenuModelImpl<>(s);
-	}
-	
-	@FXML
-	private void initialize() {
-		this.gameCreationMenuModel.setNumberOfPlayersSpinner(this.numberOfPlayers);
-		this.gameCreationMenuModel.setTurnsNumberSpinner(this.turnsNumber);
-		this.gameCreationMenuModel.fillColorsBoxes(this.playerColors);
-		this.numberOfPlayers.getValueFactory().valueProperty().addListener(value -> this.showPlayersForms());
-		this.showPlayersForms();
-	}
-	
-	@Override
-	public void returnToMainMenu() {
-		this.gameCreationMenuModel.returnToMainMenu();
-	}
+    private final GameCreationMenuModel<S> gameCreationMenuModel;
+    @FXML
+    private Spinner<Integer> numberOfPlayers;
+    @FXML
+    private Spinner<Integer> turnsNumber;
+    @FXML
+    private List<TextField> playersNicknames;
+    @FXML
+    private List<ComboBox<PlayerColor>> playerColors;
+    @FXML
+    private List<VBox> playersForms;
+    @FXML
+    private Label noticeLabel;
 
-	@Override
-	public void startGame() {
-		this.gameCreationMenuModel.startGame(this.playersNicknames, this.playerColors, this.turnsNumber, this.adviceLabel);
-	}
+    public GameCreationMenuControllerImpl(final StageManager<S> s) {
+        super();
+        this.gameCreationMenuModel = new GameCreationMenuModelImpl<>(s);
+    }
 
-	@Override
-	public void showPlayersForms() {
-		this.gameCreationMenuModel.showForms(this.playersForms, this.numberOfPlayers.getValue());
-	}
+    @FXML
+    private void initialize() {
+        this.gameCreationMenuModel.setNumberOfPlayersSpinner(this.numberOfPlayers);
+        this.gameCreationMenuModel.setTurnsNumberSpinner(this.turnsNumber);
+        this.gameCreationMenuModel.fillColorsBoxes(this.playerColors);
+        this.numberOfPlayers.getValueFactory().valueProperty().addListener(value -> this.showPlayersForms());
+        this.gameCreationMenuModel.setNotice(this.noticeLabel);
+        this.showPlayersForms();
+    }
 
-	@Override
-	public void clearNotice() {
-		this.gameCreationMenuModel.clearNotice();
-	}
-	
+    @FXML
+    @Override
+    public final void returnToMainMenu() {
+        this.gameCreationMenuModel.returnToMainMenu();
+    }
+
+    @FXML
+    @Override
+    public final void startGame() {
+        this.gameCreationMenuModel.startGame(this.playersNicknames, this.playerColors, this.turnsNumber);
+    }
+
+    @Override
+    public final void showPlayersForms() {
+        this.gameCreationMenuModel.showForms(this.playersForms, this.numberOfPlayers.getValue());
+    }
+
+    @Override
+    public final void clearNotice() {
+        this.gameCreationMenuModel.clearNotice();
+    }
+
 }

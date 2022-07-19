@@ -6,25 +6,47 @@ import javafx.scene.paint.Color;
  * This enum defines the different player colors.
  */
 public enum PlayerColor {
-	RED(Color.RED),
-	BLUE(Color.BLUE),
-	GREEN(Color.GREEN),
-	YELLOW(Color.YELLOW),
-	WHITE(Color.WHITE),
-	BLACK(Color.BLACK),
-	PINK(Color.PINK);
-	
-	private final Color color;
-	
-	/**
-	 * This method returns the corresponding javafx color.
-	 * @return the javafx color
-	 */
-	public Color getColor() {
-		return this.color;
-	}
-	
-	PlayerColor(final Color color) {
-		this.color = color;
-	}
+    /**
+     * Red color.
+     */
+    RED(Color.RED),
+    /**
+     * Blue color.
+     */
+    BLUE(Color.BLUE),
+    /**
+     * Green color.
+     */
+    GREEN(Color.GREEN),
+    /**
+     * Yellow color.
+     */
+    YELLOW(Color.YELLOW),
+    /**
+     * White color.
+     */
+    WHITE(Color.WHITE),
+    /**
+     * Black color.
+     */
+    BLACK(Color.BLACK),
+    /**
+     * Pink color.
+     */
+    PINK(Color.PINK);
+
+    private final Color color;
+
+    /**
+     * This method returns the corresponding javafx color.
+     * 
+     * @return the javafx color
+     */
+    public Color getColor() {
+        return this.color;
+    }
+
+    PlayerColor(final Color color) {
+        this.color = color;
+    }
 }

@@ -6,25 +6,27 @@ import utils.graphics.StageManager;
 
 /**
  * Implementation of {@link MainMenuModel}.
+ * 
+ * @param <S> the scenes of the stage
  */
 public class MainMenuModelImpl<S> implements MainMenuModel<S> {
 
-	private final StageManager<S> stageManager;
+    private final StageManager<S> stageManager;
 
-	public MainMenuModelImpl(final StageManager<S> s) {
-		super();
-		this.stageManager = s;
-	}
+    public MainMenuModelImpl(final StageManager<S> s) {
+        super();
+        this.stageManager = s;
+    }
 
-	@Override
-	public void exit() {
-		System.exit(0);
-	}
+    @Override
+    public final void exit() {
+        System.exit(0);
+    }
 
-	@Override
-	public void gameCreationMenu() {
-		final GameCreationMenuView<S> creationMenu = new GameCreationMenuViewImpl<>(this.stageManager);
-		creationMenu.createGameCreationMenu();
-	}
+    @Override
+    public final void gameCreationMenu() {
+        final GameCreationMenuView<S> creationMenu = new GameCreationMenuViewImpl<>(this.stageManager);
+        creationMenu.createGameCreationMenu();
+    }
 
 }

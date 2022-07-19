@@ -47,6 +47,6 @@ application {
 }
 
 javafx {
-    version = "17"
+    version = "18"
     modules("javafx.base", "javafx.controls", "javafx.fxml", "javafx.swing", "javafx.graphics")
 }
