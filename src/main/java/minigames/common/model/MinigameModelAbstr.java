@@ -1,7 +1,6 @@
 package minigames.common.model;
 
 import java.util.Comparator;
-import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.ListIterator;
@@ -28,7 +27,7 @@ public abstract class MinigameModelAbstr<S, U> implements MinigameModel<S, U> {
     public MinigameModelAbstr(final List<U> players, final StageManager<S> s) {
         this.players = players;
         this.player = this.players.listIterator();
-        this.playersClassification = new HashMap<>();
+        this.playersClassification = new LinkedHashMap<>();
         this.stageManager = s;
     }
 

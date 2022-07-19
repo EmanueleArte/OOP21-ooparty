@@ -35,6 +35,7 @@ public class MastermindModelImpl<S, U> extends MinigameModelAbstr<S, U> implemen
         super(players, s);
     }
 
+    @SuppressWarnings("unchecked")
     @Override
     public final void runGame() {
         this.solution = this.generateSolution();
@@ -42,7 +43,9 @@ public class MastermindModelImpl<S, U> extends MinigameModelAbstr<S, U> implemen
         this.hideContinueButton();
         var currPlayer = (Player) this.getNextPlayer();
         this.getPlayerLabel().setTextFill(currPlayer.getColor());
-        this.getPlayerLabel().setText(currPlayer.getNickname() + " turn");
+        this.getPlayerLabel().setText(currPlayer.getNickname() + "'s turn");
+        this.scoreMapper((U) currPlayer, 0);
+        this.getPlayersClassification();
         
         this.showNotice(solution);
     }
@@ -178,8 +181,21 @@ public class MastermindModelImpl<S, U> extends MinigameModelAbstr<S, U> implemen
             Integer nDigitExact = this.controlDigitsPosition(attempt);
             String attemptLabel = this.createAttemptLabel(attempt, nDigitPresent, nDigitExact);
             this.showAttempt(attemptLabel);
+            
         } else {
             this.showNotice(Notice.MASTERMIND_INPUT_ERROR.getNotice());
+        }
+    }
+
+    /**
+     * This method controls if the attempt is equal to the solution and saves the score.
+     * 
+     * @param nDigitExact the number of correct digits in correct position
+     */
+    private void endTurnControl(final Integer nDigitExact) {
+        if (nDigitExact == 4) {
+            this.scoreMapper(getNextPlayer(), nDigitExact);
+            this.runGame();
         }
     }
 
