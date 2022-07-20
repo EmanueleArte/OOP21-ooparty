@@ -93,7 +93,7 @@ public class StageManagerImpl<S> extends JFrame implements StageManager<S> {
 
     @Override
     public final MinigameController getLastController() {
-        return this.lastController;
+        return this.lastGameController;
     }
 
     /**
