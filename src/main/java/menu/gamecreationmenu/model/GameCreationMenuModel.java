@@ -5,7 +5,6 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.Spinner;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.VBox;
-import utils.NoticeUser;
 import utils.enums.PlayerColor;
 
 /**
@@ -13,7 +12,7 @@ import utils.enums.PlayerColor;
  * 
  * @param <S> the scenes of the stage
  */
-public interface GameCreationMenuModel<S> extends NoticeUser {
+public interface GameCreationMenuModel<S> {
 
     /**
      * This method returns to the main menu of the game.
@@ -29,6 +28,13 @@ public interface GameCreationMenuModel<S> extends NoticeUser {
      */
     void startGame(List<TextField> playersNicknames, List<ComboBox<PlayerColor>> playerColors,
             Spinner<Integer> turnsNumber);
+
+    /**
+     * Setter for actualNPlayers.
+     * 
+     * @param nPlayers the new number of players
+     */
+    void setActualNPlayers(Integer nPlayers);
 
     /**
      * This method fills the the combo box with colors which can be choose.
@@ -50,13 +56,5 @@ public interface GameCreationMenuModel<S> extends NoticeUser {
      * @param playerColors the available colors
      */
     void setTurnsNumberSpinner(Spinner<Integer> turnsNumber);
-
-    /**
-     * This method shows only the necessary players forms.
-     * 
-     * @param playersForms the list of players forms
-     * @param nPlayers     the selected number of players
-     */
-    void showForms(List<VBox> playersForms, Integer nPlayers);
 
 }

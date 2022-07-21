@@ -67,7 +67,44 @@ public class GameCreationMenuViewController<S> extends NoticeUserAbstr {
      * This method shows only the necessary players forms.
      */
     private void showPlayersForms() {
-        this.gameCreationMenuModel.showForms(this.playersForms, this.numberOfPlayers.getValue());
+        this.showForms(this.numberOfPlayers.getValue());
+    }
+
+    /**
+     * This method shows only the necessary players forms.
+     * 
+     * @param nPlayers the selected number of players
+     */
+    private void showForms(final Integer nPlayers) {
+        for (int i = GameCreationMenuModelImpl.N_MIN_PLAYERS; i < GameCreationMenuModelImpl.N_MAX_PLAYERS; i++) {
+            var form = playersForms.get(i);
+            if (i >= nPlayers) {
+                this.hideForm(form);
+            } else {
+                this.showForm(form);
+            }
+        }
+        this.gameCreationMenuModel.setActualNPlayers(nPlayers);
+    }
+
+    /**
+     * This method shows a player form.
+     * 
+     * @param form the player form
+     */
+    private void showForm(final VBox form) {
+        form.setVisible(true);
+        form.setManaged(true);
+    }
+
+    /**
+     * This method hides a player form.
+     * 
+     * @param form the player form
+     */
+    private void hideForm(final VBox form) {
+        form.setVisible(false);
+        form.setManaged(false);
     }
 
 }

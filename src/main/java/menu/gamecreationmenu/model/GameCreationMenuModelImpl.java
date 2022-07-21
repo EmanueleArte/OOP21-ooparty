@@ -44,13 +44,11 @@ public class GameCreationMenuModelImpl<S> implements GameCreationMenuModel<S> {
     public static final int N_MAX_TURNS = 20;
     private final StageManager<S> stageManager;
     private int actualNPlayers;
-    private Label noticeLabel;
 
     public GameCreationMenuModelImpl(final StageManager<S> s) {
         super();
         this.stageManager = s;
         this.actualNPlayers = GameCreationMenuModelImpl.N_MIN_PLAYERS;
-        this.noticeLabel = null;
     }
 
     @Override
@@ -65,7 +63,7 @@ public class GameCreationMenuModelImpl<S> implements GameCreationMenuModel<S> {
                 .getNicknamesValues(allPlayersNicknames.subList(0, this.actualNPlayers));
         final List<PlayerColor> playersColors = this.getColorsValues(allPlayerColors.subList(0, this.actualNPlayers));
         if (!controlForms(playersNicknames, playersColors)) {
-            this.showNotice(Notice.GAME_CREATION_ERROR.getNotice());
+            //this.showNotice(Notice.GAME_CREATION_ERROR.getNotice());
         } else {
             // To complete with game constructor (parameters: playersList, stageManager,
             // turnsNumber)
@@ -92,54 +90,6 @@ public class GameCreationMenuModelImpl<S> implements GameCreationMenuModel<S> {
     @Override
     public final void setTurnsNumberSpinner(final Spinner<Integer> turnsNumber) {
         this.setSpinnerControls(turnsNumber, GameCreationMenuModelImpl.N_MIN_TURNS, GameCreationMenuModelImpl.N_MAX_TURNS);
-    }
-
-    @Override
-    public final void showForms(final List<VBox> playersForms, final Integer nPlayers) {
-        for (int i = GameCreationMenuModelImpl.N_MIN_PLAYERS; i < GameCreationMenuModelImpl.N_MAX_PLAYERS; i++) {
-            var form = playersForms.get(i);
-            if (i >= nPlayers) {
-                this.hideForm(form);
-            } else {
-                this.showForm(form);
-            }
-        }
-        this.actualNPlayers = nPlayers;
-    }
-
-    @Override
-    public final void clearNotice() {
-        this.noticeLabel.setText("");
-    }
-
-    @Override
-    public final void setNotice(final Label noticeLabel) {
-        this.noticeLabel = noticeLabel;
-    }
-
-    @Override
-    public final void showNotice(final String notice) {
-        this.noticeLabel.setText(notice);
-    }
-
-    /**
-     * This method shows a player form.
-     * 
-     * @param form the player form
-     */
-    private void showForm(final VBox form) {
-        form.setVisible(true);
-        form.setManaged(true);
-    }
-
-    /**
-     * This method hides a player form.
-     * 
-     * @param form the player form
-     */
-    private void hideForm(final VBox form) {
-        form.setVisible(false);
-        form.setManaged(false);
     }
 
     /**
@@ -209,6 +159,11 @@ public class GameCreationMenuModelImpl<S> implements GameCreationMenuModel<S> {
             playersList.add(new PlayerImpl(nickname, playerColors.get(playersNicknames.indexOf(nickname)).getColor()));
         });
         return playersList;
+    }
+
+    @Override
+    public final void setActualNPlayers(final Integer nPlayers) {
+        this.actualNPlayers = nPlayers;
     }
 
 }
