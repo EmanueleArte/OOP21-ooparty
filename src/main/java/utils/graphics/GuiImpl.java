@@ -44,6 +44,7 @@ public class GuiImpl<S> extends JFrame implements Gui<S> {
      * @param s     the {@link utils.graphics.StageManager}
      */
     public GuiImpl(final String title, final StageManager<S> s) {
+        this.mainStage = null;
         this.frame = new JFrame(title);
         this.cSelector = new ControllerSelectorImpl<>(s);
     }
@@ -87,6 +88,9 @@ public class GuiImpl<S> extends JFrame implements Gui<S> {
 
     @Override
     public final Scene getStageScene() {
+        if (this.mainStage == null) {
+            return null;
+        }
         Scene scene = null;
         while (scene == null) {
             scene = this.mainStage.getScene();
