@@ -1,20 +1,12 @@
 package utils.graphics;
 
-import java.awt.Dimension;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JFrame;
-import javafx.application.Platform;
-import javafx.embed.swing.JFXPanel;
-import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.util.Callback;
 import minigames.common.control.MinigameController;
 import utils.enums.ControllerType;
-import utils.factories.ControllerFactory;
-import utils.factories.ControllerFactoryImpl;
 
 /**
  * Implementation of {@link StageManager} and extension of {@link JFrame}.
@@ -48,7 +40,7 @@ public class StageManagerImpl<S> extends JFrame implements StageManager<S> {
         if (root != null) {
             this.scenes.add((S) new Scene(root));
             this.gui.setScene(this.scenes.get(this.lastSceneIndex()));
-            var controller = this.loader.getController();
+            var controller = this.gui.getLoader().getController();
             if (controller.getClass().getInterfaces().toString().contains("MinigameController")) {
                 this.lastGameController = (MinigameController) controller;
             }
@@ -58,13 +50,13 @@ public class StageManagerImpl<S> extends JFrame implements StageManager<S> {
     @Override
     public final S popScene() {
         var poppedScene = this.scenes.remove(this.lastSceneIndex());
-        this.setScene();
+        this.gui.setScene(this.scenes.get(this.lastSceneIndex()));
         return poppedScene;
     }
 
     @Override
     public final void run() {
-        this
+        this.gui.createGui();
     }
 
     @Override

@@ -11,7 +11,6 @@ import javafx.embed.swing.JFXPanel;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import minigames.common.control.MinigameController;
 import utils.enums.ControllerType;
 import utils.factories.ControllerSelector;
 import utils.factories.ControllerSelectorImpl;
@@ -36,6 +35,7 @@ public class GuiImpl<S> extends JFrame implements Gui<S> {
     private FXMLLoader loader;
     private final JFrame frame;
     private final ControllerSelector<S> cSelector;
+    private Parent root = null;
 
     /**
      * Builds a new {@link GuiImpl}.
@@ -62,24 +62,15 @@ public class GuiImpl<S> extends JFrame implements Gui<S> {
     @Override
     public final <U> Parent loadScene(final String fxmlUrl, final ControllerType c, final List<U> players) {
         Platform.runLater(() -> {
-            Parent root = null;
             this.loader = new FXMLLoader(getClass().getClassLoader().getResource(fxmlUrl));
-            this.loader.setControllerFactory(this.controllerCallback(c, players));
+            this.loader.setControllerFactory(this.cSelector.selectControllerCallback(c, players));
             try {
-                root = loader.load();
+                this.root = loader.load();
             } catch (IOException e1) {
                 e1.printStackTrace();
             }
-            if (root != null) {
-                this.scenes.add((S) new Scene(root));
-                this.setScene();
-                var controller = this.loader.getController();
-                if (controller.getClass().getInterfaces().toString().contains("MinigameController")) {
-                    this.lastGameController = (MinigameController) controller;
-                }
-            }
         });
-        return null;
+        return this.root;
     }
 
     @Override
