@@ -8,15 +8,11 @@ import game.player.Player;
 import game.player.PlayerImpl;
 import javafx.collections.FXCollections;
 import javafx.scene.control.ComboBox;
-import javafx.scene.control.Label;
 import javafx.scene.control.Spinner;
 import javafx.scene.control.TextField;
-import javafx.scene.layout.VBox;
-import menu.gamecreationmenu.control.GameCreationMenuViewController;
 import minigames.common.view.MinigameView;
 import minigames.mastermind.view.MastermindViewImpl;
 import utils.IntSpinnerValueFactory;
-import utils.enums.Notice;
 import utils.enums.PlayerColor;
 import utils.graphics.StageManager;
 
