@@ -13,7 +13,7 @@ import utils.enums.ControllerType;
 public interface StageManager<S> {
 
     /**
-     * This method adds a scene to the scene list.
+     * This method adds an FXML scene to the scene list.
      * 
      * @param <U>     the {@link game.player.Player}
      * @param fxmlUrl the url of the fxml file to load
@@ -21,7 +21,14 @@ public interface StageManager<S> {
      * @param players the list of the players; put null if you haven't any list of
      *                players to pass
      */
-    <U> void addScene(String fxmlUrl, ControllerType c, List<U> players);
+    <U> void addFXMLScene(String fxmlUrl, ControllerType c, List<U> players);
+
+    /**
+     * This method adds an existent scene.
+     * 
+     * @param scene
+     */
+    void addScene(S scene);
 
     /**
      * This method pops a scene from the scene list.

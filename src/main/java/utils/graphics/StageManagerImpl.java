@@ -38,7 +38,7 @@ public class StageManagerImpl<S> extends JFrame implements StageManager<S> {
 
     @SuppressWarnings("unchecked")
     @Override
-    public final <U> void addScene(final String fxmlUrl, final ControllerType c, final List<U> players) {
+    public final <U> void addFXMLScene(final String fxmlUrl, final ControllerType c, final List<U> players) {
         this.gui.loadScene(fxmlUrl, c, players);
         final S scene = (S) this.gui.getStageScene();
         if (scene != null) {
@@ -48,6 +48,13 @@ public class StageManagerImpl<S> extends JFrame implements StageManager<S> {
             if (controller.getClass().getInterfaces().toString().contains("MinigameController")) {
                 this.lastGameController = (MinigameController) controller;
             }
+        }
+    }
+
+    @Override
+    public final void addScene(final S scene) {
+        if (scene != null) {
+            this.scenes.add(scene);
         }
     }
 

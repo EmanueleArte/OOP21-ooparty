@@ -22,7 +22,7 @@ public interface Gui<S> {
     /**
      * This method loads an FXML file.
      * 
-     * @param <U>     the {@link game.player.Player}
+     * @param <U>     the player
      * @param fxmlUrl the url of the fxml file to load
      * @param c       the type of the controller
      * @param players the list of the players; put null if you haven't any list of

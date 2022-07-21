@@ -5,8 +5,6 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 
 import org.junit.jupiter.api.Test;
 
-import javafx.scene.Scene;
-import utils.enums.ControllerType;
 import utils.graphics.StageManager;
 import utils.graphics.StageManagerImpl;
 
@@ -15,15 +13,13 @@ import utils.graphics.StageManagerImpl;
  */
 class TestStageManager {
 
-    private final String fxmlUrl = "menu/main_menu.fxml";
-
     @Test
     void testAddScene() {
-        final StageManager<Scene> s = new StageManagerImpl<Scene>("");
-        s.addScene(fxmlUrl, ControllerType.MAIN_MENU, null);
-        s.addScene(fxmlUrl, ControllerType.MAIN_MENU, null);
+        final StageManager<String> s = new StageManagerImpl<String>("");
+        s.addScene("1");
+        s.addScene("2");
         assertFalse(s.getScenes().isEmpty());
-        s.addScene(fxmlUrl, ControllerType.MAIN_MENU, null);
+        s.addScene("3");
         assertEquals(3, s.getScenes().size());
     }
 
