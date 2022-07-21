@@ -14,11 +14,11 @@ import utils.enums.PlayerColor;
 import utils.graphics.StageManager;
 
 /**
- * Implementation of {@link GameCreationMenuController}.
+ * This class models the game creation menu view controller.
  * 
  * @param <S> the scenes of the stage
  */
-public class GameCreationMenuControllerImpl<S> implements GameCreationMenuController<S> {
+public class GameCreationMenuViewController<S> {
 
     private final GameCreationMenuModel<S> gameCreationMenuModel;
     @FXML
@@ -34,7 +34,7 @@ public class GameCreationMenuControllerImpl<S> implements GameCreationMenuContro
     @FXML
     private Label noticeLabel;
 
-    public GameCreationMenuControllerImpl(final StageManager<S> s) {
+    public GameCreationMenuViewController(final StageManager<S> s) {
         super();
         this.gameCreationMenuModel = new GameCreationMenuModelImpl<>(s);
     }
@@ -49,25 +49,33 @@ public class GameCreationMenuControllerImpl<S> implements GameCreationMenuContro
         this.showPlayersForms();
     }
 
+    /**
+     * This method returns to the main menu of the game.
+     */
     @FXML
-    @Override
-    public final void returnToMainMenu() {
+    private void returnToMainMenu() {
         this.gameCreationMenuModel.returnToMainMenu();
     }
 
+    /**
+     * This method starts a new game.
+     */
     @FXML
-    @Override
-    public final void startGame() {
+    private void startGame() {
         this.gameCreationMenuModel.startGame(this.playersNicknames, this.playerColors, this.turnsNumber);
     }
 
-    @Override
-    public final void showPlayersForms() {
+    /**
+     * This method shows only the necessary players forms.
+     */
+    private void showPlayersForms() {
         this.gameCreationMenuModel.showForms(this.playersForms, this.numberOfPlayers.getValue());
     }
 
-    @Override
-    public final void clearNotice() {
+    /**
+     * This method clears the notice.
+     */
+    private void clearNotice() {
         this.gameCreationMenuModel.clearNotice();
     }
 

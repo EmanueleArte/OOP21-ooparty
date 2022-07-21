@@ -6,7 +6,7 @@ import menu.mainmenu.model.MainMenuModelImpl;
 import utils.graphics.StageManager;
 
 /**
- * Implementation of {@link MainMenuViewController}.
+ * This class models the main menu view controller.
  * 
  * @param <S> the scenes of the stage
  */
