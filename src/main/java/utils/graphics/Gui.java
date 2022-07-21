@@ -2,6 +2,7 @@ package utils.graphics;
 
 import java.util.List;
 
+import javafx.scene.Parent;
 import utils.enums.ControllerType;
 
 /**
@@ -27,7 +28,7 @@ public interface Gui<S> {
      *                players to pass
      * @return the scene loaded
      */
-    <U> S loadScene(String fxmlUrl, ControllerType c, List<U> players);
+    <U> Parent loadScene(String fxmlUrl, ControllerType c, List<U> players);
 
     /**
      * This method shows the actual scene.

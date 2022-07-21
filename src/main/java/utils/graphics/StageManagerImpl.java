@@ -33,35 +33,26 @@ public class StageManagerImpl<S> extends JFrame implements StageManager<S> {
      */
     public static final int MIN_HEIGHT = 730;
     private final List<S> scenes;
-    private final Gui gui;
+    private final Gui<S> gui;
     private MinigameController lastGameController;
 
     public StageManagerImpl(final String title) {
         this.scenes = new ArrayList<S>();
-        this.gui = new GuiImpl(title, this);
+        this.gui = new GuiImpl<>(title, this);
     }
 
     @SuppressWarnings("unchecked")
     @Override
     public final <U> void addScene(final String fxmlUrl, final ControllerType c, final List<U> players) {
-        Platform.runLater(() -> {
-            Parent root = null;
-            this.loader = new FXMLLoader(getClass().getClassLoader().getResource(fxmlUrl));
-            this.loader.setControllerFactory(this.controllerCallback(c, players));
-            try {
-                root = loader.load();
-            } catch (IOException e1) {
-                e1.printStackTrace();
+        final Parent root = this.gui.loadScene(fxmlUrl, c, players);
+        if (root != null) {
+            this.scenes.add((S) new Scene(root));
+            this.gui.setScene(this.scenes.get(this.lastSceneIndex()));
+            var controller = this.loader.getController();
+            if (controller.getClass().getInterfaces().toString().contains("MinigameController")) {
+                this.lastGameController = (MinigameController) controller;
             }
-            if (root != null) {
-                this.scenes.add((S) new Scene(root));
-                this.setScene();
-                var controller = this.loader.getController();
-                if (controller.getClass().getInterfaces().toString().contains("MinigameController")) {
-                    this.lastGameController = (MinigameController) controller;
-                }
-            }
-        });
+        }
     }
 
     @Override

@@ -60,7 +60,7 @@ public class GuiImpl<S> extends JFrame implements Gui<S> {
     }
 
     @Override
-    public final <U> S loadScene(final String fxmlUrl, final ControllerType c, final List<U> players) {
+    public final <U> Parent loadScene(final String fxmlUrl, final ControllerType c, final List<U> players) {
         Platform.runLater(() -> {
             Parent root = null;
             this.loader = new FXMLLoader(getClass().getClassLoader().getResource(fxmlUrl));
