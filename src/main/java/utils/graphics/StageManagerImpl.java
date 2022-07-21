@@ -97,13 +97,6 @@ public class StageManagerImpl<S> extends JFrame implements StageManager<S> {
     }
 
     /**
-     * This method shows the actual scene.
-     */
-    private void setScene() {
-        this.mainStage.setScene((Scene) this.scenes.get(this.lastSceneIndex()));
-    }
-
-    /**
      * This method calculates the index of the last added scene.
      * 
      * @return the index of the last added scene

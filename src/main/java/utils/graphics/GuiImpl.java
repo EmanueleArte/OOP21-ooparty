@@ -22,15 +22,14 @@ public class GuiImpl<S> implements Gui<S> {
     }
 
     @Override
-    public <U> S loadScene(String fxmlUrl, ControllerType c, List<U> players) {
+    public <U> S loadScene(final String fxmlUrl, final ControllerType c, final List<U> players) {
         // TODO Auto-generated method stub
         return null;
     }
 
     @Override
-    public void setScene() {
-        // TODO Auto-generated method stub
-        
+    public void setScene(final S scene) {
+        this.mainStage.setScene(scene);
     }
 
 }

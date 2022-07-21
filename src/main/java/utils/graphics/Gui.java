@@ -31,7 +31,9 @@ public interface Gui<S> {
 
     /**
      * This method shows the actual scene.
+     * 
+     * @param scene the scene to be shown
      */
-    void setScene();
+    void setScene(S scene);
 
 }
