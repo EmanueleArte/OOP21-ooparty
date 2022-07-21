@@ -33,7 +33,6 @@ public interface StageManager<S> {
     /**
      * This method starts the javafx gui.
      * 
-     * @param args
      */
     void run();
 
