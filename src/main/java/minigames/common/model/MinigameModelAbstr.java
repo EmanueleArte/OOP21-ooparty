@@ -8,6 +8,7 @@ import java.util.Map;
 import java.util.stream.Collectors;
 
 import javafx.scene.control.Label;
+import menu.gamecreationmenu.view.GameCreationMenuViewImpl;
 import utils.graphics.StageManager;
 
 /**
@@ -24,6 +25,12 @@ public abstract class MinigameModelAbstr<S, U> implements MinigameModel<S, U> {
     private final Map<U, Integer> playersClassification;
     private Label playerLabel;
 
+    /**
+     * Builds a new {@link MinigameModelAbstr}.
+     * 
+     * @param players the list of players
+     * @param s the {@link utils.graphics.StageManager}
+     */
     public MinigameModelAbstr(final List<U> players, final StageManager<S> s) {
         this.players = players;
         this.player = this.players.listIterator();

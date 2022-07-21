@@ -16,6 +16,11 @@ public class ControllerFactoryImpl<S> implements ControllerFactory<S> {
 
     private final StageManager<S> stageManager;
 
+    /**
+     * Builds a new {@link ControllerFactoryImpl}.
+     * 
+     * @param s the {@link utils.graphics.StageManager}
+     */
     public ControllerFactoryImpl(final StageManager<S> s) {
         this.stageManager = s;
     }

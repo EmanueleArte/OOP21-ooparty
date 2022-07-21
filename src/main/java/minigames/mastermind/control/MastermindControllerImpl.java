@@ -5,6 +5,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import menu.gamecreationmenu.view.GameCreationMenuViewImpl;
 import minigames.common.control.MinigameController;
 import minigames.mastermind.model.MastermindModelImpl;
 import utils.graphics.StageManager;
@@ -31,8 +32,13 @@ public class MastermindControllerImpl<S, U> implements MastermindController<S, U
     @FXML
     private Button continueButton;
 
+    /**
+     * Builds a new {@link MastermindControllerImpl}.
+     * 
+     * @param s the {@link utils.graphics.StageManager}
+     * @param players the list of players
+     */
     public MastermindControllerImpl(final StageManager<S> s, final List<U> players) {
-        super();
         this.mastermindModel = new MastermindModelImpl<>(players, s);
     }
 

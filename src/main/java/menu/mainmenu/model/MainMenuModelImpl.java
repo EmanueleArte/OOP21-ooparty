@@ -13,6 +13,11 @@ public class MainMenuModelImpl<S> implements MainMenuModel<S> {
 
     private final StageManager<S> stageManager;
 
+    /**
+     * Builds a new {@link MainMenuModelImpl}.
+     * 
+     * @param s the {@link utils.graphics.StageManager}
+     */
     public MainMenuModelImpl(final StageManager<S> s) {
         super();
         this.stageManager = s;

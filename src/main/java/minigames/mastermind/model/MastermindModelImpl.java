@@ -10,6 +10,7 @@ import game.player.Player;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import menu.gamecreationmenu.view.GameCreationMenuViewImpl;
 import minigames.common.model.MinigameModelAbstr;
 import utils.enums.Notice;
 import utils.graphics.StageManager;
@@ -32,6 +33,12 @@ public class MastermindModelImpl<S, U> extends MinigameModelAbstr<S, U> {
     private int nAttempts;
     private U currPlayer;
 
+    /**
+     * Builds a new {@link GameCreationMenuViewImpl}.
+     * 
+     * @param players the list of players
+     * @param s the {@link utils.graphics.StageManager}
+     */
     public MastermindModelImpl(final List<U> players, final StageManager<S> s) {
         super(players, s);
     }

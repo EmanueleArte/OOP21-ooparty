@@ -14,6 +14,11 @@ public abstract class MinigameViewAbstr<S, U> implements MinigameView<S, U> {
 
     private final StageManager<S> stageManager;
 
+    /**
+     * Builds a new {@link MinigameViewAbstr}.
+     * 
+     * @param s the {@link utils.graphics.StageManager}
+     */
     public MinigameViewAbstr(final StageManager<S> s) {
         super();
         this.stageManager = s;

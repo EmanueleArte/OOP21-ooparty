@@ -18,6 +18,13 @@ class GenericController<S, U> implements Callback<Class<?>, Object> {
     private final Class<?> controllerClass;
     private final List<U> players;
 
+    /**
+     * Builds a new {@link GenericController}.
+     * 
+     * @param s               the {@link utils.graphics.StageManager}
+     * @param players         the list of players
+     * @param controllerClass the class of the controller
+     */
     GenericController(final StageManager<S> s, final List<U> players, final Class<?> controllerClass) {
         super();
         this.stageManager = s;

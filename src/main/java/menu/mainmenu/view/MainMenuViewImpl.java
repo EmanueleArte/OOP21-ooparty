@@ -12,6 +12,11 @@ public class MainMenuViewImpl<S> implements MainMenuView<S> {
 
     private final StageManager<S> stageManager;
 
+    /**
+     * Builds a new {@link MainMenuViewImpl}.
+     * 
+     * @param s the {@link utils.graphics.StageManager}
+     */
     public MainMenuViewImpl(final StageManager<S> s) {
         super();
         this.stageManager = s;

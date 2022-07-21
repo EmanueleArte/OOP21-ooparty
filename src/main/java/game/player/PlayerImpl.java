@@ -13,6 +13,12 @@ public class PlayerImpl implements Player {
     private int coins;
     private int stars;
 
+    /**
+     * Builds a new {@link PlayerImpl}.
+     * 
+     * @param nickname the selected nickname
+     * @param color the selected color
+     */
     public PlayerImpl(final String nickname, final Color color) {
         this.nickname = nickname;
         this.color = color;
