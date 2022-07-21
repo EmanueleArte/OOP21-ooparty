@@ -20,7 +20,7 @@ public class GameCreationMenuViewImpl<S> implements GameCreationMenuView<S> {
     @Override
     public final void createGameCreationMenu() {
         final String fxmlUrl = "menu/creation_menu.fxml";
-        this.stageManager.addScene(fxmlUrl, ControllerType.GAME_CREATION_MENU, null);
+        this.stageManager.addFXMLScene(fxmlUrl, ControllerType.GAME_CREATION_MENU, null);
     }
 
 }

@@ -20,7 +20,7 @@ public class MainMenuViewImpl<S> implements MainMenuView<S> {
     @Override
     public final void createMainMenu() {
         final String fxmlUrl = "menu/main_menu.fxml";
-        this.stageManager.addScene(fxmlUrl, ControllerType.MAIN_MENU, null);
+        this.stageManager.addFXMLScene(fxmlUrl, ControllerType.MAIN_MENU, null);
     }
 
 }

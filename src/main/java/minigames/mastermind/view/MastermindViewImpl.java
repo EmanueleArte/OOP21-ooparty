@@ -20,7 +20,7 @@ public class MastermindViewImpl<S, U> extends MinigameViewAbstr<S, U> {
     @Override
     public final void startMinigame(final List<U> players) {
         final String fxmlUrl = "minigames/mastermind.fxml";
-        this.getStageManager().addScene(fxmlUrl, ControllerType.MASTERMIND, players);
+        this.getStageManager().addFXMLScene(fxmlUrl, ControllerType.MASTERMIND, players);
     }
 
 }
