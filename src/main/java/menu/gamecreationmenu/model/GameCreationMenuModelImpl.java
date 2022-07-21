@@ -12,6 +12,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.Spinner;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.VBox;
+import menu.gamecreationmenu.control.GameCreationMenuViewController;
 import minigames.common.view.MinigameView;
 import minigames.mastermind.view.MastermindViewImpl;
 import utils.IntSpinnerValueFactory;
@@ -45,6 +46,11 @@ public class GameCreationMenuModelImpl<S> implements GameCreationMenuModel<S> {
     private final StageManager<S> stageManager;
     private int actualNPlayers;
 
+    /**
+     * Builds a new {@link GameCreationMenuModelImpl}.
+     * 
+     * @param s the {@link utils.graphics.StageManager}.
+     */
     public GameCreationMenuModelImpl(final StageManager<S> s) {
         super();
         this.stageManager = s;

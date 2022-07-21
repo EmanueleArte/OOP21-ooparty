@@ -33,6 +33,11 @@ public class GameCreationMenuViewController<S> extends NoticeUserAbstr {
     @FXML
     private List<VBox> playersForms;
 
+    /**
+     * Builds a new {@link GameCreationMenuViewController}.
+     * 
+     * @param s the {@link utils.graphics.StageManager}.
+     */
     public GameCreationMenuViewController(final StageManager<S> s) {
         super();
         this.gameCreationMenuModel = new GameCreationMenuModelImpl<>(s);
