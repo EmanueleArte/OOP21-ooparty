@@ -59,18 +59,20 @@ public class GuiImpl<S> extends JFrame implements Gui<S> {
         this.frame.setVisible(true);
     }
 
+    @SuppressWarnings("unchecked")
     @Override
-    public final <U> Parent loadScene(final String fxmlUrl, final ControllerType c, final List<U> players) {
+    public final <U> void loadScene(final String fxmlUrl, final ControllerType c, final List<U> players) {
         Platform.runLater(() -> {
             this.loader = new FXMLLoader(getClass().getClassLoader().getResource(fxmlUrl));
             this.loader.setControllerFactory(this.cSelector.selectControllerCallback(c, players));
             try {
                 this.root = loader.load();
+                this.setScene((S) new Scene(this.root));
             } catch (IOException e1) {
                 e1.printStackTrace();
+                this.root = null;
             }
         });
-        return this.root;
     }
 
     @Override
@@ -81,6 +83,15 @@ public class GuiImpl<S> extends JFrame implements Gui<S> {
     @Override
     public final FXMLLoader getLoader() {
         return this.loader;
+    }
+
+    @Override
+    public final Scene getStageScene() {
+        Scene scene = null;
+        while (scene == null) {
+            scene = this.mainStage.getScene();
+        }
+        return scene;
     }
 
 }

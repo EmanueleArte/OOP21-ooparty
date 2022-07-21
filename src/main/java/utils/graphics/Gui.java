@@ -3,7 +3,7 @@ package utils.graphics;
 import java.util.List;
 
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
+import javafx.scene.Scene;
 import utils.enums.ControllerType;
 
 /**
@@ -27,9 +27,8 @@ public interface Gui<S> {
      * @param c       the type of the controller
      * @param players the list of the players; put null if you haven't any list of
      *                players to pass
-     * @return the scene loaded
      */
-    <U> Parent loadScene(String fxmlUrl, ControllerType c, List<U> players);
+    <U> void loadScene(String fxmlUrl, ControllerType c, List<U> players);
 
     /**
      * This method shows the actual scene.
@@ -44,5 +43,12 @@ public interface Gui<S> {
      * @return the last loader used
      */
     FXMLLoader getLoader();
+
+    /**
+     * Getter for the {@link JFXPanel} scene.
+     * 
+     * @return the main stage {@link Scene}
+     */
+    Scene getStageScene();
 
 }

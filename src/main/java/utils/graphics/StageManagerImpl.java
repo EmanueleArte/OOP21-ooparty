@@ -3,8 +3,6 @@ package utils.graphics;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JFrame;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import minigames.common.control.MinigameController;
 import utils.enums.ControllerType;
 
@@ -36,10 +34,11 @@ public class StageManagerImpl<S> extends JFrame implements StageManager<S> {
     @SuppressWarnings("unchecked")
     @Override
     public final <U> void addScene(final String fxmlUrl, final ControllerType c, final List<U> players) {
-        final Parent root = this.gui.loadScene(fxmlUrl, c, players);
-        if (root != null) {
-            this.scenes.add((S) new Scene(root));
-            this.gui.setScene(this.scenes.get(this.lastSceneIndex()));
+        this.gui.loadScene(fxmlUrl, c, players);
+        final S scene = (S) this.gui.getStageScene();
+        if (scene != null) {
+            this.scenes.add(scene);
+            this.gui.setScene(scene);
             var controller = this.gui.getLoader().getController();
             if (controller.getClass().getInterfaces().toString().contains("MinigameController")) {
                 this.lastGameController = (MinigameController) controller;
