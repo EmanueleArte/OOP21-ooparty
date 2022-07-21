@@ -75,6 +75,7 @@ public class GameCreationMenuViewController<S> {
     /**
      * This method clears the notice.
      */
+    @FXML
     private void clearNotice() {
         this.gameCreationMenuModel.clearNotice();
     }
