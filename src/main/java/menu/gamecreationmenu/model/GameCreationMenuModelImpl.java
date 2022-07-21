@@ -59,13 +59,13 @@ public class GameCreationMenuModelImpl<S> implements GameCreationMenuModel<S> {
     }
 
     @Override
-    public final void startGame(final List<TextField> allPlayersNicknames,
+    public final boolean startGame(final List<TextField> allPlayersNicknames,
             final List<ComboBox<PlayerColor>> allPlayerColors, final Spinner<Integer> turnsNumber) {
         final List<String> playersNicknames = this
                 .getNicknamesValues(allPlayersNicknames.subList(0, this.actualNPlayers));
         final List<PlayerColor> playersColors = this.getColorsValues(allPlayerColors.subList(0, this.actualNPlayers));
         if (!controlForms(playersNicknames, playersColors)) {
-            // this.showNotice(Notice.GAME_CREATION_ERROR.getNotice());
+            return false;
         } else {
             // To complete with game constructor (parameters: playersList, stageManager,
             // turnsNumber)
@@ -73,6 +73,7 @@ public class GameCreationMenuModelImpl<S> implements GameCreationMenuModel<S> {
             final MinigameView<S, Player> m = new MastermindViewImpl<>(this.stageManager);
             m.startMinigame(this.createPlayersList(playersNicknames, playersColors));
         }
+        return true;
     }
 
     @Override

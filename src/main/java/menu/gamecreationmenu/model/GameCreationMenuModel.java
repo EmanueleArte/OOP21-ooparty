@@ -24,8 +24,9 @@ public interface GameCreationMenuModel<S> {
      * @param playersNicknames the nicknames of the players
      * @param playerColors     the colors of the players
      * @param turnsNumber      the number of turns of the game
+     * @return false if there are duplicates or blank forms
      */
-    void startGame(List<TextField> playersNicknames, List<ComboBox<PlayerColor>> playerColors,
+    boolean startGame(List<TextField> playersNicknames, List<ComboBox<PlayerColor>> playerColors,
             Spinner<Integer> turnsNumber);
 
     /**

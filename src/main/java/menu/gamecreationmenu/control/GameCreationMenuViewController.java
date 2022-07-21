@@ -9,6 +9,7 @@ import javafx.scene.layout.VBox;
 import menu.gamecreationmenu.model.GameCreationMenuModel;
 import menu.gamecreationmenu.model.GameCreationMenuModelImpl;
 import utils.NoticeUserAbstr;
+import utils.enums.Notice;
 import utils.enums.PlayerColor;
 import utils.graphics.StageManager;
 
@@ -63,7 +64,9 @@ public class GameCreationMenuViewController<S> extends NoticeUserAbstr {
      */
     @FXML
     private void startGame() {
-        this.gameCreationMenuModel.startGame(this.playersNicknames, this.playerColors, this.turnsNumber);
+        if (!this.gameCreationMenuModel.startGame(this.playersNicknames, this.playerColors, this.turnsNumber)) {
+            this.showNotice(Notice.GAME_CREATION_ERROR.getNotice());
+        }
     }
 
     /**
