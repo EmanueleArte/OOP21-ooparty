@@ -1,29 +1,35 @@
 package utils;
 
+import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 
-public class NoticeUserAbstr implements NoticeUser {
+/**
+ * This abstract class models a class that uses a notice label.
+ */
+public class NoticeUserAbstr {
+
+    @FXML
+    private Label noticeLabel;
 
     public NoticeUserAbstr() {
-        // TODO Auto-generated constructor stub
-    }
-
-    @Override
-    public void setNotice(final Label noticeLabel) {
-        // TODO Auto-generated method stub
 
     }
 
-    @Override
-    public void clearNotice() {
-        // TODO Auto-generated method stub
-
+    /**
+     * This method clears the notice label.
+     */
+    @FXML
+    protected void clearNotice() {
+        this.noticeLabel.setText("");
     }
 
-    @Override
-    public void showNotice(final String notice) {
-        // TODO Auto-generated method stub
-
+    /**
+     * This method shows a notice into the notice label.
+     * 
+     * @param notice the notice to show
+     */
+    protected void showNotice(final String notice) {
+        this.noticeLabel.setText(notice);
     }
 
 }

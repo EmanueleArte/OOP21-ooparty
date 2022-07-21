@@ -10,6 +10,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.VBox;
 import menu.gamecreationmenu.model.GameCreationMenuModel;
 import menu.gamecreationmenu.model.GameCreationMenuModelImpl;
+import utils.NoticeUserAbstr;
 import utils.enums.PlayerColor;
 import utils.graphics.StageManager;
 
@@ -18,7 +19,7 @@ import utils.graphics.StageManager;
  * 
  * @param <S> the scenes of the stage
  */
-public class GameCreationMenuViewController<S> {
+public class GameCreationMenuViewController<S> extends NoticeUserAbstr {
 
     private final GameCreationMenuModel<S> gameCreationMenuModel;
     @FXML
@@ -31,8 +32,6 @@ public class GameCreationMenuViewController<S> {
     private List<ComboBox<PlayerColor>> playerColors;
     @FXML
     private List<VBox> playersForms;
-    @FXML
-    private Label noticeLabel;
 
     public GameCreationMenuViewController(final StageManager<S> s) {
         super();
@@ -45,7 +44,6 @@ public class GameCreationMenuViewController<S> {
         this.gameCreationMenuModel.setTurnsNumberSpinner(this.turnsNumber);
         this.gameCreationMenuModel.fillColorsBoxes(this.playerColors);
         this.numberOfPlayers.getValueFactory().valueProperty().addListener(value -> this.showPlayersForms());
-        this.gameCreationMenuModel.setNotice(this.noticeLabel);
         this.showPlayersForms();
     }
 
@@ -70,14 +68,6 @@ public class GameCreationMenuViewController<S> {
      */
     private void showPlayersForms() {
         this.gameCreationMenuModel.showForms(this.playersForms, this.numberOfPlayers.getValue());
-    }
-
-    /**
-     * This method clears the notice.
-     */
-    @FXML
-    private void clearNotice() {
-        this.gameCreationMenuModel.clearNotice();
     }
 
 }
