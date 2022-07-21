@@ -29,7 +29,7 @@ public class StageManagerImpl<S> extends JFrame implements StageManager<S> {
     /**
      * Builds a new {@link StageManagerImpl}.
      * 
-     * @param title
+     * @param title the title of the frame
      */
     public StageManagerImpl(final String title) {
         this.scenes = new ArrayList<S>();
