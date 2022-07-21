@@ -112,23 +112,4 @@ public class StageManagerImpl<S> extends JFrame implements StageManager<S> {
         return this.scenes.size() - 1;
     }
 
-    /**
-     * This method chooses the right controller to be implemented.
-     * 
-     * @param <U> the {@link game.player.Player}
-     * @return the right controller callback
-     */
-    private <U> Callback<Class<?>, Object> controllerCallback(final ControllerType controller, final List<U> players) {
-        switch (controller) {
-        case MAIN_MENU:
-            return this.controlFactory.createMainMenuController();
-        case GAME_CREATION_MENU:
-            return this.controlFactory.createGameCreationMenuController();
-        case MASTERMIND:
-            return this.controlFactory.createMastermind(players);
-        default:
-            return null;
-        }
-    }
-
 }
