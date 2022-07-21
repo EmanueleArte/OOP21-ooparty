@@ -33,16 +33,12 @@ public class StageManagerImpl<S> extends JFrame implements StageManager<S> {
      */
     public static final int MIN_HEIGHT = 730;
     private final List<S> scenes;
-    private JFXPanel mainStage;
-    private FXMLLoader loader;
-    private final JFrame frame;
-    private final ControllerFactory<S> controlFactory;
+    private final Gui gui;
     private MinigameController lastGameController;
 
     public StageManagerImpl(final String title) {
         this.scenes = new ArrayList<S>();
-        this.frame = new JFrame(title);
-        this.controlFactory = new ControllerFactoryImpl<>(this);
+        this.gui = new GuiImpl(title, this);
     }
 
     @SuppressWarnings("unchecked")
@@ -77,13 +73,7 @@ public class StageManagerImpl<S> extends JFrame implements StageManager<S> {
 
     @Override
     public final void run() {
-        this.mainStage = new JFXPanel();
-        this.frame.add(this.mainStage);
-        this.frame.pack();
-        this.frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
-        this.frame.setMinimumSize(new Dimension(StageManagerImpl.MIN_WIDTH, StageManagerImpl.MIN_HEIGHT));
-        this.frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        this.frame.setVisible(true);
+        this
     }
 
     @Override
