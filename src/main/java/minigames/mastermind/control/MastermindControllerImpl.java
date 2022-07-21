@@ -51,7 +51,7 @@ public class MastermindControllerImpl<S, U> implements MastermindController<S, U
     @FXML
     @Override
     public final void clearNotice() {
-        this.mastermindModel.clearNotice();
+        //this.mastermindModel.clearNotice();
     }
 
     @FXML
@@ -69,7 +69,7 @@ public class MastermindControllerImpl<S, U> implements MastermindController<S, U
      * This method starts the mastermind minigame.
      */
     private void startGame() {
-        this.mastermindModel.setNotice(this.noticeLabel);
+        //this.mastermindModel.setNotice(this.noticeLabel);
         this.mastermindModel.setInputField(this.inputField);
         this.mastermindModel.setContinueButton(this.continueButton);
         this.mastermindModel.setEnterButton(this.enterButton);

@@ -11,7 +11,6 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import minigames.common.model.MinigameModelAbstr;
-import utils.NoticeUser;
 import utils.enums.Notice;
 import utils.graphics.StageManager;
 
@@ -22,7 +21,7 @@ import utils.graphics.StageManager;
  * @param <S> the scenes of the stage
  * @param <U> the {@link game.player.Player}
  */
-public class MastermindModelImpl<S, U> extends MinigameModelAbstr<S, U> implements NoticeUser {
+public class MastermindModelImpl<S, U> extends MinigameModelAbstr<S, U> {
 
     private List<Label> attempts;
     private Label noticeLabel;
@@ -44,28 +43,13 @@ public class MastermindModelImpl<S, U> extends MinigameModelAbstr<S, U> implemen
             this.solution = this.generateSolution();
             this.hideAttempts();
             this.hideContinueButton();
-            this.clearNotice();
+            //this.clearNotice();
             this.enableInput();
             this.currPlayer = this.getNextPlayer();
             this.getPlayerLabel().setTextFill(((Player) this.currPlayer).getColor());
             this.getPlayerLabel().setText(((Player) this.currPlayer).getNickname() + "'s turn");
-            this.showNotice(solution);
+            //this.showNotice(solution);
         }
-    }
-
-    @Override
-    public final void setNotice(final Label noticeLabel) {
-        this.noticeLabel = noticeLabel;
-    }
-
-    @Override
-    public final void clearNotice() {
-        this.noticeLabel.setText("");
-    }
-
-    @Override
-    public final void showNotice(final String notice) {
-        this.noticeLabel.setText(notice);
     }
 
     /**
@@ -187,7 +171,7 @@ public class MastermindModelImpl<S, U> extends MinigameModelAbstr<S, U> implemen
             this.showAttempt(attemptLabel);
             this.winControl(nDigitExact);
         } else {
-            this.showNotice(Notice.MASTERMIND_INPUT_ERROR.getNotice());
+            //this.showNotice(Notice.MASTERMIND_INPUT_ERROR.getNotice());
         }
     }
 
@@ -201,7 +185,7 @@ public class MastermindModelImpl<S, U> extends MinigameModelAbstr<S, U> implemen
             final int score = this.attempts.size() - this.nAttempts + 1;
             this.scoreMapper(this.currPlayer, score);
             this.showContinueButton();
-            this.showNotice("You guessed with " + this.nAttempts + " attempts. Your score is " + score + ".");
+            //this.showNotice("You guessed with " + this.nAttempts + " attempts. Your score is " + score + ".");
             this.disableInput();
         } else {
             this.loseControl();
@@ -216,7 +200,7 @@ public class MastermindModelImpl<S, U> extends MinigameModelAbstr<S, U> implemen
             final int score = this.attempts.size() - this.nAttempts;
             this.scoreMapper(this.currPlayer, score);
             this.showContinueButton();
-            this.showNotice("You ended the attempts without guessing the number. Your score is " + score + ".");
+            //this.showNotice("You ended the attempts without guessing the number. Your score is " + score + ".");
             this.disableInput();
         }
     }

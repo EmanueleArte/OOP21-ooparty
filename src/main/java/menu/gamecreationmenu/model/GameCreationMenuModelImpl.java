@@ -26,7 +26,7 @@ import utils.graphics.StageManager;
  */
 public class GameCreationMenuModelImpl<S> implements GameCreationMenuModel<S> {
 
-    /** 
+    /**
      * Minimun number of players.
      */
     public static final int N_MIN_PLAYERS = 2;
@@ -57,13 +57,13 @@ public class GameCreationMenuModelImpl<S> implements GameCreationMenuModel<S> {
     }
 
     @Override
-    public final void startGame(final List<TextField> allPlayersNicknames, final List<ComboBox<PlayerColor>> allPlayerColors,
-            final Spinner<Integer> turnsNumber) {
+    public final void startGame(final List<TextField> allPlayersNicknames,
+            final List<ComboBox<PlayerColor>> allPlayerColors, final Spinner<Integer> turnsNumber) {
         final List<String> playersNicknames = this
                 .getNicknamesValues(allPlayersNicknames.subList(0, this.actualNPlayers));
         final List<PlayerColor> playersColors = this.getColorsValues(allPlayerColors.subList(0, this.actualNPlayers));
         if (!controlForms(playersNicknames, playersColors)) {
-            //this.showNotice(Notice.GAME_CREATION_ERROR.getNotice());
+            // this.showNotice(Notice.GAME_CREATION_ERROR.getNotice());
         } else {
             // To complete with game constructor (parameters: playersList, stageManager,
             // turnsNumber)
@@ -71,6 +71,11 @@ public class GameCreationMenuModelImpl<S> implements GameCreationMenuModel<S> {
             final MinigameView<S, Player> m = new MastermindViewImpl<>(this.stageManager);
             m.startMinigame(this.createPlayersList(playersNicknames, playersColors));
         }
+    }
+
+    @Override
+    public final void setActualNPlayers(final Integer nPlayers) {
+        this.actualNPlayers = nPlayers;
     }
 
     @Override
@@ -89,7 +94,8 @@ public class GameCreationMenuModelImpl<S> implements GameCreationMenuModel<S> {
 
     @Override
     public final void setTurnsNumberSpinner(final Spinner<Integer> turnsNumber) {
-        this.setSpinnerControls(turnsNumber, GameCreationMenuModelImpl.N_MIN_TURNS, GameCreationMenuModelImpl.N_MAX_TURNS);
+        this.setSpinnerControls(turnsNumber, GameCreationMenuModelImpl.N_MIN_TURNS,
+                GameCreationMenuModelImpl.N_MAX_TURNS);
     }
 
     /**
@@ -159,11 +165,6 @@ public class GameCreationMenuModelImpl<S> implements GameCreationMenuModel<S> {
             playersList.add(new PlayerImpl(nickname, playerColors.get(playersNicknames.indexOf(nickname)).getColor()));
         });
         return playersList;
-    }
-
-    @Override
-    public final void setActualNPlayers(final Integer nPlayers) {
-        this.actualNPlayers = nPlayers;
     }
 
 }
