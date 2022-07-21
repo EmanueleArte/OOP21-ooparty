@@ -7,6 +7,9 @@ import org.junit.jupiter.api.Test;
 
 import minigames.common.model.MinigameModelAbstr;
 
+/**
+ * Test class for MinigameModelAbstr.
+ */
 class TestMinigame {
 
     private final List<String> players = List.of("Luca", "Giovanni", "Lorenzo", "Marco");

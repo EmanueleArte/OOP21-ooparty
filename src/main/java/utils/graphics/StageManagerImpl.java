@@ -26,6 +26,11 @@ public class StageManagerImpl<S> extends JFrame implements StageManager<S> {
     private final Gui<S> gui;
     private MinigameController lastGameController;
 
+    /**
+     * Builds a new {@link StageManagerImpl}.
+     * 
+     * @param title
+     */
     public StageManagerImpl(final String title) {
         this.scenes = new ArrayList<S>();
         this.gui = new GuiImpl<>(title, this);
