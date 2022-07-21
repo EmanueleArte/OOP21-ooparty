@@ -87,4 +87,9 @@ public class GuiImpl<S> extends JFrame implements Gui<S> {
         this.mainStage.setScene((Scene) scene);
     }
 
+    @Override
+    public final FXMLLoader getLoader() {
+        return this.loader;
+    }
+
 }

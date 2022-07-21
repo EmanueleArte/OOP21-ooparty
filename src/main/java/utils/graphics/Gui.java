@@ -2,6 +2,7 @@ package utils.graphics;
 
 import java.util.List;
 
+import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import utils.enums.ControllerType;
 
@@ -36,5 +37,12 @@ public interface Gui<S> {
      * @param scene the scene to be shown
      */
     void setScene(S scene);
+
+    /**
+     * Getter for the {@link FXMLLoader}.
+     * 
+     * @return the last loader used
+     */
+    FXMLLoader getLoader();
 
 }
