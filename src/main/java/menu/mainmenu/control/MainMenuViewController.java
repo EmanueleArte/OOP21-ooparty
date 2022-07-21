@@ -14,6 +14,11 @@ public class MainMenuViewController<S> {
 
     private final MainMenuModel<S> menuModel;
 
+    /**
+     * Builds a new {@link MainMenuViewController}.
+     * 
+     * @param s the {@link utils.graphics.StageManager}
+     */
     public MainMenuViewController(final StageManager<S> s) {
         super();
         this.menuModel = new MainMenuModelImpl<>(s);
