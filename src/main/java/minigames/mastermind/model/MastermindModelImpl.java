@@ -48,30 +48,11 @@ public class MastermindModelImpl<S, U> extends MinigameModelAbstr<S, U> {
             this.hideContinueButton();
             // this.clearNotice();
             this.enableInput();
-            this.currPlayer = this.getNextPlayer();
+            this.setCurrPlayer();
             //this.getPlayerLabel().setTextFill(((Player) this.currPlayer).getColor());
             //this.getPlayerLabel().setText(((Player) this.currPlayer).getNickname() + "'s turn");
             // this.showNotice(solution);
         }
-    }
-
-    /**
-     * This method sets the input field.
-     * 
-     * @param inputField the {@link TextField} where a player puts his input
-     */
-    public void setInputField(final TextField inputField) {
-        this.inputField = inputField;
-    }
-
-    /**
-     * This method sets the attempts list.
-     * 
-     * @param attempts the list of {@link Label} that are the guess attempts of a
-     *                 player
-     */
-    public void setAttempts(final List<Label> attempts) {
-        this.attempts = attempts;
     }
 
     /**
@@ -284,15 +265,6 @@ public class MastermindModelImpl<S, U> extends MinigameModelAbstr<S, U> {
     private void enableInput() {
         this.inputField.setDisable(false);
         this.enterButton.setDisable(false);
-    }
-
-    /**
-     * Setter for continueButton.
-     * 
-     * @param enterButton the {@link Button} to pass the input to the game.
-     */
-    public void setEnterButton(final Button enterButton) {
-        this.enterButton = enterButton;
     }
 
 }
