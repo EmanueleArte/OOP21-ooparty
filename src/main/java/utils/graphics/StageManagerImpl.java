@@ -2,7 +2,6 @@ package utils.graphics;
 
 import java.util.ArrayList;
 import java.util.List;
-import javax.swing.JFrame;
 import minigames.common.control.MinigameController;
 import utils.enums.ControllerType;
 
@@ -11,17 +10,8 @@ import utils.enums.ControllerType;
  * 
  * @param <S> the scenes of the stage
  */
-public class StageManagerImpl<S> extends JFrame implements StageManager<S> {
+public class StageManagerImpl<S> implements StageManager<S> {
 
-    private static final long serialVersionUID = -2502020530541111808L;
-    /**
-     * Minimum window width.
-     */
-    public static final int MIN_WIDTH = 1000;
-    /**
-     * Minimum window height.
-     */
-    public static final int MIN_HEIGHT = 730;
     private final List<S> scenes;
     private final Gui<S> gui;
     private MinigameController lastGameController;
