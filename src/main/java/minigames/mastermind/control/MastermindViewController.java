@@ -16,7 +16,7 @@ import utils.graphics.StageManager;
  * @param <S> the scenes of the stage
  * @param <U> the {@link game.player.Player}
  */
-public class MastermindControllerImpl<S, U> extends NoticeUserAbstr implements MinigameController {
+public class MastermindViewController<S, U> extends NoticeUserAbstr implements MinigameController {
 
     private final MastermindModelImpl<S, U> mastermindModel;
     @FXML
@@ -33,12 +33,12 @@ public class MastermindControllerImpl<S, U> extends NoticeUserAbstr implements M
     private Button continueButton;
 
     /**
-     * Builds a new {@link MastermindControllerImpl}.
+     * Builds a new {@link MastermindViewController}.
      * 
      * @param s       the {@link utils.graphics.StageManager}
      * @param players the list of players
      */
-    public MastermindControllerImpl(final StageManager<S> s, final List<U> players) {
+    public MastermindViewController(final StageManager<S> s, final List<U> players) {
         this.mastermindModel = new MastermindModelImpl<>(players, s);
     }
 
@@ -49,14 +49,12 @@ public class MastermindControllerImpl<S, U> extends NoticeUserAbstr implements M
     }
 
     @FXML
-    @Override
-    public final void tryGuess() {
+    private void tryGuess() {
         this.mastermindModel.doAttempt();
     }
 
     @FXML
-    @Override
-    public final void startNextTurn() {
+    private void startNextTurn() {
         this.mastermindModel.runGame();
     }
 
