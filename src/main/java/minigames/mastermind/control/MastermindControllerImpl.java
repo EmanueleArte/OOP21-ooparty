@@ -5,18 +5,18 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
-import menu.gamecreationmenu.view.GameCreationMenuViewImpl;
 import minigames.common.viewcontroller.MinigameController;
 import minigames.mastermind.model.MastermindModelImpl;
+import utils.NoticeUserAbstr;
 import utils.graphics.StageManager;
 
 /**
- * Implementation of {@link MastermindController}.
+ * This class models the mastermind view controller.
  * 
  * @param <S> the scenes of the stage
  * @param <U> the {@link game.player.Player}
  */
-public class MastermindControllerImpl<S, U> implements MastermindController<S, U>, MinigameController {
+public class MastermindControllerImpl<S, U> extends NoticeUserAbstr implements MinigameController {
 
     private final MastermindModelImpl<S, U> mastermindModel;
     @FXML
@@ -35,7 +35,7 @@ public class MastermindControllerImpl<S, U> implements MastermindController<S, U
     /**
      * Builds a new {@link MastermindControllerImpl}.
      * 
-     * @param s the {@link utils.graphics.StageManager}
+     * @param s       the {@link utils.graphics.StageManager}
      * @param players the list of players
      */
     public MastermindControllerImpl(final StageManager<S> s, final List<U> players) {
@@ -56,12 +56,6 @@ public class MastermindControllerImpl<S, U> implements MastermindController<S, U
 
     @FXML
     @Override
-    public final void clearNotice() {
-        //this.mastermindModel.clearNotice();
-    }
-
-    @FXML
-    @Override
     public final void startNextTurn() {
         this.mastermindModel.runGame();
     }
@@ -75,7 +69,7 @@ public class MastermindControllerImpl<S, U> implements MastermindController<S, U
      * This method starts the mastermind minigame.
      */
     private void startGame() {
-        //this.mastermindModel.setNotice(this.noticeLabel);
+        // this.mastermindModel.setNotice(this.noticeLabel);
         this.mastermindModel.setInputField(this.inputField);
         this.mastermindModel.setContinueButton(this.continueButton);
         this.mastermindModel.setEnterButton(this.enterButton);

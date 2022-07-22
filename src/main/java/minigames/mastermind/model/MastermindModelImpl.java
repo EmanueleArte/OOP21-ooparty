@@ -10,9 +10,7 @@ import game.player.Player;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
-import menu.gamecreationmenu.view.GameCreationMenuViewImpl;
 import minigames.common.model.MinigameModelAbstr;
-import utils.enums.Notice;
 import utils.graphics.StageManager;
 
 /**
@@ -25,7 +23,6 @@ import utils.graphics.StageManager;
 public class MastermindModelImpl<S, U> extends MinigameModelAbstr<S, U> {
 
     private List<Label> attempts;
-    private Label noticeLabel;
     private TextField inputField;
     private String solution;
     private Button continueButton;
@@ -37,7 +34,7 @@ public class MastermindModelImpl<S, U> extends MinigameModelAbstr<S, U> {
      * Builds a new {@link GameCreationMenuViewImpl}.
      * 
      * @param players the list of players
-     * @param s the {@link utils.graphics.StageManager}
+     * @param s       the {@link utils.graphics.StageManager}
      */
     public MastermindModelImpl(final List<U> players, final StageManager<S> s) {
         super(players, s);
@@ -50,12 +47,12 @@ public class MastermindModelImpl<S, U> extends MinigameModelAbstr<S, U> {
             this.solution = this.generateSolution();
             this.hideAttempts();
             this.hideContinueButton();
-            //this.clearNotice();
+            // this.clearNotice();
             this.enableInput();
             this.currPlayer = this.getNextPlayer();
             this.getPlayerLabel().setTextFill(((Player) this.currPlayer).getColor());
             this.getPlayerLabel().setText(((Player) this.currPlayer).getNickname() + "'s turn");
-            //this.showNotice(solution);
+            // this.showNotice(solution);
         }
     }
 
@@ -94,11 +91,9 @@ public class MastermindModelImpl<S, U> extends MinigameModelAbstr<S, U> {
      * @param attemptLabel the label with the attempt information
      */
     private void showAttempt(final String attemptLabel) {
-        Optional<Label> currAttempt = this.attempts.stream()
-                .filter(attempt -> {
-                    return !attempt.isVisible();
-                })
-                .findFirst();
+        Optional<Label> currAttempt = this.attempts.stream().filter(attempt -> {
+            return !attempt.isVisible();
+        }).findFirst();
         currAttempt.get().setText(attemptLabel);
         currAttempt.get().setVisible(true);
         currAttempt.get().setManaged(true);
@@ -120,7 +115,7 @@ public class MastermindModelImpl<S, U> extends MinigameModelAbstr<S, U> {
      */
     private String generateSolution() {
         String number = "";
-        String[] digitArray = {"0", "1", "2", "3", "4", "5", "6", "7", "8", "9"};
+        String[] digitArray = { "0", "1", "2", "3", "4", "5", "6", "7", "8", "9" };
         List<String> digits = Stream.of(digitArray).collect(Collectors.toList());
         while (number.length() < 4) {
             int index = new Random().nextInt(digits.size());
@@ -133,9 +128,9 @@ public class MastermindModelImpl<S, U> extends MinigameModelAbstr<S, U> {
     /**
      * This method creates an attempt label.
      * 
-     * @param attempt the 4-digit number written by the player
+     * @param attempt       the 4-digit number written by the player
      * @param nDigitPresent the number of common digits
-     * @param nDigitExact the number of common digits in the same position
+     * @param nDigitExact   the number of common digits in the same position
      * @return the attempt label to show
      */
     private String createAttemptLabel(final String attempt, final Integer nDigitPresent, final Integer nDigitExact) {
@@ -178,12 +173,13 @@ public class MastermindModelImpl<S, U> extends MinigameModelAbstr<S, U> {
             this.showAttempt(attemptLabel);
             this.winControl(nDigitExact);
         } else {
-            //this.showNotice(Notice.MASTERMIND_INPUT_ERROR.getNotice());
+            // this.showNotice(Notice.MASTERMIND_INPUT_ERROR.getNotice());
         }
     }
 
     /**
-     * This method controls if the attempt is equal to the solution and saves the score.
+     * This method controls if the attempt is equal to the solution and saves the
+     * score.
      * 
      * @param nDigitExact the number of correct digits in correct position
      */
@@ -192,7 +188,8 @@ public class MastermindModelImpl<S, U> extends MinigameModelAbstr<S, U> {
             final int score = this.attempts.size() - this.nAttempts + 1;
             this.scoreMapper(this.currPlayer, score);
             this.showContinueButton();
-            //this.showNotice("You guessed with " + this.nAttempts + " attempts. Your score is " + score + ".");
+            // this.showNotice("You guessed with " + this.nAttempts + " attempts. Your score
+            // is " + score + ".");
             this.disableInput();
         } else {
             this.loseControl();
@@ -200,21 +197,23 @@ public class MastermindModelImpl<S, U> extends MinigameModelAbstr<S, U> {
     }
 
     /**
-     * This method controls if the attempts are ended without guessing the 4-digit number.
+     * This method controls if the attempts are ended without guessing the 4-digit
+     * number.
      */
     private void loseControl() {
         if (this.nAttempts == this.attempts.size()) {
             final int score = this.attempts.size() - this.nAttempts;
             this.scoreMapper(this.currPlayer, score);
             this.showContinueButton();
-            //this.showNotice("You ended the attempts without guessing the number. Your score is " + score + ".");
+            // this.showNotice("You ended the attempts without guessing the number. Your
+            // score is " + score + ".");
             this.disableInput();
         }
     }
 
     /**
-     * This method controls the number of digit that are present in the solution
-     * and in the attempt.
+     * This method controls the number of digit that are present in the solution and
+     * in the attempt.
      * 
      * @param attempt the 4-digit number written by the player
      * @return the number of common digits
@@ -230,8 +229,8 @@ public class MastermindModelImpl<S, U> extends MinigameModelAbstr<S, U> {
     }
 
     /**
-     * This method controls the number of digit which are in common between the solution
-     * and the attempt that are also in the same position.
+     * This method controls the number of digit which are in common between the
+     * solution and the attempt that are also in the same position.
      * 
      * @param attempt the 4-digit number written by the player
      * @return the number of common and equal positioned digits
