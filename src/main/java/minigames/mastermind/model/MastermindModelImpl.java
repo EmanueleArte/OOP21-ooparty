@@ -16,7 +16,7 @@ import utils.graphics.StageManager;
  * @param <S> the scenes of the stage
  * @param <U> the {@link game.player.Player}
  */
-public class MastermindModelImpl<S, U> extends MinigameModelAbstr<S, U> {
+public class MastermindModelImpl<S, U> extends MinigameModelAbstr<S, U> implements MastermindModel<S, U> {
 
     private static final String EMPTY_STRING = "";
     private List<Label> attempts;
@@ -44,22 +44,13 @@ public class MastermindModelImpl<S, U> extends MinigameModelAbstr<S, U> {
         }
     }
 
-    /**
-     * Getter for win.
-     * 
-     * @return true if the current player has guessed the 4-digit number
-     */
-    public boolean getWin() {
+    @Override
+    public final boolean getWin() {
         return this.win;
     }
 
-    /**
-     * Getter for lose.
-     * 
-     * @return true if the current player hasn't guessed the 4-digit number and the
-     *         attempts are ended
-     */
-    public boolean getLose() {
+    @Override
+    public final boolean getLose() {
         return this.lose;
     }
 
