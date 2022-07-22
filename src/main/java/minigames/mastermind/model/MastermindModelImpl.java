@@ -22,6 +22,7 @@ public class MastermindModelImpl<S, U> extends MinigameModelAbstr<S, U> implemen
     private List<Label> attempts;
     private String solution;
     private int nAttempts;
+    private int score;
     private boolean win = false;
     private boolean lose = false;
 
@@ -54,6 +55,16 @@ public class MastermindModelImpl<S, U> extends MinigameModelAbstr<S, U> implemen
     @Override
     public final boolean getLose() {
         return this.lose;
+    }
+
+    @Override
+    public final int getNAttempts() {
+        return this.nAttempts;
+    }
+
+    @Override
+    public final int getScore() {
+        return this.score;
     }
 
     @Override
@@ -117,11 +128,9 @@ public class MastermindModelImpl<S, U> extends MinigameModelAbstr<S, U> implemen
      */
     private void winControl(final Integer nDigitExact) {
         if (nDigitExact == 4) {
-            final int score = this.attempts.size() - this.nAttempts + 1;
-            this.scoreMapper(this.getCurrPlayer(), score);
+            this.score = this.attempts.size() - this.nAttempts + 1;
+            this.scoreMapper(this.getCurrPlayer(), this.score);
             this.setWin(true);
-            // this.showNotice("You guessed with " + this.nAttempts + " attempts. Your score
-            // is " + score + ".");
         } else {
             this.loseControl();
         }
@@ -133,11 +142,9 @@ public class MastermindModelImpl<S, U> extends MinigameModelAbstr<S, U> implemen
      */
     private void loseControl() {
         if (this.nAttempts == this.attempts.size()) {
-            final int score = this.attempts.size() - this.nAttempts;
-            this.scoreMapper(this.getCurrPlayer(), score);
+            this.score = this.attempts.size() - this.nAttempts;
+            this.scoreMapper(this.getCurrPlayer(), this.score);
             this.setLose(true);
-            // this.showNotice("You ended the attempts without guessing the number. Your
-            // score is " + score + ".");
         }
     }
 

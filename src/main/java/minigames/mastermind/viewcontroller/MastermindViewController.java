@@ -55,10 +55,39 @@ public class MastermindViewController<S, U> extends NoticeUserAbstr implements M
     @FXML
     private void tryGuess() {
         final String attemptDone = this.mastermindModel.doAttempt(this.getGuessAttempt());
+        this.showAttemptDone(attemptDone);
+        this.showTurnResults();
+    }
+
+    /**
+     * This method shows the attempt done if it is valid.
+     * 
+     * @param attemptDone the attempt string, it is empty if the attempt is invalid
+     */
+    private void showAttemptDone(final String attemptDone) {
         if (attemptDone.isEmpty()) {
             this.showNotice(Notice.MASTERMIND_INPUT_ERROR.getNotice());
         } else {
             this.showAttempt(attemptDone);
+        }
+    }
+
+    /**
+     * This methods shows the results of the turn.
+     */
+    private void showTurnResults() {
+        final boolean win = this.mastermindModel.getWin();
+        final boolean lose = this.mastermindModel.getLose();
+        if (win) {
+            this.showNotice("You guessed with " + this.mastermindModel.getNAttempts() + " attempts. Your scoreis "
+                    + this.mastermindModel.getScore() + ".");
+        } else if (lose) {
+            this.showNotice("You ended the attempts without guessing the number. Your score is "
+                    + this.mastermindModel.getScore() + ".");
+        }
+        if (win || lose) {
+            this.showContinueButton();
+            this.disableInput();
         }
     }
 

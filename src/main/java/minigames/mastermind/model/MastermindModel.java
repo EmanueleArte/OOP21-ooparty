@@ -26,6 +26,20 @@ public interface MastermindModel<S, U> extends MinigameModel<S, U> {
     boolean getLose();
 
     /**
+     * Getter for the number of attempts.
+     * 
+     * @return the number of attempts
+     */
+    int getNAttempts();
+
+    /**
+     * Getter for the score.
+     * 
+     * @return the score of a player
+     */
+    int getScore();
+
+    /**
      * This method controls the attempt of the player.
      * 
      * @param attempt the player attempt
