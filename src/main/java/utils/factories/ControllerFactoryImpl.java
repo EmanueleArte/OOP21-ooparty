@@ -2,8 +2,8 @@ package utils.factories;
 
 import java.util.List;
 
-import menu.gamecreationmenu.control.GameCreationMenuViewController;
-import menu.mainmenu.control.MainMenuViewController;
+import menu.gamecreationmenu.viewcontroller.GameCreationMenuViewController;
+import menu.mainmenu.viewcontroller.MainMenuViewController;
 import minigames.mastermind.control.MastermindControllerImpl;
 import utils.graphics.StageManager;
 

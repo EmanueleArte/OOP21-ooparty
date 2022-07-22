@@ -1,4 +1,4 @@
-package menu.gamecreationmenu.control;
+package menu.gamecreationmenu.viewcontroller;
 
 import java.util.List;
 import javafx.fxml.FXML;

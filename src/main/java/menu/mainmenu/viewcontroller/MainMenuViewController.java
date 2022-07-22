@@ -1,4 +1,4 @@
-package menu.mainmenu.control;
+package menu.mainmenu.viewcontroller;
 
 import javafx.fxml.FXML;
 import menu.mainmenu.model.MainMenuModel;

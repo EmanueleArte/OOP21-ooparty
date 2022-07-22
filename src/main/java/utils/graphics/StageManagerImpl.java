@@ -2,7 +2,8 @@ package utils.graphics;
 
 import java.util.ArrayList;
 import java.util.List;
-import minigames.common.control.MinigameController;
+
+import minigames.common.viewcontroller.MinigameController;
 import utils.enums.ControllerType;
 
 /**

@@ -6,7 +6,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import menu.gamecreationmenu.view.GameCreationMenuViewImpl;
-import minigames.common.control.MinigameController;
+import minigames.common.viewcontroller.MinigameController;
 import minigames.mastermind.model.MastermindModelImpl;
 import utils.graphics.StageManager;
 
