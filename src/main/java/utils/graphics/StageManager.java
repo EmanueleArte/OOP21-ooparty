@@ -51,10 +51,10 @@ public interface StageManager<S> {
     List<S> getScenes();
 
     /**
-     * This method returns the last controller generated using FXML.
+     * This method returns the last game controller used.
      * 
      * @return the last controller created
      */
-    MinigameController getLastController();
+    MinigameController getLastGameController();
 
 }

@@ -34,6 +34,7 @@ public class StageManagerImpl<S> extends JFrame implements StageManager<S> {
     public StageManagerImpl(final String title) {
         this.scenes = new ArrayList<S>();
         this.gui = new GuiImpl<>(title, this);
+        this.lastGameController = null;
     }
 
     @SuppressWarnings("unchecked")
@@ -78,7 +79,7 @@ public class StageManagerImpl<S> extends JFrame implements StageManager<S> {
     }
 
     @Override
-    public final MinigameController getLastController() {
+    public final MinigameController getLastGameController() {
         return this.lastGameController;
     }
 
