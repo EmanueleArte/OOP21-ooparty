@@ -8,10 +8,12 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import minigames.common.viewcontroller.MinigameController;
+import minigames.mastermind.model.MastermindModel;
 import minigames.mastermind.model.MastermindModelImpl;
 import utils.NoticeUserAbstr;
 import utils.enums.Notice;
 import utils.graphics.StageManager;
+import game.player.Player;
 
 /**
  * This class models the mastermind view controller.
@@ -21,7 +23,7 @@ import utils.graphics.StageManager;
  */
 public class MastermindViewController<S, U> extends NoticeUserAbstr implements MinigameController {
 
-    private final MastermindModelImpl<S, U> mastermindModel;
+    private final MastermindModel<S, U> mastermindModel;
     @FXML
     private List<Label> attempts;
     @FXML
@@ -67,12 +69,10 @@ public class MastermindViewController<S, U> extends NoticeUserAbstr implements M
     private void startNextTurn() {
         this.hideAttempts();
         this.hideContinueButton();
-        // this.clearNotice();
-        // this.enableInput();
-        // this.getPlayerLabel().setTextFill(((Player) this.currPlayer).getColor());
-        // this.getPlayerLabel().setText(((Player) this.currPlayer).getNickname() + "'s
-        // turn");
-        // this.showNotice(solution);
+        this.clearNotice();
+        this.enableInput();
+        this.playerLabel.setTextFill(((Player) this.mastermindModel.getCurrPlayer()).getColor());
+        this.playerLabel.setText(((Player) this.mastermindModel.getCurrPlayer()).getNickname() + "'s turn");
         this.mastermindModel.runGame();
     }
 

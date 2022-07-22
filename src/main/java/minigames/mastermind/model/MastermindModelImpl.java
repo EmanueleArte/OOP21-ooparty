@@ -39,6 +39,8 @@ public class MastermindModelImpl<S, U> extends MinigameModelAbstr<S, U> implemen
     public final void runGame() {
         if (this.hasNextPlayer()) {
             this.nAttempts = 0;
+            this.setWin(false);
+            this.setLose(false);
             this.solution = this.generateSolution();
             this.setCurrPlayer();
         }
@@ -52,6 +54,19 @@ public class MastermindModelImpl<S, U> extends MinigameModelAbstr<S, U> implemen
     @Override
     public final boolean getLose() {
         return this.lose;
+    }
+
+    @Override
+    public final String doAttempt(final String attempt) {
+        if (this.controlAttempt(attempt)) {
+            this.nAttempts++;
+            Integer nDigitPresent = this.controlDigitsPresence(attempt);
+            Integer nDigitExact = this.controlDigitsPosition(attempt);
+            this.winControl(nDigitExact);
+            return this.createAttemptLabel(attempt, nDigitPresent, nDigitExact);
+        } else {
+            return MastermindModelImpl.EMPTY_STRING;
+        }
     }
 
     /**
@@ -95,23 +110,6 @@ public class MastermindModelImpl<S, U> extends MinigameModelAbstr<S, U> implemen
     }
 
     /**
-     * This method controls the attempt of the player.
-     * 
-     * @return the attempt string if the attempt is valid, null otherwise
-     */
-    public String doAttempt(final String attempt) {
-        if (this.controlAttempt(attempt)) {
-            this.nAttempts++;
-            Integer nDigitPresent = this.controlDigitsPresence(attempt);
-            Integer nDigitExact = this.controlDigitsPosition(attempt);
-            this.winControl(nDigitExact);
-            return this.createAttemptLabel(attempt, nDigitPresent, nDigitExact);
-        } else {
-            return MastermindModelImpl.EMPTY_STRING;
-        }
-    }
-
-    /**
      * This method controls if the attempt is equal to the solution and saves the
      * score.
      * 
@@ -121,10 +119,9 @@ public class MastermindModelImpl<S, U> extends MinigameModelAbstr<S, U> implemen
         if (nDigitExact == 4) {
             final int score = this.attempts.size() - this.nAttempts + 1;
             this.scoreMapper(this.getCurrPlayer(), score);
-            this.showContinueButton();
+            this.setWin(true);
             // this.showNotice("You guessed with " + this.nAttempts + " attempts. Your score
             // is " + score + ".");
-            this.disableInput();
         } else {
             this.loseControl();
         }
@@ -138,7 +135,7 @@ public class MastermindModelImpl<S, U> extends MinigameModelAbstr<S, U> implemen
         if (this.nAttempts == this.attempts.size()) {
             final int score = this.attempts.size() - this.nAttempts;
             this.scoreMapper(this.getCurrPlayer(), score);
-            this.setWin(false);
+            this.setLose(true);
             // this.showNotice("You ended the attempts without guessing the number. Your
             // score is " + score + ".");
         }
