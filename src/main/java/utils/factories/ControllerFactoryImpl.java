@@ -4,7 +4,7 @@ import java.util.List;
 
 import menu.gamecreationmenu.viewcontroller.GameCreationMenuViewController;
 import menu.mainmenu.viewcontroller.MainMenuViewController;
-import minigames.mastermind.control.MastermindViewController;
+import minigames.mastermind.viewcontroller.MastermindViewController;
 import utils.graphics.StageManager;
 
 /**
