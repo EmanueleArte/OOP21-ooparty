@@ -1,9 +1,8 @@
 package minigames.common.model;
 
 import java.util.List;
-import java.util.ListIterator;
+import java.util.Map;
 
-import javafx.scene.control.Label;
 import utils.graphics.StageManager;
 
 /**
@@ -51,17 +50,25 @@ public interface MinigameModel<S, U> {
     List<U> getPlayers();
 
     /**
-     * Getter for playerLabel.
+     * Getter for the current player.
      * 
-     * @return the player {@link Label}.
+     * @return the current player
      */
-    Label getPlayerLabel();
+    U getCurrPlayer();
 
     /**
-     * Setter for playerLabel.
+     * Getter for playersClassification.
      * 
-     * @param playerLabel the {@link Label} whit the name of the current player
+     * @return a map with players as keys and their score as values
      */
-    void setPlayerLabel(Label playerLabel); 
+    Map<U, Integer> getPlayersClassification();
+
+    /**
+     * This method sets the map of players associated to their scores.
+     * 
+     * @param playersClassification a map with players as keys and their score as
+     *                              values
+     */
+    void setPlayersClassification(Map<U, Integer> playersClassification);
 
 }

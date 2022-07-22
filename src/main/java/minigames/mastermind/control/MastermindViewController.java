@@ -67,7 +67,6 @@ public class MastermindViewController<S, U> extends NoticeUserAbstr implements M
      * This method starts the mastermind minigame.
      */
     private void startGame() {
-        // this.mastermindModel.setNotice(this.noticeLabel);
         this.mastermindModel.setInputField(this.inputField);
         this.mastermindModel.setContinueButton(this.continueButton);
         this.mastermindModel.setEnterButton(this.enterButton);

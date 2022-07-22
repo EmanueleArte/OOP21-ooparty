@@ -28,7 +28,6 @@ public class MastermindModelImpl<S, U> extends MinigameModelAbstr<S, U> {
     private Button continueButton;
     private Button enterButton;
     private int nAttempts;
-    private U currPlayer;
 
     /**
      * Builds a new {@link GameCreationMenuViewImpl}.

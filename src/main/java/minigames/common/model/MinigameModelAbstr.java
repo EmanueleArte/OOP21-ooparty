@@ -7,8 +7,6 @@ import java.util.ListIterator;
 import java.util.Map;
 import java.util.stream.Collectors;
 
-import javafx.scene.control.Label;
-import menu.gamecreationmenu.view.GameCreationMenuViewImpl;
 import utils.graphics.StageManager;
 
 /**
@@ -23,7 +21,7 @@ public abstract class MinigameModelAbstr<S, U> implements MinigameModel<S, U> {
     private final ListIterator<U> player;
     private final StageManager<S> stageManager;
     private final Map<U, Integer> playersClassification;
-    private Label playerLabel;
+    private U currPlayer;
 
     /**
      * Builds a new {@link MinigameModelAbstr}.
@@ -42,20 +40,13 @@ public abstract class MinigameModelAbstr<S, U> implements MinigameModel<S, U> {
         this(players, null);
     }
 
-    /**
-     * @return a map with players as keys and their score as values
-     */
-    public Map<U, Integer> getPlayersClassification() {
+    @Override
+    public final Map<U, Integer> getPlayersClassification() {
         return this.playersClassification;
     }
 
-    /**
-     * This method sets the map of players associated to their scores.
-     * 
-     * @param playersClassification a map with players as keys and their score as
-     *                              values
-     */
-    public void setPlayersClassification(final Map<U, Integer> playersClassification) {
+    @Override
+    public final void setPlayersClassification(final Map<U, Integer> playersClassification) {
         this.playersClassification.clear();
         this.playersClassification.putAll(playersClassification);
     }
@@ -82,6 +73,11 @@ public abstract class MinigameModelAbstr<S, U> implements MinigameModel<S, U> {
     @Override
     public final void scoreMapper(final U player, final Integer score) {
         this.playersClassification.put(player, score);
+    }
+
+    @Override
+    public final U getCurrPlayer() {
+        return this.currPlayer;
     }
 
     /**
@@ -131,24 +127,6 @@ public abstract class MinigameModelAbstr<S, U> implements MinigameModel<S, U> {
         if (this.hasNextPlayer()) {
             this.runGame();
         }
-    }
-
-    /**
-     * Getter for playerLabel.
-     * 
-     * @return the player {@link Label}.
-     */
-    public final Label getPlayerLabel() {
-        return this.playerLabel;
-    }
-
-    /**
-     * Setter for playerLabel.
-     * 
-     * @param playerLabel the {@link Label} whit the name of the current player
-     */
-    public final void setPlayerLabel(final Label playerLabel) {
-        this.playerLabel = playerLabel;
     }
 
 }

@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Map;
 import org.junit.jupiter.api.Test;
 
+import minigames.common.model.MinigameModel;
 import minigames.common.model.MinigameModelAbstr;
 
 /**
@@ -29,7 +30,7 @@ class TestMinigame {
 
     @Test
     void testScoreMapper() {
-        final MinigameModelImpl<Integer, String> m = new MinigameModelImpl<>(players);
+        final MinigameModel<Integer, String> m = new MinigameModelImpl<>(players);
         players.forEach(p -> m.scoreMapper(p, scores.get(players.indexOf(p))));
         final Map<String, Integer> correctMap = Map.of("Luca", 4, "Giovanni", 7, "Lorenzo", 5, "Marco", 2);
         assertEquals(correctMap, m.getPlayersClassification());
@@ -37,7 +38,7 @@ class TestMinigame {
 
     @Test
     void testSortPlayerByScore() {
-        final MinigameModelImpl<Integer, String> m = new MinigameModelImpl<>(players);
+        final MinigameModel<Integer, String> m = new MinigameModelImpl<>(players);
         players.forEach(p -> m.scoreMapper(p, scores.get(players.indexOf(p))));
         final List<String> orderedList = List.of("Giovanni", "Lorenzo", "Luca", "Marco");
         assertEquals(orderedList, m.gameResults());
