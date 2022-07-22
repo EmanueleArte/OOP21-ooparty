@@ -66,7 +66,7 @@ public class MastermindViewController<S, U> extends NoticeUserAbstr implements M
     @FXML
     private void startNextTurn() {
         this.hideAttempts();
-        // this.hideContinueButton();
+        this.hideContinueButton();
         // this.clearNotice();
         // this.enableInput();
         // this.getPlayerLabel().setTextFill(((Player) this.currPlayer).getColor());
@@ -112,6 +112,22 @@ public class MastermindViewController<S, U> extends NoticeUserAbstr implements M
      */
     private String getGuessAttempt() {
         return this.inputField.getText();
+    }
+
+    /**
+     * This method hides the continue button.
+     */
+    private void hideContinueButton() {
+        this.continueButton.setVisible(false);
+        this.continueButton.setManaged(false);
+    }
+
+    /**
+     * This method shows the continue button.
+     */
+    private void showContinueButton() {
+        this.continueButton.setVisible(true);
+        this.continueButton.setManaged(true);
     }
 
 }
