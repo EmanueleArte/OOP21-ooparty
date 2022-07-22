@@ -49,8 +49,8 @@ public class MastermindModelImpl<S, U> extends MinigameModelAbstr<S, U> {
             // this.clearNotice();
             this.enableInput();
             this.currPlayer = this.getNextPlayer();
-            this.getPlayerLabel().setTextFill(((Player) this.currPlayer).getColor());
-            this.getPlayerLabel().setText(((Player) this.currPlayer).getNickname() + "'s turn");
+            //this.getPlayerLabel().setTextFill(((Player) this.currPlayer).getColor());
+            //this.getPlayerLabel().setText(((Player) this.currPlayer).getNickname() + "'s turn");
             // this.showNotice(solution);
         }
     }

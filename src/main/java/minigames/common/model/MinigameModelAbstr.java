@@ -27,7 +27,7 @@ public abstract class MinigameModelAbstr<S, U> implements MinigameModel<S, U> {
      * Builds a new {@link MinigameModelAbstr}.
      * 
      * @param players the list of players
-     * @param s the {@link utils.graphics.StageManager}
+     * @param s       the {@link utils.graphics.StageManager}
      */
     public MinigameModelAbstr(final List<U> players, final StageManager<S> s) {
         this.players = players;
@@ -126,6 +126,15 @@ public abstract class MinigameModelAbstr<S, U> implements MinigameModel<S, U> {
     protected void nextTurn() {
         if (this.hasNextPlayer()) {
             this.runGame();
+        }
+    }
+
+    /**
+     * Setter for the current player.
+     */
+    protected void setCurrPlayer() {
+        if (this.hasNextPlayer()) {
+            this.currPlayer = this.getNextPlayer();
         }
     }
 
