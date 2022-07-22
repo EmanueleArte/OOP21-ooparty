@@ -1,14 +1,11 @@
 package minigames.mastermind.model;
 
 import java.util.List;
-import java.util.Optional;
 import java.util.Random;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
 import minigames.common.model.MinigameModelAbstr;
 import utils.graphics.StageManager;
 
@@ -23,11 +20,10 @@ public class MastermindModelImpl<S, U> extends MinigameModelAbstr<S, U> {
 
     private static final String EMPTY_STRING = "";
     private List<Label> attempts;
-    private TextField inputField;
     private String solution;
-    private Button continueButton;
-    private Button enterButton;
     private int nAttempts;
+    private boolean win = false;
+    private boolean lose = false;
 
     /**
      * Builds a new {@link GameCreationMenuViewImpl}.
@@ -46,6 +42,25 @@ public class MastermindModelImpl<S, U> extends MinigameModelAbstr<S, U> {
             this.solution = this.generateSolution();
             this.setCurrPlayer();
         }
+    }
+
+    /**
+     * Getter for win.
+     * 
+     * @return true if the current player has guessed the 4-digit number
+     */
+    public boolean getWin() {
+        return this.win;
+    }
+
+    /**
+     * Getter for lose.
+     * 
+     * @return true if the current player hasn't guessed the 4-digit number and the
+     *         attempts are ended
+     */
+    public boolean getLose() {
+        return this.lose;
     }
 
     /**
@@ -132,11 +147,29 @@ public class MastermindModelImpl<S, U> extends MinigameModelAbstr<S, U> {
         if (this.nAttempts == this.attempts.size()) {
             final int score = this.attempts.size() - this.nAttempts;
             this.scoreMapper(this.getCurrPlayer(), score);
-            this.showContinueButton();
+            this.setWin(false);
             // this.showNotice("You ended the attempts without guessing the number. Your
             // score is " + score + ".");
-            this.disableInput();
         }
+    }
+
+    /**
+     * Setter for win.
+     * 
+     * @param win true if the current player has guessed the 4-digit number
+     */
+    private void setWin(final boolean win) {
+        this.win = win;
+    }
+
+    /**
+     * Setter for lose.
+     * 
+     * @param lose true if the current player hasn't guessed the 4-digit number and
+     *             the attempts are ended
+     */
+    private void setLose(final boolean lose) {
+        this.lose = lose;
     }
 
     /**
@@ -183,48 +216,6 @@ public class MastermindModelImpl<S, U> extends MinigameModelAbstr<S, U> {
      */
     private String createAttemptLabel(final String attempt, final Integer nDigitPresent, final Integer nDigitExact) {
         return attempt + "\n" + nDigitPresent + " common digits of \nwhich " + nDigitExact + " in correct position.";
-    }
-
-    /**
-     * Setter for continueButton.
-     * 
-     * @param continueButton the {@link Button} to the next turn
-     */
-    public void setContinueButton(final Button continueButton) {
-        this.continueButton = continueButton;
-    }
-
-    /**
-     * This method hides the continue button.
-     */
-    private void hideContinueButton() {
-        this.continueButton.setVisible(false);
-        this.continueButton.setManaged(false);
-    }
-
-    /**
-     * This method shows the continue button.
-     */
-    private void showContinueButton() {
-        this.continueButton.setVisible(true);
-        this.continueButton.setManaged(true);
-    }
-
-    /**
-     * This method disables the input when the current turn is ended.
-     */
-    private void disableInput() {
-        this.inputField.setText("");
-        this.inputField.setDisable(true);
-        this.enterButton.setDisable(true);
-    }
-
-    /**
-     * This method enables the input when the current turn is started.
-     */
-    private void enableInput() {
-        this.inputField.setDisable(false);
-        this.enterButton.setDisable(false);
     }
 
 }

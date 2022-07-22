@@ -130,4 +130,20 @@ public class MastermindViewController<S, U> extends NoticeUserAbstr implements M
         this.continueButton.setManaged(true);
     }
 
+    /**
+     * This method disables the input when the current turn is ended.
+     */
+    private void disableInput() {
+        this.inputField.setText("");
+        this.inputField.setDisable(true);
+        this.enterButton.setDisable(true);
+    }
+
+    /**
+     * This method enables the input when the current turn is started.
+     */
+    private void enableInput() {
+        this.inputField.setDisable(false);
+        this.enterButton.setDisable(false);
+    }
 }
