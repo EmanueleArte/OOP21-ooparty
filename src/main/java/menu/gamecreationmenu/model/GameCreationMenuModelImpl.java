@@ -64,7 +64,7 @@ public class GameCreationMenuModelImpl<S> implements GameCreationMenuModel<S> {
         final List<String> playersNicknames = this
                 .getNicknamesValues(allPlayersNicknames.subList(0, this.actualNPlayers));
         final List<PlayerColor> playersColors = this.getColorsValues(allPlayerColors.subList(0, this.actualNPlayers));
-        if (!controlForms(playersNicknames, playersColors)) {
+        if (!checkForms(playersNicknames, playersColors)) {
             return false;
         } else {
             // To complete with game constructor (parameters: playersList, stageManager,
@@ -120,7 +120,7 @@ public class GameCreationMenuModelImpl<S> implements GameCreationMenuModel<S> {
      * @param playerColors     the list of players colors
      * @return true if there aren't any duplicates or blank nicknames else false
      */
-    private boolean controlForms(final List<String> playersNicknames, final List<PlayerColor> playerColors) {
+    private boolean checkForms(final List<String> playersNicknames, final List<PlayerColor> playerColors) {
         boolean formsCorrect = true;
         final int nDiffNicknames = playersNicknames.stream().distinct().collect(Collectors.toList()).size();
         final int nDiffColors = playerColors.stream().distinct().collect(Collectors.toList()).size();

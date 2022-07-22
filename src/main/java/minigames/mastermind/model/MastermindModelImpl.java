@@ -69,11 +69,11 @@ public class MastermindModelImpl<S, U> extends MinigameModelAbstr<S, U> implemen
 
     @Override
     public final String doAttempt(final String attempt) {
-        if (this.controlAttempt(attempt)) {
+        if (this.checkAttempt(attempt)) {
             this.nAttempts++;
-            Integer nDigitPresent = this.controlDigitsPresence(attempt);
-            Integer nDigitExact = this.controlDigitsPosition(attempt);
-            this.winControl(nDigitExact);
+            Integer nDigitPresent = this.checkDigitsPresence(attempt);
+            Integer nDigitExact = this.checkDigitsPosition(attempt);
+            this.winCheck(nDigitExact);
             return this.createAttemptLabel(attempt, nDigitPresent, nDigitExact);
         } else {
             return MastermindModelImpl.EMPTY_STRING;
@@ -103,7 +103,7 @@ public class MastermindModelImpl<S, U> extends MinigameModelAbstr<S, U> implemen
      * @param attempt the 4-digit number written by the player
      * @return true if the attempt is a 4-digit number with all different digits
      */
-    private boolean controlAttempt(final String attempt) {
+    private boolean checkAttempt(final String attempt) {
         if (attempt.length() != 4) {
             return false;
         }
@@ -126,13 +126,13 @@ public class MastermindModelImpl<S, U> extends MinigameModelAbstr<S, U> implemen
      * 
      * @param nDigitExact the number of correct digits in correct position
      */
-    private void winControl(final Integer nDigitExact) {
+    private void winCheck(final Integer nDigitExact) {
         if (nDigitExact == 4) {
             this.score = this.attempts.size() - this.nAttempts + 1;
             this.scoreMapper(this.getCurrPlayer(), this.score);
             this.setWin(true);
         } else {
-            this.loseControl();
+            this.loseCheck();
         }
     }
 
@@ -140,7 +140,7 @@ public class MastermindModelImpl<S, U> extends MinigameModelAbstr<S, U> implemen
      * This method controls if the attempts are ended without guessing the 4-digit
      * number.
      */
-    private void loseControl() {
+    private void loseCheck() {
         if (this.nAttempts == this.attempts.size()) {
             this.score = this.attempts.size() - this.nAttempts;
             this.scoreMapper(this.getCurrPlayer(), this.score);
@@ -174,7 +174,7 @@ public class MastermindModelImpl<S, U> extends MinigameModelAbstr<S, U> implemen
      * @param attempt the 4-digit number written by the player
      * @return the number of common digits
      */
-    private Integer controlDigitsPresence(final String attempt) {
+    private Integer checkDigitsPresence(final String attempt) {
         Integer nDigit = 0;
         for (int i = 0; i < 4; i++) {
             if (this.solution.contains(String.valueOf(attempt.charAt(i)))) {
@@ -191,7 +191,7 @@ public class MastermindModelImpl<S, U> extends MinigameModelAbstr<S, U> implemen
      * @param attempt the 4-digit number written by the player
      * @return the number of common and equal positioned digits
      */
-    private Integer controlDigitsPosition(final String attempt) {
+    private Integer checkDigitsPosition(final String attempt) {
         Integer nDigit = 0;
         for (int i = 0; i < 4; i++) {
             if (this.solution.charAt(i) == attempt.charAt(i)) {
