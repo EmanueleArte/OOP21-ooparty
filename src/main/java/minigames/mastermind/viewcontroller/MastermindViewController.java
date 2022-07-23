@@ -49,6 +49,7 @@ public class MastermindViewController<S, U> extends NoticeUserAbstr implements M
 
     @FXML
     private void initialize() {
+        this.mastermindModel.setMaxAttempts(this.attempts.size());
         this.startNextTurn();
     }
 
@@ -57,6 +58,20 @@ public class MastermindViewController<S, U> extends NoticeUserAbstr implements M
         final String attemptDone = this.mastermindModel.doAttempt(this.getGuessAttempt());
         this.showAttemptDone(attemptDone);
         this.showTurnResults();
+    }
+
+    /**
+     * This method starts the mastermind minigame next turn.
+     */
+    @FXML
+    private void startNextTurn() {
+        this.hideAttempts();
+        this.hideContinueButton();
+        this.clearNotice();
+        this.enableInput();
+        this.mastermindModel.runGame();
+        this.playerLabel.setTextFill(((Player) this.mastermindModel.getCurrPlayer()).getColor());
+        this.playerLabel.setText(((Player) this.mastermindModel.getCurrPlayer()).getNickname() + "'s turn");
     }
 
     /**
@@ -73,7 +88,7 @@ public class MastermindViewController<S, U> extends NoticeUserAbstr implements M
     }
 
     /**
-     * This methods shows the results of the turn.
+     * This method shows the results of the turn.
      */
     private void showTurnResults() {
         final boolean win = this.mastermindModel.getWin();
@@ -89,20 +104,6 @@ public class MastermindViewController<S, U> extends NoticeUserAbstr implements M
             this.showContinueButton();
             this.disableInput();
         }
-    }
-
-    /**
-     * This method starts the mastermind minigame next turn.
-     */
-    @FXML
-    private void startNextTurn() {
-        this.hideAttempts();
-        this.hideContinueButton();
-        this.clearNotice();
-        this.enableInput();
-        this.playerLabel.setTextFill(((Player) this.mastermindModel.getCurrPlayer()).getColor());
-        this.playerLabel.setText(((Player) this.mastermindModel.getCurrPlayer()).getNickname() + "'s turn");
-        this.mastermindModel.runGame();
     }
 
     @Override

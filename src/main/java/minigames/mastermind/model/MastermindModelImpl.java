@@ -5,7 +5,6 @@ import java.util.Random;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-import javafx.scene.control.Label;
 import minigames.common.model.MinigameModelAbstr;
 import utils.graphics.StageManager;
 
@@ -19,7 +18,7 @@ import utils.graphics.StageManager;
 public class MastermindModelImpl<S, U> extends MinigameModelAbstr<S, U> implements MastermindModel<S, U> {
 
     private static final String EMPTY_STRING = "";
-    private List<Label> attempts;
+    private int maxAttempts;
     private String solution;
     private int nAttempts;
     private int score;
@@ -65,6 +64,11 @@ public class MastermindModelImpl<S, U> extends MinigameModelAbstr<S, U> implemen
     @Override
     public final int getScore() {
         return this.score;
+    }
+
+    @Override
+    public final void setMaxAttempts(final int maxAttempts) {
+        this.maxAttempts = maxAttempts;
     }
 
     @Override
@@ -128,7 +132,7 @@ public class MastermindModelImpl<S, U> extends MinigameModelAbstr<S, U> implemen
      */
     private void winCheck(final Integer nDigitExact) {
         if (nDigitExact == 4) {
-            this.score = this.attempts.size() - this.nAttempts + 1;
+            this.score = this.maxAttempts - this.nAttempts + 1;
             this.scoreMapper(this.getCurrPlayer(), this.score);
             this.setWin(true);
         } else {
@@ -141,8 +145,8 @@ public class MastermindModelImpl<S, U> extends MinigameModelAbstr<S, U> implemen
      * number.
      */
     private void loseCheck() {
-        if (this.nAttempts == this.attempts.size()) {
-            this.score = this.attempts.size() - this.nAttempts;
+        if (this.nAttempts == this.maxAttempts) {
+            this.score = this.maxAttempts - this.nAttempts;
             this.scoreMapper(this.getCurrPlayer(), this.score);
             this.setLose(true);
         }

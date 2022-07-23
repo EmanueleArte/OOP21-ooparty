@@ -40,6 +40,11 @@ public interface MastermindModel<S, U> extends MinigameModel<S, U> {
     int getScore();
 
     /**
+     * Setter for the max number of attempts.
+     */
+    void setMaxAttempts(int maxAttempts);
+
+    /**
      * This method controls the attempt of the player.
      * 
      * @param attempt the player attempt
