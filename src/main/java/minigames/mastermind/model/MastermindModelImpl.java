@@ -67,6 +67,11 @@ public class MastermindModelImpl<S, U> extends MinigameModelAbstr<S, U> implemen
     }
 
     @Override
+    public final String getSolution() {
+        return this.solution;
+    }
+
+    @Override
     public final void setMaxAttempts(final int maxAttempts) {
         this.maxAttempts = maxAttempts;
     }

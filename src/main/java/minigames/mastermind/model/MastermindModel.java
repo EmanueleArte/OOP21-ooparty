@@ -40,6 +40,13 @@ public interface MastermindModel<S, U> extends MinigameModel<S, U> {
     int getScore();
 
     /**
+     * Getter for the solution.
+     * 
+     * @return the 4-digit number to guess
+     */
+    String getSolution();
+
+    /**
      * Setter for the max number of attempts.
      */
     void setMaxAttempts(int maxAttempts);

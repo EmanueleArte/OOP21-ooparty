@@ -94,10 +94,10 @@ public class MastermindViewController<S, U> extends NoticeUserAbstr implements M
         final boolean win = this.mastermindModel.getWin();
         final boolean lose = this.mastermindModel.getLose();
         if (win) {
-            this.showNotice("You guessed with " + this.mastermindModel.getNAttempts() + " attempts. Your scoreis "
+            this.showNotice("You guessed with " + this.mastermindModel.getNAttempts() + " attempts. Your score is "
                     + this.mastermindModel.getScore() + ".");
         } else if (lose) {
-            this.showNotice("You ended the attempts without guessing the number. Your score is "
+            this.showNotice("You ended the attempts without guessing the number (" + this.mastermindModel.getSolution() + "). Your score is "
                     + this.mastermindModel.getScore() + ".");
         }
         if (win || lose) {
