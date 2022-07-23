@@ -15,8 +15,10 @@ public interface MinigameModel<S, U> {
 
     /**
      * This method runs the minigame.
+     * 
+     * @return true if there is another player that has to play
      */
-    void runGame();
+    boolean runGame();
 
     /**
      * This method returns the results of the minigame that are necessary for points

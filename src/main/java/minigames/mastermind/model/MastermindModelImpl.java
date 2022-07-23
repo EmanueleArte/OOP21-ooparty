@@ -36,14 +36,16 @@ public class MastermindModelImpl<S, U> extends MinigameModelAbstr<S, U> implemen
     }
 
     @Override
-    public final void runGame() {
+    public final boolean runGame() {
         if (this.hasNextPlayer()) {
             this.nAttempts = 0;
             this.setWin(false);
             this.setLose(false);
             this.solution = this.generateSolution();
             this.setCurrPlayer();
+            return true;
         }
+        return false;
     }
 
     @Override

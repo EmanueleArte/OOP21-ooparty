@@ -65,13 +65,14 @@ public class MastermindViewController<S, U> extends NoticeUserAbstr implements M
      */
     @FXML
     private void startNextTurn() {
-        this.hideAttempts();
-        this.hideContinueButton();
-        this.clearNotice();
-        this.enableInput();
-        this.mastermindModel.runGame();
-        this.playerLabel.setTextFill(((Player) this.mastermindModel.getCurrPlayer()).getColor());
-        this.playerLabel.setText(((Player) this.mastermindModel.getCurrPlayer()).getNickname() + "'s turn");
+        if (this.mastermindModel.runGame()) {
+            this.hideAttempts();
+            this.hideContinueButton();
+            this.clearNotice();
+            this.enableInput();
+            this.playerLabel.setTextFill(((Player) this.mastermindModel.getCurrPlayer()).getColor());
+            this.playerLabel.setText(((Player) this.mastermindModel.getCurrPlayer()).getNickname() + "'s turn");
+        }
     }
 
     /**
@@ -97,8 +98,8 @@ public class MastermindViewController<S, U> extends NoticeUserAbstr implements M
             this.showNotice("You guessed with " + this.mastermindModel.getNAttempts() + " attempts. Your score is "
                     + this.mastermindModel.getScore() + ".");
         } else if (lose) {
-            this.showNotice("You ended the attempts without guessing the number (" + this.mastermindModel.getSolution() + "). Your score is "
-                    + this.mastermindModel.getScore() + ".");
+            this.showNotice("You ended the attempts without guessing the number (" + this.mastermindModel.getSolution()
+                    + "). Your score is " + this.mastermindModel.getScore() + ".");
         }
         if (win || lose) {
             this.showContinueButton();

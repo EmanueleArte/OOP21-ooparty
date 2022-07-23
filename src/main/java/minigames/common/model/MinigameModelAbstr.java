@@ -62,7 +62,7 @@ public abstract class MinigameModelAbstr<S, U> implements MinigameModel<S, U> {
     }
 
     @Override
-    public abstract void runGame();
+    public abstract boolean runGame();
 
     @Override
     public final List<U> gameResults() {
