@@ -23,7 +23,8 @@ class TestMinigame {
         }
 
         @Override
-        public void runGame() {
+        public boolean runGame() {
+            return false;
         }
 
     }
