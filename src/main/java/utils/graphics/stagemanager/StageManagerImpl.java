@@ -29,39 +29,20 @@ public class StageManagerImpl<S> implements StageManager<S> {
         this.lastGameController = Optional.empty();
     }
 
-    @SuppressWarnings("unchecked")
     @Override
     public final <U> void addFXMLScene(final String fxmlUrl, final ControllerType c, final List<U> players) {
         this.gui.loadScene(fxmlUrl, c, players);
-        final Optional<S> scene = Optional.ofNullable((S) this.gui.getStageScene());
-        if (scene.isPresent()) {
-            this.scenes.add(scene.get());
-            this.gui.setScene(scene.get());
-            var controller = this.gui.getLoader().getController();
-            if (controller.getClass().getInterfaces().toString().contains("MinigameController")) {
-                this.lastGameController = Optional.ofNullable((MinigameController) controller);
-            }
-        }
+        this.lastGameController = Optional.ofNullable(SceneHandler.addFXMLScene(this.scenes, this.gui));
     }
 
     @Override
     public final void addScene(final S scene) {
-        Optional<S> s = Optional.ofNullable(scene);
-        if (s.isPresent()) {
-            this.scenes.add(scene);
-        }
+        SceneHandler.addScene(this.scenes, scene);
     }
 
     @Override
     public final S popScene() {
-        if (this.scenes.isEmpty()) {
-            return null;
-        }
-        var poppedScene = this.scenes.remove(this.lastSceneIndex());
-        if (this.gui.getStageScene() != null) {
-            this.gui.setScene(this.scenes.get(this.lastSceneIndex()));
-        }
-        return poppedScene;
+        return SceneHandler.popScene(this.scenes, this.gui);
     }
 
     @Override
@@ -77,15 +58,6 @@ public class StageManagerImpl<S> implements StageManager<S> {
     @Override
     public final MinigameController getLastGameController() {
         return this.lastGameController.orElse(null);
-    }
-
-    /**
-     * This method calculates the index of the last added scene.
-     * 
-     * @return the index of the last added scene
-     */
-    private int lastSceneIndex() {
-        return this.scenes.size() - 1;
     }
 
 }
