@@ -4,8 +4,8 @@ import java.util.Set;
 
 public class GameMapImpl implements GameMap {
     private Set<GameMapBox> boxes;
-    
-    public GameMapImpl(Set<GameMapBox> boxes) {
+
+    public GameMapImpl(final Set<GameMapBox> boxes) {
         this.boxes = boxes;
     }
 
