@@ -69,7 +69,7 @@ public class GuiImpl<S> extends JFrame implements Gui<S> {
             this.loader = new FXMLLoader(getClass().getClassLoader().getResource(fxmlUrl));
             this.loader.setControllerFactory(this.cSelector.selectControllerCallback(c, players));
             try {
-                this.root = loader.load();
+                this.root = Optional.ofNullable(loader.load());
                 this.setScene((S) new Scene(this.root.get()));
             } catch (IOException e1) {
                 e1.printStackTrace();

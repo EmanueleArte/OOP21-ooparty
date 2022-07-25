@@ -54,6 +54,9 @@ public class StageManagerImpl<S> implements StageManager<S> {
 
     @Override
     public final S popScene() {
+        if (this.scenes.isEmpty()) {
+            return null;
+        }
         var poppedScene = this.scenes.remove(this.lastSceneIndex());
         if (this.gui.getStageScene() != null) {
             this.gui.setScene(this.scenes.get(this.lastSceneIndex()));
