@@ -2,7 +2,7 @@ package minigames.common.view;
 
 import java.util.List;
 
-import utils.graphics.StageManagerController;
+import utils.graphics.stagemanager.StageManager;
 
 /**
  * This interface models a minigame view.
@@ -13,11 +13,11 @@ import utils.graphics.StageManagerController;
 public interface MinigameView<S, U> {
 
     /**
-     * Getter for the {@link StageManagerController}.
+     * Getter for the {@link StageManager}.
      * 
      * @return the stage manager
      */
-    StageManagerController<S> getStageManager();
+    StageManager<S> getStageManager();
 
     /**
      * This method creates the minigame scene.

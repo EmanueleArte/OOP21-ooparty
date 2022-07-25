@@ -1,4 +1,4 @@
-package utils.graphics;
+package utils.graphics.stagemanager;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -8,22 +8,22 @@ import minigames.common.viewcontroller.MinigameController;
 import utils.enums.ControllerType;
 
 /**
- * Implementation of {@link StageManagerController} and extension of {@link JFrame}.
+ * Implementation of {@link StageManager}.
  * 
  * @param <S> the scenes of the stage
  */
-public class StageManagerControllerImpl<S> implements StageManagerController<S> {
+public class StageManagerImpl<S> implements StageManager<S> {
 
     private final List<S> scenes;
     private final Gui<S> gui;
     private Optional<MinigameController> lastGameController;
 
     /**
-     * Builds a new {@link StageManagerControllerImpl}.
+     * Builds a new {@link StageManagerImpl}.
      * 
      * @param title the title of the frame
      */
-    public StageManagerControllerImpl(final String title) {
+    public StageManagerImpl(final String title) {
         this.scenes = new ArrayList<S>();
         this.gui = new GuiImpl<>(title, this);
         this.lastGameController = Optional.empty();
@@ -46,7 +46,8 @@ public class StageManagerControllerImpl<S> implements StageManagerController<S> 
 
     @Override
     public final void addScene(final S scene) {
-        if (scene != null) {
+        Optional<S> s = Optional.ofNullable(scene);
+        if (s.isPresent()) {
             this.scenes.add(scene);
         }
     }

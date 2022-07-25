@@ -4,7 +4,7 @@ import java.util.List;
 
 import javafx.util.Callback;
 import utils.enums.ControllerType;
-import utils.graphics.StageManagerController;
+import utils.graphics.stagemanager.StageManager;
 
 /**
  * Implementation of {@link ControllerSelector}.
@@ -18,9 +18,9 @@ public class ControllerSelectorImpl<S> implements ControllerSelector<S> {
     /**
      * Builds a new {@link ControllerSelectorImpl}.
      * 
-     * @param s the {@link utils.graphics.StageManagerController}
+     * @param s the {@link utils.graphics.stagemanager.StageManager}
      */
-    public ControllerSelectorImpl(final StageManagerController<S> s) {
+    public ControllerSelectorImpl(final StageManager<S> s) {
         this.controlFactory = new ControllerFactoryImpl<>(s);
     }
 

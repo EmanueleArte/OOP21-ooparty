@@ -6,7 +6,7 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import minigames.common.model.MinigameModelAbstr;
-import utils.graphics.StageManagerController;
+import utils.graphics.stagemanager.StageManager;
 
 /**
  * Implementation of {@link NoticeUser} and extension of
@@ -29,9 +29,9 @@ public class MastermindModelImpl<S, U> extends MinigameModelAbstr<S, U> implemen
      * Builds a new {@link GameCreationMenuViewImpl}.
      * 
      * @param players the list of players
-     * @param s       the {@link utils.graphics.StageManagerController}
+     * @param s       the {@link utils.graphics.stagemanager.StageManager}
      */
-    public MastermindModelImpl(final List<U> players, final StageManagerController<S> s) {
+    public MastermindModelImpl(final List<U> players, final StageManager<S> s) {
         super(players, s);
     }
 

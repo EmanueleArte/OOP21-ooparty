@@ -12,7 +12,7 @@ import minigames.mastermind.model.MastermindModel;
 import minigames.mastermind.model.MastermindModelImpl;
 import utils.NoticeUserAbstr;
 import utils.enums.Notice;
-import utils.graphics.StageManagerController;
+import utils.graphics.stagemanager.StageManager;
 import game.player.Player;
 
 /**
@@ -40,10 +40,10 @@ public class MastermindViewController<S, U> extends NoticeUserAbstr implements M
     /**
      * Builds a new {@link MastermindViewController}.
      * 
-     * @param s       the {@link utils.graphics.StageManagerController}
+     * @param s       the {@link utils.graphics.stagemanager.StageManager}
      * @param players the list of players
      */
-    public MastermindViewController(final StageManagerController<S> s, final List<U> players) {
+    public MastermindViewController(final StageManager<S> s, final List<U> players) {
         this.mastermindModel = new MastermindModelImpl<>(players, s);
     }
 

@@ -14,7 +14,7 @@ import minigames.common.view.MinigameView;
 import minigames.mastermind.view.MastermindViewImpl;
 import utils.IntSpinnerValueFactory;
 import utils.enums.PlayerColor;
-import utils.graphics.StageManagerController;
+import utils.graphics.stagemanager.StageManager;
 
 /**
  * Implementation of {@link GameCreationMenuModel}.
@@ -39,15 +39,15 @@ public class GameCreationMenuModelImpl<S> implements GameCreationMenuModel<S> {
      * Maximum number of turns.
      */
     public static final int N_MAX_TURNS = 20;
-    private final StageManagerController<S> stageManager;
+    private final StageManager<S> stageManager;
     private int actualNPlayers;
 
     /**
      * Builds a new {@link GameCreationMenuModelImpl}.
      * 
-     * @param s the {@link utils.graphics.StageManagerController}.
+     * @param s the {@link utils.graphics.stagemanager.StageManager}.
      */
-    public GameCreationMenuModelImpl(final StageManagerController<S> s) {
+    public GameCreationMenuModelImpl(final StageManager<S> s) {
         super();
         this.stageManager = s;
         this.actualNPlayers = GameCreationMenuModelImpl.N_MIN_PLAYERS;

@@ -1,4 +1,4 @@
-package utils.graphics;
+package utils.graphics.stagemanager;
 
 import java.util.List;
 
@@ -6,11 +6,11 @@ import minigames.common.viewcontroller.MinigameController;
 import utils.enums.ControllerType;
 
 /**
- * This interface models a stage manager for javafx.
+ * This interface models a stage manager.
  * 
  * @param <S> the scenes of the stage
  */
-public interface StageManagerController<S> {
+public interface StageManager<S> {
 
     /**
      * This method adds an FXML scene to the scene list.
@@ -26,7 +26,7 @@ public interface StageManagerController<S> {
     /**
      * This method adds an existent scene.
      * 
-     * @param scene
+     * @param scene the scene to add
      */
     void addScene(S scene);
 

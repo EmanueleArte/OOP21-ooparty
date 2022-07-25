@@ -7,7 +7,7 @@ import java.util.ListIterator;
 import java.util.Map;
 import java.util.stream.Collectors;
 
-import utils.graphics.StageManagerController;
+import utils.graphics.stagemanager.StageManager;
 
 /**
  * Implementation of {@link MinigameModel}.
@@ -19,7 +19,7 @@ public abstract class MinigameModelAbstr<S, U> implements MinigameModel<S, U> {
 
     private final List<U> players;
     private final ListIterator<U> player;
-    private final StageManagerController<S> stageManager;
+    private final StageManager<S> stageManager;
     private final Map<U, Integer> playersClassification;
     private U currPlayer;
 
@@ -27,9 +27,9 @@ public abstract class MinigameModelAbstr<S, U> implements MinigameModel<S, U> {
      * Builds a new {@link MinigameModelAbstr}.
      * 
      * @param players the list of players
-     * @param s       the {@link utils.graphics.StageManagerController}
+     * @param s       the {@link utils.graphics.stagemanager.StageManager}
      */
-    public MinigameModelAbstr(final List<U> players, final StageManagerController<S> s) {
+    public MinigameModelAbstr(final List<U> players, final StageManager<S> s) {
         this.players = players;
         this.player = this.players.listIterator();
         this.playersClassification = new LinkedHashMap<>();
@@ -57,7 +57,7 @@ public abstract class MinigameModelAbstr<S, U> implements MinigameModel<S, U> {
     }
 
     @Override
-    public final StageManagerController<S> getStageManager() {
+    public final StageManager<S> getStageManager() {
         return this.stageManager;
     }
 

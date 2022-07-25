@@ -2,7 +2,7 @@ package menu.mainmenu.model;
 
 import menu.gamecreationmenu.view.GameCreationMenuView;
 import menu.gamecreationmenu.view.GameCreationMenuViewImpl;
-import utils.graphics.StageManagerController;
+import utils.graphics.stagemanager.StageManager;
 
 /**
  * Implementation of {@link MainMenuModel}.
@@ -11,14 +11,14 @@ import utils.graphics.StageManagerController;
  */
 public class MainMenuModelImpl<S> implements MainMenuModel<S> {
 
-    private final StageManagerController<S> stageManager;
+    private final StageManager<S> stageManager;
 
     /**
      * Builds a new {@link MainMenuModelImpl}.
      * 
-     * @param s the {@link utils.graphics.StageManagerController}
+     * @param s the {@link utils.graphics.stagemanager.StageManager}
      */
-    public MainMenuModelImpl(final StageManagerController<S> s) {
+    public MainMenuModelImpl(final StageManager<S> s) {
         super();
         this.stageManager = s;
     }
