@@ -3,6 +3,7 @@ package utils.graphics;
 import java.awt.Dimension;
 import java.io.IOException;
 import java.util.List;
+import java.util.Optional;
 
 import javax.swing.JFrame;
 
@@ -31,7 +32,7 @@ public class GuiImpl<S> extends JFrame implements Gui<S> {
      * Minimum window height.
      */
     public static final int MIN_HEIGHT = 730;
-    private JFXPanel mainStage;
+    private Optional<JFXPanel> mainStage;
     private FXMLLoader loader;
     private final JFrame frame;
     private final ControllerSelector<S> cSelector;
@@ -44,15 +45,15 @@ public class GuiImpl<S> extends JFrame implements Gui<S> {
      * @param s     the {@link utils.graphics.StageManager}
      */
     public GuiImpl(final String title, final StageManager<S> s) {
-        this.mainStage = null;
+        this.mainStage = Optional.empty();
         this.frame = new JFrame(title);
         this.cSelector = new ControllerSelectorImpl<>(s);
     }
 
     @Override
     public final void createGui() {
-        this.mainStage = new JFXPanel();
-        this.frame.add(this.mainStage);
+        this.mainStage = Optional.of(new JFXPanel());
+        this.frame.add(this.mainStage.get());
         this.frame.pack();
         this.frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
         this.frame.setMinimumSize(new Dimension(GuiImpl.MIN_WIDTH, GuiImpl.MIN_HEIGHT));
@@ -78,7 +79,7 @@ public class GuiImpl<S> extends JFrame implements Gui<S> {
 
     @Override
     public final void setScene(final S scene) {
-        this.mainStage.setScene((Scene) scene);
+        this.mainStage.get().setScene((Scene) scene);
     }
 
     @Override
@@ -88,14 +89,14 @@ public class GuiImpl<S> extends JFrame implements Gui<S> {
 
     @Override
     public final Scene getStageScene() {
-        if (this.mainStage == null) {
+        if (this.mainStage.isEmpty()) {
             return null;
         }
-        Scene scene = null;
-        while (scene == null) {
-            scene = this.mainStage.getScene();
+        Optional<Scene> scene = Optional.empty();
+        while (scene.isEmpty()) {
+            scene = Optional.ofNullable(this.mainStage.get().getScene());
         }
-        return scene;
+        return scene.get();
     }
 
 }
