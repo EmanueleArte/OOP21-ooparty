@@ -33,10 +33,10 @@ public class StageManagerImpl<S> implements StageManager<S> {
     @Override
     public final <U> void addFXMLScene(final String fxmlUrl, final ControllerType c, final List<U> players) {
         this.gui.loadScene(fxmlUrl, c, players);
-        final S scene = (S) this.gui.getStageScene();
-        if (scene != null) {
-            this.scenes.add(scene);
-            this.gui.setScene(scene);
+        final Optional<S> scene = Optional.ofNullable((S) this.gui.getStageScene());
+        if (scene.isPresent()) {
+            this.scenes.add(scene.get());
+            this.gui.setScene(scene.get());
             var controller = this.gui.getLoader().getController();
             if (controller.getClass().getInterfaces().toString().contains("MinigameController")) {
                 this.lastGameController = Optional.ofNullable((MinigameController) controller);
