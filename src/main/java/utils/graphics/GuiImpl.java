@@ -42,9 +42,9 @@ public class GuiImpl<S> extends JFrame implements Gui<S> {
      * Builds a new {@link GuiImpl}.
      * 
      * @param title the title of the frame
-     * @param s     the {@link utils.graphics.StageManager}
+     * @param s     the {@link utils.graphics.StageManagerController}
      */
-    public GuiImpl(final String title, final StageManager<S> s) {
+    public GuiImpl(final String title, final StageManagerController<S> s) {
         this.mainStage = Optional.empty();
         this.root = Optional.empty();
         this.frame = new JFrame(title);

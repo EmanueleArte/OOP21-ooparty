@@ -5,7 +5,7 @@ import java.util.List;
 import menu.gamecreationmenu.viewcontroller.GameCreationMenuViewController;
 import menu.mainmenu.viewcontroller.MainMenuViewController;
 import minigames.mastermind.viewcontroller.MastermindViewController;
-import utils.graphics.StageManager;
+import utils.graphics.StageManagerController;
 
 /**
  * Implementation of {@link ControllerFactory}.
@@ -14,14 +14,14 @@ import utils.graphics.StageManager;
  */
 public class ControllerFactoryImpl<S> implements ControllerFactory<S> {
 
-    private final StageManager<S> stageManager;
+    private final StageManagerController<S> stageManager;
 
     /**
      * Builds a new {@link ControllerFactoryImpl}.
      * 
-     * @param s the {@link utils.graphics.StageManager}
+     * @param s the {@link utils.graphics.StageManagerController}
      */
-    public ControllerFactoryImpl(final StageManager<S> s) {
+    public ControllerFactoryImpl(final StageManagerController<S> s) {
         this.stageManager = s;
     }
 

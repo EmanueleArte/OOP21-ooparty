@@ -6,8 +6,8 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.Test;
 
-import utils.graphics.StageManager;
-import utils.graphics.StageManagerImpl;
+import utils.graphics.StageManagerController;
+import utils.graphics.StageManagerControllerImpl;
 
 /**
  * Test class for StageManager used without gui.
@@ -16,7 +16,7 @@ class TestStageManager {
 
     @Test
     void testAddScene() {
-        final StageManager<String> s = new StageManagerImpl<>("");
+        final StageManagerController<String> s = new StageManagerControllerImpl<>("");
         s.addScene("1");
         s.addScene("2");
         assertFalse(s.getScenes().isEmpty());
@@ -26,7 +26,7 @@ class TestStageManager {
 
     @Test
     void testPopScene() {
-        final StageManager<String> s = new StageManagerImpl<>("");
+        final StageManagerController<String> s = new StageManagerControllerImpl<>("");
         s.addScene("1");
         s.addScene("2");
         s.addScene("3");

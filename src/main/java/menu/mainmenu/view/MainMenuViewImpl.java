@@ -1,7 +1,7 @@
 package menu.mainmenu.view;
 
 import utils.enums.ControllerType;
-import utils.graphics.StageManager;
+import utils.graphics.StageManagerController;
 
 /**
  * Implementation of {@link MainMenuView}.
@@ -10,14 +10,14 @@ import utils.graphics.StageManager;
  */
 public class MainMenuViewImpl<S> implements MainMenuView<S> {
 
-    private final StageManager<S> stageManager;
+    private final StageManagerController<S> stageManager;
 
     /**
      * Builds a new {@link MainMenuViewImpl}.
      * 
-     * @param s the {@link utils.graphics.StageManager}
+     * @param s the {@link utils.graphics.StageManagerController}
      */
-    public MainMenuViewImpl(final StageManager<S> s) {
+    public MainMenuViewImpl(final StageManagerController<S> s) {
         super();
         this.stageManager = s;
     }

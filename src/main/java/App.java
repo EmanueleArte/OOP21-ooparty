@@ -6,8 +6,8 @@ import game.player.PlayerImpl;
 import javafx.scene.Scene;
 import menu.mainmenu.view.MainMenuView;
 import menu.mainmenu.view.MainMenuViewImpl;
-import utils.graphics.StageManager;
-import utils.graphics.StageManagerImpl;
+import utils.graphics.StageManagerController;
+import utils.graphics.StageManagerControllerImpl;
 
 public final class App {
 
@@ -17,7 +17,7 @@ public final class App {
      * @param args command line args.
      */
     public static void main(final String[] args) {
-        final StageManager<Scene> stageManager = new StageManagerImpl<>("OOparty");
+        final StageManagerController<Scene> stageManager = new StageManagerControllerImpl<>("OOparty");
         stageManager.run();
         final MainMenuView<Scene> mainMenu = new MainMenuViewImpl<>(stageManager);
         mainMenu.createMainMenu();

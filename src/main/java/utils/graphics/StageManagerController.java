@@ -10,7 +10,7 @@ import utils.enums.ControllerType;
  * 
  * @param <S> the scenes of the stage
  */
-public interface StageManager<S> {
+public interface StageManagerController<S> {
 
     /**
      * This method adds an FXML scene to the scene list.

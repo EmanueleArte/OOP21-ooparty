@@ -8,22 +8,22 @@ import minigames.common.viewcontroller.MinigameController;
 import utils.enums.ControllerType;
 
 /**
- * Implementation of {@link StageManager} and extension of {@link JFrame}.
+ * Implementation of {@link StageManagerController} and extension of {@link JFrame}.
  * 
  * @param <S> the scenes of the stage
  */
-public class StageManagerImpl<S> implements StageManager<S> {
+public class StageManagerControllerImpl<S> implements StageManagerController<S> {
 
     private final List<S> scenes;
     private final Gui<S> gui;
     private Optional<MinigameController> lastGameController;
 
     /**
-     * Builds a new {@link StageManagerImpl}.
+     * Builds a new {@link StageManagerControllerImpl}.
      * 
      * @param title the title of the frame
      */
-    public StageManagerImpl(final String title) {
+    public StageManagerControllerImpl(final String title) {
         this.scenes = new ArrayList<S>();
         this.gui = new GuiImpl<>(title, this);
         this.lastGameController = Optional.empty();

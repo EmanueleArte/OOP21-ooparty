@@ -9,15 +9,15 @@ import org.junit.jupiter.api.Test;
 
 import minigames.mastermind.model.MastermindModel;
 import minigames.mastermind.model.MastermindModelImpl;
-import utils.graphics.StageManager;
-import utils.graphics.StageManagerImpl;
+import utils.graphics.StageManagerController;
+import utils.graphics.StageManagerControllerImpl;
 
 /**
  * Test class for MastermindModel.
  */
 class TestMastermind {
 
-    private final StageManager<String> s = new StageManagerImpl<String>("");
+    private final StageManagerController<String> s = new StageManagerControllerImpl<String>("");
     private final List<String> players = List.of("Luca", "Giovanni", "Lorenzo", "Marco");
 
     @Test

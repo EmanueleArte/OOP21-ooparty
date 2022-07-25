@@ -4,7 +4,7 @@ import java.util.List;
 
 import minigames.common.view.MinigameViewAbstr;
 import utils.enums.ControllerType;
-import utils.graphics.StageManager;
+import utils.graphics.StageManagerController;
 
 /**
  * Extension of {@link minigames.common.view.MinigameViewAbstr}.
@@ -17,9 +17,9 @@ public class MastermindViewImpl<S, U> extends MinigameViewAbstr<S, U> {
     /**
      * Builds a new {@link MastermindViewImpl}.
      * 
-     * @param s the {@link utils.graphics.StageManager}
+     * @param s the {@link utils.graphics.StageManagerController}
      */
-    public MastermindViewImpl(final StageManager<S> s) {
+    public MastermindViewImpl(final StageManagerController<S> s) {
         super(s);
     }
 
