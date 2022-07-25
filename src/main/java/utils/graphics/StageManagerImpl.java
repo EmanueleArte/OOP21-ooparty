@@ -2,6 +2,7 @@ package utils.graphics;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import minigames.common.viewcontroller.MinigameController;
 import utils.enums.ControllerType;
@@ -15,7 +16,7 @@ public class StageManagerImpl<S> implements StageManager<S> {
 
     private final List<S> scenes;
     private final Gui<S> gui;
-    private MinigameController lastGameController;
+    private Optional<MinigameController> lastGameController;
 
     /**
      * Builds a new {@link StageManagerImpl}.
@@ -25,7 +26,7 @@ public class StageManagerImpl<S> implements StageManager<S> {
     public StageManagerImpl(final String title) {
         this.scenes = new ArrayList<S>();
         this.gui = new GuiImpl<>(title, this);
-        this.lastGameController = null;
+        this.lastGameController = Optional.empty();
     }
 
     @SuppressWarnings("unchecked")
@@ -38,7 +39,7 @@ public class StageManagerImpl<S> implements StageManager<S> {
             this.gui.setScene(scene);
             var controller = this.gui.getLoader().getController();
             if (controller.getClass().getInterfaces().toString().contains("MinigameController")) {
-                this.lastGameController = (MinigameController) controller;
+                this.lastGameController = Optional.ofNullable((MinigameController) controller);
             }
         }
     }
@@ -71,7 +72,7 @@ public class StageManagerImpl<S> implements StageManager<S> {
 
     @Override
     public final MinigameController getLastGameController() {
-        return this.lastGameController;
+        return this.lastGameController.orElse(null);
     }
 
     /**
