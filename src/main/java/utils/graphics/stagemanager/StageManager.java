@@ -15,7 +15,7 @@ public interface StageManager<S> {
     /**
      * This method adds an FXML scene to the scene list.
      * 
-     * @param <U>     the {@link game.player.Player}
+     * @param <U>     the players type
      * @param fxmlUrl the url of the fxml file to load
      * @param c       the type of the controller
      * @param players the list of the players; put null if you haven't any list of
@@ -24,7 +24,7 @@ public interface StageManager<S> {
     <U> void addFXMLScene(String fxmlUrl, ControllerType c, List<U> players);
 
     /**
-     * This method adds an existent scene.
+     * This method adds an existing scene.
      * 
      * @param scene the scene to add
      */

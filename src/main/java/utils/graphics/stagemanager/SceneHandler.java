@@ -1,14 +1,86 @@
 package utils.graphics.stagemanager;
 
-/**
- * This class models the actions that handle the scenes.
- * 
- * @param <S> the scenes of the stage
- */
-public class SceneHandler<S> {
+import java.util.List;
+import java.util.Optional;
 
-    public SceneHandler() {
-        // TODO Auto-generated constructor stub
+import minigames.common.viewcontroller.MinigameController;
+
+/**
+ * This static class models the actions that handle the scenes.
+ */
+public final class SceneHandler {
+
+    /**
+     * The name of the interface implemented by minigames.
+     */
+    private static final String MINIGAME_INTERFACE = "MinigameController";
+
+    private SceneHandler() {
+    }
+
+    /**
+     * This method adds an scene loaded from an FXML file to the scenes list.
+     * 
+     * @param <S>    the scenes of the stage
+     * @param scenes the scenes list
+     * @param gui    the gui of the game
+     * @return the minigame controller loaded or null if the controller is not of a
+     *         minigame
+     */
+    @SuppressWarnings("unchecked")
+    public static <S> MinigameController addFXMLScene(final List<S> scenes, final Gui<S> gui) {
+        final Optional<S> scene = Optional.ofNullable((S) gui.getStageScene());
+        if (scene.isPresent()) {
+            scenes.add(scene.get());
+            gui.setScene(scene.get());
+            var controller = gui.getLoader().getController();
+            if (controller.getClass().getInterfaces().toString().contains(SceneHandler.MINIGAME_INTERFACE)) {
+                return (MinigameController) controller;
+            }
+            return null;
+        }
+        return null;
+    }
+
+    /**
+     * This method adds an existing scene to the scenes list.
+     * 
+     * @param <S>    the scenes of the stage
+     * @param scenes the scenes list
+     * @param scene  the scene to add
+     */
+    public static <S> void addScene(final List<S> scenes, final S scene) {
+        Optional<S> s = Optional.ofNullable(scene);
+        if (s.isPresent()) {
+            scenes.add(scene);
+        }
+    }
+
+    /**
+     * 
+     * @param <S>    the scenes of the stage
+     * @param scenes the scenes list
+     * @param gui    the gui of the game
+     * @return the last added scene or null if the scenes list is empty.
+     */
+    public static <S> S popScene(final List<S> scenes, final Gui<S> gui) {
+        if (scenes.isEmpty()) {
+            return null;
+        }
+        var poppedScene = scenes.remove(SceneHandler.lastSceneIndex(scenes));
+        if (gui.getStageScene() != null) {
+            gui.setScene(scenes.get(SceneHandler.lastSceneIndex(scenes)));
+        }
+        return poppedScene;
+    }
+
+    /**
+     * This method calculates the index of the last added scene.
+     * 
+     * @return the index of the last added scene
+     */
+    public static <S> int lastSceneIndex(final List<S> scenes) {
+        return scenes.size() - 1;
     }
 
 }
