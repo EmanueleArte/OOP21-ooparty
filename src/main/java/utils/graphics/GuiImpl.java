@@ -36,7 +36,7 @@ public class GuiImpl<S> extends JFrame implements Gui<S> {
     private FXMLLoader loader;
     private final JFrame frame;
     private final ControllerSelector<S> cSelector;
-    private Parent root = null;
+    private Optional<Parent> root;
 
     /**
      * Builds a new {@link GuiImpl}.
@@ -46,6 +46,7 @@ public class GuiImpl<S> extends JFrame implements Gui<S> {
      */
     public GuiImpl(final String title, final StageManager<S> s) {
         this.mainStage = Optional.empty();
+        this.root = Optional.empty();
         this.frame = new JFrame(title);
         this.cSelector = new ControllerSelectorImpl<>(s);
     }
@@ -69,10 +70,10 @@ public class GuiImpl<S> extends JFrame implements Gui<S> {
             this.loader.setControllerFactory(this.cSelector.selectControllerCallback(c, players));
             try {
                 this.root = loader.load();
-                this.setScene((S) new Scene(this.root));
+                this.setScene((S) new Scene(this.root.get()));
             } catch (IOException e1) {
                 e1.printStackTrace();
-                this.root = null;
+                this.root = Optional.empty();
             }
         });
     }
