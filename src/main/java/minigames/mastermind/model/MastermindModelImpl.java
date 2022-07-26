@@ -6,7 +6,7 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import minigames.common.model.MinigameModelAbstr;
-import utils.graphics.StageManager;
+import utils.graphics.stagemanager.StageManager;
 
 /**
  * Implementation of {@link NoticeUser} and extension of
@@ -26,10 +26,10 @@ public class MastermindModelImpl<S, U> extends MinigameModelAbstr<S, U> implemen
     private boolean lose = false;
 
     /**
-     * Builds a new {@link GameCreationMenuViewImpl}.
+     * Builds a new {@link MastermindModelImpl}.
      * 
      * @param players the list of players
-     * @param s       the {@link utils.graphics.StageManager}
+     * @param s       the {@link utils.graphics.stagemanager.StageManager}
      */
     public MastermindModelImpl(final List<U> players, final StageManager<S> s) {
         super(players, s);

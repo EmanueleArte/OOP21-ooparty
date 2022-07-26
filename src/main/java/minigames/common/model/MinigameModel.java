@@ -3,7 +3,7 @@ package minigames.common.model;
 import java.util.List;
 import java.util.Map;
 
-import utils.graphics.StageManager;
+import utils.graphics.stagemanager.StageManager;
 
 /**
  * This interface models a minigame model.

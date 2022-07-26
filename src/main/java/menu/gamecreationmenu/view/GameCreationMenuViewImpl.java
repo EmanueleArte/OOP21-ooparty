@@ -1,7 +1,7 @@
 package menu.gamecreationmenu.view;
 
 import utils.enums.ControllerType;
-import utils.graphics.StageManager;
+import utils.graphics.stagemanager.StageManager;
 
 /**
  * Implementation of {@link GameCreationMenuView}.
@@ -15,7 +15,7 @@ public class GameCreationMenuViewImpl<S> implements GameCreationMenuView<S> {
     /**
      * Builds a new {@link GameCreationMenuViewImpl}.
      * 
-     * @param s the {@link utils.graphics.StageManager}
+     * @param s the {@link utils.graphics.stagemanager.StageManager}
      */
     public GameCreationMenuViewImpl(final StageManager<S> s) {
         super();

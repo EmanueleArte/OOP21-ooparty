@@ -4,7 +4,7 @@ import java.lang.reflect.InvocationTargetException;
 import java.util.List;
 
 import javafx.util.Callback;
-import utils.graphics.StageManager;
+import utils.graphics.stagemanager.StageManager;
 
 /**
  * This class models a generic controller creation.
@@ -21,7 +21,7 @@ class GenericController<S, U> implements Callback<Class<?>, Object> {
     /**
      * Builds a new {@link GenericController}.
      * 
-     * @param s               the {@link utils.graphics.StageManager}
+     * @param s               the {@link utils.graphics.stagemanager.StageManager}
      * @param players         the list of players
      * @param controllerClass the class of the controller
      */

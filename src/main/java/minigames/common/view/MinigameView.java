@@ -2,7 +2,7 @@ package minigames.common.view;
 
 import java.util.List;
 
-import utils.graphics.StageManager;
+import utils.graphics.stagemanager.StageManager;
 
 /**
  * This interface models a minigame view.

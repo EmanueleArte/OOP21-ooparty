@@ -2,7 +2,7 @@ package minigames.common.view;
 
 import java.util.List;
 
-import utils.graphics.StageManager;
+import utils.graphics.stagemanager.StageManager;
 
 /**
  * Implementation of {@link MinigameView}.
@@ -17,7 +17,7 @@ public abstract class MinigameViewAbstr<S, U> implements MinigameView<S, U> {
     /**
      * Builds a new {@link MinigameViewAbstr}.
      * 
-     * @param s the {@link utils.graphics.StageManager}
+     * @param s the {@link utils.graphics.stagemanager.StageManager}
      */
     public MinigameViewAbstr(final StageManager<S> s) {
         super();

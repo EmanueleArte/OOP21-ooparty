@@ -14,7 +14,7 @@ import minigames.common.view.MinigameView;
 import minigames.mastermind.view.MastermindViewImpl;
 import utils.IntSpinnerValueFactory;
 import utils.enums.PlayerColor;
-import utils.graphics.StageManager;
+import utils.graphics.stagemanager.StageManager;
 
 /**
  * Implementation of {@link GameCreationMenuModel}.
@@ -45,7 +45,7 @@ public class GameCreationMenuModelImpl<S> implements GameCreationMenuModel<S> {
     /**
      * Builds a new {@link GameCreationMenuModelImpl}.
      * 
-     * @param s the {@link utils.graphics.StageManager}.
+     * @param s the {@link utils.graphics.stagemanager.StageManager}.
      */
     public GameCreationMenuModelImpl(final StageManager<S> s) {
         super();

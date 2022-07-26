@@ -7,7 +7,7 @@ import java.util.ListIterator;
 import java.util.Map;
 import java.util.stream.Collectors;
 
-import utils.graphics.StageManager;
+import utils.graphics.stagemanager.StageManager;
 
 /**
  * Implementation of {@link MinigameModel}.
@@ -27,7 +27,7 @@ public abstract class MinigameModelAbstr<S, U> implements MinigameModel<S, U> {
      * Builds a new {@link MinigameModelAbstr}.
      * 
      * @param players the list of players
-     * @param s       the {@link utils.graphics.StageManager}
+     * @param s       the {@link utils.graphics.stagemanager.StageManager}
      */
     public MinigameModelAbstr(final List<U> players, final StageManager<S> s) {
         this.players = players;

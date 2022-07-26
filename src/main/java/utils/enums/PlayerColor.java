@@ -21,7 +21,7 @@ public enum PlayerColor {
     /**
      * Yellow color.
      */
-    YELLOW(Color.YELLOW),
+    YELLOW(Color.rgb(230, 230, 0)),
     /**
      * White color.
      */

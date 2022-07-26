@@ -3,7 +3,7 @@ package menu.mainmenu.viewcontroller;
 import javafx.fxml.FXML;
 import menu.mainmenu.model.MainMenuModel;
 import menu.mainmenu.model.MainMenuModelImpl;
-import utils.graphics.StageManager;
+import utils.graphics.stagemanager.StageManager;
 
 /**
  * This class models the main menu view controller.
@@ -17,7 +17,7 @@ public class MainMenuViewController<S> {
     /**
      * Builds a new {@link MainMenuViewController}.
      * 
-     * @param s the {@link utils.graphics.StageManager}
+     * @param s the {@link utils.graphics.stagemanager.StageManager}
      */
     public MainMenuViewController(final StageManager<S> s) {
         super();

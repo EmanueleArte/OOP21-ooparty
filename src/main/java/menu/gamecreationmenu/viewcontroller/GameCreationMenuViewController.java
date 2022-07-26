@@ -11,7 +11,7 @@ import menu.gamecreationmenu.model.GameCreationMenuModelImpl;
 import utils.NoticeUserAbstr;
 import utils.enums.Notice;
 import utils.enums.PlayerColor;
-import utils.graphics.StageManager;
+import utils.graphics.stagemanager.StageManager;
 
 /**
  * This class models the game creation menu view controller.
@@ -35,7 +35,7 @@ public class GameCreationMenuViewController<S> extends NoticeUserAbstr {
     /**
      * Builds a new {@link GameCreationMenuViewController}.
      * 
-     * @param s the {@link utils.graphics.StageManager}.
+     * @param s the {@link utils.graphics.stagemanager.StageManager}.
      */
     public GameCreationMenuViewController(final StageManager<S> s) {
         super();

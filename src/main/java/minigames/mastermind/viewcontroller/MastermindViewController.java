@@ -7,13 +7,13 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
-import minigames.common.viewcontroller.MinigameController;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
+import minigames.common.viewcontroller.MinigameViewControllerAbstr;
 import minigames.mastermind.model.MastermindModel;
 import minigames.mastermind.model.MastermindModelImpl;
-import utils.NoticeUserAbstr;
 import utils.enums.Notice;
-import utils.graphics.StageManager;
-import game.player.Player;
+import utils.graphics.stagemanager.StageManager;
 
 /**
  * This class models the mastermind view controller.
@@ -21,17 +21,13 @@ import game.player.Player;
  * @param <S> the scenes of the stage
  * @param <U> the {@link game.player.Player}
  */
-public class MastermindViewController<S, U> extends NoticeUserAbstr implements MinigameController {
+public class MastermindViewController<S, U> extends MinigameViewControllerAbstr<S, U> {
 
     private final MastermindModel<S, U> mastermindModel;
     @FXML
     private List<Label> attempts;
     @FXML
     private TextField inputField;
-    @FXML
-    private Label noticeLabel;
-    @FXML
-    private Label playerLabel;
     @FXML
     private Button enterButton;
     @FXML
@@ -40,10 +36,11 @@ public class MastermindViewController<S, U> extends NoticeUserAbstr implements M
     /**
      * Builds a new {@link MastermindViewController}.
      * 
-     * @param s       the {@link utils.graphics.StageManager}
+     * @param s       the {@link utils.graphics.stagemanager.StageManager}
      * @param players the list of players
      */
     public MastermindViewController(final StageManager<S> s, final List<U> players) {
+        super();
         this.mastermindModel = new MastermindModelImpl<>(players, s);
     }
 
@@ -66,13 +63,30 @@ public class MastermindViewController<S, U> extends NoticeUserAbstr implements M
     @FXML
     private void startNextTurn() {
         if (this.mastermindModel.runGame()) {
+            this.inputField.setText("");
             this.hideAttempts();
             this.hideContinueButton();
             this.clearNotice();
             this.enableInput();
-            this.playerLabel.setTextFill(((Player) this.mastermindModel.getCurrPlayer()).getColor());
-            this.playerLabel.setText(((Player) this.mastermindModel.getCurrPlayer()).getNickname() + "'s turn");
+            this.setPlayerLabelText(this.mastermindModel);
         }
+    }
+
+    /**
+     * This method performs an action when the "ENTER" key is clicked.
+     * 
+     * @param ke the {@link KeyEvent}
+     */
+    @FXML
+    private void onEnter(final KeyEvent ke) {
+        if (ke.getCode().equals(KeyCode.ENTER)) {
+            this.tryGuess();
+        }
+    }
+
+    @Override
+    public final List<U> getGameResults() {
+        return this.mastermindModel.gameResults();
     }
 
     /**
@@ -105,11 +119,6 @@ public class MastermindViewController<S, U> extends NoticeUserAbstr implements M
             this.showContinueButton();
             this.disableInput();
         }
-    }
-
-    @Override
-    public final List<U> getGameResults() {
-        return this.mastermindModel.gameResults();
     }
 
     /**
@@ -165,7 +174,6 @@ public class MastermindViewController<S, U> extends NoticeUserAbstr implements M
      * This method disables the input when the current turn is ended.
      */
     private void disableInput() {
-        this.inputField.setText("");
         this.inputField.setDisable(true);
         this.enterButton.setDisable(true);
     }

@@ -23,7 +23,7 @@
                   </Label>
                   <Label fx:id="playerLabel" text="Player">
                      <font>
-                        <Font size="16.0" />
+                        <Font size="20.0" />
                      </font>
                   </Label>
                   <Label text="You have 10 attempts to guess a 4 digit number with all the digits different." textAlignment="CENTER" />
@@ -91,7 +91,7 @@
                   </VBox>
                   <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="20.0">
                      <children>
-                        <TextField fx:id="inputField" maxWidth="-Infinity" onKeyReleased="#clearNotice" prefWidth="200.0">
+                        <TextField fx:id="inputField" maxWidth="-Infinity" onKeyReleased="#onEnter" onTextChange="#clearNotice" prefWidth="200.0">
                            <font>
                               <Font size="14.0" />
                            </font></TextField>

@@ -2,7 +2,7 @@ package menu.mainmenu.model;
 
 import menu.gamecreationmenu.view.GameCreationMenuView;
 import menu.gamecreationmenu.view.GameCreationMenuViewImpl;
-import utils.graphics.StageManager;
+import utils.graphics.stagemanager.StageManager;
 
 /**
  * Implementation of {@link MainMenuModel}.
@@ -16,7 +16,7 @@ public class MainMenuModelImpl<S> implements MainMenuModel<S> {
     /**
      * Builds a new {@link MainMenuModelImpl}.
      * 
-     * @param s the {@link utils.graphics.StageManager}
+     * @param s the {@link utils.graphics.stagemanager.StageManager}
      */
     public MainMenuModelImpl(final StageManager<S> s) {
         super();

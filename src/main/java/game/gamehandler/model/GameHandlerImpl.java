@@ -5,7 +5,7 @@ import java.util.List;
 import game.dice.model.DiceModel;
 import game.dice.model.DiceModelImpl;
 import game.player.Player;
-import utils.graphics.StageManager;
+import utils.graphics.stagemanager.StageManager;
 
 public class GameHandlerImpl<S> implements GameHandler {
 
