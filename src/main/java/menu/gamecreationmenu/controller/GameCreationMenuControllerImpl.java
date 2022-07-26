@@ -30,8 +30,8 @@ public class GameCreationMenuControllerImpl extends MenuControllerAbstr implemen
 
     @Override
     public final void goNext() {
-        // TODO Auto-generated method stub
-
+        this.menuModel.startGame(this.menuViewController.getPlayersNicknames(),
+                this.menuViewController.getColorsValues(), this.menuViewController.getTurnsNumber());
     }
 
     @Override
@@ -40,24 +40,11 @@ public class GameCreationMenuControllerImpl extends MenuControllerAbstr implemen
     }
 
     @Override
-    public final void showPlayersForms() {
-        // TODO Auto-generated method stub
-
-    }
-
-    @Override
     public final void createMenu() {
         this.menuView = new GameCreationMenuViewImpl<>(this.getStageManager());
         this.menuView.createGameCreationMenu();
         this.menuViewController = this.getStageManager().getGui().getLoader().getController();
         this.menuViewController.setGameCreationMenuController(this);
-    }
-
-    @Override
-    public final void initialize() {
-        this.menuModel.setNumberOfPlayersSpinner(this.menuViewController.getNumberOfPlayers());
-        this.menuModel.setTurnsNumberSpinner(this.menuViewController.getTurnsNumber());
-        this.menuModel.fillColorsBoxes(this.menuViewController.getPlayerColors());
     }
 
     @Override

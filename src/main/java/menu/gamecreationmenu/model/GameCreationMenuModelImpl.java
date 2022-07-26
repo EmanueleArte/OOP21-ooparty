@@ -6,8 +6,6 @@ import java.util.stream.Collectors;
 
 import game.player.Player;
 import game.player.PlayerImpl;
-import javafx.collections.FXCollections;
-import javafx.scene.control.ComboBox;
 import minigames.common.view.MinigameView;
 import minigames.mastermind.view.MastermindViewImpl;
 import utils.enums.PlayerColor;
@@ -57,10 +55,9 @@ public class GameCreationMenuModelImpl<S> implements GameCreationMenuModel<S> {
 
     @Override
     public final boolean startGame(final List<String> allPlayersNicknames,
-            final List<ComboBox<PlayerColor>> allPlayerColors, final int turnsNumber) {
-        final List<String> playersNicknames = this
-                .getNicknamesValues(allPlayersNicknames.subList(0, this.actualNPlayers));
-        final List<PlayerColor> playersColors = this.getColorsValues(allPlayerColors.subList(0, this.actualNPlayers));
+            final List<PlayerColor> allPlayersColors, final int turnsNumber) {
+        final List<String> playersNicknames = allPlayersNicknames.subList(0, this.actualNPlayers);
+        final List<PlayerColor> playersColors = allPlayersColors.subList(0, this.actualNPlayers);
         if (!checkForms(playersNicknames, playersColors)) {
             return false;
         } else {
@@ -76,14 +73,6 @@ public class GameCreationMenuModelImpl<S> implements GameCreationMenuModel<S> {
     @Override
     public final void setActualNPlayers(final Integer nPlayers) {
         this.actualNPlayers = nPlayers;
-    }
-
-    @Override
-    public final void fillColorsBoxes(final List<ComboBox<PlayerColor>> playerColors) {
-        playerColors.forEach(colors -> {
-            colors.setItems(FXCollections.observableArrayList(PlayerColor.values()));
-            colors.getSelectionModel().selectFirst();
-        });
     }
 
     /**
@@ -105,17 +94,6 @@ public class GameCreationMenuModelImpl<S> implements GameCreationMenuModel<S> {
         return formsCorrect;
     }
 
-    /**
-     * This method gets the players colors values.
-     * 
-     * @param list the list of players colors combo box.
-     * @return the list of players colors
-     */
-    private List<PlayerColor> getColorsValues(final List<ComboBox<PlayerColor>> list) {
-        final List<PlayerColor> valuesList = new ArrayList<>();
-        list.forEach(element -> valuesList.add(element.getValue()));
-        return valuesList;
-    }
 
     /**
      * This method creates the list of players that will join the game.

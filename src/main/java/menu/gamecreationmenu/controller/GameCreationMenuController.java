@@ -8,16 +8,6 @@ import menu.mainmenu.controller.MainMenuController;
 public interface GameCreationMenuController extends MainMenuController {
 
     /**
-     * This method shows only the necessary players forms.
-     */
-    void showPlayersForms();
-
-    /**
-     * This method sets some gui elements rules.
-     */
-    void initialize();
-
-    /**
      * This method sets the actual number of players.
      * 
      * @param actualNPlayers the actual number of players

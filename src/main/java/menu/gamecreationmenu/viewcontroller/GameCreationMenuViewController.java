@@ -1,6 +1,9 @@
 package menu.gamecreationmenu.viewcontroller;
 
+import java.util.ArrayList;
 import java.util.List;
+
+import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Spinner;
@@ -38,7 +41,8 @@ public class GameCreationMenuViewController extends NoticeUserAbstr {
 
     @FXML
     private void initialize() {
-        this.menuController.initialize();
+        this.setNumberOfPlayersSpinner();
+        this.setTurnsNumberSpinner();
         this.numberOfPlayers.getValueFactory().valueProperty().addListener(value -> this.showPlayersForms());
         this.showPlayersForms();
     }
@@ -117,6 +121,16 @@ public class GameCreationMenuViewController extends NoticeUserAbstr {
     }
 
     /**
+     * This method fills the the combo box with colors which can be choose.
+     */
+    public final void fillColorsBoxes() {
+        playerColors.forEach(colors -> {
+            colors.setItems(FXCollections.observableArrayList(PlayerColor.values()));
+            colors.getSelectionModel().selectFirst();
+        });
+    }
+
+    /**
      * This method sets the value factory for the number of players spinner.
      */
     private void setNumberOfPlayersSpinner() {
@@ -142,29 +156,34 @@ public class GameCreationMenuViewController extends NoticeUserAbstr {
     }
 
     /**
-     * Getter for numberOfPlayers.
+     * This method gets the players colors values.
      * 
-     * @return the {@link Spinner} that indicates the number of players
+     * @return the list of players colors
      */
-    public Spinner<Integer> getNumberOfPlayers() {
-        return this.numberOfPlayers;
+    public List<PlayerColor> getColorsValues() {
+        final List<PlayerColor> valuesList = new ArrayList<>();
+        this.playerColors.forEach(element -> valuesList.add(element.getValue()));
+        return valuesList;
     }
 
     /**
-     * Getter for numberOfPlayers.
+     * This method gets the players nicknames.
      * 
-     * @return the {@link Spinner} that indicates the number of turns
+     * @return the list of players nicknames
      */
-    public Spinner<Integer> getTurnsNumber() {
-        return this.turnsNumber;
+    public List<String> getPlayersNicknames() {
+        final List<String> valuesList = new ArrayList<>();
+        this.playersNicknames.forEach(element -> valuesList.add(element.getText()));
+        return valuesList;
     }
 
     /**
-     * Getter for numberOfPlayers.
+     * This method gets the players nicknames.
      * 
-     * @return the {@link List} of {@link ComboBox} with the colors chosen
+     * @return the number of turns chosen
      */
-    public List<ComboBox<PlayerColor>> getPlayerColors() {
-        return this.playerColors;
+    public int getTurnsNumber() {
+        return this.turnsNumber.getValue();
     }
+
 }
