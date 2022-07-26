@@ -33,6 +33,12 @@ class GenericController<S, U> implements Callback<Class<?>, Object> {
         this.players = Optional.ofNullable(players);
     }
 
+    /**
+     * Builds a new {@link GenericController} with no players.
+     * 
+     * @param s               the {@link utils.graphics.stagemanager.StageManager}
+     * @param controllerClass the class of the controller
+     */
     GenericController(final StageManager<S> s, final Class<?> controllerClass) {
         this(s, null, controllerClass);
     }
