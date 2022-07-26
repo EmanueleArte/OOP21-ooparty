@@ -118,18 +118,6 @@ public class GameCreationMenuModelImpl<S> implements GameCreationMenuModel<S> {
     }
 
     /**
-     * This method gets the players nicknames values.
-     * 
-     * @param list the list of players nicknames text fields.
-     * @return the list of players nicknames
-     */
-    private List<String> getNicknamesValues(final List<TextField> list) {
-        final List<String> valuesList = new ArrayList<>();
-        list.forEach(element -> valuesList.add(element.getText()));
-        return valuesList;
-    }
-
-    /**
      * This method creates the list of players that will join the game.
      * 
      * @param playersNicknames the list of players nicknames
