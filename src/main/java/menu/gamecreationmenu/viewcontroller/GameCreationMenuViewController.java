@@ -8,6 +8,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.VBox;
 import menu.gamecreationmenu.controller.GameCreationMenuController;
 import menu.gamecreationmenu.model.GameCreationMenuModelImpl;
+import utils.IntSpinnerValueFactory;
 import utils.NoticeUserAbstr;
 import utils.enums.Notice;
 import utils.enums.PlayerColor;
@@ -102,6 +103,33 @@ public class GameCreationMenuViewController extends NoticeUserAbstr {
     private void hideForm(final VBox form) {
         form.setVisible(false);
         form.setManaged(false);
+    }
+
+    /**
+     * This method sets the value factory for a generic number spinner.
+     * 
+     * @param spinner the spinner to be set
+     * @param min     the min value
+     * @param max     the max value
+     */
+    private void setSpinnerControls(final Spinner<Integer> spinner, final int min, final int max) {
+        spinner.setValueFactory(new IntSpinnerValueFactory(min, max, min));
+    }
+
+    /**
+     * This method sets the value factory for the number of players spinner.
+     */
+    private void setNumberOfPlayersSpinner() {
+        this.setSpinnerControls(this.numberOfPlayers, GameCreationMenuModelImpl.N_MIN_PLAYERS,
+                GameCreationMenuModelImpl.N_MAX_PLAYERS);
+    }
+
+    /**
+     * This method sets the value factory for the number of turns spinner.
+     */
+    private void setTurnsNumberSpinner() {
+        this.setSpinnerControls(this.turnsNumber, GameCreationMenuModelImpl.N_MIN_TURNS,
+                GameCreationMenuModelImpl.N_MAX_TURNS);
     }
 
     /**

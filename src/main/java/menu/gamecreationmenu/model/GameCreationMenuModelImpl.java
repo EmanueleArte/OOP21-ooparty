@@ -8,11 +8,8 @@ import game.player.Player;
 import game.player.PlayerImpl;
 import javafx.collections.FXCollections;
 import javafx.scene.control.ComboBox;
-import javafx.scene.control.Spinner;
-import javafx.scene.control.TextField;
 import minigames.common.view.MinigameView;
 import minigames.mastermind.view.MastermindViewImpl;
-import utils.IntSpinnerValueFactory;
 import utils.enums.PlayerColor;
 import utils.graphics.stagemanager.StageManager;
 
@@ -59,8 +56,8 @@ public class GameCreationMenuModelImpl<S> implements GameCreationMenuModel<S> {
     }
 
     @Override
-    public final boolean startGame(final List<TextField> allPlayersNicknames,
-            final List<ComboBox<PlayerColor>> allPlayerColors, final Spinner<Integer> turnsNumber) {
+    public final boolean startGame(final List<String> allPlayersNicknames,
+            final List<ComboBox<PlayerColor>> allPlayerColors, final int turnsNumber) {
         final List<String> playersNicknames = this
                 .getNicknamesValues(allPlayersNicknames.subList(0, this.actualNPlayers));
         final List<PlayerColor> playersColors = this.getColorsValues(allPlayerColors.subList(0, this.actualNPlayers));
@@ -87,29 +84,6 @@ public class GameCreationMenuModelImpl<S> implements GameCreationMenuModel<S> {
             colors.setItems(FXCollections.observableArrayList(PlayerColor.values()));
             colors.getSelectionModel().selectFirst();
         });
-    }
-
-    @Override
-    public final void setNumberOfPlayersSpinner(final Spinner<Integer> numberOfPlayers) {
-        this.setSpinnerControls(numberOfPlayers, GameCreationMenuModelImpl.N_MIN_PLAYERS,
-                GameCreationMenuModelImpl.N_MAX_PLAYERS);
-    }
-
-    @Override
-    public final void setTurnsNumberSpinner(final Spinner<Integer> turnsNumber) {
-        this.setSpinnerControls(turnsNumber, GameCreationMenuModelImpl.N_MIN_TURNS,
-                GameCreationMenuModelImpl.N_MAX_TURNS);
-    }
-
-    /**
-     * This method sets the value factory for a generic number spinner.
-     * 
-     * @param spinner the spinner to be set
-     * @param min     the min value
-     * @param max     the max value
-     */
-    private void setSpinnerControls(final Spinner<Integer> spinner, final int min, final int max) {
-        spinner.setValueFactory(new IntSpinnerValueFactory(min, max, min));
     }
 
     /**

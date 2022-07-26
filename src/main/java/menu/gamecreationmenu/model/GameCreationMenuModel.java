@@ -26,8 +26,7 @@ public interface GameCreationMenuModel<S> {
      * @param turnsNumber      the number of turns of the game
      * @return false if there are duplicates or blank forms
      */
-    boolean startGame(List<TextField> playersNicknames, List<ComboBox<PlayerColor>> playerColors,
-            Spinner<Integer> turnsNumber);
+    boolean startGame(List<String> playersNicknames, List<ComboBox<PlayerColor>> playerColors, int turnsNumber);
 
     /**
      * Setter for actualNPlayers.
@@ -42,19 +41,5 @@ public interface GameCreationMenuModel<S> {
      * @param playerColors the available colors
      */
     void fillColorsBoxes(List<ComboBox<PlayerColor>> playerColors);
-
-    /**
-     * This method sets the value factory for the number of players spinner.
-     * 
-     * @param playerColors the available colors
-     */
-    void setNumberOfPlayersSpinner(Spinner<Integer> numberOfPlayers);
-
-    /**
-     * This method sets the value factory for the number of turns spinner.
-     * 
-     * @param playerColors the available colors
-     */
-    void setTurnsNumberSpinner(Spinner<Integer> turnsNumber);
 
 }
