@@ -9,4 +9,8 @@ public class MoneyGameMapBox extends GameMapBoxImpl {
         super();
         this.moneyNumber = new Random().nextInt(GameMapBoxImpl.MAX_MONEY);
     }
+
+    public int getMoneyNumber() {
+        return moneyNumber;
+    }
 }

@@ -13,4 +13,14 @@ public class GameMapBoxImpl implements GameMapBox {
         this.prev = new HashSet<>();
         this.next = new HashSet<>();
     }
+
+    @Override
+    public Set<GameMapBox> getPrev() {
+        return Set.copyOf(this.prev);
+    }
+
+    @Override
+    public Set<GameMapBox> getNext() {
+        return Set.copyOf(this.next);
+    }
 }
