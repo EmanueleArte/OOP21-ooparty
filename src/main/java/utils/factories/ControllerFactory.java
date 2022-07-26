@@ -4,10 +4,8 @@ import java.util.List;
 
 /**
  * This interface models the controller factory of the game.
- * 
- * @param <S> the {@link javafx.scene.Scene} of the stage
  */
-public interface ControllerFactory<S> {
+public interface ControllerFactory {
 
     /**
      * This method creates a controller callback for the
@@ -15,7 +13,7 @@ public interface ControllerFactory<S> {
      * 
      * @return the controller {@link javafx.util.Callback} for the main menu
      */
-    <U> GenericController<S, U> createMainMenuController();
+    <U> GenericController<U> createMainMenuController();
 
     /**
      * This method creates a controller callback for the
@@ -24,7 +22,7 @@ public interface ControllerFactory<S> {
      * @return the controller {@link javafx.util.Callback} for the game creation
      *         menu
      */
-    <U> GenericController<S, U> createGameCreationMenuController();
+    <U> GenericController<U> createGameCreationMenuController();
 
     /**
      * This method creates a controller callback for the
@@ -33,6 +31,6 @@ public interface ControllerFactory<S> {
      * @param <U> the {@link game.player.Player}
      * @return the controller {@link javafx.util.Callback} for mastermind minigame
      */
-    <U> GenericController<S, U> createMastermind(List<U> players);
+    <U> GenericController<U> createMastermind(List<U> players);
 
 }

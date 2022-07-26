@@ -10,25 +10,21 @@ import utils.graphics.stagemanager.StageManager;
 /**
  * This class models a generic controller creation.
  * 
- * @param <S> the scenes of the stage
  * @param <U> the {@link game.player.Player}
  */
-class GenericController<S, U> implements Callback<Class<?>, Object> {
+class GenericController<U> implements Callback<Class<?>, Object> {
 
-    private final StageManager<S> stageManager;
     private final Class<?> controllerClass;
     private final Optional<List<U>> players;
 
     /**
      * Builds a new {@link GenericController}.
      * 
-     * @param s               the {@link utils.graphics.stagemanager.StageManager}
      * @param players         the list of players
      * @param controllerClass the class of the controller
      */
-    GenericController(final StageManager<S> s, final List<U> players, final Class<?> controllerClass) {
+    GenericController(final List<U> players, final Class<?> controllerClass) {
         super();
-        this.stageManager = s;
         this.controllerClass = controllerClass;
         this.players = Optional.ofNullable(players);
     }
@@ -39,8 +35,8 @@ class GenericController<S, U> implements Callback<Class<?>, Object> {
      * @param s               the {@link utils.graphics.stagemanager.StageManager}
      * @param controllerClass the class of the controller
      */
-    GenericController(final StageManager<S> s, final Class<?> controllerClass) {
-        this(s, null, controllerClass);
+    GenericController(final Class<?> controllerClass) {
+        this(null, controllerClass);
     }
 
     @Override
@@ -48,9 +44,9 @@ class GenericController<S, U> implements Callback<Class<?>, Object> {
         try {
             if (this.players.isPresent()) {
                 return this.controllerClass.getConstructor(StageManager.class, List.class)
-                        .newInstance(this.stageManager, this.players.get());
+                        .newInstance(this.players.get());
             } else {
-                return this.controllerClass.getConstructor(StageManager.class).newInstance(this.stageManager);
+                return this.controllerClass.getConstructor(StageManager.class).newInstance();
             }
         } catch (InstantiationException | IllegalAccessException | IllegalArgumentException | InvocationTargetException
                 | NoSuchMethodException | SecurityException e) {
