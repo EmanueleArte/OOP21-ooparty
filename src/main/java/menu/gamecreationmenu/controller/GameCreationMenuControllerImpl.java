@@ -6,7 +6,6 @@ import menu.gamecreationmenu.model.GameCreationMenuModelImpl;
 import menu.gamecreationmenu.view.GameCreationMenuView;
 import menu.gamecreationmenu.view.GameCreationMenuViewImpl;
 import menu.gamecreationmenu.viewcontroller.GameCreationMenuViewController;
-import menu.mainmenu.view.MainMenuViewImpl;
 import utils.graphics.stagemanager.StageManager;
 
 /**
@@ -26,7 +25,7 @@ public class GameCreationMenuControllerImpl extends MenuControllerAbstr implemen
      */
     public <S> GameCreationMenuControllerImpl(final StageManager<S> s) {
         super(s);
-        this.menuModel = new GameCreationMenuModelImpl(s);
+        this.menuModel = new GameCreationMenuModelImpl<>(s);
     }
 
     @Override
@@ -55,10 +54,12 @@ public class GameCreationMenuControllerImpl extends MenuControllerAbstr implemen
         this.menuViewController.setGameCreationMenuController(this);
     }
 
+    @SuppressWarnings("unchecked")
     @Override
-    public void initialize() {
-        // TODO Auto-generated method stub
-        
+    public final void initialize() {
+        this.menuModel.setNumberOfPlayersSpinner(this.menuViewController.getNumberOfPlayers());
+        this.menuModel.setTurnsNumberSpinner(this.menuViewController.getTurnsNumber());
+        this.menuModel.fillColorsBoxes(this.menuViewController.getPlayerColors());
     }
 
 }

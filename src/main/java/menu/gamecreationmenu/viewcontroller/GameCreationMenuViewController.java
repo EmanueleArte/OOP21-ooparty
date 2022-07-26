@@ -11,14 +11,11 @@ import menu.gamecreationmenu.model.GameCreationMenuModelImpl;
 import utils.NoticeUserAbstr;
 import utils.enums.Notice;
 import utils.enums.PlayerColor;
-import utils.graphics.stagemanager.StageManager;
 
 /**
  * This class models the game creation menu view controller.
- * 
- * @param <S> the scenes of the stage
  */
-public class GameCreationMenuViewController<S> extends NoticeUserAbstr {
+public class GameCreationMenuViewController extends NoticeUserAbstr {
 
     private GameCreationMenuController menuController;
     @FXML
@@ -35,14 +32,12 @@ public class GameCreationMenuViewController<S> extends NoticeUserAbstr {
     /**
      * Builds a new {@link GameCreationMenuViewController}.
      */
-    public GameCreationMenuViewController(final StageManager<S> s) {
+    public GameCreationMenuViewController() {
     }
 
     @FXML
     private void initialize() {
-        this.gameCreationMenuModel.setNumberOfPlayersSpinner(this.numberOfPlayers);
-        this.gameCreationMenuModel.setTurnsNumberSpinner(this.turnsNumber);
-        this.gameCreationMenuModel.fillColorsBoxes(this.playerColors);
+        this.menuController.initialize();
         this.numberOfPlayers.getValueFactory().valueProperty().addListener(value -> this.showPlayersForms());
         this.showPlayersForms();
     }
