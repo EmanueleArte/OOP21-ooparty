@@ -9,9 +9,9 @@ import menu.gamecreationmenu.viewcontroller.GameCreationMenuViewController;
 import utils.graphics.stagemanager.StageManager;
 
 /**
- * Implementation of {@link GameCreationMenuController}.
+ * Extension of {@link MenuControllerAbstr}.
  */
-public class GameCreationMenuControllerImpl extends MenuControllerAbstr implements GameCreationMenuController {
+public class GameCreationMenuControllerImpl extends MenuControllerAbstr {
 
     private final GameCreationMenuModel<?> menuModel;
     private GameCreationMenuView<?> menuView;
@@ -30,8 +30,11 @@ public class GameCreationMenuControllerImpl extends MenuControllerAbstr implemen
 
     @Override
     public final void goNext() {
-        this.menuModel.startGame(this.menuViewController.getPlayersNicknames(),
-                this.menuViewController.getColorsValues(), this.menuViewController.getTurnsNumber());
+        this.setActualNumberOfPlayers();
+        if (!this.menuModel.startGame(this.menuViewController.getPlayersNicknames(),
+                this.menuViewController.getColorsValues(), this.menuViewController.getTurnsNumber())) {
+            this.menuViewController.showError();
+        }
     }
 
     @Override
@@ -47,9 +50,11 @@ public class GameCreationMenuControllerImpl extends MenuControllerAbstr implemen
         this.menuViewController.setGameCreationMenuController(this);
     }
 
-    @Override
-    public final void setActualNumberOfPlayers(final int actualNPlayers) {
-        this.menuModel.setActualNPlayers(actualNPlayers);
+    /**
+     * This method sets the actual number of players.
+     */
+    private void setActualNumberOfPlayers() {
+        this.menuModel.setActualNPlayers(this.menuViewController.getActualNumberOfPlayers());
     }
 
 }

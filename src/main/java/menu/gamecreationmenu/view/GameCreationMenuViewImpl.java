@@ -18,7 +18,6 @@ public class GameCreationMenuViewImpl<S> implements GameCreationMenuView<S> {
      * @param s the {@link utils.graphics.stagemanager.StageManager}
      */
     public GameCreationMenuViewImpl(final StageManager<S> s) {
-        super();
         this.stageManager = s;
     }
 

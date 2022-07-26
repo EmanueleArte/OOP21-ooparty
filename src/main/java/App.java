@@ -4,7 +4,7 @@ import game.gamehandler.model.GameHandler;
 import game.gamehandler.model.GameHandlerImpl;
 import game.player.PlayerImpl;
 import javafx.scene.Scene;
-import menu.mainmenu.controller.MainMenuController;
+import menu.MenuController;
 import menu.mainmenu.controller.MainMenuControllerImpl;
 import menu.mainmenu.view.MainMenuView;
 import menu.mainmenu.view.MainMenuViewImpl;
@@ -21,7 +21,7 @@ public final class App {
     public static void main(final String[] args) {
         final StageManager<Scene> stageManager = new StageManagerImpl<>("OOparty");
         stageManager.run();
-        final MainMenuController mainMenu = new MainMenuControllerImpl(stageManager);
+        final MenuController mainMenu = new MainMenuControllerImpl(stageManager);
         mainMenu.createMenu();
 
         GameHandler game = new GameHandlerImpl(stageManager,

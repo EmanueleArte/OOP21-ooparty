@@ -6,8 +6,6 @@ import java.util.stream.Collectors;
 
 import game.player.Player;
 import game.player.PlayerImpl;
-import minigames.common.view.MinigameView;
-import minigames.mastermind.view.MastermindViewImpl;
 import utils.enums.PlayerColor;
 import utils.graphics.stagemanager.StageManager;
 
@@ -64,8 +62,9 @@ public class GameCreationMenuModelImpl<S> implements GameCreationMenuModel<S> {
             // To complete with game constructor (parameters: playersList, stageManager,
             // turnsNumber)
             // Test minigames
-            final MinigameView<S, Player> m = new MastermindViewImpl<>(this.stageManager);
-            m.startMinigame(this.createPlayersList(playersNicknames, playersColors));
+            /*final MinigameView<S, Player> m = new MastermindViewImpl<>(this.stageManager);
+            m.startMinigame(this.createPlayersList(playersNicknames, playersColors));*/
+            System.out.println("ok");
         }
         return true;
     }

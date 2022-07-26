@@ -9,9 +9,9 @@ import menu.mainmenu.viewcontroller.MainMenuViewController;
 import utils.graphics.stagemanager.StageManager;
 
 /**
- * Implementation of {@link MainMenuController}.
+ * Extension of {@link MenuControllerAbstr}.
  */
-public class MainMenuControllerImpl extends MenuControllerAbstr implements MainMenuController {
+public class MainMenuControllerImpl extends MenuControllerAbstr {
 
     private final MainMenuModel<?> menuModel;
     private MainMenuView<?> menuView;

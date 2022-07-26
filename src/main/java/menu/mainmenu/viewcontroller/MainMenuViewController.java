@@ -1,14 +1,14 @@
 package menu.mainmenu.viewcontroller;
 
 import javafx.fxml.FXML;
-import menu.mainmenu.controller.MainMenuController;
+import menu.MenuController;
 
 /**
  * This class models the main menu view controller.
  */
 public class MainMenuViewController {
 
-    private MainMenuController menuController;
+    private MenuController menuController;
 
     /**
      * Builds a new {@link MainMenuViewController}.
@@ -35,9 +35,9 @@ public class MainMenuViewController {
     /**
      * Setter for menuController.
      * 
-     * @param controller the {@link menu.mainmenu.controller.MainMenuController}
+     * @param controller the {@link menu.MenuController}
      */
-    public final void setMainMenuController(final MainMenuController controller) {
+    public final void setMainMenuController(final MenuController controller) {
         this.menuController = controller;
     }
 

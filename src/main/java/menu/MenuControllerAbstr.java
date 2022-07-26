@@ -1,9 +1,11 @@
 package menu;
 
-import menu.mainmenu.controller.MainMenuController;
 import utils.graphics.stagemanager.StageManager;
 
-public abstract class MenuControllerAbstr implements MainMenuController {
+/**
+ * Implementation of {@link MenuController}.
+ */
+public abstract class MenuControllerAbstr implements MenuController {
 
     private final StageManager<?> stageManager;
 

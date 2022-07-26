@@ -1,9 +1,9 @@
-package menu.mainmenu.controller;
+package menu;
 
 /**
- * This interface models the main menu controller.
+ * This interface models a menu controller.
  */
-public interface MainMenuController {
+public interface MenuController {
 
     /**
      * This method creates and move on the next scene.

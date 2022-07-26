@@ -9,10 +9,10 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.Spinner;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.VBox;
-import menu.gamecreationmenu.controller.GameCreationMenuController;
+import menu.MenuController;
 import menu.gamecreationmenu.model.GameCreationMenuModelImpl;
-import utils.IntSpinnerValueFactory;
 import utils.NoticeUserAbstr;
+import utils.SpinnerUtils;
 import utils.enums.Notice;
 import utils.enums.PlayerColor;
 
@@ -21,7 +21,7 @@ import utils.enums.PlayerColor;
  */
 public class GameCreationMenuViewController extends NoticeUserAbstr {
 
-    private GameCreationMenuController menuController;
+    private MenuController menuController;
     @FXML
     private Spinner<Integer> numberOfPlayers;
     @FXML
@@ -41,6 +41,7 @@ public class GameCreationMenuViewController extends NoticeUserAbstr {
 
     @FXML
     private void initialize() {
+        this.fillColorsBoxes();
         this.setNumberOfPlayersSpinner();
         this.setTurnsNumberSpinner();
         this.numberOfPlayers.getValueFactory().valueProperty().addListener(value -> this.showPlayersForms());
@@ -60,9 +61,7 @@ public class GameCreationMenuViewController extends NoticeUserAbstr {
      */
     @FXML
     private void startGame() {
-        if (!this.gameCreationMenuModel.startGame(this.playersNicknames, this.playerColors, this.turnsNumber)) {
-            this.showNotice(Notice.GAME_CREATION_ERROR.getNotice());
-        }
+        this.menuController.goNext();
     }
 
     /**
@@ -86,7 +85,6 @@ public class GameCreationMenuViewController extends NoticeUserAbstr {
                 this.showForm(form);
             }
         }
-        this.menuController.setActualNumberOfPlayers(nPlayers);
     }
 
     /**
@@ -110,20 +108,9 @@ public class GameCreationMenuViewController extends NoticeUserAbstr {
     }
 
     /**
-     * This method sets the value factory for a generic number spinner.
-     * 
-     * @param spinner the spinner to be set
-     * @param min     the min value
-     * @param max     the max value
-     */
-    private void setSpinnerControls(final Spinner<Integer> spinner, final int min, final int max) {
-        spinner.setValueFactory(new IntSpinnerValueFactory(min, max, min));
-    }
-
-    /**
      * This method fills the the combo box with colors which can be choose.
      */
-    public final void fillColorsBoxes() {
+    private void fillColorsBoxes() {
         playerColors.forEach(colors -> {
             colors.setItems(FXCollections.observableArrayList(PlayerColor.values()));
             colors.getSelectionModel().selectFirst();
@@ -134,7 +121,7 @@ public class GameCreationMenuViewController extends NoticeUserAbstr {
      * This method sets the value factory for the number of players spinner.
      */
     private void setNumberOfPlayersSpinner() {
-        this.setSpinnerControls(this.numberOfPlayers, GameCreationMenuModelImpl.N_MIN_PLAYERS,
+        SpinnerUtils.setSpinnerControls(this.numberOfPlayers, GameCreationMenuModelImpl.N_MIN_PLAYERS,
                 GameCreationMenuModelImpl.N_MAX_PLAYERS);
     }
 
@@ -142,8 +129,15 @@ public class GameCreationMenuViewController extends NoticeUserAbstr {
      * This method sets the value factory for the number of turns spinner.
      */
     private void setTurnsNumberSpinner() {
-        this.setSpinnerControls(this.turnsNumber, GameCreationMenuModelImpl.N_MIN_TURNS,
+        SpinnerUtils.setSpinnerControls(this.turnsNumber, GameCreationMenuModelImpl.N_MIN_TURNS,
                 GameCreationMenuModelImpl.N_MAX_TURNS);
+    }
+
+    /**
+     * This method shows the error produced by the game creation menu forms.
+     */
+    public void showError() {
+        this.showNotice(Notice.GAME_CREATION_ERROR.getNotice());
     }
 
     /**
@@ -151,7 +145,7 @@ public class GameCreationMenuViewController extends NoticeUserAbstr {
      * 
      * @param controller the {@link GameCreationMenuController}
      */
-    public final void setGameCreationMenuController(final GameCreationMenuController controller) {
+    public final void setGameCreationMenuController(final MenuController controller) {
         this.menuController = controller;
     }
 
@@ -184,6 +178,15 @@ public class GameCreationMenuViewController extends NoticeUserAbstr {
      */
     public int getTurnsNumber() {
         return this.turnsNumber.getValue();
+    }
+
+    /**
+     * This method gets the number of players.
+     * 
+     * @return the number of players
+     */
+    public int getActualNumberOfPlayers() {
+        return this.numberOfPlayers.getValue();
     }
 
 }
