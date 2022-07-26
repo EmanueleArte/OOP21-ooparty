@@ -5,6 +5,11 @@ import java.util.HashSet;
 import java.util.Set;
 import org.junit.jupiter.api.Test;
 
+import game.map.GameMap;
+import game.map.GameMapBox;
+import game.map.GameMapBoxImpl;
+import game.map.GameMapImpl;
+
 public class TestMap {
 
     @Test

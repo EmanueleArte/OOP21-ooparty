@@ -1,4 +1,4 @@
-package gamemap;
+package game.map;
 
 public interface GameMapBox {
 
