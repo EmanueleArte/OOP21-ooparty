@@ -47,7 +47,7 @@ public class GameCreationMenuViewController extends NoticeUserAbstr {
      */
     @FXML
     private void returnToMainMenu() {
-        this.gameCreationMenuModel.returnToMainMenu();
+        this.menuController.exit();
     }
 
     /**
@@ -81,7 +81,7 @@ public class GameCreationMenuViewController extends NoticeUserAbstr {
                 this.showForm(form);
             }
         }
-        this.gameCreationMenuModel.setActualNPlayers(nPlayers);
+        this.menuController.setActualNumberOfPlayers(nPlayers);
     }
 
     /**

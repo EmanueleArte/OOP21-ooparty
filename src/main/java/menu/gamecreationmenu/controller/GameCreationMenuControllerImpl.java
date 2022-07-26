@@ -36,8 +36,7 @@ public class GameCreationMenuControllerImpl extends MenuControllerAbstr implemen
 
     @Override
     public final void exit() {
-        // TODO Auto-generated method stub
-
+        this.menuModel.returnToMainMenu();
     }
 
     @Override
@@ -54,12 +53,16 @@ public class GameCreationMenuControllerImpl extends MenuControllerAbstr implemen
         this.menuViewController.setGameCreationMenuController(this);
     }
 
-    @SuppressWarnings("unchecked")
     @Override
     public final void initialize() {
         this.menuModel.setNumberOfPlayersSpinner(this.menuViewController.getNumberOfPlayers());
         this.menuModel.setTurnsNumberSpinner(this.menuViewController.getTurnsNumber());
         this.menuModel.fillColorsBoxes(this.menuViewController.getPlayerColors());
+    }
+
+    @Override
+    public final void setActualNumberOfPlayers(final int actualNPlayers) {
+        this.menuModel.setActualNPlayers(actualNPlayers);
     }
 
 }

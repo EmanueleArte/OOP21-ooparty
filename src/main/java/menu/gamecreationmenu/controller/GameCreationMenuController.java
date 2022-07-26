@@ -17,4 +17,11 @@ public interface GameCreationMenuController extends MainMenuController {
      */
     void initialize();
 
+    /**
+     * This method sets the actual number of players.
+     * 
+     * @param actualNPlayers the actual number of players
+     */
+    void setActualNumberOfPlayers(int actualNPlayers);
+
 }
