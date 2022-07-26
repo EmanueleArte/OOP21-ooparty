@@ -52,7 +52,13 @@ public class GameCreationMenuControllerImpl extends MenuControllerAbstr implemen
         this.menuView = new GameCreationMenuViewImpl<>(this.getStageManager());
         this.menuView.createGameCreationMenu();
         this.menuViewController = this.getStageManager().getGui().getLoader().getController();
-        this.menuViewController.setMainMenuController(this);
+        this.menuViewController.setGameCreationMenuController(this);
+    }
+
+    @Override
+    public void initialize() {
+        // TODO Auto-generated method stub
+        
     }
 
 }

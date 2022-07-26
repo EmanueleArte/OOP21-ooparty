@@ -114,8 +114,34 @@ public class GameCreationMenuViewController<S> extends NoticeUserAbstr {
      * 
      * @param controller the {@link GameCreationMenuController}
      */
-    public final void setMainMenuController(final GameCreationMenuController controller) {
+    public final void setGameCreationMenuController(final GameCreationMenuController controller) {
         this.menuController = controller;
     }
 
+    /**
+     * Getter for numberOfPlayers.
+     * 
+     * @return the {@link Spinner} that indicates the number of players
+     */
+    public Spinner<Integer> getNumberOfPlayers() {
+        return this.numberOfPlayers;
+    }
+
+    /**
+     * Getter for numberOfPlayers.
+     * 
+     * @return the {@link Spinner} that indicates the number of turns
+     */
+    public Spinner<Integer> getTurnsNumber() {
+        return this.turnsNumber;
+    }
+
+    /**
+     * Getter for numberOfPlayers.
+     * 
+     * @return the {@link List} of {@link ComboBox} with the colors chosen
+     */
+    public List<ComboBox<PlayerColor>> getPlayerColors() {
+        return this.playerColors;
+    }
 }
