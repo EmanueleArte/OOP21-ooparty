@@ -7,13 +7,11 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
-import minigames.common.viewcontroller.MinigameController;
+import minigames.common.viewcontroller.MinigameViewControllerAbstr;
 import minigames.mastermind.model.MastermindModel;
 import minigames.mastermind.model.MastermindModelImpl;
-import utils.NoticeUserAbstr;
 import utils.enums.Notice;
 import utils.graphics.stagemanager.StageManager;
-import game.player.Player;
 
 /**
  * This class models the mastermind view controller.
@@ -21,15 +19,13 @@ import game.player.Player;
  * @param <S> the scenes of the stage
  * @param <U> the {@link game.player.Player}
  */
-public class MastermindViewController<S, U> extends NoticeUserAbstr implements MinigameController {
+public class MastermindViewController<S, U> extends MinigameViewControllerAbstr<S, U> {
 
     private final MastermindModel<S, U> mastermindModel;
     @FXML
     private List<Label> attempts;
     @FXML
     private TextField inputField;
-    @FXML
-    private Label noticeLabel;
     @FXML
     private Button enterButton;
     @FXML
@@ -42,6 +38,7 @@ public class MastermindViewController<S, U> extends NoticeUserAbstr implements M
      * @param players the list of players
      */
     public MastermindViewController(final StageManager<S> s, final List<U> players) {
+        super();
         this.mastermindModel = new MastermindModelImpl<>(players, s);
     }
 
@@ -68,7 +65,13 @@ public class MastermindViewController<S, U> extends NoticeUserAbstr implements M
             this.hideContinueButton();
             this.clearNotice();
             this.enableInput();
+            this.setPlayerLabel(this.mastermindModel);
         }
+    }
+
+    @Override
+    public final List<U> getGameResults() {
+        return this.mastermindModel.gameResults();
     }
 
     /**
@@ -101,11 +104,6 @@ public class MastermindViewController<S, U> extends NoticeUserAbstr implements M
             this.showContinueButton();
             this.disableInput();
         }
-    }
-
-    @Override
-    public final List<U> getGameResults() {
-        return this.mastermindModel.gameResults();
     }
 
     /**

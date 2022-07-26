@@ -1,5 +1,7 @@
 package minigames.common.viewcontroller;
 
+import java.util.List;
+
 import game.player.Player;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
@@ -12,20 +14,23 @@ import utils.NoticeUserAbstr;
  * @param <S> the scenes of the stage
  * @param <U> the player
  */
-public abstract class MinigameViewControllerAbstr<S, U> extends NoticeUserAbstr {
+public abstract class MinigameViewControllerAbstr<S, U> extends NoticeUserAbstr implements MinigameController {
 
-    private MinigameModel<S, U> model;
     @FXML
     private Label playerLabel;
 
-    public MinigameViewControllerAbstr(final MinigameModel<S, U> model) {
-        this.model = model;
+    public MinigameViewControllerAbstr() {
     }
 
+    @Override
+    public abstract List<U> getGameResults();
+
     /**
-     * This method sets the player label with the current player name and color.
+     * This method sets the player label with the current player nickname and color.
+     * 
+     * @param model the minigame model actually used
      */
-    protected void setPlayerLabel() {
+    protected void setPlayerLabel(final MinigameModel<S, U> model) {
         final Player player = (Player) model.getCurrPlayer();
         this.playerLabel.setTextFill((player.getColor()));
         this.playerLabel.setText((player.getNickname() + "'s turn"));
