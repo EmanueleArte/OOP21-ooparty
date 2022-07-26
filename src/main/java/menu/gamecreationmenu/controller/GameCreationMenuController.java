@@ -12,4 +12,9 @@ public interface GameCreationMenuController extends MainMenuController {
      */
     void showPlayersForms();
 
+    /**
+     * This method sets some FXML elements rules.
+     */
+    void initialize();
+
 }
