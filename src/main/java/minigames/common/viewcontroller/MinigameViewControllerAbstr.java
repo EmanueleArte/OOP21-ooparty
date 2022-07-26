@@ -30,7 +30,7 @@ public abstract class MinigameViewControllerAbstr<S, U> extends NoticeUserAbstr 
      * 
      * @param model the minigame model actually used
      */
-    protected void setPlayerLabel(final MinigameModel<S, U> model) {
+    protected void setPlayerLabelText(final MinigameModel<S, U> model) {
         final Player player = (Player) model.getCurrPlayer();
         this.playerLabel.setTextFill((player.getColor()));
         this.playerLabel.setText((player.getNickname() + "'s turn"));

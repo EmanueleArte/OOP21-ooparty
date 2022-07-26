@@ -67,7 +67,7 @@ public class MastermindViewController<S, U> extends MinigameViewControllerAbstr<
             this.hideContinueButton();
             this.clearNotice();
             this.enableInput();
-            this.setPlayerLabel(this.mastermindModel);
+            this.setPlayerLabelText(this.mastermindModel);
         }
     }
 
