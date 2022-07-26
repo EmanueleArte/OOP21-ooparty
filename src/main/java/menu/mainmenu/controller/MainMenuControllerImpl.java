@@ -12,8 +12,10 @@ import utils.graphics.stagemanager.StageManager;
  */
 public class MainMenuControllerImpl implements MainMenuController {
 
+    private final StageManager<?> stageManager;
     private final MainMenuModel<?> menuModel;
-    private final MainMenuViewController menuViewController;
+    private MainMenuView<?> menuView;
+    private MainMenuViewController menuViewController;
 
     /**
      * Builder for {@link MainMenuControllerImpl}.
@@ -22,11 +24,8 @@ public class MainMenuControllerImpl implements MainMenuController {
      * @param s   the {@link utils.graphics.stagemanager.StageManager}
      */
     public <S> MainMenuControllerImpl(final StageManager<S> s) {
+        this.stageManager = s;
         this.menuModel = new MainMenuModelImpl<>(s);
-        final MainMenuView<S> mainMenu = new MainMenuViewImpl<>(s);
-        mainMenu.createMainMenu();
-        this.menuViewController = s.getGui().getLoader().getController();
-        this.menuViewController.setMainMenuController(this);
     }
 
     @Override
@@ -37,6 +36,14 @@ public class MainMenuControllerImpl implements MainMenuController {
     @Override
     public final void exit() {
         this.menuModel.exit();
+    }
+
+    @Override
+    public final void createMenu() {
+        this.menuView = new MainMenuViewImpl<>(this.stageManager);
+        this.menuView.createMainMenu();
+        this.menuViewController = this.stageManager.getGui().getLoader().getController();
+        this.menuViewController.setMainMenuController(this);
     }
 
 }

@@ -15,4 +15,9 @@ public interface MainMenuController {
      */
     void exit();
 
+    /**
+     * This method creates the menu scene.
+     */
+    void createMenu();
+
 }

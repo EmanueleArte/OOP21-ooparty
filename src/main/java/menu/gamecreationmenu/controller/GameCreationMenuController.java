@@ -1,5 +1,12 @@
 package menu.gamecreationmenu.controller;
 
-public interface GameCreationMenuController {
+import menu.mainmenu.controller.MainMenuController;
+
+public interface GameCreationMenuController extends MainMenuController {
+
+    /**
+     * This method shows only the necessary players forms.
+     */
+    void showPlayersForms();
 
 }
