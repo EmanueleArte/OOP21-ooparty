@@ -7,11 +7,20 @@ import menu.mainmenu.view.MainMenuViewImpl;
 import menu.mainmenu.viewcontroller.MainMenuViewController;
 import utils.graphics.stagemanager.StageManager;
 
+/**
+ * Implementation of {@link MainMenuController}.
+ */
 public class MainMenuControllerImpl implements MainMenuController {
 
     private final MainMenuModel<?> menuModel;
     private final MainMenuViewController menuViewController;
 
+    /**
+     * Builder for {@link MainMenuControllerImpl}.
+     * 
+     * @param <S> the scenes of the stage
+     * @param s   the {@link utils.graphics.stagemanager.StageManager}
+     */
     public <S> MainMenuControllerImpl(final StageManager<S> s) {
         this.menuModel = new MainMenuModelImpl<>(s);
         final MainMenuView<S> mainMenu = new MainMenuViewImpl<>(s);
