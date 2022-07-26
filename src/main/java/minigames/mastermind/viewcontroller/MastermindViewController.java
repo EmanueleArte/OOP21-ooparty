@@ -31,8 +31,6 @@ public class MastermindViewController<S, U> extends NoticeUserAbstr implements M
     @FXML
     private Label noticeLabel;
     @FXML
-    private Label playerLabel;
-    @FXML
     private Button enterButton;
     @FXML
     private Button continueButton;
@@ -70,8 +68,6 @@ public class MastermindViewController<S, U> extends NoticeUserAbstr implements M
             this.hideContinueButton();
             this.clearNotice();
             this.enableInput();
-            this.playerLabel.setTextFill(((Player) this.mastermindModel.getCurrPlayer()).getColor());
-            this.playerLabel.setText(((Player) this.mastermindModel.getCurrPlayer()).getNickname() + "'s turn");
         }
     }
 
