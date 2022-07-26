@@ -7,6 +7,8 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import minigames.common.viewcontroller.MinigameViewControllerAbstr;
 import minigames.mastermind.model.MastermindModel;
 import minigames.mastermind.model.MastermindModelImpl;
@@ -66,6 +68,18 @@ public class MastermindViewController<S, U> extends MinigameViewControllerAbstr<
             this.clearNotice();
             this.enableInput();
             this.setPlayerLabel(this.mastermindModel);
+        }
+    }
+
+    /**
+     * This method performs an action when the "ENTER" key is clicked.
+     * 
+     * @param ke the {@link KeyEvent}
+     */
+    @FXML
+    private void onEnter(final KeyEvent ke) {
+        if (ke.getCode().equals(KeyCode.ENTER)) {
+            this.tryGuess();
         }
     }
 
