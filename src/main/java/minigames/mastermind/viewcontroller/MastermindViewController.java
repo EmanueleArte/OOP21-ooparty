@@ -63,6 +63,7 @@ public class MastermindViewController<S, U> extends MinigameViewControllerAbstr<
     @FXML
     private void startNextTurn() {
         if (this.mastermindModel.runGame()) {
+            this.inputField.setText("");
             this.hideAttempts();
             this.hideContinueButton();
             this.clearNotice();
@@ -173,7 +174,6 @@ public class MastermindViewController<S, U> extends MinigameViewControllerAbstr<
      * This method disables the input when the current turn is ended.
      */
     private void disableInput() {
-        this.inputField.setText("");
         this.inputField.setDisable(true);
         this.enterButton.setDisable(true);
     }
