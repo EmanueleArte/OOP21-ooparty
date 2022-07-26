@@ -57,4 +57,11 @@ public interface StageManager<S> {
      */
     MinigameController getLastGameController();
 
+    /**
+     * Getter for the {@link Gui}.
+     * 
+     * @return the gui used
+     */
+    Gui<S> getGui();
+
 }

@@ -60,4 +60,9 @@ public class StageManagerImpl<S> implements StageManager<S> {
         return this.lastGameController.orElse(null);
     }
 
+    @Override
+    public final Gui<S> getGui() {
+        return this.gui;
+    }
+
 }
