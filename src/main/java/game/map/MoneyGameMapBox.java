@@ -7,6 +7,6 @@ public class MoneyGameMapBox extends GameMapBoxImpl {
 
     public MoneyGameMapBox() {
         super();
-        this.moneyNumber = new Random().nextInt(10);
+        this.moneyNumber = new Random().nextInt(GameMapBoxImpl.MAX_MONEY);
     }
 }
