@@ -7,6 +7,6 @@ public class StarsGameMapBox extends GameMapBoxImpl {
 
    public StarsGameMapBox() {
        super();
-       this.starsNumber = new Random().nextInt(10);
+       this.starsNumber = new Random().nextInt(GameMapBoxImpl.MAX_STARS);
    }
 }
