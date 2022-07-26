@@ -7,10 +7,8 @@ import utils.enums.ControllerType;
 
 /**
  * This interface models a selector for the view controllers.
- * 
- * @param <S> the scenes of the stage
  */
-public interface ControllerSelector<S> {
+public interface ControllerSelector {
 
     /**
      * This method chooses the right controller to be implemented.

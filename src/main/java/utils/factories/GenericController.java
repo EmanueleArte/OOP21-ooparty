@@ -5,7 +5,6 @@ import java.util.List;
 import java.util.Optional;
 
 import javafx.util.Callback;
-import utils.graphics.stagemanager.StageManager;
 
 /**
  * This class models a generic controller creation.
@@ -43,10 +42,9 @@ class GenericController<U> implements Callback<Class<?>, Object> {
     public Object call(final Class<?> param) {
         try {
             if (this.players.isPresent()) {
-                return this.controllerClass.getConstructor(StageManager.class, List.class)
-                        .newInstance(this.players.get());
+                return this.controllerClass.getConstructor(List.class).newInstance(this.players.get());
             } else {
-                return this.controllerClass.getConstructor(StageManager.class).newInstance();
+                return this.controllerClass.getConstructor().newInstance();
             }
         } catch (InstantiationException | IllegalAccessException | IllegalArgumentException | InvocationTargetException
                 | NoSuchMethodException | SecurityException e) {

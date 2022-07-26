@@ -13,7 +13,6 @@ public class ControllerFactoryImpl implements ControllerFactory {
 
     /**
      * Builds a new {@link ControllerFactoryImpl}.
-     * 
      */
     public ControllerFactoryImpl() {
     }

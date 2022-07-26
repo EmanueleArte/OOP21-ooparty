@@ -35,7 +35,7 @@ public class GuiImpl<S> extends JFrame implements Gui<S> {
     private Optional<JFXPanel> mainStage;
     private FXMLLoader loader;
     private final JFrame frame;
-    private final ControllerSelector<S> cSelector;
+    private final ControllerSelector cSelector;
     private Optional<Parent> root;
 
     /**
@@ -48,7 +48,7 @@ public class GuiImpl<S> extends JFrame implements Gui<S> {
         this.mainStage = Optional.empty();
         this.root = Optional.empty();
         this.frame = new JFrame(title);
-        this.cSelector = new ControllerSelectorImpl<>(s);
+        this.cSelector = new ControllerSelectorImpl();
     }
 
     @Override

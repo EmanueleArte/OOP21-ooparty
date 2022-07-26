@@ -5,12 +5,10 @@ import menu.mainmenu.controller.MainMenuController;
 
 /**
  * This class models the main menu view controller.
- * 
- * @param <S> the scenes of the stage
  */
-public class MainMenuViewController<S> {
+public class MainMenuViewController {
 
-    private MainMenuController<S> menuController;
+    private MainMenuController menuController;
 
     /**
      * Builds a new {@link MainMenuViewController}.
@@ -23,7 +21,7 @@ public class MainMenuViewController<S> {
      */
     @FXML
     private void exitGame() {
-        this.menuModel.exit();
+        this.menuController.exit();
     }
 
     /**
@@ -31,7 +29,16 @@ public class MainMenuViewController<S> {
      */
     @FXML
     private void createGame() {
-        this.menuModel.gameCreationMenu();
+        this.menuController.goNext();
+    }
+
+    /**
+     * Setter for menuController.
+     * 
+     * @param controller the {@link menu.mainmenu.controller.MainMenuController}
+     */
+    public final void setMainMenuController(final MainMenuController controller) {
+        this.menuController = controller;
     }
 
 }
