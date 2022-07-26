@@ -21,6 +21,7 @@ public final class App {
     public static void main(final String[] args) {
         final StageManager<Scene> stageManager = new StageManagerImpl<>("OOparty");
         stageManager.run();
+        @SuppressWarnings("unused")
         final MainMenuController mainMenu = new MainMenuControllerImpl(stageManager);
 
         GameHandler game = new GameHandlerImpl(stageManager,
