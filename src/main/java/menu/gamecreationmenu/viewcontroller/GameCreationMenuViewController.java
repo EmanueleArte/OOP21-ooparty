@@ -6,7 +6,7 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.Spinner;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.VBox;
-import menu.gamecreationmenu.model.GameCreationMenuModel;
+import menu.gamecreationmenu.controller.GameCreationMenuController;
 import menu.gamecreationmenu.model.GameCreationMenuModelImpl;
 import utils.NoticeUserAbstr;
 import utils.enums.Notice;
@@ -20,7 +20,7 @@ import utils.graphics.stagemanager.StageManager;
  */
 public class GameCreationMenuViewController<S> extends NoticeUserAbstr {
 
-    private final GameCreationMenuModel<S> gameCreationMenuModel;
+    private GameCreationMenuController menuController;
     @FXML
     private Spinner<Integer> numberOfPlayers;
     @FXML
@@ -34,12 +34,8 @@ public class GameCreationMenuViewController<S> extends NoticeUserAbstr {
 
     /**
      * Builds a new {@link GameCreationMenuViewController}.
-     * 
-     * @param s the {@link utils.graphics.stagemanager.StageManager}.
      */
     public GameCreationMenuViewController(final StageManager<S> s) {
-        super();
-        this.gameCreationMenuModel = new GameCreationMenuModelImpl<>(s);
     }
 
     @FXML
@@ -111,6 +107,15 @@ public class GameCreationMenuViewController<S> extends NoticeUserAbstr {
     private void hideForm(final VBox form) {
         form.setVisible(false);
         form.setManaged(false);
+    }
+
+    /**
+     * Setter for menuController.
+     * 
+     * @param controller the {@link GameCreationMenuController}
+     */
+    public final void setMainMenuController(final GameCreationMenuController controller) {
+        this.menuController = controller;
     }
 
 }

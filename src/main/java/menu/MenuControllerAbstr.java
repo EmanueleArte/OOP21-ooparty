@@ -3,17 +3,17 @@ package menu;
 import menu.mainmenu.controller.MainMenuController;
 import utils.graphics.stagemanager.StageManager;
 
-public abstract class MenuAbstr implements MainMenuController {
+public abstract class MenuControllerAbstr implements MainMenuController {
 
     private final StageManager<?> stageManager;
 
     /**
-     * Builder for {@link MenuAbstr}.
+     * Builder for {@link MenuControllerAbstr}.
      * 
      * @param <S> the scenes of the stage
      * @param s   the {@link StageManager}
      */
-    public <S> MenuAbstr(final StageManager<S> s) {
+    public <S> MenuControllerAbstr(final StageManager<S> s) {
         this.stageManager = s;
     }
 

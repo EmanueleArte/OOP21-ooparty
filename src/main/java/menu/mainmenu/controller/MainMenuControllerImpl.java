@@ -1,5 +1,6 @@
 package menu.mainmenu.controller;
 
+import menu.MenuControllerAbstr;
 import menu.mainmenu.model.MainMenuModel;
 import menu.mainmenu.model.MainMenuModelImpl;
 import menu.mainmenu.view.MainMenuView;
@@ -10,9 +11,8 @@ import utils.graphics.stagemanager.StageManager;
 /**
  * Implementation of {@link MainMenuController}.
  */
-public class MainMenuControllerImpl implements MainMenuController {
+public class MainMenuControllerImpl extends MenuControllerAbstr implements MainMenuController {
 
-    private final StageManager<?> stageManager;
     private final MainMenuModel<?> menuModel;
     private MainMenuView<?> menuView;
     private MainMenuViewController menuViewController;
@@ -24,7 +24,7 @@ public class MainMenuControllerImpl implements MainMenuController {
      * @param s   the {@link utils.graphics.stagemanager.StageManager}
      */
     public <S> MainMenuControllerImpl(final StageManager<S> s) {
-        this.stageManager = s;
+        super(s);
         this.menuModel = new MainMenuModelImpl<>(s);
     }
 
@@ -40,9 +40,9 @@ public class MainMenuControllerImpl implements MainMenuController {
 
     @Override
     public final void createMenu() {
-        this.menuView = new MainMenuViewImpl<>(this.stageManager);
+        this.menuView = new MainMenuViewImpl<>(this.getStageManager());
         this.menuView.createMainMenu();
-        this.menuViewController = this.stageManager.getGui().getLoader().getController();
+        this.menuViewController = this.getStageManager().getGui().getLoader().getController();
         this.menuViewController.setMainMenuController(this);
     }
 
