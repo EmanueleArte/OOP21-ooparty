@@ -37,12 +37,6 @@ public class MastermindViewControllerImpl extends MinigameViewControllerAbstr im
     }
 
     @FXML
-    private void initialize() {
-        this.mastermindController.setMaxAttempts(this.attempts.size());
-        this.startNextTurn();
-    }
-
-    @FXML
     private void tryGuess() {
         this.mastermindController.doAttempt(this.getGuessAttempt());
     }
@@ -74,6 +68,8 @@ public class MastermindViewControllerImpl extends MinigameViewControllerAbstr im
     @Override
     public final void setController(final GenericController controller) {
         this.mastermindController = (MastermindController) controller;
+        this.mastermindController.setMaxAttempts(this.attempts.size());
+        this.startNextTurn();
     }
 
     @Override
