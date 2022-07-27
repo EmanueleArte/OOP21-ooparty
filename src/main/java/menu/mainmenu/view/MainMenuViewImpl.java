@@ -1,6 +1,6 @@
 package menu.mainmenu.view;
 
-import utils.enums.ControllerType;
+import utils.enums.ViewControllerType;
 import utils.graphics.stagemanager.StageManager;
 
 /**
@@ -25,7 +25,7 @@ public class MainMenuViewImpl<S> implements MainMenuView<S> {
     @Override
     public final void createMainMenu() {
         final String fxmlUrl = "menu/main_menu.fxml";
-        this.stageManager.addFXMLScene(fxmlUrl, ControllerType.MAIN_MENU, null);
+        this.stageManager.addFXMLScene(fxmlUrl, ViewControllerType.MAIN_MENU, null);
     }
 
 }

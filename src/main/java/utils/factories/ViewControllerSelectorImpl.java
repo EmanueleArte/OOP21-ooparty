@@ -3,26 +3,26 @@ package utils.factories;
 import java.util.List;
 
 import javafx.util.Callback;
-import utils.enums.ControllerType;
+import utils.enums.ViewControllerType;
 
 /**
- * Implementation of {@link ControllerSelector}.
+ * Implementation of {@link ViewControllerSelector}.
  */
-public class ControllerSelectorImpl implements ControllerSelector {
+public class ViewControllerSelectorImpl implements ViewControllerSelector {
 
-    private final ControllerFactory controlFactory;
+    private final ViewControllerFactory controlFactory;
 
     /**
-     * Builds a new {@link ControllerSelectorImpl}.
+     * Builds a new {@link ViewControllerSelectorImpl}.
      */
-    public ControllerSelectorImpl() {
-        this.controlFactory = new ControllerFactoryImpl();
+    public ViewControllerSelectorImpl() {
+        this.controlFactory = new ViewControllerFactoryImpl();
     }
 
     @Override
-    public final <U> Callback<Class<?>, Object> selectControllerCallback(final ControllerType controller,
+    public final <U> Callback<Class<?>, Object> selectControllerCallback(final ViewControllerType vc,
             final List<U> players) {
-        switch (controller) {
+        switch (vc) {
         case MAIN_MENU:
             return this.controlFactory.createMainMenuController();
         case GAME_CREATION_MENU:

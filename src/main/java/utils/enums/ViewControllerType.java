@@ -3,7 +3,7 @@ package utils.enums;
 /**
  * This enum defines the different controller types.
  */
-public enum ControllerType {
+public enum ViewControllerType {
     /**
      * Main menu.
      */

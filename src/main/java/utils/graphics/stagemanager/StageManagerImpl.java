@@ -5,7 +5,7 @@ import java.util.List;
 import java.util.Optional;
 
 import minigames.common.viewcontroller.MinigameController;
-import utils.enums.ControllerType;
+import utils.enums.ViewControllerType;
 
 /**
  * Implementation of {@link StageManager}.
@@ -30,7 +30,7 @@ public class StageManagerImpl<S> implements StageManager<S> {
     }
 
     @Override
-    public final <U> void addFXMLScene(final String fxmlUrl, final ControllerType c, final List<U> players) {
+    public final <U> void addFXMLScene(final String fxmlUrl, final ViewControllerType c, final List<U> players) {
         this.gui.loadScene(fxmlUrl, c, players);
         this.lastGameController = Optional.ofNullable(SceneHandler.addFXMLScene(this.scenes, this.gui));
     }

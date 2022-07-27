@@ -7,14 +7,14 @@ import menu.mainmenu.viewcontroller.MainMenuViewController;
 import minigames.mastermind.viewcontroller.MastermindViewController;
 
 /**
- * Implementation of {@link ControllerFactory}.
+ * Implementation of {@link ViewControllerFactory}.
  */
-public class ControllerFactoryImpl implements ControllerFactory {
+public class ViewControllerFactoryImpl implements ViewControllerFactory {
 
     /**
-     * Builds a new {@link ControllerFactoryImpl}.
+     * Builds a new {@link ViewControllerFactoryImpl}.
      */
-    public ControllerFactoryImpl() {
+    public ViewControllerFactoryImpl() {
     }
 
     @Override

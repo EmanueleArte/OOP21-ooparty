@@ -3,12 +3,12 @@ package utils.factories;
 import java.util.List;
 
 import javafx.util.Callback;
-import utils.enums.ControllerType;
+import utils.enums.ViewControllerType;
 
 /**
  * This interface models a selector for the view controllers.
  */
-public interface ControllerSelector {
+public interface ViewControllerSelector {
 
     /**
      * This method chooses the right controller to be implemented.
@@ -16,6 +16,6 @@ public interface ControllerSelector {
      * @param <U> the {@link game.player.Player}
      * @return the right controller callback
      */
-    <U> Callback<Class<?>, Object> selectControllerCallback(ControllerType controller, List<U> players);
+    <U> Callback<Class<?>, Object> selectControllerCallback(ViewControllerType controller, List<U> players);
 
 }

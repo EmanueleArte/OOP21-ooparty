@@ -5,7 +5,7 @@ import java.util.List;
 /**
  * This interface models the controller factory of the game.
  */
-public interface ControllerFactory {
+public interface ViewControllerFactory {
 
     /**
      * This method creates a controller callback for the

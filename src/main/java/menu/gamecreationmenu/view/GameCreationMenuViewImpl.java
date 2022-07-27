@@ -1,6 +1,7 @@
 package menu.gamecreationmenu.view;
 
-import utils.enums.ControllerType;
+import menu.MenuController;
+import utils.enums.ViewControllerType;
 import utils.graphics.stagemanager.StageManager;
 
 /**
@@ -24,7 +25,7 @@ public class GameCreationMenuViewImpl<S> implements GameCreationMenuView<S> {
     @Override
     public final void createGameCreationMenu() {
         final String fxmlUrl = "menu/creation_menu.fxml";
-        this.stageManager.addFXMLScene(fxmlUrl, ControllerType.GAME_CREATION_MENU, null);
+        this.stageManager.addFXMLScene(fxmlUrl, ViewControllerType.GAME_CREATION_MENU, null);
     }
 
 }
