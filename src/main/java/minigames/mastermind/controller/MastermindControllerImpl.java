@@ -2,7 +2,6 @@ package minigames.mastermind.controller;
 
 import java.util.List;
 
-import game.player.Player;
 import minigames.common.view.MinigameView;
 import minigames.mastermind.model.MastermindModel;
 import minigames.mastermind.model.MastermindModelImpl;
@@ -71,7 +70,9 @@ public class MastermindControllerImpl extends GenericControllerAbstr implements 
     public final void doAttempt(final String attempt) {
         final String attemptDone = this.mastermindModel.doAttempt(attempt);
         this.mastermindViewController.showAttemptDone(attemptDone);
-        this.mastermindViewController.showTurnResults();
+        this.mastermindViewController.showTurnResults(this.mastermindModel.getWin(), this.mastermindModel.getLose(),
+                this.mastermindModel.getScore(), this.mastermindModel.getSolution(),
+                this.mastermindModel.getNAttempts());
     }
 
 }

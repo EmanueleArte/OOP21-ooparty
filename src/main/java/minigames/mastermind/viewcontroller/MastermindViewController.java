@@ -14,6 +14,6 @@ public interface MastermindViewController extends MinigameViewController {
     /**
      * This method shows the results of the turn.
      */
-    void showTurnResults();
+    void showTurnResults(boolean win, boolean lose, int score, String solution, int nAttempts);
 
 }

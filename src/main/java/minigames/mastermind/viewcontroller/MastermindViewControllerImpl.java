@@ -88,15 +88,13 @@ public class MastermindViewControllerImpl extends MinigameViewControllerAbstr im
     }
 
     @Override
-    public final void showTurnResults() {
-        final boolean win = this.mastermindModel.getWin();
-        final boolean lose = this.mastermindModel.getLose();
+    public final void showTurnResults(final boolean win, final boolean lose, final int score, final String solution,
+            final int nAttempts) {
         if (win) {
-            this.showNotice("You guessed with " + this.mastermindModel.getNAttempts() + " attempts. Your score is "
-                    + this.mastermindModel.getScore() + ".");
+            this.showNotice("You guessed with " + nAttempts + " attempts. Your score is " + score + ".");
         } else if (lose) {
-            this.showNotice("You ended the attempts without guessing the number (" + this.mastermindModel.getSolution()
-                    + "). Your score is " + this.mastermindModel.getScore() + ".");
+            this.showNotice("You ended the attempts without guessing the number (" + solution + "). Your score is "
+                    + score + ".");
         }
         if (win || lose) {
             this.showContinueButton();
