@@ -6,6 +6,8 @@ import java.util.stream.Collectors;
 
 import game.player.Player;
 import game.player.PlayerImpl;
+import minigames.common.controller.MinigameController;
+import minigames.mastermind.controller.MastermindControllerImpl;
 import utils.enums.PlayerColor;
 import utils.graphics.stagemanager.StageManager;
 
@@ -52,8 +54,8 @@ public class GameCreationMenuModelImpl<S> implements GameCreationMenuModel<S> {
     }
 
     @Override
-    public final boolean startGame(final List<String> allPlayersNicknames,
-            final List<PlayerColor> allPlayersColors, final int turnsNumber) {
+    public final boolean startGame(final List<String> allPlayersNicknames, final List<PlayerColor> allPlayersColors,
+            final int turnsNumber) {
         final List<String> playersNicknames = allPlayersNicknames.subList(0, this.actualNPlayers);
         final List<PlayerColor> playersColors = allPlayersColors.subList(0, this.actualNPlayers);
         if (!checkForms(playersNicknames, playersColors)) {
@@ -62,8 +64,8 @@ public class GameCreationMenuModelImpl<S> implements GameCreationMenuModel<S> {
             // To complete with game constructor (parameters: playersList, stageManager,
             // turnsNumber)
             // Test minigames
-            //final MinigameView<S, Player> m = new MastermindViewImpl<>(this.stageManager);
-            //m.startMinigame(this.createPlayersList(playersNicknames, playersColors));
+            final MinigameController m = new MastermindControllerImpl(this.stageManager,
+                    this.createPlayersList(playersNicknames, playersColors));
         }
         return true;
     }
@@ -91,7 +93,6 @@ public class GameCreationMenuModelImpl<S> implements GameCreationMenuModel<S> {
         }
         return formsCorrect;
     }
-
 
     /**
      * This method creates the list of players that will join the game.

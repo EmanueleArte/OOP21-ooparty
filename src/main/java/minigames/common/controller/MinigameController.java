@@ -17,4 +17,9 @@ public interface MinigameController extends GenericController {
      */
     List<?> getGameResults();
 
+    /**
+     * This method starts the minigame.
+     */
+    void startGame();
+
 }
