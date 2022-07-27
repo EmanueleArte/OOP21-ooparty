@@ -1,8 +1,9 @@
 package gamemap;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import java.util.HashSet;
-import java.util.Set;
+
+import java.util.ArrayList;
+import java.util.List;
 import org.junit.jupiter.api.Test;
 
 import game.map.GameMap;
@@ -19,13 +20,13 @@ public class TestMap {
         GameMapBox box3 = new GameMapBoxImpl();
         GameMapBox box4 = new GameMapBoxImpl();
 
-        Set<GameMapBox> boxes = new HashSet<>();
+        List<GameMapBox> boxes = new ArrayList<>();
         boxes.add(box1);
         boxes.add(box2);
         boxes.add(box3);
         boxes.add(box4);
 
         GameMap gameMap = new GameMapImpl(boxes);
-        assertEquals(gameMap.getBoxesSet(), Set.of(box1, box2, box3, box4));
+        assertEquals(gameMap.getBoxesSet(), List.of(box1, box2, box3, box4));
     }
 }
