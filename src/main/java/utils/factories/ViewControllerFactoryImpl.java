@@ -18,18 +18,18 @@ public class ViewControllerFactoryImpl implements ViewControllerFactory {
     }
 
     @Override
-    public final <U> GenericController<U> createMainMenuController() {
-        return new GenericController<U>(MainMenuViewControllerImpl.class);
+    public final <U> GenericControllerCallback<U> createMainMenuController() {
+        return new GenericControllerCallback<U>(MainMenuViewControllerImpl.class);
     }
 
     @Override
-    public final <U> GenericController<U> createGameCreationMenuController() {
-        return new GenericController<U>(GameCreationMenuViewControllerImpl.class);
+    public final <U> GenericControllerCallback<U> createGameCreationMenuController() {
+        return new GenericControllerCallback<U>(GameCreationMenuViewControllerImpl.class);
     }
 
     @Override
-    public final <U> GenericController<U> createMastermind(final List<U> players) {
-        return new GenericController<U>(players, MastermindViewControllerImpl.class);
+    public final <U> GenericControllerCallback<U> createMastermind(final List<U> players) {
+        return new GenericControllerCallback<U>(players, MastermindViewControllerImpl.class);
     }
 
 }

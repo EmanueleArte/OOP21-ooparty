@@ -55,7 +55,7 @@ public interface MastermindModel<S, U> extends MinigameModel<S, U> {
      * This method controls the attempt of the player.
      * 
      * @param attempt the player attempt
-     * @return the attempt string if the attempt is valid, null otherwise
+     * @return the attempt string if the attempt is valid, empty string otherwise
      */
     String doAttempt(String attempt);
 

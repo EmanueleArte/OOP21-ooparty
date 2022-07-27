@@ -10,6 +10,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import minigames.common.viewcontroller.MinigameViewControllerAbstr;
+import minigames.mastermind.controller.MastermindController;
 import utils.GenericController;
 import utils.enums.Notice;
 
@@ -19,6 +20,7 @@ import utils.enums.Notice;
  */
 public class MastermindViewControllerImpl extends MinigameViewControllerAbstr implements MastermindViewController {
 
+    private MastermindController mastermindController;
     @FXML
     private List<Label> attempts;
     @FXML
@@ -76,8 +78,7 @@ public class MastermindViewControllerImpl extends MinigameViewControllerAbstr im
 
     @Override
     public final void setController(final GenericController controller) {
-        // TODO Auto-generated method stub
-
+        this.mastermindController = (MastermindController) controller;
     }
 
     @Override

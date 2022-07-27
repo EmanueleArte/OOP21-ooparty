@@ -2,22 +2,21 @@ package minigames.mastermind.controller;
 
 import java.util.List;
 
-import minigames.common.controller.MinigameControllerAbstr;
 import minigames.common.view.MinigameView;
 import minigames.mastermind.model.MastermindModel;
 import minigames.mastermind.model.MastermindModelImpl;
 import minigames.mastermind.view.MastermindViewImpl;
 import minigames.mastermind.viewcontroller.MastermindViewController;
+import utils.GenericControllerAbstr;
 import utils.GenericViewController;
 import utils.graphics.stagemanager.StageManager;
 
 /**
  * Extension of {@link MinigameControllerAbstr}.
  */
-public class MastermindControllerImpl extends MinigameControllerAbstr {
+public class MastermindControllerImpl extends GenericControllerAbstr implements MastermindController {
 
     private final MastermindModel<?, ?> mastermindModel;
-    private final MinigameView<?> mastermindView;
     private MastermindViewController mastermindViewController;
 
     /**
@@ -30,7 +29,6 @@ public class MastermindControllerImpl extends MinigameControllerAbstr {
     public <S, U> MastermindControllerImpl(final StageManager<S> s, final List<U> players) {
         super(s);
         this.mastermindModel = new MastermindModelImpl<>(players, s);
-        this.mastermindView = new MastermindViewImpl<>(s);
     }
 
     @Override
@@ -50,7 +48,25 @@ public class MastermindControllerImpl extends MinigameControllerAbstr {
 
     @Override
     public final void startGame() {
-        this.mastermindView.startMinigame(this.mastermindModel.getPlayers(), this);
+        final MinigameView<?> mastermindView = new MastermindViewImpl<>(this.getStageManager());
+        mastermindView.startMinigame(this.mastermindModel.getPlayers(), this);
+    }
+
+    @Override
+    public final void setMaxAttempts(final int maxAttempts) {
+        this.mastermindModel.setMaxAttempts(maxAttempts);
+    }
+
+    @Override
+    public final boolean nextTurn() {
+        return this.mastermindModel.runGame();
+    }
+
+    @Override
+    public final void doAttempt(final String attempt) {
+        final String attemptDone = this.mastermindModel.doAttempt(this.mastermindViewController.getGuessAttempt());
+        this.showAttemptDone(attemptDone);
+        this.showTurnResults();
     }
 
 }
