@@ -3,7 +3,6 @@ package menu.gamecreationmenu.viewcontroller;
 import java.util.ArrayList;
 import java.util.List;
 
-import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Spinner;
@@ -14,12 +13,13 @@ import menu.gamecreationmenu.model.GameCreationMenuModelImpl;
 import utils.GenericController;
 import utils.GenericViewController;
 import utils.NoticeUserAbstr;
-import utils.SpinnerUtils;
+import utils.GuiUtils;
 import utils.enums.Notice;
 import utils.enums.PlayerColor;
 
 /**
- * Extension of {@link NoticeUserAbstr} and implementation of {@link GenericViewController}.
+ * Extension of {@link NoticeUserAbstr} and implementation of
+ * {@link GenericViewController}.
  */
 public class GameCreationMenuViewController extends NoticeUserAbstr implements GenericViewController {
 
@@ -43,7 +43,7 @@ public class GameCreationMenuViewController extends NoticeUserAbstr implements G
 
     @FXML
     private void initialize() {
-        this.fillColorsBoxes();
+        GuiUtils.fillColorsBoxes(this.playerColors);
         this.setNumberOfPlayersSpinner();
         this.setTurnsNumberSpinner();
         this.numberOfPlayers.getValueFactory().valueProperty().addListener(value -> this.showPlayersForms());
@@ -115,20 +115,10 @@ public class GameCreationMenuViewController extends NoticeUserAbstr implements G
     }
 
     /**
-     * This method fills the the combo box with colors which can be choose.
-     */
-    private void fillColorsBoxes() {
-        playerColors.forEach(colors -> {
-            colors.setItems(FXCollections.observableArrayList(PlayerColor.values()));
-            colors.getSelectionModel().selectFirst();
-        });
-    }
-
-    /**
      * This method sets the value factory for the number of players spinner.
      */
     private void setNumberOfPlayersSpinner() {
-        SpinnerUtils.setSpinnerControls(this.numberOfPlayers, GameCreationMenuModelImpl.N_MIN_PLAYERS,
+        GuiUtils.setSpinnerControls(this.numberOfPlayers, GameCreationMenuModelImpl.N_MIN_PLAYERS,
                 GameCreationMenuModelImpl.N_MAX_PLAYERS);
     }
 
@@ -136,7 +126,7 @@ public class GameCreationMenuViewController extends NoticeUserAbstr implements G
      * This method sets the value factory for the number of turns spinner.
      */
     private void setTurnsNumberSpinner() {
-        SpinnerUtils.setSpinnerControls(this.turnsNumber, GameCreationMenuModelImpl.N_MIN_TURNS,
+        GuiUtils.setSpinnerControls(this.turnsNumber, GameCreationMenuModelImpl.N_MIN_TURNS,
                 GameCreationMenuModelImpl.N_MAX_TURNS);
     }
 
