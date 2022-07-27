@@ -80,6 +80,13 @@ public final class SceneHandler {
         return scenes.size() - 1;
     }
 
+    /**
+     * This methods checks if the controller parameter is a minigame controller.
+     * 
+     * @param controller the controller to check
+     * @return the controller casted to {@link MinigameController} if it is a
+     *         minigame controller else null
+     */
     public static MinigameController checkGameController(final GenericController controller) {
         if (controller.getClass().getInterfaces().toString().contains(SceneHandler.MINIGAME_INTERFACE)) {
             return (MinigameController) controller;
