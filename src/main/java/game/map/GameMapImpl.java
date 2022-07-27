@@ -4,6 +4,7 @@ import java.util.List;
 
 public class GameMapImpl implements GameMap {
     private List<GameMapBox> boxes;
+    public static final int MONEY_TO_BUY_STAR = 50;
 
     public GameMapImpl(final List<GameMapBox> boxes) {
         this.boxes = boxes;
