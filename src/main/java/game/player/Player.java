@@ -80,4 +80,16 @@ public interface Player {
      * @return the amount of life points
      */
     int getLife();
+
+    /**
+     * Adds amount life points to the current life points.
+     * @param amount the amount of life points to get
+     */
+    void getLifePoints(int amount);
+
+    /**
+     * Takes Away life from the player.
+     * @param damage the amount of life to be taken away
+     */
+    void loseLifePoints(int damage);
 }

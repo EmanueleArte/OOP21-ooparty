@@ -19,4 +19,8 @@ public interface GameMapBox {
     int getCoinsNumber();
 
     void receiveCoins(Player p);
+
+    int getDamage();
+
+    void receiveDamage(Player p);
 }

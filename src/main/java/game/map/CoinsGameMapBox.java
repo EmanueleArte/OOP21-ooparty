@@ -24,6 +24,6 @@ public class CoinsGameMapBox extends GameMapBoxImpl {
     }
 
     private void generateNewCoins() {
-        this.coinsNumber = new Random().nextInt(GameMapBoxImpl.MAX_COINS);
+        this.coinsNumber = new Random().nextInt(GameMapBoxImpl.MAX_COINS) + 1;
     }
 }

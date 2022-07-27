@@ -9,7 +9,7 @@ public class StarsGameMapBox extends GameMapBoxImpl {
     }
 
     /**
-     * Add a star to a player if that player has enough coins.
+     * Adds a star to a player if that player has enough coins.
      * @param p the player that will receive the star
      */
     public void receiveStar(final Player p) {

@@ -13,6 +13,11 @@ public class GameMapBoxImpl implements GameMapBox {
      */
     public static final int MAX_COINS = 10;
 
+    /**
+     * It's the maximum number of damage that can be taken from a damage box.
+     */
+    public static final int MAX_DAMAGE = 50;
+
     public GameMapBoxImpl() {
         this.players = new HashSet<>();
     }
@@ -42,6 +47,16 @@ public class GameMapBoxImpl implements GameMapBox {
 
     @Override
     public void receiveCoins(final Player p) {
+        //TODO lanciare un'eccezione?
+    }
+
+    @Override
+    public int getDamage() {
+        return 0;
+    }
+
+    @Override
+    public void receiveDamage(final Player p) {
         //TODO lanciare un'eccezione?
     }
 }

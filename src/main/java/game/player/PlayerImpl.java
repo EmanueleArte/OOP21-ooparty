@@ -2,6 +2,8 @@ package game.player;
 
 import java.util.Objects;
 
+import game.map.GameMapBoxImpl;
+import game.map.GameMapImpl;
 import javafx.scene.paint.Color;
 
 /**
@@ -14,7 +16,7 @@ public class PlayerImpl implements Player {
     private int position; // da modificare quando ci saranno le caselle
     private int coins;
     private int stars;
-    private int life;
+    private int lifePoints;
 
     /**
      * The maximum amount of life points.
@@ -33,7 +35,7 @@ public class PlayerImpl implements Player {
         this.coins = 0;
         this.stars = 0;
         this.position = 0;
-        this.life = 100;
+        this.lifePoints = PlayerImpl.MAX_LIFE;
     }
 
     public PlayerImpl(final String nickname) {
@@ -110,7 +112,29 @@ public class PlayerImpl implements Player {
 
     @Override
     public final int getLife() {
-        return this.life;
+        return this.lifePoints;
+    }
+
+    @Override
+    public final void loseLifePoints(final int damage) {
+        if (damage <= 0) {
+            throw new IllegalArgumentException("Damage can't be 0 or negative");
+        }
+        this.lifePoints = this.lifePoints - damage;
+        if (this.lifePoints <= 0) {
+            //TODO player muore
+        }
+    }
+
+    @Override
+    public final void getLifePoints(final int amount) {
+        if (amount <= 0) {
+            throw new IllegalArgumentException("Amount can't be 0 or negative");
+        }
+        this.lifePoints += amount;
+        if (this.lifePoints > PlayerImpl.MAX_LIFE) {
+            this.lifePoints = PlayerImpl.MAX_LIFE;
+        }
     }
 
     @Override
