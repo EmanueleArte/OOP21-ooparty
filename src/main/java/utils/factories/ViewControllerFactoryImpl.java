@@ -29,7 +29,7 @@ public class ViewControllerFactoryImpl implements ViewControllerFactory {
 
     @Override
     public final <U> GenericControllerCallback<U> createMastermind(final List<U> players) {
-        return new GenericControllerCallback<U>(players, MastermindViewControllerImpl.class);
+        return new GenericControllerCallback<U>(MastermindViewControllerImpl.class);
     }
 
 }

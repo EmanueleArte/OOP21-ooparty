@@ -47,8 +47,8 @@ public class MastermindViewControllerImpl extends MinigameViewControllerAbstr im
         this.mastermindController.doAttempt(this.getGuessAttempt());
     }
 
-    @FXML
     @Override
+    @FXML
     public final void startNextTurn() {
         if (this.mastermindController.nextTurn()) {
             this.inputField.setText("");

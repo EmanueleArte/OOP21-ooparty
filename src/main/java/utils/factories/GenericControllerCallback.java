@@ -2,8 +2,6 @@ package utils.factories;
 
 import java.lang.reflect.InvocationTargetException;
 import java.util.List;
-import java.util.Optional;
-
 import javafx.util.Callback;
 
 /**
@@ -14,7 +12,6 @@ import javafx.util.Callback;
 class GenericControllerCallback<U> implements Callback<Class<?>, Object> {
 
     private final Class<?> controllerClass;
-    private final Optional<List<U>> players;
 
     /**
      * Builds a new {@link GenericControllerCallback}.
@@ -25,7 +22,6 @@ class GenericControllerCallback<U> implements Callback<Class<?>, Object> {
     GenericControllerCallback(final List<U> players, final Class<?> controllerClass) {
         super();
         this.controllerClass = controllerClass;
-        this.players = Optional.ofNullable(players);
     }
 
     /**
@@ -41,11 +37,7 @@ class GenericControllerCallback<U> implements Callback<Class<?>, Object> {
     @Override
     public Object call(final Class<?> param) {
         try {
-            if (this.players.isPresent()) {
-                return this.controllerClass.getConstructor(List.class).newInstance(this.players.get());
-            } else {
-                return this.controllerClass.getConstructor().newInstance();
-            }
+            return this.controllerClass.getConstructor().newInstance();
         } catch (InstantiationException | IllegalAccessException | IllegalArgumentException | InvocationTargetException
                 | NoSuchMethodException | SecurityException e) {
             e.printStackTrace();
