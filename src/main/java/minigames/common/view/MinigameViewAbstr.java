@@ -9,9 +9,8 @@ import utils.graphics.stagemanager.StageManager;
  * Implementation of {@link MinigameView}.
  * 
  * @param <S> the scenes of the stage
- * @param <U> the {@link game.player.Player}
  */
-public abstract class MinigameViewAbstr<S, U> implements MinigameView<S, U> {
+public abstract class MinigameViewAbstr<S> implements MinigameView<S> {
 
     private final StageManager<S> stageManager;
 
@@ -32,6 +31,6 @@ public abstract class MinigameViewAbstr<S, U> implements MinigameView<S, U> {
 
 
     @Override
-    public abstract void startMinigame(List<U> players, GenericController controller);
+    public abstract void startMinigame(List<?> players, GenericController controller);
 
 }

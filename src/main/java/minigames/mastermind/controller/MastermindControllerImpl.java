@@ -17,6 +17,7 @@ import utils.graphics.stagemanager.StageManager;
 public class MastermindControllerImpl extends MinigameControllerAbstr {
 
     private final MastermindModel<?, ?> mastermindModel;
+    private final MinigameView<?> mastermindView;
     private MastermindViewController mastermindViewController;
 
     /**
@@ -29,6 +30,7 @@ public class MastermindControllerImpl extends MinigameControllerAbstr {
     public <S, U> MastermindControllerImpl(final StageManager<S> s, final List<U> players) {
         super(s);
         this.mastermindModel = new MastermindModelImpl<>(players, s);
+        this.mastermindView = new MastermindViewImpl<>(s);
     }
 
     @Override
@@ -48,8 +50,7 @@ public class MastermindControllerImpl extends MinigameControllerAbstr {
 
     @Override
     public final void startGame() {
-        final MinigameView mastermindView = new MastermindViewImpl(this.getStageManager());
-        mastermindView.startMinigame(this.mastermindModel.getPlayers(), this);
+        this.mastermindView.startMinigame(this.mastermindModel.getPlayers(), this);
     }
 
 }

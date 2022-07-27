@@ -66,6 +66,7 @@ public class GameCreationMenuModelImpl<S> implements GameCreationMenuModel<S> {
             // Test minigames
             final MinigameController m = new MastermindControllerImpl(this.stageManager,
                     this.createPlayersList(playersNicknames, playersColors));
+            m.startGame();
         }
         return true;
     }
