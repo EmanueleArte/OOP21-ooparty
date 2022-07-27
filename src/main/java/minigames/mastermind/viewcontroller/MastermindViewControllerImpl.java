@@ -10,22 +10,15 @@ import javafx.scene.control.TextField;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import minigames.common.viewcontroller.MinigameViewControllerAbstr;
-import minigames.mastermind.model.MastermindModel;
-import minigames.mastermind.model.MastermindModelImpl;
 import utils.GenericController;
 import utils.enums.Notice;
-import utils.graphics.stagemanager.StageManager;
 
 /**
- * Extension of {@link MinigameViewControllerAbstr} and implementation of {@link MastermindViewController}.
- * 
- * @param <S> the scenes of the stage
- * @param <U> the {@link game.player.Player}
+ * Extension of {@link MinigameViewControllerAbstr} and implementation of
+ * {@link MastermindViewController}.
  */
-public class MastermindViewControllerImpl<S, U> extends MinigameViewControllerAbstr<S, U>
-        implements MastermindViewController {
+public class MastermindViewControllerImpl extends MinigameViewControllerAbstr implements MastermindViewController {
 
-    private final MastermindModel<S, U> mastermindModel;
     @FXML
     private List<Label> attempts;
     @FXML
@@ -37,13 +30,8 @@ public class MastermindViewControllerImpl<S, U> extends MinigameViewControllerAb
 
     /**
      * Builds a new {@link MastermindViewControllerImpl}.
-     * 
-     * @param s       the {@link utils.graphics.stagemanager.StageManager}
-     * @param players the list of players
      */
-    public MastermindViewControllerImpl(final StageManager<S> s, final List<U> players) {
-        super();
-        this.mastermindModel = new MastermindModelImpl<>(players, s);
+    public MastermindViewControllerImpl() {
     }
 
     @FXML
