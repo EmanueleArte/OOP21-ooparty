@@ -1,6 +1,5 @@
 package menu.gamecreationmenu.view;
 
-import menu.MenuController;
 import utils.enums.ViewControllerType;
 import utils.graphics.stagemanager.StageManager;
 

@@ -35,7 +35,7 @@ public class GuiImpl<S> extends JFrame implements Gui<S> {
     private Optional<JFXPanel> mainStage;
     private FXMLLoader loader;
     private final JFrame frame;
-    private final ViewControllerSelector cSelector;
+    private final ViewControllerSelector vcSelector;
     private Optional<Parent> root;
 
     /**
@@ -48,7 +48,7 @@ public class GuiImpl<S> extends JFrame implements Gui<S> {
         this.mainStage = Optional.empty();
         this.root = Optional.empty();
         this.frame = new JFrame(title);
-        this.cSelector = new ViewControllerSelectorImpl();
+        this.vcSelector = new ViewControllerSelectorImpl();
     }
 
     @Override
@@ -66,7 +66,7 @@ public class GuiImpl<S> extends JFrame implements Gui<S> {
     public final <U> void loadScene(final String fxmlUrl, final ViewControllerType vc, final List<U> players) {
         Platform.runLater(() -> {
             this.loader = new FXMLLoader(getClass().getClassLoader().getResource(fxmlUrl));
-            this.loader.setControllerFactory(this.cSelector.selectControllerCallback(vc, players));
+            this.loader.setControllerFactory(this.vcSelector.selectControllerCallback(vc, players));
             try {
                 this.root = Optional.ofNullable(loader.load());
                 this.setScene(new Scene(this.root.get()));
