@@ -2,11 +2,13 @@ package menu.mainmenu.viewcontroller;
 
 import javafx.fxml.FXML;
 import menu.MenuController;
+import utils.GenericController;
+import utils.GenericViewController;
 
 /**
  * This class models the main menu view controller.
  */
-public class MainMenuViewController {
+public class MainMenuViewController implements GenericViewController {
 
     private MenuController menuController;
 
@@ -32,13 +34,9 @@ public class MainMenuViewController {
         this.menuController.goNext();
     }
 
-    /**
-     * Setter for menuController.
-     * 
-     * @param controller the {@link menu.MenuController}
-     */
-    public final void setMainMenuController(final MenuController controller) {
-        this.menuController = controller;
+    @Override
+    public final void setController(final GenericController controller) {
+        this.menuController = (MenuController) controller;
     }
 
 }

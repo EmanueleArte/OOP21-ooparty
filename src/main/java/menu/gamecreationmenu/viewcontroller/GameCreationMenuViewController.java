@@ -11,6 +11,8 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.VBox;
 import menu.MenuController;
 import menu.gamecreationmenu.model.GameCreationMenuModelImpl;
+import utils.GenericController;
+import utils.GenericViewController;
 import utils.NoticeUserAbstr;
 import utils.SpinnerUtils;
 import utils.enums.Notice;
@@ -19,7 +21,7 @@ import utils.enums.PlayerColor;
 /**
  * This class models the game creation menu view controller.
  */
-public class GameCreationMenuViewController extends NoticeUserAbstr {
+public class GameCreationMenuViewController extends NoticeUserAbstr implements GenericViewController {
 
     private MenuController menuController;
     @FXML
@@ -62,6 +64,11 @@ public class GameCreationMenuViewController extends NoticeUserAbstr {
     @FXML
     private void startGame() {
         this.menuController.goNext();
+    }
+
+    @Override
+    public final void setController(final GenericController controller) {
+        this.menuController = (MenuController) controller;
     }
 
     /**
@@ -138,15 +145,6 @@ public class GameCreationMenuViewController extends NoticeUserAbstr {
      */
     public void showError() {
         this.showNotice(Notice.GAME_CREATION_ERROR.getNotice());
-    }
-
-    /**
-     * Setter for menuController.
-     * 
-     * @param controller the {@link GameCreationMenuController}
-     */
-    public final void setGameCreationMenuController(final MenuController controller) {
-        this.menuController = controller;
     }
 
     /**

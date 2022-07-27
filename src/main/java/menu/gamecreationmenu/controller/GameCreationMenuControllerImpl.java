@@ -6,6 +6,7 @@ import menu.gamecreationmenu.model.GameCreationMenuModelImpl;
 import menu.gamecreationmenu.view.GameCreationMenuView;
 import menu.gamecreationmenu.view.GameCreationMenuViewImpl;
 import menu.gamecreationmenu.viewcontroller.GameCreationMenuViewController;
+import utils.GenericViewController;
 import utils.graphics.stagemanager.StageManager;
 
 /**
@@ -34,6 +35,11 @@ public class GameCreationMenuControllerImpl extends MenuControllerAbstr {
     }
 
     @Override
+    public final GenericViewController getViewController() {
+        return this.menuViewController;
+    }
+
+    @Override
     public final void goNext() {
         this.setActualNumberOfPlayers();
         if (!this.menuModel.startGame(this.menuViewController.getPlayersNicknames(),
@@ -51,7 +57,6 @@ public class GameCreationMenuControllerImpl extends MenuControllerAbstr {
     public final void createMenu() {
         this.menuView = new GameCreationMenuViewImpl<>(this.getStageManager());
         this.menuView.createGameCreationMenu(this);
-        this.menuViewController.setGameCreationMenuController(this);
     }
 
     /**

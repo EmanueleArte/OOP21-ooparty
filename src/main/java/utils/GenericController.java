@@ -13,4 +13,11 @@ public interface GenericController {
      */
     <C> void setViewController(C viewController);
 
+    /**
+     * Getter for the view controller.
+     * 
+     * @return the view controller
+     */
+    GenericViewController getViewController();
+
 }

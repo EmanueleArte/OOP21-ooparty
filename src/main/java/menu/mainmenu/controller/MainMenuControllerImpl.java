@@ -6,6 +6,7 @@ import menu.mainmenu.model.MainMenuModelImpl;
 import menu.mainmenu.view.MainMenuView;
 import menu.mainmenu.view.MainMenuViewImpl;
 import menu.mainmenu.viewcontroller.MainMenuViewController;
+import utils.GenericViewController;
 import utils.graphics.stagemanager.StageManager;
 
 /**
@@ -29,6 +30,16 @@ public class MainMenuControllerImpl extends MenuControllerAbstr {
     }
 
     @Override
+    public final <C> void setViewController(final C viewController) {
+        this.menuViewController = (MainMenuViewController) viewController;
+    }
+
+    @Override
+    public final GenericViewController getViewController() {
+        return this.menuViewController;
+    }
+
+    @Override
     public final void goNext() {
         this.menuModel.gameCreationMenu();
     }
@@ -42,12 +53,6 @@ public class MainMenuControllerImpl extends MenuControllerAbstr {
     public final void createMenu() {
         this.menuView = new MainMenuViewImpl<>(this.getStageManager());
         this.menuView.createMainMenu(this);
-        this.menuViewController.setMainMenuController(this);
-    }
-
-    @Override
-    public final <C> void setViewController(final C viewController) {
-        this.menuViewController = (MainMenuViewController) viewController;
     }
 
 }

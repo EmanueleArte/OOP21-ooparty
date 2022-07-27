@@ -13,6 +13,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import utils.GenericController;
+import utils.GenericViewController;
 import utils.enums.ViewControllerType;
 import utils.factories.ViewControllerSelector;
 import utils.factories.ViewControllerSelectorImpl;
@@ -73,6 +74,7 @@ public class GuiImpl<S> extends JFrame implements Gui<S> {
                 this.root = Optional.ofNullable(this.loader.load());
                 this.setScene(new Scene(this.root.get()));
                 controller.setViewController(this.loader.getController());
+                ((GenericViewController) this.loader.getController()).setController(controller);
             } catch (IOException e1) {
                 e1.printStackTrace();
                 this.root = Optional.empty();
