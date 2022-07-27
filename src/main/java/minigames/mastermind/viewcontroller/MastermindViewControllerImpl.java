@@ -38,29 +38,26 @@ public class MastermindViewControllerImpl extends MinigameViewControllerAbstr im
 
     @FXML
     private void initialize() {
-        this.mastermindModel.setMaxAttempts(this.attempts.size());
+        this.mastermindController.setMaxAttempts(this.attempts.size());
         this.startNextTurn();
     }
 
     @FXML
     private void tryGuess() {
-        final String attemptDone = this.mastermindModel.doAttempt(this.getGuessAttempt());
-        this.showAttemptDone(attemptDone);
-        this.showTurnResults();
+        this.mastermindController.doAttempt(this.getGuessAttempt());
     }
 
     /**
      * This method starts the mastermind minigame next turn.
      */
     @FXML
-    private void startNextTurn() {
-        if (this.mastermindModel.runGame()) {
+    public final void startNextTurn() {
+        if (this.mastermindController.nextTurn()) {
             this.inputField.setText("");
             this.hideAttempts();
             this.hideContinueButton();
             this.clearNotice();
             this.enableInput();
-            this.setPlayerLabelText(this.mastermindModel);
         }
     }
 

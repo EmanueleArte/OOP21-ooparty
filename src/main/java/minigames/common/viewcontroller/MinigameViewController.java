@@ -1,6 +1,5 @@
 package minigames.common.viewcontroller;
 
-import game.player.Player;
 import utils.GenericViewController;
 
 /**
@@ -16,8 +15,9 @@ public interface MinigameViewController extends GenericViewController {
     /**
      * This method sets the player label with the current player nickname and color.
      * 
+     * @param <U> the player type
      * @param player the current player
      */
-    void setPlayerLabelText(Player player);
+    <U> void setPlayerLabelText(U player);
 
 }

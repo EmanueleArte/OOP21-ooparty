@@ -12,11 +12,6 @@ import utils.GenericController;
  */
 public final class SceneHandler {
 
-    /**
-     * The name of the interface implemented by minigames.
-     */
-    private static final String MINIGAME_INTERFACE = "MinigameController";
-
     private SceneHandler() {
     }
 
@@ -88,7 +83,7 @@ public final class SceneHandler {
      *         minigame controller else null
      */
     public static MinigameController checkGameController(final GenericController controller) {
-        if (controller.getClass().getInterfaces().toString().contains(SceneHandler.MINIGAME_INTERFACE)) {
+        if (controller instanceof MinigameController) {
             return (MinigameController) controller;
         }
         return null;

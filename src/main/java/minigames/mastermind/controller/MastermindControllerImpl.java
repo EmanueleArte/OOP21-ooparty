@@ -2,6 +2,7 @@ package minigames.mastermind.controller;
 
 import java.util.List;
 
+import game.player.Player;
 import minigames.common.view.MinigameView;
 import minigames.mastermind.model.MastermindModel;
 import minigames.mastermind.model.MastermindModelImpl;
@@ -59,14 +60,15 @@ public class MastermindControllerImpl extends GenericControllerAbstr implements 
 
     @Override
     public final boolean nextTurn() {
+        this.mastermindViewController.setPlayerLabelText(this.mastermindModel.getCurrPlayer());
         return this.mastermindModel.runGame();
     }
 
     @Override
     public final void doAttempt(final String attempt) {
-        final String attemptDone = this.mastermindModel.doAttempt(this.mastermindViewController.getGuessAttempt());
-        this.showAttemptDone(attemptDone);
-        this.showTurnResults();
+        final String attemptDone = this.mastermindModel.doAttempt(attempt);
+        this.mastermindViewController.showAttemptDone(attemptDone);
+        this.mastermindViewController.showTurnResults();
     }
 
 }
