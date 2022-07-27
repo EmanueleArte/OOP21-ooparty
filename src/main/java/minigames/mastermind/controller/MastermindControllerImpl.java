@@ -60,8 +60,11 @@ public class MastermindControllerImpl extends GenericControllerAbstr implements 
 
     @Override
     public final boolean nextTurn() {
-        this.mastermindViewController.setPlayerLabelText(this.mastermindModel.getCurrPlayer());
-        return this.mastermindModel.runGame();
+        final boolean nextTurnExistence = this.mastermindModel.runGame();
+        if (nextTurnExistence) {
+            this.mastermindViewController.setPlayerLabelText(this.mastermindModel.getCurrPlayer());
+        }
+        return nextTurnExistence;
     }
 
     @Override
