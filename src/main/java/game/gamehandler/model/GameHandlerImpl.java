@@ -4,6 +4,7 @@ import java.util.List;
 
 import game.dice.model.DiceModel;
 import game.dice.model.DiceModelImpl;
+import game.map.GameMap;
 import game.player.Player;
 import utils.graphics.StageManager;
 
@@ -11,15 +12,17 @@ public class GameHandlerImpl<S> implements GameHandler {
 
 	private StageManager<S> stageManager;
 	private final DiceModel dice;
+	private final GameMap gameMap;
 
 	private final int turnsNumber;
 	private final List<Player> players;
 
-	public GameHandlerImpl(final StageManager<S> s, List<Player> players) {
+	public GameHandlerImpl(final StageManager<S> s, final List<Player> players, final GameMap gameMap) {
 		this.stageManager = s;
 		this.dice = new DiceModelImpl();
 		this.turnsNumber = 10;
 		this.players = players;
+		this.gameMap = gameMap;
 	}
 
 	@Override
