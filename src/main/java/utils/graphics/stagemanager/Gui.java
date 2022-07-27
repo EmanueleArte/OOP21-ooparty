@@ -28,7 +28,7 @@ public interface Gui<S> {
      * @param c          the type of the controller
      * @param players    the list of the players; put null if you haven't any list
      *                   of players to pass
-     * @param controller the controller for the view
+     * @param controller the controller to be used
      */
     <U> void loadScene(String fxmlUrl, ViewControllerType c, List<U> players, GenericController controller);
 

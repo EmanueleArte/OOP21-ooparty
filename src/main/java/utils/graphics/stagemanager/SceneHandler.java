@@ -5,6 +5,7 @@ import java.util.Optional;
 
 import javafx.scene.Scene;
 import minigames.common.controller.MinigameController;
+import utils.GenericController;
 
 /**
  * This static class models the actions that handle the scenes.
@@ -29,18 +30,12 @@ public final class SceneHandler {
      *         minigame
      */
     @SuppressWarnings("unchecked")
-    public static <S> MinigameController addFXMLScene(final List<S> scenes, final Gui<S> gui) {
+    public static <S> void addFXMLScene(final List<S> scenes, final Gui<S> gui) {
         final Optional<Scene> scene = Optional.ofNullable(gui.getStageScene());
         if (scene.isPresent()) {
             scenes.add((S) scene.get());
             gui.setScene(scene.get());
-            var controller = gui.getLoader().getController();
-            if (controller.getClass().getInterfaces().toString().contains(SceneHandler.MINIGAME_INTERFACE)) {
-                return (MinigameController) controller;
-            }
-            return null;
         }
-        return null;
     }
 
     /**
@@ -83,6 +78,13 @@ public final class SceneHandler {
      */
     public static <S> int lastSceneIndex(final List<S> scenes) {
         return scenes.size() - 1;
+    }
+
+    public static MinigameController checkGameController(final GenericController controller) {
+        if (controller.getClass().getInterfaces().toString().contains(SceneHandler.MINIGAME_INTERFACE)) {
+            return (MinigameController) controller;
+        }
+        return null;
     }
 
 }
