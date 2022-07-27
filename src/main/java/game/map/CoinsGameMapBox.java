@@ -4,24 +4,24 @@ import java.util.Random;
 
 import game.player.Player;
 
-public class MoneyGameMapBox extends GameMapBoxImpl {
-    private int moneyNumber;
+public class CoinsGameMapBox extends GameMapBoxImpl {
+    private int coinsNumber;
 
-    public MoneyGameMapBox() {
+    public CoinsGameMapBox() {
         super();
-        this.generateNewMoney();
+        this.generateNewCoins();
     }
 
-    public int getMoneyNumber() {
-        return this.moneyNumber;
+    public int getCoinsNumber() {
+        return this.coinsNumber;
     }
 
-    public void receiveMoney(final Player p) {
-        p.updateCoins(this.moneyNumber);
-        this.generateNewMoney();
+    public void receiveCoins(final Player p) {
+        p.earnCoins(this.coinsNumber);
+        this.generateNewCoins();
     }
 
-    private void generateNewMoney() {
-        this.moneyNumber = new Random().nextInt(GameMapBoxImpl.MAX_MONEY); 
+    private void generateNewCoins() {
+        this.coinsNumber = new Random().nextInt(GameMapBoxImpl.MAX_COINS);
     }
 }
