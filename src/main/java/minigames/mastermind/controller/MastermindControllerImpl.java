@@ -11,7 +11,7 @@ import utils.GenericViewController;
 import utils.graphics.stagemanager.StageManager;
 
 /**
- * Extension of {@link GenericControllerAbstr}.
+ * Extension of {@link MinigameControllerAbstr}.
  */
 public class MastermindControllerImpl extends MinigameControllerAbstr {
 
@@ -32,19 +32,17 @@ public class MastermindControllerImpl extends MinigameControllerAbstr {
 
     @Override
     public final <C> void setViewController(final C viewController) {
-
+        this.mastermindViewController = (MastermindViewController) viewController;
     }
 
     @Override
     public final GenericViewController getViewController() {
-        // TODO Auto-generated method stub
-        return null;
+        return this.mastermindViewController;
     }
 
     @Override
     public final List<?> getGameResults() {
-        // TODO Auto-generated method stub
-        return null;
+        return this.mastermindModel.gameResults();
     }
 
 }
