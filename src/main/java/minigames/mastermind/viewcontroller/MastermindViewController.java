@@ -84,11 +84,6 @@ public class MastermindViewController<S, U> extends MinigameViewControllerAbstr<
         }
     }
 
-    @Override
-    public final List<U> getGameResults() {
-        return this.mastermindModel.gameResults();
-    }
-
     /**
      * This method shows the attempt done if it is valid.
      * 

@@ -2,11 +2,12 @@ package minigames.common.controller;
 
 import java.util.List;
 
+import utils.GenericController;
+
 /**
- * This interface models a minigame controller.
- * 
+ * Extension of {@link GenericController}.
  */
-public interface MinigameController {
+public interface MinigameController extends GenericController {
 
     /**
      * This method returns the results of the minigame.

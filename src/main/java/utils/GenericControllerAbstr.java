@@ -3,7 +3,7 @@ package utils;
 import utils.graphics.stagemanager.StageManager;
 
 /**
- * Implementation of {@link MenuController}.
+ * Implementation of {@link GenericController}.
  */
 public abstract class GenericControllerAbstr implements GenericController {
 
@@ -18,6 +18,9 @@ public abstract class GenericControllerAbstr implements GenericController {
     public <S> GenericControllerAbstr(final StageManager<S> s) {
         this.stageManager = s;
     }
+
+    @Override
+    public abstract <C> void setViewController(C viewController);
 
     /**
      * Getter for stageManager.

@@ -22,7 +22,7 @@ public class MainMenuControllerImpl extends GenericControllerAbstr implements Me
      * Builder for {@link MainMenuControllerImpl}.
      * 
      * @param <S> the scenes of the stage
-     * @param s   the {@link utils.graphics.stagemanager.StageManager}
+     * @param s   the {@link StageManager}
      */
     public <S> MainMenuControllerImpl(final StageManager<S> s) {
         super(s);
