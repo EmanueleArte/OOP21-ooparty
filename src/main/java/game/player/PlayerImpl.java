@@ -74,7 +74,11 @@ public class PlayerImpl implements Player {
 
     @Override
     public final void updateCoins(final int n) {
-        this.coins = n;
+        if (n >= 0) {
+            this.coins = n;
+        } else {
+            throw new IllegalArgumentException("Coins can't be negative");
+        }
     }
 
     @Override
