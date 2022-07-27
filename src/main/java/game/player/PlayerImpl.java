@@ -1,5 +1,7 @@
 package game.player;
 
+import java.util.Objects;
+
 import javafx.scene.paint.Color;
 
 /**
@@ -93,6 +95,27 @@ public class PlayerImpl implements Player {
     @Override
     public final int getStarsCount() {
         return this.stars;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(coins, color, nickname, position, stars);
+    }
+
+    @Override
+    public boolean equals(final Object obj) {
+        if  (this == obj) {
+            return true;
+        }
+        if  (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        PlayerImpl other = (PlayerImpl) obj;
+        return coins == other.coins && Objects.equals(color, other.color) && Objects.equals(nickname, other.nickname)
+                && position == other.position && stars == other.stars;
     }
 
 }
