@@ -6,9 +6,9 @@ import menu.gamecreationmenu.model.GameCreationMenuModelImpl;
 import menu.gamecreationmenu.view.GameCreationMenuView;
 import menu.gamecreationmenu.view.GameCreationMenuViewImpl;
 import menu.gamecreationmenu.viewcontroller.GameCreationMenuViewController;
+import menu.gamecreationmenu.viewcontroller.GameCreationMenuViewControllerImpl;
 import utils.GenericControllerAbstr;
 import utils.GenericViewController;
-import utils.enums.Notice;
 import utils.graphics.stagemanager.StageManager;
 
 /**
@@ -32,7 +32,7 @@ public class GameCreationMenuControllerImpl extends GenericControllerAbstr imple
 
     @Override
     public final <C> void setViewController(final C viewController) {
-        this.menuViewController = (GameCreationMenuViewController) viewController;
+        this.menuViewController = (GameCreationMenuViewControllerImpl) viewController;
     }
 
     @Override
@@ -45,7 +45,7 @@ public class GameCreationMenuControllerImpl extends GenericControllerAbstr imple
         this.setActualNumberOfPlayers();
         if (!this.menuModel.startGame(this.menuViewController.getPlayersNicknames(),
                 this.menuViewController.getColorsValues(), this.menuViewController.getTurnsNumber())) {
-            this.menuViewController.showNotice(Notice.GAME_CREATION_ERROR.getNotice());
+            this.menuViewController.showError();
         }
     }
 

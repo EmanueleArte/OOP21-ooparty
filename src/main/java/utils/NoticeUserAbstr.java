@@ -6,7 +6,7 @@ import javafx.scene.control.Label;
 /**
  * This abstract class models a class that uses a notice label.
  */
-public class NoticeUserAbstr implements NoticeUser {
+public class NoticeUserAbstr {
 
     @FXML
     private Label noticeLabel;
@@ -15,9 +15,11 @@ public class NoticeUserAbstr implements NoticeUser {
 
     }
 
+    /**
+     * This method clears the notice text.
+     */
     @FXML
-    @Override
-    public final void clearNotice() {
+    protected void clearNotice() {
         this.noticeLabel.setText("");
     }
 
@@ -26,8 +28,7 @@ public class NoticeUserAbstr implements NoticeUser {
      * 
      * @param notice the notice to show
      */
-    @Override
-    public final void showNotice(final String notice) {
+    protected void showNotice(final String notice) {
         this.noticeLabel.setText(notice);
     }
 
