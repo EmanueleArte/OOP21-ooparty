@@ -12,7 +12,7 @@ import utils.GenericViewController;
 import utils.graphics.stagemanager.StageManager;
 
 /**
- * Extension of {@link MinigameControllerAbstr}.
+ * Extension of {@link MinigameControllerAbstr} and implementation of {@link MastermindController}.
  */
 public class MastermindControllerImpl extends GenericControllerAbstr implements MastermindController {
 

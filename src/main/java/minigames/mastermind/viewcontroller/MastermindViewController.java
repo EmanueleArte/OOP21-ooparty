@@ -2,6 +2,9 @@ package minigames.mastermind.viewcontroller;
 
 import minigames.common.viewcontroller.MinigameViewController;
 
+/**
+ * Extension of {@link MinigameViewController}.
+ */
 public interface MastermindViewController extends MinigameViewController {
 
     /**
