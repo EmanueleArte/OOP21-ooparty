@@ -2,6 +2,7 @@ package minigames.common.view;
 
 import java.util.List;
 
+import utils.GenericController;
 import utils.graphics.stagemanager.StageManager;
 
 /**
@@ -31,6 +32,6 @@ public abstract class MinigameViewAbstr<S, U> implements MinigameView<S, U> {
 
 
     @Override
-    public abstract void startMinigame(List<U> players);
+    public abstract void startMinigame(List<U> players, GenericController controller);
 
 }

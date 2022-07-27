@@ -12,7 +12,7 @@ public interface GameCreationMenuView<S> {
     /**
      * This method shows the game creation menu into the javafx gui.
      * 
-     * @param controller the controller for the view
+     * @param controller the controller to be used
      */
     void createGameCreationMenu(GenericController controller);
 

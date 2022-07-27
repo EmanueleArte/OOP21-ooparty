@@ -41,9 +41,13 @@ public class MainMenuControllerImpl extends MenuControllerAbstr {
     @Override
     public final void createMenu() {
         this.menuView = new MainMenuViewImpl<>(this.getStageManager());
-        this.menuView.createMainMenu();
-        this.menuViewController = this.getStageManager().getGui().getLoader().getController();
+        this.menuView.createMainMenu(this);
         this.menuViewController.setMainMenuController(this);
+    }
+
+    @Override
+    public final <C> void setViewController(final C viewController) {
+        this.menuViewController = (MainMenuViewController) viewController;
     }
 
 }

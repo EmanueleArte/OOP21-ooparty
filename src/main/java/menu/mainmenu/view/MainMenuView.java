@@ -1,5 +1,7 @@
 package menu.mainmenu.view;
 
+import utils.GenericController;
+
 /**
  * This interface models the main menu view of the game.
  * 
@@ -9,7 +11,9 @@ public interface MainMenuView<S> {
 
     /**
      * This method creates the main menu scene.
+     * 
+     * @param controller the controller to be used
      */
-    void createMainMenu();
+    void createMainMenu(GenericController controller);
 
 }

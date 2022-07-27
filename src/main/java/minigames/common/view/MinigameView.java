@@ -2,6 +2,7 @@ package minigames.common.view;
 
 import java.util.List;
 
+import utils.GenericController;
 import utils.graphics.stagemanager.StageManager;
 
 /**
@@ -22,6 +23,6 @@ public interface MinigameView<S, U> {
     /**
      * This method creates the minigame scene.
      */
-    void startMinigame(List<U> players);
+    void startMinigame(List<U> players, GenericController controller);
 
 }
