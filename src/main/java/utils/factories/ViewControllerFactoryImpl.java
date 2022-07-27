@@ -3,7 +3,7 @@ package utils.factories;
 import java.util.List;
 
 import menu.gamecreationmenu.viewcontroller.GameCreationMenuViewControllerImpl;
-import menu.mainmenu.viewcontroller.MainMenuViewController;
+import menu.mainmenu.viewcontroller.MainMenuViewControllerImpl;
 import minigames.mastermind.viewcontroller.MastermindViewController;
 
 /**
@@ -19,7 +19,7 @@ public class ViewControllerFactoryImpl implements ViewControllerFactory {
 
     @Override
     public final <U> GenericController<U> createMainMenuController() {
-        return new GenericController<U>(MainMenuViewController.class);
+        return new GenericController<U>(MainMenuViewControllerImpl.class);
     }
 
     @Override

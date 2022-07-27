@@ -8,14 +8,14 @@ import utils.GenericViewController;
 /**
  * Implementation of {@link GenericViewController}.
  */
-public class MainMenuViewController implements GenericViewController {
+public class MainMenuViewControllerImpl implements GenericViewController {
 
     private MenuController menuController;
 
     /**
-     * Builds a new {@link MainMenuViewController}.
+     * Builds a new {@link MainMenuViewControllerImpl}.
      */
-    public MainMenuViewController() {
+    public MainMenuViewControllerImpl() {
     }
 
     /**

@@ -5,7 +5,7 @@ import menu.mainmenu.model.MainMenuModel;
 import menu.mainmenu.model.MainMenuModelImpl;
 import menu.mainmenu.view.MainMenuView;
 import menu.mainmenu.view.MainMenuViewImpl;
-import menu.mainmenu.viewcontroller.MainMenuViewController;
+import menu.mainmenu.viewcontroller.MainMenuViewControllerImpl;
 import utils.GenericControllerAbstr;
 import utils.GenericViewController;
 import utils.graphics.stagemanager.StageManager;
@@ -16,7 +16,7 @@ import utils.graphics.stagemanager.StageManager;
 public class MainMenuControllerImpl extends GenericControllerAbstr implements MenuController {
 
     private final MainMenuModel<?> menuModel;
-    private MainMenuViewController menuViewController;
+    private GenericViewController menuViewController;
 
     /**
      * Builder for {@link MainMenuControllerImpl}.
@@ -31,7 +31,7 @@ public class MainMenuControllerImpl extends GenericControllerAbstr implements Me
 
     @Override
     public final <C> void setViewController(final C viewController) {
-        this.menuViewController = (MainMenuViewController) viewController;
+        this.menuViewController = (MainMenuViewControllerImpl) viewController;
     }
 
     @Override
