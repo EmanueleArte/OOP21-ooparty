@@ -1,9 +1,11 @@
 package menu;
 
+import utils.GenericController;
+
 /**
  * This interface models a menu controller.
  */
-public interface MenuController {
+public interface MenuController extends GenericController {
 
     /**
      * This method creates and move on the next scene.

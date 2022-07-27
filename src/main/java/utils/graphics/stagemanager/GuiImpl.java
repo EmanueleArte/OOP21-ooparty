@@ -12,6 +12,7 @@ import javafx.embed.swing.JFXPanel;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import utils.GenericController;
 import utils.enums.ViewControllerType;
 import utils.factories.ViewControllerSelector;
 import utils.factories.ViewControllerSelectorImpl;
@@ -63,13 +64,15 @@ public class GuiImpl<S> extends JFrame implements Gui<S> {
     }
 
     @Override
-    public final <U> void loadScene(final String fxmlUrl, final ViewControllerType vc, final List<U> players) {
+    public final <U> void loadScene(final String fxmlUrl, final ViewControllerType vc, final List<U> players,
+            final GenericController controller) {
         Platform.runLater(() -> {
             this.loader = new FXMLLoader(getClass().getClassLoader().getResource(fxmlUrl));
             this.loader.setControllerFactory(this.vcSelector.selectControllerCallback(vc, players));
             try {
-                this.root = Optional.ofNullable(loader.load());
+                this.root = Optional.ofNullable(this.loader.load());
                 this.setScene(new Scene(this.root.get()));
+                controller.setViewController(this.loader.getController());
             } catch (IOException e1) {
                 e1.printStackTrace();
                 this.root = Optional.empty();

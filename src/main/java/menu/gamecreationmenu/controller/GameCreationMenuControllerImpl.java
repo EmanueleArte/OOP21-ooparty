@@ -29,6 +29,11 @@ public class GameCreationMenuControllerImpl extends MenuControllerAbstr {
     }
 
     @Override
+    public final <C> void setViewController(final C viewController) {
+        this.menuViewController = (GameCreationMenuViewController) viewController;
+    }
+
+    @Override
     public final void goNext() {
         this.setActualNumberOfPlayers();
         if (!this.menuModel.startGame(this.menuViewController.getPlayersNicknames(),
@@ -45,9 +50,7 @@ public class GameCreationMenuControllerImpl extends MenuControllerAbstr {
     @Override
     public final void createMenu() {
         this.menuView = new GameCreationMenuViewImpl<>(this.getStageManager());
-        this.menuView.createGameCreationMenu();
-        
-        this.menuViewController = this.getStageManager().getGui().getLoader().getController();
+        this.menuView.createGameCreationMenu(this);
         this.menuViewController.setGameCreationMenuController(this);
     }
 

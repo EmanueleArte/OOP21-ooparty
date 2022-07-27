@@ -3,6 +3,7 @@ package utils.graphics.stagemanager;
 import java.util.List;
 
 import minigames.common.viewcontroller.MinigameController;
+import utils.GenericController;
 import utils.enums.ViewControllerType;
 
 /**
@@ -15,13 +16,14 @@ public interface StageManager<S> {
     /**
      * This method adds an FXML scene to the scene list.
      * 
-     * @param <U>     the players type
-     * @param fxmlUrl the url of the fxml file to load
-     * @param c       the type of the controller
-     * @param players the list of the players; put null if you haven't any list of
-     *                players to pass
+     * @param <U>        the players type
+     * @param fxmlUrl    the url of the fxml file to load
+     * @param c          the type of the controller
+     * @param players    the list of the players; put null if you haven't any list
+     *                   of players to pass
+     * @param controller the controller to be used
      */
-    <U> void addFXMLScene(String fxmlUrl, ViewControllerType c, List<U> players);
+    <U> void addFXMLScene(String fxmlUrl, ViewControllerType c, List<U> players, GenericController controller);
 
     /**
      * This method adds an existing scene.
