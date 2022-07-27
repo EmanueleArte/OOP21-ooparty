@@ -1,18 +1,19 @@
 package menu.gamecreationmenu.controller;
 
-import menu.MenuControllerAbstr;
+import menu.MenuController;
 import menu.gamecreationmenu.model.GameCreationMenuModel;
 import menu.gamecreationmenu.model.GameCreationMenuModelImpl;
 import menu.gamecreationmenu.view.GameCreationMenuView;
 import menu.gamecreationmenu.view.GameCreationMenuViewImpl;
 import menu.gamecreationmenu.viewcontroller.GameCreationMenuViewController;
+import utils.GenericControllerAbstr;
 import utils.GenericViewController;
 import utils.graphics.stagemanager.StageManager;
 
 /**
- * Extension of {@link MenuControllerAbstr}.
+ * Extension of {@link GenericControllerAbstr}.
  */
-public class GameCreationMenuControllerImpl extends MenuControllerAbstr {
+public class GameCreationMenuControllerImpl extends GenericControllerAbstr implements MenuController {
 
     private final GameCreationMenuModel<?> menuModel;
     private GameCreationMenuView<?> menuView;

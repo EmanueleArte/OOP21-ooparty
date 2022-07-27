@@ -1,18 +1,19 @@
 package menu.mainmenu.controller;
 
-import menu.MenuControllerAbstr;
+import menu.MenuController;
 import menu.mainmenu.model.MainMenuModel;
 import menu.mainmenu.model.MainMenuModelImpl;
 import menu.mainmenu.view.MainMenuView;
 import menu.mainmenu.view.MainMenuViewImpl;
 import menu.mainmenu.viewcontroller.MainMenuViewController;
+import utils.GenericControllerAbstr;
 import utils.GenericViewController;
 import utils.graphics.stagemanager.StageManager;
 
 /**
- * Extension of {@link MenuControllerAbstr}.
+ * Extension of {@link GenericControllerAbstr}.
  */
-public class MainMenuControllerImpl extends MenuControllerAbstr {
+public class MainMenuControllerImpl extends GenericControllerAbstr implements MenuController {
 
     private final MainMenuModel<?> menuModel;
     private MainMenuView<?> menuView;
