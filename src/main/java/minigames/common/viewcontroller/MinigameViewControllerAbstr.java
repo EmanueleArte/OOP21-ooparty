@@ -7,7 +7,7 @@ import minigames.common.model.MinigameModel;
 import utils.NoticeUserAbstr;
 
 /**
- * This abstract class models a standard minigame view controller.
+ * Extension of {@link NoticeUserAbstr}.
  * 
  * @param <S> the scenes of the stage
  * @param <U> the player

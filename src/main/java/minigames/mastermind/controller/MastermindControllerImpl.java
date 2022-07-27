@@ -2,7 +2,6 @@ package minigames.mastermind.controller;
 
 import java.util.List;
 
-import minigames.common.controller.MinigameController;
 import minigames.common.controller.MinigameControllerAbstr;
 import minigames.mastermind.model.MastermindModel;
 import minigames.mastermind.model.MastermindModelImpl;
