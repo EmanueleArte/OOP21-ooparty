@@ -1,9 +1,9 @@
 package game.map;
 
-import java.util.Set;
+import java.util.List;
 
 public interface GameMap {
 
-    Set<GameMapBox> getBoxesSet();
+    List<GameMapBox> getBoxesSet();
 
 }

@@ -1,16 +1,16 @@
 package game.map;
 
-import java.util.Set;
+import java.util.List;
 
 public class GameMapImpl implements GameMap {
-    private Set<GameMapBox> boxes;
+    private List<GameMapBox> boxes;
 
-    public GameMapImpl(final Set<GameMapBox> boxes) {
+    public GameMapImpl(final List<GameMapBox> boxes) {
         this.boxes = boxes;
     }
 
     @Override
-    public Set<GameMapBox> getBoxesSet() {
-        return Set.copyOf(this.boxes);
+    public List<GameMapBox> getBoxesSet() {
+        return List.copyOf(this.boxes);
     }
 }
