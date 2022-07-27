@@ -62,7 +62,6 @@ public class GuiImpl<S> extends JFrame implements Gui<S> {
         this.frame.setVisible(true);
     }
 
-    @SuppressWarnings("unchecked")
     @Override
     public final <U> void loadScene(final String fxmlUrl, final ControllerType c, final List<U> players) {
         Platform.runLater(() -> {
@@ -70,7 +69,7 @@ public class GuiImpl<S> extends JFrame implements Gui<S> {
             this.loader.setControllerFactory(this.cSelector.selectControllerCallback(c, players));
             try {
                 this.root = Optional.ofNullable(loader.load());
-                this.setScene((S) new Scene(this.root.get()));
+                this.setScene(new Scene(this.root.get()));
             } catch (IOException e1) {
                 e1.printStackTrace();
                 this.root = Optional.empty();
@@ -79,8 +78,8 @@ public class GuiImpl<S> extends JFrame implements Gui<S> {
     }
 
     @Override
-    public final void setScene(final S scene) {
-        this.mainStage.get().setScene((Scene) scene);
+    public final void setScene(final Scene scene) {
+        this.mainStage.get().setScene(scene);
     }
 
     @Override

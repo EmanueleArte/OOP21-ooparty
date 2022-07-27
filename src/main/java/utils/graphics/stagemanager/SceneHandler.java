@@ -3,6 +3,7 @@ package utils.graphics.stagemanager;
 import java.util.List;
 import java.util.Optional;
 
+import javafx.scene.Scene;
 import minigames.common.viewcontroller.MinigameController;
 
 /**
@@ -29,9 +30,9 @@ public final class SceneHandler {
      */
     @SuppressWarnings("unchecked")
     public static <S> MinigameController addFXMLScene(final List<S> scenes, final Gui<S> gui) {
-        final Optional<S> scene = Optional.ofNullable((S) gui.getStageScene());
+        final Optional<Scene> scene = Optional.ofNullable(gui.getStageScene());
         if (scene.isPresent()) {
-            scenes.add(scene.get());
+            scenes.add((S) scene.get());
             gui.setScene(scene.get());
             var controller = gui.getLoader().getController();
             if (controller.getClass().getInterfaces().toString().contains(SceneHandler.MINIGAME_INTERFACE)) {
@@ -69,7 +70,7 @@ public final class SceneHandler {
         }
         var poppedScene = scenes.remove(SceneHandler.lastSceneIndex(scenes));
         if (gui.getStageScene() != null) {
-            gui.setScene(scenes.get(SceneHandler.lastSceneIndex(scenes)));
+            gui.setScene((Scene) scenes.get(SceneHandler.lastSceneIndex(scenes)));
         }
         return poppedScene;
     }

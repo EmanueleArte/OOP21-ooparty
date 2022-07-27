@@ -46,6 +46,7 @@ public class GameCreationMenuControllerImpl extends MenuControllerAbstr {
     public final void createMenu() {
         this.menuView = new GameCreationMenuViewImpl<>(this.getStageManager());
         this.menuView.createGameCreationMenu();
+        
         this.menuViewController = this.getStageManager().getGui().getLoader().getController();
         this.menuViewController.setGameCreationMenuController(this);
     }

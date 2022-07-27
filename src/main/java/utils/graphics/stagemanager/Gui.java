@@ -33,9 +33,9 @@ public interface Gui<S> {
     /**
      * This method shows the actual scene.
      * 
-     * @param scene the scene to be shown
+     * @param scene the {@link Scene} to be shown
      */
-    void setScene(S scene);
+    void setScene(Scene scene);
 
     /**
      * Getter for the {@link FXMLLoader}.
