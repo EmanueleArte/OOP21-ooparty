@@ -1,4 +1,4 @@
-package minigames.common.viewcontroller;
+package minigames.common.controller;
 
 import java.util.List;
 

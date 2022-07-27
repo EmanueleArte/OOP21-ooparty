@@ -14,7 +14,6 @@ import utils.GenericController;
 import utils.GenericViewController;
 import utils.NoticeUserAbstr;
 import utils.GuiUtils;
-import utils.enums.Notice;
 import utils.enums.PlayerColor;
 
 /**
@@ -87,31 +86,11 @@ public class GameCreationMenuViewController extends NoticeUserAbstr implements G
         for (int i = GameCreationMenuModelImpl.N_MIN_PLAYERS; i < GameCreationMenuModelImpl.N_MAX_PLAYERS; i++) {
             var form = playersForms.get(i);
             if (i >= nPlayers) {
-                this.hideForm(form);
+                GuiUtils.hideForm(form);
             } else {
-                this.showForm(form);
+                GuiUtils.showForm(form);
             }
         }
-    }
-
-    /**
-     * This method shows a player form.
-     * 
-     * @param form the player form
-     */
-    private void showForm(final VBox form) {
-        form.setVisible(true);
-        form.setManaged(true);
-    }
-
-    /**
-     * This method hides a player form.
-     * 
-     * @param form the player form
-     */
-    private void hideForm(final VBox form) {
-        form.setVisible(false);
-        form.setManaged(false);
     }
 
     /**
@@ -128,13 +107,6 @@ public class GameCreationMenuViewController extends NoticeUserAbstr implements G
     private void setTurnsNumberSpinner() {
         GuiUtils.setSpinnerControls(this.turnsNumber, GameCreationMenuModelImpl.N_MIN_TURNS,
                 GameCreationMenuModelImpl.N_MAX_TURNS);
-    }
-
-    /**
-     * This method shows the error produced by the game creation menu forms.
-     */
-    public void showError() {
-        this.showNotice(Notice.GAME_CREATION_ERROR.getNotice());
     }
 
     /**

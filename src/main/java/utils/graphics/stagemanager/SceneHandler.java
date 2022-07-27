@@ -4,7 +4,7 @@ import java.util.List;
 import java.util.Optional;
 
 import javafx.scene.Scene;
-import minigames.common.viewcontroller.MinigameController;
+import minigames.common.controller.MinigameController;
 
 /**
  * This static class models the actions that handle the scenes.

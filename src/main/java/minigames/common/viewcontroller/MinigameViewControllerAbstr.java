@@ -5,6 +5,7 @@ import java.util.List;
 import game.player.Player;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
+import minigames.common.controller.MinigameController;
 import minigames.common.model.MinigameModel;
 import utils.NoticeUserAbstr;
 

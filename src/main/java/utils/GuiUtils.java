@@ -5,6 +5,7 @@ import java.util.List;
 import javafx.collections.FXCollections;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Spinner;
+import javafx.scene.layout.VBox;
 import utils.enums.PlayerColor;
 
 /**
@@ -36,6 +37,26 @@ public final class GuiUtils {
             colors.setItems(FXCollections.observableArrayList(PlayerColor.values()));
             colors.getSelectionModel().selectFirst();
         });
+    }
+
+    /**
+     * This method shows a player form.
+     * 
+     * @param form the player form
+     */
+    public static void showForm(final VBox form) {
+        form.setVisible(true);
+        form.setManaged(true);
+    }
+
+    /**
+     * This method hides a player form.
+     * 
+     * @param form the player form
+     */
+    public static void hideForm(final VBox form) {
+        form.setVisible(false);
+        form.setManaged(false);
     }
 
 }

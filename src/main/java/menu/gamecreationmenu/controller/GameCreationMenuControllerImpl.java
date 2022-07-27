@@ -8,6 +8,7 @@ import menu.gamecreationmenu.view.GameCreationMenuViewImpl;
 import menu.gamecreationmenu.viewcontroller.GameCreationMenuViewController;
 import utils.GenericControllerAbstr;
 import utils.GenericViewController;
+import utils.enums.Notice;
 import utils.graphics.stagemanager.StageManager;
 
 /**
@@ -44,7 +45,7 @@ public class GameCreationMenuControllerImpl extends GenericControllerAbstr imple
         this.setActualNumberOfPlayers();
         if (!this.menuModel.startGame(this.menuViewController.getPlayersNicknames(),
                 this.menuViewController.getColorsValues(), this.menuViewController.getTurnsNumber())) {
-            this.menuViewController.showError();
+            this.menuViewController.showNotice(Notice.GAME_CREATION_ERROR.getNotice());
         }
     }
 

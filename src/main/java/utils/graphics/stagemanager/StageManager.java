@@ -2,7 +2,7 @@ package utils.graphics.stagemanager;
 
 import java.util.List;
 
-import minigames.common.viewcontroller.MinigameController;
+import minigames.common.controller.MinigameController;
 import utils.GenericController;
 import utils.enums.ViewControllerType;
 
