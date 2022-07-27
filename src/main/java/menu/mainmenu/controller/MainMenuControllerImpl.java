@@ -11,7 +11,7 @@ import utils.GenericViewController;
 import utils.graphics.stagemanager.StageManager;
 
 /**
- * Extension of {@link GenericControllerAbstr}.
+ * Extension of {@link GenericControllerAbstr} and implementation of {@link MenuController}.
  */
 public class MainMenuControllerImpl extends GenericControllerAbstr implements MenuController {
 

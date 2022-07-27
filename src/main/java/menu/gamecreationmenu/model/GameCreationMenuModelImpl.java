@@ -62,9 +62,8 @@ public class GameCreationMenuModelImpl<S> implements GameCreationMenuModel<S> {
             // To complete with game constructor (parameters: playersList, stageManager,
             // turnsNumber)
             // Test minigames
-            /*final MinigameView<S, Player> m = new MastermindViewImpl<>(this.stageManager);
-            m.startMinigame(this.createPlayersList(playersNicknames, playersColors));*/
-            System.out.println("ok");
+            final MinigameView<S, Player> m = new MastermindViewImpl<>(this.stageManager);
+            m.startMinigame(this.createPlayersList(playersNicknames, playersColors));
         }
         return true;
     }

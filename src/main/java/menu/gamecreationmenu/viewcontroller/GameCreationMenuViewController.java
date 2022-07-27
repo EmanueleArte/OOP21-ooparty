@@ -19,7 +19,7 @@ import utils.enums.Notice;
 import utils.enums.PlayerColor;
 
 /**
- * This class models the game creation menu view controller.
+ * Extension of {@link NoticeUserAbstr} and implementation of {@link GenericViewController}.
  */
 public class GameCreationMenuViewController extends NoticeUserAbstr implements GenericViewController {
 

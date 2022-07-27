@@ -1,7 +1,7 @@
 package menu;
 
 /**
- * This interface models a menu controller and extends {@link GenericController}.
+ * This interface models a menu controller.
  */
 public interface MenuController {
 

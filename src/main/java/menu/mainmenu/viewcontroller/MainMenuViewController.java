@@ -6,7 +6,7 @@ import utils.GenericController;
 import utils.GenericViewController;
 
 /**
- * This class models the main menu view controller.
+ * Implementation of {@link GenericViewController}.
  */
 public class MainMenuViewController implements GenericViewController {
 
