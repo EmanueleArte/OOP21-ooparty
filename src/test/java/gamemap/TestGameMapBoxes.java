@@ -1,11 +1,11 @@
 package gamemap;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
-import game.dice.model.DiceModel;
-import game.dice.model.DiceModelImpl;
 import game.map.GameMap;
 import game.map.GameMapImpl;
 import game.map.CoinsGameMapBox;
@@ -22,11 +22,21 @@ public class TestGameMapBoxes {
                                                         new CoinsGameMapBox(), new CoinsGameMapBox(), new CoinsGameMapBox(), new CoinsGameMapBox(), new CoinsGameMapBox()));
     private final Player p1 = new PlayerImpl("Giocatore 1");
     private final Player p2 = new PlayerImpl("Giocatore 2");
-    private final DiceModel<Player> dice = new DiceModelImpl<>();
 
     @Test
     public void testMoneyBoxes() {
-        int n = dice.rollDice(p1);
-        p1.moveForward(n);
+        int dice = 3;
+        p1.moveForward(dice);
+        int coinNum = map.getBoxes().get(dice).getCoinsNumber();
+        map.getBoxes().get(p1.getPosition()).receiveCoins(p1);
+        assertEquals(coinNum, p1.getCoinsCount());
+    }
+
+    @Test
+    public void testPlayerListInBox() {
+        int dice = 3;
+        p1.moveForward(dice);
+        map.getBoxes().get(dice).addPlayer(p1);
+        assertEquals(map.getPlayerPosition(p1), map.getBoxes().get(dice));
     }
 }

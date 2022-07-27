@@ -16,4 +16,7 @@ public interface GameMapBox {
 
     void removePlayer(Player p);
 
+    int getCoinsNumber();
+
+    void receiveCoins(Player p);
 }

@@ -27,6 +27,6 @@ public class TestMap {
         boxes.add(box4);
 
         GameMap gameMap = new GameMapImpl(boxes);
-        assertEquals(gameMap.getBoxesSet(), List.of(box1, box2, box3, box4));
+        assertEquals(gameMap.getBoxes(), List.of(box1, box2, box3, box4));
     }
 }

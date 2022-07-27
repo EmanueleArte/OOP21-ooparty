@@ -20,7 +20,7 @@ public class GameMapImpl implements GameMap {
      * 
      */
     @Override
-    public List<GameMapBox> getBoxesSet() {
+    public List<GameMapBox> getBoxes() {
         return List.copyOf(this.boxes);
     }
 

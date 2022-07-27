@@ -14,6 +14,12 @@ public class PlayerImpl implements Player {
     private int position; // da modificare quando ci saranno le caselle
     private int coins;
     private int stars;
+    private int life;
+
+    /**
+     * The maximum amount of life points.
+     */
+    public static final int MAX_LIFE = 100;
 
     /**
      * Builds a new {@link PlayerImpl}.
@@ -27,6 +33,7 @@ public class PlayerImpl implements Player {
         this.coins = 0;
         this.stars = 0;
         this.position = 0;
+        this.life = 100;
     }
 
     public PlayerImpl(final String nickname) {
@@ -102,12 +109,17 @@ public class PlayerImpl implements Player {
     }
 
     @Override
-    public int hashCode() {
+    public final int getLife() {
+        return this.life;
+    }
+
+    @Override
+    public final int hashCode() {
         return Objects.hash(coins, color, nickname, position, stars);
     }
 
     @Override
-    public boolean equals(final Object obj) {
+    public final boolean equals(final Object obj) {
         if  (this == obj) {
             return true;
         }

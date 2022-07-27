@@ -21,23 +21,27 @@ public class GameMapBoxImpl implements GameMapBox {
      *
      */
     @Override
-    public Set<Player> getPlayers() {
+    public final Set<Player> getPlayers() {
         return Set.copyOf(this.players);
     }
 
-    /**
-     * 
-     */
     @Override
-    public void addPlayer(final Player p) {
+    public final void addPlayer(final Player p) {
         this.players.add(p);
     }
 
-    /**
-     * 
-     */
     @Override
-    public void removePlayer(final Player p) {
+    public final void removePlayer(final Player p) {
         this.players.remove(p);
+    }
+
+    @Override
+    public int getCoinsNumber() {
+        return 0;
+    }
+
+    @Override
+    public void receiveCoins(final Player p) {
+        //TODO lanciare un'eccezione?
     }
 }

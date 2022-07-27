@@ -6,7 +6,7 @@ import game.player.Player;
 
 public interface GameMap {
 
-    List<GameMapBox> getBoxesSet();
+    List<GameMapBox> getBoxes();
 
     GameMapBox getPlayerPosition(Player p);
 }

@@ -74,4 +74,10 @@ public interface Player {
      * @return number of player'stars
      */
     int getStarsCount();
+
+    /**
+     * 
+     * @return the amount of life points
+     */
+    int getLife();
 }

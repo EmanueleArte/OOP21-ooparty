@@ -12,11 +12,13 @@ public class CoinsGameMapBox extends GameMapBoxImpl {
         this.generateNewCoins();
     }
 
-    public int getCoinsNumber() {
+    @Override
+    public final int getCoinsNumber() {
         return this.coinsNumber;
     }
 
-    public void receiveCoins(final Player p) {
+    @Override
+    public final void receiveCoins(final Player p) {
         p.earnCoins(this.coinsNumber);
         this.generateNewCoins();
     }
