@@ -16,7 +16,6 @@ import utils.graphics.stagemanager.StageManager;
 public class GameCreationMenuControllerImpl extends GenericControllerAbstr implements MenuController {
 
     private final GameCreationMenuModel<?> menuModel;
-    private GameCreationMenuView<?> menuView;
     private GameCreationMenuViewController menuViewController;
 
     /**
@@ -56,8 +55,8 @@ public class GameCreationMenuControllerImpl extends GenericControllerAbstr imple
 
     @Override
     public final void createMenu() {
-        this.menuView = new GameCreationMenuViewImpl<>(this.getStageManager());
-        this.menuView.createGameCreationMenu(this);
+        final GameCreationMenuView<?> menuView = new GameCreationMenuViewImpl<>(this.getStageManager());
+        menuView.createGameCreationMenu(this);
     }
 
     /**
