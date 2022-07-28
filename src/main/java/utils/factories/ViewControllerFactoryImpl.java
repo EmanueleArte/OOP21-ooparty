@@ -1,7 +1,5 @@
 package utils.factories;
 
-import menu.gamecreationmenu.viewcontroller.GameCreationMenuViewControllerImpl;
-
 /**
  * This class provides static methods to create view controllers.
  */
@@ -19,7 +17,7 @@ public final class ViewControllerFactoryImpl {
      * @return the {@link GenericControllerCallback} created using the parameter
      */
     public static <U> GenericControllerCallback<U> createViewController(final Class<?> controllerClass) {
-        return new GenericControllerCallback<U>(GameCreationMenuViewControllerImpl.class);
+        return new GenericControllerCallback<U>(controllerClass);
     }
 
 }
