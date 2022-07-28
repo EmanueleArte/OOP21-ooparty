@@ -18,4 +18,10 @@ public interface GameMap {
      * @return the player p's position
      */
     GameMapSquare getPlayerPosition(Player p);
+    
+    /**
+     * Puts all the players in the starting square.
+     * @param players the list of the players to be put in the starting square
+     */
+    void inizializePlayers(List<Player> players);
 }

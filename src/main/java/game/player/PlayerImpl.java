@@ -112,7 +112,7 @@ public class PlayerImpl implements Player {
     }
 
     @Override
-    public final int getLife() {
+    public final int getLifePoints() {
         return this.lifePoints;
     }
 
@@ -128,7 +128,7 @@ public class PlayerImpl implements Player {
     }
 
     @Override
-    public final void getLifePoints(final int amount) {
+    public final void addLifePoints(final int amount) {
         if (amount <= 0) {
             throw new IllegalArgumentException("Amount can't be 0 or negative");
         }

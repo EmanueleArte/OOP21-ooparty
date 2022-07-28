@@ -29,6 +29,7 @@ public class GameHandlerImpl<S> implements GameHandler {
 
     @Override
     public void start() {
+        this.gameMap.inizializePlayers(players);
         for (int turn = 1; turn <= turnsNumber; turn++) {
             System.out.println("Turno " + turn);
             players.forEach(p -> {

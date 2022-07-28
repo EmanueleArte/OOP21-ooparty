@@ -31,4 +31,10 @@ public class GameMapImpl implements GameMap {
         }
         throw new PlayerNotFoundException("Player not found in the game map");
     }
+
+    @Override
+    public final void inizializePlayers(final List<Player> players) {
+        GameMapSquare firstSquare = this.getSquares().get(0);
+        players.forEach(p -> firstSquare.addPlayer(p));
+    }
 }
