@@ -49,6 +49,12 @@ public interface GameMapSquare {
     void receiveDamage(Player p);
 
     /**
+     * Adds a star to a player if that player has enough coins.
+     * @param p the player that will receive the star
+     */
+    void receiveStar(Player p);
+
+    /**
      * 
      * @return if this is a coins game map square
      */

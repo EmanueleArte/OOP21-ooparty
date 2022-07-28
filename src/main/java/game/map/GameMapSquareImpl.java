@@ -76,6 +76,14 @@ public class GameMapSquareImpl implements GameMapSquare {
      * 
      */
     @Override
+    public void receiveStar(final Player p) {
+        throw new UnsupportedOperationException("This is not a star game map square");
+    }
+
+    /**
+     * 
+     */
+    @Override
     public boolean isCoinsGameMapSquare() {
         return false;
     }

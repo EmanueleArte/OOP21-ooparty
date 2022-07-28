@@ -5,13 +5,15 @@ import java.util.List;
 import game.dice.model.DiceModel;
 import game.dice.model.DiceModelImpl;
 import game.map.GameMap;
+import game.map.GameMapSquare;
+import game.map.GameMapSquareImpl;
 import game.player.Player;
 import utils.graphics.StageManager;
 
 public class GameHandlerImpl<S> implements GameHandler {
 
     private StageManager<S> stageManager;
-    private final DiceModel dice;
+    private final DiceModel<Player> dice;
     private final GameMap gameMap;
 
     private final int turnsNumber;
@@ -42,8 +44,18 @@ public class GameHandlerImpl<S> implements GameHandler {
         System.out.println("Turno di " + player.getNickname() + " - posizione: " + player.getPosition(this.gameMap));
         int roll = dice.rollDice(player);
         System.out.println("Lancio del dado: " + roll);
-        player.moveForward(roll, this.gameMap);
-        System.out.println("Nuova posizione: " + player.getPosition(this.gameMap));
+        player.moveForward(roll, this.gameMap);     //TODO moveForward è da fare 
+        GameMapSquare playerPosition = this.gameMap.getPlayerPosition(player);
+        System.out.println("Nuova posizione: " + playerPosition);
+        if (playerPosition.isCoinsGameMapSquare()) {
+            playerPosition.receiveCoins(player);
+        } else if (playerPosition.isDamageGameMapSquare()) {
+            playerPosition.receiveDamage(player);
+        } else if (playerPosition.isPowerUpGameMapSquare()) {
+            //TODO
+        } else if (playerPosition.isStarGameMapSquare()) {
+            playerPosition.receiveStar(player);
+        }
     }
 
     @Override
@@ -54,6 +66,6 @@ public class GameHandlerImpl<S> implements GameHandler {
     @Override
     public void showLeaderboard() {
         System.out.println("Classifica");
-	}
+    }
 
 }

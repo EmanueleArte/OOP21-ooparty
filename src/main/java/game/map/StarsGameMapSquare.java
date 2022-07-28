@@ -9,9 +9,9 @@ public class StarsGameMapSquare extends GameMapSquareImpl {
     }
 
     /**
-     * Adds a star to a player if that player has enough coins.
-     * @param p the player that will receive the star
+     * 
      */
+    @Override
     public void receiveStar(final Player p) {
         if (this.checkEnoughCoins(p)) {
             p.earnStar();
