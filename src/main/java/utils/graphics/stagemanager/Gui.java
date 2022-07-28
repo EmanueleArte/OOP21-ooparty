@@ -5,7 +5,6 @@ import java.util.List;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import utils.GenericController;
-import utils.enums.ViewControllerType;
 
 /**
  * This interface models the javafx gui.
@@ -30,7 +29,7 @@ public interface Gui<S> {
      *                   of players to pass
      * @param controller the controller to be used
      */
-    <U> void loadScene(String fxmlUrl, ViewControllerType c, List<U> players, GenericController controller);
+    <U> void loadScene(String fxmlUrl, Class<?> controllerClass, List<U> players, GenericController controller);
 
     /**
      * This method shows the actual scene.

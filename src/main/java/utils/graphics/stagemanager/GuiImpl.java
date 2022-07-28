@@ -14,9 +14,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import utils.GenericController;
 import utils.GenericViewController;
-import utils.enums.ViewControllerType;
-import utils.factories.ViewControllerSelector;
-import utils.factories.ViewControllerSelectorImpl;
+import utils.factories.ViewControllerFactoryImpl;
 
 /**
  * Implementation of {@link Gui}.
@@ -37,7 +35,6 @@ public class GuiImpl<S> extends JFrame implements Gui<S> {
     private Optional<JFXPanel> mainStage;
     private FXMLLoader loader;
     private final JFrame frame;
-    private final ViewControllerSelector vcSelector;
     private Optional<Parent> root;
 
     /**
@@ -50,7 +47,6 @@ public class GuiImpl<S> extends JFrame implements Gui<S> {
         this.mainStage = Optional.empty();
         this.root = Optional.empty();
         this.frame = new JFrame(title);
-        this.vcSelector = new ViewControllerSelectorImpl();
     }
 
     @Override
@@ -65,11 +61,11 @@ public class GuiImpl<S> extends JFrame implements Gui<S> {
     }
 
     @Override
-    public final <U> void loadScene(final String fxmlUrl, final ViewControllerType vc, final List<U> players,
+    public final <U> void loadScene(final String fxmlUrl, final Class<?> controllerClass, final List<U> players,
             final GenericController controller) {
         Platform.runLater(() -> {
             this.loader = new FXMLLoader(getClass().getClassLoader().getResource(fxmlUrl));
-            this.loader.setControllerFactory(this.vcSelector.selectControllerCallback(vc, players));
+            this.loader.setControllerFactory(ViewControllerFactoryImpl.createViewController(controllerClass));
             try {
                 this.root = Optional.ofNullable(this.loader.load());
                 this.setScene(new Scene(this.root.get()));
