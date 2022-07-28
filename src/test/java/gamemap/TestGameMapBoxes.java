@@ -28,7 +28,7 @@ public class TestGameMapBoxes {
         int dice = 3;
         p1.moveForward(dice);
         int coinNum = map.getBoxes().get(dice).getCoinsNumber();
-        map.getBoxes().get(p1.getPosition()).receiveCoins(p1);
+        p1.getPosition(this.map).receiveCoins(p1);
         assertEquals(coinNum, p1.getCoinsCount());
     }
 
