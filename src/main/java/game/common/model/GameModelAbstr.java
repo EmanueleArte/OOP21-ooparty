@@ -26,7 +26,7 @@ public abstract class GameModelAbstr<S, U> implements GameModel<S, U> {
      */
     public GameModelAbstr(final List<U> players, final StageManager<S> s) {
         this.players = players;
-        this.playerIterator = this.players.listIterator();
+        this.setPlayerIterator(players);
         this.stageManager = s;
     }
 
@@ -82,6 +82,13 @@ public abstract class GameModelAbstr<S, U> implements GameModel<S, U> {
         if (this.hasNextPlayer()) {
             this.currPlayer = this.getNextPlayer();
         }
+    }
+
+    /**
+     * Setter for playerIterator.
+     */
+    protected void setPlayerIterator(final List<U> players) {
+        this.playerIterator = players.listIterator();
     }
 
 }
