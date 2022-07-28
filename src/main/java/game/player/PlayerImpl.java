@@ -3,7 +3,7 @@ package game.player;
 import java.util.Objects;
 
 import game.map.GameMap;
-import game.map.GameMapBox;
+import game.map.GameMapSquare;
 import javafx.scene.paint.Color;
 
 /**
@@ -51,20 +51,19 @@ public class PlayerImpl implements Player {
     }
 
     @Override
-    public final void moveForward(final int n) {
+    public final void moveForward(final int n, final GameMap gameMap) {
         //TODO da modificare
-        //this.position += n;
     }
 
     @Override
-    public void goTo(final GameMap gameMap, final GameMapBox newGameMapBox) {
-        GameMapBox currentPosition = this.getPosition(gameMap);
-        newGameMapBox.addPlayer(this);
+    public void goTo(final GameMap gameMap, final GameMapSquare newGameMapSquare) {
+        GameMapSquare currentPosition = this.getPosition(gameMap);
+        newGameMapSquare.addPlayer(this);
         currentPosition.removePlayer(this);
     }
 
     @Override
-    public final GameMapBox getPosition(final GameMap gameMap) {
+    public final GameMapSquare getPosition(final GameMap gameMap) {
         return gameMap.getPlayerPosition(this);
     }
 

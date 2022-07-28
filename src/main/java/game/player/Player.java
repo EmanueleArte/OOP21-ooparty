@@ -1,7 +1,7 @@
 package game.player;
 
 import game.map.GameMap;
-import game.map.GameMapBox;
+import game.map.GameMapSquare;
 import javafx.scene.paint.Color;
 
 /**
@@ -23,18 +23,23 @@ public interface Player {
      * Moves the player forward.
      * 
      * @param n number of steps
+     * @param gameMap the map of the game
      */
-    void moveForward(int n);
+    void moveForward(int n, GameMap gameMap);
 
     /**
      * Moves the player to a certain position.
+     * @param gameMap the map of the game
+     * @param newGameMapSquare the new player's position square
      */
-    void goTo(GameMap gameMap, GameMapBox newGameMapBox);
+    void goTo(GameMap gameMap, GameMapSquare newGameMapSquare);
 
     /**
-     * @return the player's position (the box where he is located)
+     * 
+     * @param gameMap the map of the game
+     * @return the player's position (the square where he is located)
      */
-    GameMapBox getPosition(GameMap gameMap);
+    GameMapSquare getPosition(GameMap gameMap);
 
     /**
      * Increments the player's coins.

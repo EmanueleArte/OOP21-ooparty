@@ -2,9 +2,9 @@ package game.map;
 
 import game.player.Player;
 
-public class StarsGameMapBox extends GameMapBoxImpl {
+public class StarsGameMapSquare extends GameMapSquareImpl {
 
-    public StarsGameMapBox() {
+    public StarsGameMapSquare() {
         super();
     }
 
@@ -21,5 +21,25 @@ public class StarsGameMapBox extends GameMapBoxImpl {
 
     private boolean checkEnoughCoins(final Player p) {
         return p.getCoinsCount() >= GameMapImpl.COINS_TO_BUY_STAR;
+    }
+
+    @Override
+    public boolean isCoinsGameMapSquare() {
+        return false;
+    }
+
+    @Override
+    public boolean isStarGameMapSquare() {
+        return true;
+    }
+
+    @Override
+    public boolean isPowerUpGameMapSquare() {
+        return false;
+    }
+
+    @Override
+    public boolean isDamageGameMapSquare() {
+        return false;
     }
 }

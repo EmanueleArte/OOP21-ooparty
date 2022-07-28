@@ -5,20 +5,20 @@ import java.util.Set;
 
 import game.player.Player;
 
-public class GameMapBoxImpl implements GameMapBox {
+public class GameMapSquareImpl implements GameMapSquare {
     private Set<Player> players;
 
     /**
-     * It's the maximum number of coins that can be found on a coin box.
+     * It's the maximum number of coins that can be found on a coin square.
      */
     public static final int MAX_COINS = 10;
 
     /**
-     * It's the maximum number of damage that can be taken from a damage box.
+     * It's the maximum number of damage that can be taken from a damage square.
      */
     public static final int MAX_DAMAGE = 50;
 
-    public GameMapBoxImpl() {
+    public GameMapSquareImpl() {
         this.players = new HashSet<>();
     }
 
@@ -58,5 +58,25 @@ public class GameMapBoxImpl implements GameMapBox {
     @Override
     public void receiveDamage(final Player p) {
         //TODO lanciare un'eccezione?
+    }
+
+    @Override
+    public boolean isCoinsGameMapSquare() {
+        return false;
+    }
+
+    @Override
+    public boolean isStarGameMapSquare() {
+        return false;
+    }
+
+    @Override
+    public boolean isPowerUpGameMapSquare() {
+        return false;
+    }
+
+    @Override
+    public boolean isDamageGameMapSquare() {
+        return false;
     }
 }
