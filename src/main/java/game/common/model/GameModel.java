@@ -1,4 +1,4 @@
-package minigames.common.model;
+package game.common.model;
 
 import java.util.List;
 import java.util.Map;
@@ -6,12 +6,12 @@ import java.util.Map;
 import utils.graphics.stagemanager.StageManager;
 
 /**
- * This interface models a minigame model.
+ * This interface models the game model.
  * 
  * @param <S> the scenes of the stage
  * @param <U> the player
  */
-public interface MinigameModel<S, U> {
+public interface GameModel<S, U> {
 
     /**
      * This method runs the minigame.
@@ -74,3 +74,4 @@ public interface MinigameModel<S, U> {
     void setPlayersClassification(Map<U, Integer> playersClassification);
 
 }
+

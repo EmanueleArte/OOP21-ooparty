@@ -29,7 +29,7 @@ public class MastermindModelImpl<S, U> extends MinigameModelAbstr<S, U> implemen
      * Builds a new {@link MastermindModelImpl}.
      * 
      * @param players the list of players
-     * @param s       the {@link utils.graphics.stagemanager.StageManager}
+     * @param s       the {@link StageManager}
      */
     public MastermindModelImpl(final List<U> players, final StageManager<S> s) {
         super(players, s);
