@@ -3,7 +3,7 @@ package minigames.mastermind.view;
 import java.util.List;
 
 import minigames.common.view.MinigameViewAbstr;
-import minigames.mastermind.controller.MastermindControllerImpl;
+import minigames.mastermind.viewcontroller.MastermindViewControllerImpl;
 import utils.GenericController;
 import utils.graphics.stagemanager.StageManager;
 
@@ -26,7 +26,7 @@ public class MastermindViewImpl<S> extends MinigameViewAbstr<S> {
     @Override
     public final void startMinigame(final List<?> players, final GenericController controller) {
         final String fxmlUrl = "minigames/mastermind.fxml";
-        this.getStageManager().addFXMLScene(fxmlUrl, MastermindControllerImpl.class, players, controller);
+        this.getStageManager().addFXMLScene(fxmlUrl, MastermindViewControllerImpl.class, players, controller);
     }
 
 }
