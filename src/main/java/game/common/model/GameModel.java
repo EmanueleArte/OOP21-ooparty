@@ -14,7 +14,7 @@ import utils.graphics.stagemanager.StageManager;
 public interface GameModel<S, U> {
 
     /**
-     * This method runs the minigame.
+     * This method runs the game.
      * 
      * @return true if there is another player that has to play
      */
