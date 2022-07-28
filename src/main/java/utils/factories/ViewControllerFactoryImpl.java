@@ -1,35 +1,25 @@
 package utils.factories;
 
-import java.util.List;
-
 import menu.gamecreationmenu.viewcontroller.GameCreationMenuViewControllerImpl;
-import menu.mainmenu.viewcontroller.MainMenuViewControllerImpl;
-import minigames.mastermind.viewcontroller.MastermindViewControllerImpl;
 
 /**
- * Implementation of {@link ViewControllerFactory}.
+ * This class provides static methods to create view controllers.
  */
-public class ViewControllerFactoryImpl implements ViewControllerFactory {
+public final class ViewControllerFactoryImpl {
+
+    private ViewControllerFactoryImpl() {
+    }
 
     /**
-     * Builds a new {@link ViewControllerFactoryImpl}.
+     * This method creates a {@link GenericControllerCallback} to be used by
+     * {@link javafx.fxml.FXMLLoader}.
+     * 
+     * @param <U>             the players
+     * @param controllerClass the class of the view controller
+     * @return the {@link GenericControllerCallback} created using the parameter
      */
-    public ViewControllerFactoryImpl() {
-    }
-
-    @Override
-    public final <U> GenericControllerCallback<U> createMainMenuController() {
-        return new GenericControllerCallback<U>(MainMenuViewControllerImpl.class);
-    }
-
-    @Override
-    public final <U> GenericControllerCallback<U> createGameCreationMenuController() {
+    public static <U> GenericControllerCallback<U> createViewController(final Class<?> controllerClass) {
         return new GenericControllerCallback<U>(GameCreationMenuViewControllerImpl.class);
-    }
-
-    @Override
-    public final <U> GenericControllerCallback<U> createMastermind(final List<U> players) {
-        return new GenericControllerCallback<U>(MastermindViewControllerImpl.class);
     }
 
 }
