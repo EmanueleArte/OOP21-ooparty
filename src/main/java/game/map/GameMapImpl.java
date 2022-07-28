@@ -2,12 +2,13 @@ package game.map;
 
 import java.util.List;
 
+import exceptions.PlayerNotFoundException;
 import game.player.Player;
 
 public class GameMapImpl implements GameMap {
     private List<GameMapSquare> squares;
     /**
-     * Number of coins to buy a star.
+     * Number of coins required to buy a star.
      */
     public static final int COINS_TO_BUY_STAR = 50;
 
@@ -28,7 +29,6 @@ public class GameMapImpl implements GameMap {
                 return b;
             }
         }
-        //TODO dovrebbe lanciare un'eccezione?
-        return this.squares.get(0);
+        throw new PlayerNotFoundException("Player not found in the game map");
     }
 }

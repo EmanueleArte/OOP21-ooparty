@@ -9,12 +9,12 @@ public class GameMapSquareImpl implements GameMapSquare {
     private Set<Player> players;
 
     /**
-     * It's the maximum number of coins that can be found on a coin square.
+     * Maximum number of coins that can be found on a coin square.
      */
     public static final int MAX_COINS = 10;
 
     /**
-     * It's the maximum number of damage that can be taken from a damage square.
+     * Maximum number of damage that can be taken from a damage square.
      */
     public static final int MAX_DAMAGE = 50;
 
@@ -40,41 +40,65 @@ public class GameMapSquareImpl implements GameMapSquare {
         this.players.remove(p);
     }
 
+    /**
+     * 
+     */
     @Override
     public int getCoinsNumber() {
         return 0;
     }
 
+    /**
+     * 
+     */
     @Override
     public void receiveCoins(final Player p) {
-        //TODO lanciare un'eccezione?
+        throw new UnsupportedOperationException("This is not a coins game map square");
     }
 
+    /**
+     * 
+     */
     @Override
     public int getDamage() {
         return 0;
     }
 
+    /**
+     * 
+     */
     @Override
     public void receiveDamage(final Player p) {
-        //TODO lanciare un'eccezione?
+        throw new UnsupportedOperationException("This is not a damage game map square");
     }
 
+    /**
+     * 
+     */
     @Override
     public boolean isCoinsGameMapSquare() {
         return false;
     }
 
+    /**
+     * 
+     */
     @Override
     public boolean isStarGameMapSquare() {
         return false;
     }
 
+    /**
+     * 
+     */
     @Override
     public boolean isPowerUpGameMapSquare() {
         return false;
     }
 
+    /**
+     * 
+     */
     @Override
     public boolean isDamageGameMapSquare() {
         return false;
