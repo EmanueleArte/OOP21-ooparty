@@ -13,11 +13,11 @@ public final class ViewControllerFactoryImpl {
      * {@link javafx.fxml.FXMLLoader}.
      * 
      * @param <U>             the players
-     * @param controllerClass the class of the view controller
+     * @param viewControllerClass the class of the view controller
      * @return the {@link GenericControllerCallback} created using the parameter
      */
-    public static <U> GenericControllerCallback<U> createViewController(final Class<?> controllerClass) {
-        return new GenericControllerCallback<U>(controllerClass);
+    public static <U> GenericControllerCallback<U> createViewController(final Class<?> viewControllerClass) {
+        return new GenericControllerCallback<U>(viewControllerClass);
     }
 
 }

@@ -29,7 +29,7 @@ public interface Gui<S> {
      *                   of players to pass
      * @param controller the controller to be used
      */
-    <U> void loadScene(String fxmlUrl, Class<?> controllerClass, List<U> players, GenericController controller);
+    <U> void loadScene(String fxmlUrl, Class<?> viewControllerClass, List<U> players, GenericController controller);
 
     /**
      * This method shows the actual scene.

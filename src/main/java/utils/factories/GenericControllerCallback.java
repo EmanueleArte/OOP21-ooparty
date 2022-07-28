@@ -10,7 +10,7 @@ import javafx.util.Callback;
  */
 class GenericControllerCallback<U> implements Callback<Class<?>, Object> {
 
-    private final Class<?> controllerClass;
+    private final Class<?> viewControllerClass;
 
     /**
      * Builds a new {@link GenericControllerCallback} with no players.
@@ -18,14 +18,14 @@ class GenericControllerCallback<U> implements Callback<Class<?>, Object> {
      * @param s               the {@link utils.graphics.stagemanager.StageManager}
      * @param controllerClass the class of the controller
      */
-    GenericControllerCallback(final Class<?> controllerClass) {
-        this.controllerClass = controllerClass;
+    GenericControllerCallback(final Class<?> viewControllerClass) {
+        this.viewControllerClass = viewControllerClass;
     }
 
     @Override
     public Object call(final Class<?> param) {
         try {
-            return this.controllerClass.getConstructor().newInstance();
+            return this.viewControllerClass.getConstructor().newInstance();
         } catch (InstantiationException | IllegalAccessException | IllegalArgumentException | InvocationTargetException
                 | NoSuchMethodException | SecurityException e) {
             e.printStackTrace();

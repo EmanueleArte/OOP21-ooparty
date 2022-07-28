@@ -22,7 +22,7 @@ public interface StageManager<S> {
      *                   of players to pass
      * @param controller the controller to be used
      */
-    <U> void addFXMLScene(String fxmlUrl, Class<?> controllerClass, List<U> players, GenericController controller);
+    <U> void addFXMLScene(String fxmlUrl, Class<?> viewControllerClass, List<U> players, GenericController controller);
 
     /**
      * This method adds an existing scene.
