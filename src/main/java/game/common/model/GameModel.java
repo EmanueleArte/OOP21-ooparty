@@ -1,7 +1,6 @@
 package game.common.model;
 
 import java.util.List;
-import java.util.Map;
 
 import utils.graphics.stagemanager.StageManager;
 
@@ -21,23 +20,6 @@ public interface GameModel<S, U> {
     boolean runGame();
 
     /**
-     * This method returns the results of the minigame that are necessary for points
-     * assignment, etc...
-     * 
-     * @return a list of players ordered by their classification in the minigame
-     *         with no draws
-     */
-    List<U> gameResults();
-
-    /**
-     * This method associates a player to his score.
-     * 
-     * @param player the current {@link game.player.Player}
-     * @param score  the score of the player at the minigame
-     */
-    void scoreMapper(U player, Integer score);
-
-    /**
      * Getter for the {@link StageManager}.
      * 
      * @return the stage manager
@@ -45,7 +27,7 @@ public interface GameModel<S, U> {
     StageManager<S> getStageManager();
 
     /**
-     * Getter for the list of {@link game.player.Player}.
+     * Getter for the list of players.
      * 
      * @return the list of players
      */
@@ -57,21 +39,6 @@ public interface GameModel<S, U> {
      * @return the current player
      */
     U getCurrPlayer();
-
-    /**
-     * Getter for playersClassification.
-     * 
-     * @return a map with players as keys and their score as values
-     */
-    Map<U, Integer> getPlayersClassification();
-
-    /**
-     * This method sets the map of players associated to their scores.
-     * 
-     * @param playersClassification a map with players as keys and their score as
-     *                              values
-     */
-    void setPlayersClassification(Map<U, Integer> playersClassification);
 
 }
 

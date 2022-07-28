@@ -53,9 +53,9 @@ public abstract class GameModelAbstr<S, U> implements GameModel<S, U> {
     }
 
     /**
-     * Getter for the actual player.
+     * Getter for the next player.
      * 
-     * @return the actual player
+     * @return the next player
      */
     protected U getNextPlayer() {
         return this.player.next();
