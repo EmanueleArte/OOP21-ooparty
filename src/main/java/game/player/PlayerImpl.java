@@ -2,8 +2,8 @@ package game.player;
 
 import java.util.Objects;
 
-import game.map.GameMapBoxImpl;
-import game.map.GameMapImpl;
+import game.map.GameMap;
+import game.map.GameMapBox;
 import javafx.scene.paint.Color;
 
 /**
@@ -13,7 +13,6 @@ public class PlayerImpl implements Player {
 
     private final String nickname;
     private final Color color;
-    private int position; // da modificare quando ci saranno le caselle
     private int coins;
     private int stars;
     private int lifePoints;
@@ -34,7 +33,6 @@ public class PlayerImpl implements Player {
         this.color = color;
         this.coins = 0;
         this.stars = 0;
-        this.position = 0;
         this.lifePoints = PlayerImpl.MAX_LIFE;
     }
 
@@ -54,18 +52,20 @@ public class PlayerImpl implements Player {
 
     @Override
     public final void moveForward(final int n) {
-        this.position += n;
+        //TODO da modificare
+        //this.position += n;
     }
 
     @Override
-    public void goTo() {
-        // da completare quando ci saranno le caselle
+    public void goTo(final GameMap gameMap, final GameMapBox newGameMapBox) {
+        GameMapBox currentPosition = this.getPosition(gameMap);
+        newGameMapBox.addPlayer(this);
+        currentPosition.removePlayer(this);
     }
 
     @Override
-    public final int getPosition() {
-        // da modificare quando ci saranno le caselle
-        return this.position;
+    public final GameMapBox getPosition(final GameMap gameMap) {
+        return gameMap.getPlayerPosition(this);
     }
 
     @Override
@@ -102,7 +102,9 @@ public class PlayerImpl implements Player {
 
     @Override
     public final void loseStar() {
-        this.stars--;
+        if (this.stars > 0) {
+            this.stars--;
+        }
     }
 
     @Override
@@ -139,7 +141,7 @@ public class PlayerImpl implements Player {
 
     @Override
     public final int hashCode() {
-        return Objects.hash(coins, color, nickname, position, stars);
+        return Objects.hash(coins, color, nickname, stars);
     }
 
     @Override
@@ -155,7 +157,7 @@ public class PlayerImpl implements Player {
         }
         PlayerImpl other = (PlayerImpl) obj;
         return coins == other.coins && Objects.equals(color, other.color) && Objects.equals(nickname, other.nickname)
-                && position == other.position && stars == other.stars;
+                && stars == other.stars;
     }
 
 }

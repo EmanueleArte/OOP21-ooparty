@@ -1,5 +1,7 @@
 package game.player;
 
+import game.map.GameMap;
+import game.map.GameMapBox;
 import javafx.scene.paint.Color;
 
 /**
@@ -27,12 +29,12 @@ public interface Player {
     /**
      * Moves the player to a certain position.
      */
-    void goTo();
+    void goTo(GameMap gameMap, GameMapBox newGameMapBox);
 
     /**
-     * @return the player's position
+     * @return the player's position (the box where he is located)
      */
-    int getPosition();
+    GameMapBox getPosition(GameMap gameMap);
 
     /**
      * Increments the player's coins.
