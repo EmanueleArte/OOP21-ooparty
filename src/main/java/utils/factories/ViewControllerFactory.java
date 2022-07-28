@@ -11,26 +11,21 @@ public interface ViewControllerFactory {
      * This method creates a controller callback for the
      * {@link javafx.fxml.FXMLLoader}.
      * 
-     * @return the controller {@link javafx.util.Callback} for the main menu
+     * @param <U>       the players
+     * @param menuClass the class of the menu controller
+     * @return the controller {@link javafx.util.Callback} for a menu
      */
-    <U> GenericControllerCallback<U> createMainMenuController();
+    <U> GenericControllerCallback<U> createMenuController(Class<?> menuClass);
 
     /**
      * This method creates a controller callback for the
      * {@link javafx.fxml.FXMLLoader}.
      * 
-     * @return the controller {@link javafx.util.Callback} for the game creation
-     *         menu
+     * @param <U>       the players
+     * @param gameClass the class of the game controller
+     * @param players   the list of players
+     * @return the controller {@link javafx.util.Callback} for a game
      */
-    <U> GenericControllerCallback<U> createGameCreationMenuController();
-
-    /**
-     * This method creates a controller callback for the
-     * {@link javafx.fxml.FXMLLoader}.
-     * 
-     * @param <U> the {@link game.player.Player}
-     * @return the controller {@link javafx.util.Callback} for mastermind minigame
-     */
-    <U> GenericControllerCallback<U> createMastermind(List<U> players);
+    <U> GenericControllerCallback<U> createGameController(Class<?> gameClass, List<U> players);
 
 }
