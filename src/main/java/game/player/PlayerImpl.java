@@ -56,7 +56,7 @@ public class PlayerImpl implements Player {
     }
 
     @Override
-    public void goTo(final GameMap gameMap, final GameMapSquare newGameMapSquare) {
+    public final void goTo(final GameMap gameMap, final GameMapSquare newGameMapSquare) {
         GameMapSquare currentPosition = this.getPosition(gameMap);
         newGameMapSquare.addPlayer(this);
         currentPosition.removePlayer(this);

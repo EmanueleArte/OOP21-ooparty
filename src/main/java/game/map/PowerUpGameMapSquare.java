@@ -8,22 +8,22 @@ public class PowerUpGameMapSquare extends GameMapSquareImpl {
     }
 
     @Override
-    public boolean isCoinsGameMapSquare() {
+    public final boolean isCoinsGameMapSquare() {
         return false;
     }
 
     @Override
-    public boolean isStarGameMapSquare() {
+    public final boolean isStarGameMapSquare() {
         return false;
     }
 
     @Override
-    public boolean isPowerUpGameMapSquare() {
+    public final boolean isPowerUpGameMapSquare() {
         return true;
     }
 
     @Override
-    public boolean isDamageGameMapSquare() {
+    public final boolean isDamageGameMapSquare() {
         return false;
     }
 

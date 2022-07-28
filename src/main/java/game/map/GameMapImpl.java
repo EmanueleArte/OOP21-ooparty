@@ -16,19 +16,13 @@ public class GameMapImpl implements GameMap {
         this.squares = squares;
     }
 
-    /**
-     * 
-     */
     @Override
-    public List<GameMapSquare> getSquares() {
+    public final List<GameMapSquare> getSquares() {
         return List.copyOf(this.squares);
     }
 
-    /**
-     * 
-     */
     @Override
-    public GameMapSquare getPlayerPosition(final Player p) {
+    public final GameMapSquare getPlayerPosition(final Player p) {
         for (GameMapSquare b : this.squares) {
             if (b.getPlayers().stream().anyMatch(o -> o.equals(p))) {
                 return b;
