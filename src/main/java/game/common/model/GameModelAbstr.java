@@ -9,13 +9,13 @@ import utils.graphics.stagemanager.StageManager;
  * Implementation of {@link GameModel}.
  * 
  * @param <S> the scenes of the stage
- * @param <U> the player
+ * @param <U> the players
  */
 public abstract class GameModelAbstr<S, U> implements GameModel<S, U> {
 
     private final List<U> players;
-    private ListIterator<U> player;
     private final StageManager<S> stageManager;
+    private ListIterator<U> playerIterator;
     private U currPlayer;
 
     /**
@@ -26,7 +26,7 @@ public abstract class GameModelAbstr<S, U> implements GameModel<S, U> {
      */
     public GameModelAbstr(final List<U> players, final StageManager<S> s) {
         this.players = players;
-        this.player = this.players.listIterator();
+        this.playerIterator = this.players.listIterator();
         this.stageManager = s;
     }
 
@@ -58,7 +58,7 @@ public abstract class GameModelAbstr<S, U> implements GameModel<S, U> {
      * @return the next player
      */
     protected U getNextPlayer() {
-        return this.player.next();
+        return this.playerIterator.next();
     }
 
     /**
@@ -67,13 +67,13 @@ public abstract class GameModelAbstr<S, U> implements GameModel<S, U> {
      * @return true if there is at least another player, false otherwise
      */
     protected boolean hasNextPlayer() {
-        return this.player.hasNext();
+        return this.playerIterator.hasNext();
     }
 
     /**
      * This method starts a new turn if there is another player who has to play.
      */
-    abstract void nextTurn();
+    protected abstract void nextTurn();
 
     /**
      * Setter for the current player.

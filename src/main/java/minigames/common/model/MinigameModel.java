@@ -9,7 +9,7 @@ import utils.graphics.stagemanager.StageManager;
  * This interface models a minigame model.
  * 
  * @param <S> the scenes of the stage
- * @param <U> the player
+ * @param <U> the players
  */
 public interface MinigameModel<S, U> {
 

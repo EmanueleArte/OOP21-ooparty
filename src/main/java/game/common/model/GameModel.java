@@ -8,7 +8,7 @@ import utils.graphics.stagemanager.StageManager;
  * This interface models the game model.
  * 
  * @param <S> the scenes of the stage
- * @param <U> the player
+ * @param <U> the players
  */
 public interface GameModel<S, U> {
 
