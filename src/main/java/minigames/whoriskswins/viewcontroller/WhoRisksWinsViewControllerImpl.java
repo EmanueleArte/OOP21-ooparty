@@ -6,6 +6,8 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.shape.Rectangle;
 import minigames.common.viewcontroller.MinigameViewControllerAbstr;
 import minigames.whoriskswins.controller.WhoRisksWinsController;
+import utils.Pair;
+import utils.PairImpl;
 import utils.controller.GenericController;
 import utils.enums.Notice;
 
@@ -16,7 +18,7 @@ import utils.enums.Notice;
 public class WhoRisksWinsViewControllerImpl extends MinigameViewControllerAbstr implements WhoRisksWinsViewController {
 
     private WhoRisksWinsController wrwController;
-    
+    private Pair<Double, Double> blockCoordinates;
     @FXML
     private Rectangle block;
 
@@ -28,7 +30,7 @@ public class WhoRisksWinsViewControllerImpl extends MinigameViewControllerAbstr 
 
     @FXML
     private void initialize() {
-        
+        this.blockCoordinates = new PairImpl<>(this.block.getX(), this.block.getY());
     }
 
     @Override
@@ -45,6 +47,7 @@ public class WhoRisksWinsViewControllerImpl extends MinigameViewControllerAbstr 
     @Override
     public final void startNextTurn() {
         if (this.wrwController.nextTurn()) {
+            this.resetBlock();
             this.showNotice(Notice.PRESS_ENTER_TO + "start.");
         }
     }
@@ -57,8 +60,11 @@ public class WhoRisksWinsViewControllerImpl extends MinigameViewControllerAbstr 
         }
     }
 
+    /**
+     * This method resets the block position.
+     */
     private void resetBlock() {
-
+        this.block.yProperty().set(this.blockCoordinates.getY());
     }
 
 }
