@@ -1,5 +1,6 @@
 package menu.gamecreationmenu.view;
 
+import menu.MenuView;
 import menu.gamecreationmenu.viewcontroller.GameCreationMenuViewControllerImpl;
 import utils.GenericController;
 import utils.graphics.stagemanager.StageManager;
@@ -9,7 +10,7 @@ import utils.graphics.stagemanager.StageManager;
  * 
  * @param <S> the scenes of the stage
  */
-public class GameCreationMenuViewImpl<S> implements GameCreationMenuView<S> {
+public class GameCreationMenuViewImpl<S> implements MenuView<S> {
 
     private final StageManager<S> stageManager;
 
@@ -23,7 +24,7 @@ public class GameCreationMenuViewImpl<S> implements GameCreationMenuView<S> {
     }
 
     @Override
-    public final void createGameCreationMenu(final GenericController controller) {
+    public final void createMenu(final GenericController controller) {
         final String fxmlUrl = "menu/creation_menu.fxml";
         this.stageManager.addFXMLScene(fxmlUrl, GameCreationMenuViewControllerImpl.class, controller);
     }

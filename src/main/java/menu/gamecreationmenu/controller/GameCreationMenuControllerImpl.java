@@ -1,9 +1,9 @@
 package menu.gamecreationmenu.controller;
 
 import menu.MenuController;
+import menu.MenuView;
 import menu.gamecreationmenu.model.GameCreationMenuModel;
 import menu.gamecreationmenu.model.GameCreationMenuModelImpl;
-import menu.gamecreationmenu.view.GameCreationMenuView;
 import menu.gamecreationmenu.view.GameCreationMenuViewImpl;
 import menu.gamecreationmenu.viewcontroller.GameCreationMenuViewController;
 import menu.gamecreationmenu.viewcontroller.GameCreationMenuViewControllerImpl;
@@ -56,8 +56,8 @@ public class GameCreationMenuControllerImpl extends GenericControllerAbstr imple
 
     @Override
     public final void createMenu() {
-        final GameCreationMenuView<?> menuView = new GameCreationMenuViewImpl<>(this.getStageManager());
-        menuView.createGameCreationMenu(this);
+        final MenuView<?> menuView = new GameCreationMenuViewImpl<>(this.getStageManager());
+        menuView.createMenu(this);
     }
 
     /**

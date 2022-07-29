@@ -6,8 +6,6 @@ import game.player.PlayerImpl;
 import javafx.scene.Scene;
 import menu.MenuController;
 import menu.mainmenu.controller.MainMenuControllerImpl;
-import menu.mainmenu.view.MainMenuView;
-import menu.mainmenu.view.MainMenuViewImpl;
 import utils.graphics.stagemanager.StageManager;
 import utils.graphics.stagemanager.StageManagerImpl;
 
