@@ -9,8 +9,8 @@ import minigames.common.model.MinigameModelAbstr;
 import utils.graphics.stagemanager.StageManager;
 
 /**
- * Implementation of {@link NoticeUser} and extension of
- * {@link minigames.common.model.MinigameModelAbstr}.
+ * Implementation of {@link MastermindModel} and extension of
+ * {@link MinigameModelAbstr}.
  * 
  * @param <S> the scenes of the stage
  * @param <U> the {@link game.player.Player}
