@@ -21,7 +21,9 @@ public interface MinigameView<S> {
 
     /**
      * This method creates the minigame scene.
+     * 
+     * @param controller the controller to be used
      */
-    void startMinigame(List<?> list, GenericController controller);
+    void startMinigame(List<?> players, GenericController controller);
 
 }
