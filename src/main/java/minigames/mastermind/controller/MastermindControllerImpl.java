@@ -12,7 +12,8 @@ import utils.graphics.stagemanager.StageManager;
 import utils.view.GenericView;
 
 /**
- * Extension of {@link MinigameControllerAbstr} and implementation of {@link MastermindController}.
+ * Extension of {@link GenericControllerAbstr} and implementation of
+ * {@link MastermindController}.
  */
 public class MastermindControllerImpl extends GenericControllerAbstr implements MastermindController {
 
@@ -23,6 +24,7 @@ public class MastermindControllerImpl extends GenericControllerAbstr implements 
      * Builder for {@link MastermindControllerImpl}.
      * 
      * @param <S>     the scenes of the stage
+     * @param <U>     the players
      * @param s       the {@link StageManager}
      * @param players the list of players
      */
