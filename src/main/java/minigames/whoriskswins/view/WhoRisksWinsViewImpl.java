@@ -1,7 +1,7 @@
 package minigames.whoriskswins.view;
 
 import minigames.common.view.MinigameViewAbstr;
-import minigames.mastermind.viewcontroller.WhoRisksWinsViewControllerImpl;
+import minigames.whoriskswins.viewcontroller.WhoRisksWinsViewControllerImpl;
 import utils.GenericController;
 import utils.graphics.stagemanager.StageManager;
 
