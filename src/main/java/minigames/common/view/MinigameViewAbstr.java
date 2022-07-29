@@ -1,7 +1,5 @@
 package minigames.common.view;
 
-import java.util.List;
-
 import utils.GenericController;
 import utils.graphics.stagemanager.StageManager;
 
@@ -31,6 +29,6 @@ public abstract class MinigameViewAbstr<S> implements MinigameView<S> {
 
 
     @Override
-    public abstract void startMinigame(List<?> players, GenericController controller);
+    public abstract void startMinigame(GenericController controller);
 
 }

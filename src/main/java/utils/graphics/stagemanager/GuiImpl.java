@@ -2,7 +2,6 @@ package utils.graphics.stagemanager;
 
 import java.awt.Dimension;
 import java.io.IOException;
-import java.util.List;
 import java.util.Optional;
 
 import javax.swing.JFrame;
@@ -61,7 +60,7 @@ public class GuiImpl<S> extends JFrame implements Gui<S> {
     }
 
     @Override
-    public final <U> void loadScene(final String fxmlUrl, final Class<?> viewControllerClass, final List<U> players,
+    public final <U> void loadScene(final String fxmlUrl, final Class<?> viewControllerClass, 
             final GenericController controller) {
         Platform.runLater(() -> {
             this.loader = new FXMLLoader(getClass().getClassLoader().getResource(fxmlUrl));

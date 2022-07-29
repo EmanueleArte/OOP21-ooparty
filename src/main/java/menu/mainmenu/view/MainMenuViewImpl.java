@@ -26,7 +26,7 @@ public class MainMenuViewImpl<S> implements MainMenuView<S> {
     @Override
     public final void createMainMenu(final GenericController controller) {
         final String fxmlUrl = "menu/main_menu.fxml";
-        this.stageManager.addFXMLScene(fxmlUrl, MainMenuViewControllerImpl.class, null, controller);
+        this.stageManager.addFXMLScene(fxmlUrl, MainMenuViewControllerImpl.class, controller);
     }
 
 }

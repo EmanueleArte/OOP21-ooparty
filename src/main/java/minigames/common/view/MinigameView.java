@@ -1,7 +1,5 @@
 package minigames.common.view;
 
-import java.util.List;
-
 import utils.GenericController;
 import utils.graphics.stagemanager.StageManager;
 
@@ -24,6 +22,6 @@ public interface MinigameView<S> {
      * 
      * @param controller the controller to be used
      */
-    void startMinigame(List<?> players, GenericController controller);
+    void startMinigame(GenericController controller);
 
 }

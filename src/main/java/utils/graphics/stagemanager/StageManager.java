@@ -18,11 +18,9 @@ public interface StageManager<S> {
      * @param <U>        the players type
      * @param fxmlUrl    the url of the fxml file to load
      * @param c          the type of the controller
-     * @param players    the list of the players; put null if you haven't any list
-     *                   of players to pass
      * @param controller the controller to be used
      */
-    <U> void addFXMLScene(String fxmlUrl, Class<?> viewControllerClass, List<U> players, GenericController controller);
+    <U> void addFXMLScene(String fxmlUrl, Class<?> viewControllerClass, GenericController controller);
 
     /**
      * This method adds an existing scene.

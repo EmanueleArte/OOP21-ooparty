@@ -1,7 +1,5 @@
 package minigames.whoriskswins.view;
 
-import java.util.List;
-
 import minigames.common.view.MinigameViewAbstr;
 import minigames.mastermind.viewcontroller.WhoRisksWinsViewControllerImpl;
 import utils.GenericController;
@@ -24,9 +22,9 @@ public class WhoRisksWinsViewImpl<S> extends MinigameViewAbstr<S> {
     }
 
     @Override
-    public final void startMinigame(final List<?> players, final GenericController controller) {
+    public final void startMinigame(final GenericController controller) {
         final String fxmlUrl = "minigames/who_risks_wins.fxml";
-        this.getStageManager().addFXMLScene(fxmlUrl, WhoRisksWinsViewControllerImpl.class, players, controller);
+        this.getStageManager().addFXMLScene(fxmlUrl, WhoRisksWinsViewControllerImpl.class, controller);
     }
 
 }
