@@ -2,12 +2,12 @@ package minigames.mastermind.controller;
 
 import java.util.List;
 
-import minigames.common.view.MinigameView;
 import minigames.mastermind.model.MastermindModel;
 import minigames.mastermind.model.MastermindModelImpl;
 import minigames.mastermind.view.MastermindViewImpl;
 import minigames.mastermind.viewcontroller.MastermindViewController;
 import utils.GenericControllerAbstr;
+import utils.GenericView;
 import utils.GenericViewController;
 import utils.graphics.stagemanager.StageManager;
 
@@ -48,8 +48,8 @@ public class MastermindControllerImpl extends GenericControllerAbstr implements 
 
     @Override
     public final void startGame() {
-        final MinigameView<?> mastermindView = new MastermindViewImpl<>(this.getStageManager());
-        mastermindView.startMinigame(this);
+        final GenericView<?> mastermindView = new MastermindViewImpl<>(this.getStageManager());
+        mastermindView.crateScene(this);
     }
 
     @Override

@@ -1,14 +1,13 @@
-package minigames.common.view;
+package utils;
 
-import utils.GenericController;
 import utils.graphics.stagemanager.StageManager;
 
 /**
- * This interface models a minigame view.
+ * This interface models a generic view.
  * 
  * @param <S> the scenes of the stage
  */
-public interface MinigameView<S> {
+public interface GenericView<S> {
 
     /**
      * Getter for the {@link StageManager}.
@@ -18,10 +17,10 @@ public interface MinigameView<S> {
     StageManager<S> getStageManager();
 
     /**
-     * This method creates the minigame scene.
+     * This method creates a scene.
      * 
      * @param controller the controller to be used
      */
-    void startMinigame(GenericController controller);
+    void crateScene(GenericController controller);
 
 }

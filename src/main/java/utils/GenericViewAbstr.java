@@ -1,23 +1,22 @@
-package minigames.common.view;
+package utils;
 
-import utils.GenericController;
 import utils.graphics.stagemanager.StageManager;
 
 /**
- * Implementation of {@link MinigameView}.
+ * Implementation of {@link GenericView}.
  * 
  * @param <S> the scenes of the stage
  */
-public abstract class MinigameViewAbstr<S> implements MinigameView<S> {
+public abstract class GenericViewAbstr<S> implements GenericView<S> {
 
     private final StageManager<S> stageManager;
 
     /**
-     * Builds a new {@link MinigameViewAbstr}.
+     * Builds a new {@link GenericViewAbstr}.
      * 
      * @param s the {@link utils.graphics.stagemanager.StageManager}
      */
-    public MinigameViewAbstr(final StageManager<S> s) {
+    public GenericViewAbstr(final StageManager<S> s) {
         super();
         this.stageManager = s;
     }
@@ -29,6 +28,6 @@ public abstract class MinigameViewAbstr<S> implements MinigameView<S> {
 
 
     @Override
-    public abstract void startMinigame(GenericController controller);
+    public abstract void crateScene(GenericController controller);
 
 }
