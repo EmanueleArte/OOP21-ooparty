@@ -21,6 +21,6 @@ public interface GenericView<S> {
      * 
      * @param controller the controller to be used
      */
-    void crateScene(GenericController controller);
+    void createScene(GenericController controller);
 
 }

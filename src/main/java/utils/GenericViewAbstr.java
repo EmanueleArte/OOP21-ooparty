@@ -28,6 +28,6 @@ public abstract class GenericViewAbstr<S> implements GenericView<S> {
 
 
     @Override
-    public abstract void crateScene(GenericController controller);
+    public abstract void createScene(GenericController controller);
 
 }

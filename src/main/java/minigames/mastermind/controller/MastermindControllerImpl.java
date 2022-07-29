@@ -49,7 +49,7 @@ public class MastermindControllerImpl extends GenericControllerAbstr implements 
     @Override
     public final void startGame() {
         final GenericView<?> mastermindView = new MastermindViewImpl<>(this.getStageManager());
-        mastermindView.crateScene(this);
+        mastermindView.createScene(this);
     }
 
     @Override

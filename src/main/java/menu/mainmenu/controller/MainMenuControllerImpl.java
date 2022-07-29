@@ -1,12 +1,12 @@
 package menu.mainmenu.controller;
 
 import menu.MenuController;
-import menu.MenuView;
 import menu.mainmenu.model.MainMenuModel;
 import menu.mainmenu.model.MainMenuModelImpl;
 import menu.mainmenu.view.MainMenuViewImpl;
 import menu.mainmenu.viewcontroller.MainMenuViewControllerImpl;
 import utils.GenericControllerAbstr;
+import utils.GenericView;
 import utils.GenericViewController;
 import utils.graphics.stagemanager.StageManager;
 
@@ -51,8 +51,8 @@ public class MainMenuControllerImpl extends GenericControllerAbstr implements Me
 
     @Override
     public final void createMenu() {
-        final MenuView<?> menuView = new MainMenuViewImpl<>(this.getStageManager());
-        menuView.createMenu(this);
+        final GenericView<?> menuView = new MainMenuViewImpl<>(this.getStageManager());
+        menuView.createScene(this);
     }
 
 }
