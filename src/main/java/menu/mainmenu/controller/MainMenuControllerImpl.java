@@ -5,10 +5,10 @@ import menu.mainmenu.model.MainMenuModel;
 import menu.mainmenu.model.MainMenuModelImpl;
 import menu.mainmenu.view.MainMenuViewImpl;
 import menu.mainmenu.viewcontroller.MainMenuViewControllerImpl;
-import utils.GenericControllerAbstr;
-import utils.GenericView;
 import utils.GenericViewController;
+import utils.controller.GenericControllerAbstr;
 import utils.graphics.stagemanager.StageManager;
+import utils.view.GenericView;
 
 /**
  * Extension of {@link GenericControllerAbstr} and implementation of {@link MenuController}.

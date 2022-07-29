@@ -2,8 +2,8 @@ package menu.mainmenu.viewcontroller;
 
 import javafx.fxml.FXML;
 import menu.MenuController;
-import utils.GenericController;
 import utils.GenericViewController;
+import utils.controller.GenericController;
 
 /**
  * Implementation of {@link GenericViewController}.

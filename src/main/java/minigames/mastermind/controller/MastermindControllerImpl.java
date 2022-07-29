@@ -6,10 +6,10 @@ import minigames.mastermind.model.MastermindModel;
 import minigames.mastermind.model.MastermindModelImpl;
 import minigames.mastermind.view.MastermindViewImpl;
 import minigames.mastermind.viewcontroller.MastermindViewController;
-import utils.GenericControllerAbstr;
-import utils.GenericView;
 import utils.GenericViewController;
+import utils.controller.GenericControllerAbstr;
 import utils.graphics.stagemanager.StageManager;
+import utils.view.GenericView;
 
 /**
  * Extension of {@link MinigameControllerAbstr} and implementation of {@link MastermindController}.

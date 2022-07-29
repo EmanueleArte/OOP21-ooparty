@@ -2,7 +2,7 @@ package minigames.common.controller;
 
 import java.util.List;
 
-import utils.GenericController;
+import utils.controller.GenericController;
 
 /**
  * Extension of {@link GenericController}.

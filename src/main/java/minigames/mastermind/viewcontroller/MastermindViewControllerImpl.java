@@ -11,7 +11,7 @@ import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import minigames.common.viewcontroller.MinigameViewControllerAbstr;
 import minigames.mastermind.controller.MastermindController;
-import utils.GenericController;
+import utils.controller.GenericController;
 import utils.enums.Notice;
 
 /**

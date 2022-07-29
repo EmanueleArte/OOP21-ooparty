@@ -1,5 +1,7 @@
 package utils;
 
+import utils.controller.GenericController;
+
 /**
  * This interface models a generic view controller.
  */

@@ -6,10 +6,10 @@ import menu.gamecreationmenu.model.GameCreationMenuModelImpl;
 import menu.gamecreationmenu.view.GameCreationMenuViewImpl;
 import menu.gamecreationmenu.viewcontroller.GameCreationMenuViewController;
 import menu.gamecreationmenu.viewcontroller.GameCreationMenuViewControllerImpl;
-import utils.GenericControllerAbstr;
-import utils.GenericView;
 import utils.GenericViewController;
+import utils.controller.GenericControllerAbstr;
 import utils.graphics.stagemanager.StageManager;
+import utils.view.GenericView;
 
 /**
  * Extension of {@link GenericControllerAbstr} and implementation of {@link MenuController}.

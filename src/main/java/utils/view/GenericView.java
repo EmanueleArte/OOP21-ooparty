@@ -1,5 +1,6 @@
-package utils;
+package utils.view;
 
+import utils.controller.GenericController;
 import utils.graphics.stagemanager.StageManager;
 
 /**

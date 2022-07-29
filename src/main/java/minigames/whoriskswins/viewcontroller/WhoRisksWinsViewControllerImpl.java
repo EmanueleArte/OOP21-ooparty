@@ -1,7 +1,7 @@
 package minigames.whoriskswins.viewcontroller;
 
 import minigames.common.viewcontroller.MinigameViewControllerAbstr;
-import utils.GenericController;
+import utils.controller.GenericController;
 
 /**
  * Extension of {@link MinigameViewControllerAbstr} and implementation of

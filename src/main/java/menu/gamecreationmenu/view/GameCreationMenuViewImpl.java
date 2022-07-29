@@ -1,9 +1,9 @@
 package menu.gamecreationmenu.view;
 
 import menu.gamecreationmenu.viewcontroller.GameCreationMenuViewControllerImpl;
-import utils.GenericController;
-import utils.GenericViewAbstr;
+import utils.controller.GenericController;
 import utils.graphics.stagemanager.StageManager;
+import utils.view.GenericViewAbstr;
 
 /**
  * Extension of {@link GenericViewAbstr}.

@@ -1,4 +1,4 @@
-package utils;
+package utils.controller;
 
 import utils.graphics.stagemanager.StageManager;
 

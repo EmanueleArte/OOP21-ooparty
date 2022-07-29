@@ -3,7 +3,7 @@ package utils.graphics.stagemanager;
 import java.util.List;
 
 import minigames.common.controller.MinigameController;
-import utils.GenericController;
+import utils.controller.GenericController;
 
 /**
  * This interface models a stage manager.

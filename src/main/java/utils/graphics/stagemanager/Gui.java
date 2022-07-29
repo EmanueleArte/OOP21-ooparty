@@ -2,7 +2,7 @@ package utils.graphics.stagemanager;
 
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
-import utils.GenericController;
+import utils.controller.GenericController;
 
 /**
  * This interface models the javafx gui.

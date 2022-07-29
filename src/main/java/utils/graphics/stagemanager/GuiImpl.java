@@ -11,8 +11,8 @@ import javafx.embed.swing.JFXPanel;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import utils.GenericController;
 import utils.GenericViewController;
+import utils.controller.GenericController;
 import utils.factories.ViewControllerFactoryImpl;
 
 /**
