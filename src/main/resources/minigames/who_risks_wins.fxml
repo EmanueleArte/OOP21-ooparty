@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.Group?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Circle?>
+<?import javafx.scene.shape.Polygon?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
+
+<VBox alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="2160.0" prefWidth="3840.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="minigames.whoriskswins.viewcontroller.WhoRisksWinsViewControllerImpl">
+   <children>
+      <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="2160.0" prefWidth="3840.0">
+         <center>
+            <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0" spacing="20.0" BorderPane.alignment="CENTER">
+               <children>
+                  <Label text="Who risks wins!" textAlignment="CENTER">
+                     <font>
+                        <Font size="64.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="playerLabel" text="Player">
+                     <font>
+                        <Font size="20.0" />
+                     </font>
+                  </Label>
+                  <Label text="Press ENTER to stop the block. " textAlignment="CENTER" />
+                  <Pane prefHeight="400.0" prefWidth="3840.0">
+                     <children>
+                        <Group fx:id="playerAvatar" layoutX="1920.0" layoutY="381.0" scaleX="0.5" scaleY="0.5">
+                           <children>
+                              <Polygon fill="DODGERBLUE" points="-50.0, 40.0, 50.0, 40.0, 0.0, -60.0" scaleX="0.8" stroke="BLACK" strokeType="INSIDE" />
+                              <Circle fill="DODGERBLUE" layoutY="-73.0" radius="27.0" stroke="BLACK" strokeType="INSIDE" />
+                           </children>
+                        </Group>
+                        <Rectangle fx:id="block" arcHeight="5.0" arcWidth="5.0" fill="#ab0000" height="112.0" layoutX="1890.0" stroke="BLACK" strokeType="INSIDE" width="61.0" />
+                     </children>
+                  </Pane>
+                  <Label fx:id="noticeLabel" prefHeight="20.0">
+                     <VBox.margin>
+                        <Insets />
+                     </VBox.margin>
+                     <font>
+                        <Font size="16.0" />
+                     </font>
+                  </Label>
+               </children>
+               <BorderPane.margin>
+                  <Insets top="40.0" />
+               </BorderPane.margin>
+               <padding>
+                  <Insets top="40.0" />
+               </padding>
+            </VBox>
+         </center>
+      </BorderPane>
+   </children>
+</VBox>
