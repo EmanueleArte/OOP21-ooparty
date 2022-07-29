@@ -13,7 +13,7 @@ import utils.graphics.stagemanager.StageManager;
  * {@link MinigameModelAbstr}.
  * 
  * @param <S> the scenes of the stage
- * @param <U> the {@link game.player.Player}
+ * @param <U> the players
  */
 public class MastermindModelImpl<S, U> extends MinigameModelAbstr<S, U> implements MastermindModel<S, U> {
 

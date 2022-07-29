@@ -3,10 +3,13 @@ package minigames.whoriskswins.controller;
 import java.util.List;
 
 import minigames.whoriskswins.model.WhoRisksWinsModel;
+import minigames.whoriskswins.model.WhoRisksWinsModelImpl;
+import minigames.whoriskswins.view.WhoRisksWinsViewImpl;
 import minigames.whoriskswins.viewcontroller.WhoRisksWinsViewController;
 import utils.GenericViewController;
 import utils.controller.GenericControllerAbstr;
 import utils.graphics.stagemanager.StageManager;
+import utils.view.GenericView;
 
 /**
  * Extension of {@link GenericControllerAbstr} and implementation of
@@ -47,14 +50,19 @@ public class WhoRisksWinsControllerImpl extends GenericControllerAbstr implement
 
     @Override
     public final void startGame() {
-        // TODO Auto-generated method stub
-
+        final GenericView<?> wrwView = new WhoRisksWinsViewImpl<>(this.getStageManager());
+        wrwView.createScene(this);
     }
 
     @Override
     public final boolean nextTurn() {
-        // TODO Auto-generated method stub
-        return false;
+        final boolean nextTurnExistence = this.wrwModel.runGame();
+        if (nextTurnExistence) {
+            final var currPlayer = this.wrwModel.getCurrPlayer();
+            this.wrwViewController.setPlayerLabelText(currPlayer);
+            this.wrwViewController.setPlayerAvatarColor(currPlayer);
+        }
+        return nextTurnExistence;
     }
 
     @Override

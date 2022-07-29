@@ -1,7 +1,6 @@
 package minigames.whoriskswins.model;
 
 import java.util.List;
-import java.util.Map;
 
 import minigames.common.model.MinigameModelAbstr;
 import utils.graphics.stagemanager.StageManager;
@@ -11,7 +10,7 @@ import utils.graphics.stagemanager.StageManager;
  * {@link MinigameModelAbstr}.
  * 
  * @param <S> the scenes of the stage
- * @param <U> the {@link game.player.Player}
+ * @param <U> the players
  */
 public class WhoRisksWinsModelImpl<S, U> extends MinigameModelAbstr<S, U> implements WhoRisksWinsModel<S, U> {
 
@@ -21,68 +20,24 @@ public class WhoRisksWinsModelImpl<S, U> extends MinigameModelAbstr<S, U> implem
      * @param players the list of players
      * @param s       the {@link StageManager}
      */
-    public WhoRisksWinsModelImpl(List<U> players, StageManager<S> s) {
+    public WhoRisksWinsModelImpl(final List<U> players, final StageManager<S> s) {
         super(players, s);
     }
 
     @Override
-    public List<U> gameResults() {
-        // TODO Auto-generated method stub
-        return null;
-    }
-
-    @Override
-    public void scoreMapper(U player, Integer score) {
-        // TODO Auto-generated method stub
-        
-    }
-
-    @Override
-    public int getScore() {
-        // TODO Auto-generated method stub
-        return 0;
-    }
-
-    @Override
-    public Map<U, Integer> getPlayersClassification() {
-        // TODO Auto-generated method stub
-        return null;
-    }
-
-    @Override
-    public void setPlayersClassification(Map<U, Integer> playersClassification) {
-        // TODO Auto-generated method stub
-        
-    }
-
-    @Override
-    public boolean runGame() {
-        // TODO Auto-generated method stub
+    public final boolean runGame() {
+        if (this.hasNextPlayer()) {
+            //velocità caduta
+            this.setCurrPlayer();
+            return true;
+        }
         return false;
     }
 
     @Override
-    public StageManager<S> getStageManager() {
-        // TODO Auto-generated method stub
-        return null;
-    }
+    public final void stopBlockFall(final int blockY, final int playerY) {
+        // crea score
 
-    @Override
-    public List<U> getPlayers() {
-        // TODO Auto-generated method stub
-        return null;
-    }
-
-    @Override
-    public U getCurrPlayer() {
-        // TODO Auto-generated method stub
-        return null;
-    }
-
-    @Override
-    public void stopBlockFall(int blockY, int playerY) {
-        // TODO Auto-generated method stub
-        
     }
 
 }

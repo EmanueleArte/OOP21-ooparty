@@ -4,6 +4,7 @@ import game.player.Player;
 import javafx.fxml.FXML;
 import javafx.scene.Group;
 import javafx.scene.control.Label;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.shape.Shape;
 import utils.NoticeUserAbstr;
 
@@ -41,5 +42,13 @@ public abstract class MinigameViewControllerAbstr extends NoticeUserAbstr implem
             });
         }
     }
+
+    /**
+     * This method performs an action when the "ENTER" key is clicked.
+     * 
+     * @param ke the {@link KeyEvent}
+     */
+    @FXML
+    protected abstract void onEnter(KeyEvent ke);
 
 }

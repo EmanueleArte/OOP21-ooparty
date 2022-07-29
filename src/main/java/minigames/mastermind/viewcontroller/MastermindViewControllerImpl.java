@@ -53,13 +53,9 @@ public class MastermindViewControllerImpl extends MinigameViewControllerAbstr im
         }
     }
 
-    /**
-     * This method performs an action when the "ENTER" key is clicked.
-     * 
-     * @param ke the {@link KeyEvent}
-     */
+    @Override
     @FXML
-    private void onEnter(final KeyEvent ke) {
+    protected final void onEnter(final KeyEvent ke) {
         if (ke.getCode().equals(KeyCode.ENTER)) {
             this.tryGuess();
         }
