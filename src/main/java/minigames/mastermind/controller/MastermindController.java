@@ -15,13 +15,6 @@ public interface MastermindController extends MinigameController {
     void setMaxAttempts(int maxAttempts);
 
     /**
-     * This method starts a new turn.
-     * 
-     * @return true if there is another player that has to play
-     */
-    boolean nextTurn();
-
-    /**
      * This method checks the attempt of the player.
      * 
      * @param attempt the input

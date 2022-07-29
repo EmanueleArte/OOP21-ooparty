@@ -1,6 +1,7 @@
 package minigames.whoriskswins.viewcontroller;
 
 import minigames.common.viewcontroller.MinigameViewControllerAbstr;
+import minigames.whoriskswins.controller.WhoRisksWinsController;
 import utils.controller.GenericController;
 
 /**
@@ -9,10 +10,17 @@ import utils.controller.GenericController;
  */
 public class WhoRisksWinsViewControllerImpl extends MinigameViewControllerAbstr implements WhoRisksWinsViewController {
 
+    private WhoRisksWinsController wrwController;
+
+    /**
+     * Builds a new {@link WhoRisksWinsViewControllerImpl}.
+     */
+    public WhoRisksWinsViewControllerImpl() {
+    }
+
     @Override
     public final void setController(final GenericController controller) {
-        // TODO Auto-generated method stub
-
+        this.wrwController = (WhoRisksWinsController) controller;
     }
 
     @Override
