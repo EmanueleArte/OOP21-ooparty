@@ -11,10 +11,11 @@ import minigames.common.model.MinigameModel;
 public interface WhoRisksWinsModel<S, U> extends MinigameModel<S, U> {
 
     /**
-     * Getter for the score.
+     * This method stops the bolck's fall.
      * 
-     * @return the score of a player
+     * @param blockY  the ordinate of the block
+     * @param playerY the ordinate of the player avatar
      */
-    int getScore();
+    void stopBlockFall(int blockY, int playerY);
 
 }

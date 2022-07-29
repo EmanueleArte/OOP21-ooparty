@@ -31,6 +31,13 @@ public interface MinigameModel<S, U> extends GameModel<S, U> {
     void scoreMapper(U player, Integer score);
 
     /**
+     * Getter for the score.
+     * 
+     * @return the score of a player
+     */
+    int getScore();
+
+    /**
      * Getter for playersClassification.
      * 
      * @return a map with players as keys and their score as values

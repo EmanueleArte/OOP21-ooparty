@@ -18,6 +18,7 @@ import utils.graphics.stagemanager.StageManager;
 public abstract class MinigameModelAbstr<S, U> extends GameModelAbstr<S, U> implements MinigameModel<S, U> {
 
     private final Map<U, Integer> playersClassification;
+    private int score;
 
     /**
      * Builds a new {@link MinigameModelAbstr}.
@@ -59,6 +60,11 @@ public abstract class MinigameModelAbstr<S, U> extends GameModelAbstr<S, U> impl
         this.playersClassification.put(player, score);
     }
 
+    @Override
+    public final int getScore() {
+        return this.score;
+    }
+
     /**
      * This method manages the draws at the end of the minigame.
      * 
@@ -86,6 +92,15 @@ public abstract class MinigameModelAbstr<S, U> extends GameModelAbstr<S, U> impl
         if (this.hasNextPlayer()) {
             this.runGame();
         }
+    }
+
+    /**
+     * Setter for score.
+     * 
+     * @param score the score of the player
+     */
+    protected void setScore(final int score) {
+        this.score = score;
     }
 
 }

@@ -33,13 +33,6 @@ public interface MastermindModel<S, U> extends MinigameModel<S, U> {
     int getNAttempts();
 
     /**
-     * Getter for the score.
-     * 
-     * @return the score of a player
-     */
-    int getScore();
-
-    /**
      * Getter for the solution.
      * 
      * @return the 4-digit number to guess

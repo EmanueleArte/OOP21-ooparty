@@ -13,5 +13,5 @@ public interface WhoRisksWinsController extends MinigameController {
      * @param blockY  the ordinate of the block
      * @param playerY the ordinate of the player avatar
      */
-    void stopBlock(int blockY, int playerY);
+    void stopBlockFall(int blockY, int playerY);
 }

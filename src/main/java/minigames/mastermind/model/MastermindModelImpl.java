@@ -21,7 +21,6 @@ public class MastermindModelImpl<S, U> extends MinigameModelAbstr<S, U> implemen
     private int maxAttempts;
     private String solution;
     private int nAttempts;
-    private int score;
     private boolean win = false;
     private boolean lose = false;
 
@@ -61,11 +60,6 @@ public class MastermindModelImpl<S, U> extends MinigameModelAbstr<S, U> implemen
     @Override
     public final int getNAttempts() {
         return this.nAttempts;
-    }
-
-    @Override
-    public final int getScore() {
-        return this.score;
     }
 
     @Override
@@ -139,8 +133,8 @@ public class MastermindModelImpl<S, U> extends MinigameModelAbstr<S, U> implemen
      */
     private void winCheck(final Integer nDigitExact) {
         if (nDigitExact == 4) {
-            this.score = this.maxAttempts - this.nAttempts + 1;
-            this.scoreMapper(this.getCurrPlayer(), this.score);
+            this.setScore(this.maxAttempts - this.nAttempts + 1);
+            this.scoreMapper(this.getCurrPlayer(), this.getScore());
             this.setWin(true);
         } else {
             this.loseCheck();
@@ -153,8 +147,8 @@ public class MastermindModelImpl<S, U> extends MinigameModelAbstr<S, U> implemen
      */
     private void loseCheck() {
         if (this.nAttempts == this.maxAttempts) {
-            this.score = this.maxAttempts - this.nAttempts;
-            this.scoreMapper(this.getCurrPlayer(), this.score);
+            this.setScore(this.maxAttempts - this.nAttempts);
+            this.scoreMapper(this.getCurrPlayer(), this.getScore());
             this.setLose(true);
         }
     }

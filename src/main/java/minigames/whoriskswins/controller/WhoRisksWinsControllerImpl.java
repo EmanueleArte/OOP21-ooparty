@@ -2,6 +2,7 @@ package minigames.whoriskswins.controller;
 
 import java.util.List;
 
+import minigames.whoriskswins.model.WhoRisksWinsModel;
 import minigames.whoriskswins.viewcontroller.WhoRisksWinsViewController;
 import utils.GenericViewController;
 import utils.controller.GenericControllerAbstr;
@@ -57,7 +58,7 @@ public class WhoRisksWinsControllerImpl extends GenericControllerAbstr implement
     }
 
     @Override
-    public final void stopBlock(final int blockY, final int playerY) {
+    public final void stopBlockFall(final int blockY, final int playerY) {
         // TODO Auto-generated method stub
 
     }
