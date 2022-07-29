@@ -3,7 +3,7 @@ package menu;
 import utils.GenericController;
 
 /**
- * This interface models the creation menu view of the game.
+ * This interface models a menu view of the game.
  * 
  * @param <S> the scenes of the stage
  */

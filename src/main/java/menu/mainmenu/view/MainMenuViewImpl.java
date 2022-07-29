@@ -6,7 +6,7 @@ import utils.GenericController;
 import utils.graphics.stagemanager.StageManager;
 
 /**
- * Implementation of {@link MainMenuView}.
+ * Implementation of {@link MenuView}.
  * 
  * @param <S> the scenes of the stage
  */
