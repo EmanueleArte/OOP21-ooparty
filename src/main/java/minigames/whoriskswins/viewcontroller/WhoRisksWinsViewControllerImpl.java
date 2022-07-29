@@ -1,7 +1,9 @@
 package minigames.whoriskswins.viewcontroller;
 
+import javafx.fxml.FXML;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.shape.Rectangle;
 import minigames.common.viewcontroller.MinigameViewControllerAbstr;
 import minigames.whoriskswins.controller.WhoRisksWinsController;
 import utils.controller.GenericController;
@@ -14,11 +16,19 @@ import utils.enums.Notice;
 public class WhoRisksWinsViewControllerImpl extends MinigameViewControllerAbstr implements WhoRisksWinsViewController {
 
     private WhoRisksWinsController wrwController;
+    
+    @FXML
+    private Rectangle block;
 
     /**
      * Builds a new {@link WhoRisksWinsViewControllerImpl}.
      */
     public WhoRisksWinsViewControllerImpl() {
+    }
+
+    @FXML
+    private void initialize() {
+        
     }
 
     @Override
@@ -40,10 +50,15 @@ public class WhoRisksWinsViewControllerImpl extends MinigameViewControllerAbstr 
     }
 
     @Override
+    @FXML
     protected final void onEnter(final KeyEvent ke) {
         if (ke.getCode().equals(KeyCode.ENTER)) {
             this.wrwController.stopBlockFall(0, 0);
         }
+    }
+
+    private void resetBlock() {
+
     }
 
 }
