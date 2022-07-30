@@ -51,4 +51,13 @@ public abstract class MinigameViewControllerAbstr extends NoticeUserAbstr implem
     @FXML
     protected abstract void onEnter(KeyEvent ke);
 
+    /**
+     * Getter for playerAvatar.
+     * 
+     * @return the player avatar
+     */
+    protected Group getPlayerAvatar() {
+        return this.playerAvatar;
+    }
+
 }

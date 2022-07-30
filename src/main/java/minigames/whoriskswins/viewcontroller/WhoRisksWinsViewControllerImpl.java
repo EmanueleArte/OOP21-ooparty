@@ -3,6 +3,7 @@ package minigames.whoriskswins.viewcontroller;
 import javafx.fxml.FXML;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.shape.Circle;
 import javafx.scene.shape.Rectangle;
 import minigames.common.viewcontroller.MinigameViewControllerAbstr;
 import minigames.whoriskswins.controller.WhoRisksWinsController;
@@ -19,6 +20,7 @@ public class WhoRisksWinsViewControllerImpl extends MinigameViewControllerAbstr 
 
     private WhoRisksWinsController wrwController;
     private Pair<Double, Double> blockCoordinates;
+    private Pair<Double, Double> playerCoordinates;
     @FXML
     private Rectangle block;
 
@@ -31,6 +33,9 @@ public class WhoRisksWinsViewControllerImpl extends MinigameViewControllerAbstr 
     @FXML
     private void initialize() {
         this.blockCoordinates = new PairImpl<>(this.block.getX(), this.block.getY());
+        final double radius = ((Circle) this.getPlayerAvatar().getChildren().get(1)).getRadius();
+        this.playerCoordinates = new PairImpl<>(((Circle) this.getPlayerAvatar().getChildren().get(0)).getCenterX(),
+                ((Circle) this.getPlayerAvatar().getChildren().get(1)).getCenterY() + radius);
     }
 
     @Override
@@ -57,7 +62,7 @@ public class WhoRisksWinsViewControllerImpl extends MinigameViewControllerAbstr 
     @FXML
     protected final void onEnter(final KeyEvent ke) {
         if (ke.getCode().equals(KeyCode.ENTER)) {
-            this.wrwController.stopBlockFall(this.blockCoordinates.getY(), 0);
+            this.wrwController.stopBlockFall(this.blockCoordinates.getY(), this.playerCoordinates.getY());
         }
     }
 
