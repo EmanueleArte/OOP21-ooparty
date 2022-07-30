@@ -47,7 +47,7 @@ public class MastermindViewControllerImpl extends MinigameViewControllerAbstr im
     public final void startNextTurn() {
         if (this.mastermindController.nextTurn()) {
             this.inputField.setText("");
-            this.hideAttempts();
+            GuiUtils.hideLabels(this.attempts);
             GuiUtils.hideButton(this.continueButton);
             this.clearNotice();
             this.enableInput();
@@ -91,16 +91,6 @@ public class MastermindViewControllerImpl extends MinigameViewControllerAbstr im
             GuiUtils.showButton(this.continueButton);
             this.disableInput();
         }
-    }
-
-    /**
-     * This method hides all attempts labels.
-     */
-    private void hideAttempts() {
-        this.attempts.forEach(attempt -> {
-            attempt.setVisible(false);
-            attempt.setManaged(false);
-        });
     }
 
     /**

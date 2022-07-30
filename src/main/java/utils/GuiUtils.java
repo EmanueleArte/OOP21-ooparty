@@ -5,6 +5,7 @@ import java.util.List;
 import javafx.collections.FXCollections;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.Label;
 import javafx.scene.control.Spinner;
 import javafx.scene.layout.VBox;
 import javafx.scene.shape.Shape;
@@ -91,6 +92,18 @@ public final class GuiUtils {
     public static void showButton(final Button button) {
         button.setVisible(true);
         button.setManaged(true);
+    }
+
+    /**
+     * This method hides all labels in a list.
+     * 
+     * @param labels the list of {@link Label}
+     */
+    public static void hideLabels(final List<Label> labels) {
+        labels.forEach(label -> {
+            label.setVisible(false);
+            label.setManaged(false);
+        });
     }
 
 }
