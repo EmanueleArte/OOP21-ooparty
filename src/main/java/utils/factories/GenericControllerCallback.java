@@ -5,17 +5,14 @@ import javafx.util.Callback;
 
 /**
  * This class models a generic controller creation.
- * 
- * @param <U> the {@link game.player.Player}
  */
-class GenericControllerCallback<U> implements Callback<Class<?>, Object> {
+class GenericControllerCallback implements Callback<Class<?>, Object> {
 
     private final Class<?> viewControllerClass;
 
     /**
      * Builds a new {@link GenericControllerCallback} with no players.
      * 
-     * @param s               the {@link utils.graphics.stagemanager.StageManager}
      * @param controllerClass the class of the controller
      */
     GenericControllerCallback(final Class<?> viewControllerClass) {
