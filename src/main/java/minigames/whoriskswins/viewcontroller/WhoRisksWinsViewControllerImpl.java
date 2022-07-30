@@ -63,7 +63,7 @@ public class WhoRisksWinsViewControllerImpl extends MinigameViewControllerAbstr 
     @Override
     public final void startNextTurn() {
         if (this.wrwController.nextTurn()) {
-            GuiUtils.resetPosition(this.block, this.blockCoordinates.getX(), this.blockCoordinates.getY());
+            GuiUtils.resetPositionY(this.block, this.blockCoordinates.getY());
             this.setBlockFallingSpeed();
             this.showNotice(Notice.PRESS_ENTER_TO.getNotice() + "start.");
             this.nextTurn = false;

@@ -63,15 +63,23 @@ public final class GuiUtils {
     }
 
     /**
-     * This method resets a {@link Shape} position.
+     * This method resets a {@link Shape} Y position.
+     * 
+     * @param shape the {@link Shape} to reposition
+     * @param y     the starting Y
+     */
+    public static void resetPositionY(final Shape shape, final double y) {
+        shape.setTranslateY(y);
+    }
+
+    /**
+     * This method resets a {@link Shape} X position.
      * 
      * @param shape the {@link Shape} to reposition
      * @param x     the starting X
-     * @param y     the starting Y
      */
-    public static void resetPosition(final Shape shape, final double x, final double y) {
+    public static void resetPositionX(final Shape shape, final double x) {
         shape.setTranslateX(x);
-        shape.setTranslateY(y);
     }
 
     /**
