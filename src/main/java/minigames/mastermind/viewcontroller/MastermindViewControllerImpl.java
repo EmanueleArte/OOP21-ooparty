@@ -11,6 +11,7 @@ import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import minigames.common.viewcontroller.MinigameViewControllerAbstr;
 import minigames.mastermind.controller.MastermindController;
+import utils.GuiUtils;
 import utils.controller.GenericController;
 import utils.enums.Notice;
 
@@ -47,7 +48,7 @@ public class MastermindViewControllerImpl extends MinigameViewControllerAbstr im
         if (this.mastermindController.nextTurn()) {
             this.inputField.setText("");
             this.hideAttempts();
-            this.hideContinueButton();
+            GuiUtils.hideButton(this.continueButton);
             this.clearNotice();
             this.enableInput();
         }
@@ -87,7 +88,7 @@ public class MastermindViewControllerImpl extends MinigameViewControllerAbstr im
                     + score + ".");
         }
         if (win || lose) {
-            this.showContinueButton();
+            GuiUtils.showButton(this.continueButton);
             this.disableInput();
         }
     }
@@ -123,22 +124,6 @@ public class MastermindViewControllerImpl extends MinigameViewControllerAbstr im
      */
     private String getGuessAttempt() {
         return this.inputField.getText();
-    }
-
-    /**
-     * This method hides the continue button.
-     */
-    private void hideContinueButton() {
-        this.continueButton.setVisible(false);
-        this.continueButton.setManaged(false);
-    }
-
-    /**
-     * This method shows the continue button.
-     */
-    private void showContinueButton() {
-        this.continueButton.setVisible(true);
-        this.continueButton.setManaged(true);
     }
 
     /**

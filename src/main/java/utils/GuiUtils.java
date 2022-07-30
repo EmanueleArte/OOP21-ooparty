@@ -3,6 +3,7 @@ package utils;
 import java.util.List;
 
 import javafx.collections.FXCollections;
+import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Spinner;
 import javafx.scene.layout.VBox;
@@ -70,6 +71,26 @@ public final class GuiUtils {
     public static void resetPosition(final Shape shape, final double x, final double y) {
         shape.setTranslateX(x);
         shape.setTranslateY(y);
+    }
+
+    /**
+     * This method hides a button.
+     * 
+     * @param button the button to hide
+     */
+    public static void hideButton(final Button button) {
+        button.setVisible(false);
+        button.setManaged(false);
+    }
+
+    /**
+     * This method shows a button.
+     * 
+     * @param button the button to show
+     */
+    public static void showButton(final Button button) {
+        button.setVisible(true);
+        button.setManaged(true);
     }
 
 }
