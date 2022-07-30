@@ -53,6 +53,7 @@ public class WhoRisksWinsModelImpl<S, U> extends MinigameModelAbstr<S, U> implem
             score = 0;
         }
         this.setScore(score);
+        this.scoreMapper(this.getCurrPlayer(), this.getScore());
     }
 
     @Override
