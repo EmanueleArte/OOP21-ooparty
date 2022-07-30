@@ -6,6 +6,7 @@ import javafx.collections.FXCollections;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Spinner;
 import javafx.scene.layout.VBox;
+import javafx.scene.shape.Shape;
 import utils.enums.PlayerColor;
 
 /**
@@ -57,6 +58,18 @@ public final class GuiUtils {
     public static void hideForm(final VBox form) {
         form.setVisible(false);
         form.setManaged(false);
+    }
+
+    /**
+     * This method resets a shape position.
+     * 
+     * @param shape the shape to reposition
+     * @param x     the starting X
+     * @param y     the starting Y
+     */
+    public static void resetPosition(final Shape shape, final double x, final double y) {
+        shape.setTranslateX(x);
+        shape.setTranslateY(y);
     }
 
 }

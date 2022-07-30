@@ -9,6 +9,7 @@ import javafx.scene.shape.Rectangle;
 import javafx.util.Duration;
 import minigames.common.viewcontroller.MinigameViewControllerAbstr;
 import minigames.whoriskswins.controller.WhoRisksWinsController;
+import utils.GuiUtils;
 import utils.Pair;
 import utils.PairImpl;
 import utils.controller.GenericController;
@@ -58,7 +59,7 @@ public class WhoRisksWinsViewControllerImpl extends MinigameViewControllerAbstr 
     @Override
     public final void startNextTurn() {
         if (this.wrwController.nextTurn()) {
-            this.resetBlock();
+            GuiUtils.resetPosition(this.block, this.blockCoordinates.getX(), this.blockCoordinates.getY());
             this.setBlockFallingSpeed();
             this.showNotice(Notice.PRESS_ENTER_TO.getNotice() + "start.");
             this.nextTurn = false;
@@ -92,13 +93,6 @@ public class WhoRisksWinsViewControllerImpl extends MinigameViewControllerAbstr 
                 this.blockFall.play();
             }
         }
-    }
-
-    /**
-     * This method resets the block position.
-     */
-    private void resetBlock() {
-        this.block.setTranslateY(this.blockCoordinates.getY());
     }
 
     /**
