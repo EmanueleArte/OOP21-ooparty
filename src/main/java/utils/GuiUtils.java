@@ -11,7 +11,7 @@ import javafx.scene.shape.Shape;
 import utils.enums.PlayerColor;
 
 /**
- * This class provides spinner utilities.
+ * This class provides gui utilities.
  */
 public final class GuiUtils {
 
@@ -19,11 +19,11 @@ public final class GuiUtils {
     }
 
     /**
-     * This method sets the value factory for a generic number spinner.
+     * This method sets the value factory for a generic number {@link Spinner}.
      * 
      * @param spinner the spinner to be set
-     * @param min     the min value
-     * @param max     the max value
+     * @param min     the minimum value
+     * @param max     the maximum value
      */
     public static void setSpinnerControls(final Spinner<Integer> spinner, final int min, final int max) {
         spinner.setValueFactory(new IntSpinnerValueFactory(min, max, min));
@@ -32,7 +32,7 @@ public final class GuiUtils {
     /**
      * This method fills the the combo box with colors which can be choose.
      * 
-     * @param playerColors the list of combo boxes
+     * @param playerColors the list of {@link ComboBox}
      */
     public static void fillColorsBoxes(final List<ComboBox<PlayerColor>> playerColors) {
         playerColors.forEach(colors -> {
@@ -42,7 +42,7 @@ public final class GuiUtils {
     }
 
     /**
-     * This method shows a player form.
+     * This method shows a form.
      * 
      * @param form the player form
      */
@@ -52,7 +52,7 @@ public final class GuiUtils {
     }
 
     /**
-     * This method hides a player form.
+     * This method hides a form.
      * 
      * @param form the player form
      */
@@ -62,9 +62,9 @@ public final class GuiUtils {
     }
 
     /**
-     * This method resets a shape position.
+     * This method resets a {@link Shape} position.
      * 
-     * @param shape the shape to reposition
+     * @param shape the {@link Shape} to reposition
      * @param x     the starting X
      * @param y     the starting Y
      */
@@ -76,7 +76,7 @@ public final class GuiUtils {
     /**
      * This method hides a button.
      * 
-     * @param button the button to hide
+     * @param button the {@link Button} to hide
      */
     public static void hideButton(final Button button) {
         button.setVisible(false);
@@ -86,7 +86,7 @@ public final class GuiUtils {
     /**
      * This method shows a button.
      * 
-     * @param button the button to show
+     * @param button the {@link Button} to show
      */
     public static void showButton(final Button button) {
         button.setVisible(true);
