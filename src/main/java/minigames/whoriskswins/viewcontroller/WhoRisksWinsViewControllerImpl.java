@@ -52,7 +52,6 @@ public class WhoRisksWinsViewControllerImpl extends MinigameViewControllerAbstr 
     @Override
     public final void showTurnResults(final int score) {
         this.showNotice("Your score is " + score + "\n" + Notice.PRESS_ENTER_TO.getNotice() + "continue.");
-
     }
 
     @Override

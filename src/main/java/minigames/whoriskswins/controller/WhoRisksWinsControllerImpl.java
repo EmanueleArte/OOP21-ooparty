@@ -68,6 +68,7 @@ public class WhoRisksWinsControllerImpl extends GenericControllerAbstr implement
     @Override
     public final void stopBlockFall(final double blockY, final double playerY) {
         this.wrwModel.stopBlockFall(blockY, playerY);
+        this.wrwViewController.showTurnResults(this.wrwModel.getScore());
     }
 
     @Override

@@ -47,8 +47,8 @@ public class WhoRisksWinsModelImpl<S, U> extends MinigameModelAbstr<S, U> implem
 
     @Override
     public final void stopBlockFall(final double blockY, final double playerY) {
-        // crea score
-
+        final int score = (int) (playerY + blockY);
+        this.setScore(score);
     }
 
     @Override
