@@ -40,10 +40,9 @@ public class WhoRisksWinsViewControllerImpl extends MinigameViewControllerAbstr 
 
     @FXML
     private void initialize() {
-        this.blockCoordinates = new PairImpl<>(this.block.getX(), this.block.getY());
-        final double radius = ((Circle) this.getPlayerAvatar().getChildren().get(1)).getRadius();
-        this.playerCoordinates = new PairImpl<>(((Circle) this.getPlayerAvatar().getChildren().get(1)).getCenterX(),
-                ((Circle) this.getPlayerAvatar().getChildren().get(1)).getCenterY() + radius);
+        this.blockCoordinates = new PairImpl<>(this.block.getLayoutX(), this.block.getLayoutY());
+        this.playerCoordinates = new PairImpl<>(this.getPlayerAvatar().getLayoutX(),
+                this.getPlayerAvatar().getLayoutY() - this.getPlayerAvatar().getBoundsInLocal().getHeight());
     }
 
     @Override
@@ -70,6 +69,8 @@ public class WhoRisksWinsViewControllerImpl extends MinigameViewControllerAbstr 
     @Override
     @FXML
     protected final void onEnter(final KeyEvent ke) {
+        System.out.println("player Y: " + this.playerCoordinates.getY());
+        System.out.println("block Y: " + this.blockCoordinates.getY());
         if (ke.getCode().equals(KeyCode.ENTER)) {
             if (this.fallingStarted) {
                 this.nextTurn = true;
