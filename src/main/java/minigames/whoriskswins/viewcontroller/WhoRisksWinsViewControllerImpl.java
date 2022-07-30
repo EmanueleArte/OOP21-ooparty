@@ -69,9 +69,11 @@ public class WhoRisksWinsViewControllerImpl extends MinigameViewControllerAbstr 
     protected final void onEnter(final KeyEvent ke) {
         if (ke.getCode().equals(KeyCode.ENTER)) {
             if (this.started) {
+                this.started = false;
                 this.blockFall.stop();
                 this.wrwController.stopBlockFall(this.blockCoordinates.getY(), this.playerCoordinates.getY());
             } else {
+                this.started = true;
                 this.blockFall.play();
             }
         }
