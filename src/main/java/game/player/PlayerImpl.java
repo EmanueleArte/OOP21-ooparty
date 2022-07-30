@@ -1,5 +1,9 @@
 package game.player;
 
+import java.util.Objects;
+
+import game.map.GameMap;
+import game.map.GameMapSquare;
 import javafx.scene.paint.Color;
 
 /**
@@ -9,9 +13,14 @@ public class PlayerImpl implements Player {
 
     private final String nickname;
     private final Color color;
-    private int position; // da modificare quando ci saranno le caselle
     private int coins;
     private int stars;
+    private int lifePoints;
+
+    /**
+     * The maximum amount of life points.
+     */
+    public static final int MAX_LIFE = 100;
 
     /**
      * Builds a new {@link PlayerImpl}.
@@ -24,7 +33,7 @@ public class PlayerImpl implements Player {
         this.color = color;
         this.coins = 0;
         this.stars = 0;
-        this.position = 0;
+        this.lifePoints = PlayerImpl.MAX_LIFE;
     }
 
     public PlayerImpl(final String nickname) {
@@ -42,19 +51,20 @@ public class PlayerImpl implements Player {
     }
 
     @Override
-    public final void moveForward(final int n) {
-        this.position += n;
+    public final void moveForward(final int n, final GameMap gameMap) {
+        //TODO da modificare
     }
 
     @Override
-    public void goTo() {
-        // da completare quando ci saranno le caselle
+    public final void goTo(final GameMap gameMap, final GameMapSquare newGameMapSquare) {
+        GameMapSquare currentPosition = this.getPosition(gameMap);
+        newGameMapSquare.addPlayer(this);
+        currentPosition.removePlayer(this);
     }
 
     @Override
-    public final int getPosition() {
-        // da modificare quando ci saranno le caselle
-        return this.position;
+    public final GameMapSquare getPosition(final GameMap gameMap) {
+        return gameMap.getPlayerPosition(this);
     }
 
     @Override
@@ -72,7 +82,11 @@ public class PlayerImpl implements Player {
 
     @Override
     public final void updateCoins(final int n) {
-        this.coins = n;
+        if (n >= 0) {
+            this.coins = n;
+        } else {
+            throw new IllegalArgumentException("Coins can't be negative");
+        }
     }
 
     @Override
@@ -87,12 +101,62 @@ public class PlayerImpl implements Player {
 
     @Override
     public final void loseStar() {
-        this.stars--;
+        if (this.stars > 0) {
+            this.stars--;
+        }
     }
 
     @Override
     public final int getStarsCount() {
         return this.stars;
+    }
+
+    @Override
+    public final int getLifePoints() {
+        return this.lifePoints;
+    }
+
+    @Override
+    public final void loseLifePoints(final int damage) {
+        if (damage <= 0) {
+            throw new IllegalArgumentException("Damage can't be 0 or negative");
+        }
+        this.lifePoints = this.lifePoints - damage;
+        if (this.lifePoints <= 0) {
+            //TODO player muore
+        }
+    }
+
+    @Override
+    public final void addLifePoints(final int amount) {
+        if (amount <= 0) {
+            throw new IllegalArgumentException("Amount can't be 0 or negative");
+        }
+        this.lifePoints += amount;
+        if (this.lifePoints > PlayerImpl.MAX_LIFE) {
+            this.lifePoints = PlayerImpl.MAX_LIFE;
+        }
+    }
+
+    @Override
+    public final int hashCode() {
+        return Objects.hash(coins, color, nickname, stars);
+    }
+
+    @Override
+    public final boolean equals(final Object obj) {
+        if  (this == obj) {
+            return true;
+        }
+        if  (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        PlayerImpl other = (PlayerImpl) obj;
+        return coins == other.coins && Objects.equals(color, other.color) && Objects.equals(nickname, other.nickname)
+                && stars == other.stars;
     }
 
 }
