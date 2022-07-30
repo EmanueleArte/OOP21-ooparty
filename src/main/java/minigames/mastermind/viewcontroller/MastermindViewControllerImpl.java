@@ -63,10 +63,14 @@ public class MastermindViewControllerImpl extends MinigameViewControllerAbstr im
     }
 
     @Override
-    public final void setController(final GenericController controller) {
-        this.mastermindController = (MastermindController) controller;
-        this.mastermindController.setMaxAttempts(this.attempts.size());
-        this.startNextTurn();
+    public final void setController(final GenericController controller) throws IllegalArgumentException {
+        if (controller instanceof MastermindController) {
+            this.mastermindController = (MastermindController) controller;
+            this.mastermindController.setMaxAttempts(this.attempts.size());
+            this.startNextTurn();
+        } else {
+            throw new IllegalArgumentException("The parameter must be an instance of MastermindController");
+        }
     }
 
     @Override

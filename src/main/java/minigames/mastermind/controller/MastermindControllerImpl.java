@@ -34,8 +34,12 @@ public class MastermindControllerImpl extends GenericControllerAbstr implements 
     }
 
     @Override
-    public final <C> void setViewController(final C viewController) {
-        this.mastermindViewController = (MastermindViewController) viewController;
+    public final <C> void setViewController(final C viewController) throws IllegalArgumentException {
+        if (viewController instanceof MastermindViewController) {
+            this.mastermindViewController = (MastermindViewController) viewController;
+        } else {
+            throw new IllegalArgumentException("The parameter must be an instance of MastermindViewController");
+        }
     }
 
     @Override
