@@ -71,4 +71,9 @@ public class WhoRisksWinsControllerImpl extends GenericControllerAbstr implement
 
     }
 
+    @Override
+    public final int getFallingSpeed() {
+        return 0;
+    }
+
 }

@@ -14,6 +14,7 @@ import utils.graphics.stagemanager.StageManager;
  */
 public class WhoRisksWinsModelImpl<S, U> extends MinigameModelAbstr<S, U> implements WhoRisksWinsModel<S, U> {
 
+    private int blockFallingSpeed;
     /**
      * Builds a new {@link WhoRisksWinsModelImpl}.
      * 
@@ -38,6 +39,11 @@ public class WhoRisksWinsModelImpl<S, U> extends MinigameModelAbstr<S, U> implem
     public final void stopBlockFall(final int blockY, final int playerY) {
         // crea score
 
+    }
+
+    @Override
+    public final int getBlockFallingSpeed() {
+        return this.blockFallingSpeed;
     }
 
 }

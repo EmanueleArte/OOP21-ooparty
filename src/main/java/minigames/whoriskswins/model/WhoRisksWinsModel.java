@@ -18,4 +18,11 @@ public interface WhoRisksWinsModel<S, U> extends MinigameModel<S, U> {
      */
     void stopBlockFall(int blockY, int playerY);
 
+    /**
+     * Getter for blockFallingSpeed.
+     * 
+     * @return the falling speed of the block
+     */
+    int getBlockFallingSpeed();
+
 }

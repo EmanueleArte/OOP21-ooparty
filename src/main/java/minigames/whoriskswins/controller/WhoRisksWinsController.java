@@ -14,4 +14,11 @@ public interface WhoRisksWinsController extends MinigameController {
      * @param playerY the ordinate of the player avatar
      */
     void stopBlockFall(int blockY, int playerY);
+
+    /**
+     * This method gets the falling speed of the block.
+     * 
+     * @return the falling speed
+     */
+    int getFallingSpeed();
 }
