@@ -46,9 +46,13 @@ public class WhoRisksWinsViewControllerImpl extends MinigameViewControllerAbstr 
     }
 
     @Override
-    public final void setController(final GenericController controller) {
-        this.wrwController = (WhoRisksWinsController) controller;
-        this.startNextTurn();
+    public final void setController(final GenericController controller) throws IllegalArgumentException {
+        if (controller instanceof WhoRisksWinsController) {
+            this.wrwController = (WhoRisksWinsController) controller;
+            this.startNextTurn();
+        } else {
+            throw new IllegalArgumentException("The parameter must be an instance of WhoRisksWinsController");
+        }
     }
 
     @Override

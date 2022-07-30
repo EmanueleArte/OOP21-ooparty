@@ -34,8 +34,12 @@ public class WhoRisksWinsControllerImpl extends GenericControllerAbstr implement
     }
 
     @Override
-    public final <C> void setViewController(final C viewController) {
-        this.wrwViewController = (WhoRisksWinsViewController) viewController;
+    public final <C> void setViewController(final C viewController) throws IllegalArgumentException {
+        if (viewController instanceof WhoRisksWinsViewController) {
+            this.wrwViewController = (WhoRisksWinsViewController) viewController;
+        } else {
+            throw new IllegalArgumentException("The parameter must be an instance of WhoRisksWinsViewController");
+        }
     }
 
     @Override
