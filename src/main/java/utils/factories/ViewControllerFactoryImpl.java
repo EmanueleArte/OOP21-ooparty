@@ -1,21 +1,18 @@
 package utils.factories;
 
 /**
- * This class provides static methods to create view controllers.
+ * Implementation of {@link ViewControllerFactory}.
  */
-public final class ViewControllerFactoryImpl {
-
-    private ViewControllerFactoryImpl() {
-    }
+public class ViewControllerFactoryImpl implements ViewControllerFactory {
 
     /**
-     * This method creates a {@link GenericControllerCallback} to be used by
-     * {@link javafx.fxml.FXMLLoader}.
-     * 
-     * @param viewControllerClass the class of the view controller
-     * @return the {@link GenericControllerCallback} created using the parameter
+     * Builds a new {@link ViewControllerFactoryImpl}.
      */
-    public static GenericControllerCallback createViewController(final Class<?> viewControllerClass) {
+    public ViewControllerFactoryImpl() {
+    }
+
+    @Override
+    public final GenericControllerCallback createViewController(final Class<?> viewControllerClass) {
         return new GenericControllerCallback(viewControllerClass);
     }
 
