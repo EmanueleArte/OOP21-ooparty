@@ -1,10 +1,8 @@
-package utils.graphics;
-
-import java.util.List;
+package utils.graphics.stagemanager;
 
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
-import utils.enums.ControllerType;
+import utils.controller.GenericController;
 
 /**
  * This interface models the javafx gui.
@@ -22,20 +20,19 @@ public interface Gui<S> {
     /**
      * This method loads an FXML file.
      * 
-     * @param <U>     the player
-     * @param fxmlUrl the url of the fxml file to load
-     * @param c       the type of the controller
-     * @param players the list of the players; put null if you haven't any list of
-     *                players to pass
+     * @param <U>        the player
+     * @param fxmlUrl    the url of the fxml file to load
+     * @param c          the type of the controller
+     * @param controller the controller to be used
      */
-    <U> void loadScene(String fxmlUrl, ControllerType c, List<U> players);
+    <U> void loadScene(String fxmlUrl, Class<?> viewControllerClass, GenericController controller);
 
     /**
      * This method shows the actual scene.
      * 
-     * @param scene the scene to be shown
+     * @param scene the {@link Scene} to be shown
      */
-    void setScene(S scene);
+    void setScene(Scene scene);
 
     /**
      * Getter for the {@link FXMLLoader}.

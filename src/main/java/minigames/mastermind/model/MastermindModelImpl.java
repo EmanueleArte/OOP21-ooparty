@@ -6,14 +6,14 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import minigames.common.model.MinigameModelAbstr;
-import utils.graphics.StageManager;
+import utils.graphics.stagemanager.StageManager;
 
 /**
- * Implementation of {@link NoticeUser} and extension of
- * {@link minigames.common.model.MinigameModelAbstr}.
+ * Implementation of {@link MastermindModel} and extension of
+ * {@link MinigameModelAbstr}.
  * 
  * @param <S> the scenes of the stage
- * @param <U> the {@link game.player.Player}
+ * @param <U> the players
  */
 public class MastermindModelImpl<S, U> extends MinigameModelAbstr<S, U> implements MastermindModel<S, U> {
 
@@ -21,15 +21,14 @@ public class MastermindModelImpl<S, U> extends MinigameModelAbstr<S, U> implemen
     private int maxAttempts;
     private String solution;
     private int nAttempts;
-    private int score;
     private boolean win = false;
     private boolean lose = false;
 
     /**
-     * Builds a new {@link GameCreationMenuViewImpl}.
+     * Builds a new {@link MastermindModelImpl}.
      * 
      * @param players the list of players
-     * @param s       the {@link utils.graphics.StageManager}
+     * @param s       the {@link StageManager}
      */
     public MastermindModelImpl(final List<U> players, final StageManager<S> s) {
         super(players, s);
@@ -45,6 +44,7 @@ public class MastermindModelImpl<S, U> extends MinigameModelAbstr<S, U> implemen
             this.setCurrPlayer();
             return true;
         }
+        this.getStageManager().popScene();
         return false;
     }
 
@@ -61,11 +61,6 @@ public class MastermindModelImpl<S, U> extends MinigameModelAbstr<S, U> implemen
     @Override
     public final int getNAttempts() {
         return this.nAttempts;
-    }
-
-    @Override
-    public final int getScore() {
-        return this.score;
     }
 
     @Override
@@ -139,8 +134,8 @@ public class MastermindModelImpl<S, U> extends MinigameModelAbstr<S, U> implemen
      */
     private void winCheck(final Integer nDigitExact) {
         if (nDigitExact == 4) {
-            this.score = this.maxAttempts - this.nAttempts + 1;
-            this.scoreMapper(this.getCurrPlayer(), this.score);
+            this.setScore(this.maxAttempts - this.nAttempts + 1);
+            this.scoreMapper(this.getCurrPlayer(), this.getScore());
             this.setWin(true);
         } else {
             this.loseCheck();
@@ -153,8 +148,8 @@ public class MastermindModelImpl<S, U> extends MinigameModelAbstr<S, U> implemen
      */
     private void loseCheck() {
         if (this.nAttempts == this.maxAttempts) {
-            this.score = this.maxAttempts - this.nAttempts;
-            this.scoreMapper(this.getCurrPlayer(), this.score);
+            this.setScore(this.maxAttempts - this.nAttempts);
+            this.scoreMapper(this.getCurrPlayer(), this.getScore());
             this.setLose(true);
         }
     }

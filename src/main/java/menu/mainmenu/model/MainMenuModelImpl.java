@@ -1,8 +1,8 @@
 package menu.mainmenu.model;
 
-import menu.gamecreationmenu.view.GameCreationMenuView;
-import menu.gamecreationmenu.view.GameCreationMenuViewImpl;
-import utils.graphics.StageManager;
+import menu.MenuController;
+import menu.gamecreationmenu.controller.GameCreationMenuControllerImpl;
+import utils.graphics.stagemanager.StageManager;
 
 /**
  * Implementation of {@link MainMenuModel}.
@@ -16,7 +16,7 @@ public class MainMenuModelImpl<S> implements MainMenuModel<S> {
     /**
      * Builds a new {@link MainMenuModelImpl}.
      * 
-     * @param s the {@link utils.graphics.StageManager}
+     * @param s the {@link utils.graphics.stagemanager.StageManager}
      */
     public MainMenuModelImpl(final StageManager<S> s) {
         super();
@@ -30,8 +30,8 @@ public class MainMenuModelImpl<S> implements MainMenuModel<S> {
 
     @Override
     public final void gameCreationMenu() {
-        final GameCreationMenuView<S> creationMenu = new GameCreationMenuViewImpl<>(this.stageManager);
-        creationMenu.createGameCreationMenu();
+        final MenuController gameCreationMenuContr = new GameCreationMenuControllerImpl(this.stageManager);
+        gameCreationMenuContr.createMenu();
     }
 
 }

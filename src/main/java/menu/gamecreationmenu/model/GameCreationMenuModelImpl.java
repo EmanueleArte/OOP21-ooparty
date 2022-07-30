@@ -6,15 +6,11 @@ import java.util.stream.Collectors;
 
 import game.player.Player;
 import game.player.PlayerImpl;
-import javafx.collections.FXCollections;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.Spinner;
-import javafx.scene.control.TextField;
-import minigames.common.view.MinigameView;
-import minigames.mastermind.view.MastermindViewImpl;
-import utils.IntSpinnerValueFactory;
+import minigames.common.controller.MinigameController;
+import minigames.mastermind.controller.MastermindControllerImpl;
+import minigames.whoriskswins.controller.WhoRisksWinsControllerImpl;
 import utils.enums.PlayerColor;
-import utils.graphics.StageManager;
+import utils.graphics.stagemanager.StageManager;
 
 /**
  * Implementation of {@link GameCreationMenuModel}.
@@ -45,7 +41,7 @@ public class GameCreationMenuModelImpl<S> implements GameCreationMenuModel<S> {
     /**
      * Builds a new {@link GameCreationMenuModelImpl}.
      * 
-     * @param s the {@link utils.graphics.StageManager}.
+     * @param s the {@link utils.graphics.stagemanager.StageManager}.
      */
     public GameCreationMenuModelImpl(final StageManager<S> s) {
         super();
@@ -59,19 +55,22 @@ public class GameCreationMenuModelImpl<S> implements GameCreationMenuModel<S> {
     }
 
     @Override
-    public final boolean startGame(final List<TextField> allPlayersNicknames,
-            final List<ComboBox<PlayerColor>> allPlayerColors, final Spinner<Integer> turnsNumber) {
-        final List<String> playersNicknames = this
-                .getNicknamesValues(allPlayersNicknames.subList(0, this.actualNPlayers));
-        final List<PlayerColor> playersColors = this.getColorsValues(allPlayerColors.subList(0, this.actualNPlayers));
+    public final boolean startGame(final List<String> allPlayersNicknames, final List<PlayerColor> allPlayersColors,
+            final int turnsNumber) {
+        final List<String> playersNicknames = allPlayersNicknames.subList(0, this.actualNPlayers);
+        final List<PlayerColor> playersColors = allPlayersColors.subList(0, this.actualNPlayers);
         if (!checkForms(playersNicknames, playersColors)) {
             return false;
         } else {
             // To complete with game constructor (parameters: playersList, stageManager,
             // turnsNumber)
             // Test minigames
-            final MinigameView<S, Player> m = new MastermindViewImpl<>(this.stageManager);
-            m.startMinigame(this.createPlayersList(playersNicknames, playersColors));
+            /*final MinigameController m = new MastermindControllerImpl(this.stageManager,
+                    this.createPlayersList(playersNicknames, playersColors));
+            m.startGame();*/
+            final MinigameController wrw = new WhoRisksWinsControllerImpl(this.stageManager,
+                    this.createPlayersList(playersNicknames, playersColors));
+            wrw.startGame();
         }
         return true;
     }
@@ -79,37 +78,6 @@ public class GameCreationMenuModelImpl<S> implements GameCreationMenuModel<S> {
     @Override
     public final void setActualNPlayers(final Integer nPlayers) {
         this.actualNPlayers = nPlayers;
-    }
-
-    @Override
-    public final void fillColorsBoxes(final List<ComboBox<PlayerColor>> playerColors) {
-        playerColors.forEach(colors -> {
-            colors.setItems(FXCollections.observableArrayList(PlayerColor.values()));
-            colors.getSelectionModel().selectFirst();
-        });
-    }
-
-    @Override
-    public final void setNumberOfPlayersSpinner(final Spinner<Integer> numberOfPlayers) {
-        this.setSpinnerControls(numberOfPlayers, GameCreationMenuModelImpl.N_MIN_PLAYERS,
-                GameCreationMenuModelImpl.N_MAX_PLAYERS);
-    }
-
-    @Override
-    public final void setTurnsNumberSpinner(final Spinner<Integer> turnsNumber) {
-        this.setSpinnerControls(turnsNumber, GameCreationMenuModelImpl.N_MIN_TURNS,
-                GameCreationMenuModelImpl.N_MAX_TURNS);
-    }
-
-    /**
-     * This method sets the value factory for a generic number spinner.
-     * 
-     * @param spinner the spinner to be set
-     * @param min     the min value
-     * @param max     the max value
-     */
-    private void setSpinnerControls(final Spinner<Integer> spinner, final int min, final int max) {
-        spinner.setValueFactory(new IntSpinnerValueFactory(min, max, min));
     }
 
     /**
@@ -129,30 +97,6 @@ public class GameCreationMenuModelImpl<S> implements GameCreationMenuModel<S> {
             formsCorrect = false;
         }
         return formsCorrect;
-    }
-
-    /**
-     * This method gets the players colors values.
-     * 
-     * @param list the list of players colors combo box.
-     * @return the list of players colors
-     */
-    private List<PlayerColor> getColorsValues(final List<ComboBox<PlayerColor>> list) {
-        final List<PlayerColor> valuesList = new ArrayList<>();
-        list.forEach(element -> valuesList.add(element.getValue()));
-        return valuesList;
-    }
-
-    /**
-     * This method gets the players nicknames values.
-     * 
-     * @param list the list of players nicknames text fields.
-     * @return the list of players nicknames
-     */
-    private List<String> getNicknamesValues(final List<TextField> list) {
-        final List<String> valuesList = new ArrayList<>();
-        list.forEach(element -> valuesList.add(element.getText()));
-        return valuesList;
     }
 
     /**

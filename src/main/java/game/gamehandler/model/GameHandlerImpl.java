@@ -8,7 +8,7 @@ import game.map.GameMap;
 import game.map.GameMapSquare;
 import game.map.GameMapSquareImpl;
 import game.player.Player;
-import utils.graphics.StageManager;
+import utils.graphics.stagemanager.StageManager;
 
 public class GameHandlerImpl<S> implements GameHandler {
 

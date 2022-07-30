@@ -6,10 +6,13 @@ import game.map.GameMap;
 import game.map.GameMapImpl;
 import game.player.PlayerImpl;
 import javafx.scene.Scene;
-import menu.mainmenu.view.MainMenuView;
-import menu.mainmenu.view.MainMenuViewImpl;
-import utils.graphics.StageManager;
-import utils.graphics.StageManagerImpl;
+import menu.MenuController;
+import menu.mainmenu.controller.MainMenuControllerImpl;
+import minigames.whoriskswins.controller.WhoRisksWinsController;
+import minigames.whoriskswins.controller.WhoRisksWinsControllerImpl;
+import utils.enums.PlayerColor;
+import utils.graphics.stagemanager.StageManager;
+import utils.graphics.stagemanager.StageManagerImpl;
 
 public final class App {
 
@@ -21,9 +24,14 @@ public final class App {
     public static void main(final String[] args) {
         final StageManager<Scene> stageManager = new StageManagerImpl<>("OOparty");
         stageManager.run();
+<<<<<<< HEAD
         final MainMenuView<Scene> mainMenu = new MainMenuViewImpl<>(stageManager);
         mainMenu.createMainMenu();
         final GameMap gameMap = new GameMapImpl(null);
+=======
+        final MenuController mainMenu = new MainMenuControllerImpl(stageManager);
+        mainMenu.createMenu();
+>>>>>>> 932c484432b3adec633faf8a677a571930934a23
 
         GameHandler game = new GameHandlerImpl(stageManager,
                 List.of(new PlayerImpl("Mario"), new PlayerImpl("Luigi"), new PlayerImpl("Yoshi")), gameMap);

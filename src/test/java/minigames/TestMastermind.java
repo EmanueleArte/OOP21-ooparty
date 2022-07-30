@@ -9,8 +9,8 @@ import org.junit.jupiter.api.Test;
 
 import minigames.mastermind.model.MastermindModel;
 import minigames.mastermind.model.MastermindModelImpl;
-import utils.graphics.StageManager;
-import utils.graphics.StageManagerImpl;
+import utils.graphics.stagemanager.StageManager;
+import utils.graphics.stagemanager.StageManagerImpl;
 
 /**
  * Test class for MastermindModel.

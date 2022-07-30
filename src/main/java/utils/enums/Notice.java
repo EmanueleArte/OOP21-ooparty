@@ -11,8 +11,11 @@ public enum Notice {
     /**
      * Mastermind input error notice.
      */
-    MASTERMIND_INPUT_ERROR("The input must be a 4-digit number with different digits.");
-
+    MASTERMIND_INPUT_ERROR("The input must be a 4-digit number with different digits."),
+    /**
+     * Standard first part of a notice which indicates the use of ENTER.
+     */
+    PRESS_ENTER_TO("Press ENTER to ");
 
     private final String notice;
 
