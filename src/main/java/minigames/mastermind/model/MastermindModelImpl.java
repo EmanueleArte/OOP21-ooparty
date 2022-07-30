@@ -44,6 +44,7 @@ public class MastermindModelImpl<S, U> extends MinigameModelAbstr<S, U> implemen
             this.setCurrPlayer();
             return true;
         }
+        this.getStageManager().popScene();
         return false;
     }
 
