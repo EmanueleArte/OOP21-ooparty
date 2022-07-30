@@ -12,7 +12,8 @@ import utils.graphics.stagemanager.StageManager;
 import utils.view.GenericView;
 
 /**
- * Extension of {@link GenericControllerAbstr} and implementation of {@link MenuController}.
+ * Extension of {@link GenericControllerAbstr} and implementation of
+ * {@link MenuController}.
  */
 public class GameCreationMenuControllerImpl extends GenericControllerAbstr implements MenuController {
 
@@ -31,8 +32,13 @@ public class GameCreationMenuControllerImpl extends GenericControllerAbstr imple
     }
 
     @Override
-    public final <C> void setViewController(final C viewController) {
-        this.menuViewController = (GameCreationMenuViewControllerImpl) viewController;
+    public final <C> void setViewController(final C viewController) throws IllegalArgumentException {
+        if (viewController instanceof GameCreationMenuViewControllerImpl) {
+            this.menuViewController = (GameCreationMenuViewControllerImpl) viewController;
+        } else {
+            throw new IllegalArgumentException(
+                    "The parameter must be an instance of GameCreationMenuViewControllerImpl");
+        }
     }
 
     @Override

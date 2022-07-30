@@ -66,8 +66,12 @@ public class GameCreationMenuViewControllerImpl extends NoticeUserAbstr implemen
     }
 
     @Override
-    public final void setController(final GenericController controller) {
-        this.menuController = (MenuController) controller;
+    public final void setController(final GenericController controller) throws IllegalArgumentException {
+        if (controller instanceof MenuController) {
+            this.menuController = (MenuController) controller;
+        } else {
+            throw new IllegalArgumentException("The parameter must be an instance of MenuController");
+        }
     }
 
     @Override
