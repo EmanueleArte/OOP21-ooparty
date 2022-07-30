@@ -5,7 +5,6 @@ import javafx.animation.TranslateTransition;
 import javafx.fxml.FXML;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
-import javafx.scene.shape.Circle;
 import javafx.scene.shape.Rectangle;
 import javafx.util.Duration;
 import minigames.common.viewcontroller.MinigameViewControllerAbstr;
@@ -42,7 +41,7 @@ public class WhoRisksWinsViewControllerImpl extends MinigameViewControllerAbstr 
     private void initialize() {
         this.blockCoordinates = new PairImpl<>(this.block.getLayoutX(), this.block.getLayoutY());
         this.playerCoordinates = new PairImpl<>(this.getPlayerAvatar().getLayoutX(),
-                this.getPlayerAvatar().getLayoutY() - this.getPlayerAvatar().getBoundsInLocal().getHeight());
+                this.getPlayerAvatar().getBoundsInParent().getMinY());
     }
 
     @Override
@@ -69,21 +68,20 @@ public class WhoRisksWinsViewControllerImpl extends MinigameViewControllerAbstr 
     @Override
     @FXML
     protected final void onEnter(final KeyEvent ke) {
-        System.out.println("player Y: " + this.playerCoordinates.getY());
-        System.out.println("block Y: " + this.blockCoordinates.getY());
         if (ke.getCode().equals(KeyCode.ENTER)) {
             if (this.fallingStarted) {
                 this.nextTurn = true;
                 this.fallingStarted = false;
                 this.blockFall.stop();
-                this.wrwController.stopBlockFall(this.blockCoordinates.getY(), this.playerCoordinates.getY());
+                this.wrwController.stopBlockFall(this.block.getTranslateY(), this.playerCoordinates.getY());
             } else {
                 if (this.nextTurn) {
                     this.startNextTurn();
+                } else {
+                    this.fallingStarted = true;
+                    this.clearNotice();
+                    this.blockFall.play();
                 }
-                this.fallingStarted = true;
-                this.clearNotice();
-                this.blockFall.play();
             }
         }
     }
@@ -92,7 +90,7 @@ public class WhoRisksWinsViewControllerImpl extends MinigameViewControllerAbstr 
      * This method resets the block position.
      */
     private void resetBlock() {
-        this.block.yProperty().set(this.blockCoordinates.getY());
+        this.block.setLayoutY(this.blockCoordinates.getY());
     }
 
     /**
@@ -102,7 +100,7 @@ public class WhoRisksWinsViewControllerImpl extends MinigameViewControllerAbstr 
         this.blockFall = new TranslateTransition();
         this.blockFall.setNode(this.block);
         this.blockFall.setDuration(Duration.millis(this.wrwController.getFallingSpeed()));
-        this.blockFall.setToY(this.playerCoordinates.getY());
+        this.blockFall.setToY(this.playerCoordinates.getY() - this.block.getHeight() + 1);
         this.blockFall.setInterpolator(Interpolator.EASE_IN);
     }
 

@@ -30,13 +30,13 @@
                   <Label text="Press ENTER to stop the block when falling. " textAlignment="CENTER" />
                   <Pane prefHeight="400.0" prefWidth="3840.0">
                      <children>
-                        <Group fx:id="playerAvatar" layoutX="1920.0" layoutY="381.0" scaleX="0.5" scaleY="0.5">
+                        <Group fx:id="playerAvatar" layoutX="1920.0" layoutY="385.0" scaleX="0.5" scaleY="0.5">
                            <children>
                               <Polygon fill="DODGERBLUE" points="-50.0, 40.0, 50.0, 40.0, 0.0, -60.0" scaleX="0.8" stroke="BLACK" strokeType="INSIDE" />
                               <Circle fill="DODGERBLUE" layoutY="-59.0" radius="27.0" stroke="BLACK" strokeType="INSIDE" />
                            </children>
                         </Group>
-                        <Rectangle fx:id="block" arcHeight="5.0" arcWidth="5.0" fill="#ab0000" height="112.0" layoutX="1889.0" layoutY="-1.0" stroke="BLACK" strokeType="INSIDE" width="61.0" />
+                        <Rectangle fx:id="block" arcHeight="5.0" arcWidth="5.0" fill="#ab0000" height="112.0" layoutX="1889.0" stroke="BLACK" strokeType="INSIDE" width="61.0" />
                      </children>
                   </Pane>
                   <Label fx:id="noticeLabel" prefHeight="20.0">
