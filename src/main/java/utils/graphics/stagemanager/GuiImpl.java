@@ -68,6 +68,7 @@ public class GuiImpl<S> extends JFrame implements Gui<S> {
             try {
                 this.root = Optional.ofNullable(this.loader.load());
                 this.setScene(new Scene(this.root.get()));
+                this.root.get().requestFocus();
                 controller.setViewController(this.loader.getController());
                 ((GenericViewController) this.loader.getController()).setController(controller);
             } catch (IOException e1) {
