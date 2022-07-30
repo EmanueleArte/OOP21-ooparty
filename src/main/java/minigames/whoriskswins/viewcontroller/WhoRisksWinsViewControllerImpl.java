@@ -1,10 +1,13 @@
 package minigames.whoriskswins.viewcontroller;
 
+import javafx.animation.Interpolator;
+import javafx.animation.TranslateTransition;
 import javafx.fxml.FXML;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Rectangle;
+import javafx.util.Duration;
 import minigames.common.viewcontroller.MinigameViewControllerAbstr;
 import minigames.whoriskswins.controller.WhoRisksWinsController;
 import utils.Pair;
@@ -21,6 +24,8 @@ public class WhoRisksWinsViewControllerImpl extends MinigameViewControllerAbstr 
     private WhoRisksWinsController wrwController;
     private Pair<Double, Double> blockCoordinates;
     private Pair<Double, Double> playerCoordinates;
+    private TranslateTransition blockFall;
+    private boolean started;
     @FXML
     private Rectangle block;
 
@@ -28,6 +33,7 @@ public class WhoRisksWinsViewControllerImpl extends MinigameViewControllerAbstr 
      * Builds a new {@link WhoRisksWinsViewControllerImpl}.
      */
     public WhoRisksWinsViewControllerImpl() {
+        this.started = false;
     }
 
     @FXML
@@ -62,7 +68,12 @@ public class WhoRisksWinsViewControllerImpl extends MinigameViewControllerAbstr 
     @FXML
     protected final void onEnter(final KeyEvent ke) {
         if (ke.getCode().equals(KeyCode.ENTER)) {
-            this.wrwController.stopBlockFall(this.blockCoordinates.getY(), this.playerCoordinates.getY());
+            if (this.started) {
+                this.blockFall.stop();
+                this.wrwController.stopBlockFall(this.blockCoordinates.getY(), this.playerCoordinates.getY());
+            } else {
+                this.blockFall.play();
+            }
         }
     }
 
@@ -74,10 +85,14 @@ public class WhoRisksWinsViewControllerImpl extends MinigameViewControllerAbstr 
     }
 
     /**
-     * Setter for the falling speed of the block.
+     * Setter for the falling animation of the block.
      */
     private void setBlockFallingSpeed() {
-        this.wrwController.getFallingSpeed();
+        this.blockFall = new TranslateTransition();
+        this.blockFall.setNode(this.block);
+        this.blockFall.setDuration(Duration.millis(this.wrwController.getFallingSpeed()));
+        this.blockFall.setByY(this.playerCoordinates.getY());
+        this.blockFall.setInterpolator(Interpolator.EASE_IN);
     }
 
 }
