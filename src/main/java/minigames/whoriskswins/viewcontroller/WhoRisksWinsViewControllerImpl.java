@@ -69,19 +69,27 @@ public class WhoRisksWinsViewControllerImpl extends MinigameViewControllerAbstr 
     @FXML
     protected final void onEnter(final KeyEvent ke) {
         if (ke.getCode().equals(KeyCode.ENTER)) {
-            if (this.fallingStarted) {
-                this.nextTurn = true;
-                this.fallingStarted = false;
-                this.blockFall.stop();
-                this.wrwController.stopBlockFall(this.block.getTranslateY(), this.playerCoordinates.getY());
+            this.gameAction();
+        }
+    }
+
+    /**
+     * This methods performs the possible game actions.
+     */
+    private void gameAction() {
+        if (this.fallingStarted) {
+            this.nextTurn = true;
+            this.fallingStarted = false;
+            this.blockFall.stop();
+            this.wrwController.stopBlockFall(this.block.getTranslateY() + this.block.getHeight(),
+                    this.playerCoordinates.getY());
+        } else {
+            if (this.nextTurn) {
+                this.startNextTurn();
             } else {
-                if (this.nextTurn) {
-                    this.startNextTurn();
-                } else {
-                    this.fallingStarted = true;
-                    this.clearNotice();
-                    this.blockFall.play();
-                }
+                this.fallingStarted = true;
+                this.clearNotice();
+                this.blockFall.play();
             }
         }
     }
@@ -90,7 +98,7 @@ public class WhoRisksWinsViewControllerImpl extends MinigameViewControllerAbstr 
      * This method resets the block position.
      */
     private void resetBlock() {
-        this.block.setLayoutY(this.blockCoordinates.getY());
+        this.block.setTranslateY(this.blockCoordinates.getY());
     }
 
     /**
@@ -102,6 +110,7 @@ public class WhoRisksWinsViewControllerImpl extends MinigameViewControllerAbstr 
         this.blockFall.setDuration(Duration.millis(this.wrwController.getFallingSpeed()));
         this.blockFall.setToY(this.playerCoordinates.getY() - this.block.getHeight() + 1);
         this.blockFall.setInterpolator(Interpolator.EASE_IN);
+        this.blockFall.setOnFinished(e -> this.gameAction());
     }
 
 }

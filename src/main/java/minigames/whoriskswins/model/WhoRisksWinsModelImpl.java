@@ -18,11 +18,11 @@ public class WhoRisksWinsModelImpl<S, U> extends MinigameModelAbstr<S, U> implem
     /**
      * Range of milliseconds.
      */
-    private static final int TIME_RANGE = 2000;
+    private static final int TIME_RANGE = 800;
     /**
      * Minimum milliseconds.
      */
-    private static final int MINIMUM_TIME = 500;
+    private static final int MINIMUM_TIME = 700;
     private int blockFallingSpeed;
 
     /**
@@ -42,12 +42,16 @@ public class WhoRisksWinsModelImpl<S, U> extends MinigameModelAbstr<S, U> implem
             this.setCurrPlayer();
             return true;
         }
+        this.getStageManager().popScene();
         return false;
     }
 
     @Override
     public final void stopBlockFall(final double blockY, final double playerY) {
-        final int score = (int) (playerY + blockY);
+        int score = (int) (playerY + blockY);
+        if (blockY > playerY) {
+            score = 0;
+        }
         this.setScore(score);
     }
 
