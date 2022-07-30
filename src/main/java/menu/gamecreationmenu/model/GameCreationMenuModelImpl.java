@@ -20,7 +20,7 @@ import utils.graphics.stagemanager.StageManager;
 public class GameCreationMenuModelImpl<S> implements GameCreationMenuModel<S> {
 
     /**
-     * Minimun number of players.
+     * Minimum number of players.
      */
     public static final int N_MIN_PLAYERS = 2;
     /**

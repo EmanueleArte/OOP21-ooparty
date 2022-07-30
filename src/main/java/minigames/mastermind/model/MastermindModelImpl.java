@@ -69,8 +69,12 @@ public class MastermindModelImpl<S, U> extends MinigameModelAbstr<S, U> implemen
     }
 
     @Override
-    public final void setMaxAttempts(final int maxAttempts) {
-        this.maxAttempts = maxAttempts;
+    public final void setMaxAttempts(final int maxAttempts) throws IllegalArgumentException {
+        if (maxAttempts > 0) {
+            this.maxAttempts = maxAttempts;
+        } else {
+            throw new IllegalArgumentException("The maximum number of attempts must be positive");
+        }
     }
 
     @Override
