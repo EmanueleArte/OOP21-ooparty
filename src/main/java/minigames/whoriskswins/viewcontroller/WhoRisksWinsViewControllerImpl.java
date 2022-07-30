@@ -25,7 +25,8 @@ public class WhoRisksWinsViewControllerImpl extends MinigameViewControllerAbstr 
     private Pair<Double, Double> blockCoordinates;
     private Pair<Double, Double> playerCoordinates;
     private TranslateTransition blockFall;
-    private boolean started;
+    private boolean fallingStarted;
+    private boolean nextTurn;
     @FXML
     private Rectangle block;
 
@@ -33,7 +34,8 @@ public class WhoRisksWinsViewControllerImpl extends MinigameViewControllerAbstr 
      * Builds a new {@link WhoRisksWinsViewControllerImpl}.
      */
     public WhoRisksWinsViewControllerImpl() {
-        this.started = false;
+        this.fallingStarted = false;
+        this.nextTurn = true;
     }
 
     @FXML
@@ -61,6 +63,7 @@ public class WhoRisksWinsViewControllerImpl extends MinigameViewControllerAbstr 
             this.resetBlock();
             this.setBlockFallingSpeed();
             this.showNotice(Notice.PRESS_ENTER_TO.getNotice() + "start.");
+            this.nextTurn = false;
         }
     }
 
@@ -68,12 +71,17 @@ public class WhoRisksWinsViewControllerImpl extends MinigameViewControllerAbstr 
     @FXML
     protected final void onEnter(final KeyEvent ke) {
         if (ke.getCode().equals(KeyCode.ENTER)) {
-            if (this.started) {
-                this.started = false;
+            if (this.fallingStarted) {
+                this.nextTurn = true;
+                this.fallingStarted = false;
                 this.blockFall.stop();
                 this.wrwController.stopBlockFall(this.blockCoordinates.getY(), this.playerCoordinates.getY());
             } else {
-                this.started = true;
+                if (this.nextTurn) {
+                    this.startNextTurn();
+                }
+                this.fallingStarted = true;
+                this.clearNotice();
                 this.blockFall.play();
             }
         }
