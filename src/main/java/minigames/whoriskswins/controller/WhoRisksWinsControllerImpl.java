@@ -66,14 +66,14 @@ public class WhoRisksWinsControllerImpl extends GenericControllerAbstr implement
     }
 
     @Override
-    public final void stopBlockFall(final int blockY, final int playerY) {
+    public final void stopBlockFall(final double blockY, final double playerY) {
         // TODO Auto-generated method stub
 
     }
 
     @Override
     public final int getFallingSpeed() {
-        return 0;
+        return this.wrwModel.getBlockFallingSpeed();
     }
 
 }

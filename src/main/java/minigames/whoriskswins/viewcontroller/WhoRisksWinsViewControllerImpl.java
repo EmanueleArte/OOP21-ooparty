@@ -48,6 +48,7 @@ public class WhoRisksWinsViewControllerImpl extends MinigameViewControllerAbstr 
     public final void startNextTurn() {
         if (this.wrwController.nextTurn()) {
             this.resetBlock();
+            this.setBlockFallingSpeed();
             this.showNotice(Notice.PRESS_ENTER_TO + "start.");
         }
     }
@@ -56,7 +57,7 @@ public class WhoRisksWinsViewControllerImpl extends MinigameViewControllerAbstr 
     @FXML
     protected final void onEnter(final KeyEvent ke) {
         if (ke.getCode().equals(KeyCode.ENTER)) {
-            this.wrwController.stopBlockFall(0, 0);
+            this.wrwController.stopBlockFall(this.blockCoordinates.getY(), 0);
         }
     }
 
@@ -65,6 +66,13 @@ public class WhoRisksWinsViewControllerImpl extends MinigameViewControllerAbstr 
      */
     private void resetBlock() {
         this.block.yProperty().set(this.blockCoordinates.getY());
+    }
+
+    /**
+     * Setter for the falling speed of the block.
+     */
+    private void setBlockFallingSpeed() {
+        this.wrwController.getFallingSpeed();
     }
 
 }
