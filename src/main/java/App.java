@@ -22,12 +22,6 @@ public final class App {
     public static void main(final String[] args) {
         final StageManager<Scene> stageManager = new StageManagerImpl<>("OOparty");
         stageManager.run();
-        final WhoRisksWinsController wrw = new WhoRisksWinsControllerImpl(stageManager,
-                List.of(new PlayerImpl("Mario", PlayerColor.YELLOW.getColor()),
-                        new PlayerImpl("Luigi", PlayerColor.BLUE.getColor()),
-                        new PlayerImpl("Yoshi", PlayerColor.RED.getColor())));
-        wrw.startGame();
-
         final MenuController mainMenu = new MainMenuControllerImpl(stageManager);
         mainMenu.createMenu();
 
