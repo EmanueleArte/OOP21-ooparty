@@ -30,8 +30,12 @@ public class MainMenuControllerImpl extends GenericControllerAbstr implements Me
     }
 
     @Override
-    public final <C> void setViewController(final C viewController) {
-        this.menuViewController = (MainMenuViewControllerImpl) viewController;
+    public final <C> void setViewController(final C viewController) throws IllegalArgumentException {
+        if (viewController instanceof MainMenuViewControllerImpl) {
+            this.menuViewController = (MainMenuViewControllerImpl) viewController;
+        } else {
+            throw new IllegalArgumentException("The parameter must be an instance of MainMenuViewControllerImpl");
+        }
     }
 
     @Override
