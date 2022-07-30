@@ -67,8 +67,7 @@ public class WhoRisksWinsControllerImpl extends GenericControllerAbstr implement
 
     @Override
     public final void stopBlockFall(final double blockY, final double playerY) {
-        // TODO Auto-generated method stub
-
+        this.wrwModel.stopBlockFall(blockY, playerY);
     }
 
     @Override

@@ -16,7 +16,7 @@ public interface WhoRisksWinsModel<S, U> extends MinigameModel<S, U> {
      * @param blockY  the ordinate of the block
      * @param playerY the ordinate of the player avatar
      */
-    void stopBlockFall(int blockY, int playerY);
+    void stopBlockFall(double blockY, double playerY);
 
     /**
      * Getter for blockFallingSpeed.
