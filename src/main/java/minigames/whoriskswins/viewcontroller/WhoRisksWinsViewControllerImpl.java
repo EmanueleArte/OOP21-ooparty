@@ -40,13 +40,14 @@ public class WhoRisksWinsViewControllerImpl extends MinigameViewControllerAbstr 
     private void initialize() {
         this.blockCoordinates = new PairImpl<>(this.block.getX(), this.block.getY());
         final double radius = ((Circle) this.getPlayerAvatar().getChildren().get(1)).getRadius();
-        this.playerCoordinates = new PairImpl<>(((Circle) this.getPlayerAvatar().getChildren().get(0)).getCenterX(),
+        this.playerCoordinates = new PairImpl<>(((Circle) this.getPlayerAvatar().getChildren().get(1)).getCenterX(),
                 ((Circle) this.getPlayerAvatar().getChildren().get(1)).getCenterY() + radius);
     }
 
     @Override
     public final void setController(final GenericController controller) {
         this.wrwController = (WhoRisksWinsController) controller;
+        this.startNextTurn();
     }
 
     @Override
@@ -59,7 +60,7 @@ public class WhoRisksWinsViewControllerImpl extends MinigameViewControllerAbstr 
         if (this.wrwController.nextTurn()) {
             this.resetBlock();
             this.setBlockFallingSpeed();
-            this.showNotice(Notice.PRESS_ENTER_TO + "start.");
+            this.showNotice(Notice.PRESS_ENTER_TO.getNotice() + "start.");
         }
     }
 

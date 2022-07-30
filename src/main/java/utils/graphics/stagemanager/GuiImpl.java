@@ -30,7 +30,7 @@ public class GuiImpl<S> extends JFrame implements Gui<S> {
     /**
      * Minimum window height.
      */
-    public static final int MIN_HEIGHT = 730;
+    public static final int MIN_HEIGHT = 750;
     private Optional<JFXPanel> mainStage;
     private FXMLLoader loader;
     private final JFrame frame;
