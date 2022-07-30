@@ -52,7 +52,7 @@ public class WhoRisksWinsViewControllerImpl extends MinigameViewControllerAbstr 
 
     @Override
     public final void showTurnResults(final int score) {
-        this.showNotice("Your score is " + score + "\n" + Notice.PRESS_ENTER_TO.getNotice() + "continue.");
+        this.showNotice("Your score is " + score + ". " + Notice.PRESS_ENTER_TO.getNotice() + "continue.");
     }
 
     @Override
@@ -93,7 +93,7 @@ public class WhoRisksWinsViewControllerImpl extends MinigameViewControllerAbstr 
         this.blockFall = new TranslateTransition();
         this.blockFall.setNode(this.block);
         this.blockFall.setDuration(Duration.millis(this.wrwController.getFallingSpeed()));
-        this.blockFall.setByY(this.playerCoordinates.getY());
+        this.blockFall.setToY(this.playerCoordinates.getY());
         this.blockFall.setInterpolator(Interpolator.EASE_IN);
     }
 
