@@ -21,8 +21,6 @@ public final class SceneHandler {
      * @param <S>    the scenes of the stage
      * @param scenes the scenes list
      * @param gui    the gui of the game
-     * @return the minigame controller loaded or null if the controller is not of a
-     *         minigame
      */
     @SuppressWarnings("unchecked")
     public static <S> void addFXMLScene(final List<S> scenes, final Gui<S> gui) {
