@@ -42,7 +42,7 @@ public interface Gui<S> {
     FXMLLoader getLoader();
 
     /**
-     * Getter for the {@link JFXPanel} scene.
+     * Getter for the {@link javafx.embed.swing.JFXPanel} current scene.
      * 
      * @return the main stage {@link Scene}
      */
