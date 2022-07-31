@@ -86,6 +86,8 @@ public abstract class GameModelAbstr<S, U> implements GameModel<S, U> {
 
     /**
      * Setter for playerIterator.
+     * 
+     * @param players the list of players
      */
     protected void setPlayerIterator(final List<U> players) {
         this.playerIterator = players.listIterator();
