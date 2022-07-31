@@ -18,7 +18,7 @@ import utils.enums.PlayerColor;
 
 /**
  * Extension of {@link NoticeUserAbstr} and implementation of
- * {@link GenericViewController}.
+ * {@link GameCreationMenuViewController}.
  */
 public class GameCreationMenuViewControllerImpl extends NoticeUserAbstr implements GameCreationMenuViewController {
 
