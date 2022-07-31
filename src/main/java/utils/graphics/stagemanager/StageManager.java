@@ -52,7 +52,7 @@ public interface StageManager<S> {
     /**
      * This method returns the last game controller used.
      * 
-     * @return the last controller created
+     * @return the last minigamecontroller created
      */
     MinigameController getLastGameController();
 
