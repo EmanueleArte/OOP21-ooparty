@@ -66,6 +66,7 @@ public final class SceneHandler {
     /**
      * This method calculates the index of the last added scene.
      * 
+     * @param <S>    the scenes
      * @param scenes the scenes list
      * @return the index of the last added scene
      */
