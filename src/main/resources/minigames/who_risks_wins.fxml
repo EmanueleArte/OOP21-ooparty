@@ -49,7 +49,7 @@
                   </Label>
                </children>
                <BorderPane.margin>
-                  <Insets top="40.0" />
+                  <Insets top="15.0" />
                </BorderPane.margin>
                <padding>
                   <Insets top="40.0" />
