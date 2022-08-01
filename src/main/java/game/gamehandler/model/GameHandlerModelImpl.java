@@ -10,7 +10,7 @@ import game.map.GameMapSquareImpl;
 import game.player.Player;
 import utils.graphics.stagemanager.StageManager;
 
-public class GameHandlerImpl<S> implements GameHandler {
+public class GameHandlerModelImpl<S> implements GameHandlerModel {
 
     private StageManager<S> stageManager;
     private final DiceModel<Player> dice;
@@ -19,7 +19,7 @@ public class GameHandlerImpl<S> implements GameHandler {
     private final int turnsNumber;
     private final List<Player> players;
 
-    public GameHandlerImpl(final StageManager<S> s, final List<Player> players, final GameMap gameMap) {
+    public GameHandlerModelImpl(final StageManager<S> s, final List<Player> players, final GameMap gameMap) {
         this.stageManager = s;
         this.dice = new DiceModelImpl<>();
         this.turnsNumber = 10;
@@ -34,9 +34,9 @@ public class GameHandlerImpl<S> implements GameHandler {
             System.out.println("Turno " + turn);
             players.forEach(p -> {
                 playTurn(p);
-        });
-        playMinigame();
-        showLeaderboard();
+            });
+            playMinigame();
+            showLeaderboard();
         }
     }
 
@@ -45,7 +45,7 @@ public class GameHandlerImpl<S> implements GameHandler {
         System.out.println("Turno di " + player.getNickname() + " - posizione: " + player.getPosition(this.gameMap));
         int roll = dice.rollDice(player);
         System.out.println("Lancio del dado: " + roll);
-        player.moveForward(roll, this.gameMap);     //TODO moveForward è da fare 
+        player.moveForward(roll, this.gameMap); // TODO moveForward è da fare
         GameMapSquare playerPosition = this.gameMap.getPlayerPosition(player);
         System.out.println("Nuova posizione: " + playerPosition);
         if (playerPosition.isCoinsGameMapSquare()) {
@@ -53,7 +53,7 @@ public class GameHandlerImpl<S> implements GameHandler {
         } else if (playerPosition.isDamageGameMapSquare()) {
             playerPosition.receiveDamage(player);
         } else if (playerPosition.isPowerUpGameMapSquare()) {
-            //TODO
+            // TODO
         } else if (playerPosition.isStarGameMapSquare()) {
             playerPosition.receiveStar(player);
         }
@@ -69,4 +69,8 @@ public class GameHandlerImpl<S> implements GameHandler {
         System.out.println("Classifica");
     }
 
+    @Override
+    public List<Player> getPlayers() {
+        return this.players;
+    }
 }

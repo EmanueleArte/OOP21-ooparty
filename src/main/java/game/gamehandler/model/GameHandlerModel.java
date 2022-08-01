@@ -1,8 +1,10 @@
 package game.gamehandler.model;
 
+import java.util.List;
+
 import game.player.Player;
 
-public interface GameHandler {
+public interface GameHandlerModel {
 
 	void start();
 	
@@ -11,4 +13,6 @@ public interface GameHandler {
 	void playMinigame();
 
 	void showLeaderboard();
+
+    List<Player> getPlayers();
 }

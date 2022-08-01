@@ -1,7 +1,7 @@
 import java.util.List;
 
-import game.gamehandler.model.GameHandler;
-import game.gamehandler.model.GameHandlerImpl;
+import game.gamehandler.model.GameHandlerModel;
+import game.gamehandler.model.GameHandlerModelImpl;
 import game.map.GameMap;
 import game.map.GameMapImpl;
 import game.player.PlayerImpl;
@@ -25,7 +25,7 @@ public final class App {
         mainMenu.createMenu();
         final GameMap gameMap = new GameMapImpl(null);
 
-        GameHandler game = new GameHandlerImpl(stageManager,
+        GameHandlerModel game = new GameHandlerModelImpl(stageManager,
                 List.of(new PlayerImpl("Mario"), new PlayerImpl("Luigi"), new PlayerImpl("Yoshi")), gameMap);
         game.start();
     }
