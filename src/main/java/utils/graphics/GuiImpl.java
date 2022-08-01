@@ -57,8 +57,8 @@ public class GuiImpl<S> extends JFrame implements Gui<S> {
         this.mainStage = Optional.of(new JFXPanel());
         this.frame.add(this.mainStage.get());
         this.frame.pack();
-        this.frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
         this.frame.setMinimumSize(new Dimension(GuiImpl.MIN_WIDTH, GuiImpl.MIN_HEIGHT));
+        this.frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
         this.frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.frame.setVisible(true);
     }
