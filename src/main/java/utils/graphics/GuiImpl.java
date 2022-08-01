@@ -1,4 +1,4 @@
-package utils.graphics.stagemanager;
+package utils.graphics;
 
 import java.awt.Dimension;
 import java.io.IOException;
@@ -15,6 +15,7 @@ import utils.GenericViewController;
 import utils.controller.GenericController;
 import utils.factories.ViewControllerFactory;
 import utils.factories.ViewControllerFactoryImpl;
+import utils.graphics.stagemanager.StageManager;
 
 /**
  * Implementation of {@link Gui}.

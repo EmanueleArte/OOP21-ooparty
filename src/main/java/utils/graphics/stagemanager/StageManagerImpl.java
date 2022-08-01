@@ -6,6 +6,9 @@ import java.util.Optional;
 
 import minigames.common.controller.MinigameController;
 import utils.controller.GenericController;
+import utils.graphics.Gui;
+import utils.graphics.GuiImpl;
+import utils.graphics.SceneHandler;
 
 /**
  * Implementation of {@link StageManager}.

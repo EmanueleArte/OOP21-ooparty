@@ -4,6 +4,7 @@ import java.util.List;
 
 import minigames.common.controller.MinigameController;
 import utils.controller.GenericController;
+import utils.graphics.Gui;
 
 /**
  * This interface models a stage manager.

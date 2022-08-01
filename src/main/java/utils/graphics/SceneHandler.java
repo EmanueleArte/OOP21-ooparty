@@ -1,4 +1,4 @@
-package utils.graphics.stagemanager;
+package utils.graphics;
 
 import java.util.List;
 import java.util.Optional;
