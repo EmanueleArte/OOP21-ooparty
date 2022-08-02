@@ -95,7 +95,7 @@ public class GuiImpl extends JFrame implements Gui {
     }
 
     @Override
-    public final Scene getStageScene(final Scene lastScene) {
+    public final Scene getStageScene() {
         if (this.mainStage.isEmpty()) {
             return null;
         }
