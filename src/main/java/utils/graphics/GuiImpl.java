@@ -3,8 +3,8 @@ package utils.graphics;
 import java.awt.Dimension;
 import java.io.IOException;
 import java.util.Optional;
-import java.util.Queue;
-import java.util.concurrent.ConcurrentLinkedQueue;
+import java.util.concurrent.BlockingQueue;
+import java.util.concurrent.LinkedBlockingDeque;
 
 import javax.swing.JFrame;
 
@@ -38,7 +38,7 @@ public class GuiImpl extends JFrame implements Gui {
     private FXMLLoader loader;
     private final JFrame frame;
     private Optional<Parent> root;
-    private final Queue<Scene> sceneQueue;
+    private final BlockingQueue<Scene> sceneQueue;
 
     /**
      * Builds a new {@link GuiImpl}.
@@ -50,7 +50,7 @@ public class GuiImpl extends JFrame implements Gui {
     public <S> GuiImpl(final String title, final StageManager<S> s) {
         this.mainStage = Optional.empty();
         this.root = Optional.empty();
-        this.sceneQueue = new ConcurrentLinkedQueue<>();
+        this.sceneQueue = new LinkedBlockingDeque<>();
         this.frame = new JFrame(title);
         this.factory = new ViewControllerFactoryImpl();
     }
@@ -97,11 +97,12 @@ public class GuiImpl extends JFrame implements Gui {
     }
 
     @Override
-    public final Scene getStageScene() {
+    public final Scene getStageScene() throws InterruptedException {
         if (this.mainStage.isEmpty()) {
             return null;
         }
-        return this.sceneQueue.poll();
+        System.out.println("----->" + this.sceneQueue.peek());
+        return this.sceneQueue.take();
     }
 
     @Override

@@ -46,8 +46,9 @@ public interface Gui {
      * Getter for the {@link javafx.embed.swing.JFXPanel} current scene.
      * 
      * @return the main stage {@link Scene}
+     * @throws InterruptedException 
      */
-    Scene getStageScene();
+    Scene getStageScene() throws InterruptedException;
 
     /**
      * Getter for the main stage.

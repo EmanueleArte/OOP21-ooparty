@@ -27,10 +27,14 @@ public final class SceneHandler {
     public static <S> void addFXMLScene(final List<S> scenes, final Gui gui) throws IllegalArgumentException {
         S test = (S) new Scene(new Label(""));
         if (test instanceof Scene) {
-            final Optional<Scene> scene = Optional.ofNullable(gui.getStageScene());
+            Optional<Scene> scene = Optional.empty();
+            try {
+                scene = Optional.ofNullable(gui.getStageScene());
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
             if (scene.isPresent()) {
                 scenes.add((S) scene.get());
-                System.out.println(scenes);
             }
         } else {
             throw new IllegalArgumentException("The elements of scenes list are not of type Scene.");
