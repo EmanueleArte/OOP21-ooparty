@@ -40,6 +40,7 @@ public class GuiImpl extends JFrame implements Gui {
     /**
      * Builds a new {@link GuiImpl}.
      * 
+     * @param <S>   the scenes of the stage
      * @param title the title of the frame
      * @param s     the {@link utils.graphics.stagemanager.StageManager}
      */
