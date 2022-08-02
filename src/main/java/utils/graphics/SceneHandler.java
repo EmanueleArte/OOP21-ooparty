@@ -24,9 +24,9 @@ public final class SceneHandler {
      */
     @SuppressWarnings("unchecked")
     public static <S> void addFXMLScene(final List<S> scenes, final Gui<S> gui) {
-        final Optional<Scene> scene = Optional.ofNullable(gui.getStageScene());
+        final Optional<Scene> scene = Optional.ofNullable(gui.getStageScene(scenes.get(SceneHandler.lastSceneIndex(scenes))));
         if (scene.isPresent()) {
-            scenes.add((S) scene.get());
+            scenes.add(scene.get());
             gui.setScene(scene.get());
         }
     }
@@ -57,7 +57,7 @@ public final class SceneHandler {
             return null;
         }
         var poppedScene = scenes.remove(SceneHandler.lastSceneIndex(scenes));
-        if (gui.getStageScene() != null) {
+        if (gui.getStageScene((Scene) scenes.get(SceneHandler.lastSceneIndex(scenes))) != null) {
             gui.setScene((Scene) scenes.get(SceneHandler.lastSceneIndex(scenes)));
         }
         return poppedScene;

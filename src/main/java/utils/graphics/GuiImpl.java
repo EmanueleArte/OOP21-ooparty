@@ -93,12 +93,12 @@ public class GuiImpl<S> extends JFrame implements Gui<S> {
     }
 
     @Override
-    public final Scene getStageScene() {
+    public final Scene getStageScene(final Scene lastScene) {
         if (this.mainStage.isEmpty()) {
             return null;
         }
         Optional<Scene> scene = Optional.empty();
-        while (scene.isEmpty()) {
+        while (scene.isEmpty() || scene.get().equals(lastScene)) {
             scene = Optional.ofNullable(this.mainStage.get().getScene());
         }
         return scene.get();

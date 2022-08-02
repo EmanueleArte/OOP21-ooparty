@@ -44,8 +44,9 @@ public interface Gui<S> {
     /**
      * Getter for the {@link javafx.embed.swing.JFXPanel} current scene.
      * 
+     * @param lastScene the last scene in saved
      * @return the main stage {@link Scene}
      */
-    Scene getStageScene();
+    Scene getStageScene(Scene lastScene);
 
 }
