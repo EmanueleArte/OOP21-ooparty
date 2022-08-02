@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Optional;
 
 import javafx.scene.Scene;
+import javafx.scene.control.Label;
 import minigames.common.controller.MinigameController;
 import utils.controller.GenericController;
 
@@ -24,11 +25,13 @@ public final class SceneHandler {
      */
     @SuppressWarnings("unchecked")
     public static <S> void addFXMLScene(final List<S> scenes, final Gui gui) throws IllegalArgumentException {
+        scenes.add(0, (S) new Scene(new Label("")));
         if (scenes.get(0) instanceof Scene) {
             final Optional<Scene> scene = Optional.ofNullable(gui.getStageScene((Scene) scenes.get(SceneHandler.lastSceneIndex(scenes))));
+            scenes.remove(0);
             if (scene.isPresent()) {
                 scenes.add((S) scene.get());
-                gui.setScene(scene.get());
+                System.out.println(scenes);
             }
         } else {
             throw new IllegalArgumentException("The elements of scenes list are not of type Scene.");
@@ -75,7 +78,11 @@ public final class SceneHandler {
      * @return the index of the last added scene
      */
     public static <S> int lastSceneIndex(final List<S> scenes) {
-        return scenes.size() - 1;
+        final int nScenes = scenes.size();
+        if (nScenes == 0) {
+            return 0;
+        }
+        return nScenes - 1;
     }
 
     /**

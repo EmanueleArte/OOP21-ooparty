@@ -36,6 +36,7 @@ public class GuiImpl extends JFrame implements Gui {
     private FXMLLoader loader;
     private final JFrame frame;
     private Optional<Parent> root;
+    private Optional<Scene> lastScene;
 
     /**
      * Builds a new {@link GuiImpl}.
@@ -47,6 +48,7 @@ public class GuiImpl extends JFrame implements Gui {
     public <S> GuiImpl(final String title, final StageManager<S> s) {
         this.mainStage = Optional.empty();
         this.root = Optional.empty();
+        this.lastScene = Optional.empty();
         this.frame = new JFrame(title);
         this.factory = new ViewControllerFactoryImpl();
     }
@@ -71,6 +73,7 @@ public class GuiImpl extends JFrame implements Gui {
             try {
                 this.root = Optional.ofNullable(this.loader.load());
                 this.setScene(new Scene(this.root.get()));
+                this.lastScene = Optional.ofNullable(this.mainStage.get().getScene());
                 this.root.get().requestFocus();
                 controller.setViewController(this.loader.getController());
                 ((GenericViewController) this.loader.getController()).setController(controller);
@@ -96,11 +99,7 @@ public class GuiImpl extends JFrame implements Gui {
         if (this.mainStage.isEmpty()) {
             return null;
         }
-        Optional<Scene> scene = Optional.empty();
-        while (scene.isEmpty() || scene.get().equals(lastScene)) {
-            scene = Optional.ofNullable(this.mainStage.get().getScene());
-        }
-        return scene.get();
+        return this.lastScene.get();
     }
 
     @Override
