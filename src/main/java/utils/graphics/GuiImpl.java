@@ -3,6 +3,8 @@ package utils.graphics;
 import java.awt.Dimension;
 import java.io.IOException;
 import java.util.Optional;
+import java.util.Queue;
+import java.util.concurrent.ConcurrentLinkedQueue;
 
 import javax.swing.JFrame;
 
@@ -36,7 +38,7 @@ public class GuiImpl extends JFrame implements Gui {
     private FXMLLoader loader;
     private final JFrame frame;
     private Optional<Parent> root;
-    private Optional<Scene> lastScene;
+    private final Queue<Scene> sceneQueue;
 
     /**
      * Builds a new {@link GuiImpl}.
@@ -48,7 +50,7 @@ public class GuiImpl extends JFrame implements Gui {
     public <S> GuiImpl(final String title, final StageManager<S> s) {
         this.mainStage = Optional.empty();
         this.root = Optional.empty();
-        this.lastScene = Optional.empty();
+        this.sceneQueue = new ConcurrentLinkedQueue<>();
         this.frame = new JFrame(title);
         this.factory = new ViewControllerFactoryImpl();
     }
@@ -73,7 +75,7 @@ public class GuiImpl extends JFrame implements Gui {
             try {
                 this.root = Optional.ofNullable(this.loader.load());
                 this.setScene(new Scene(this.root.get()));
-                this.lastScene = Optional.ofNullable(this.mainStage.get().getScene());
+                this.sceneQueue.offer(this.mainStage.get().getScene());
                 this.root.get().requestFocus();
                 controller.setViewController(this.loader.getController());
                 ((GenericViewController) this.loader.getController()).setController(controller);
@@ -99,7 +101,7 @@ public class GuiImpl extends JFrame implements Gui {
         if (this.mainStage.isEmpty()) {
             return null;
         }
-        return this.lastScene.get();
+        return this.sceneQueue.poll();
     }
 
     @Override

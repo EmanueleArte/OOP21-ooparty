@@ -47,6 +47,7 @@ public class StageManagerImpl<S> implements StageManager<S> {
 
     @Override
     public final S popScene() {
+        System.out.println(scenes);
         return SceneHandler.popScene(this.scenes, this.gui);
     }
 

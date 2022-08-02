@@ -25,10 +25,9 @@ public final class SceneHandler {
      */
     @SuppressWarnings("unchecked")
     public static <S> void addFXMLScene(final List<S> scenes, final Gui gui) throws IllegalArgumentException {
-        scenes.add(0, (S) new Scene(new Label("")));
-        if (scenes.get(0) instanceof Scene) {
+        S test = (S) new Scene(new Label(""));
+        if (test instanceof Scene) {
             final Optional<Scene> scene = Optional.ofNullable(gui.getStageScene());
-            scenes.remove(0);
             if (scene.isPresent()) {
                 scenes.add((S) scene.get());
                 System.out.println(scenes);
