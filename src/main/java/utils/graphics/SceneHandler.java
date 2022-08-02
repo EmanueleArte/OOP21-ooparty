@@ -23,7 +23,7 @@ public final class SceneHandler {
      * @param gui    the gui of the game
      */
     @SuppressWarnings("unchecked")
-    public static <S> void addFXMLScene(final List<S> scenes, final Gui<S> gui) throws IllegalArgumentException {
+    public static <S> void addFXMLScene(final List<S> scenes, final Gui gui) throws IllegalArgumentException {
         if (scenes.get(0) instanceof Scene) {
             final Optional<Scene> scene = Optional.ofNullable(gui.getStageScene((Scene) scenes.get(SceneHandler.lastSceneIndex(scenes))));
             if (scene.isPresent()) {
@@ -56,7 +56,7 @@ public final class SceneHandler {
      * @param gui    the gui of the game
      * @return the last added scene or null if the scenes list is empty.
      */
-    public static <S> S popScene(final List<S> scenes, final Gui<S> gui) {
+    public static <S> S popScene(final List<S> scenes, final Gui gui) {
         if (scenes.isEmpty()) {
             return null;
         }

@@ -6,10 +6,8 @@ import utils.controller.GenericController;
 
 /**
  * This interface models the javafx gui.
- *
- * @param <S> the scenes of the stage
  */
-public interface Gui<S> {
+public interface Gui {
 
     /**
      * This method starts the javafx gui.
@@ -44,7 +42,7 @@ public interface Gui<S> {
     /**
      * Getter for the {@link javafx.embed.swing.JFXPanel} current scene.
      * 
-     * @param lastScene the last scene in saved
+     * @param lastScene the last scene saved
      * @return the main stage {@link Scene}
      */
     Scene getStageScene(Scene lastScene);

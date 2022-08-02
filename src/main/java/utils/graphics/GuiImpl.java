@@ -19,10 +19,8 @@ import utils.graphics.stagemanager.StageManager;
 
 /**
  * Implementation of {@link Gui}.
- *
- * @param <S> the scenes of the stage
  */
-public class GuiImpl<S> extends JFrame implements Gui<S> {
+public class GuiImpl extends JFrame implements Gui {
 
     private static final long serialVersionUID = -4895173910811030481L;
     /**
@@ -45,7 +43,7 @@ public class GuiImpl<S> extends JFrame implements Gui<S> {
      * @param title the title of the frame
      * @param s     the {@link utils.graphics.stagemanager.StageManager}
      */
-    public GuiImpl(final String title, final StageManager<S> s) {
+    public <S> GuiImpl(final String title, final StageManager<S> s) {
         this.mainStage = Optional.empty();
         this.root = Optional.empty();
         this.frame = new JFrame(title);

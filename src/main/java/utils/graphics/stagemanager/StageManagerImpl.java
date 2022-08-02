@@ -18,7 +18,7 @@ import utils.graphics.SceneHandler;
 public class StageManagerImpl<S> implements StageManager<S> {
 
     private final List<S> scenes;
-    private final Gui<S> gui;
+    private final Gui gui;
     private Optional<MinigameController> lastGameController;
 
     /**
@@ -28,7 +28,7 @@ public class StageManagerImpl<S> implements StageManager<S> {
      */
     public StageManagerImpl(final String title) {
         this.scenes = new ArrayList<S>();
-        this.gui = new GuiImpl<>(title, this);
+        this.gui = new GuiImpl(title, this);
         this.lastGameController = Optional.empty();
     }
 
@@ -66,7 +66,7 @@ public class StageManagerImpl<S> implements StageManager<S> {
     }
 
     @Override
-    public final Gui<S> getGui() {
+    public final Gui getGui() {
         return this.gui;
     }
 

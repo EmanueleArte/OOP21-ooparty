@@ -62,6 +62,6 @@ public interface StageManager<S> {
      * 
      * @return the gui used
      */
-    Gui<S> getGui();
+    Gui getGui();
 
 }
