@@ -1,5 +1,8 @@
 package utils.graphics;
 
+import java.util.Optional;
+
+import javafx.embed.swing.JFXPanel;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import utils.controller.GenericController;
@@ -46,5 +49,12 @@ public interface Gui {
      * @return the main stage {@link Scene}
      */
     Scene getStageScene(Scene lastScene);
+
+    /**
+     * Getter for the main stage.
+     * 
+     * @return the {@link javafx.embed.swing.JFXPanel} that is the main stage
+     */
+    Optional<JFXPanel> getMainStage();
 
 }

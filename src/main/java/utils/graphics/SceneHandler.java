@@ -61,7 +61,7 @@ public final class SceneHandler {
             return null;
         }
         var poppedScene = scenes.remove(SceneHandler.lastSceneIndex(scenes));
-        if (gui.getStageScene((Scene) scenes.get(SceneHandler.lastSceneIndex(scenes))) != null) {
+        if (gui.getMainStage().isPresent()) {
             gui.setScene((Scene) scenes.get(SceneHandler.lastSceneIndex(scenes)));
         }
         return poppedScene;

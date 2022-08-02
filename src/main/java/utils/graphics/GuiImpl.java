@@ -102,4 +102,9 @@ public class GuiImpl extends JFrame implements Gui {
         return scene.get();
     }
 
+    @Override
+    public final Optional<JFXPanel> getMainStage() {
+        return this.mainStage;
+    }
+
 }
