@@ -6,13 +6,25 @@ import game.player.Player;
 
 public interface GameHandlerModel {
 
-	void start();
-	
-	void playTurn(Player player);
-	
-	void playMinigame();
+    void playTurn(Player player);
 
-	void showLeaderboard();
+    void startNewTurn();
+
+    void playMinigame();
+
+    void showLeaderboard();
 
     List<Player> getPlayers();
+
+    int nextStep();
+
+    int nextPlayerTurnStep();
+
+    int getTurnProgress();
+
+    int getTurnNumber();
+
+    String getCurrentPlayerName();
+    
+    void endGame();
 }

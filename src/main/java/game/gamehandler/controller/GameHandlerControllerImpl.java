@@ -10,25 +10,34 @@ import utils.controller.GenericController;
 import utils.controller.GenericControllerAbstr;
 import utils.GenericViewController;
 import utils.graphics.stagemanager.StageManager;
+import utils.view.GenericView;
 
-public class GameHandlerControllerImpl extends GenericControllerAbstr implements GenericController {
+public class GameHandlerControllerImpl extends GenericControllerAbstr
+        implements GenericController, GameHandlerController {
 
     private GameHandlerViewControllerImpl viewController;
     private GameHandlerModel model;
 
-    public <S, U> GameHandlerControllerImpl(StageManager<S> s, List<U> players) {
+    public <S, U> GameHandlerControllerImpl(final StageManager<S> s, final List<U> players, final int turnsNumber) {
         super(s);
-        model = new GameHandlerModelImpl(s, players, null);
+        this.model = new GameHandlerModelImpl(s, players, turnsNumber, null);
     }
 
+    @Override
     public void start() {
         GameHandlerViewImpl view = new GameHandlerViewImpl(this.getStageManager());
-        //view.startMinigame(this.model.getPlayers(), this);
+        // view.startMinigame(this.model.getPlayers(), this);
+        final GenericView<?> gameView = new GameHandlerViewImpl<>(this.getStageManager());
+        gameView.createScene(this);
     }
 
     @Override
     public <C> void setViewController(C viewController) {
-        this.viewController = (GameHandlerViewControllerImpl) viewController;
+        if (viewController instanceof GameHandlerViewControllerImpl) {
+            this.viewController = (GameHandlerViewControllerImpl) viewController;
+        } else {
+            throw new IllegalArgumentException("The parameter must be an instance of GameHandlerViewControllerImpl");
+        }
     }
 
     @Override
@@ -36,9 +45,24 @@ public class GameHandlerControllerImpl extends GenericControllerAbstr implements
         return this.viewController;
     }
 
+    @Override
     public int nextStep() {
-        //return this.model.nextStep();
-        return 0;
+        return this.model.nextStep();
+    }
+
+    @Override
+    public int nextPlayerTurnStep() {
+        return this.model.nextPlayerTurnStep();
+    }
+
+    @Override
+    public int getTurnNumber() {
+        return this.model.getTurnNumber();
+    }
+    
+    @Override
+    public String getCurrentPlayerName() {
+        return this.model.getCurrentPlayerName();
     }
 
 }
