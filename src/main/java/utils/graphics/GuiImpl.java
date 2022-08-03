@@ -6,7 +6,6 @@ import java.util.Optional;
 
 import javax.swing.JFrame;
 
-import javafx.application.Platform;
 import javafx.embed.swing.JFXPanel;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -65,27 +64,25 @@ public class GuiImpl extends JFrame implements Gui {
     @Override
     public final Scene loadScene(final String fxmlUrl, final Class<?> viewControllerClass,
             final GenericController controller) {
-        Platform.runLater(() -> {
-            this.loader = new FXMLLoader(getClass().getClassLoader().getResource(fxmlUrl));
-            this.loader.setControllerFactory(this.factory.createViewController(viewControllerClass));
-            try {
-                this.root = Optional.ofNullable(this.loader.load());
-                this.setScene(new Scene(this.root.get()));
-                this.root.get().requestFocus();
-                controller.setViewController(this.loader.getController());
-                ((GenericViewController) this.loader.getController()).setController(controller);
-            } catch (IOException e1) {
-                e1.printStackTrace();
-                this.root = Optional.empty();
-            }
-        });
+        this.loader = new FXMLLoader(getClass().getClassLoader().getResource(fxmlUrl));
+        this.loader.setControllerFactory(this.factory.createViewController(viewControllerClass));
+        try {
+            this.root = Optional.ofNullable(this.loader.load());
+            this.setScene(new Scene(this.root.get()));
+            this.root.get().requestFocus();
+            controller.setViewController(this.loader.getController());
+            ((GenericViewController) this.loader.getController()).setController(controller);
+        } catch (IOException e1) {
+            e1.printStackTrace();
+            this.root = Optional.empty();
+        }
         return this.getStageScene();
 
     }
 
     @Override
-    public final void setScene(final Scene scene) {
-        this.mainStage.get().setScene(scene);
+    public final void setScene(final Scene scene) throws RuntimeException {
+        this.mainStage.orElseThrow(() -> new RuntimeException("Optional empty.")).setScene(scene);
     }
 
     @Override
@@ -95,7 +92,6 @@ public class GuiImpl extends JFrame implements Gui {
 
     @Override
     public final Scene getStageScene() throws RuntimeException {
-        System.out.println(this.loader.getRoot().toString());
         return this.mainStage.orElseThrow(() -> new RuntimeException("Optional empty.")).getScene();
     }
 
