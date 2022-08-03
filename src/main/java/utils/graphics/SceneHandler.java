@@ -21,21 +21,13 @@ public final class SceneHandler {
      * 
      * @param <S>    the scenes of the stage
      * @param scenes the scenes list
-     * @param gui    the gui of the game
+     * @param scene  the scene to add to the list
      */
     @SuppressWarnings("unchecked")
-    public static <S> void addFXMLScene(final List<S> scenes, final Gui gui) throws IllegalArgumentException {
+    public static <S> void addFXMLScene(final List<S> scenes, final Scene scene) throws IllegalArgumentException {
         S test = (S) new Scene(new Label(""));
         if (test instanceof Scene) {
-            Optional<Scene> scene = Optional.empty();
-            try {
-                scene = Optional.ofNullable(gui.getStageScene());
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-            if (scene.isPresent()) {
-                scenes.add((S) scene.get());
-            }
+            SceneHandler.addScene(scenes, (S) scene);
         } else {
             throw new IllegalArgumentException("The elements of scenes list are not of type Scene.");
         }

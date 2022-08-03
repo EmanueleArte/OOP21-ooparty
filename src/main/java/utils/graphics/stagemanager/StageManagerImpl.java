@@ -35,8 +35,8 @@ public class StageManagerImpl<S> implements StageManager<S> {
     @Override
     public final <U> void addFXMLScene(final String fxmlUrl, final Class<?> viewControllerClass,
             final GenericController controller) {
-        this.gui.loadScene(fxmlUrl, viewControllerClass, controller);
-        SceneHandler.addFXMLScene(this.scenes, this.gui);
+        final var currScene = this.gui.loadScene(fxmlUrl, viewControllerClass, controller);
+        SceneHandler.addFXMLScene(this.scenes, currScene);
         this.lastGameController = Optional.ofNullable(SceneHandler.checkGameController(controller));
     }
 
