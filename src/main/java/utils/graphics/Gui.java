@@ -19,11 +19,12 @@ public interface Gui {
     void createGui();
 
     /**
-     * This method loads an FXML file.
+     * This method loads a scene from FXML file.
      * 
      * @param fxmlUrl             the url of the fxml file to load
      * @param viewControllerClass the type of the view controller
      * @param controller          the controller to be used
+     * @return the scene loaded
      */
     Scene loadScene(String fxmlUrl, Class<?> viewControllerClass, GenericController controller);
 
@@ -31,6 +32,7 @@ public interface Gui {
      * This method shows the actual scene.
      * 
      * @param scene the {@link Scene} to be shown
+     * @throws RuntimeException if the stage is not set
      */
     void setScene(Scene scene);
 
@@ -45,9 +47,9 @@ public interface Gui {
      * Getter for the {@link javafx.embed.swing.JFXPanel} current scene.
      * 
      * @return the main stage {@link Scene}
-     * @throws InterruptedException 
+     * @throws RuntimeException if the stage is not set
      */
-    Scene getStageScene() throws InterruptedException;
+    Scene getStageScene() throws RuntimeException;
 
     /**
      * Getter for the main stage.
