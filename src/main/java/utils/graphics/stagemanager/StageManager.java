@@ -16,12 +16,11 @@ public interface StageManager<S> {
     /**
      * This method adds an FXML scene to the scene list.
      * 
-     * @param <U>                 the players type
      * @param fxmlUrl             the url of the fxml file to load
      * @param viewControllerClass the type of the view controller
      * @param controller          the controller to be used
      */
-    <U> void addFXMLScene(String fxmlUrl, Class<?> viewControllerClass, GenericController controller);
+    void addFXMLScene(String fxmlUrl, Class<?> viewControllerClass, GenericController controller);
 
     /**
      * This method adds an existing scene.
