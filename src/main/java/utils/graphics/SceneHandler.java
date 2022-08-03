@@ -72,10 +72,10 @@ public final class SceneHandler {
      * @param scenes the scenes list
      * @return the index of the last added scene
      */
-    public static <S> int lastSceneIndex(final List<S> scenes) {
+    public static <S> int lastSceneIndex(final List<S> scenes) throws RuntimeException {
         final int nScenes = scenes.size();
         if (nScenes == 0) {
-            return 0;
+            throw new RuntimeException("Scenes list is empty.");
         }
         return nScenes - 1;
     }
