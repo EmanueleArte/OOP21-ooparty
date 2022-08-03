@@ -3,18 +3,20 @@ package game.gamehandler.model;
 import java.util.Iterator;
 import java.util.List;
 
-import game.dice.model.DiceModel;
-import game.dice.model.DiceModelImpl;
+import game.dice.controller.DiceController;
+import game.dice.controller.DiceControllerImpl;
 import game.map.GameMap;
 import game.map.GameMapSquare;
 import game.map.GameMapSquareImpl;
 import game.player.Player;
+import minigames.common.controller.MinigameController;
+import minigames.whoriskswins.controller.WhoRisksWinsControllerImpl;
 import utils.graphics.stagemanager.StageManager;
 
 public class GameHandlerModelImpl<S> implements GameHandlerModel {
 
     private final StageManager<S> stageManager;
-    private final DiceModel<Player> dice;
+    private final DiceController<Player> dice;
     private final GameMap gameMap;
 
     private final int turnsNumber;
@@ -34,7 +36,7 @@ public class GameHandlerModelImpl<S> implements GameHandlerModel {
     public GameHandlerModelImpl(final StageManager<S> s, final List<Player> players, final int turnsNumber,
             final GameMap gameMap) {
         this.stageManager = s;
-        this.dice = new DiceModelImpl<>();
+        this.dice = new DiceControllerImpl(this.stageManager);
         this.turnsNumber = turnsNumber;
         this.turn = 0;
         this.players = players;
@@ -62,6 +64,9 @@ public class GameHandlerModelImpl<S> implements GameHandlerModel {
             }
             this.turnProgress++;
         }
+        if (this.turnProgress == 3) {
+            this.playMinigame();
+        }
         this.turnProgress++;
         return this.getTurnProgress() - 1;
     }
@@ -70,6 +75,9 @@ public class GameHandlerModelImpl<S> implements GameHandlerModel {
     public int nextPlayerTurnStep() {
         if (this.playerTurnProgress == 3) {
             this.playerTurnProgress = 0;
+        }
+        if (this.playerTurnProgress == 2) {
+            // this.dice.start();
         }
         if (this.playerTurnProgress == 0 && this.playersIterator.hasNext()) {
             this.currentPlayer = this.playersIterator.next();
@@ -84,21 +92,21 @@ public class GameHandlerModelImpl<S> implements GameHandlerModel {
 
     @Override
     public void playTurn(final Player player) {
-        System.out.println("Turno di " + player.getNickname() + " - posizione: " + player.getPosition(this.gameMap));
-        int roll = dice.rollDice(player);
-        System.out.println("Lancio del dado: " + roll);
-        player.moveForward(roll, this.gameMap); // TODO moveForward è da fare
-        GameMapSquare playerPosition = this.gameMap.getPlayerPosition(player);
-        System.out.println("Nuova posizione: " + playerPosition);
-        if (playerPosition.isCoinsGameMapSquare()) {
-            playerPosition.receiveCoins(player);
-        } else if (playerPosition.isDamageGameMapSquare()) {
-            playerPosition.receiveDamage(player);
-        } else if (playerPosition.isPowerUpGameMapSquare()) {
-            // TODO
-        } else if (playerPosition.isStarGameMapSquare()) {
-            playerPosition.receiveStar(player);
-        }
+        /*
+         * System.out.println("Turno di " + player.getNickname() + " - posizione: " +
+         * player.getPosition(this.gameMap)); int roll = dice.rollDice(player);
+         * System.out.println("Lancio del dado: " + roll); player.moveForward(roll,
+         * this.gameMap); // TODO moveForward è da fare GameMapSquare playerPosition =
+         * this.gameMap.getPlayerPosition(player);
+         * System.out.println("Nuova posizione: " + playerPosition); if
+         * (playerPosition.isCoinsGameMapSquare()) {
+         * playerPosition.receiveCoins(player); } else if
+         * (playerPosition.isDamageGameMapSquare()) {
+         * playerPosition.receiveDamage(player); } else if
+         * (playerPosition.isPowerUpGameMapSquare()) { // TODO } else if
+         * (playerPosition.isStarGameMapSquare()) { playerPosition.receiveStar(player);
+         * }
+         */
     }
 
     @Override
@@ -111,7 +119,8 @@ public class GameHandlerModelImpl<S> implements GameHandlerModel {
 
     @Override
     public void playMinigame() {
-        System.out.println("Minigioco!");
+        final MinigameController wrw = new WhoRisksWinsControllerImpl(this.stageManager, this.getPlayers());
+        wrw.startGame();
     }
 
     @Override

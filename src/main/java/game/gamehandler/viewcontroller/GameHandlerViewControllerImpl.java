@@ -10,6 +10,7 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.shape.Circle;
 import javafx.scene.text.Text;
 import javafx.util.Duration;
+import menu.MenuController;
 import utils.controller.GenericController;
 import utils.GenericViewController;
 
@@ -39,8 +40,12 @@ public class GameHandlerViewControllerImpl implements GenericViewController {
     }
 
     @Override
-    public void setController(GenericController controller) {
-        this.controller = (GameHandlerController) controller;
+    public void setController(final GenericController controller) {
+        if (controller instanceof GameHandlerController) {
+            this.controller = (GameHandlerController) controller;
+        } else {
+            throw new IllegalArgumentException("The parameter must be an instance of GameHandlerController");
+        }
     }
 
     @FXML
@@ -71,7 +76,7 @@ public class GameHandlerViewControllerImpl implements GenericViewController {
                 break;
             }
             case 2: {
-                movePlayer(5);
+                //movePlayer(5);
                 break;
             }
             default: {
