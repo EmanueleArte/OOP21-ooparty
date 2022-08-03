@@ -64,7 +64,7 @@ public class GuiImpl extends JFrame implements Gui {
 
     @Override
     public final Scene loadScene(final String fxmlUrl, final Class<?> viewControllerClass,
-            final GenericController controller) throws RuntimeException {
+            final GenericController controller) {
         Platform.runLater(() -> {
             this.loader = new FXMLLoader(getClass().getClassLoader().getResource(fxmlUrl));
             this.loader.setControllerFactory(this.factory.createViewController(viewControllerClass));
@@ -95,6 +95,7 @@ public class GuiImpl extends JFrame implements Gui {
 
     @Override
     public final Scene getStageScene() throws RuntimeException {
+        System.out.println(this.loader.getRoot().toString());
         return this.mainStage.orElseThrow(() -> new RuntimeException("Optional empty.")).getScene();
     }
 
