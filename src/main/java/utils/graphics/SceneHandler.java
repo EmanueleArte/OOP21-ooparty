@@ -1,9 +1,10 @@
-package utils.graphics.stagemanager;
+package utils.graphics;
 
 import java.util.List;
 import java.util.Optional;
 
 import javafx.scene.Scene;
+import javafx.scene.control.Label;
 import minigames.common.controller.MinigameController;
 import utils.controller.GenericController;
 
@@ -20,14 +21,15 @@ public final class SceneHandler {
      * 
      * @param <S>    the scenes of the stage
      * @param scenes the scenes list
-     * @param gui    the gui of the game
+     * @param scene  the scene to add to the list
      */
     @SuppressWarnings("unchecked")
-    public static <S> void addFXMLScene(final List<S> scenes, final Gui<S> gui) {
-        final Optional<Scene> scene = Optional.ofNullable(gui.getStageScene());
-        if (scene.isPresent()) {
-            scenes.add((S) scene.get());
-            gui.setScene(scene.get());
+    public static <S> void addFXMLScene(final List<S> scenes, final Scene scene) throws IllegalArgumentException {
+        S test = (S) new Scene(new Label(""));
+        if (test instanceof Scene) {
+            SceneHandler.addScene(scenes, (S) scene);
+        } else {
+            throw new IllegalArgumentException("The elements of scenes list are not of type Scene.");
         }
     }
 
@@ -52,12 +54,12 @@ public final class SceneHandler {
      * @param gui    the gui of the game
      * @return the last added scene or null if the scenes list is empty.
      */
-    public static <S> S popScene(final List<S> scenes, final Gui<S> gui) {
+    public static <S> S popScene(final List<S> scenes, final Gui gui) {
         if (scenes.isEmpty()) {
             return null;
         }
         var poppedScene = scenes.remove(SceneHandler.lastSceneIndex(scenes));
-        if (gui.getStageScene() != null) {
+        if (gui.getMainStage().isPresent()) {
             gui.setScene((Scene) scenes.get(SceneHandler.lastSceneIndex(scenes)));
         }
         return poppedScene;
@@ -70,8 +72,12 @@ public final class SceneHandler {
      * @param scenes the scenes list
      * @return the index of the last added scene
      */
-    public static <S> int lastSceneIndex(final List<S> scenes) {
-        return scenes.size() - 1;
+    public static <S> int lastSceneIndex(final List<S> scenes) throws RuntimeException {
+        final int nScenes = scenes.size();
+        if (nScenes == 0) {
+            throw new RuntimeException("Scenes list is empty.");
+        }
+        return nScenes - 1;
     }
 
     /**
