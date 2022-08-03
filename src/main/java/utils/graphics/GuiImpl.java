@@ -12,8 +12,6 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import utils.GenericViewController;
 import utils.controller.GenericController;
-import utils.factories.ViewControllerFactory;
-import utils.factories.ViewControllerFactoryImpl;
 import utils.graphics.stagemanager.StageManager;
 
 /**
@@ -30,7 +28,6 @@ public class GuiImpl extends JFrame implements Gui {
      * Minimum window height.
      */
     public static final int MIN_HEIGHT = 750;
-    private final ViewControllerFactory factory;
     private Optional<JFXPanel> mainStage;
     private FXMLLoader loader;
     private final JFrame frame;
@@ -47,7 +44,6 @@ public class GuiImpl extends JFrame implements Gui {
         this.mainStage = Optional.empty();
         this.root = Optional.empty();
         this.frame = new JFrame(title);
-        this.factory = new ViewControllerFactoryImpl();
     }
 
     @Override
@@ -65,7 +61,6 @@ public class GuiImpl extends JFrame implements Gui {
     public final Scene loadScene(final String fxmlUrl, final Class<?> viewControllerClass,
             final GenericController controller) {
         this.loader = new FXMLLoader(getClass().getClassLoader().getResource(fxmlUrl));
-        this.loader.setControllerFactory(this.factory.createViewController(viewControllerClass));
         try {
             this.root = Optional.ofNullable(this.loader.load());
             this.setScene(new Scene(this.root.get()));
