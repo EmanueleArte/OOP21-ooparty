@@ -32,7 +32,7 @@ public interface StageManager<S> {
     /**
      * This method pops a scene from the scene list.
      * 
-     * @return the last scene added
+     * @return the last scene added or null if the scenes list is empty
      */
     S popScene();
 
@@ -52,7 +52,8 @@ public interface StageManager<S> {
     /**
      * This method returns the last game controller used.
      * 
-     * @return the last minigamecontroller created
+     * @return the last minigame controller created or null if no minigames have
+     *         already been created
      */
     MinigameController getLastGameController();
 
