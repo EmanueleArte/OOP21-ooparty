@@ -3,8 +3,6 @@ package utils.graphics;
 import java.awt.Dimension;
 import java.io.IOException;
 import java.util.Optional;
-import java.util.concurrent.BlockingQueue;
-import java.util.concurrent.LinkedBlockingDeque;
 
 import javax.swing.JFrame;
 
@@ -38,7 +36,6 @@ public class GuiImpl extends JFrame implements Gui {
     private FXMLLoader loader;
     private final JFrame frame;
     private Optional<Parent> root;
-    private final BlockingQueue<Scene> sceneQueue;
 
     /**
      * Builds a new {@link GuiImpl}.
@@ -50,7 +47,6 @@ public class GuiImpl extends JFrame implements Gui {
     public <S> GuiImpl(final String title, final StageManager<S> s) {
         this.mainStage = Optional.empty();
         this.root = Optional.empty();
-        this.sceneQueue = new LinkedBlockingDeque<>();
         this.frame = new JFrame(title);
         this.factory = new ViewControllerFactoryImpl();
     }
@@ -67,15 +63,14 @@ public class GuiImpl extends JFrame implements Gui {
     }
 
     @Override
-    public final <U> void loadScene(final String fxmlUrl, final Class<?> viewControllerClass,
-            final GenericController controller) {
+    public final Scene loadScene(final String fxmlUrl, final Class<?> viewControllerClass,
+            final GenericController controller) throws RuntimeException {
         Platform.runLater(() -> {
             this.loader = new FXMLLoader(getClass().getClassLoader().getResource(fxmlUrl));
             this.loader.setControllerFactory(this.factory.createViewController(viewControllerClass));
             try {
                 this.root = Optional.ofNullable(this.loader.load());
                 this.setScene(new Scene(this.root.get()));
-                this.sceneQueue.offer(this.mainStage.get().getScene());
                 this.root.get().requestFocus();
                 controller.setViewController(this.loader.getController());
                 ((GenericViewController) this.loader.getController()).setController(controller);
@@ -84,6 +79,8 @@ public class GuiImpl extends JFrame implements Gui {
                 this.root = Optional.empty();
             }
         });
+        return this.getStageScene();
+
     }
 
     @Override
@@ -97,12 +94,8 @@ public class GuiImpl extends JFrame implements Gui {
     }
 
     @Override
-    public final Scene getStageScene() throws InterruptedException {
-        if (this.mainStage.isEmpty()) {
-            return null;
-        }
-        System.out.println("----->" + this.sceneQueue.peek());
-        return this.sceneQueue.take();
+    public final Scene getStageScene() throws RuntimeException {
+        return this.mainStage.orElseThrow(() -> new RuntimeException("Optional empty.")).getScene();
     }
 
     @Override
