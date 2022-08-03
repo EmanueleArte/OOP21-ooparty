@@ -10,6 +10,7 @@ public class DiceModelImpl<P> implements DiceModel<P> {
 
     private final Random rand;
     private final StageManager stageManager;
+    private int result;
 
     public DiceModelImpl(final StageManager s) {
         this.stageManager = s;
@@ -17,22 +18,27 @@ public class DiceModelImpl<P> implements DiceModel<P> {
     }
 
     @Override
-    public int rollDice(final P player) {
-        return rand.nextInt(6) + 1;
+    public void rollDice() {
+        this.result = rand.nextInt(6) + 1;
     }
 
     @Override
     public List<Integer> rollDices(final List<P> players) {
-        List<Integer> results = new ArrayList<Integer>();
-        players.forEach(player -> {
-            results.add(rollDice(player));
-        });
-        return results;
+        /*
+         * List<Integer> results = new ArrayList<Integer>(); players.forEach(player -> {
+         * results.add(rollDice(player)); }); return results;
+         */
+        return null;
     }
 
     @Override
     public final void returnToGame() {
         this.stageManager.popScene();
+    }
+
+    @Override
+    public int getResult() {
+        return this.result;
     }
 
 }

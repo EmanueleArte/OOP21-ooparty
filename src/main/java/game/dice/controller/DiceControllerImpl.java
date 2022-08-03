@@ -4,6 +4,7 @@ import game.dice.model.DiceModel;
 import game.dice.model.DiceModelImpl;
 import game.dice.view.DiceViewImpl;
 import game.dice.viewcontroller.DiceViewControllerImpl;
+import game.player.Player;
 import utils.GenericViewController;
 import utils.controller.GenericControllerAbstr;
 import utils.graphics.stagemanager.StageManager;
@@ -19,9 +20,10 @@ public class DiceControllerImpl<S, P> extends GenericControllerAbstr implements 
     }
 
     @Override
-    public void start() {
+    public void start(final Player p) {
         final GenericView<?> view = new DiceViewImpl<>(this.getStageManager());
         view.createScene(this);
+        this.viewController.initialize(p.getColor());
     }
 
     @Override
@@ -41,6 +43,16 @@ public class DiceControllerImpl<S, P> extends GenericControllerAbstr implements 
     @Override
     public void returnToGame() {
         this.model.returnToGame();
+    }
+
+    @Override
+    public void rollDice() {
+        this.model.rollDice();
+    }
+
+    @Override
+    public int getResult() {
+        return this.model.getResult();
     }
 
 }

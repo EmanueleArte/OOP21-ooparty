@@ -73,11 +73,14 @@ public class GameHandlerModelImpl<S> implements GameHandlerModel {
 
     @Override
     public int nextPlayerTurnStep() {
-        if (this.playerTurnProgress == 3) {
+        if (this.playerTurnProgress == 4) {
             this.playerTurnProgress = 0;
         }
+        if (this.playerTurnProgress == 3) {
+            System.out.println(this.dice.getResult());
+        }
         if (this.playerTurnProgress == 2) {
-            // this.dice.start();
+            this.dice.start(this.currentPlayer);
         }
         if (this.playerTurnProgress == 0 && this.playersIterator.hasNext()) {
             this.currentPlayer = this.playersIterator.next();
@@ -87,7 +90,7 @@ public class GameHandlerModelImpl<S> implements GameHandlerModel {
     }
 
     private boolean playersTurnsFinished() {
-        return !this.playersIterator.hasNext() && this.playerTurnProgress == 3;
+        return !this.playersIterator.hasNext() && this.playerTurnProgress == 4;
     }
 
     @Override

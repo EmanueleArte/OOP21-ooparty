@@ -10,7 +10,6 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.shape.Circle;
 import javafx.scene.text.Text;
 import javafx.util.Duration;
-import menu.MenuController;
 import utils.controller.GenericController;
 import utils.GenericViewController;
 
