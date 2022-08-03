@@ -4,6 +4,7 @@ import java.util.List;
 
 import minigames.common.controller.MinigameController;
 import utils.controller.GenericController;
+import utils.graphics.Gui;
 
 /**
  * This interface models a stage manager.
@@ -15,12 +16,11 @@ public interface StageManager<S> {
     /**
      * This method adds an FXML scene to the scene list.
      * 
-     * @param <U>                 the players type
      * @param fxmlUrl             the url of the fxml file to load
      * @param viewControllerClass the type of the view controller
      * @param controller          the controller to be used
      */
-    <U> void addFXMLScene(String fxmlUrl, Class<?> viewControllerClass, GenericController controller);
+    void addFXMLScene(String fxmlUrl, Class<?> viewControllerClass, GenericController controller);
 
     /**
      * This method adds an existing scene.
@@ -32,7 +32,7 @@ public interface StageManager<S> {
     /**
      * This method pops a scene from the scene list.
      * 
-     * @return the last scene added
+     * @return the last scene added or null if the scenes list is empty
      */
     S popScene();
 
@@ -52,7 +52,8 @@ public interface StageManager<S> {
     /**
      * This method returns the last game controller used.
      * 
-     * @return the last minigamecontroller created
+     * @return the last minigame controller created or null if no minigames have
+     *         already been created
      */
     MinigameController getLastGameController();
 
@@ -61,6 +62,6 @@ public interface StageManager<S> {
      * 
      * @return the gui used
      */
-    Gui<S> getGui();
+    Gui getGui();
 
 }

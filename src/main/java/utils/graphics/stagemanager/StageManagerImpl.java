@@ -6,6 +6,9 @@ import java.util.Optional;
 
 import minigames.common.controller.MinigameController;
 import utils.controller.GenericController;
+import utils.graphics.Gui;
+import utils.graphics.GuiImpl;
+import utils.graphics.SceneHandler;
 
 /**
  * Implementation of {@link StageManager}.
@@ -15,7 +18,7 @@ import utils.controller.GenericController;
 public class StageManagerImpl<S> implements StageManager<S> {
 
     private final List<S> scenes;
-    private final Gui<S> gui;
+    private final Gui gui;
     private Optional<MinigameController> lastGameController;
 
     /**
@@ -25,15 +28,15 @@ public class StageManagerImpl<S> implements StageManager<S> {
      */
     public StageManagerImpl(final String title) {
         this.scenes = new ArrayList<S>();
-        this.gui = new GuiImpl<>(title, this);
+        this.gui = new GuiImpl(title, this);
         this.lastGameController = Optional.empty();
     }
 
     @Override
-    public final <U> void addFXMLScene(final String fxmlUrl, final Class<?> viewControllerClass,
+    public final void addFXMLScene(final String fxmlUrl, final Class<?> viewControllerClass,
             final GenericController controller) {
-        this.gui.loadScene(fxmlUrl, viewControllerClass, controller);
-        SceneHandler.addFXMLScene(this.scenes, this.gui);
+        final var currScene = this.gui.loadScene(fxmlUrl, viewControllerClass, controller);
+        SceneHandler.addFXMLScene(this.scenes, currScene);
         this.lastGameController = Optional.ofNullable(SceneHandler.checkGameController(controller));
     }
 
@@ -63,7 +66,7 @@ public class StageManagerImpl<S> implements StageManager<S> {
     }
 
     @Override
-    public final Gui<S> getGui() {
+    public final Gui getGui() {
         return this.gui;
     }
 
