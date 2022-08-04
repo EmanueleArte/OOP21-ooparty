@@ -3,7 +3,7 @@ package utils.enums;
 /**
  * this enum defines the progress in every turn.
  */
-public enum TurnProgress {
+public enum PlayerTurnProgress {
     /**
      * time to show banner.
      */
@@ -13,25 +13,21 @@ public enum TurnProgress {
      */
     HIDE_BANNER(1),
     /**
-     * players turns (see PlayerTurnProgress).
+     * time to roll the dice.
      */
-    PLAYERS_TURNS(2),
+    ROLL_DICE(2),
     /**
-     * time to play minigame.
+     * time to move player's avatar.
      */
-    PLAY_MINIGAME(3),
+    MOVE_PLAYER(3),
     /**
-     * time to show leaderboard.
-     */
-    SHOW_LEADERBOARD(4),
-    /**
-     * end of turn.
+     * end of player turn.
      */
     END_OF_TURN(5);
 
     private int progress;
 
-    TurnProgress(final int i) {
+    PlayerTurnProgress(final int i) {
         this.progress = i;
     }
 

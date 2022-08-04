@@ -1,11 +1,13 @@
 package game.gamehandler.controller;
 
 import java.util.List;
+import java.util.Optional;
 
 import game.gamehandler.model.GameHandlerModel;
 import game.gamehandler.model.GameHandlerModelImpl;
 import game.gamehandler.view.GameHandlerViewImpl;
 import game.gamehandler.viewcontroller.GameHandlerViewControllerImpl;
+import game.player.Player;
 import utils.controller.GenericController;
 import utils.controller.GenericControllerAbstr;
 import utils.GenericViewController;
@@ -26,15 +28,15 @@ public class GameHandlerControllerImpl extends GenericControllerAbstr
     @Override
     public void start() {
         GameHandlerViewImpl view = new GameHandlerViewImpl(this.getStageManager());
-        // view.startMinigame(this.model.getPlayers(), this);
         final GenericView<?> gameView = new GameHandlerViewImpl<>(this.getStageManager());
         gameView.createScene(this);
     }
 
     @Override
-    public <C> void setViewController(C viewController) {
+    public <C> void setViewController(final C viewController) {
         if (viewController instanceof GameHandlerViewControllerImpl) {
             this.viewController = (GameHandlerViewControllerImpl) viewController;
+            this.viewController.initialize(this.model.getPlayers());
         } else {
             throw new IllegalArgumentException("The parameter must be an instance of GameHandlerViewControllerImpl");
         }
@@ -59,10 +61,10 @@ public class GameHandlerControllerImpl extends GenericControllerAbstr
     public int getTurnNumber() {
         return this.model.getTurnNumber();
     }
-    
+
     @Override
-    public String getCurrentPlayerName() {
-        return this.model.getCurrentPlayerName();
+    public Optional<Player> getCurrentPlayer() {
+        return this.model.getCurrentPlayer();
     }
 
 }

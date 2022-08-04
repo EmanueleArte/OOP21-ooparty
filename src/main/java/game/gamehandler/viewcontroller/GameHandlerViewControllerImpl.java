@@ -1,6 +1,12 @@
 package game.gamehandler.viewcontroller;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 import game.gamehandler.controller.GameHandlerController;
+import game.player.Player;
 import javafx.animation.FadeTransition;
 import javafx.animation.TranslateTransition;
 import javafx.fxml.FXML;
@@ -8,9 +14,12 @@ import javafx.scene.Group;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.shape.Circle;
+import javafx.scene.shape.Polygon;
 import javafx.scene.text.Text;
 import javafx.util.Duration;
 import utils.controller.GenericController;
+import utils.enums.PlayerTurnProgress;
+import utils.enums.TurnProgress;
 import utils.GenericViewController;
 
 public class GameHandlerViewControllerImpl implements GenericViewController {
@@ -22,21 +31,9 @@ public class GameHandlerViewControllerImpl implements GenericViewController {
     @FXML
     private Text bannerText;
     @FXML
-    private Circle player1;
-    @FXML
-    private Circle player2;
-    @FXML
-    private Circle player3;
-    @FXML
-    private Circle player4;
+    private Group avatars;
 
-    public void movePlayer(int movement) {
-        TranslateTransition transition = new TranslateTransition();
-        transition.setNode(player1);
-        transition.setDuration(Duration.millis(1000));
-        transition.setByX(player1.getLayoutX() + movement * 10);
-        transition.play();
-    }
+    private final Map<Player, Group> playerToAvatar = new HashMap<Player, Group>();
 
     @Override
     public void setController(final GenericController controller) {
@@ -47,6 +44,31 @@ public class GameHandlerViewControllerImpl implements GenericViewController {
         }
     }
 
+    public void initialize(final List<Player> players) {
+        List<Group> avatarsList = new ArrayList<Group>();
+        this.avatars.getChildren().forEach(c -> {
+            avatarsList.add((Group) c);
+        });
+        players.forEach(p -> {
+            this.playerToAvatar.put(p, avatarsList.get(players.indexOf(p)));
+            avatarsList.get(players.indexOf(p)).getChildren().forEach(c -> {
+                if (c instanceof Circle) {
+                    Circle head = (Circle) c;
+                    head.setFill(p.getColor());
+                }
+                if (c instanceof Polygon) {
+                    Polygon body = (Polygon) c;
+                    body.setFill(p.getColor());
+                }
+            });
+            avatarsList.forEach(a -> {
+                if (!this.playerToAvatar.values().contains(a)) {
+                    a.setVisible(false);
+                }
+            });
+        });
+    }
+
     @FXML
     protected final void onEnter(final KeyEvent ke) {
         if (ke.getCode().equals(KeyCode.ENTER)) {
@@ -54,45 +76,27 @@ public class GameHandlerViewControllerImpl implements GenericViewController {
         }
     }
 
-    public void nextStep() {
-        switch (this.controller.nextStep()) {
-        case 0: {
+    private void nextStep() {
+        int progress = this.controller.nextStep();
+        if (progress == TurnProgress.SHOW_BANNER.getProgress()) {
             this.showBanner("Turn " + this.controller.getTurnNumber());
-            break;
-        }
-        case 1: {
+        } else if (progress == TurnProgress.HIDE_BANNER.getProgress()) {
             this.hideBanner();
-            break;
-        }
-        case 2: {
-            switch (this.controller.nextPlayerTurnStep()) {
-            case 0: {
-                this.showBanner(this.controller.getCurrentPlayerName() + "'s turn");
-                break;
-            }
-            case 1: {
+        } else if (progress == TurnProgress.PLAYERS_TURNS.getProgress()) {
+            int playerProgress = this.controller.nextPlayerTurnStep();
+            if (playerProgress == PlayerTurnProgress.SHOW_BANNER.getProgress()) {
+                this.showBanner(this.controller.getCurrentPlayer().get().getNickname() + "'s turn");
+            } else if (playerProgress == PlayerTurnProgress.HIDE_BANNER.getProgress()) {
                 this.hideBanner();
-                break;
+            } else if (playerProgress == PlayerTurnProgress.MOVE_PLAYER.getProgress()) {
+                this.movePlayer(this.controller.getCurrentPlayer().get(), 10);
             }
-            case 2: {
-                //movePlayer(5);
-                break;
-            }
-            default: {
-
-            }
-            }
-            break;
-        }
-        default: {
-
-        }
         }
     }
 
     private void showBanner(final String text) {
         bannerText.setText(text);
-        FadeTransition fade = new FadeTransition(Duration.millis(500), banner);
+        FadeTransition fade = new FadeTransition(Duration.millis(1000), banner);
         fade.setFromValue(0);
         fade.setToValue(1);
         fade.play();
@@ -103,5 +107,13 @@ public class GameHandlerViewControllerImpl implements GenericViewController {
         fade.setFromValue(1);
         fade.setToValue(0);
         fade.play();
+    }
+
+    private void movePlayer(final Player p, final int movement) {
+        TranslateTransition transition = new TranslateTransition();
+        transition.setNode(this.playerToAvatar.get(p));
+        transition.setDuration(Duration.millis(1000));
+        transition.setByX(this.playerToAvatar.get(p).getLayoutX() + movement * 10);
+        transition.play();
     }
 }

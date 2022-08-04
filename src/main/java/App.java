@@ -20,9 +20,11 @@ public final class App {
         mainMenu.createMenu();
         final GameMap gameMap = new GameMapImpl(null);
 
-        /*GameHandlerModel game = new GameHandlerModelImpl(stageManager,
-                List.of(new PlayerImpl("Mario"), new PlayerImpl("Luigi"), new PlayerImpl("Yoshi")), gameMap);
-        game.start();*/
+        /*
+         * GameHandlerModel game = new GameHandlerModelImpl(stageManager, List.of(new
+         * PlayerImpl("Mario"), new PlayerImpl("Luigi"), new PlayerImpl("Yoshi")),
+         * gameMap); game.start();
+         */
     }
 
     private App() {

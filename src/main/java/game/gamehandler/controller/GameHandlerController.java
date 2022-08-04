@@ -1,5 +1,8 @@
 package game.gamehandler.controller;
 
+import java.util.Optional;
+
+import game.player.Player;
 import utils.GenericViewController;
 
 public interface GameHandlerController {
@@ -16,6 +19,6 @@ public interface GameHandlerController {
 
     int nextPlayerTurnStep();
 
-    String getCurrentPlayerName();
+    Optional<Player> getCurrentPlayer();
 
 }

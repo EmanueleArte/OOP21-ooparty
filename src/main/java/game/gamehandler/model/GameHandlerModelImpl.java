@@ -2,6 +2,7 @@ package game.gamehandler.model;
 
 import java.util.Iterator;
 import java.util.List;
+import java.util.Optional;
 
 import game.dice.controller.DiceController;
 import game.dice.controller.DiceControllerImpl;
@@ -11,6 +12,8 @@ import game.map.GameMapSquareImpl;
 import game.player.Player;
 import minigames.common.controller.MinigameController;
 import minigames.whoriskswins.controller.WhoRisksWinsControllerImpl;
+import utils.enums.PlayerTurnProgress;
+import utils.enums.TurnProgress;
 import utils.graphics.stagemanager.StageManager;
 
 public class GameHandlerModelImpl<S> implements GameHandlerModel {
@@ -23,13 +26,13 @@ public class GameHandlerModelImpl<S> implements GameHandlerModel {
     private int turn;
     private int turnProgress;
     /*
-     * 0 = show banner 1 = hide banner 2 = player turns 3 = minigame 4 = leaderboard
+     * turnProgress = -1 when turn has yet to start
      */
     private int playerTurnProgress;
     /*
      * 0 = show banner 1 = hide banner 2 = move
      */
-    private Player currentPlayer;
+    private Optional<Player> currentPlayer;
     private final List<Player> players;
     private Iterator<Player> playersIterator;
 
@@ -38,10 +41,13 @@ public class GameHandlerModelImpl<S> implements GameHandlerModel {
         this.stageManager = s;
         this.dice = new DiceControllerImpl(this.stageManager);
         this.turnsNumber = turnsNumber;
-        this.turn = 0;
+        this.turn = 1;
         this.players = players;
         this.gameMap = gameMap;
-        this.startNewTurn();
+        this.turnProgress = -1;
+        this.playerTurnProgress = -1;
+        this.playersIterator = players.iterator();
+        this.currentPlayer = Optional.empty();
     }
 
     @Override
@@ -51,46 +57,47 @@ public class GameHandlerModelImpl<S> implements GameHandlerModel {
 
     @Override
     public int nextStep() {
-        if (this.turnProgress == 5) {
+        if (this.turnProgress == TurnProgress.PLAYERS_TURNS.getProgress()) {
+            if (!this.playersTurnsFinished()) {
+                return this.getTurnProgress();
+            }
+            this.currentPlayer = Optional.empty();
+        }
+        this.turnProgress++;
+        if (this.turnProgress == TurnProgress.END_OF_TURN.getProgress()) {
             this.startNewTurn();
             if (this.turn == this.turnsNumber + 1) {
                 this.endGame();
                 return -1;
             }
         }
-        if (this.turnProgress == 2) {
-            if (!this.playersTurnsFinished()) {
-                return this.getTurnProgress();
-            }
-            this.turnProgress++;
-        }
-        if (this.turnProgress == 3) {
+        if (this.turnProgress == TurnProgress.PLAY_MINIGAME.getProgress()) {
             this.playMinigame();
         }
-        this.turnProgress++;
-        return this.getTurnProgress() - 1;
+        return this.turnProgress;
     }
 
     @Override
     public int nextPlayerTurnStep() {
-        if (this.playerTurnProgress == 4) {
-            this.playerTurnProgress = 0;
+        this.playerTurnProgress++;
+        if (this.playerTurnProgress == PlayerTurnProgress.END_OF_TURN.getProgress()) {
+            this.playerTurnProgress = PlayerTurnProgress.SHOW_BANNER.getProgress();
         }
-        if (this.playerTurnProgress == 3) {
+        if (this.playerTurnProgress == PlayerTurnProgress.SHOW_BANNER.getProgress()) {
+            this.currentPlayer = Optional.of(this.playersIterator.next());
+        }
+        if (this.playerTurnProgress == PlayerTurnProgress.MOVE_PLAYER.getProgress()) {
             System.out.println(this.dice.getResult());
         }
-        if (this.playerTurnProgress == 2) {
-            this.dice.start(this.currentPlayer);
+        if (this.playerTurnProgress == PlayerTurnProgress.ROLL_DICE.getProgress()) {
+            this.dice.start(this.currentPlayer.get());
         }
-        if (this.playerTurnProgress == 0 && this.playersIterator.hasNext()) {
-            this.currentPlayer = this.playersIterator.next();
-        }
-        this.playerTurnProgress++;
-        return this.playerTurnProgress - 1;
+        return this.playerTurnProgress;
     }
 
     private boolean playersTurnsFinished() {
-        return !this.playersIterator.hasNext() && this.playerTurnProgress == 4;
+        return !this.playersIterator.hasNext()
+                && this.playerTurnProgress == PlayerTurnProgress.END_OF_TURN.getProgress();
     }
 
     @Override
@@ -116,7 +123,7 @@ public class GameHandlerModelImpl<S> implements GameHandlerModel {
     public void startNewTurn() {
         this.playersIterator = players.iterator();
         this.turnProgress = 0;
-        this.playerTurnProgress = 0;
+        this.playerTurnProgress = -1;
         this.turn++;
     }
 
@@ -142,8 +149,8 @@ public class GameHandlerModelImpl<S> implements GameHandlerModel {
     }
 
     @Override
-    public String getCurrentPlayerName() {
-        return this.currentPlayer.getNickname();
+    public Optional<Player> getCurrentPlayer() {
+        return this.currentPlayer;
     }
 
     @Override

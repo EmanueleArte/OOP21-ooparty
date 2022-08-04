@@ -1,6 +1,7 @@
 package game.gamehandler.model;
 
 import java.util.List;
+import java.util.Optional;
 
 import game.player.Player;
 
@@ -24,7 +25,7 @@ public interface GameHandlerModel {
 
     int getTurnNumber();
 
-    String getCurrentPlayerName();
-    
     void endGame();
+
+    Optional<Player> getCurrentPlayer();
 }
