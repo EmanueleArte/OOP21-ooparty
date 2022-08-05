@@ -6,7 +6,7 @@ package menu;
 public interface MenuController {
 
     /**
-     * This method creates and move on the next scene.
+     * This method moves to the next scene.
      */
     void goNext();
 
