@@ -19,19 +19,13 @@ import utils.graphics.stagemanager.StageManager;
 public class GameHandlerModelImpl<S> implements GameHandlerModel {
 
     private final StageManager<S> stageManager;
-    private final DiceController<Player> dice;
+    private final DiceController<S, Player> dice;
     private final GameMap gameMap;
 
     private final int turnsNumber;
     private int turn;
     private int turnProgress;
-    /*
-     * turnProgress = -1 when turn has yet to start
-     */
     private int playerTurnProgress;
-    /*
-     * 0 = show banner 1 = hide banner 2 = move
-     */
     private Optional<Player> currentPlayer;
     private final List<Player> players;
     private Iterator<Player> playersIterator;
@@ -39,7 +33,7 @@ public class GameHandlerModelImpl<S> implements GameHandlerModel {
     public GameHandlerModelImpl(final StageManager<S> s, final List<Player> players, final int turnsNumber,
             final GameMap gameMap) {
         this.stageManager = s;
-        this.dice = new DiceControllerImpl(this.stageManager);
+        this.dice = new DiceControllerImpl<S, Player>(this.stageManager);
         this.turnsNumber = turnsNumber;
         this.turn = 1;
         this.players = players;
@@ -51,16 +45,12 @@ public class GameHandlerModelImpl<S> implements GameHandlerModel {
     }
 
     @Override
-    public int getTurnProgress() {
-        return this.turnProgress;
-    }
-
-    @Override
-    public int nextStep() {
+    public final int nextStep() {
         if (this.turnProgress == TurnProgress.PLAYERS_TURNS.getProgress()) {
             if (!this.playersTurnsFinished()) {
-                return this.getTurnProgress();
+                return this.turnProgress;
             }
+            System.out.println("OK");
             this.currentPlayer = Optional.empty();
         }
         this.turnProgress++;
@@ -78,9 +68,9 @@ public class GameHandlerModelImpl<S> implements GameHandlerModel {
     }
 
     @Override
-    public int nextPlayerTurnStep() {
+    public final int nextPlayerTurnStep() {
         this.playerTurnProgress++;
-        if (this.playerTurnProgress == PlayerTurnProgress.END_OF_TURN.getProgress()) {
+        if (this.playerTurnProgress > PlayerTurnProgress.END_OF_TURN.getProgress()) {
             this.playerTurnProgress = PlayerTurnProgress.SHOW_BANNER.getProgress();
         }
         if (this.playerTurnProgress == PlayerTurnProgress.SHOW_BANNER.getProgress()) {
@@ -96,8 +86,8 @@ public class GameHandlerModelImpl<S> implements GameHandlerModel {
     }
 
     private boolean playersTurnsFinished() {
-        return !this.playersIterator.hasNext()
-                && this.playerTurnProgress == PlayerTurnProgress.END_OF_TURN.getProgress();
+        return !(this.playersIterator.hasNext())
+                && (this.playerTurnProgress == PlayerTurnProgress.END_OF_TURN.getProgress());
     }
 
     @Override
@@ -119,8 +109,7 @@ public class GameHandlerModelImpl<S> implements GameHandlerModel {
          */
     }
 
-    @Override
-    public void startNewTurn() {
+    private void startNewTurn() {
         this.playersIterator = players.iterator();
         this.turnProgress = 0;
         this.playerTurnProgress = -1;
@@ -128,33 +117,28 @@ public class GameHandlerModelImpl<S> implements GameHandlerModel {
     }
 
     @Override
-    public void playMinigame() {
+    public final void playMinigame() {
         final MinigameController wrw = new WhoRisksWinsControllerImpl(this.stageManager, this.getPlayers());
         wrw.startGame();
     }
 
     @Override
-    public void showLeaderboard() {
-        System.out.println("Classifica");
-    }
-
-    @Override
-    public List<Player> getPlayers() {
+    public final List<Player> getPlayers() {
         return this.players;
     }
 
     @Override
-    public int getTurnNumber() {
+    public final int getTurnNumber() {
         return this.turn;
     }
 
     @Override
-    public Optional<Player> getCurrentPlayer() {
+    public final Optional<Player> getCurrentPlayer() {
         return this.currentPlayer;
     }
 
     @Override
-    public void endGame() {
+    public final void endGame() {
         this.stageManager.popScene();
     }
 }

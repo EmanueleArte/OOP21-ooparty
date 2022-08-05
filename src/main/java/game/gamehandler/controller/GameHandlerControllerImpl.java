@@ -14,7 +14,7 @@ import utils.GenericViewController;
 import utils.graphics.stagemanager.StageManager;
 import utils.view.GenericView;
 
-public class GameHandlerControllerImpl extends GenericControllerAbstr
+public class GameHandlerControllerImpl<S> extends GenericControllerAbstr
         implements GenericController, GameHandlerController {
 
     private GameHandlerViewControllerImpl viewController;
@@ -26,14 +26,13 @@ public class GameHandlerControllerImpl extends GenericControllerAbstr
     }
 
     @Override
-    public void start() {
-        GameHandlerViewImpl view = new GameHandlerViewImpl(this.getStageManager());
+    public final void start() {
         final GenericView<?> gameView = new GameHandlerViewImpl<>(this.getStageManager());
         gameView.createScene(this);
     }
 
     @Override
-    public <C> void setViewController(final C viewController) {
+    public final <C> void setViewController(final C viewController) {
         if (viewController instanceof GameHandlerViewControllerImpl) {
             this.viewController = (GameHandlerViewControllerImpl) viewController;
             this.viewController.initialize(this.model.getPlayers());
@@ -43,27 +42,27 @@ public class GameHandlerControllerImpl extends GenericControllerAbstr
     }
 
     @Override
-    public GenericViewController getViewController() {
+    public final GenericViewController getViewController() {
         return this.viewController;
     }
 
     @Override
-    public int nextStep() {
+    public final int nextStep() {
         return this.model.nextStep();
     }
 
     @Override
-    public int nextPlayerTurnStep() {
+    public final int nextPlayerTurnStep() {
         return this.model.nextPlayerTurnStep();
     }
 
     @Override
-    public int getTurnNumber() {
+    public final int getTurnNumber() {
         return this.model.getTurnNumber();
     }
 
     @Override
-    public Optional<Player> getCurrentPlayer() {
+    public final Optional<Player> getCurrentPlayer() {
         return this.model.getCurrentPlayer();
     }
 

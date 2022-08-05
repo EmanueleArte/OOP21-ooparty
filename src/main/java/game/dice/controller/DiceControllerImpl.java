@@ -10,18 +10,18 @@ import utils.controller.GenericControllerAbstr;
 import utils.graphics.stagemanager.StageManager;
 import utils.view.GenericView;
 
-public class DiceControllerImpl<S, P> extends GenericControllerAbstr implements DiceController<S> {
+public class DiceControllerImpl<S, P> extends GenericControllerAbstr implements DiceController<S, P> {
     private final DiceModel<P> model;
     private DiceViewControllerImpl viewController;
 
     public DiceControllerImpl(final StageManager<S> s) {
         super(s);
-        this.model = new DiceModelImpl(s);
+        this.model = new DiceModelImpl<P>(s);
     }
 
     @Override
     public void start(final Player p) {
-        final GenericView<?> view = new DiceViewImpl<>(this.getStageManager());
+        final GenericView<?> view = new DiceViewImpl(this.getStageManager());
         view.createScene(this);
         this.viewController.initialize(p.getColor());
     }

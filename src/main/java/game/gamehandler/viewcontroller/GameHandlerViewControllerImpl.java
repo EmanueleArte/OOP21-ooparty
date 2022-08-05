@@ -36,7 +36,7 @@ public class GameHandlerViewControllerImpl implements GenericViewController {
     private final Map<Player, Group> playerToAvatar = new HashMap<Player, Group>();
 
     @Override
-    public void setController(final GenericController controller) {
+    public final void setController(final GenericController controller) {
         if (controller instanceof GameHandlerController) {
             this.controller = (GameHandlerController) controller;
         } else {
@@ -44,7 +44,7 @@ public class GameHandlerViewControllerImpl implements GenericViewController {
         }
     }
 
-    public void initialize(final List<Player> players) {
+    public final void initialize(final List<Player> players) {
         List<Group> avatarsList = new ArrayList<Group>();
         this.avatars.getChildren().forEach(c -> {
             avatarsList.add((Group) c);
@@ -61,11 +61,11 @@ public class GameHandlerViewControllerImpl implements GenericViewController {
                     body.setFill(p.getColor());
                 }
             });
-            avatarsList.forEach(a -> {
-                if (!this.playerToAvatar.values().contains(a)) {
-                    a.setVisible(false);
-                }
-            });
+        });
+        avatarsList.forEach(a -> {
+            if (!this.playerToAvatar.values().contains(a)) {
+                a.setVisible(false);
+            }
         });
     }
 

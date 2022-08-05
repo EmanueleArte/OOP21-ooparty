@@ -14,7 +14,7 @@ import utils.GenericViewController;
 import utils.controller.GenericController;
 
 public class DiceViewControllerImpl implements GenericViewController {
-    private DiceController<?> controller;
+    private DiceController<?, ?> controller;
     private boolean end = false;
 
     @FXML
@@ -29,7 +29,7 @@ public class DiceViewControllerImpl implements GenericViewController {
     @Override
     public void setController(final GenericController controller) {
         if (controller instanceof DiceControllerImpl) {
-            this.controller = (DiceController<?>) controller;
+            this.controller = (DiceController<?, ?>) controller;
         } else {
             throw new IllegalArgumentException("The parameter must be an instance of DiceController");
         }
