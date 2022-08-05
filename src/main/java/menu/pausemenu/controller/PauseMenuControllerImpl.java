@@ -1,6 +1,7 @@
 package menu.pausemenu.controller;
 
 import menu.MenuController;
+import menu.pausemenu.viewcontroller.PauseMenuViewControllerImpl;
 import utils.GenericViewController;
 import utils.controller.GenericControllerAbstr;
 import utils.graphics.stagemanager.StageManager;
@@ -10,6 +11,9 @@ import utils.graphics.stagemanager.StageManager;
  * {@link MenuController}.
  */
 public class PauseMenuControllerImpl extends GenericControllerAbstr implements MenuController {
+
+    private final PauseMenuModel<?> menuModel;
+    private GenericViewController menuViewController;
 
     /**
      * Builder for {@link PauseMenuControllerImpl}.
@@ -23,8 +27,16 @@ public class PauseMenuControllerImpl extends GenericControllerAbstr implements M
 
     @Override
     public final GenericViewController getViewController() {
-        // TODO Auto-generated method stub
-        return null;
+        return this.menuViewController;
+    }
+
+    @Override
+    public final <C> void setViewController(final C viewController) throws IllegalArgumentException {
+        if (viewController instanceof PauseMenuViewControllerImpl) {
+            this.menuViewController = (PauseMenuViewControllerImpl) viewController;
+        } else {
+            throw new IllegalArgumentException("The parameter must be an instance of PauseMenuViewControllerImpl");
+        }
     }
 
     @Override
@@ -41,12 +53,6 @@ public class PauseMenuControllerImpl extends GenericControllerAbstr implements M
 
     @Override
     public void createMenu() {
-        // TODO Auto-generated method stub
-
-    }
-
-    @Override
-    public <C> void setViewController(final C viewController) {
         // TODO Auto-generated method stub
 
     }
