@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import game.gamehandler.controller.GameHandlerController;
+import game.gamehandler.controller.GameHandlerControllerImpl;
 import game.player.Player;
 import game.player.PlayerImpl;
 import minigames.common.controller.MinigameController;
@@ -65,12 +67,18 @@ public class GameCreationMenuModelImpl<S> implements GameCreationMenuModel<S> {
             // To complete with game constructor (parameters: playersList, stageManager,
             // turnsNumber)
             // Test minigames
-            /*final MinigameController m = new MastermindControllerImpl(this.stageManager,
-                    this.createPlayersList(playersNicknames, playersColors));
-            m.startGame();*/
-            final MinigameController wrw = new WhoRisksWinsControllerImpl(this.stageManager,
-                    this.createPlayersList(playersNicknames, playersColors));
-            wrw.startGame();
+            /*
+             * final MinigameController m = new MastermindControllerImpl(this.stageManager,
+             * this.createPlayersList(playersNicknames, playersColors)); m.startGame();
+             */
+            /*
+             * final MinigameController wrw = new
+             * WhoRisksWinsControllerImpl(this.stageManager,
+             * this.createPlayersList(playersNicknames, playersColors)); wrw.startGame();
+             */
+            final GameHandlerController game = new GameHandlerControllerImpl(this.stageManager,
+                    this.createPlayersList(playersNicknames, playersColors), turnsNumber);
+            game.start();
         }
         return true;
     }
