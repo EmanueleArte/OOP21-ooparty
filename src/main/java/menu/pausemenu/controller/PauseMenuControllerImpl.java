@@ -1,6 +1,8 @@
 package menu.pausemenu.controller;
 
 import menu.MenuController;
+import menu.pausemenu.model.PauseMenuModel;
+import menu.pausemenu.model.PauseMenuModelImpl;
 import menu.pausemenu.viewcontroller.PauseMenuViewControllerImpl;
 import utils.GenericViewController;
 import utils.controller.GenericControllerAbstr;
@@ -23,6 +25,7 @@ public class PauseMenuControllerImpl extends GenericControllerAbstr implements M
      */
     public <S> PauseMenuControllerImpl(final StageManager<S> s) {
         super(s);
+        this.menuModel = new PauseMenuModelImpl<>(s);
     }
 
     @Override

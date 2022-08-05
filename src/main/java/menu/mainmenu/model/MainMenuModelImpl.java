@@ -16,7 +16,7 @@ public class MainMenuModelImpl<S> implements MainMenuModel<S> {
     /**
      * Builds a new {@link MainMenuModelImpl}.
      * 
-     * @param s the {@link utils.graphics.stagemanager.StageManager}
+     * @param s the {@link StageManager}
      */
     public MainMenuModelImpl(final StageManager<S> s) {
         super();
