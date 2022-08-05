@@ -12,7 +12,7 @@ public class PauseMenuModelImpl<S> implements PauseMenuModel<S> {
     private final StageManager<S> stageManager;
 
     /**
-     * Builds a new {@link MainMenuModelImpl}.
+     * Builds a new {@link PauseMenuModelImpl}.
      * 
      * @param s the {@link StageManager}
      */
@@ -22,15 +22,13 @@ public class PauseMenuModelImpl<S> implements PauseMenuModel<S> {
     }
 
     @Override
-    public void returnMainMenu() {
-        // TODO Auto-generated method stub
-
+    public final void returnMainMenu() {
+        
     }
 
     @Override
-    public void continueGame() {
-        // TODO Auto-generated method stub
-
+    public final void continueGame() {
+        this.stageManager.popScene();
     }
 
 }
