@@ -1,12 +1,14 @@
 package menu.pausemenu.controller;
 
 import menu.MenuController;
+import menu.mainmenu.view.MainMenuViewImpl;
 import menu.pausemenu.model.PauseMenuModel;
 import menu.pausemenu.model.PauseMenuModelImpl;
 import menu.pausemenu.viewcontroller.PauseMenuViewControllerImpl;
 import utils.GenericViewController;
 import utils.controller.GenericControllerAbstr;
 import utils.graphics.stagemanager.StageManager;
+import utils.view.GenericView;
 
 /**
  * Extension of {@link GenericControllerAbstr} and implementation of
@@ -44,20 +46,18 @@ public class PauseMenuControllerImpl extends GenericControllerAbstr implements M
 
     @Override
     public final void goNext() {
-        // TODO Auto-generated method stub
-
+        this.menuModel.continueGame();
     }
 
     @Override
     public final void exit() {
-        // TODO Auto-generated method stub
-
+        this.menuModel.returnMainMenu();
     }
 
     @Override
-    public void createMenu() {
-        // TODO Auto-generated method stub
-
+    public final void createMenu() {
+        final GenericView<?> menuView = new PauseMenuViewImpl<>(this.getStageManager());
+        menuView.createScene(this);
     }
 
 }

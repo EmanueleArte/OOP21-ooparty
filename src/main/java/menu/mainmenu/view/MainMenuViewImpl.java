@@ -15,7 +15,7 @@ public class MainMenuViewImpl<S> extends GenericViewAbstr<S> {
     /**
      * Builds a new {@link MainMenuViewImpl}.
      * 
-     * @param s the {@link utils.graphics.stagemanager.StageManager}
+     * @param s the {@link StageManager}
      */
     public MainMenuViewImpl(final StageManager<S> s) {
         super(s);
