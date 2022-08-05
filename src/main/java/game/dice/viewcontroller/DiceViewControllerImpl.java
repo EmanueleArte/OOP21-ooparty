@@ -1,5 +1,7 @@
 package game.dice.viewcontroller;
 
+import java.util.Random;
+
 import game.dice.controller.DiceController;
 import game.dice.controller.DiceControllerImpl;
 import javafx.animation.TranslateTransition;
@@ -16,6 +18,7 @@ import utils.controller.GenericController;
 public class DiceViewControllerImpl implements GenericViewController {
     private DiceController controller;
     private boolean end = false;
+    private final Random rand = new Random();
 
     @FXML
     private Group player;
@@ -60,6 +63,7 @@ public class DiceViewControllerImpl implements GenericViewController {
         transition.play();
     }
 
+    @FXML
     public final void initialize(final Color color) {
         this.playerBody.setFill(color);
         this.playerHead.setFill(color);
