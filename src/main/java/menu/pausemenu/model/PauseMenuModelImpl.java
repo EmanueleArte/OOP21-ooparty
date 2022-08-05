@@ -23,7 +23,9 @@ public class PauseMenuModelImpl<S> implements PauseMenuModel<S> {
 
     @Override
     public final void returnMainMenu() {
-        
+        while (this.stageManager.getScenes().size() > 1) {
+            this.stageManager.popScene();
+        }
     }
 
     @Override
