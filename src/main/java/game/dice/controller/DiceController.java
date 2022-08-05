@@ -2,7 +2,7 @@ package game.dice.controller;
 
 import game.player.Player;
 
-public interface DiceController<S, P> {
+public interface DiceController {
 
     void returnToGame();
 

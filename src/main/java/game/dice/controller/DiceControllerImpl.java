@@ -2,6 +2,7 @@ package game.dice.controller;
 
 import game.dice.model.DiceModel;
 import game.dice.model.DiceModelImpl;
+import game.dice.model.DiceModelNoRepeatImpl;
 import game.dice.view.DiceViewImpl;
 import game.dice.viewcontroller.DiceViewControllerImpl;
 import game.player.Player;
@@ -10,29 +11,33 @@ import utils.controller.GenericControllerAbstr;
 import utils.graphics.stagemanager.StageManager;
 import utils.view.GenericView;
 
-public class DiceControllerImpl<S, P> extends GenericControllerAbstr implements DiceController<S, P> {
-    private final DiceModel<P> model;
+public class DiceControllerImpl extends GenericControllerAbstr implements DiceController{
+    private final DiceModel<?> model;
     private DiceViewControllerImpl viewController;
 
-    public DiceControllerImpl(final StageManager<S> s) {
+    public <S, P> DiceControllerImpl(final StageManager<S> s, final boolean noRepeat) {
         super(s);
-        this.model = new DiceModelImpl<P>(s);
+        if (noRepeat) {
+            this.model = new DiceModelNoRepeatImpl<P>(s);
+        } else {
+            this.model = new DiceModelImpl<P>(s);
+        }
     }
 
     @Override
-    public void start(final Player p) {
-        final GenericView<?> view = new DiceViewImpl(this.getStageManager());
+    public final void start(final Player p) {
+        final GenericView<?> view = new DiceViewImpl<>(this.getStageManager());
         view.createScene(this);
         this.viewController.initialize(p.getColor());
     }
 
     @Override
-    public GenericViewController getViewController() {
+    public final GenericViewController getViewController() {
         return this.viewController;
     }
 
     @Override
-    public <C> void setViewController(final C viewController) {
+    public final <C> void setViewController(final C viewController) {
         if (viewController instanceof DiceViewControllerImpl) {
             this.viewController = (DiceViewControllerImpl) viewController;
         } else {
@@ -41,17 +46,17 @@ public class DiceControllerImpl<S, P> extends GenericControllerAbstr implements 
     }
 
     @Override
-    public void returnToGame() {
+    public final void returnToGame() {
         this.model.returnToGame();
     }
 
     @Override
-    public void rollDice() {
+    public final void rollDice() {
         this.model.rollDice();
     }
 
     @Override
-    public int getResult() {
+    public final int getResult() {
         return this.model.getResult();
     }
 

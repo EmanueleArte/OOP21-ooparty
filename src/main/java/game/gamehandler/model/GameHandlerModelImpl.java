@@ -19,7 +19,7 @@ import utils.graphics.stagemanager.StageManager;
 public class GameHandlerModelImpl<S> implements GameHandlerModel {
 
     private final StageManager<S> stageManager;
-    private final DiceController<S, Player> dice;
+    private final DiceController dice;
     private final GameMap gameMap;
 
     private final int turnsNumber;
@@ -27,13 +27,13 @@ public class GameHandlerModelImpl<S> implements GameHandlerModel {
     private int turnProgress;
     private int playerTurnProgress;
     private Optional<Player> currentPlayer;
-    private final List<Player> players;
+    private List<Player> players;
     private Iterator<Player> playersIterator;
 
     public GameHandlerModelImpl(final StageManager<S> s, final List<Player> players, final int turnsNumber,
             final GameMap gameMap) {
         this.stageManager = s;
-        this.dice = new DiceControllerImpl<S, Player>(this.stageManager);
+        this.dice = new DiceControllerImpl(this.stageManager, false);
         this.turnsNumber = turnsNumber;
         this.turn = 1;
         this.players = players;
@@ -50,7 +50,6 @@ public class GameHandlerModelImpl<S> implements GameHandlerModel {
             if (!this.playersTurnsFinished()) {
                 return this.turnProgress;
             }
-            System.out.println("OK");
             this.currentPlayer = Optional.empty();
         }
         this.turnProgress++;
@@ -109,7 +108,9 @@ public class GameHandlerModelImpl<S> implements GameHandlerModel {
          */
     }
 
+    @SuppressWarnings("unchecked")
     private void startNewTurn() {
+        this.players = (List<Player>) this.stageManager.getLastGameController().getGameResults();
         this.playersIterator = players.iterator();
         this.turnProgress = 0;
         this.playerTurnProgress = -1;

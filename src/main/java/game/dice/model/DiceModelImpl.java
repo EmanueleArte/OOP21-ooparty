@@ -1,34 +1,28 @@
 package game.dice.model;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Random;
 
 import utils.graphics.stagemanager.StageManager;
 
 public class DiceModelImpl<P> implements DiceModel<P> {
 
+    /**
+     * 
+     */
+    protected static final int MAX_RESULT = 6;
+
     private final Random rand;
-    private final StageManager stageManager;
+    private final StageManager<?> stageManager;
     private int result;
 
-    public DiceModelImpl(final StageManager s) {
+    public DiceModelImpl(final StageManager<?> s) {
         this.stageManager = s;
         rand = new Random();
     }
 
     @Override
     public void rollDice() {
-        this.result = rand.nextInt(6) + 1;
-    }
-
-    @Override
-    public List<Integer> rollDices(final List<P> players) {
-        /*
-         * List<Integer> results = new ArrayList<Integer>(); players.forEach(player -> {
-         * results.add(rollDice(player)); }); return results;
-         */
-        return null;
+        this.result = rand.nextInt(DiceModelImpl.MAX_RESULT) + 1;
     }
 
     @Override
@@ -37,8 +31,15 @@ public class DiceModelImpl<P> implements DiceModel<P> {
     }
 
     @Override
-    public int getResult() {
+    public final int getResult() {
         return this.result;
     }
 
+    protected final void setResult(final int result) {
+        this.result = result;
+    }
+
+    protected final Random getRandom() {
+        return this.rand;
+    }
 }

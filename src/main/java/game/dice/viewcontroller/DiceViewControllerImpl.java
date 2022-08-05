@@ -14,7 +14,7 @@ import utils.GenericViewController;
 import utils.controller.GenericController;
 
 public class DiceViewControllerImpl implements GenericViewController {
-    private DiceController<?, ?> controller;
+    private DiceController controller;
     private boolean end = false;
 
     @FXML
@@ -27,16 +27,16 @@ public class DiceViewControllerImpl implements GenericViewController {
     private Text diceText;
 
     @Override
-    public void setController(final GenericController controller) {
+    public final void setController(final GenericController controller) {
         if (controller instanceof DiceControllerImpl) {
-            this.controller = (DiceController<?, ?>) controller;
+            this.controller = (DiceController) controller;
         } else {
             throw new IllegalArgumentException("The parameter must be an instance of DiceController");
         }
     }
 
     @FXML
-    public void nextStep() {
+    public final void nextStep() {
         if (this.end) {
             this.controller.returnToGame();
         } else {
@@ -46,7 +46,7 @@ public class DiceViewControllerImpl implements GenericViewController {
         }
     }
 
-    public void jumpToDice(final int roll) {
+    public final void jumpToDice(final int roll) {
         TranslateTransition transition = new TranslateTransition();
         transition.setNode(player);
         transition.setDuration(Duration.millis(500));
@@ -60,7 +60,7 @@ public class DiceViewControllerImpl implements GenericViewController {
         transition.play();
     }
 
-    public void initialize(final Color color) {
+    public final void initialize(final Color color) {
         this.playerBody.setFill(color);
         this.playerHead.setFill(color);
     }
