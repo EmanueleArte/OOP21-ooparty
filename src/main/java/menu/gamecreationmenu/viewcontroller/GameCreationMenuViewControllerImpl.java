@@ -119,9 +119,9 @@ public class GameCreationMenuViewControllerImpl extends NoticeUserAbstr implemen
         for (int i = GameCreationMenuModelImpl.N_MIN_PLAYERS; i < GameCreationMenuModelImpl.N_MAX_PLAYERS; i++) {
             var form = playersForms.get(i);
             if (i >= nPlayers) {
-                GuiUtils.hideForm(form);
+                GuiUtils.hideNode(form);
             } else {
-                GuiUtils.showForm(form);
+                GuiUtils.showNode(form);
             }
         }
     }

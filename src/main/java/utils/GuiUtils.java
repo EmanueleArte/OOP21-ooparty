@@ -3,16 +3,16 @@ package utils;
 import java.util.List;
 
 import javafx.collections.FXCollections;
+import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.Spinner;
-import javafx.scene.layout.VBox;
 import javafx.scene.shape.Shape;
 import utils.enums.PlayerColor;
 
 /**
- * This class provides gui utilities.
+ * This class provides javafx gui utilities.
  */
 public final class GuiUtils {
 
@@ -43,23 +43,23 @@ public final class GuiUtils {
     }
 
     /**
-     * This method shows a form.
+     * This method shows a node.
      * 
-     * @param form the player form
+     * @param node the node to show
      */
-    public static void showForm(final VBox form) {
-        form.setVisible(true);
-        form.setManaged(true);
+    public static void showNode(final Node node) {
+        node.setVisible(true);
+        node.setManaged(true);
     }
 
     /**
-     * This method hides a form.
+     * This method hides a node.
      * 
-     * @param form the player form
+     * @param node the node to hide
      */
-    public static void hideForm(final VBox form) {
-        form.setVisible(false);
-        form.setManaged(false);
+    public static void hideNode(final Node node) {
+        node.setVisible(false);
+        node.setManaged(false);
     }
 
     /**
