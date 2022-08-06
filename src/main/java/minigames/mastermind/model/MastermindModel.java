@@ -3,7 +3,7 @@ package minigames.mastermind.model;
 import minigames.common.model.MinigameModel;
 
 /**
- * This interface models the mastermind model.
+ * This interface models the mastermind model and extension of {@link MinigameModel}.
  * 
  * @param <S> the scenes of the stage
  * @param <U> the players

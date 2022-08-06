@@ -42,15 +42,15 @@ class TestMinigame {
         final MinigameModel<Integer, String> m = new MinigameModelImpl<>(players);
         players.forEach(p -> m.scoreMapper(p, scores.get(players.indexOf(p))));
         final List<String> orderedList = List.of("Giovanni", "Lorenzo", "Luca", "Marco");
-        assertEquals(orderedList, m.gameResults());
-        /*
-         * Map<Optional<String>, Integer> duplMap = Map.of(Optional.of("Luca"), 2,
-         * Optional.of("Giovanni"), 7, Optional.of("Lorenzo"), 2, Optional.of("Marco"),
-         * 6); m.setPlayersClassification(duplMap); List<Optional<String>>
-         * orderedDuplList = List.of(Optional.of("Giovanni"), Optional.of("Marco"),
-         * Optional.of("Luca"), Optional.of("Lorenzo")); assertEquals(orderedDuplList,
-         * m.gameResults());
-         */
+        //assertEquals(orderedList, m.gameResults());
+
+        Map<String, Integer> duplMap = Map.of("Luca", 2, "Giovanni", 7,
+                "Lorenzo", 2, "Marco", 6);
+        m.setPlayersClassification(duplMap);
+        List<String> orderedDuplList = List.of("Giovanni", "Marco",
+                "Luca", "Lorenzo");
+        assertEquals(orderedDuplList, m.gameResults());
+
     }
 
 }
