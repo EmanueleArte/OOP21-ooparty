@@ -12,7 +12,6 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import utils.GenericViewController;
 import utils.controller.GenericController;
-import utils.graphics.stagemanager.StageManager;
 
 /**
  * Implementation of {@link Gui}.
@@ -36,11 +35,9 @@ public class GuiImpl extends JFrame implements Gui {
     /**
      * Builds a new {@link GuiImpl}.
      * 
-     * @param <S>   the scenes of the stage
      * @param title the title of the frame
-     * @param s     the {@link utils.graphics.stagemanager.StageManager}
      */
-    public <S> GuiImpl(final String title, final StageManager<S> s) {
+    public GuiImpl(final String title) {
         this.mainStage = Optional.empty();
         this.root = Optional.empty();
         this.frame = new JFrame(title);

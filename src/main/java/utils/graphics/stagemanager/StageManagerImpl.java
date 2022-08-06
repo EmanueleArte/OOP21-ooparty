@@ -28,7 +28,7 @@ public class StageManagerImpl<S> implements StageManager<S> {
      */
     public StageManagerImpl(final String title) {
         this.scenes = new ArrayList<S>();
-        this.gui = new GuiImpl(title, this);
+        this.gui = new GuiImpl(title);
         this.lastGameController = Optional.empty();
     }
 
