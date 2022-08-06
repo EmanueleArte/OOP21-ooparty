@@ -8,9 +8,6 @@ import game.gamehandler.controller.GameHandlerController;
 import game.gamehandler.controller.GameHandlerControllerImpl;
 import game.player.Player;
 import game.player.PlayerImpl;
-import minigames.common.controller.MinigameController;
-import minigames.mastermind.controller.MastermindControllerImpl;
-import minigames.whoriskswins.controller.WhoRisksWinsControllerImpl;
 import utils.enums.PlayerColor;
 import utils.graphics.stagemanager.StageManager;
 
@@ -66,17 +63,7 @@ public class GameCreationMenuModelImpl<S> implements GameCreationMenuModel<S> {
         } else {
             // To complete with game constructor (parameters: playersList, stageManager,
             // turnsNumber)
-            // Test minigames
-            /*
-             * final MinigameController m = new MastermindControllerImpl(this.stageManager,
-             * this.createPlayersList(playersNicknames, playersColors)); m.startGame();
-             */
-            /*
-             * final MinigameController wrw = new
-             * WhoRisksWinsControllerImpl(this.stageManager,
-             * this.createPlayersList(playersNicknames, playersColors)); wrw.startGame();
-             */
-            final GameHandlerController game = new GameHandlerControllerImpl(this.stageManager,
+            final GameHandlerController game = new GameHandlerControllerImpl<>(this.stageManager,
                     this.createPlayersList(playersNicknames, playersColors), turnsNumber);
             game.start();
         }
