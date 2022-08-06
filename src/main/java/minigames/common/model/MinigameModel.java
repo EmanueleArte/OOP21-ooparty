@@ -44,12 +44,4 @@ public interface MinigameModel<S, U> extends GameModel<S, U> {
      */
     Map<U, Integer> getPlayersClassification();
 
-    /**
-     * This method sets the map of players associated to their scores.
-     * 
-     * @param playersClassification a map with players as keys and their score as
-     *                              values
-     */
-    void setPlayersClassification(Map<U, Integer> playersClassification);
-
 }

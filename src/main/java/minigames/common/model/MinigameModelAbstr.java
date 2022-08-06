@@ -45,12 +45,6 @@ public abstract class MinigameModelAbstr<S, U> extends GameModelAbstr<S, U> impl
     }
 
     @Override
-    public final void setPlayersClassification(final Map<U, Integer> playersClassification) {
-        this.playersClassification.clear();
-        this.playersClassification.putAll(playersClassification);
-    }
-
-    @Override
     public abstract boolean runGame();
 
     @Override
