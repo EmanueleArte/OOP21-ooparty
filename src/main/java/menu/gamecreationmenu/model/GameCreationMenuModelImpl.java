@@ -61,8 +61,6 @@ public class GameCreationMenuModelImpl<S> implements GameCreationMenuModel<S> {
         if (!checkForms(playersNicknames, playersColors)) {
             return false;
         } else {
-            // To complete with game constructor (parameters: playersList, stageManager,
-            // turnsNumber)
             final GameHandlerController game = new GameHandlerControllerImpl<>(this.stageManager,
                     this.createPlayersList(playersNicknames, playersColors), turnsNumber);
             game.start();
