@@ -46,8 +46,14 @@ class TestMinigame {
         players.forEach(p -> m.scoreMapper(p, scores.get(players.indexOf(p))));
         final List<String> orderedList = List.of("Giovanni", "Lorenzo", "Luca", "Marco");
         assertEquals(orderedList, m.gameResults());
+    }
+
+    @Test
+    void testSortPlayerByScoreWithDraws() {
+        final MinigameModel<Integer, String> m = new MinigameModelImpl<>(players);
         players.forEach(p -> m.scoreMapper(p, scoresDupl.get(players.indexOf(p))));
-        List<List<String>> orderedDuplList = List.of(List.of("Giovanni", "Marco", "Luca", "Lorenzo"), List.of("Giovanni", "Marco", "Lorenzo", "Luca"));
+        List<List<String>> orderedDuplList = List.of(List.of("Giovanni", "Marco", "Luca", "Lorenzo"),
+                List.of("Giovanni", "Marco", "Lorenzo", "Luca"));
         assertTrue(orderedDuplList.contains(m.gameResults()));
 
     }
