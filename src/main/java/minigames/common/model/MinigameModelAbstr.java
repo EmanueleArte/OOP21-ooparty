@@ -82,7 +82,6 @@ public abstract class MinigameModelAbstr<S, U> extends GameModelAbstr<S, U> impl
                 final Map<U, Integer> sorted = new LinkedHashMap<>();
                 players.forEach(player -> {
                     this.dice.rollDice();
-                    System.out.println(player + "" + this.dice.getResult());
                     sorted.put(player, this.dice.getResult());
                 });
                 players = sorted.entrySet().stream().sorted(Map.Entry.comparingByValue(Comparator.reverseOrder()))
@@ -92,8 +91,7 @@ public abstract class MinigameModelAbstr<S, U> extends GameModelAbstr<S, U> impl
                 element.setValue(players);
             }
         });
-        System.out.println(scoreGroups);
-        return null;
+        return scoreGroups.values().stream().flatMap(List::stream).collect(Collectors.toList());
     }
 
     /**
@@ -102,7 +100,8 @@ public abstract class MinigameModelAbstr<S, U> extends GameModelAbstr<S, U> impl
      * @return a map having a score as key and a list of players as value
      */
     private Map<Integer, List<U>> groupPlayersByScore() {
-        return this.playersClassification.entrySet().stream().sorted(Map.Entry.comparingByValue(Comparator.reverseOrder()))
+        return this.playersClassification.entrySet().stream()
+                .sorted(Map.Entry.comparingByValue(Comparator.reverseOrder()))
                 .collect(Collectors.groupingBy(Map.Entry::getValue, LinkedHashMap::new,
                         Collectors.mapping(Map.Entry::getKey, Collectors.toList())));
         /*

@@ -1,6 +1,8 @@
 package minigames.common;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
 import java.util.List;
 import java.util.Map;
 import org.junit.jupiter.api.Test;
@@ -15,6 +17,7 @@ class TestMinigame {
 
     private final List<String> players = List.of("Luca", "Giovanni", "Lorenzo", "Marco");
     private final List<Integer> scores = List.of(4, 7, 5, 2);
+    private final List<Integer> scoresDupl = List.of(2, 7, 2, 5);
 
     class MinigameModelImpl<S, U> extends MinigameModelAbstr<S, U> {
 
@@ -42,14 +45,10 @@ class TestMinigame {
         final MinigameModel<Integer, String> m = new MinigameModelImpl<>(players);
         players.forEach(p -> m.scoreMapper(p, scores.get(players.indexOf(p))));
         final List<String> orderedList = List.of("Giovanni", "Lorenzo", "Luca", "Marco");
-        //assertEquals(orderedList, m.gameResults());
-
-        Map<String, Integer> duplMap = Map.of("Luca", 2, "Giovanni", 7,
-                "Lorenzo", 2, "Marco", 6);
-        m.setPlayersClassification(duplMap);
-        List<String> orderedDuplList = List.of("Giovanni", "Marco",
-                "Luca", "Lorenzo");
-        assertEquals(orderedDuplList, m.gameResults());
+        assertEquals(orderedList, m.gameResults());
+        players.forEach(p -> m.scoreMapper(p, scoresDupl.get(players.indexOf(p))));
+        List<List<String>> orderedDuplList = List.of(List.of("Giovanni", "Marco", "Luca", "Lorenzo"), List.of("Giovanni", "Marco", "Lorenzo", "Luca"));
+        assertTrue(orderedDuplList.contains(m.gameResults()));
 
     }
 
