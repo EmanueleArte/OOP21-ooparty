@@ -4,7 +4,6 @@ import java.util.List;
 
 import javafx.collections.FXCollections;
 import javafx.scene.Node;
-import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.Spinner;
@@ -43,7 +42,7 @@ public final class GuiUtils {
     }
 
     /**
-     * This method shows a node.
+     * This method shows a {@link Node}.
      * 
      * @param node the node to show
      */
@@ -53,7 +52,7 @@ public final class GuiUtils {
     }
 
     /**
-     * This method hides a node.
+     * This method hides a {@link Node}.
      * 
      * @param node the node to hide
      */
@@ -80,26 +79,6 @@ public final class GuiUtils {
      */
     public static void resetPositionX(final Shape shape, final double x) {
         shape.setTranslateX(x);
-    }
-
-    /**
-     * This method hides a button.
-     * 
-     * @param button the {@link Button} to hide
-     */
-    public static void hideButton(final Button button) {
-        button.setVisible(false);
-        button.setManaged(false);
-    }
-
-    /**
-     * This method shows a button.
-     * 
-     * @param button the {@link Button} to show
-     */
-    public static void showButton(final Button button) {
-        button.setVisible(true);
-        button.setManaged(true);
     }
 
     /**

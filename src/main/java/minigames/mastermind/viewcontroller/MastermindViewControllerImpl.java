@@ -48,7 +48,7 @@ public class MastermindViewControllerImpl extends MinigameViewControllerAbstr im
         if (this.mastermindController.nextTurn()) {
             this.inputField.setText("");
             GuiUtils.hideLabels(this.attempts);
-            GuiUtils.hideButton(this.continueButton);
+            GuiUtils.hideNode(this.continueButton);
             this.clearNotice();
             this.enableInput();
         }
@@ -92,7 +92,7 @@ public class MastermindViewControllerImpl extends MinigameViewControllerAbstr im
                     + score + ".");
         }
         if (win || lose) {
-            GuiUtils.showButton(this.continueButton);
+            GuiUtils.showNode(this.continueButton);
             this.disableInput();
         }
     }
