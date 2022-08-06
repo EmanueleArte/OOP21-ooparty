@@ -98,12 +98,6 @@ public abstract class MinigameModelAbstr<S, U> extends GameModelAbstr<S, U> impl
                 .sorted(Map.Entry.comparingByValue(Comparator.reverseOrder()))
                 .collect(Collectors.groupingBy(Map.Entry::getValue, LinkedHashMap::new,
                         Collectors.mapping(Map.Entry::getKey, Collectors.toList())));
-        /*
-         * return this.playersClassification.entrySet().stream()
-         * .sorted(Map.Entry.comparingByValue(Comparator.reverseOrder()))
-         * .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue, (x, y) ->
-         * y, LinkedHashMap::new)) .keySet().stream().collect(Collectors.toList());
-         */
     }
 
     @Override
