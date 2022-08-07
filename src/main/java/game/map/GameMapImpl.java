@@ -3,6 +3,8 @@ package game.map;
 import java.util.List;
 
 import exceptions.PlayerNotFoundException;
+import game.map.factories.GameBoardFactory;
+import game.map.factories.SimpleGameBoardFactory;
 import game.player.Player;
 
 public class GameMapImpl implements GameMap {
@@ -14,7 +16,9 @@ public class GameMapImpl implements GameMap {
 
     public GameMapImpl(final List<GameMapSquare> squares) {
         //TODO generare mappa (qua viene passata ma non penso funzionerà così, bisognerà fare un metodo qua dentro che la crea)
-        this.squares = squares;
+        //this.squares = squares;
+        GameBoardFactory f = new SimpleGameBoardFactory();
+        this.squares = f.createGameBoard(10);
     }
 
     @Override
