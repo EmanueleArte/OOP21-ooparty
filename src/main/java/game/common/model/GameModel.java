@@ -22,7 +22,7 @@ public interface GameModel<S, U> {
     /**
      * Getter for the {@link StageManager}.
      * 
-     * @return the stage manager insance else null
+     * @return the stage manager instance else null
      */
     StageManager<S> getStageManager();
 

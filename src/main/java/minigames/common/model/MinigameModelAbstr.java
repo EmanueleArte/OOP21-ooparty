@@ -36,6 +36,11 @@ public abstract class MinigameModelAbstr<S, U> extends GameModelAbstr<S, U> impl
         this.dice = new DiceControllerImpl(s, true);
     }
 
+    /**
+     * Builds a new {@link MinigameModelAbstr} with no {@link StageManager}.
+     * 
+     * @param players the list of players
+     */
     public MinigameModelAbstr(final List<U> players) {
         this(players, null);
     }

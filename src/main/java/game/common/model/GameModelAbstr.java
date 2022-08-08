@@ -31,7 +31,7 @@ public abstract class GameModelAbstr<S, U> implements GameModel<S, U> {
     }
 
     /**
-     * Builds a new {@link GameModelAbstr}.
+     * Builds a new {@link GameModelAbstr} with no {@link StageManager}.
      * 
      * @param players the list of players
      */
