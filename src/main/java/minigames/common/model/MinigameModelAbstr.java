@@ -82,16 +82,13 @@ public abstract class MinigameModelAbstr<S, U> extends GameModelAbstr<S, U> impl
                 final Map<U, Integer> sorted = new LinkedHashMap<>();
                 players.forEach(player -> {
                     final var s = this.getStageManager();
+                    this.dice.rollDice();
                     if (s != null) {
                         if (s.getGui().getMainStage().isPresent()) {
                             this.dice.start((Player) player);
-                        } else {
-                            this.dice.rollDice();
                         }
-                    } else {
-                        this.dice.rollDice();
                     }
-                    sorted.put(player, this.dice.getResult());
+                    sorted.put(player, this.dice.getLastResult().get());
                 });
                 players = sorted.entrySet().stream().sorted(Map.Entry.comparingByValue(Comparator.reverseOrder()))
                         .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue, (x, y) -> y,

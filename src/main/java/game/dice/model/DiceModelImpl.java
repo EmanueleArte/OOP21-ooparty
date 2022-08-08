@@ -1,5 +1,6 @@
 package game.dice.model;
 
+import java.util.Optional;
 import java.util.Random;
 
 import utils.graphics.stagemanager.StageManager;
@@ -13,16 +14,17 @@ public class DiceModelImpl<P> implements DiceModel<P> {
 
     private final Random rand;
     private final StageManager<?> stageManager;
-    private int result;
+    private Optional<Integer> result;
 
     public DiceModelImpl(final StageManager<?> s) {
         this.stageManager = s;
         rand = new Random();
+        this.result = Optional.empty();
     }
 
     @Override
     public void rollDice() {
-        this.result = rand.nextInt(DiceModelImpl.MAX_RESULT) + 1;
+        this.setResult(this.rand.nextInt(DiceModelImpl.MAX_RESULT) + 1);
     }
 
     @Override
@@ -31,12 +33,12 @@ public class DiceModelImpl<P> implements DiceModel<P> {
     }
 
     @Override
-    public final int getResult() {
+    public final Optional<Integer> getLastResult() {
         return this.result;
     }
 
     protected final void setResult(final int result) {
-        this.result = result;
+        this.result = Optional.of(result);
     }
 
     protected final Random getRandom() {

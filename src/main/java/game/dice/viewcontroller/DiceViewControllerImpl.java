@@ -1,5 +1,6 @@
 package game.dice.viewcontroller;
 
+import java.util.Optional;
 import java.util.Random;
 
 import game.dice.controller.DiceController;
@@ -43,8 +44,10 @@ public class DiceViewControllerImpl implements GenericViewController {
         if (this.end) {
             this.controller.returnToGame();
         } else {
-            this.controller.rollDice();
-            this.jumpToDice(this.controller.getResult());
+            Optional<Integer> roll = this.controller.getLastResult();
+            if (roll.isPresent()) {
+                this.jumpToDice(roll.get());
+            }
             this.end = true;
         }
     }

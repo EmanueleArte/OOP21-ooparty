@@ -1,5 +1,7 @@
 package game.dice.controller;
 
+import java.util.Optional;
+
 import game.dice.model.DiceModel;
 import game.dice.model.DiceModelImpl;
 import game.dice.model.DiceModelNoRepeatImpl;
@@ -11,7 +13,7 @@ import utils.controller.GenericControllerAbstr;
 import utils.graphics.stagemanager.StageManager;
 import utils.view.GenericView;
 
-public class DiceControllerImpl extends GenericControllerAbstr implements DiceController{
+public class DiceControllerImpl extends GenericControllerAbstr implements DiceController {
     private final DiceModel<?> model;
     private DiceViewControllerImpl viewController;
 
@@ -56,8 +58,8 @@ public class DiceControllerImpl extends GenericControllerAbstr implements DiceCo
     }
 
     @Override
-    public final int getResult() {
-        return this.model.getResult();
+    public final Optional<Integer> getLastResult() {
+        return this.model.getLastResult();
     }
 
 }

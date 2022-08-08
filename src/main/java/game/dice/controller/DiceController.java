@@ -1,5 +1,7 @@
 package game.dice.controller;
 
+import java.util.Optional;
+
 import game.player.Player;
 
 public interface DiceController {
@@ -10,6 +12,6 @@ public interface DiceController {
 
     void start(Player p);
 
-    int getResult();
+    Optional<Integer> getLastResult();
 
 }

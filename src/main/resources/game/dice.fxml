@@ -32,9 +32,9 @@
             </Group>
             <Group fx:id="dice" layoutX="440.0" layoutY="200.0">
                <children>
-                  <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#bf8f01" height="120.0" stroke="BLACK" strokeType="INSIDE" width="120.0" />
+                  <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#c72400" height="120.0" stroke="BLACK" strokeType="INSIDE" width="120.0" />
                   <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#ececec" height="100.0" layoutX="10.0" layoutY="10.0" stroke="BLACK" strokeType="INSIDE" width="100.0" />
-                  <Text fx:id="diceText" fill="#c4990d" layoutY="80.0" stroke="BLACK" strokeType="OUTSIDE" strokeWidth="2.0" text="?" textAlignment="CENTER" wrappingWidth="120.0">
+                  <Text fx:id="diceText" fill="#c2450e" layoutY="80.0" stroke="BLACK" strokeType="OUTSIDE" strokeWidth="2.0" text="?" textAlignment="CENTER" wrappingWidth="120.0">
                      <font>
                         <Font name="Berlin Sans FB" size="72.0" />
                      </font>

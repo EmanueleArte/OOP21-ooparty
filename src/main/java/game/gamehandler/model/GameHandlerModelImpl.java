@@ -79,9 +79,10 @@ public class GameHandlerModelImpl<S> implements GameHandlerModel {
             this.currentPlayer = Optional.of(this.playersIterator.next());
         }
         if (this.playerTurnProgress == PlayerTurnProgress.MOVE_PLAYER.getProgress()) {
-            System.out.println(this.dice.getResult());
+            System.out.println(this.dice.getLastResult());
         }
         if (this.playerTurnProgress == PlayerTurnProgress.ROLL_DICE.getProgress()) {
+            this.dice.rollDice();
             this.dice.start(this.currentPlayer.get());
         }
         return this.playerTurnProgress;
