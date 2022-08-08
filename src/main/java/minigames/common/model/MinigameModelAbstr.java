@@ -81,8 +81,13 @@ public abstract class MinigameModelAbstr<S, U> extends GameModelAbstr<S, U> impl
             if (players.size() > 1) {
                 final Map<U, Integer> sorted = new LinkedHashMap<>();
                 players.forEach(player -> {
-                    if (this.getStageManager().getGui().getMainStage().isPresent()) {
-                        this.dice.start((Player) player);
+                    final var s = this.getStageManager();
+                    if (s != null) {
+                        if (s.getGui().getMainStage().isPresent()) {
+                            this.dice.start((Player) player);
+                        } else {
+                            this.dice.rollDice();
+                        }
                     } else {
                         this.dice.rollDice();
                     }
