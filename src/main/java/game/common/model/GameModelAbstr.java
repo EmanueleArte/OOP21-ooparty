@@ -30,6 +30,11 @@ public abstract class GameModelAbstr<S, U> implements GameModel<S, U> {
         this.stageManager = s;
     }
 
+    /**
+     * Builds a new {@link GameModelAbstr}.
+     * 
+     * @param players the list of players
+     */
     public GameModelAbstr(final List<U> players) {
         this(players, null);
     }
