@@ -9,6 +9,7 @@ import java.util.stream.Collectors;
 import game.common.model.GameModelAbstr;
 import game.dice.controller.DiceController;
 import game.dice.controller.DiceControllerImpl;
+import game.player.Player;
 import utils.graphics.stagemanager.StageManager;
 
 /**
@@ -75,7 +76,11 @@ public abstract class MinigameModelAbstr<S, U> extends GameModelAbstr<S, U> impl
             if (players.size() > 1) {
                 final Map<U, Integer> sorted = new LinkedHashMap<>();
                 players.forEach(player -> {
-                    this.dice.rollDice();
+                    if (this.getStageManager().getGui().getMainStage().isPresent()) {
+                        this.dice.start((Player) player);
+                    } else {
+                        this.dice.rollDice();
+                    }
                     sorted.put(player, this.dice.getResult());
                 });
                 players = sorted.entrySet().stream().sorted(Map.Entry.comparingByValue(Comparator.reverseOrder()))
