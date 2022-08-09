@@ -27,4 +27,8 @@ public class PowerUpGameMapSquare extends GameMapSquareImpl {
         return false;
     }
 
+    @Override
+    public String toString() {
+        return "GameMapSquare [PowerUp]";
+    }
 }

@@ -42,4 +42,9 @@ public class StarsGameMapSquare extends GameMapSquareImpl {
     public final boolean isDamageGameMapSquare() {
         return false;
     }
+
+    @Override
+    public String toString() {
+        return "GameMapSquare [Star]";
+    }
 }

@@ -111,4 +111,11 @@ public class GameMapSquareImpl implements GameMapSquare {
     public boolean isDamageGameMapSquare() {
         return false;
     }
+
+    @Override
+    public String toString() {
+        return "GameMapSquare []";
+    }
+    
+    
 }

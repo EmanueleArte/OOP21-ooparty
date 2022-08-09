@@ -46,4 +46,9 @@ public class DamageGameMapSquare extends GameMapSquareImpl {
     public final boolean isDamageGameMapSquare() {
         return true;
     }
+
+    @Override
+    public String toString() {
+        return "GameMapSquare [Damage]";
+    }
 }

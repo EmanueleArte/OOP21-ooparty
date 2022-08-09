@@ -46,4 +46,9 @@ public class CoinsGameMapSquare extends GameMapSquareImpl {
     public final boolean isDamageGameMapSquare() {
         return false;
     }
+
+    @Override
+    public String toString() {
+        return "GameMapSquare [Coin]";
+    }
 }

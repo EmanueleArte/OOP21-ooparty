@@ -14,9 +14,7 @@ public class GameMapImpl implements GameMap {
      */
     public static final int COINS_TO_BUY_STAR = 50;
 
-    public GameMapImpl(final List<GameMapSquare> squares) {
-        //TODO generare mappa (qua viene passata ma non penso funzionerà così, bisognerà fare un metodo qua dentro che la crea)
-        //this.squares = squares;
+    public GameMapImpl() {
         GameBoardFactory f = new SimpleGameBoardFactory();
         this.squares = f.createGameBoard(10);
     }
