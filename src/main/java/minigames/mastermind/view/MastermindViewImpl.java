@@ -1,32 +1,30 @@
 package minigames.mastermind.view;
 
-import java.util.List;
-
-import minigames.common.view.MinigameViewAbstr;
-import utils.enums.ControllerType;
-import utils.graphics.StageManager;
+import minigames.mastermind.viewcontroller.MastermindViewControllerImpl;
+import utils.controller.GenericController;
+import utils.graphics.stagemanager.StageManager;
+import utils.view.GenericViewAbstr;
 
 /**
- * Extension of {@link minigames.common.view.MinigameViewAbstr}.
+ * Extension of {@link GenericViewAbstr}.
  * 
  * @param <S> the scenes of the stage
- * @param <U> the {@link game.player.Player}
  */
-public class MastermindViewImpl<S, U> extends MinigameViewAbstr<S, U> {
+public class MastermindViewImpl<S> extends GenericViewAbstr<S> {
 
     /**
      * Builds a new {@link MastermindViewImpl}.
      * 
-     * @param s the {@link utils.graphics.StageManager}
+     * @param s the {@link utils.graphics.stagemanager.StageManager}
      */
     public MastermindViewImpl(final StageManager<S> s) {
         super(s);
     }
 
     @Override
-    public final void startMinigame(final List<U> players) {
+    public final void createScene(final GenericController controller) {
         final String fxmlUrl = "minigames/mastermind.fxml";
-        this.getStageManager().addFXMLScene(fxmlUrl, ControllerType.MASTERMIND, players);
+        this.getStageManager().addFXMLScene(fxmlUrl, MastermindViewControllerImpl.class, controller);
     }
 
 }

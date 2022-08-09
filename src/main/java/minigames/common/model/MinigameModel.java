@@ -3,22 +3,15 @@ package minigames.common.model;
 import java.util.List;
 import java.util.Map;
 
-import utils.graphics.StageManager;
+import game.common.model.GameModel;
 
 /**
  * This interface models a minigame model.
  * 
  * @param <S> the scenes of the stage
- * @param <U> the {@link game.player.Player}
+ * @param <U> the players
  */
-public interface MinigameModel<S, U> {
-
-    /**
-     * This method runs the minigame.
-     * 
-     * @return true if there is another player that has to play
-     */
-    boolean runGame();
+public interface MinigameModel<S, U> extends GameModel<S, U> {
 
     /**
      * This method returns the results of the minigame that are necessary for points
@@ -38,25 +31,11 @@ public interface MinigameModel<S, U> {
     void scoreMapper(U player, Integer score);
 
     /**
-     * Getter for the {@link StageManager}.
+     * Getter for the score.
      * 
-     * @return the stage manager
+     * @return the score of a player
      */
-    StageManager<S> getStageManager();
-
-    /**
-     * Getter for the list of {@link game.player.Player}.
-     * 
-     * @return the list of players
-     */
-    List<U> getPlayers();
-
-    /**
-     * Getter for the current player.
-     * 
-     * @return the current player
-     */
-    U getCurrPlayer();
+    int getScore();
 
     /**
      * Getter for playersClassification.
@@ -64,13 +43,5 @@ public interface MinigameModel<S, U> {
      * @return a map with players as keys and their score as values
      */
     Map<U, Integer> getPlayersClassification();
-
-    /**
-     * This method sets the map of players associated to their scores.
-     * 
-     * @param playersClassification a map with players as keys and their score as
-     *                              values
-     */
-    void setPlayersClassification(Map<U, Integer> playersClassification);
 
 }
