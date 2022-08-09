@@ -4,19 +4,21 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
-import game.dice.controller.DiceControllerImpl;
-import game.dice.view.DiceViewImpl;
 import game.gamehandler.controller.GameHandlerController;
+import game.map.GameMap;
+import game.map.GameMapImpl;
 import game.player.Player;
 import javafx.animation.FadeTransition;
 import javafx.animation.TranslateTransition;
 import javafx.fxml.FXML;
+import javafx.geometry.HPos;
+import javafx.geometry.Pos;
+import javafx.geometry.VPos;
 import javafx.scene.Group;
-import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
@@ -28,11 +30,14 @@ import utils.controller.GenericController;
 import utils.enums.OrdinalNumber;
 import utils.enums.PlayerTurnProgress;
 import utils.enums.TurnProgress;
-import utils.graphics.stagemanager.StageManager;
-import utils.graphics.stagemanager.StageManagerImpl;
 import utils.GenericViewController;
 
 public class GameHandlerViewControllerImpl implements GenericViewController {
+
+    private static final int SQUARE_WIDTH = 75;
+    private static final int SQUARE_HEIGHT = 75;
+    private static final int MAP_WIDTH = 11;
+    private static final int MAP_HEIGHT = 8;
 
     private GameHandlerController controller;
 
@@ -44,6 +49,8 @@ public class GameHandlerViewControllerImpl implements GenericViewController {
     private Group avatars;
     @FXML
     private HBox rankPlayersContainer;
+    @FXML
+    private GridPane mapGrid;
 
     private final Map<Player, Group> playerToAvatar = new HashMap<Player, Group>();
 
@@ -81,6 +88,10 @@ public class GameHandlerViewControllerImpl implements GenericViewController {
         });
 
         initializeRank(players);
+
+        GameMap map = new GameMapImpl();
+        //System.out.println(map.getSquares());
+        initializeMap(map);
     }
 
     @FXML
@@ -147,7 +158,7 @@ public class GameHandlerViewControllerImpl implements GenericViewController {
 
             String cssVBoxLayout = "-fx-border-color: " + toHexString(p.getColor()) + ";\n"
                     + "-fx-border-insets: 5;\n"
-                    + "-fx-border-width: 3;\n";
+                    + "-fx-border-width: 2;\n";
 
             box.setStyle(cssVBoxLayout);
             box.getChildren().addAll(nicknameLabel, coinsLabel, starsLabel, hpLabel, rankLabel);
@@ -165,4 +176,51 @@ public class GameHandlerViewControllerImpl implements GenericViewController {
 
         return String.format("#%08X", (r + g + b + a));
       }
+
+    private void initializeMap(final GameMap map) {
+         map.getSquares().stream().map(s -> {
+            var label = new Label();
+            label.setText(map.getSquares().indexOf(s) + "");
+            label.setId(map.getSquares().indexOf(s) + "");
+
+            label.setPrefWidth(SQUARE_WIDTH);
+            label.setPrefHeight(SQUARE_HEIGHT);
+            label.setAlignment(Pos.CENTER);
+
+            String cssLabelLayout = "-fx-border-color: black;\n"
+                    + "-fx-border-insets: 2;\n"
+                    + "-fx-border-width: 1;\n"
+                    + "-fx-margin: 2px;\n";
+            label.setStyle(cssLabelLayout);
+
+            return label;
+        }).forEach(l -> {
+            mapGrid.getChildren().add(l);
+            var index = Integer.parseInt(l.getId());
+            var row = 0;
+            var col = 0;
+            if (index < MAP_WIDTH) {
+                row = 0;
+                col = index;
+            } else if (index < MAP_WIDTH + MAP_HEIGHT - 1) {
+                row = index - MAP_WIDTH + 1;
+                col = MAP_WIDTH - 1;
+            } else if (index < 2 * MAP_WIDTH + MAP_HEIGHT - 2) {
+                row = MAP_HEIGHT - 1;
+                col = MAP_WIDTH - index + 16;
+            } else {
+                row = MAP_HEIGHT - index + 26;
+                col = 0;
+            }
+
+            if (row == 0 && col == 0) {
+                l.setText("Start");
+            }
+
+            GridPane.setRowIndex(l, row);
+            GridPane.setColumnIndex(l, col);
+            GridPane.setHalignment(l, HPos.CENTER);
+            GridPane.setValignment(l, VPos.CENTER);
+        });
+    }
 }
