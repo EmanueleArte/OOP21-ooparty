@@ -5,14 +5,21 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import game.dice.controller.DiceControllerImpl;
+import game.dice.view.DiceViewImpl;
 import game.gamehandler.controller.GameHandlerController;
 import game.player.Player;
 import javafx.animation.FadeTransition;
 import javafx.animation.TranslateTransition;
 import javafx.fxml.FXML;
 import javafx.scene.Group;
+import javafx.scene.Scene;
+import javafx.scene.control.Label;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Polygon;
 import javafx.scene.text.Text;
@@ -20,6 +27,8 @@ import javafx.util.Duration;
 import utils.controller.GenericController;
 import utils.enums.PlayerTurnProgress;
 import utils.enums.TurnProgress;
+import utils.graphics.stagemanager.StageManager;
+import utils.graphics.stagemanager.StageManagerImpl;
 import utils.GenericViewController;
 
 public class GameHandlerViewControllerImpl implements GenericViewController {
@@ -32,6 +41,8 @@ public class GameHandlerViewControllerImpl implements GenericViewController {
     private Text bannerText;
     @FXML
     private Group avatars;
+    @FXML
+    private HBox rankPlayersContainer;
 
     private final Map<Player, Group> playerToAvatar = new HashMap<Player, Group>();
 
@@ -67,6 +78,8 @@ public class GameHandlerViewControllerImpl implements GenericViewController {
                 a.setVisible(false);
             }
         });
+
+        initializeRank(players);
     }
 
     @FXML
@@ -116,4 +129,40 @@ public class GameHandlerViewControllerImpl implements GenericViewController {
         transition.setByX(this.playerToAvatar.get(p).getLayoutX() + movement * 10);
         transition.play();
     }
+
+    public void rollDice() {
+        System.out.println("Dado tirato");
+    }
+
+    private void initializeRank(final List<Player> players) {
+        System.out.println("init rank");
+        players.forEach(p -> {
+            VBox box = new VBox();
+            Label nicknameLabel = new Label(p.getNickname());
+            Label coinsLabel = new Label("Coins: " + p.getCoinsCount());
+            Label starsLabel = new Label("Stars: " + p.getStarsCount());
+            Label hpLabel = new Label("Hp: " + p.getLifePoints());
+            Label rankLabel = new Label("1st");
+            System.out.println(p.getColor());
+
+            String cssVBoxLayout = "-fx-border-color: " + toHexString(p.getColor()) + ";\n"
+                    + "-fx-border-insets: 5;\n"
+                    + "-fx-border-width: 3;\n";
+
+            box.setStyle(cssVBoxLayout);
+            box.getChildren().addAll(nicknameLabel, coinsLabel, starsLabel, hpLabel, rankLabel);
+            rankPlayersContainer.getChildren().add(box);
+        });
+
+        rankPlayersContainer.setSpacing(20);
+    }
+
+    private static String toHexString(final Color color) {
+        int r = ((int) Math.round(color.getRed()     * 255)) << 24;
+        int g = ((int) Math.round(color.getGreen()   * 255)) << 16;
+        int b = ((int) Math.round(color.getBlue()    * 255)) << 8;
+        int a = ((int) Math.round(color.getOpacity() * 255));
+
+        return String.format("#%08X", (r + g + b + a));
+      }
 }
