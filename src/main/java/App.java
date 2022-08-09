@@ -18,7 +18,7 @@ public final class App {
         stageManager.run();
         final MenuController mainMenu = new MainMenuControllerImpl(stageManager);
         mainMenu.createMenu();
-        final GameMap gameMap = new GameMapImpl(null);
+        final GameMap gameMap = new GameMapImpl();
 
         /*
          * GameHandlerModel game = new GameHandlerModelImpl(stageManager, List.of(new

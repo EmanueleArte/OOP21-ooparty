@@ -16,7 +16,7 @@ public class GameMapImpl implements GameMap {
 
     public GameMapImpl() {
         GameBoardFactory f = new SimpleGameBoardFactory();
-        this.squares = f.createGameBoard(10);
+        this.squares = f.createGameBoard();
     }
 
     @Override
