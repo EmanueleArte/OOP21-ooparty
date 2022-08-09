@@ -25,6 +25,7 @@ import javafx.scene.shape.Polygon;
 import javafx.scene.text.Text;
 import javafx.util.Duration;
 import utils.controller.GenericController;
+import utils.enums.OrdinalNumber;
 import utils.enums.PlayerTurnProgress;
 import utils.enums.TurnProgress;
 import utils.graphics.stagemanager.StageManager;
@@ -142,8 +143,7 @@ public class GameHandlerViewControllerImpl implements GenericViewController {
             Label coinsLabel = new Label("Coins: " + p.getCoinsCount());
             Label starsLabel = new Label("Stars: " + p.getStarsCount());
             Label hpLabel = new Label("Hp: " + p.getLifePoints());
-            Label rankLabel = new Label("1st");
-            System.out.println(p.getColor());
+            Label rankLabel = new Label(OrdinalNumber.values()[players.indexOf(p)].getTextFormat());
 
             String cssVBoxLayout = "-fx-border-color: " + toHexString(p.getColor()) + ";\n"
                     + "-fx-border-insets: 5;\n"
