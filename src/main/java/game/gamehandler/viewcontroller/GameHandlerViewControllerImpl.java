@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
+
 import game.gamehandler.controller.GameHandlerController;
 import game.map.GameMap;
 import game.map.GameMapImpl;
@@ -12,6 +14,7 @@ import javafx.animation.FadeTransition;
 import javafx.animation.TranslateTransition;
 import javafx.fxml.FXML;
 import javafx.geometry.HPos;
+import javafx.geometry.Point2D;
 import javafx.geometry.Pos;
 import javafx.geometry.VPos;
 import javafx.scene.Group;
@@ -20,6 +23,7 @@ import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
@@ -38,6 +42,9 @@ public class GameHandlerViewControllerImpl implements GenericViewController {
     private static final int SQUARE_HEIGHT = 75;
     private static final int MAP_WIDTH = 11;
     private static final int MAP_HEIGHT = 8;
+    private static final int PLAYER_X_START = -825;
+    private static final int PLAYER_Y_START = -600;
+
 
     private GameHandlerController controller;
 
@@ -51,6 +58,8 @@ public class GameHandlerViewControllerImpl implements GenericViewController {
     private HBox rankPlayersContainer;
     @FXML
     private GridPane mapGrid;
+    @FXML
+    private StackPane stackPaneContainer;
 
     private final Map<Player, Group> playerToAvatar = new HashMap<Player, Group>();
 
@@ -90,8 +99,23 @@ public class GameHandlerViewControllerImpl implements GenericViewController {
         initializeRank(players);
 
         GameMap map = new GameMapImpl();
-        //System.out.println(map.getSquares());
         initializeMap(map);
+
+        System.out.println(mapGrid.getLayoutX() + " " + mapGrid.getLayoutY());
+
+        List<Point2D> squarePositions = mapGrid.getChildren()
+                .stream()
+                .map(l -> new Point2D(
+                        mapGrid.getLayoutX() + GridPane.getRowIndex(l) * SQUARE_WIDTH,
+                        mapGrid.getLayoutY() + GridPane.getColumnIndex(l) * SQUARE_HEIGHT))
+                .collect(Collectors.toList());
+        System.out.println(squarePositions);
+
+        /*avatarsList.forEach(a -> {
+            a.setLayoutX(PLAYER_X_START);
+            a.setLayoutY(PLAYER_Y_START);
+        });*/
+        avatarsList.forEach(a -> System.out.println(a.isVisible() + ": " + a.getLayoutX() + " " + a.getLayoutY()));
     }
 
     @FXML
