@@ -2,6 +2,7 @@ package minigames.whoriskswins.controller;
 
 import java.util.List;
 
+import minigames.common.controller.MinigameGuideControllerImpl;
 import minigames.whoriskswins.model.WhoRisksWinsModel;
 import minigames.whoriskswins.model.WhoRisksWinsModelImpl;
 import minigames.whoriskswins.view.WhoRisksWinsGuideViewImpl;
@@ -85,7 +86,7 @@ public class WhoRisksWinsControllerImpl extends GenericControllerAbstr implement
     @Override
     public void openGame() {
         final GenericView<?> wrwGuideView = new WhoRisksWinsGuideViewImpl<>(this.getStageManager());
-        final GenericController controller = new WhoRisksWinsGuideControllerImpl(this.getStageManager(), this);
+        final GenericController controller = new MinigameGuideControllerImpl(this.getStageManager(), this);
         wrwGuideView.createScene(controller);
     }
 
