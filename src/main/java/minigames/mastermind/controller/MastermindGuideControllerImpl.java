@@ -16,7 +16,7 @@ public class MastermindGuideControllerImpl extends MinigameGuideControllerAbstr 
     @Override
     public <C> void setViewController(final C viewController) {
         if (viewController instanceof MastermindGuideViewControllerImpl) {
-            this.guideViewController = (MastermindGuideViewControllerImpl) viewController;
+            super.setViewController((MastermindGuideViewControllerImpl) viewController);
         } else {
             throw new IllegalArgumentException("The parameter must be an instance of MastermindGuideViewControllerImpl");
         }
