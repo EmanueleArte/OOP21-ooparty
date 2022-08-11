@@ -35,7 +35,7 @@
                                     <Font size="36.0" />
                                  </font>
                               </Label>
-                              <TextArea fx:id="rulesTxtArea" editable="false" focusTraversable="false" prefHeight="403.0" prefWidth="500.0" text="In Risk and Win the player has to stop the cursor nearest as he can to the bar. The precisest player wins." wrapText="true">
+                              <TextArea fx:id="rulesTxtArea" editable="false" focusTraversable="false" prefHeight="403.0" prefWidth="500.0" text="In Who Risks Win the player has to stop the moving rectangle nearest as he can to the player figure. The precisest player wins." wrapText="true">
                                  <font>
                                     <Font size="18.0" />
                                  </font>
@@ -49,7 +49,7 @@
                                     <Font size="36.0" />
                                  </font>
                               </Label>
-                              <TextArea fx:id="htpTxtArea" editable="false" focusTraversable="false" prefHeight="403.0" prefWidth="496.0" text="The player has to press the key corresponding to him." translateX="2.0" wrapText="true">
+                              <TextArea fx:id="htpTxtArea" editable="false" focusTraversable="false" prefHeight="403.0" prefWidth="496.0" text="The player has to press Enter to make the game starts. Then, once the rectangle starts moving, the player has to press Enter again to make the rectangle stops." translateX="2.0" wrapText="true">
                                  <font>
                                     <Font size="18.0" />
                                  </font>
