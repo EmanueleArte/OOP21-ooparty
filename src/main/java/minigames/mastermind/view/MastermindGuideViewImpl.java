@@ -1,7 +1,6 @@
 package minigames.mastermind.view;
 
-import minigames.mastermind.viewcontroller.MastermindGuideViewControllerImpl;
-import minigames.mastermind.viewcontroller.MastermindViewControllerImpl;
+import minigames.common.viewcontroller.MinigameGuideViewControllerImpl;
 import utils.controller.GenericController;
 import utils.graphics.stagemanager.StageManager;
 import utils.view.GenericViewAbstr;
@@ -25,7 +24,7 @@ public class MastermindGuideViewImpl<S> extends GenericViewAbstr<S> {
     @Override
     public void createScene(final GenericController controller) {
         final String fxmlUrl = "minigames/mastermind_guide.fxml";
-        this.getStageManager().addFXMLScene(fxmlUrl, MastermindGuideViewControllerImpl.class, controller);
+        this.getStageManager().addFXMLScene(fxmlUrl, MinigameGuideViewControllerImpl.class, controller);
     }
 
 }

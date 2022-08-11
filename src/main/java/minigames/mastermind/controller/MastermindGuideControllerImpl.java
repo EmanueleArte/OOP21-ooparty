@@ -1,7 +1,7 @@
 package minigames.mastermind.controller;
 
 import minigames.common.controller.MinigameGuideControllerAbstr;
-import minigames.mastermind.viewcontroller.MastermindGuideViewControllerImpl;
+import minigames.common.viewcontroller.MinigameGuideViewControllerImpl;
 import utils.graphics.stagemanager.StageManager;
 
 public class MastermindGuideControllerImpl extends MinigameGuideControllerAbstr {
@@ -15,10 +15,10 @@ public class MastermindGuideControllerImpl extends MinigameGuideControllerAbstr 
 
     @Override
     public <C> void setViewController(final C viewController) {
-        if (viewController instanceof MastermindGuideViewControllerImpl) {
-            super.setViewController((MastermindGuideViewControllerImpl) viewController);
+        if (viewController instanceof MinigameGuideViewControllerImpl) {
+            super.setViewController((MinigameGuideViewControllerImpl) viewController);
         } else {
-            throw new IllegalArgumentException("The parameter must be an instance of MastermindGuideViewControllerImpl");
+            throw new IllegalArgumentException("The parameter must be an instance of MinigameGuideViewControllerImpl");
         }
     }
 
