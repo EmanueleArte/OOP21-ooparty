@@ -4,9 +4,11 @@ import java.util.List;
 
 import minigames.whoriskswins.model.WhoRisksWinsModel;
 import minigames.whoriskswins.model.WhoRisksWinsModelImpl;
+import minigames.whoriskswins.view.WhoRisksWinsGuideViewImpl;
 import minigames.whoriskswins.view.WhoRisksWinsViewImpl;
 import minigames.whoriskswins.viewcontroller.WhoRisksWinsViewController;
 import utils.GenericViewController;
+import utils.controller.GenericController;
 import utils.controller.GenericControllerAbstr;
 import utils.graphics.stagemanager.StageManager;
 import utils.view.GenericView;
@@ -82,8 +84,9 @@ public class WhoRisksWinsControllerImpl extends GenericControllerAbstr implement
 
     @Override
     public void openGame() {
-        // TODO Auto-generated method stub
-        
+        final GenericView<?> wrwGuideView = new WhoRisksWinsGuideViewImpl<>(this.getStageManager());
+        final GenericController controller = new WhoRisksWinsGuideControllerImpl(this.getStageManager(), this);
+        wrwGuideView.createScene(controller);
     }
 
 }
