@@ -80,4 +80,10 @@ public class WhoRisksWinsControllerImpl extends GenericControllerAbstr implement
         return this.wrwModel.getBlockFallingSpeed();
     }
 
+    @Override
+    public void openGame() {
+        // TODO Auto-generated method stub
+        
+    }
+
 }
