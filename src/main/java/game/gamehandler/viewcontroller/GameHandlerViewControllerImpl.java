@@ -5,7 +5,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
-
 import game.gamehandler.controller.GameHandlerController;
 import game.map.GameMap;
 import game.map.GameMapImpl;
@@ -101,15 +100,13 @@ public class GameHandlerViewControllerImpl implements GenericViewController {
         GameMap map = new GameMapImpl();
         initializeMap(map);
 
-        System.out.println(mapGrid.getLayoutX() + " " + mapGrid.getLayoutY());
-
-        List<Point2D> squarePositions = mapGrid.getChildren()
+        final List<Point2D> squarePositions = mapGrid.getChildren()
                 .stream()
+                .filter(l -> l instanceof Label)
                 .map(l -> new Point2D(
                         mapGrid.getLayoutX() + GridPane.getRowIndex(l) * SQUARE_WIDTH,
                         mapGrid.getLayoutY() + GridPane.getColumnIndex(l) * SQUARE_HEIGHT))
                 .collect(Collectors.toList());
-        System.out.println(squarePositions);
 
         /*avatarsList.forEach(a -> {
             a.setLayoutX(PLAYER_X_START);
@@ -167,7 +164,7 @@ public class GameHandlerViewControllerImpl implements GenericViewController {
     }
 
     public void rollDice() {
-        System.out.println("Dado tirato");
+
     }
 
     private void initializeRank(final List<Player> players) {
@@ -183,8 +180,10 @@ public class GameHandlerViewControllerImpl implements GenericViewController {
             String cssVBoxLayout = "-fx-border-color: " + toHexString(p.getColor()) + ";\n"
                     + "-fx-border-insets: 5;\n"
                     + "-fx-border-width: 2;\n";
-
             box.setStyle(cssVBoxLayout);
+
+            box.setPrefWidth(250);
+
             box.getChildren().addAll(nicknameLabel, coinsLabel, starsLabel, hpLabel, rankLabel);
             rankPlayersContainer.getChildren().add(box);
         });
