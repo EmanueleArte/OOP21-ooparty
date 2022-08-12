@@ -5,7 +5,7 @@ import java.util.List;
 import game.map.GameMapSquare;
 
 /**
- * 
+ * An interface modeling a factory for the board game.
  */
 public interface GameBoardFactory {
 	
