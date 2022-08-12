@@ -6,15 +6,12 @@ import minigames.common.controller.MinigameGuideControllerImpl;
 import minigames.common.viewcontroller.MinigameGuideViewControllerImpl;
 import minigames.mastermind.model.MastermindModel;
 import minigames.mastermind.model.MastermindModelImpl;
-import minigames.mastermind.view.MastermindGuideViewImpl;
-import minigames.mastermind.view.MastermindViewImpl;
 import minigames.mastermind.viewcontroller.MastermindViewController;
 import minigames.mastermind.viewcontroller.MastermindViewControllerImpl;
 import utils.GenericViewController;
 import utils.controller.GenericController;
 import utils.controller.GenericControllerAbstr;
 import utils.graphics.stagemanager.StageManager;
-import utils.view.GenericView;
 import utils.view.GenericViewUtils;
 
 /**

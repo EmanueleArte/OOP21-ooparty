@@ -6,15 +6,12 @@ import minigames.common.controller.MinigameGuideControllerImpl;
 import minigames.common.viewcontroller.MinigameGuideViewController;
 import minigames.whoriskswins.model.WhoRisksWinsModel;
 import minigames.whoriskswins.model.WhoRisksWinsModelImpl;
-import minigames.whoriskswins.view.WhoRisksWinsGuideViewImpl;
-import minigames.whoriskswins.view.WhoRisksWinsViewImpl;
 import minigames.whoriskswins.viewcontroller.WhoRisksWinsViewController;
 import minigames.whoriskswins.viewcontroller.WhoRisksWinsViewControllerImpl;
 import utils.GenericViewController;
 import utils.controller.GenericController;
 import utils.controller.GenericControllerAbstr;
 import utils.graphics.stagemanager.StageManager;
-import utils.view.GenericView;
 import utils.view.GenericViewUtils;
 
 /**
