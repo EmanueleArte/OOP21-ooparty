@@ -23,6 +23,11 @@ public interface MinigameController extends GenericController {
     void startGame();
 
     /**
+     * This method starts the minigame routine, opening a guide if exists.
+     */
+    void openGame();
+
+    /**
      * This method starts a new turn.
      * 
      * @return true if there is another player that has to play

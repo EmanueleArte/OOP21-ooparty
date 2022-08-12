@@ -2,14 +2,17 @@ package minigames.mastermind.controller;
 
 import java.util.List;
 
+import minigames.common.controller.MinigameGuideControllerImpl;
+import minigames.common.viewcontroller.MinigameGuideViewControllerImpl;
 import minigames.mastermind.model.MastermindModel;
 import minigames.mastermind.model.MastermindModelImpl;
-import minigames.mastermind.view.MastermindViewImpl;
 import minigames.mastermind.viewcontroller.MastermindViewController;
+import minigames.mastermind.viewcontroller.MastermindViewControllerImpl;
 import utils.GenericViewController;
+import utils.controller.GenericController;
 import utils.controller.GenericControllerAbstr;
 import utils.graphics.stagemanager.StageManager;
-import utils.view.GenericView;
+import utils.view.GenericViewUtils;
 
 /**
  * Extension of {@link GenericControllerAbstr} and implementation of
@@ -54,8 +57,17 @@ public class MastermindControllerImpl extends GenericControllerAbstr implements 
 
     @Override
     public final void startGame() {
-        final GenericView<?> mastermindView = new MastermindViewImpl<>(this.getStageManager());
-        mastermindView.createScene(this);
+        //final GenericView<?> mastermindView = new MastermindViewImpl<>(this.getStageManager());
+        //mastermindView.createScene(this);
+        GenericViewUtils.createScene(this.getStageManager(), this, MastermindViewControllerImpl.class, "minigames/mastermind.fxml");
+    }
+
+    @Override
+    public void openGame() {
+        //final GenericView<?> mastermindGuideView = new MastermindGuideViewImpl<>(this.getStageManager());
+        final GenericController controller = new MinigameGuideControllerImpl(this.getStageManager(), this);
+        //mastermindGuideView.createScene(controller);
+        GenericViewUtils.createScene(this.getStageManager(), controller, MinigameGuideViewControllerImpl.class, "minigames/mastermind_guide.fxml");
     }
 
     @Override
