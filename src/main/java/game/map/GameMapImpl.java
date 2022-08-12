@@ -19,6 +19,10 @@ public class GameMapImpl implements GameMap {
         this.squares = f.createGameBoard();
     }
 
+    public GameMapImpl(final List<GameMapSquare> squares) {
+        this.squares = squares;
+    }
+
     @Override
     public final List<GameMapSquare> getSquares() {
         return List.copyOf(this.squares);
