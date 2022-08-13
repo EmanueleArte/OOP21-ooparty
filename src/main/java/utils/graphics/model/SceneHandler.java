@@ -2,7 +2,6 @@ package utils.graphics.model;
 
 import java.util.List;
 
-import javafx.scene.Scene;
 import minigames.common.controller.MinigameController;
 import utils.controller.GenericController;
 
@@ -14,14 +13,7 @@ import utils.controller.GenericController;
 public interface SceneHandler<S> {
 
     /**
-     * This method adds an scene loaded from an FXML file to the scenes list.
-     * 
-     * @param scene the scene to add to the list
-     */
-    void addFXMLScene(Scene scene);
-
-    /**
-     * This method adds an existing scene to the scenes list.
+     * This method adds a scene to the scenes list.
      * 
      * @param scene the scene to add
      */
