@@ -3,13 +3,12 @@ package menu.gamecreationmenu.controller;
 import menu.MenuController;
 import menu.gamecreationmenu.model.GameCreationMenuModel;
 import menu.gamecreationmenu.model.GameCreationMenuModelImpl;
-import menu.gamecreationmenu.view.GameCreationMenuViewImpl;
 import menu.gamecreationmenu.viewcontroller.GameCreationMenuViewController;
 import menu.gamecreationmenu.viewcontroller.GameCreationMenuViewControllerImpl;
 import utils.GenericViewController;
 import utils.controller.GenericControllerAbstr;
 import utils.graphics.controller.StageManager;
-import utils.view.GenericView;
+import utils.view.GenericViewUtils;
 
 /**
  * Extension of {@link GenericControllerAbstr} and implementation of
@@ -62,8 +61,7 @@ public class GameCreationMenuControllerImpl extends GenericControllerAbstr imple
 
     @Override
     public final void createMenu() {
-        final GenericView<?> menuView = new GameCreationMenuViewImpl<>(this.getStageManager());
-        menuView.createScene(this);
+        GenericViewUtils.createScene(this.getStageManager(), this, GameCreationMenuViewControllerImpl.class, "menu/creation_menu.fxml");
     }
 
     /**
