@@ -52,11 +52,7 @@ public class SceneHandlerImpl<S> implements SceneHandler<S> {
         if (this.scenes.isEmpty()) {
             return null;
         }
-        var poppedScene = this.scenes.remove(this.lastSceneIndex());
-        if (gui.getMainStage().isPresent()) {
-            gui.setScene((Scene) this.scenes.get(this.lastSceneIndex()));
-        }
-        return poppedScene;
+        return this.scenes.remove(this.lastSceneIndex());
     }
 
     @Override

@@ -30,7 +30,7 @@ public interface StageManager<S> {
     void addScene(S scene);
 
     /**
-     * This method pops a scene from the scene list.
+     * This method pops a scene from the scenes list.
      * 
      * @return the last scene added or null if the scenes list is empty
      */

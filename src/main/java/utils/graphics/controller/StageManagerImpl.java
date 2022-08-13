@@ -3,6 +3,7 @@ package utils.graphics.controller;
 import java.util.List;
 import java.util.Optional;
 
+import javafx.scene.Scene;
 import minigames.common.controller.MinigameController;
 import utils.controller.GenericController;
 import utils.graphics.model.SceneHandler;
@@ -48,7 +49,11 @@ public class StageManagerImpl<S> implements StageManager<S> {
 
     @Override
     public final S popScene() {
-        return this.sceneHandler.popScene();
+        var poppedScene = this.sceneHandler.popScene();
+        if (gui.getMainStage().isPresent()) {
+            gui.setScene((Scene) this.getScenes().get(this.sceneHandler.lastSceneIndex()));
+        }
+        return poppedScene;
     }
 
     @Override
@@ -58,7 +63,7 @@ public class StageManagerImpl<S> implements StageManager<S> {
 
     @Override
     public final List<S> getScenes() {
-        return this.scenes;
+        return this.sceneHandler.getScenes();
     }
 
     @Override
