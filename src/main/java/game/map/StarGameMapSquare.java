@@ -2,9 +2,9 @@ package game.map;
 
 import game.player.Player;
 
-public class StarsGameMapSquare extends GameMapSquareImpl {
+public class StarGameMapSquare extends GameMapSquareImpl {
 
-    public StarsGameMapSquare() {
+    public StarGameMapSquare() {
         super();
     }
 
