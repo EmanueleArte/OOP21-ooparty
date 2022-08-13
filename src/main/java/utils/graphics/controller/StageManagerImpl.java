@@ -6,18 +6,17 @@ import java.util.Optional;
 
 import minigames.common.controller.MinigameController;
 import utils.controller.GenericController;
+import utils.graphics.model.SceneHandler;
 import utils.graphics.model.SceneHandlerImpl;
 import utils.graphics.view.Gui;
 import utils.graphics.view.GuiImpl;
 
 /**
  * Implementation of {@link StageManager}.
- * 
- * @param <S> the scenes of the stage
  */
-public class StageManagerImpl<S> implements StageManager<S> {
+public class StageManagerImpl implements StageManager {
 
-    private final List<S> scenes;
+    private final SceneHandler<?> sceneHandler;
     private final Gui gui;
     private Optional<MinigameController> lastGameController;
 
@@ -27,7 +26,7 @@ public class StageManagerImpl<S> implements StageManager<S> {
      * @param title the title of the frame
      */
     public StageManagerImpl(final String title) {
-        this.scenes = new ArrayList<S>();
+        this.sceneHandler = new SceneHandlerImpl<>();
         this.gui = new GuiImpl(title);
         this.lastGameController = Optional.empty();
     }
@@ -36,17 +35,17 @@ public class StageManagerImpl<S> implements StageManager<S> {
     public final void addFXMLScene(final String fxmlUrl, final Class<?> viewControllerClass,
             final GenericController controller) {
         final var currScene = this.gui.loadScene(fxmlUrl, viewControllerClass, controller);
-        SceneHandlerImpl.addFXMLScene(this.scenes, currScene);
+        this.sceneHandler.addFXMLScene(currScene);
         this.lastGameController = Optional.ofNullable(SceneHandlerImpl.checkGameController(controller));
     }
 
     @Override
-    public final void addScene(final S scene) {
+    public final <S> void addScene(final S scene) {
         SceneHandlerImpl.addScene(this.scenes, scene);
     }
 
     @Override
-    public final S popScene() {
+    public final <S> S popScene() {
         return SceneHandlerImpl.popScene(this.scenes, this.gui);
     }
 
@@ -56,7 +55,7 @@ public class StageManagerImpl<S> implements StageManager<S> {
     }
 
     @Override
-    public final List<S> getScenes() {
+    public final <S> List<S> getScenes() {
         return this.scenes;
     }
 

@@ -28,7 +28,7 @@ public class SceneHandlerImpl<S> implements SceneHandler<S> {
 
     @Override
     @SuppressWarnings("unchecked")
-    public void addFXMLScene(final List<S> scenes, final Scene scene) throws IllegalArgumentException {
+    public final void addFXMLScene(final List<S> scenes, final Scene scene) throws IllegalArgumentException {
         S test = (S) new Scene(new Label(""));
         if (test instanceof Scene) {
             this.addScene(scenes, (S) scene);
@@ -38,7 +38,7 @@ public class SceneHandlerImpl<S> implements SceneHandler<S> {
     }
 
     @Override
-    public void addScene(final List<S> scenes, final S scene) {
+    public final void addScene(final List<S> scenes, final S scene) {
         Optional<S> s = Optional.ofNullable(scene);
         if (s.isPresent()) {
             scenes.add(scene);
@@ -46,7 +46,7 @@ public class SceneHandlerImpl<S> implements SceneHandler<S> {
     }
 
     @Override
-    public S popScene(final List<S> scenes, final Gui gui) {
+    public final S popScene(final List<S> scenes, final Gui gui) {
         if (scenes.isEmpty()) {
             return null;
         }
@@ -58,7 +58,7 @@ public class SceneHandlerImpl<S> implements SceneHandler<S> {
     }
 
     @Override
-    public int lastSceneIndex(final List<S> scenes) throws RuntimeException {
+    public final int lastSceneIndex(final List<S> scenes) throws RuntimeException {
         final int nScenes = scenes.size();
         if (nScenes == 0) {
             throw new RuntimeException("Scenes list is empty.");
@@ -67,7 +67,7 @@ public class SceneHandlerImpl<S> implements SceneHandler<S> {
     }
 
     @Override
-    public MinigameController checkGameController(final GenericController controller) {
+    public final MinigameController checkGameController(final GenericController controller) {
         if (controller instanceof MinigameController) {
             return (MinigameController) controller;
         }

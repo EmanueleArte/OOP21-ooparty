@@ -8,10 +8,8 @@ import utils.graphics.view.Gui;
 
 /**
  * This interface models a stage manager.
- * 
- * @param <S> the scenes of the stage
  */
-public interface StageManager<S> {
+public interface StageManager {
 
     /**
      * This method adds an FXML scene to the scene list.
@@ -25,16 +23,17 @@ public interface StageManager<S> {
     /**
      * This method adds an existing scene.
      * 
+     * @param <S>   the scenes of the stage
      * @param scene the scene to add
      */
-    void addScene(S scene);
+    <S> void addScene(S scene);
 
     /**
      * This method pops a scene from the scene list.
      * 
      * @return the last scene added or null if the scenes list is empty
      */
-    S popScene();
+    <S> S popScene();
 
     /**
      * This method starts the javafx gui.
@@ -45,9 +44,10 @@ public interface StageManager<S> {
     /**
      * This method returns the list of all scenes.
      * 
+     * @param <S> the scenes of the stage
      * @return the scenes of the stage
      */
-    List<S> getScenes();
+    <S> List<S> getScenes();
 
     /**
      * This method returns the last game controller used.
