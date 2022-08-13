@@ -2,8 +2,8 @@ package game.gamehandler.view;
 
 import game.gamehandler.viewcontroller.GameHandlerViewControllerImpl;
 import utils.controller.GenericController;
+import utils.graphics.controller.StageManager;
 import utils.view.GenericViewAbstr;
-import utils.graphics.stagemanager.StageManager;
 
 public class GameHandlerViewImpl<S> extends GenericViewAbstr<S> {
 

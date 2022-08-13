@@ -10,7 +10,7 @@ import game.dice.viewcontroller.DiceViewControllerImpl;
 import game.player.Player;
 import utils.GenericViewController;
 import utils.controller.GenericControllerAbstr;
-import utils.graphics.stagemanager.StageManager;
+import utils.graphics.controller.StageManager;
 import utils.view.GenericView;
 
 public class DiceControllerImpl extends GenericControllerAbstr implements DiceController {

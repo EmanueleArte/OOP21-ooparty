@@ -7,13 +7,14 @@ import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import minigames.common.controller.MinigameController;
 import utils.controller.GenericController;
+import utils.graphics.view.Gui;
 
 /**
  * This static class models the actions that handle the scenes.
  */
-public final class SceneHandler {
+public final class SceneHandlerS {
 
-    private SceneHandler() {
+    private SceneHandlerS() {
     }
 
     /**
@@ -27,7 +28,7 @@ public final class SceneHandler {
     public static <S> void addFXMLScene(final List<S> scenes, final Scene scene) throws IllegalArgumentException {
         S test = (S) new Scene(new Label(""));
         if (test instanceof Scene) {
-            SceneHandler.addScene(scenes, (S) scene);
+            SceneHandlerS.addScene(scenes, (S) scene);
         } else {
             throw new IllegalArgumentException("The elements of scenes list are not of type Scene.");
         }
@@ -58,9 +59,9 @@ public final class SceneHandler {
         if (scenes.isEmpty()) {
             return null;
         }
-        var poppedScene = scenes.remove(SceneHandler.lastSceneIndex(scenes));
+        var poppedScene = scenes.remove(SceneHandlerS.lastSceneIndex(scenes));
         if (gui.getMainStage().isPresent()) {
-            gui.setScene((Scene) scenes.get(SceneHandler.lastSceneIndex(scenes)));
+            gui.setScene((Scene) scenes.get(SceneHandlerS.lastSceneIndex(scenes)));
         }
         return poppedScene;
     }

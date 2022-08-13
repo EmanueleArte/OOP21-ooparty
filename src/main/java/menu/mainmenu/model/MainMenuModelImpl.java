@@ -2,7 +2,7 @@ package menu.mainmenu.model;
 
 import menu.MenuController;
 import menu.gamecreationmenu.controller.GameCreationMenuControllerImpl;
-import utils.graphics.stagemanager.StageManager;
+import utils.graphics.controller.StageManager;
 
 /**
  * Implementation of {@link MainMenuModel}.

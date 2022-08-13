@@ -2,7 +2,7 @@ package menu.gamecreationmenu.view;
 
 import menu.gamecreationmenu.viewcontroller.GameCreationMenuViewControllerImpl;
 import utils.controller.GenericController;
-import utils.graphics.stagemanager.StageManager;
+import utils.graphics.controller.StageManager;
 import utils.view.GenericViewAbstr;
 
 /**
@@ -15,7 +15,7 @@ public class GameCreationMenuViewImpl<S> extends GenericViewAbstr<S> {
     /**
      * Builds a new {@link GameCreationMenuViewImpl}.
      * 
-     * @param s the {@link utils.graphics.stagemanager.StageManager}
+     * @param s the {@link utils.graphics.controller.StageManager}
      */
     public GameCreationMenuViewImpl(final StageManager<S> s) {
         super(s);

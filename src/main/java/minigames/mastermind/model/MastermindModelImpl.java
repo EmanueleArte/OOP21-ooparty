@@ -6,7 +6,7 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import minigames.common.model.MinigameModelAbstr;
-import utils.graphics.stagemanager.StageManager;
+import utils.graphics.controller.StageManager;
 
 /**
  * Implementation of {@link MastermindModel} and extension of

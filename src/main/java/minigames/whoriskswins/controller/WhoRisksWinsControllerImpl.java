@@ -11,7 +11,7 @@ import minigames.whoriskswins.viewcontroller.WhoRisksWinsViewControllerImpl;
 import utils.GenericViewController;
 import utils.controller.GenericController;
 import utils.controller.GenericControllerAbstr;
-import utils.graphics.stagemanager.StageManager;
+import utils.graphics.controller.StageManager;
 import utils.view.GenericViewUtils;
 
 /**

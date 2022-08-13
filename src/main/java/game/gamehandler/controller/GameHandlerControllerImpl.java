@@ -10,8 +10,8 @@ import game.gamehandler.viewcontroller.GameHandlerViewControllerImpl;
 import game.player.Player;
 import utils.controller.GenericController;
 import utils.controller.GenericControllerAbstr;
+import utils.graphics.controller.StageManager;
 import utils.GenericViewController;
-import utils.graphics.stagemanager.StageManager;
 import utils.view.GenericView;
 
 public class GameHandlerControllerImpl<S> extends GenericControllerAbstr

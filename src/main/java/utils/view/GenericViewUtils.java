@@ -1,7 +1,7 @@
 package utils.view;
 
 import utils.controller.GenericController;
-import utils.graphics.stagemanager.StageManager;
+import utils.graphics.controller.StageManager;
 
 /**
  * The class {@link GenericViewUtils} contains a method useful to create a scene

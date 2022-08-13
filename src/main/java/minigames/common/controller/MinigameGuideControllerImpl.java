@@ -3,7 +3,7 @@ package minigames.common.controller;
 import minigames.common.viewcontroller.MinigameGuideViewControllerImpl;
 import utils.GenericViewController;
 import utils.controller.GenericControllerAbstr;
-import utils.graphics.stagemanager.StageManager;
+import utils.graphics.controller.StageManager;
 
 public class MinigameGuideControllerImpl extends GenericControllerAbstr implements MinigameGuideController {
 

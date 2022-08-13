@@ -2,7 +2,7 @@ package menu.pausemenu.view;
 
 import menu.pausemenu.viewcontroller.PauseMenuViewControllerImpl;
 import utils.controller.GenericController;
-import utils.graphics.stagemanager.StageManager;
+import utils.graphics.controller.StageManager;
 import utils.view.GenericViewAbstr;
 
 /**

@@ -1,6 +1,6 @@
 package menu.pausemenu.model;
 
-import utils.graphics.stagemanager.StageManager;
+import utils.graphics.controller.StageManager;
 
 /**
  * Implementation of {@link PauseMenuModel}.

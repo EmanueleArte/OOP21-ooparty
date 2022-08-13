@@ -3,8 +3,8 @@ import game.map.GameMapImpl;
 import javafx.scene.Scene;
 import menu.MenuController;
 import menu.mainmenu.controller.MainMenuControllerImpl;
-import utils.graphics.stagemanager.StageManager;
-import utils.graphics.stagemanager.StageManagerImpl;
+import utils.graphics.controller.StageManager;
+import utils.graphics.controller.StageManagerImpl;
 
 public final class App {
 

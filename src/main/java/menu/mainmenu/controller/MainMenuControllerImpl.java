@@ -7,7 +7,7 @@ import menu.mainmenu.view.MainMenuViewImpl;
 import menu.mainmenu.viewcontroller.MainMenuViewControllerImpl;
 import utils.GenericViewController;
 import utils.controller.GenericControllerAbstr;
-import utils.graphics.stagemanager.StageManager;
+import utils.graphics.controller.StageManager;
 import utils.view.GenericView;
 
 /**

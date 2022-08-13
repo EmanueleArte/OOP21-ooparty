@@ -1,7 +1,7 @@
 package utils.view;
 
 import utils.controller.GenericController;
-import utils.graphics.stagemanager.StageManager;
+import utils.graphics.controller.StageManager;
 
 /**
  * Implementation of {@link GenericView}.
@@ -15,7 +15,7 @@ public abstract class GenericViewAbstr<S> implements GenericView<S> {
     /**
      * Builds a new {@link GenericViewAbstr}.
      * 
-     * @param s the {@link utils.graphics.stagemanager.StageManager}
+     * @param s the {@link utils.graphics.controller.StageManager}
      */
     public GenericViewAbstr(final StageManager<S> s) {
         super();

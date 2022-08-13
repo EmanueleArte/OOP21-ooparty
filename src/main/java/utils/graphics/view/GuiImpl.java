@@ -1,4 +1,4 @@
-package utils.graphics;
+package utils.graphics.view;
 
 import java.awt.Dimension;
 import java.io.IOException;

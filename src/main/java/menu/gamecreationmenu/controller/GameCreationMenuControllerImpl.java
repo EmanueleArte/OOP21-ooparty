@@ -8,7 +8,7 @@ import menu.gamecreationmenu.viewcontroller.GameCreationMenuViewController;
 import menu.gamecreationmenu.viewcontroller.GameCreationMenuViewControllerImpl;
 import utils.GenericViewController;
 import utils.controller.GenericControllerAbstr;
-import utils.graphics.stagemanager.StageManager;
+import utils.graphics.controller.StageManager;
 import utils.view.GenericView;
 
 /**

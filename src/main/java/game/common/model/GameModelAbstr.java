@@ -3,7 +3,7 @@ package game.common.model;
 import java.util.List;
 import java.util.ListIterator;
 
-import utils.graphics.stagemanager.StageManager;
+import utils.graphics.controller.StageManager;
 
 /**
  * Implementation of {@link GameModel}.

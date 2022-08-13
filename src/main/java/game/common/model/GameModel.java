@@ -2,7 +2,7 @@ package game.common.model;
 
 import java.util.List;
 
-import utils.graphics.stagemanager.StageManager;
+import utils.graphics.controller.StageManager;
 
 /**
  * This interface models the game model.

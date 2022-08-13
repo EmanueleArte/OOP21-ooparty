@@ -10,7 +10,7 @@ import game.common.model.GameModelAbstr;
 import game.dice.controller.DiceController;
 import game.dice.controller.DiceControllerImpl;
 import game.player.Player;
-import utils.graphics.stagemanager.StageManager;
+import utils.graphics.controller.StageManager;
 
 /**
  * Implementation of {@link MinigameModel}.

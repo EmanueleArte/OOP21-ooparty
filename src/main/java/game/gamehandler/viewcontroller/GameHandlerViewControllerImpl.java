@@ -28,8 +28,8 @@ import utils.controller.GenericController;
 import utils.enums.OrdinalNumber;
 import utils.enums.PlayerTurnProgress;
 import utils.enums.TurnProgress;
-import utils.graphics.stagemanager.StageManager;
-import utils.graphics.stagemanager.StageManagerImpl;
+import utils.graphics.controller.StageManager;
+import utils.graphics.controller.StageManagerImpl;
 import utils.GenericViewController;
 
 public class GameHandlerViewControllerImpl implements GenericViewController {

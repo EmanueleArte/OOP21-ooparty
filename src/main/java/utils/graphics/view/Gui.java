@@ -1,4 +1,4 @@
-package utils.graphics;
+package utils.graphics.view;
 
 import java.util.Optional;
 

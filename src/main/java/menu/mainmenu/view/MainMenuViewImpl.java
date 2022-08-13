@@ -2,7 +2,7 @@ package menu.mainmenu.view;
 
 import menu.mainmenu.viewcontroller.MainMenuViewControllerImpl;
 import utils.controller.GenericController;
-import utils.graphics.stagemanager.StageManager;
+import utils.graphics.controller.StageManager;
 import utils.view.GenericViewAbstr;
 
 /**

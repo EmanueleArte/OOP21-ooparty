@@ -15,7 +15,7 @@ import minigames.whoriskswins.controller.WhoRisksWinsControllerImpl;
 import utils.enums.PlayerTurnProgress;
 import utils.enums.TurnProgress;
 import utils.factories.MinigameFactoryImpl;
-import utils.graphics.stagemanager.StageManager;
+import utils.graphics.controller.StageManager;
 
 public class GameHandlerModelImpl<S> implements GameHandlerModel {
 

@@ -1,4 +1,4 @@
-package utils.graphics.stagemanager;
+package utils.graphics.controller;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -6,9 +6,9 @@ import java.util.Optional;
 
 import minigames.common.controller.MinigameController;
 import utils.controller.GenericController;
-import utils.graphics.Gui;
-import utils.graphics.GuiImpl;
-import utils.graphics.SceneHandler;
+import utils.graphics.SceneHandlerS;
+import utils.graphics.view.Gui;
+import utils.graphics.view.GuiImpl;
 
 /**
  * Implementation of {@link StageManager}.
@@ -36,18 +36,18 @@ public class StageManagerImpl<S> implements StageManager<S> {
     public final void addFXMLScene(final String fxmlUrl, final Class<?> viewControllerClass,
             final GenericController controller) {
         final var currScene = this.gui.loadScene(fxmlUrl, viewControllerClass, controller);
-        SceneHandler.addFXMLScene(this.scenes, currScene);
-        this.lastGameController = Optional.ofNullable(SceneHandler.checkGameController(controller));
+        SceneHandlerS.addFXMLScene(this.scenes, currScene);
+        this.lastGameController = Optional.ofNullable(SceneHandlerS.checkGameController(controller));
     }
 
     @Override
     public final void addScene(final S scene) {
-        SceneHandler.addScene(this.scenes, scene);
+        SceneHandlerS.addScene(this.scenes, scene);
     }
 
     @Override
     public final S popScene() {
-        return SceneHandler.popScene(this.scenes, this.gui);
+        return SceneHandlerS.popScene(this.scenes, this.gui);
     }
 
     @Override

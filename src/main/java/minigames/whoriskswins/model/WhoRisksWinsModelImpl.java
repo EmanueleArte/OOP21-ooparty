@@ -4,7 +4,7 @@ import java.util.List;
 import java.util.Random;
 
 import minigames.common.model.MinigameModelAbstr;
-import utils.graphics.stagemanager.StageManager;
+import utils.graphics.controller.StageManager;
 
 /**
  * Implementation of {@link WhoRisksWinsModel} and extension of

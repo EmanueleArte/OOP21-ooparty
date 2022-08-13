@@ -6,7 +6,7 @@ import java.util.Random;
 import minigames.common.controller.MinigameController;
 import minigames.mastermind.controller.MastermindControllerImpl;
 import minigames.whoriskswins.controller.WhoRisksWinsControllerImpl;
-import utils.graphics.stagemanager.StageManager;
+import utils.graphics.controller.StageManager;
 
 public class MinigameFactoryImpl<S, P> {
     private static final int MINIGAMES_NUMBER = 2;
