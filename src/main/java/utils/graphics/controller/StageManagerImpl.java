@@ -1,6 +1,5 @@
 package utils.graphics.controller;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -13,10 +12,12 @@ import utils.graphics.view.GuiImpl;
 
 /**
  * Implementation of {@link StageManager}.
+ * 
+ * @param <S> the scenes of the stage
  */
-public class StageManagerImpl implements StageManager {
+public class StageManagerImpl<S> implements StageManager<S> {
 
-    private final SceneHandler<?> sceneHandler;
+    private final SceneHandler<S> sceneHandler;
     private final Gui gui;
     private Optional<MinigameController> lastGameController;
 
@@ -36,17 +37,17 @@ public class StageManagerImpl implements StageManager {
             final GenericController controller) {
         final var currScene = this.gui.loadScene(fxmlUrl, viewControllerClass, controller);
         this.sceneHandler.addFXMLScene(currScene);
-        this.lastGameController = Optional.ofNullable(SceneHandlerImpl.checkGameController(controller));
+        this.lastGameController = Optional.ofNullable(this.sceneHandler.checkGameController(controller));
     }
 
     @Override
-    public final <S> void addScene(final S scene) {
-        SceneHandlerImpl.addScene(this.scenes, scene);
+    public final void addScene(final S scene) {
+        this.sceneHandler.addScene(scene);
     }
 
     @Override
-    public final <S> S popScene() {
-        return SceneHandlerImpl.popScene(this.scenes, this.gui);
+    public final S popScene() {
+        return this.sceneHandler.popScene();
     }
 
     @Override
@@ -55,7 +56,7 @@ public class StageManagerImpl implements StageManager {
     }
 
     @Override
-    public final <S> List<S> getScenes() {
+    public final List<S> getScenes() {
         return this.scenes;
     }
 

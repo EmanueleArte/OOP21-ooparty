@@ -8,7 +8,6 @@ import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import minigames.common.controller.MinigameController;
 import utils.controller.GenericController;
-import utils.graphics.view.Gui;
 
 /**
  * Implementation of {@link SceneHandler}.
@@ -28,17 +27,20 @@ public class SceneHandlerImpl<S> implements SceneHandler<S> {
 
     @Override
     @SuppressWarnings("unchecked")
-    public final void addFXMLScene(final List<S> scenes, final Scene scene) throws IllegalArgumentException {
-        S test = (S) new Scene(new Label(""));
+    public final void addFXMLScene(final Scene scene) throws IllegalArgumentException {
+        var test = (S) new Scene(new Label(""));
+        if (!this.scenes.isEmpty()) {
+            test = this.scenes.get(0);
+        }
         if (test instanceof Scene) {
-            this.addScene(scenes, (S) scene);
+            this.addScene((S) scene);
         } else {
             throw new IllegalArgumentException("The elements of scenes list are not of type Scene.");
         }
     }
 
     @Override
-    public final void addScene(final List<S> scenes, final S scene) {
+    public final void addScene(final S scene) {
         Optional<S> s = Optional.ofNullable(scene);
         if (s.isPresent()) {
             scenes.add(scene);
@@ -46,20 +48,20 @@ public class SceneHandlerImpl<S> implements SceneHandler<S> {
     }
 
     @Override
-    public final S popScene(final List<S> scenes, final Gui gui) {
-        if (scenes.isEmpty()) {
+    public final S popScene() {
+        if (this.scenes.isEmpty()) {
             return null;
         }
-        var poppedScene = scenes.remove(this.lastSceneIndex(scenes));
+        var poppedScene = this.scenes.remove(this.lastSceneIndex());
         if (gui.getMainStage().isPresent()) {
-            gui.setScene((Scene) scenes.get(this.lastSceneIndex(scenes)));
+            gui.setScene((Scene) this.scenes.get(this.lastSceneIndex()));
         }
         return poppedScene;
     }
 
     @Override
-    public final int lastSceneIndex(final List<S> scenes) throws RuntimeException {
-        final int nScenes = scenes.size();
+    public final int lastSceneIndex() throws RuntimeException {
+        final int nScenes = this.scenes.size();
         if (nScenes == 0) {
             throw new RuntimeException("Scenes list is empty.");
         }
