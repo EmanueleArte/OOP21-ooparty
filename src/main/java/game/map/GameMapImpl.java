@@ -41,6 +41,19 @@ public class GameMapImpl implements GameMap {
     @Override
     public final void inizializePlayers(final List<Player> players) {
         GameMapSquare firstSquare = this.getSquares().get(0);
-        players.forEach(p -> firstSquare.addPlayer(p));
+        players.forEach(p -> {
+            if (!this.isPlayerAlreadyInGameMap(p)) {
+                firstSquare.addPlayer(p);
+            }
+        });
+    }
+
+    private boolean isPlayerAlreadyInGameMap(final Player p) {
+        for (GameMapSquare b : this.squares) {
+            if (b.getPlayers().stream().anyMatch(o -> o.equals(p))) {
+                return true;
+            }
+        }
+        return false;
     }
 }

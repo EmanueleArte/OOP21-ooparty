@@ -69,12 +69,12 @@ public class PlayerImpl implements Player {
 
     @Override
     public final void earnCoins(final int n) {
-        this.coins = getCoinsCount() + n;
+        this.coins = this.getCoinsCount() + n;
     }
 
     @Override
     public final void loseCoins(final int n) {
-        this.coins = getCoinsCount() - n;
+        this.coins = this.getCoinsCount() - n;
         if (this.coins < 0) {
             this.coins = 0;
         }

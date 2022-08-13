@@ -2,14 +2,17 @@ package minigames.whoriskswins.controller;
 
 import java.util.List;
 
+import minigames.common.controller.MinigameGuideControllerImpl;
+import minigames.common.viewcontroller.MinigameGuideViewController;
 import minigames.whoriskswins.model.WhoRisksWinsModel;
 import minigames.whoriskswins.model.WhoRisksWinsModelImpl;
-import minigames.whoriskswins.view.WhoRisksWinsViewImpl;
 import minigames.whoriskswins.viewcontroller.WhoRisksWinsViewController;
+import minigames.whoriskswins.viewcontroller.WhoRisksWinsViewControllerImpl;
 import utils.GenericViewController;
+import utils.controller.GenericController;
 import utils.controller.GenericControllerAbstr;
 import utils.graphics.stagemanager.StageManager;
-import utils.view.GenericView;
+import utils.view.GenericViewUtils;
 
 /**
  * Extension of {@link GenericControllerAbstr} and implementation of
@@ -54,8 +57,9 @@ public class WhoRisksWinsControllerImpl extends GenericControllerAbstr implement
 
     @Override
     public final void startGame() {
-        final GenericView<?> wrwView = new WhoRisksWinsViewImpl<>(this.getStageManager());
-        wrwView.createScene(this);
+        //final GenericView<?> wrwView = new WhoRisksWinsViewImpl<>(this.getStageManager());
+        //wrwView.createScene(this);
+        GenericViewUtils.createScene(this.getStageManager(), this, WhoRisksWinsViewControllerImpl.class, "minigames/who_risks_wins.fxml");
     }
 
     @Override
@@ -78,6 +82,14 @@ public class WhoRisksWinsControllerImpl extends GenericControllerAbstr implement
     @Override
     public final int getFallingSpeed() {
         return this.wrwModel.getBlockFallingSpeed();
+    }
+
+    @Override
+    public void openGame() {
+        //final GenericView<?> wrwGuideView = new WhoRisksWinsGuideViewImpl<>(this.getStageManager());
+        final GenericController controller = new MinigameGuideControllerImpl(this.getStageManager(), this);
+        //wrwGuideView.createScene(controller);
+        GenericViewUtils.createScene(this.getStageManager(), controller, MinigameGuideViewController.class, "minigames/who_risks_wins_guide.fxml");
     }
 
 }
