@@ -62,11 +62,11 @@ public class TestGameMapSquares {
     public void testStarGameSquares() {
         this.gameMap.inizializePlayers(List.of(p1, p2));
         int dice = 9;
+        this.p1.goTo(this.gameMap, this.gameMap.getSquares().get(dice));
         this.p1.earnCoins(GameMapImpl.COINS_TO_BUY_STAR + 5);
         this.p2.goTo(this.gameMap, this.gameMap.getSquares().get(dice));
         this.p2.getPosition(this.gameMap).receiveStar(p2);
         assertEquals(this.p2.getStarsCount(), 0);
-        this.p1.goTo(this.gameMap, this.gameMap.getSquares().get(dice));
         this.p1.getPosition(this.gameMap).receiveStar(p1);
         assertEquals(this.p1.getStarsCount(), 1);
     }
