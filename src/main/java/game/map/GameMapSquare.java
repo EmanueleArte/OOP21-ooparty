@@ -4,11 +4,14 @@ import java.util.Set;
 
 import game.player.Player;
 
+/**
+ * The interface of a game map square.
+ */
 public interface GameMapSquare {
 
     /**
      * Returns the set with the list of the player on this square.
-     * @return a set with the list of the player on this square
+     * @return a set with the list of the players on this square
      */
     Set<Player> getPlayers();
 
@@ -56,25 +59,25 @@ public interface GameMapSquare {
 
     /**
      * 
-     * @return if this is a coins game map square
+     * @return if this is a {@link CoinGameMapSquare}
      */
     boolean isCoinsGameMapSquare();
 
     /**
      * 
-     * @return if this is a star game map square
+     * @return if this is a {@link StarGameMapSquare}
      */
     boolean isStarGameMapSquare();
 
     /**
      * 
-     * @return if this is a powerup game map square
+     * @return if this is a {@link PowerUpGameMapSquare}
      */
     boolean isPowerUpGameMapSquare();
 
     /**
      * 
-     * @return if this is a damage game map square
+     * @return if this is a {@link DamageGameMapSquare}
      */
     boolean isDamageGameMapSquare();
 }

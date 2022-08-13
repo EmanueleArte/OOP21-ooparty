@@ -1,5 +1,9 @@
 package game.map;
 
+//TODO aggiornare link nella javadoc
+/**
+ * A game map square where you can get a {@link PowerUp}.
+ */
 public class PowerUpGameMapSquare extends GameMapSquareImpl {
     //TODO usare la classe PowerUp di Roby
 
@@ -28,7 +32,7 @@ public class PowerUpGameMapSquare extends GameMapSquareImpl {
     }
 
     @Override
-    public String toString() {
+    public final String toString() {
         return "GameMapSquare [PowerUp]";
     }
 }

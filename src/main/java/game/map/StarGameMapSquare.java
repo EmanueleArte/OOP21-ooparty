@@ -2,6 +2,9 @@ package game.map;
 
 import game.player.Player;
 
+/**
+ * A game map square where you can earn a star.
+ */
 public class StarGameMapSquare extends GameMapSquareImpl {
 
     public StarGameMapSquare() {
@@ -44,7 +47,7 @@ public class StarGameMapSquare extends GameMapSquareImpl {
     }
 
     @Override
-    public String toString() {
+    public final String toString() {
         return "GameMapSquare [Star]";
     }
 }

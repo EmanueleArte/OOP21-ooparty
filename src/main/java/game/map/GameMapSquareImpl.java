@@ -5,6 +5,9 @@ import java.util.Set;
 
 import game.player.Player;
 
+/**
+ * The implementation of a generic {@link GameMapSquare}.
+ */
 public class GameMapSquareImpl implements GameMapSquare {
     private Set<Player> players;
 
@@ -112,10 +115,13 @@ public class GameMapSquareImpl implements GameMapSquare {
         return false;
     }
 
+    /**
+     *
+     */
     @Override
     public String toString() {
         return "GameMapSquare []";
     }
-    
-    
+
+
 }

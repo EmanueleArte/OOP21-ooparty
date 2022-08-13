@@ -14,7 +14,7 @@ public interface GameMap {
 
     /**
      * 
-     * @param p the player you want to know the position
+     * @param p the {@link Player} you want to know the position
      * @return the player p's position
      */
     GameMapSquare getPlayerPosition(Player p);
