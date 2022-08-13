@@ -1,5 +1,7 @@
 package utils.graphics.model;
 
+import java.util.List;
+
 import javafx.scene.Scene;
 import minigames.common.controller.MinigameController;
 import utils.controller.GenericController;
@@ -38,6 +40,13 @@ public interface SceneHandler<S> {
      * @return the index of the last added scene
      */
     int lastSceneIndex();
+
+    /**
+     * Getter for the scenes list.
+     * 
+     * @return the scenes list
+     */
+    List<S> getScenes();
 
     /**
      * This methods checks if the controller parameter is a minigame controller.

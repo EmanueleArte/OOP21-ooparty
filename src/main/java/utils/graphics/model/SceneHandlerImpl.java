@@ -69,6 +69,11 @@ public class SceneHandlerImpl<S> implements SceneHandler<S> {
     }
 
     @Override
+    public final List<S> getScenes() {
+        return this.scenes;
+    }
+
+    @Override
     public final MinigameController checkGameController(final GenericController controller) {
         if (controller instanceof MinigameController) {
             return (MinigameController) controller;
