@@ -3,12 +3,11 @@ package menu.pausemenu.controller;
 import menu.MenuController;
 import menu.pausemenu.model.PauseMenuModel;
 import menu.pausemenu.model.PauseMenuModelImpl;
-import menu.pausemenu.view.PauseMenuViewImpl;
 import menu.pausemenu.viewcontroller.PauseMenuViewControllerImpl;
 import utils.GenericViewController;
 import utils.controller.GenericControllerAbstr;
 import utils.graphics.controller.StageManager;
-import utils.view.GenericView;
+import utils.view.GenericViewUtils;
 
 /**
  * Extension of {@link GenericControllerAbstr} and implementation of
@@ -56,8 +55,8 @@ public class PauseMenuControllerImpl extends GenericControllerAbstr implements M
 
     @Override
     public final void createMenu() {
-        final GenericView<?> menuView = new PauseMenuViewImpl<>(this.getStageManager());
-        menuView.createScene(this);
+        GenericViewUtils.createScene(this.getStageManager(), this, PauseMenuViewControllerImpl.class,
+                "menu/pause_menu.fxml");
     }
 
 }

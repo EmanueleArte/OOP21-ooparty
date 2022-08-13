@@ -10,7 +10,8 @@ import utils.graphics.controller.StageManager;
 import utils.view.GenericViewUtils;
 
 /**
- * Extension of {@link GenericControllerAbstr} and implementation of {@link MenuController}.
+ * Extension of {@link GenericControllerAbstr} and implementation of
+ * {@link MenuController}.
  */
 public class MainMenuControllerImpl extends GenericControllerAbstr implements MenuController {
 
@@ -54,7 +55,8 @@ public class MainMenuControllerImpl extends GenericControllerAbstr implements Me
 
     @Override
     public final void createMenu() {
-        GenericViewUtils.createScene(this.getStageManager(), this, MainMenuViewControllerImpl.class, "menu/main_menu.fxml");
+        GenericViewUtils.createScene(this.getStageManager(), this, MainMenuViewControllerImpl.class,
+                "menu/main_menu.fxml");
     }
 
 }
