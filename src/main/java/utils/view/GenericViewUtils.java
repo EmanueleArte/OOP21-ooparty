@@ -15,6 +15,7 @@ public final class GenericViewUtils {
     /**
      * This method create a specific scene given the arguments.
      * 
+     * @param <S>                 the scenes of the stage
      * @param stageManager        the stage manager of the application
      * @param controller          the controller that act on the scene
      * @param viewControllerClass the class of the viewcontroller that handle the
