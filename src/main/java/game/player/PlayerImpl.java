@@ -123,7 +123,9 @@ public class PlayerImpl implements Player {
         }
         this.lifePoints = this.lifePoints - damage;
         if (this.lifePoints <= 0) {
-            //TODO player muore
+            this.updateCoins(this.getCoinsCount() / 2);
+            //TODO spostare il player alla casella di partenza
+            this.lifePoints = PlayerImpl.MAX_LIFE;
         }
     }
 
