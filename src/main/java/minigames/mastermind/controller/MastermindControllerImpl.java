@@ -2,11 +2,15 @@ package minigames.mastermind.controller;
 
 import java.util.List;
 
+import minigames.common.controller.MinigameGuideController;
+import minigames.common.controller.MinigameGuideControllerImpl;
+import minigames.common.viewcontroller.MinigameGuideViewControllerImpl;
 import minigames.mastermind.model.MastermindModel;
 import minigames.mastermind.model.MastermindModelImpl;
 import minigames.mastermind.viewcontroller.MastermindViewController;
 import minigames.mastermind.viewcontroller.MastermindViewControllerImpl;
 import utils.GenericViewController;
+import utils.controller.GenericController;
 import utils.controller.GenericControllerAbstr;
 import utils.graphics.controller.StageManager;
 import utils.view.GenericViewUtils;
@@ -54,7 +58,11 @@ public class MastermindControllerImpl extends GenericControllerAbstr implements 
 
     @Override
     public final void startGame() {
+        System.out.println("Start minigame");
         GenericViewUtils.createScene(this.getStageManager(), this, MastermindViewControllerImpl.class, "minigames/mastermind.fxml");
+        System.out.println("Start guide");
+        final GenericController guideCtrl = new MinigameGuideControllerImpl(this.getStageManager(), this);
+        GenericViewUtils.createScene(this.getStageManager(), guideCtrl, MinigameGuideViewControllerImpl.class, "minigames/mastermind_guide.fxml");
     }
 
     @Override
