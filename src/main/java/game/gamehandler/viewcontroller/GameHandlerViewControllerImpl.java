@@ -18,6 +18,8 @@ import javafx.geometry.Pos;
 import javafx.geometry.VPos;
 import javafx.scene.Group;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.GridPane;
@@ -218,16 +220,6 @@ public class GameHandlerViewControllerImpl implements GenericViewController {
 
             return label;
         }).forEach(l -> {
-            /*var coin = new Label();
-            String coinLayout = "-fx-border-color: yellow;\n"
-                    + "-fx-border-insets: 2;\n"
-                    + "-fx-border-width: 1;\n"
-                    + "-fx-margin: 2px;\n"
-                    + "-fx-border-radius: 10px";
-            coin.setStyle(coinLayout);
-
-            mapGrid.getChildren().add(coin);*/
-
             mapGrid.getChildren().add(l);
             var index = Integer.parseInt(l.getId());
             var row = 0;
@@ -254,6 +246,50 @@ public class GameHandlerViewControllerImpl implements GenericViewController {
             GridPane.setColumnIndex(l, col);
             GridPane.setHalignment(l, HPos.CENTER);
             GridPane.setValignment(l, VPos.CENTER);
+
+            var coin = new Image("game/coin.png");
+            ImageView view = new ImageView(coin);
+            view.setFitHeight(35);
+            view.setPreserveRatio(true);
+            l.setGraphic(view);
+        });
+
+        map.getSquares().forEach(l -> {
+
+            /*var coin = new Image("game/coin.png");
+            ImageView view = new ImageView(coin);
+            view.setFitHeight(80);
+            view.setPreserveRatio(true);
+            l.setGraphic(view);*/
+            /*String coinLayout = "-fx-border-color: yellow;\n"
+                    + "-fx-border-insets: 20;\n"
+                    + "-fx-border-width: 10;\n"
+                    + "-fx-margin: 2px;\n"
+                    + "-fx-border-radius: 10px;\n";
+            coin.setStyle(coinLayout);
+
+            this.mapGrid.getChildren().add(coin);
+            var index = Integer.parseInt(coin.getId());
+            var row = 0;
+            var col = 0;
+            if (index < MAP_WIDTH) {
+                row = 0;
+                col = index;
+            } else if (index < MAP_WIDTH + MAP_HEIGHT - 1) {
+                row = index - MAP_WIDTH + 1;
+                col = MAP_WIDTH - 1;
+            } else if (index < 2 * MAP_WIDTH + MAP_HEIGHT - 2) {
+                row = MAP_HEIGHT - 1;
+                col = MAP_WIDTH - index + 16;
+            } else {
+                row = MAP_HEIGHT - index + 26;
+                col = 0;
+            }
+
+            GridPane.setRowIndex(coin, row);
+            GridPane.setColumnIndex(coin, col);
+            GridPane.setHalignment(coin, HPos.CENTER);
+            GridPane.setValignment(coin, VPos.CENTER);*/
         });
     }
 }
