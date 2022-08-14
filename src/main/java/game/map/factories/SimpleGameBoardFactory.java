@@ -4,8 +4,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 import game.map.CoinsGameMapSquare;
+import game.map.DamageGameMapSquare;
 import game.map.GameMapSquare;
 import game.map.GameMapSquareImpl;
+import game.map.PowerUpGameMapSquare;
 import game.map.StarGameMapSquare;
 
 public class SimpleGameBoardFactory implements GameBoardFactory {
@@ -21,6 +23,10 @@ public class SimpleGameBoardFactory implements GameBoardFactory {
                 gameMap.add(new CoinsGameMapSquare());
             } else if (i == 3 || i == 10) {
                 gameMap.add(new StarGameMapSquare());
+            } else if (i == 5 || i == 32) {
+                gameMap.add(new PowerUpGameMapSquare());
+            } else if (i == 8 || i == 22) {
+                gameMap.add(new DamageGameMapSquare());
             } else {
                 gameMap.add(new GameMapSquareImpl());
             }

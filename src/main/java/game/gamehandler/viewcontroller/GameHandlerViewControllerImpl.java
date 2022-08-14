@@ -47,7 +47,8 @@ public class GameHandlerViewControllerImpl implements GenericViewController {
     private static final int PLAYER_Y_START = -600;
     private static final int COIN_DIM = 25;
     private static final int STAR_DIM = 25;
-
+    private static final int POWERUP_DIM = 25;
+    private static final int DAMAGE_ICON_DIM = 25;
 
     private GameHandlerController controller;
 
@@ -259,6 +260,18 @@ public class GameHandlerViewControllerImpl implements GenericViewController {
                 var star = new Image("game/star.png");
                 ImageView view = new ImageView(star);
                 view.setFitHeight(GameHandlerViewControllerImpl.STAR_DIM);
+                view.setPreserveRatio(true);
+                l.setGraphic(view);
+            } else if (map.getSquares().get(index).isPowerUpGameMapSquare()) {
+                var star = new Image("game/powerup.png");
+                ImageView view = new ImageView(star);
+                view.setFitHeight(GameHandlerViewControllerImpl.POWERUP_DIM);
+                view.setPreserveRatio(true);
+                l.setGraphic(view);
+            } else if (map.getSquares().get(index).isDamageGameMapSquare()) {
+                var star = new Image("game/damage.png");
+                ImageView view = new ImageView(star);
+                view.setFitHeight(GameHandlerViewControllerImpl.DAMAGE_ICON_DIM);
                 view.setPreserveRatio(true);
                 l.setGraphic(view);
             }
