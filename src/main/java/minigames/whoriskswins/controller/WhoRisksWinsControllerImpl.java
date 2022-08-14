@@ -3,7 +3,7 @@ package minigames.whoriskswins.controller;
 import java.util.List;
 
 import minigames.common.controller.MinigameGuideControllerImpl;
-import minigames.common.viewcontroller.MinigameGuideViewControllerImpl;
+import minigames.common.view.MinigameGuideViewControllerImpl;
 import minigames.whoriskswins.model.WhoRisksWinsModel;
 import minigames.whoriskswins.model.WhoRisksWinsModelImpl;
 import minigames.whoriskswins.view.WhoRisksWinsViewController;

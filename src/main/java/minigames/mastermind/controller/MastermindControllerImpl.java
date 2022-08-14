@@ -4,7 +4,7 @@ import java.util.List;
 
 import minigames.common.controller.MinigameGuideController;
 import minigames.common.controller.MinigameGuideControllerImpl;
-import minigames.common.viewcontroller.MinigameGuideViewControllerImpl;
+import minigames.common.view.MinigameGuideViewControllerImpl;
 import minigames.mastermind.model.MastermindModel;
 import minigames.mastermind.model.MastermindModelImpl;
 import minigames.mastermind.view.MastermindViewController;
