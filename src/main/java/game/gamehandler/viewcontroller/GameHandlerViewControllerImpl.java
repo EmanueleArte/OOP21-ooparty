@@ -45,7 +45,8 @@ public class GameHandlerViewControllerImpl implements GenericViewController {
     private static final int MAP_HEIGHT = 8;
     private static final int PLAYER_X_START = -825;
     private static final int PLAYER_Y_START = -600;
-    private static final int COIN_DIM = 20;
+    private static final int COIN_DIM = 25;
+    private static final int STAR_DIM = 25;
 
 
     private GameHandlerController controller;
@@ -254,45 +255,13 @@ public class GameHandlerViewControllerImpl implements GenericViewController {
                 view.setFitHeight(GameHandlerViewControllerImpl.COIN_DIM);
                 view.setPreserveRatio(true);
                 l.setGraphic(view);
+            } else if (map.getSquares().get(index).isStarGameMapSquare()) {
+                var star = new Image("game/star.png");
+                ImageView view = new ImageView(star);
+                view.setFitHeight(GameHandlerViewControllerImpl.STAR_DIM);
+                view.setPreserveRatio(true);
+                l.setGraphic(view);
             }
-        });
-
-        map.getSquares().forEach(l -> {
-
-            /*var coin = new Image("game/coin.png");
-            ImageView view = new ImageView(coin);
-            view.setFitHeight(80);
-            view.setPreserveRatio(true);
-            l.setGraphic(view);*/
-            /*String coinLayout = "-fx-border-color: yellow;\n"
-                    + "-fx-border-insets: 20;\n"
-                    + "-fx-border-width: 10;\n"
-                    + "-fx-margin: 2px;\n"
-                    + "-fx-border-radius: 10px;\n";
-            coin.setStyle(coinLayout);
-
-            this.mapGrid.getChildren().add(coin);
-            var index = Integer.parseInt(coin.getId());
-            var row = 0;
-            var col = 0;
-            if (index < MAP_WIDTH) {
-                row = 0;
-                col = index;
-            } else if (index < MAP_WIDTH + MAP_HEIGHT - 1) {
-                row = index - MAP_WIDTH + 1;
-                col = MAP_WIDTH - 1;
-            } else if (index < 2 * MAP_WIDTH + MAP_HEIGHT - 2) {
-                row = MAP_HEIGHT - 1;
-                col = MAP_WIDTH - index + 16;
-            } else {
-                row = MAP_HEIGHT - index + 26;
-                col = 0;
-            }
-
-            GridPane.setRowIndex(coin, row);
-            GridPane.setColumnIndex(coin, col);
-            GridPane.setHalignment(coin, HPos.CENTER);
-            GridPane.setValignment(coin, VPos.CENTER);*/
         });
     }
 }
