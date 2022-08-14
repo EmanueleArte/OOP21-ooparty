@@ -45,6 +45,7 @@ public class GameHandlerViewControllerImpl implements GenericViewController {
     private static final int MAP_HEIGHT = 8;
     private static final int PLAYER_X_START = -825;
     private static final int PLAYER_Y_START = -600;
+    private static final int COIN_DIM = 20;
 
 
     private GameHandlerController controller;
@@ -205,7 +206,7 @@ public class GameHandlerViewControllerImpl implements GenericViewController {
     private void initializeMap(final GameMap map) {
          map.getSquares().stream().map(s -> {
             var label = new Label();
-            label.setText(map.getSquares().indexOf(s) + "");
+            //label.setText(map.getSquares().indexOf(s) + "");
             label.setId(map.getSquares().indexOf(s) + "");
 
             label.setPrefWidth(SQUARE_WIDTH);
@@ -247,11 +248,13 @@ public class GameHandlerViewControllerImpl implements GenericViewController {
             GridPane.setHalignment(l, HPos.CENTER);
             GridPane.setValignment(l, VPos.CENTER);
 
-            var coin = new Image("game/coin.png");
-            ImageView view = new ImageView(coin);
-            view.setFitHeight(35);
-            view.setPreserveRatio(true);
-            l.setGraphic(view);
+            if (map.getSquares().get(index).isCoinsGameMapSquare()) {
+                var coin = new Image("game/coin.png");
+                ImageView view = new ImageView(coin);
+                view.setFitHeight(GameHandlerViewControllerImpl.COIN_DIM);
+                view.setPreserveRatio(true);
+                l.setGraphic(view);
+            }
         });
 
         map.getSquares().forEach(l -> {
