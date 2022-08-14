@@ -39,11 +39,7 @@ import utils.GenericViewController;
 
 public class GameHandlerViewControllerImpl implements GenericViewController {
 
-    /*private static final int SQUARE_WIDTH = 75;
-    private static final int SQUARE_HEIGHT = 75;
-    private static final int MAP_WIDTH = 11;
-    private static final int MAP_HEIGHT = 8;*/
-    private static final int SQUARE_WIDTH = 89;
+    private static final int SQUARE_WIDTH = 87;
     private static final int SQUARE_HEIGHT = 74;
     private static final int MAP_WIDTH = 11;
     private static final int MAP_HEIGHT = 8;
