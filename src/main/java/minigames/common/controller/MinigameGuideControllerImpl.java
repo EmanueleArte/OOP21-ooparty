@@ -1,6 +1,6 @@
 package minigames.common.controller;
 
-import minigames.common.viewcontroller.MinigameGuideViewControllerImpl;
+import minigames.common.view.MinigameGuideViewControllerImpl;
 import utils.GenericViewController;
 import utils.controller.GenericControllerAbstr;
 import utils.graphics.controller.StageManager;

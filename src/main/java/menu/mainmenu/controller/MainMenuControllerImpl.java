@@ -3,7 +3,7 @@ package menu.mainmenu.controller;
 import menu.MenuController;
 import menu.mainmenu.model.MainMenuModel;
 import menu.mainmenu.model.MainMenuModelImpl;
-import menu.mainmenu.viewcontroller.MainMenuViewControllerImpl;
+import menu.mainmenu.view.MainMenuViewControllerImpl;
 import utils.GenericViewController;
 import utils.controller.GenericControllerAbstr;
 import utils.graphics.controller.StageManager;

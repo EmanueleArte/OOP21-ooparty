@@ -1,6 +1,6 @@
-package minigames.whoriskswins.viewcontroller;
+package minigames.whoriskswins.view;
 
-import minigames.common.viewcontroller.MinigameViewController;
+import minigames.common.view.MinigameViewController;
 
 /**
  * Extension of {@link MinigameViewController}.

@@ -1,4 +1,4 @@
-package menu.mainmenu.viewcontroller;
+package menu.pausemenu.view;
 
 import javafx.fxml.FXML;
 import menu.MenuController;
@@ -8,29 +8,29 @@ import utils.controller.GenericController;
 /**
  * Implementation of {@link GenericViewController}.
  */
-public class MainMenuViewControllerImpl implements GenericViewController {
+public class PauseMenuViewControllerImpl implements GenericViewController {
 
     private MenuController menuController;
 
     /**
-     * Builds a new {@link MainMenuViewControllerImpl}.
+     * Builds a new {@link PauseMenuViewControllerImpl}.
      */
-    public MainMenuViewControllerImpl() {
+    public PauseMenuViewControllerImpl() {
     }
 
     /**
-     * This method exits the game.
+     * This method returns to the main menu.
      */
     @FXML
-    private void exitGame() {
+    private void returnMainMenu() {
         this.menuController.exit();
     }
 
     /**
-     * This method creates a new game.
+     * This method continues the game.
      */
     @FXML
-    private void createGame() {
+    private void continueGame() {
         this.menuController.goNext();
     }
 

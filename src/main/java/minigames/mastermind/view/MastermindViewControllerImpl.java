@@ -1,4 +1,4 @@
-package minigames.mastermind.viewcontroller;
+package minigames.mastermind.view;
 
 import java.util.List;
 import java.util.Optional;
@@ -9,7 +9,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
-import minigames.common.viewcontroller.MinigameViewControllerAbstr;
+import minigames.common.view.MinigameViewControllerAbstr;
 import minigames.mastermind.controller.MastermindController;
 import utils.GuiUtils;
 import utils.controller.GenericController;

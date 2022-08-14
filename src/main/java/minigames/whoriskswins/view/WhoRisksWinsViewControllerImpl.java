@@ -1,4 +1,4 @@
-package minigames.whoriskswins.viewcontroller;
+package minigames.whoriskswins.view;
 
 import javafx.animation.Interpolator;
 import javafx.animation.TranslateTransition;
@@ -7,7 +7,7 @@ import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.shape.Rectangle;
 import javafx.util.Duration;
-import minigames.common.viewcontroller.MinigameViewControllerAbstr;
+import minigames.common.view.MinigameViewControllerAbstr;
 import minigames.whoriskswins.controller.WhoRisksWinsController;
 import utils.GuiUtils;
 import utils.Pair;

@@ -1,4 +1,4 @@
-package minigames.common.viewcontroller;
+package minigames.common.view;
 
 import minigames.common.controller.MinigameGuideController;
 import utils.controller.GenericController;

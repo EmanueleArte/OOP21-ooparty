@@ -3,7 +3,7 @@ package menu.pausemenu.controller;
 import menu.MenuController;
 import menu.pausemenu.model.PauseMenuModel;
 import menu.pausemenu.model.PauseMenuModelImpl;
-import menu.pausemenu.viewcontroller.PauseMenuViewControllerImpl;
+import menu.pausemenu.view.PauseMenuViewControllerImpl;
 import utils.GenericViewController;
 import utils.controller.GenericControllerAbstr;
 import utils.graphics.controller.StageManager;

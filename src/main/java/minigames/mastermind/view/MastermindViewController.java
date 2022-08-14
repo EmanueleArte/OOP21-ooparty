@@ -1,6 +1,6 @@
-package minigames.mastermind.viewcontroller;
+package minigames.mastermind.view;
 
-import minigames.common.viewcontroller.MinigameViewController;
+import minigames.common.view.MinigameViewController;
 
 /**
  * Extension of {@link MinigameViewController}.

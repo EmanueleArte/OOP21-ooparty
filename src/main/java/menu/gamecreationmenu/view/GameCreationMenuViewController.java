@@ -1,4 +1,4 @@
-package menu.gamecreationmenu.viewcontroller;
+package menu.gamecreationmenu.view;
 
 import java.util.List;
 

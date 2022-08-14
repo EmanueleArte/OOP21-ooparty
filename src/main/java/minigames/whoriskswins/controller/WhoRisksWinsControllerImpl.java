@@ -4,8 +4,8 @@ import java.util.List;
 
 import minigames.whoriskswins.model.WhoRisksWinsModel;
 import minigames.whoriskswins.model.WhoRisksWinsModelImpl;
-import minigames.whoriskswins.viewcontroller.WhoRisksWinsViewController;
-import minigames.whoriskswins.viewcontroller.WhoRisksWinsViewControllerImpl;
+import minigames.whoriskswins.view.WhoRisksWinsViewController;
+import minigames.whoriskswins.view.WhoRisksWinsViewControllerImpl;
 import utils.GenericViewController;
 import utils.controller.GenericControllerAbstr;
 import utils.graphics.controller.StageManager;

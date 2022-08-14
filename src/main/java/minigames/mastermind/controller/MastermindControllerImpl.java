@@ -4,8 +4,8 @@ import java.util.List;
 
 import minigames.mastermind.model.MastermindModel;
 import minigames.mastermind.model.MastermindModelImpl;
-import minigames.mastermind.viewcontroller.MastermindViewController;
-import minigames.mastermind.viewcontroller.MastermindViewControllerImpl;
+import minigames.mastermind.view.MastermindViewController;
+import minigames.mastermind.view.MastermindViewControllerImpl;
 import utils.GenericViewController;
 import utils.controller.GenericControllerAbstr;
 import utils.graphics.controller.StageManager;

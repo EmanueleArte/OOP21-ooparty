@@ -1,4 +1,4 @@
-package minigames.common.viewcontroller;
+package minigames.common.view;
 
 import game.player.Player;
 import javafx.fxml.FXML;
