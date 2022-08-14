@@ -218,6 +218,16 @@ public class GameHandlerViewControllerImpl implements GenericViewController {
 
             return label;
         }).forEach(l -> {
+            /*var coin = new Label();
+            String coinLayout = "-fx-border-color: yellow;\n"
+                    + "-fx-border-insets: 2;\n"
+                    + "-fx-border-width: 1;\n"
+                    + "-fx-margin: 2px;\n"
+                    + "-fx-border-radius: 10px";
+            coin.setStyle(coinLayout);
+
+            mapGrid.getChildren().add(coin);*/
+
             mapGrid.getChildren().add(l);
             var index = Integer.parseInt(l.getId());
             var row = 0;
