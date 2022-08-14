@@ -63,7 +63,7 @@
                            <children>
                               <AnchorPane prefHeight="457.0" prefWidth="875.0">
                                  <children>
-                                    <GridPane fx:id="mapGrid" gridLinesVisible="true" layoutX="14.0" prefHeight="455.0" prefWidth="870.0">
+                                    <GridPane fx:id="mapGrid" gridLinesVisible="true" layoutX="-1.0" prefHeight="600.0" prefWidth="990.0">
                                       <columnConstraints>
                                           <ColumnConstraints hgrow="SOMETIMES" maxWidth="200.0" minWidth="10.0" prefWidth="100.0" />
                                         <ColumnConstraints hgrow="SOMETIMES" maxWidth="200.0" minWidth="10.0" prefWidth="97.0" />

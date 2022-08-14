@@ -39,8 +39,12 @@ import utils.GenericViewController;
 
 public class GameHandlerViewControllerImpl implements GenericViewController {
 
-    private static final int SQUARE_WIDTH = 75;
+    /*private static final int SQUARE_WIDTH = 75;
     private static final int SQUARE_HEIGHT = 75;
+    private static final int MAP_WIDTH = 11;
+    private static final int MAP_HEIGHT = 8;*/
+    private static final int SQUARE_WIDTH = 89;
+    private static final int SQUARE_HEIGHT = 74;
     private static final int MAP_WIDTH = 11;
     private static final int MAP_HEIGHT = 8;
     private static final int PLAYER_X_START = -825;
@@ -218,7 +222,8 @@ public class GameHandlerViewControllerImpl implements GenericViewController {
             String cssLabelLayout = "-fx-border-color: black;\n"
                     + "-fx-border-insets: 2;\n"
                     + "-fx-border-width: 1;\n"
-                    + "-fx-margin: 2px;\n";
+                    + "-fx-margin: 2px;\n"
+                    + "-fx-background-color: rgb(185, 185, 185);\n";
             label.setStyle(cssLabelLayout);
 
             return label;
