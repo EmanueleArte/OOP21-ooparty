@@ -17,7 +17,9 @@ public class MinigameGuideControllerImpl extends GenericControllerAbstr implemen
 
     @Override
     public void startGame() {
-        minigameController.startGame();
+        if (!this.getStageManager().getScenes().isEmpty()) {
+            this.getStageManager().popScene();
+        }
     }
 
     @Override
