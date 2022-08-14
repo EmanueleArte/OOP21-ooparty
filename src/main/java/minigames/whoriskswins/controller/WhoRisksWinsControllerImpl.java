@@ -2,11 +2,14 @@ package minigames.whoriskswins.controller;
 
 import java.util.List;
 
+import minigames.common.controller.MinigameGuideControllerImpl;
+import minigames.common.viewcontroller.MinigameGuideViewControllerImpl;
 import minigames.whoriskswins.model.WhoRisksWinsModel;
 import minigames.whoriskswins.model.WhoRisksWinsModelImpl;
 import minigames.whoriskswins.viewcontroller.WhoRisksWinsViewController;
 import minigames.whoriskswins.viewcontroller.WhoRisksWinsViewControllerImpl;
 import utils.GenericViewController;
+import utils.controller.GenericController;
 import utils.controller.GenericControllerAbstr;
 import utils.graphics.controller.StageManager;
 import utils.view.GenericViewUtils;
@@ -55,6 +58,8 @@ public class WhoRisksWinsControllerImpl extends GenericControllerAbstr implement
     @Override
     public final void startGame() {
         GenericViewUtils.createScene(this.getStageManager(), this, WhoRisksWinsViewControllerImpl.class, "minigames/who_risks_wins.fxml");
+        final GenericController guideController = new MinigameGuideControllerImpl(this.getStageManager(), this);
+        GenericViewUtils.createScene(this.getStageManager(), guideController, MinigameGuideViewControllerImpl.class, "minigames/who_risks_wins_guide.fxml");
     }
 
     @Override
