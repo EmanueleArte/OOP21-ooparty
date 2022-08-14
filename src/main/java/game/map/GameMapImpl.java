@@ -2,10 +2,10 @@ package game.map;
 
 import java.util.List;
 
-import exceptions.PlayerNotFoundException;
 import game.map.factories.GameBoardFactory;
 import game.map.factories.SimpleGameBoardFactory;
 import game.player.Player;
+import utils.exceptions.PlayerNotFoundException;
 
 public class GameMapImpl implements GameMap {
     private List<GameMapSquare> squares;
