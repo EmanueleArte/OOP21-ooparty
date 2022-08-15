@@ -1,6 +1,5 @@
 package game.map.factories;
 
-import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -10,13 +9,16 @@ import java.util.stream.Stream;
 
 import game.map.CoinsGameMapSquare;
 import game.map.DamageGameMapSquare;
-import game.map.GameMapImpl;
 import game.map.GameMapSquare;
 import game.map.GameMapSquareImpl;
 import game.map.PowerUpGameMapSquare;
 import game.map.StarGameMapSquare;
 import utils.enums.SquareType;
 
+/**
+ * Factory which creates a simple game board, or rather, a board with the special squares randomly disposed on the board.
+ * {@link SimpleGameBoardFactory} has a fixed size (defined by {@link FixedSizeGameBoard} which extends).
+ */
 public class SimpleGameBoardFactory extends FixedSizeGameBoardFactory {
 
     private enum SquareTypeMaxOccurrences {
@@ -49,13 +51,13 @@ public class SimpleGameBoardFactory extends FixedSizeGameBoardFactory {
         final List<GameMapSquare> board = new ArrayList<>();
         board.add(new GameMapSquareImpl());
 
-        while (board.size() < super.getSize()) {
+        while (board.size() < size) {
             GameMapSquare square = getRandomSquare();
             if (squareCanBeAdded(board, square)) {
                 board.add(square);
             } else if (boardIsFullOfSpecialSquares(board)) {
                 board.addAll(Stream.generate(() -> new GameMapSquareImpl())
-                        .limit(super.getSize() - board.size())
+                        .limit(size - board.size())
                         .collect(Collectors.toList()));
             }
         }
@@ -86,11 +88,18 @@ public class SimpleGameBoardFactory extends FixedSizeGameBoardFactory {
     private boolean squareCanBeAdded(final List<GameMapSquare> board, final GameMapSquare square) {
         Class<?> squareClass = square.getClass();
         GameMapSquare squareClassInstance;
+
         try {
             squareClassInstance = (GameMapSquare) squareClass.newInstance();
-            var elementsCount = board.stream().filter(s -> compareSquares(s, squareClassInstance)).count();
+            var elementsCount = board.stream()
+                    .filter(s -> compareSquares(s, squareClassInstance))
+                    .count();
 
-            var maxOcc = List.of(SquareTypeMaxOccurrences.values()).stream().filter(e -> e.getSquareClass().equals(squareClass)).findAny().get().getMaxOccurrences();
+            var maxOcc = List.of(SquareTypeMaxOccurrences.values()).stream()
+                    .filter(e -> e.getSquareClass().equals(squareClass))
+                    .findAny()
+                    .get()
+                    .getMaxOccurrences();
 
             if (compareSquares(square, squareClassInstance) && elementsCount >= maxOcc) {
                 return false;
@@ -100,6 +109,7 @@ public class SimpleGameBoardFactory extends FixedSizeGameBoardFactory {
         }
         return true;
     }
+
     /* TODO: rattoppo, serve equals in GameMapSquareImpl */
     private boolean compareSquares(final GameMapSquare s1, final GameMapSquare s2) {
         return s1.toString().equals(s2.toString());
