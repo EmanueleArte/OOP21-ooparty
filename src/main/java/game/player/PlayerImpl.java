@@ -117,14 +117,14 @@ public class PlayerImpl implements Player {
     }
 
     @Override
-    public final void loseLifePoints(final int damage) {
+    public final void loseLifePoints(final int damage, final GameMap gameMap) {
         if (damage <= 0) {
             throw new IllegalArgumentException("Damage can't be 0 or negative");
         }
         this.lifePoints = this.lifePoints - damage;
         if (this.lifePoints <= 0) {
             this.updateCoins(this.getCoinsCount() / 2);
-            //TODO spostare il player alla casella di partenza
+            this.goTo(gameMap, gameMap.getSquares().get(0));
             this.lifePoints = PlayerImpl.MAX_LIFE;
         }
     }

@@ -71,7 +71,7 @@ public class GameMapSquareImpl implements GameMapSquare {
      * 
      */
     @Override
-    public void receiveDamage(final Player p) {
+    public void receiveDamage(final Player p, final GameMap gameMap) {
         throw new UnsupportedOperationException("This is not a damage game map square");
     }
 
