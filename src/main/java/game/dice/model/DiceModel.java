@@ -1,10 +1,12 @@
 package game.dice.model;
 
-import java.util.List;
+import java.util.Optional;
 
 public interface DiceModel<P> {
 
-	int rollDice(P player);
-	
-	List<Integer> rollDices(List<P> players);
+    void rollDice();
+
+    void returnToGame();
+
+    Optional<Integer> getLastResult();
 }

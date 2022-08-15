@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.Double?>
+<?import javafx.scene.Group?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Circle?>
+<?import javafx.scene.shape.Polygon?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+
+<VBox alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onKeyReleased="#nextStep" prefHeight="2160.0" prefWidth="3840.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="game.dice.viewcontroller.DiceViewControllerImpl">
+   <children>
+      <Pane maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="720.0" prefWidth="1000.0">
+         <children>
+            <Group fx:id="player" layoutX="500.0" layoutY="570.0">
+               <children>
+                  <Polygon fx:id="playerBody" fill="DODGERBLUE" scaleX="0.8" stroke="BLACK" strokeType="INSIDE">
+                    <points>
+                      <Double fx:value="-50.0" />
+                      <Double fx:value="40.0" />
+                      <Double fx:value="50.0" />
+                      <Double fx:value="40.0" />
+                      <Double fx:value="0.0" />
+                      <Double fx:value="-60.0" />
+                    </points>
+                  </Polygon>
+                  <Circle fx:id="playerHead" fill="DODGERBLUE" layoutY="-59.0" radius="27.0" stroke="BLACK" strokeType="INSIDE" />
+               </children>
+            </Group>
+            <Group fx:id="dice" layoutX="440.0" layoutY="200.0">
+               <children>
+                  <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#c72400" height="120.0" stroke="BLACK" strokeType="INSIDE" width="120.0" />
+                  <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#ececec" height="100.0" layoutX="10.0" layoutY="10.0" stroke="BLACK" strokeType="INSIDE" width="100.0" />
+                  <Text fx:id="diceText" fill="#c2450e" layoutY="80.0" stroke="BLACK" strokeType="OUTSIDE" strokeWidth="2.0" text="?" textAlignment="CENTER" wrappingWidth="120.0">
+                     <font>
+                        <Font name="Berlin Sans FB" size="72.0" />
+                     </font>
+                  </Text>
+               </children>
+            </Group>
+         </children>
+      </Pane>
+   </children>
+</VBox>

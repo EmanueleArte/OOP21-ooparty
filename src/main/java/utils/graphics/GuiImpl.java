@@ -2,25 +2,21 @@ package utils.graphics;
 
 import java.awt.Dimension;
 import java.io.IOException;
-import java.util.List;
+import java.util.Optional;
 
 import javax.swing.JFrame;
 
-import javafx.application.Platform;
 import javafx.embed.swing.JFXPanel;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import utils.enums.ControllerType;
-import utils.factories.ControllerSelector;
-import utils.factories.ControllerSelectorImpl;
+import utils.GenericViewController;
+import utils.controller.GenericController;
 
 /**
  * Implementation of {@link Gui}.
- *
- * @param <S> the scenes of the stage
  */
-public class GuiImpl<S> extends JFrame implements Gui<S> {
+public class GuiImpl extends JFrame implements Gui {
 
     private static final long serialVersionUID = -4895173910811030481L;
     /**
@@ -30,55 +26,55 @@ public class GuiImpl<S> extends JFrame implements Gui<S> {
     /**
      * Minimum window height.
      */
-    public static final int MIN_HEIGHT = 730;
-    private JFXPanel mainStage;
+    public static final int MIN_HEIGHT = 750;
+    private Optional<JFXPanel> mainStage;
     private FXMLLoader loader;
     private final JFrame frame;
-    private final ControllerSelector<S> cSelector;
-    private Parent root = null;
+    private Optional<Parent> root;
 
     /**
      * Builds a new {@link GuiImpl}.
      * 
      * @param title the title of the frame
-     * @param s     the {@link utils.graphics.StageManager}
      */
-    public GuiImpl(final String title, final StageManager<S> s) {
-        this.mainStage = null;
+    public GuiImpl(final String title) {
+        this.mainStage = Optional.empty();
+        this.root = Optional.empty();
         this.frame = new JFrame(title);
-        this.cSelector = new ControllerSelectorImpl<>(s);
     }
 
     @Override
     public final void createGui() {
-        this.mainStage = new JFXPanel();
-        this.frame.add(this.mainStage);
+        this.mainStage = Optional.of(new JFXPanel());
+        this.frame.add(this.mainStage.get());
         this.frame.pack();
-        this.frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
         this.frame.setMinimumSize(new Dimension(GuiImpl.MIN_WIDTH, GuiImpl.MIN_HEIGHT));
+        this.frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
         this.frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.frame.setVisible(true);
     }
 
-    @SuppressWarnings("unchecked")
     @Override
-    public final <U> void loadScene(final String fxmlUrl, final ControllerType c, final List<U> players) {
-        Platform.runLater(() -> {
-            this.loader = new FXMLLoader(getClass().getClassLoader().getResource(fxmlUrl));
-            this.loader.setControllerFactory(this.cSelector.selectControllerCallback(c, players));
-            try {
-                this.root = loader.load();
-                this.setScene((S) new Scene(this.root));
-            } catch (IOException e1) {
-                e1.printStackTrace();
-                this.root = null;
-            }
-        });
+    public final Scene loadScene(final String fxmlUrl, final Class<?> viewControllerClass,
+            final GenericController controller) {
+        this.loader = new FXMLLoader(getClass().getClassLoader().getResource(fxmlUrl));
+        try {
+            this.root = Optional.ofNullable(this.loader.load());
+            this.setScene(new Scene(this.root.get()));
+            this.root.get().requestFocus();
+            controller.setViewController(this.loader.getController());
+            ((GenericViewController) this.loader.getController()).setController(controller);
+        } catch (IOException e1) {
+            e1.printStackTrace();
+            this.root = Optional.empty();
+        }
+        return this.getStageScene();
+
     }
 
     @Override
-    public final void setScene(final S scene) {
-        this.mainStage.setScene((Scene) scene);
+    public final void setScene(final Scene scene) throws RuntimeException {
+        this.mainStage.orElseThrow(() -> new RuntimeException("Optional empty.")).setScene(scene);
     }
 
     @Override
@@ -87,15 +83,13 @@ public class GuiImpl<S> extends JFrame implements Gui<S> {
     }
 
     @Override
-    public final Scene getStageScene() {
-        if (this.mainStage == null) {
-            return null;
-        }
-        Scene scene = null;
-        while (scene == null) {
-            scene = this.mainStage.getScene();
-        }
-        return scene;
+    public final Scene getStageScene() throws RuntimeException {
+        return this.mainStage.orElseThrow(() -> new RuntimeException("Optional empty.")).getScene();
+    }
+
+    @Override
+    public final Optional<JFXPanel> getMainStage() {
+        return this.mainStage;
     }
 
 }

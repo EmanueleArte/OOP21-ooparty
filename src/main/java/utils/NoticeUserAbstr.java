@@ -16,7 +16,7 @@ public class NoticeUserAbstr {
     }
 
     /**
-     * This method clears the notice label.
+     * This method clears the notice text.
      */
     @FXML
     protected void clearNotice() {

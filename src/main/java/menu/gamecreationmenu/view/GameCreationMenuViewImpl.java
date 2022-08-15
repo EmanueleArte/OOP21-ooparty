@@ -1,31 +1,30 @@
 package menu.gamecreationmenu.view;
 
-import utils.enums.ControllerType;
-import utils.graphics.StageManager;
+import menu.gamecreationmenu.viewcontroller.GameCreationMenuViewControllerImpl;
+import utils.controller.GenericController;
+import utils.graphics.stagemanager.StageManager;
+import utils.view.GenericViewAbstr;
 
 /**
- * Implementation of {@link GameCreationMenuView}.
+ * Extension of {@link GenericViewAbstr}.
  * 
  * @param <S> the scenes of the stage
  */
-public class GameCreationMenuViewImpl<S> implements GameCreationMenuView<S> {
-
-    private final StageManager<S> stageManager;
+public class GameCreationMenuViewImpl<S> extends GenericViewAbstr<S> {
 
     /**
      * Builds a new {@link GameCreationMenuViewImpl}.
      * 
-     * @param s the {@link utils.graphics.StageManager}
+     * @param s the {@link utils.graphics.stagemanager.StageManager}
      */
     public GameCreationMenuViewImpl(final StageManager<S> s) {
-        super();
-        this.stageManager = s;
+        super(s);
     }
 
     @Override
-    public final void createGameCreationMenu() {
+    public final void createScene(final GenericController controller) {
         final String fxmlUrl = "menu/creation_menu.fxml";
-        this.stageManager.addFXMLScene(fxmlUrl, ControllerType.GAME_CREATION_MENU, null);
+        this.getStageManager().addFXMLScene(fxmlUrl, GameCreationMenuViewControllerImpl.class, controller);
     }
 
 }

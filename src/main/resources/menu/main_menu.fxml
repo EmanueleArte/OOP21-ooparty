@@ -39,7 +39,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox alignment="TOP_CENTER" prefHeight="2160.0" prefWidth="3840.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="menu.mainmenu.viewcontroller.MainMenuViewController">
+<VBox alignment="TOP_CENTER" prefHeight="2160.0" prefWidth="3840.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="menu.mainmenu.viewcontroller.MainMenuViewControllerImpl">
   <children>
       <BorderPane prefHeight="200.0" prefWidth="200.0">
          <center>
@@ -53,7 +53,7 @@
                         <Insets />
                      </opaqueInsets>
                   </Label>
-                  <Button fx:id="createGameButton" alignment="CENTER" mnemonicParsing="false" onAction="#createGame" text="Create game">
+                  <Button alignment="CENTER" mnemonicParsing="false" onAction="#createGame" text="Create game">
                      <font>
                         <Font size="36.0" />
                      </font>
@@ -61,7 +61,7 @@
                         <Insets top="120.0" />
                      </VBox.margin>
                   </Button>
-                  <Button fx:id="exitButton" alignment="CENTER" mnemonicParsing="false" onAction="#exitGame" text="Exit">
+                  <Button alignment="CENTER" mnemonicParsing="false" onAction="#exitGame" text="Exit">
                      <font>
                         <Font size="36.0" />
                      </font>

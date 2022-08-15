@@ -3,10 +3,10 @@ package minigames.mastermind.model;
 import minigames.common.model.MinigameModel;
 
 /**
- * This interface models the mastermind model.
+ * This interface models the mastermind model and extension of {@link MinigameModel}.
  * 
  * @param <S> the scenes of the stage
- * @param <U> the {@link game.player.Player}
+ * @param <U> the players
  */
 public interface MastermindModel<S, U> extends MinigameModel<S, U> {
 
@@ -33,13 +33,6 @@ public interface MastermindModel<S, U> extends MinigameModel<S, U> {
     int getNAttempts();
 
     /**
-     * Getter for the score.
-     * 
-     * @return the score of a player
-     */
-    int getScore();
-
-    /**
      * Getter for the solution.
      * 
      * @return the 4-digit number to guess
@@ -48,6 +41,8 @@ public interface MastermindModel<S, U> extends MinigameModel<S, U> {
 
     /**
      * Setter for the max number of attempts.
+     * 
+     * @param maxAttempts the maximum number of attempts
      */
     void setMaxAttempts(int maxAttempts);
 
@@ -55,7 +50,7 @@ public interface MastermindModel<S, U> extends MinigameModel<S, U> {
      * This method controls the attempt of the player.
      * 
      * @param attempt the player attempt
-     * @return the attempt string if the attempt is valid, null otherwise
+     * @return the attempt string if the attempt is valid, empty string otherwise
      */
     String doAttempt(String attempt);
 

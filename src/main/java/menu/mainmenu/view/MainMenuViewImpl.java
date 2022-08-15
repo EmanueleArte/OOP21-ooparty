@@ -1,31 +1,30 @@
 package menu.mainmenu.view;
 
-import utils.enums.ControllerType;
-import utils.graphics.StageManager;
+import menu.mainmenu.viewcontroller.MainMenuViewControllerImpl;
+import utils.controller.GenericController;
+import utils.graphics.stagemanager.StageManager;
+import utils.view.GenericViewAbstr;
 
 /**
- * Implementation of {@link MainMenuView}.
+ * Extension of {@link GenericViewAbstr}.
  * 
  * @param <S> the scenes of the stage
  */
-public class MainMenuViewImpl<S> implements MainMenuView<S> {
-
-    private final StageManager<S> stageManager;
+public class MainMenuViewImpl<S> extends GenericViewAbstr<S> {
 
     /**
      * Builds a new {@link MainMenuViewImpl}.
      * 
-     * @param s the {@link utils.graphics.StageManager}
+     * @param s the {@link StageManager}
      */
     public MainMenuViewImpl(final StageManager<S> s) {
-        super();
-        this.stageManager = s;
+        super(s);
     }
 
     @Override
-    public final void createMainMenu() {
+    public final void createScene(final GenericController controller) {
         final String fxmlUrl = "menu/main_menu.fxml";
-        this.stageManager.addFXMLScene(fxmlUrl, ControllerType.MAIN_MENU, null);
+        this.getStageManager().addFXMLScene(fxmlUrl, MainMenuViewControllerImpl.class, controller);
     }
 
 }
