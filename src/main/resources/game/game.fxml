@@ -96,17 +96,8 @@
                            <children>
                               <Group>
                                  <children>
-                                    <Polygon fill="DODGERBLUE" scaleX="0.8" stroke="BLACK" strokeType="INSIDE">
-                                      <points>
-                                        <Double fx:value="-50.0" />
-                                        <Double fx:value="40.0" />
-                                        <Double fx:value="50.0" />
-                                        <Double fx:value="40.0" />
-                                        <Double fx:value="0.0" />
-                                        <Double fx:value="-60.0" />
-                                      </points>
-                                    </Polygon>
-                                    <Circle fill="DODGERBLUE" layoutY="-59.0" radius="27.0" stroke="BLACK" strokeType="INSIDE" />
+                                    <Polygon fill="DODGERBLUE" points="-21.59064483642578, -25.3333683013916, 21.57431983947754, -25.333349227905273, 0.0, -60.0" scaleX="0.8" stroke="BLACK" strokeType="INSIDE" />
+                                    <Circle fill="DODGERBLUE" layoutY="-59.0" radius="10.0" stroke="BLACK" strokeType="INSIDE" />
                                  </children>
                               </Group>
                               <Group layoutY="150.0">

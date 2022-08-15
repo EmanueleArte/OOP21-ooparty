@@ -254,25 +254,25 @@ public class GameHandlerViewControllerImpl implements GenericViewController {
             if (map.getSquares().get(index).isCoinsGameMapSquare()) {
                 var coin = new Image("game/coin.png");
                 ImageView view = new ImageView(coin);
-                view.setFitHeight(GameHandlerViewControllerImpl.COIN_DIM);
+                view.setFitHeight(COIN_DIM);
                 view.setPreserveRatio(true);
                 l.setGraphic(view);
             } else if (map.getSquares().get(index).isStarGameMapSquare()) {
                 var star = new Image("game/star.png");
                 ImageView view = new ImageView(star);
-                view.setFitHeight(GameHandlerViewControllerImpl.STAR_DIM);
+                view.setFitHeight(STAR_DIM);
                 view.setPreserveRatio(true);
                 l.setGraphic(view);
             } else if (map.getSquares().get(index).isPowerUpGameMapSquare()) {
                 var star = new Image("game/powerup.png");
                 ImageView view = new ImageView(star);
-                view.setFitHeight(GameHandlerViewControllerImpl.POWERUP_DIM);
+                view.setFitHeight(POWERUP_DIM);
                 view.setPreserveRatio(true);
                 l.setGraphic(view);
             } else if (map.getSquares().get(index).isDamageGameMapSquare()) {
                 var star = new Image("game/damage.png");
                 ImageView view = new ImageView(star);
-                view.setFitHeight(GameHandlerViewControllerImpl.DAMAGE_ICON_DIM);
+                view.setFitHeight(DAMAGE_ICON_DIM);
                 view.setPreserveRatio(true);
                 l.setGraphic(view);
             }
