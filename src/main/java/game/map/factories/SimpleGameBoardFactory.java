@@ -110,9 +110,8 @@ public class SimpleGameBoardFactory extends FixedSizeGameBoardFactory {
         return true;
     }
 
-    /* TODO: rattoppo, serve equals in GameMapSquareImpl */
     private boolean compareSquares(final GameMapSquare s1, final GameMapSquare s2) {
-        return s1.toString().equals(s2.toString());
+        return s1.getClass().equals(s2.getClass());
     }
 
     private GameMapSquare getRandomSquare() {
