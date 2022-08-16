@@ -8,13 +8,13 @@ import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
+import game.map.CoinsGameMapSquare;
+import game.map.DamageGameMapSquare;
 import game.map.GameMap;
 import game.map.GameMapImpl;
 import game.map.GameMapSquareImpl;
 import game.map.PowerUpGameMapSquare;
 import game.map.StarGameMapSquare;
-import game.map.CoinsGameMapSquare;
-import game.map.DamageGameMapSquare;
 import game.player.Player;
 import game.player.PlayerImpl;
 

@@ -27,7 +27,7 @@ public interface GameMap {
     MapLayout getLayout();
 
     /**
-     * Puts all the players in the starting square.
+     * Puts all the players in the starting square if they are not already on the map.
      * @param players the list of the players to be put in the starting square
      */
     void inizializePlayers(List<Player> players);

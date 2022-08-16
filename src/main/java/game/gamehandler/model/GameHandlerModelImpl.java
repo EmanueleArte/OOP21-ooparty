@@ -45,6 +45,8 @@ public class GameHandlerModelImpl<S> implements GameHandlerModel {
         this.playerTurnProgress = -1;
         this.playersIterator = players.iterator();
         this.currentPlayer = Optional.empty();
+
+        this.gameMap.inizializePlayers(this.players);
     }
 
     @Override
@@ -145,5 +147,10 @@ public class GameHandlerModelImpl<S> implements GameHandlerModel {
     @Override
     public final void endGame() {
         this.stageManager.popScene();
+    }
+
+    @Override
+    public final GameMap getGameMap() {
+        return this.gameMap;
     }
 }

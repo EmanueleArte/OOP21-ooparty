@@ -93,7 +93,9 @@ public class GameHandlerViewControllerImpl implements GenericViewController {
         }
     }
 
-    public final void initialize(final List<Player> players) {
+    public final void initialize(final List<Player> players, final GenericController controller) {
+        this.setController(controller);
+
         List<Group> avatarsList = new ArrayList<Group>();
         this.avatars.getChildren().forEach(c -> {
             avatarsList.add((Group) c);
@@ -119,8 +121,7 @@ public class GameHandlerViewControllerImpl implements GenericViewController {
 
         initializeRank(players);
 
-        GameMap map = new GameMapImpl();
-        initializeMap(map);
+        initializeMap(this.controller.getGameMap());
 
         final List<Point2D> squarePositions = mapGrid.getChildren()
                 .stream()
@@ -157,9 +158,23 @@ public class GameHandlerViewControllerImpl implements GenericViewController {
             } else if (playerProgress == PlayerTurnProgress.HIDE_BANNER.getProgress()) {
                 this.hideBanner();
             } else if (playerProgress == PlayerTurnProgress.MOVE_PLAYER.getProgress()) {
-                this.movePlayer(this.controller.getCurrentPlayer().get(), 10);
+                Player currentPlayer = this.controller.getCurrentPlayer().get();
+                this.movePlayer(currentPlayer, 10);
+                if (this.controller.getGameMap().getPlayerPosition(currentPlayer).isCoinsGameMapSquare()) {
+                    this.showPickUpCoins(currentPlayer);
+                } else if (this.controller.getGameMap().getPlayerPosition(currentPlayer).isDamageGameMapSquare()) {
+                    //TODO
+                } else if (this.controller.getGameMap().getPlayerPosition(currentPlayer).isStarGameMapSquare()) {
+                    //TODO
+                } else if (this.controller.getGameMap().getPlayerPosition(currentPlayer).isPowerUpGameMapSquare()) {
+                    //TODO
+                }
             }
         }
+    }
+
+    private void showPickUpCoins(final Player p) {
+        this.showBanner(p.getNickname() + " earned " + /*TODO numero monete*/ " coins");
     }
 
     private void showBanner(final String text) {
