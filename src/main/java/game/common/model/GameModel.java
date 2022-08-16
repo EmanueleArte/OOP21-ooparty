@@ -2,15 +2,15 @@ package game.common.model;
 
 import java.util.List;
 
+import game.player.Player;
 import utils.graphics.controller.StageManager;
 
 /**
  * This interface models the game model.
  * 
  * @param <S> the scenes of the stage
- * @param <U> the players
  */
-public interface GameModel<S, U> {
+public interface GameModel<S> {
 
     /**
      * This method runs the game.
@@ -31,14 +31,13 @@ public interface GameModel<S, U> {
      * 
      * @return the list of players
      */
-    List<U> getPlayers();
+    List<Player> getPlayers();
 
     /**
      * Getter for the current player.
      * 
      * @return the current player
      */
-    U getCurrPlayer();
+    Player getCurrPlayer();
 
 }
-
