@@ -1,5 +1,6 @@
 package game.map.factories;
 
+import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -74,8 +75,8 @@ public class SimpleGameBoardFactory extends FixedSizeGameBoardFactory {
                 .stream()
                 .filter(st -> {
                     try {
-                        return squareCanBeAdded(board, (GameMapSquare) st.squareClass.newInstance());
-                    } catch (InstantiationException | IllegalAccessException e) {
+                        return squareCanBeAdded(board, (GameMapSquare) st.squareClass.getDeclaredConstructor().newInstance());
+                    } catch (InstantiationException | IllegalAccessException | IllegalArgumentException | InvocationTargetException | NoSuchMethodException | SecurityException e) {
                         // TODO Auto-generated catch block
                         e.printStackTrace();
                     }
@@ -90,7 +91,7 @@ public class SimpleGameBoardFactory extends FixedSizeGameBoardFactory {
         GameMapSquare squareClassInstance;
 
         try {
-            squareClassInstance = (GameMapSquare) squareClass.newInstance();
+            squareClassInstance = (GameMapSquare) squareClass.getDeclaredConstructor().newInstance();
             var elementsCount = board.stream()
                     .filter(s -> compareSquares(s, squareClassInstance))
                     .count();
@@ -104,7 +105,7 @@ public class SimpleGameBoardFactory extends FixedSizeGameBoardFactory {
             if (compareSquares(square, squareClassInstance) && elementsCount >= maxOcc) {
                 return false;
             }
-        } catch (InstantiationException | IllegalAccessException | IllegalArgumentException | SecurityException e1) {
+        } catch (InstantiationException | IllegalAccessException | IllegalArgumentException | SecurityException | InvocationTargetException | NoSuchMethodException e1) {
             e1.printStackTrace();
         }
         return true;
