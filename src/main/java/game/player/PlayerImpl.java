@@ -190,4 +190,5 @@ public class PlayerImpl implements Player {
     public final void usePowerup(final int powerupType) {
 
     }
+
 }
