@@ -41,4 +41,3 @@ public interface GameModel<S> {
     Player getCurrPlayer();
 
 }
-
