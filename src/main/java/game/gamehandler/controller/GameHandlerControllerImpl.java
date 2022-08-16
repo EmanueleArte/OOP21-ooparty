@@ -20,7 +20,7 @@ public class GameHandlerControllerImpl<S> extends GenericControllerAbstr
     private GameHandlerViewControllerImpl viewController;
     private GameHandlerModel model;
 
-    public <S, U> GameHandlerControllerImpl(final StageManager<S> s, final List<U> players, final int turnsNumber) {
+    public GameHandlerControllerImpl(final StageManager<S> s, final List<Player> players, final int turnsNumber) {
         super(s);
         this.model = new GameHandlerModelImpl(s, players, turnsNumber, null);
     }
