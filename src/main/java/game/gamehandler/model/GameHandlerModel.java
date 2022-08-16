@@ -3,6 +3,7 @@ package game.gamehandler.model;
 import java.util.List;
 import java.util.Optional;
 
+import game.map.GameMap;
 import game.player.Player;
 
 /**
@@ -57,4 +58,9 @@ public interface GameHandlerModel {
      */
     void endGame();
 
+    /**
+     * 
+     * @return the {@link GameMap} of the current game
+     */
+    GameMap getGameMap();
 }

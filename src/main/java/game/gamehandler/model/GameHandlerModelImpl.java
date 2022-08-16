@@ -146,4 +146,9 @@ public class GameHandlerModelImpl<S> implements GameHandlerModel {
     public final void endGame() {
         this.stageManager.popScene();
     }
+
+    @Override
+    public final GameMap getGameMap() {
+        return this.gameMap;
+    }
 }

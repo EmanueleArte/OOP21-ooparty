@@ -4,6 +4,7 @@ import java.util.Optional;
 
 import game.player.Player;
 import utils.GenericViewController;
+import game.map.GameMap;
 
 public interface GameHandlerController {
 
@@ -21,4 +22,9 @@ public interface GameHandlerController {
 
     Optional<Player> getCurrentPlayer();
 
+    /**
+     * 
+     * @return the {@link GameMap} of the current game
+     */
+    GameMap getGameMap();
 }

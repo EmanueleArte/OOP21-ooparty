@@ -7,6 +7,7 @@ import game.gamehandler.model.GameHandlerModel;
 import game.gamehandler.model.GameHandlerModelImpl;
 import game.gamehandler.view.GameHandlerViewImpl;
 import game.gamehandler.viewcontroller.GameHandlerViewControllerImpl;
+import game.map.GameMap;
 import game.player.Player;
 import utils.controller.GenericController;
 import utils.controller.GenericControllerAbstr;
@@ -20,9 +21,9 @@ public class GameHandlerControllerImpl<S> extends GenericControllerAbstr
     private GameHandlerViewControllerImpl viewController;
     private GameHandlerModel model;
 
-    public <S, U> GameHandlerControllerImpl(final StageManager<S> s, final List<U> players, final int turnsNumber) {
+    public <S, U> GameHandlerControllerImpl(final StageManager<S> s, final List<U> players, final int turnsNumber, final GameMap gameMap) {
         super(s);
-        this.model = new GameHandlerModelImpl(s, players, turnsNumber, null);
+        this.model = new GameHandlerModelImpl(s, players, turnsNumber, gameMap);
     }
 
     @Override
@@ -35,7 +36,7 @@ public class GameHandlerControllerImpl<S> extends GenericControllerAbstr
     public final <C> void setViewController(final C viewController) {
         if (viewController instanceof GameHandlerViewControllerImpl) {
             this.viewController = (GameHandlerViewControllerImpl) viewController;
-            this.viewController.initialize(this.model.getPlayers());
+            this.viewController.initialize(this.model.getPlayers(), this);
         } else {
             throw new IllegalArgumentException("The parameter must be an instance of GameHandlerViewControllerImpl");
         }
@@ -64,6 +65,11 @@ public class GameHandlerControllerImpl<S> extends GenericControllerAbstr
     @Override
     public final Optional<Player> getCurrentPlayer() {
         return this.model.getCurrentPlayer();
+    }
+
+    @Override
+    public final GameMap getGameMap() {
+        return this.model.getGameMap();
     }
 
 }

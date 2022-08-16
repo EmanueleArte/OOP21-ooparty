@@ -7,9 +7,9 @@ import java.util.List;
 import org.junit.jupiter.api.Test;
 
 import game.map.GameMap;
+import game.map.GameMapImpl;
 import game.map.GameMapSquare;
 import game.map.GameMapSquareImpl;
-import game.map.GameMapImpl;
 
 public class TestMap {
 

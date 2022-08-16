@@ -76,7 +76,9 @@ public class GameHandlerViewControllerImpl implements GenericViewController {
         }
     }
 
-    public final void initialize(final List<Player> players) {
+    public final void initialize(final List<Player> players, final GenericController controller) {
+        this.setController(controller);
+
         List<Group> avatarsList = new ArrayList<Group>();
         this.avatars.getChildren().forEach(c -> {
             avatarsList.add((Group) c);
@@ -102,8 +104,7 @@ public class GameHandlerViewControllerImpl implements GenericViewController {
 
         initializeRank(players);
 
-        GameMap map = new GameMapImpl();
-        initializeMap(map);
+        initializeMap(this.controller.getGameMap());
 
         final List<Point2D> squarePositions = mapGrid.getChildren()
                 .stream()
@@ -140,9 +141,21 @@ public class GameHandlerViewControllerImpl implements GenericViewController {
             } else if (playerProgress == PlayerTurnProgress.HIDE_BANNER.getProgress()) {
                 this.hideBanner();
             } else if (playerProgress == PlayerTurnProgress.MOVE_PLAYER.getProgress()) {
-                this.movePlayer(this.controller.getCurrentPlayer().get(), 10);
+                Player currentPlayer = this.controller.getCurrentPlayer().get();
+                this.movePlayer(currentPlayer, 10);
+                if (this.controller.getGameMap().getPlayerPosition(currentPlayer).isCoinsGameMapSquare()) {
+                    this.showPickUpCoins(currentPlayer);
+                }
             }
         }
+    }
+
+    private void showPickUpCoins(final Player p) {
+        TranslateTransition transition = new TranslateTransition();
+        transition.setNode(this.playerToAvatar.get(p));
+        transition.setDuration(Duration.millis(1000));
+        transition.setByY(this.playerToAvatar.get(p).getLayoutY() + 50);
+        transition.play();
     }
 
     private void showBanner(final String text) {
