@@ -54,8 +54,12 @@ public class TestGameMapSquares {
         assertFalse(this.p2.getPosition(this.gameMap).isPowerUpGameMapSquare());
         assertFalse(this.p2.getPosition(this.gameMap).isStarGameMapSquare());
         int damageNum = gameMap.getSquares().get(dice).getDamage();
-        p2.getPosition(this.gameMap).receiveDamage(p2);
+        this.p2.getPosition(this.gameMap).receiveDamage(p2, this.gameMap);
         assertEquals(damageNum, PlayerImpl.MAX_LIFE - p2.getLifePoints());
+        while (this.p2.getLifePoints() != PlayerImpl.MAX_LIFE) {
+            this.p2.getPosition(this.gameMap).receiveDamage(p2, this.gameMap);
+        }
+        assertEquals(this.p2.getPosition(this.gameMap), this.gameMap.getSquares().get(0));
     }
 
     @Test

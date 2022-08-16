@@ -95,8 +95,9 @@ public interface Player {
     void addLifePoints(int amount);
 
     /**
-     * Takes Away life from the player.
+     * Takes away life points from the player.
      * @param damage the amount of life to be taken away
+     * @param gameMap the game map (used to move the {@link Player} if he dies)
      */
-    void loseLifePoints(int damage);
+    void loseLifePoints(int damage, GameMap gameMap);
 }
