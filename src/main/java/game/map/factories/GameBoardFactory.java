@@ -16,10 +16,9 @@ public interface GameBoardFactory {
         List<GameMapSquare> createGameBoard();
 
         /**
-         * This method returns a list (of length size) of {@link GameMapSquare} that represents the game board.
-         * @param the size of the board
-         * @return a list representing the game board
+         * This method returns the size of the board that the factory will create.
+         * @return size of the board
          */
-        List<GameMapSquare> createGameBoard(int size);
+        int getSize();
 
 }
