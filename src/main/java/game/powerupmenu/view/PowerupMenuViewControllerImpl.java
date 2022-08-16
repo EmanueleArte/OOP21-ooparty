@@ -2,6 +2,7 @@ package game.powerupmenu.view;
 
 import game.powerupmenu.controller.PowerupMenuController;
 import game.powerupmenu.controller.PowerupMenuControllerImpl;
+import javafx.fxml.FXML;
 import utils.GenericViewController;
 import utils.controller.GenericController;
 
@@ -18,4 +19,8 @@ public class PowerupMenuViewControllerImpl implements GenericViewController {
         }
     }
 
+    @FXML
+    public void close() {
+        this.controller.returnToGame();
+    }
 }

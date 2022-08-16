@@ -1,7 +1,6 @@
 package game.dice.view;
 
 import java.util.Optional;
-import java.util.Random;
 
 import game.dice.controller.DiceController;
 import game.dice.controller.DiceControllerImpl;
@@ -17,9 +16,18 @@ import utils.GenericViewController;
 import utils.controller.GenericController;
 
 public class DiceViewControllerImpl implements GenericViewController {
+
+    /**
+     * duration of jump animation in milliseconds.
+     */
+    public static final int JUMP_DURATION = 500;
+    /**
+     * height of jump in pixels.
+     */
+    public static final int JUMP_HEIGHT = 170;
+
     private DiceController controller;
     private boolean end = false;
-    private final Random rand = new Random();
 
     @FXML
     private Group player;
@@ -55,11 +63,11 @@ public class DiceViewControllerImpl implements GenericViewController {
     public final void jumpToDice(final int roll) {
         TranslateTransition transition = new TranslateTransition();
         transition.setNode(player);
-        transition.setDuration(Duration.millis(500));
-        transition.setByY(-170);
+        transition.setDuration(Duration.millis(JUMP_DURATION));
+        transition.setByY(-JUMP_HEIGHT);
         transition.setOnFinished(e -> {
             diceText.setText(Integer.toString(roll));
-            transition.setByY(170);
+            transition.setByY(JUMP_HEIGHT);
             transition.setOnFinished(null);
             transition.play();
         });

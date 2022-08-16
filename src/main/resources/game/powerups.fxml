@@ -6,13 +6,13 @@
 <?import javafx.scene.layout.VBox?>
 
 
-<VBox alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="2160.0" prefWidth="3840.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1">
+<VBox alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="2160.0" prefWidth="3840.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="game.powerupmenu.view.PowerupMenuViewControllerImpl">
    <children>
       <Pane maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="720.0" prefWidth="1000.0">
          <children>
             <Group fx:id="powerupList">
                <children>
-                  <Button alignment="CENTER" layoutX="460.0" layoutY="200.0" mnemonicParsing="false" text="No Powerup" textAlignment="CENTER" />
+                  <Button alignment="CENTER" layoutX="460.0" layoutY="200.0" mnemonicParsing="false" onAction="#close" text="No Powerup" textAlignment="CENTER" />
                </children>
             </Group>
          </children>

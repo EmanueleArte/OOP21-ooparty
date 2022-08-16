@@ -86,12 +86,13 @@ public class GameHandlerModelImpl<S> implements GameHandlerModel {
         }
         if (this.playerTurnProgress == PlayerTurnProgress.SHOW_BANNER.getProgress()) {
             this.currentPlayer = Optional.of(this.playersIterator.next());
-            this.currentPlayer.get().setDicesNumber(2);
+            this.currentPlayer.get().setDicesNumber(1);
         }
         if (this.playerTurnProgress == PlayerTurnProgress.USE_POWERUP.getProgress()) {
-            if(this.currentPlayer.get().getPowerupList().isEmpty()) {
-                this.playerTurnProgress++;
-            }else {
+            if (this.currentPlayer.get().getPowerupList().isEmpty()) {
+                this.powerupMenu.start();
+                //this.playerTurnProgress++;
+            } else {
                 this.powerupMenu.start();
             }
         }

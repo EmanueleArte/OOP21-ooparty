@@ -15,7 +15,7 @@ public class PowerupMenuControllerImpl extends GenericControllerAbstr implements
 
     public <S> PowerupMenuControllerImpl(final StageManager<S> s) {
         super(s);
-        this.model = new PowerupMenuModelImpl();
+        this.model = new PowerupMenuModelImpl(s);
     }
 
     @Override
@@ -34,8 +34,13 @@ public class PowerupMenuControllerImpl extends GenericControllerAbstr implements
 
     @Override
     public final void start() {
-        GenericViewUtils.createScene(this.getStageManager(), this, PowerupMenuViewControllerImpl.class, "game/powerup.fxml");
+        GenericViewUtils.createScene(this.getStageManager(), this, PowerupMenuViewControllerImpl.class, "game/powerups.fxml");
         //this.viewController.initialize(p.getColor());
+    }
+
+    @Override
+    public final void returnToGame() {
+        this.model.returnToGame();
     }
 
 }
