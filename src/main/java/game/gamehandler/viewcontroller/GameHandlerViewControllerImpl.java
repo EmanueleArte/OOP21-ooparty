@@ -19,6 +19,7 @@ import javafx.animation.FadeTransition;
 import javafx.animation.TranslateTransition;
 import javafx.fxml.FXML;
 import javafx.geometry.HPos;
+import javafx.geometry.Insets;
 import javafx.geometry.Point2D;
 import javafx.geometry.Pos;
 import javafx.geometry.VPos;
@@ -28,6 +29,8 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.layout.Background;
+import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.Border;
 import javafx.scene.layout.BorderStroke;
 import javafx.scene.layout.BorderStrokeStyle;
@@ -231,12 +234,8 @@ public class GameHandlerViewControllerImpl implements GenericViewController {
             label.setPrefWidth(SQUARE_WIDTH);
             label.setPrefHeight(SQUARE_HEIGHT);
             label.setAlignment(Pos.CENTER);
-            String cssLabelLayout = "-fx-border-color: black;\n"
-                    + "-fx-border-insets: 2;\n"
-                    + "-fx-border-width: 1;\n"
-                    + "-fx-margin: 2px;\n"
-                    + "-fx-background-color: rgb(185, 185, 185);\n";
-            label.setStyle(cssLabelLayout);
+            label.setBorder(new Border(new BorderStroke(Color.BLACK, BorderStrokeStyle.SOLID, CornerRadii.EMPTY, new BorderWidths(1))));
+            label.setBackground(new Background(new BackgroundFill(Color.GRAY, CornerRadii.EMPTY, Insets.EMPTY)));
 
             return label;
         }).forEach(l -> {
@@ -247,6 +246,9 @@ public class GameHandlerViewControllerImpl implements GenericViewController {
             GridPane.setHalignment(l, HPos.CENTER);
             GridPane.setValignment(l, VPos.CENTER);
         });
+
+        mapGrid.setHgap(2);
+        mapGrid.setVgap(2);
     }
 
     private Optional<Image> getImage(final GameMapSquare s) {
