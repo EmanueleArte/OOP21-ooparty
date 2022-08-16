@@ -31,9 +31,9 @@ public class SimpleGameBoardFactory extends FixedSizeGameBoardFactory {
         STAR(StarGameMapSquare.class, 1);
 
         private final int maxOccurrences;
-        private final Class squareClass;
+        private final Class<?> squareClass;
 
-        SquareTypeMaxOccurrences(final Class squareClass, final int max) {
+        SquareTypeMaxOccurrences(final Class<?> squareClass, final int max) {
             this.squareClass = squareClass;
             this.maxOccurrences = max;
         }
@@ -42,11 +42,14 @@ public class SimpleGameBoardFactory extends FixedSizeGameBoardFactory {
             return this.maxOccurrences;
         }
 
-        public Class getSquareClass() {
+        public Class<?> getSquareClass() {
             return this.squareClass;
         }
     }
 
+    /**
+     * 
+     */
     @Override
     public List<GameMapSquare> createGameBoard(final int size) {
         final List<GameMapSquare> board = new ArrayList<>();
