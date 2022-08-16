@@ -45,6 +45,8 @@ public class GameHandlerModelImpl<S> implements GameHandlerModel {
         this.playerTurnProgress = -1;
         this.playersIterator = players.iterator();
         this.currentPlayer = Optional.empty();
+
+        this.gameMap.inizializePlayers(this.players);
     }
 
     @Override

@@ -145,17 +145,19 @@ public class GameHandlerViewControllerImpl implements GenericViewController {
                 this.movePlayer(currentPlayer, 10);
                 if (this.controller.getGameMap().getPlayerPosition(currentPlayer).isCoinsGameMapSquare()) {
                     this.showPickUpCoins(currentPlayer);
+                } else if (this.controller.getGameMap().getPlayerPosition(currentPlayer).isDamageGameMapSquare()) {
+                    //TODO
+                } else if (this.controller.getGameMap().getPlayerPosition(currentPlayer).isStarGameMapSquare()) {
+                    //TODO
+                } else if (this.controller.getGameMap().getPlayerPosition(currentPlayer).isPowerUpGameMapSquare()) {
+                    //TODO
                 }
             }
         }
     }
 
     private void showPickUpCoins(final Player p) {
-        TranslateTransition transition = new TranslateTransition();
-        transition.setNode(this.playerToAvatar.get(p));
-        transition.setDuration(Duration.millis(1000));
-        transition.setByY(this.playerToAvatar.get(p).getLayoutY() + 50);
-        transition.play();
+        this.showBanner(p.getNickname() + " earned " + /*TODO numero monete*/ " coins");
     }
 
     private void showBanner(final String text) {
