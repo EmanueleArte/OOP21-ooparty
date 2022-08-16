@@ -5,10 +5,14 @@ import java.util.List;
 import game.map.factories.GameBoardFactory;
 import game.map.factories.SimpleGameBoardFactory;
 import game.player.Player;
+import utils.enums.MapLayout;
 import utils.exceptions.PlayerNotFoundException;
 
 public class GameMapImpl implements GameMap {
+
     private List<GameMapSquare> squares;
+    private final MapLayout layout;
+
     /**
      * Number of coins required to buy a star.
      */
@@ -17,10 +21,18 @@ public class GameMapImpl implements GameMap {
     public GameMapImpl() {
         GameBoardFactory f = new SimpleGameBoardFactory();
         this.squares = f.createGameBoard();
+        this.layout = MapLayout.DEFAULT;
     }
 
     public GameMapImpl(final List<GameMapSquare> squares) {
         this.squares = squares;
+        this.layout = MapLayout.DEFAULT;
+    }
+
+    public GameMapImpl(final MapLayout layout) {
+        GameBoardFactory f = new SimpleGameBoardFactory();
+        this.squares = f.createGameBoard();
+        this.layout = layout;
     }
 
     @Override
@@ -55,5 +67,10 @@ public class GameMapImpl implements GameMap {
             }
         }
         return false;
+    }
+
+    @Override
+    public MapLayout getLayout() {
+        return this.layout;
     }
 }
