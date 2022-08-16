@@ -9,7 +9,8 @@ import javafx.scene.shape.Shape;
 import utils.NoticeUserAbstr;
 
 /**
- * Extension of {@link NoticeUserAbstr}.
+ * Extension of {@link NoticeUserAbstr} and implementation of
+ * {@link MinigameViewController}.
  */
 public abstract class MinigameViewControllerAbstr extends NoticeUserAbstr implements MinigameViewController {
 
