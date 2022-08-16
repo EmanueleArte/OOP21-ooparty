@@ -10,8 +10,6 @@ import game.player.Player;
  */
 public interface GameHandlerModel {
 
-    void playTurn(Player player);
-
     /**
      * This method selects a minigame and plays it.
      */

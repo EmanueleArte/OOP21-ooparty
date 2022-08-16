@@ -1,19 +1,16 @@
-package game.gamehandler.viewcontroller;
+package game.gamehandler.view;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import game.dice.controller.DiceControllerImpl;
-import game.dice.view.DiceViewImpl;
 import game.gamehandler.controller.GameHandlerController;
 import game.player.Player;
 import javafx.animation.FadeTransition;
 import javafx.animation.TranslateTransition;
 import javafx.fxml.FXML;
 import javafx.scene.Group;
-import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
@@ -28,8 +25,6 @@ import utils.controller.GenericController;
 import utils.enums.OrdinalNumber;
 import utils.enums.PlayerTurnProgress;
 import utils.enums.TurnProgress;
-import utils.graphics.controller.StageManager;
-import utils.graphics.controller.StageManagerImpl;
 import utils.GenericViewController;
 
 public class GameHandlerViewControllerImpl implements GenericViewController {
@@ -84,8 +79,8 @@ public class GameHandlerViewControllerImpl implements GenericViewController {
     }
 
     @FXML
-    protected final void onEnter(final KeyEvent ke) {
-        if (ke.getCode().equals(KeyCode.ENTER)) {
+    protected final void onKeyPressed(final KeyEvent ke) {
+        if (ke.getCode().equals(KeyCode.ENTER) || ke.getCode().equals(KeyCode.SPACE)) {
             this.nextStep();
         }
     }

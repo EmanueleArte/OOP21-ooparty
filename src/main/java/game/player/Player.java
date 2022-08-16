@@ -1,7 +1,10 @@
 package game.player;
 
+import java.util.List;
+
 import game.map.GameMap;
 import game.map.GameMapSquare;
+import game.powerup.GenericPowerup;
 import javafx.scene.paint.Color;
 
 /**
@@ -22,14 +25,15 @@ public interface Player {
     /**
      * Moves the player forward.
      * 
-     * @param n number of steps
+     * @param n       number of steps
      * @param gameMap the map of the game
      */
     void moveForward(int n, GameMap gameMap);
 
     /**
      * Moves the player to a certain position.
-     * @param gameMap the map of the game
+     * 
+     * @param gameMap          the map of the game
      * @param newGameMapSquare the new player's position square
      */
     void goTo(GameMap gameMap, GameMapSquare newGameMapSquare);
@@ -83,20 +87,50 @@ public interface Player {
     int getStarsCount();
 
     /**
-     * 
      * @return the amount of life points
      */
     int getLifePoints();
 
     /**
      * Adds amount life points to the current life points.
+     * 
      * @param amount the amount of life points to get
      */
     void addLifePoints(int amount);
 
     /**
      * Takes Away life from the player.
+     * 
      * @param damage the amount of life to be taken away
      */
     void loseLifePoints(int damage);
+
+    /**
+     * Sets number of dices to roll during the next turn.
+     * 
+     * @param n the number of dices to roll
+     */
+    void setDicesNumber(int n);
+
+    /**
+     * @return boolean containing true if player has still got dices to roll
+     */
+    boolean hasDiceToRoll();
+
+    /**
+     * Decreases the number of dices to roll by one.
+     */
+    void rollDice();
+
+    /**
+     * @return a list containing all the powerups the player has got.
+     */
+    List<GenericPowerup> getPowerupList();
+
+    /**
+     * Uses one powerup and removes it from the list.
+     * 
+     * @param powerupType type of powerup to use
+     */
+    void usePowerup(int powerupType);
 }

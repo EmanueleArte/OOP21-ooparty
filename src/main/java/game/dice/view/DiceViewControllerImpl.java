@@ -1,4 +1,4 @@
-package game.dice.viewcontroller;
+package game.dice.view;
 
 import java.util.Optional;
 import java.util.Random;
