@@ -5,10 +5,6 @@ package utils.enums;
  */
 public enum SquareType {
     /**
-     * First square of the map.
-     */
-    START,
-    /**
      * Square with no effects.
      */
     DEFAULT,
