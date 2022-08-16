@@ -76,11 +76,6 @@ public abstract class GameModelAbstr<S> implements GameModel<S> {
     }
 
     /**
-     * This method starts a new turn if there is another player who has to play.
-     */
-    protected abstract void nextTurn();
-
-    /**
      * Setter for the current player.
      */
     protected void setCurrPlayer() {
