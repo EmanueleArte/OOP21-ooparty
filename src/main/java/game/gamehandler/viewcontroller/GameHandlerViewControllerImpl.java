@@ -30,7 +30,7 @@ import utils.enums.PlayerTurnProgress;
 import utils.enums.TurnProgress;
 import utils.graphics.controller.StageManager;
 import utils.graphics.controller.StageManagerImpl;
-import utils.GenericViewController;
+import utils.view.GenericViewController;
 
 public class GameHandlerViewControllerImpl implements GenericViewController {
 

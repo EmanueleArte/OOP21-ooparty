@@ -3,7 +3,7 @@ package game.gamehandler.controller;
 import java.util.Optional;
 
 import game.player.Player;
-import utils.GenericViewController;
+import utils.view.GenericViewController;
 
 public interface GameHandlerController {
 

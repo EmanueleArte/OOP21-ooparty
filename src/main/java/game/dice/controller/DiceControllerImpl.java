@@ -8,10 +8,10 @@ import game.dice.model.DiceModelNoRepeatImpl;
 import game.dice.view.DiceViewImpl;
 import game.dice.viewcontroller.DiceViewControllerImpl;
 import game.player.Player;
-import utils.GenericViewController;
 import utils.controller.GenericControllerAbstr;
 import utils.graphics.controller.StageManager;
 import utils.view.GenericView;
+import utils.view.GenericViewController;
 
 public class DiceControllerImpl extends GenericControllerAbstr implements DiceController {
     private final DiceModel<?> model;

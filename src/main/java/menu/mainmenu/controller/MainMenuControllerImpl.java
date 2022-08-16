@@ -4,9 +4,9 @@ import menu.MenuController;
 import menu.mainmenu.model.MainMenuModel;
 import menu.mainmenu.model.MainMenuModelImpl;
 import menu.mainmenu.view.MainMenuViewControllerImpl;
-import utils.GenericViewController;
 import utils.controller.GenericControllerAbstr;
 import utils.graphics.controller.StageManager;
+import utils.view.GenericViewController;
 import utils.view.GenericViewUtils;
 
 /**

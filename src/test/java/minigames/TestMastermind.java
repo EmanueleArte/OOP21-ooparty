@@ -7,6 +7,8 @@ import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
+import game.player.Player;
+import game.player.PlayerImpl;
 import minigames.mastermind.model.MastermindModel;
 import minigames.mastermind.model.MastermindModelImpl;
 import utils.graphics.controller.StageManager;
@@ -18,11 +20,12 @@ import utils.graphics.controller.StageManagerImpl;
 class TestMastermind {
 
     private final StageManager<String> s = new StageManagerImpl<String>("");
-    private final List<String> players = List.of("Luca", "Giovanni", "Lorenzo", "Marco");
+    private final List<Player> players = List.of(new PlayerImpl("Luca"), new PlayerImpl("Giovanni"),
+            new PlayerImpl("Lorenzo"), new PlayerImpl("Marco"));
 
     @Test
     void testInput() {
-        final MastermindModel<String, String> m = new MastermindModelImpl<String, String>(players, s);
+        final MastermindModel<String> m = new MastermindModelImpl<>(players, s);
         m.setMaxAttempts(10);
         m.runGame();
         m.doAttempt("");
@@ -37,7 +40,7 @@ class TestMastermind {
 
     @Test
     void testWin() {
-        final MastermindModel<String, String> m = new MastermindModelImpl<String, String>(players, s);
+        final MastermindModel<String> m = new MastermindModelImpl<>(players, s);
         m.setMaxAttempts(10);
         m.runGame();
         m.doAttempt(m.getSolution());
@@ -46,7 +49,7 @@ class TestMastermind {
 
     @Test
     void testLose() {
-        final MastermindModel<String, String> m = new MastermindModelImpl<String, String>(players, s);
+        final MastermindModel<String> m = new MastermindModelImpl<>(players, s);
         m.setMaxAttempts(1);
         m.runGame();
         final char[] attemptDigits = m.getSolution().toCharArray();

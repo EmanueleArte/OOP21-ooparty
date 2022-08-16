@@ -3,18 +3,19 @@ package utils.factories;
 import java.util.List;
 import java.util.Random;
 
+import game.player.Player;
 import minigames.common.controller.MinigameController;
 import minigames.mastermind.controller.MastermindControllerImpl;
 import minigames.whoriskswins.controller.WhoRisksWinsControllerImpl;
 import utils.graphics.controller.StageManager;
 
-public class MinigameFactoryImpl<S, P> {
+public class MinigameFactoryImpl<S> {
     private static final int MINIGAMES_NUMBER = 2;
 
     private final StageManager<S> stageManager;
-    private final List<P> players;
+    private final List<Player> players;
 
-    public MinigameFactoryImpl(final List<P> players, final StageManager<S> s) {
+    public MinigameFactoryImpl(final List<Player> players, final StageManager<S> s) {
         this.players = players;
         this.stageManager = s;
     }
