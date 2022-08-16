@@ -4,6 +4,7 @@ import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.Map;
 import java.util.Random;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -23,7 +24,6 @@ import utils.enums.SquareType;
 public class SimpleGameBoardFactory extends FixedSizeGameBoardFactory {
 
     private enum SquareTypeMaxOccurrences {
-        START(GameMapSquareImpl.class, 1),
         DEFAULT(GameMapSquareImpl.class, 100),
         COIN(CoinsGameMapSquare.class, 4),
         POWERUP(PowerUpGameMapSquare.class, 4),
@@ -47,21 +47,26 @@ public class SimpleGameBoardFactory extends FixedSizeGameBoardFactory {
         }
     }
 
+    public static Map<Class<?>, Integer> maxOccurrences() {
+        return List.of(SquareTypeMaxOccurrences.values()).stream()
+                .collect(Collectors.toMap(SquareTypeMaxOccurrences::getSquareClass, SquareTypeMaxOccurrences::getMaxOccurrences));
+    }
+
     /**
      * 
      */
     @Override
-    public List<GameMapSquare> createGameBoard(final int size) {
+    public List<GameMapSquare> createGameBoard() {
         final List<GameMapSquare> board = new ArrayList<>();
         board.add(new GameMapSquareImpl());
 
-        while (board.size() < size) {
+        while (board.size() < super.getSize()) {
             GameMapSquare square = getRandomSquare();
             if (squareCanBeAdded(board, square)) {
                 board.add(square);
             } else if (boardIsFullOfSpecialSquares(board)) {
                 board.addAll(Stream.generate(() -> new GameMapSquareImpl())
-                        .limit(size - board.size())
+                        .limit(super.getSize() - board.size())
                         .collect(Collectors.toList()));
             }
         }
@@ -119,7 +124,7 @@ public class SimpleGameBoardFactory extends FixedSizeGameBoardFactory {
     }
 
     private GameMapSquare getRandomSquare() {
-        var randSquareType = SquareType.values()[1 + new Random().nextInt(SquareType.values().length - 1)];
+        var randSquareType = SquareType.values()[new Random().nextInt(SquareType.values().length)];
         GameMapSquare square;
 
         switch (randSquareType) {
