@@ -4,10 +4,16 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 import java.util.stream.Collectors;
 import game.gamehandler.controller.GameHandlerController;
+import game.map.CoinsGameMapSquare;
+import game.map.DamageGameMapSquare;
 import game.map.GameMap;
 import game.map.GameMapImpl;
+import game.map.GameMapSquare;
+import game.map.PowerUpGameMapSquare;
+import game.map.StarGameMapSquare;
 import game.player.Player;
 import javafx.animation.FadeTransition;
 import javafx.animation.TranslateTransition;
@@ -32,9 +38,11 @@ import javafx.scene.shape.Polygon;
 import javafx.scene.text.Text;
 import javafx.util.Duration;
 import utils.controller.GenericController;
+import utils.enums.MapLayout;
 import utils.enums.OrdinalNumber;
 import utils.enums.PlayerTurnProgress;
 import utils.enums.TurnProgress;
+import utils.readers.MapLayoutReader;
 import utils.GenericViewController;
 
 public class GameHandlerViewControllerImpl implements GenericViewController {
@@ -45,10 +53,11 @@ public class GameHandlerViewControllerImpl implements GenericViewController {
     private static final int MAP_HEIGHT = 8;
     private static final int PLAYER_X_START = -825;
     private static final int PLAYER_Y_START = -600;
-    private static final int COIN_DIM = 25;
+/*    private static final int COIN_DIM = 25;
     private static final int STAR_DIM = 25;
     private static final int POWERUP_DIM = 25;
-    private static final int DAMAGE_ICON_DIM = 25;
+    private static final int DAMAGE_ICON_DIM = 25;*/
+    private static final int ICON_DIM = 25;
 
     private GameHandlerController controller;
 
@@ -206,15 +215,30 @@ public class GameHandlerViewControllerImpl implements GenericViewController {
       }
 
     private void initializeMap(final GameMap map) {
-         map.getSquares().stream().map(s -> {
-            var label = new Label();
-            //label.setText(map.getSquares().indexOf(s) + "");
+        MapLayoutReader reader = new MapLayoutReader();
+        var layoutType = map.getLayout();
+        var layout = reader.loadMapLayout(layoutType); // list of Point2D
+
+        map.getSquares().stream().map(s -> {
+            var img = getImage(s);
+            Label label = new Label();
+
+            if (img.isPresent()) {
+                ImageView view = new ImageView(img.get());
+                view.setFitHeight(ICON_DIM);
+                view.setPreserveRatio(true);
+                label.setGraphic(view);
+            } else {
+                if (map.getSquares().indexOf(s) == 0) {
+                    label.setText("Start");
+                }
+            }
+
             label.setId(map.getSquares().indexOf(s) + "");
 
             label.setPrefWidth(SQUARE_WIDTH);
             label.setPrefHeight(SQUARE_HEIGHT);
             label.setAlignment(Pos.CENTER);
-
             String cssLabelLayout = "-fx-border-color: black;\n"
                     + "-fx-border-insets: 2;\n"
                     + "-fx-border-width: 1;\n"
@@ -224,58 +248,28 @@ public class GameHandlerViewControllerImpl implements GenericViewController {
 
             return label;
         }).forEach(l -> {
-            mapGrid.getChildren().add(l);
             var index = Integer.parseInt(l.getId());
-            var row = 0;
-            var col = 0;
-            if (index < MAP_WIDTH) {
-                row = 0;
-                col = index;
-            } else if (index < MAP_WIDTH + MAP_HEIGHT - 1) {
-                row = index - MAP_WIDTH + 1;
-                col = MAP_WIDTH - 1;
-            } else if (index < 2 * MAP_WIDTH + MAP_HEIGHT - 2) {
-                row = MAP_HEIGHT - 1;
-                col = MAP_WIDTH - index + 16;
-            } else {
-                row = MAP_HEIGHT - index + 26;
-                col = 0;
-            }
-
-            if (row == 0 && col == 0) {
-                l.setText("Start");
-            }
-
-            GridPane.setRowIndex(l, row);
-            GridPane.setColumnIndex(l, col);
+            mapGrid.getChildren().add(l);
+            GridPane.setRowIndex(l, (int) layout.get(index).getY());
+            GridPane.setColumnIndex(l, (int) layout.get(index).getX());
             GridPane.setHalignment(l, HPos.CENTER);
             GridPane.setValignment(l, VPos.CENTER);
-
-            if (map.getSquares().get(index).isCoinsGameMapSquare()) {
-                var coin = new Image("game/coin.png");
-                ImageView view = new ImageView(coin);
-                view.setFitHeight(COIN_DIM);
-                view.setPreserveRatio(true);
-                l.setGraphic(view);
-            } else if (map.getSquares().get(index).isStarGameMapSquare()) {
-                var star = new Image("game/star.png");
-                ImageView view = new ImageView(star);
-                view.setFitHeight(STAR_DIM);
-                view.setPreserveRatio(true);
-                l.setGraphic(view);
-            } else if (map.getSquares().get(index).isPowerUpGameMapSquare()) {
-                var star = new Image("game/powerup.png");
-                ImageView view = new ImageView(star);
-                view.setFitHeight(POWERUP_DIM);
-                view.setPreserveRatio(true);
-                l.setGraphic(view);
-            } else if (map.getSquares().get(index).isDamageGameMapSquare()) {
-                var star = new Image("game/damage.png");
-                ImageView view = new ImageView(star);
-                view.setFitHeight(DAMAGE_ICON_DIM);
-                view.setPreserveRatio(true);
-                l.setGraphic(view);
-            }
         });
+    }
+
+    private Optional<Image> getImage(final GameMapSquare s) {
+        if (s.getClass().equals(CoinsGameMapSquare.class)) {
+            return Optional.of(new Image("game/coin.png"));
+        }
+        if (s.getClass().equals(DamageGameMapSquare.class)) {
+            return Optional.of(new Image("game/damage.png"));
+        }
+        if (s.getClass().equals(PowerUpGameMapSquare.class)) {
+            return Optional.of(new Image("game/powerup.png"));
+        }
+        if (s.getClass().equals(StarGameMapSquare.class)) {
+            return Optional.of(new Image("game/star.png"));
+        }
+        return Optional.empty();
     }
 }
