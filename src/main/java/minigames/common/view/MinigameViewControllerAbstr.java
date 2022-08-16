@@ -25,26 +25,16 @@ public abstract class MinigameViewControllerAbstr extends NoticeUserAbstr implem
     public abstract void startNextTurn();
 
     @Override
-    public final <U> void setPlayerLabelText(final U player) throws IllegalArgumentException {
-        if (player instanceof Player) {
-            final Player currPlayer = (Player) player;
-            this.playerLabel.setTextFill((currPlayer.getColor()));
-            this.playerLabel.setText((currPlayer.getNickname() + "'s turn"));
-        } else {
-            throw new IllegalArgumentException("The parameter must be an instance of Player");
-        }
+    public final void setPlayerLabelText(final Player player) {
+        this.playerLabel.setTextFill((player.getColor()));
+        this.playerLabel.setText((player.getNickname() + "'s turn"));
     }
 
     @Override
-    public final <U> void setPlayerAvatarColor(final U player) throws IllegalArgumentException {
-        if (player instanceof Player) {
-            final Player currPlayer = (Player) player;
-            this.playerAvatar.getChildren().forEach(shape -> {
-                ((Shape) shape).setFill(currPlayer.getColor());
-            });
-        } else {
-            throw new IllegalArgumentException("The parameter must be an instance of Player");
-        }
+    public final void setPlayerAvatarColor(final Player player) {
+        this.playerAvatar.getChildren().forEach(shape -> {
+            ((Shape) shape).setFill(player.getColor());
+        });
     }
 
     /**
