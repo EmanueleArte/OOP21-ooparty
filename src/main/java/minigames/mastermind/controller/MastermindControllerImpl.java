@@ -9,10 +9,10 @@ import minigames.mastermind.model.MastermindModel;
 import minigames.mastermind.model.MastermindModelImpl;
 import minigames.mastermind.view.MastermindViewController;
 import minigames.mastermind.view.MastermindViewControllerImpl;
-import utils.GenericViewController;
 import utils.controller.GenericController;
 import utils.controller.GenericControllerAbstr;
 import utils.graphics.controller.StageManager;
+import utils.view.GenericViewController;
 import utils.view.GenericViewUtils;
 
 /**

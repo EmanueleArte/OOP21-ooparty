@@ -11,8 +11,8 @@ import game.player.Player;
 import utils.controller.GenericController;
 import utils.controller.GenericControllerAbstr;
 import utils.graphics.controller.StageManager;
-import utils.GenericViewController;
 import utils.view.GenericView;
+import utils.view.GenericViewController;
 
 public class GameHandlerControllerImpl<S> extends GenericControllerAbstr
         implements GenericController, GameHandlerController {

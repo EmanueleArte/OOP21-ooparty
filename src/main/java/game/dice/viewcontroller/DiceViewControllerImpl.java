@@ -13,8 +13,8 @@ import javafx.scene.shape.Circle;
 import javafx.scene.shape.Polygon;
 import javafx.scene.text.Text;
 import javafx.util.Duration;
-import utils.GenericViewController;
 import utils.controller.GenericController;
+import utils.view.GenericViewController;
 
 public class DiceViewControllerImpl implements GenericViewController {
     private DiceController controller;

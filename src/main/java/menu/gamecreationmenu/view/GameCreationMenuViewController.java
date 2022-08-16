@@ -2,8 +2,8 @@ package menu.gamecreationmenu.view;
 
 import java.util.List;
 
-import utils.GenericViewController;
 import utils.enums.PlayerColor;
+import utils.view.GenericViewController;
 
 /**
  * Extension of {@link GenericViewController}.

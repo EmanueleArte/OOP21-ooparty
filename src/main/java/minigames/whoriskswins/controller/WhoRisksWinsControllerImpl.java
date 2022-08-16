@@ -9,10 +9,10 @@ import minigames.whoriskswins.model.WhoRisksWinsModel;
 import minigames.whoriskswins.model.WhoRisksWinsModelImpl;
 import minigames.whoriskswins.view.WhoRisksWinsViewController;
 import minigames.whoriskswins.view.WhoRisksWinsViewControllerImpl;
-import utils.GenericViewController;
 import utils.controller.GenericController;
 import utils.controller.GenericControllerAbstr;
 import utils.graphics.controller.StageManager;
+import utils.view.GenericViewController;
 import utils.view.GenericViewUtils;
 
 /**
