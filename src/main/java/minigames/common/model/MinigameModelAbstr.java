@@ -111,13 +111,6 @@ public abstract class MinigameModelAbstr<S> extends GameModelAbstr<S> implements
                         Collectors.mapping(Map.Entry::getKey, Collectors.toList())));
     }
 
-    @Override
-    protected final void nextTurn() {
-        if (this.hasNextPlayer()) {
-            this.runGame();
-        }
-    }
-
     /**
      * Setter for score.
      * 

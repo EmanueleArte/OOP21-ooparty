@@ -13,9 +13,9 @@ import utils.graphics.controller.StageManager;
 public interface GameModel<S> {
 
     /**
-     * This method runs the game.
+     * This method runs the game as long as there are turns to do.
      * 
-     * @return true if there is another player that has to play
+     * @return true if there is another turn to play
      */
     boolean runGame();
 
