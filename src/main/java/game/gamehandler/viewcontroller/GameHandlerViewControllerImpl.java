@@ -215,13 +215,13 @@ public class GameHandlerViewControllerImpl implements GenericViewController {
             Label rankLabel = new Label(OrdinalNumber.values()[players.indexOf(p)].getTextFormat());
 
             box.setBorder(new Border(new BorderStroke(p.getColor(), BorderStrokeStyle.SOLID, CornerRadii.EMPTY, new BorderWidths(2))));
-            box.setPrefWidth(250);
+            box.setPrefWidth(100);
 
             box.getChildren().addAll(nicknameLabel, coinsLabel, starsLabel, hpLabel, rankLabel);
             rankPlayersContainer.getChildren().add(box);
         });
 
-        rankPlayersContainer.setSpacing(20);
+        //rankPlayersContainer.setSpacing(20);
     }
 
     private void initializeMap(final GameMap map) {

@@ -104,7 +104,7 @@
                                           <VBox fx:id="rankContainer" alignment="TOP_CENTER" prefHeight="25.0" prefWidth="845.0" BorderPane.alignment="CENTER">
                                              <children>
                                                 <Label text="Rank" />
-                                                <HBox fx:id="rankPlayersContainer" alignment="TOP_CENTER" fillHeight="false" prefHeight="25.0" prefWidth="867.0" />
+                                                <HBox fx:id="rankPlayersContainer" alignment="TOP_CENTER" prefHeight="25.0" prefWidth="867.0" style="-fx-spacing: 20;" />
                                              </children>
                                           </VBox>
                                        </center>
