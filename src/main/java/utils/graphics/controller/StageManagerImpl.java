@@ -80,7 +80,8 @@ public class StageManagerImpl<S> implements StageManager<S> {
      * 
      * @param controller the controller to check
      * @return the controller casted to {@link MinigameController} if it is a
-     *         minigame controller else null
+     *         minigame controller else the already saved controller that can be
+     *         null if no minigames have been played
      */
     private MinigameController checkGameController(final GenericController controller) {
         if (controller instanceof MinigameController) {
