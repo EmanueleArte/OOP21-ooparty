@@ -22,7 +22,6 @@ public abstract class MinigameModelAbstr<S> extends GameModelAbstr<S> implements
 
     private final Map<Player, Integer> playersClassification;
     private final DiceController dice;
-    private int score;
 
     /**
      * Builds a new {@link MinigameModelAbstr}.
@@ -65,7 +64,7 @@ public abstract class MinigameModelAbstr<S> extends GameModelAbstr<S> implements
 
     @Override
     public final int getScore() {
-        return this.score;
+        return this.getPlayersClassification().getOrDefault(getCurrPlayer(), 0);
     }
 
     /**
@@ -111,12 +110,12 @@ public abstract class MinigameModelAbstr<S> extends GameModelAbstr<S> implements
     }
 
     /**
-     * Setter for score.
+     * Setter for the score of the current player.
      * 
-     * @param score the score of the player
+     * @param score the new score.
      */
     protected void setScore(final int score) {
-        this.score = score;
+        this.scoreMapper(getCurrPlayer(), score);
     }
 
 }
