@@ -55,8 +55,7 @@ public class PauseMenuControllerImpl extends GenericControllerAbstr implements M
 
     @Override
     public final void createMenu() {
-        GenericViewUtils.createScene(this.getStageManager(), this, PauseMenuViewControllerImpl.class,
-                "menu/pause_menu.fxml");
+        GenericViewUtils.createScene(this.getStageManager(), this, "menu/pause_menu.fxml");
     }
 
 }

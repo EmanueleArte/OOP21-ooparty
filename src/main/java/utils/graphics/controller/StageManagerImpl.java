@@ -35,9 +35,8 @@ public class StageManagerImpl<S> implements StageManager<S> {
 
     @Override
     @SuppressWarnings("unchecked")
-    public final void addFXMLScene(final String fxmlUrl, final Class<?> viewControllerClass,
-            final GenericController controller) {
-        final var currScene = this.gui.loadScene(fxmlUrl, viewControllerClass, controller);
+    public final void addFXMLScene(final String fxmlUrl, final GenericController controller) {
+        final var currScene = this.gui.loadScene(fxmlUrl, controller);
         this.addScene((S) currScene);
         this.lastGameController = Optional.ofNullable(this.sceneHandler.checkGameController(controller));
     }

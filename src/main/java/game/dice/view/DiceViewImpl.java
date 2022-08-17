@@ -1,6 +1,5 @@
 package game.dice.view;
 
-import game.dice.viewcontroller.DiceViewControllerImpl;
 import utils.controller.GenericController;
 import utils.graphics.controller.StageManager;
 import utils.view.GenericViewAbstr;
@@ -14,7 +13,7 @@ public class DiceViewImpl<S> extends GenericViewAbstr<S> {
     @Override
     public final void createScene(final GenericController controller) {
         final String fxmlUrl = "game/dice.fxml";
-        this.getStageManager().addFXMLScene(fxmlUrl, DiceViewControllerImpl.class, controller);
+        this.getStageManager().addFXMLScene(fxmlUrl, controller);
     }
 
 }

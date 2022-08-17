@@ -4,11 +4,9 @@ import java.util.List;
 
 import game.player.Player;
 import minigames.common.controller.MinigameGuideControllerImpl;
-import minigames.common.view.MinigameGuideViewControllerImpl;
 import minigames.mastermind.model.MastermindModel;
 import minigames.mastermind.model.MastermindModelImpl;
 import minigames.mastermind.view.MastermindViewController;
-import minigames.mastermind.view.MastermindViewControllerImpl;
 import utils.controller.GenericController;
 import utils.controller.GenericControllerAbstr;
 import utils.graphics.controller.StageManager;
@@ -57,9 +55,9 @@ public class MastermindControllerImpl extends GenericControllerAbstr implements 
 
     @Override
     public final void startGame() {
-        GenericViewUtils.createScene(this.getStageManager(), this, MastermindViewControllerImpl.class, "minigames/mastermind.fxml");
+        GenericViewUtils.createScene(this.getStageManager(), this, "minigames/mastermind.fxml");
         final GenericController guideController = new MinigameGuideControllerImpl(this.getStageManager(), this);
-        GenericViewUtils.createScene(this.getStageManager(), guideController, MinigameGuideViewControllerImpl.class, "minigames/mastermind_guide.fxml");
+        GenericViewUtils.createScene(this.getStageManager(), guideController, "minigames/mastermind_guide.fxml");
     }
 
     @Override
