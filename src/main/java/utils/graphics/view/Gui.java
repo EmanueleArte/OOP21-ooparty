@@ -22,11 +22,10 @@ public interface Gui {
      * This method loads a scene from FXML file.
      * 
      * @param fxmlUrl             the url of the fxml file to load
-     * @param viewControllerClass the type of the view controller
      * @param controller          the controller to be used
      * @return the scene loaded
      */
-    Scene loadScene(String fxmlUrl, Class<?> viewControllerClass, GenericController controller);
+    Scene loadScene(String fxmlUrl, GenericController controller);
 
     /**
      * This method shows the actual scene.

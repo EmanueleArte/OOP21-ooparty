@@ -55,8 +55,7 @@ public class GuiImpl extends JFrame implements Gui {
     }
 
     @Override
-    public final Scene loadScene(final String fxmlUrl, final Class<?> viewControllerClass,
-            final GenericController controller) {
+    public final Scene loadScene(final String fxmlUrl, final GenericController controller) {
         this.loader = new FXMLLoader(getClass().getClassLoader().getResource(fxmlUrl));
         try {
             this.root = Optional.ofNullable(this.loader.load());
