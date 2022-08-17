@@ -86,7 +86,7 @@ public class StageManagerImpl<S> implements StageManager<S> {
         if (controller instanceof MinigameController) {
             return (MinigameController) controller;
         }
-        return null;
+        return this.getLastGameController();
     }
 
 }
