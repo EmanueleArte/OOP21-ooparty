@@ -1,6 +1,7 @@
 package game.gamehandler.view;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -119,7 +120,7 @@ public class GameHandlerViewControllerImpl implements GenericViewController {
             }
         });
 
-        initializeRank(players);
+        initializeLeaderboard(players);
 
         initializeMap(this.controller.getGameMap());
 
@@ -175,6 +176,9 @@ public class GameHandlerViewControllerImpl implements GenericViewController {
                         } else if (this.controller.getGameMap().getPlayerPosition(currentPlayer).isPowerUpGameMapSquare()) {
                             //TODO
                         }
+                    } else if (playerProgress.get() == PlayerTurnProgress.END_OF_TURN) {
+                        var leaderboard = this.controller.getLeaderboard();
+                        initializeLeaderboard(leaderboard);
                     }
                 }
             }
@@ -211,12 +215,9 @@ public class GameHandlerViewControllerImpl implements GenericViewController {
         transition.play();
     }
 
-    public void rollDice() {
-
-    }
-
-    private void initializeRank(final List<Player> players) {
+    private void initializeLeaderboard(final List<Player> players) {
         System.out.println("init rank");
+        rankPlayersContainer.getChildren().removeAll(rankPlayersContainer.getChildren());
         players.forEach(p -> {
             VBox box = new VBox();
             Label nicknameLabel = new Label(p.getNickname());
@@ -229,6 +230,7 @@ public class GameHandlerViewControllerImpl implements GenericViewController {
             box.setPrefWidth(100);
 
             box.getChildren().addAll(nicknameLabel, coinsLabel, starsLabel, hpLabel, rankLabel);
+
             rankPlayersContainer.getChildren().add(box);
         });
 

@@ -1,5 +1,6 @@
 package game.gamehandler.controller;
 
+import java.util.List;
 import java.util.Optional;
 
 import game.player.Player;
@@ -24,9 +25,13 @@ public interface GameHandlerController {
 
     Optional<Player> getCurrentPlayer();
 
+    List<Player> getPlayers();
+
     /**
      * 
      * @return the {@link GameMap} of the current game
      */
     GameMap getGameMap();
+
+    List<Player> getLeaderboard();
 }

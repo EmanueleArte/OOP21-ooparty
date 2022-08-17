@@ -28,14 +28,14 @@ public interface GameHandlerModel {
     /**
      * This method makes the turn advance to the next step.
      * 
-     * @return int representing new turn progress
+     * @return Optional containing new turn
      */
     Optional<TurnProgress> nextStep();
 
     /**
      * This method makes players' turn go to the next step.
      * 
-     * @return int representing new player turn progress.
+     * @return Optional containing new player turn
      */
     Optional<PlayerTurnProgress> nextPlayerTurnStep();
 
@@ -63,4 +63,10 @@ public interface GameHandlerModel {
      * @return the {@link GameMap} of the current game
      */
     GameMap getGameMap();
+
+    /**
+     * This method returns the leaderboard after a player's turn ends.
+     * @return an ordered list of players
+     */
+    List<Player> getLeaderboard();
 }
