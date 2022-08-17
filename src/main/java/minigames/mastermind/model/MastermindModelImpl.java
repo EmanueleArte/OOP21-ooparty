@@ -5,17 +5,17 @@ import java.util.Random;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
+import game.player.Player;
 import minigames.common.model.MinigameModelAbstr;
-import utils.graphics.stagemanager.StageManager;
+import utils.graphics.controller.StageManager;
 
 /**
  * Implementation of {@link MastermindModel} and extension of
  * {@link MinigameModelAbstr}.
  * 
  * @param <S> the scenes of the stage
- * @param <U> the players
  */
-public class MastermindModelImpl<S, U> extends MinigameModelAbstr<S, U> implements MastermindModel<S, U> {
+public class MastermindModelImpl<S> extends MinigameModelAbstr<S> implements MastermindModel<S> {
 
     private static final String EMPTY_STRING = "";
     private int maxAttempts;
@@ -30,7 +30,7 @@ public class MastermindModelImpl<S, U> extends MinigameModelAbstr<S, U> implemen
      * @param players the list of players
      * @param s       the {@link StageManager}
      */
-    public MastermindModelImpl(final List<U> players, final StageManager<S> s) {
+    public MastermindModelImpl(final List<Player> players, final StageManager<S> s) {
         super(players, s);
     }
 

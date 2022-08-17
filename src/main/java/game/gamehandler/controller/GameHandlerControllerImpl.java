@@ -3,17 +3,17 @@ package game.gamehandler.controller;
 import java.util.List;
 import java.util.Optional;
 
+import game.dice.view.DiceViewControllerImpl;
 import game.gamehandler.model.GameHandlerModel;
 import game.gamehandler.model.GameHandlerModelImpl;
-import game.gamehandler.view.GameHandlerViewImpl;
-import game.gamehandler.viewcontroller.GameHandlerViewControllerImpl;
 import game.map.GameMap;
+import game.gamehandler.view.GameHandlerViewControllerImpl;
 import game.player.Player;
 import utils.controller.GenericController;
 import utils.controller.GenericControllerAbstr;
-import utils.GenericViewController;
-import utils.graphics.stagemanager.StageManager;
-import utils.view.GenericView;
+import utils.graphics.controller.StageManager;
+import utils.view.GenericViewUtils;
+import utils.view.GenericViewController;
 
 public class GameHandlerControllerImpl<S> extends GenericControllerAbstr
         implements GenericController, GameHandlerController {
@@ -28,8 +28,7 @@ public class GameHandlerControllerImpl<S> extends GenericControllerAbstr
 
     @Override
     public final void start() {
-        final GenericView<?> gameView = new GameHandlerViewImpl<>(this.getStageManager());
-        gameView.createScene(this);
+        GenericViewUtils.createScene(this.getStageManager(), this, DiceViewControllerImpl.class, "game/game.fxml");
     }
 
     @Override

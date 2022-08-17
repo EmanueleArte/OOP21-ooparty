@@ -2,16 +2,17 @@ package minigames.mastermind.controller;
 
 import java.util.List;
 
+import game.player.Player;
 import minigames.common.controller.MinigameGuideControllerImpl;
-import minigames.common.viewcontroller.MinigameGuideViewControllerImpl;
+import minigames.common.view.MinigameGuideViewControllerImpl;
 import minigames.mastermind.model.MastermindModel;
 import minigames.mastermind.model.MastermindModelImpl;
-import minigames.mastermind.viewcontroller.MastermindViewController;
-import minigames.mastermind.viewcontroller.MastermindViewControllerImpl;
-import utils.GenericViewController;
+import minigames.mastermind.view.MastermindViewController;
+import minigames.mastermind.view.MastermindViewControllerImpl;
 import utils.controller.GenericController;
 import utils.controller.GenericControllerAbstr;
-import utils.graphics.stagemanager.StageManager;
+import utils.graphics.controller.StageManager;
+import utils.view.GenericViewController;
 import utils.view.GenericViewUtils;
 
 /**
@@ -20,18 +21,17 @@ import utils.view.GenericViewUtils;
  */
 public class MastermindControllerImpl extends GenericControllerAbstr implements MastermindController {
 
-    private final MastermindModel<?, ?> mastermindModel;
+    private final MastermindModel<?> mastermindModel;
     private MastermindViewController mastermindViewController;
 
     /**
      * Builder for {@link MastermindControllerImpl}.
      * 
      * @param <S>     the scenes of the stage
-     * @param <U>     the players
      * @param s       the {@link StageManager}
      * @param players the list of players
      */
-    public <S, U> MastermindControllerImpl(final StageManager<S> s, final List<U> players) {
+    public <S> MastermindControllerImpl(final StageManager<S> s, final List<Player> players) {
         super(s);
         this.mastermindModel = new MastermindModelImpl<>(players, s);
     }
@@ -57,17 +57,9 @@ public class MastermindControllerImpl extends GenericControllerAbstr implements 
 
     @Override
     public final void startGame() {
-        //final GenericView<?> mastermindView = new MastermindViewImpl<>(this.getStageManager());
-        //mastermindView.createScene(this);
         GenericViewUtils.createScene(this.getStageManager(), this, MastermindViewControllerImpl.class, "minigames/mastermind.fxml");
-    }
-
-    @Override
-    public void openGame() {
-        //final GenericView<?> mastermindGuideView = new MastermindGuideViewImpl<>(this.getStageManager());
-        final GenericController controller = new MinigameGuideControllerImpl(this.getStageManager(), this);
-        //mastermindGuideView.createScene(controller);
-        GenericViewUtils.createScene(this.getStageManager(), controller, MinigameGuideViewControllerImpl.class, "minigames/mastermind_guide.fxml");
+        final GenericController guideController = new MinigameGuideControllerImpl(this.getStageManager(), this);
+        GenericViewUtils.createScene(this.getStageManager(), guideController, MinigameGuideViewControllerImpl.class, "minigames/mastermind_guide.fxml");
     }
 
     @Override

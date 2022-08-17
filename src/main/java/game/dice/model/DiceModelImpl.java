@@ -3,7 +3,7 @@ package game.dice.model;
 import java.util.Optional;
 import java.util.Random;
 
-import utils.graphics.stagemanager.StageManager;
+import utils.graphics.controller.StageManager;
 
 public class DiceModelImpl<P> implements DiceModel<P> {
 

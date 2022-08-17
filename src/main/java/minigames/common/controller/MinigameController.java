@@ -18,14 +18,9 @@ public interface MinigameController extends GenericController {
     List<?> getGameResults();
 
     /**
-     * This method starts the minigame.
+     * This method starts the minigame routine, opens a guide if exists.
      */
     void startGame();
-
-    /**
-     * This method starts the minigame routine, opening a guide if exists.
-     */
-    void openGame();
 
     /**
      * This method starts a new turn.

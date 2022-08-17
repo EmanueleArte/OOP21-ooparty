@@ -4,6 +4,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 import game.player.Player;
+import game.powerup.GenericPowerup;
 
 /**
  * The implementation of a generic {@link GameMapSquare}.
@@ -76,11 +77,27 @@ public class GameMapSquareImpl implements GameMapSquare {
     }
 
     /**
-     * 
+     *
      */
     @Override
     public void receiveStar(final Player p) {
         throw new UnsupportedOperationException("This is not a star game map square");
+    }
+
+    /**
+     *
+     */
+    @Override
+    public void receivePowerup(final Player p) {
+        throw new UnsupportedOperationException("This is not a powerup game map square");
+    }
+
+    /**
+     *
+     */
+    @Override
+    public GenericPowerup getPowerup() {
+        throw new UnsupportedOperationException("This is not a powerup game map square");
     }
 
     /**

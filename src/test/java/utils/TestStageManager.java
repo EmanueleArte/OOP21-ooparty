@@ -6,8 +6,8 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.Test;
 
-import utils.graphics.stagemanager.StageManager;
-import utils.graphics.stagemanager.StageManagerImpl;
+import utils.graphics.controller.StageManager;
+import utils.graphics.controller.StageManagerImpl;
 
 /**
  * Test class for StageManager used without gui.

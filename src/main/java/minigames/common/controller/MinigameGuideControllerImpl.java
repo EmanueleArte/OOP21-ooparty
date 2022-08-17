@@ -1,9 +1,9 @@
 package minigames.common.controller;
 
-import minigames.common.viewcontroller.MinigameGuideViewControllerImpl;
-import utils.GenericViewController;
+import minigames.common.view.MinigameGuideViewControllerImpl;
 import utils.controller.GenericControllerAbstr;
-import utils.graphics.stagemanager.StageManager;
+import utils.graphics.controller.StageManager;
+import utils.view.GenericViewController;
 
 public class MinigameGuideControllerImpl extends GenericControllerAbstr implements MinigameGuideController {
 
@@ -17,7 +17,9 @@ public class MinigameGuideControllerImpl extends GenericControllerAbstr implemen
 
     @Override
     public void startGame() {
-        minigameController.startGame();
+        if (!this.getStageManager().getScenes().isEmpty()) {
+            this.getStageManager().popScene();
+        }
     }
 
     @Override
