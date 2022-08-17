@@ -88,7 +88,7 @@ public class GameMapSquareImpl implements GameMapSquare {
      *
      */
     @Override
-    public void receivePowerUp(final Player p) {
+    public void receivePowerup(final Player p) {
         throw new UnsupportedOperationException("This is not a powerup game map square");
     }
 
@@ -96,7 +96,7 @@ public class GameMapSquareImpl implements GameMapSquare {
      *
      */
     @Override
-    public GenericPowerup getPowerUp() {
+    public GenericPowerup getPowerup() {
         throw new UnsupportedOperationException("This is not a powerup game map square");
     }
 

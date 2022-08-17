@@ -7,7 +7,6 @@ import game.powerup.DoubleDicePowerup;
 import game.powerup.GenericPowerup;
 import game.powerup.GunPowerup;
 
-//TODO aggiornare link nella javadoc
 /**
  * A game map square where you can get a {@link GenericPowerup}.
  */
@@ -34,13 +33,13 @@ public class PowerUpGameMapSquare extends GameMapSquareImpl {
     }
 
     @Override
-    public final void receivePowerUp(final Player p) {
-        //TODO
+    public final void receivePowerup(final Player p) {
+        p.addPowerup(this.powerup);
         this.generateRandomPowerUp();
     }
 
     @Override
-    public final GenericPowerup getPowerUp() {
+    public final GenericPowerup getPowerup() {
         return this.powerup;
     }
 

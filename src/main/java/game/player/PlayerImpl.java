@@ -189,6 +189,11 @@ public class PlayerImpl implements Player {
     }
 
     @Override
+    public final void addPowerup(final GenericPowerup powerup) {
+        this.powerups.add(powerup);
+    }
+
+    @Override
     public final void usePowerup(final int powerupType) {
 
     }

@@ -63,13 +63,13 @@ public interface GameMapSquare {
      * Adds a {@link GenericPowerup} to the player p and generates a new powerup on this square.
      * @param p the {@link Player} that will receive the powerup
      */
-    void receivePowerUp(Player p);
+    void receivePowerup(Player p);
 
     /**
      * 
      * @return the {@link GenericPowerup} on this square
      */
-    GenericPowerup getPowerUp();
+    GenericPowerup getPowerup();
 
     /**
      * 
