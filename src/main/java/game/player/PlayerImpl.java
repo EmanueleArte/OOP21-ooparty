@@ -63,7 +63,11 @@ public class PlayerImpl implements Player {
 
     @Override
     public final void moveForward(final int n, final GameMap gameMap) {
-        // TODO da modificare
+        if (n <= 0) {
+            throw new IllegalArgumentException("n can't be 0 or negative");
+        }
+        final int currentSquareIndex = gameMap.getSquares().indexOf(this.getPosition(gameMap));
+        this.goTo(gameMap, gameMap.getSquares().get(currentSquareIndex + n));
     }
 
     @Override

@@ -99,7 +99,20 @@ public class GameHandlerModelImpl<S> implements GameHandlerModel {
             }
         }
         if (this.playerTurnProgress == PlayerTurnProgress.MOVE_PLAYER.getProgress()) {
+            final Player cp = this.currentPlayer.get();
             System.out.println(this.dice.getLastResult());
+            cp.moveForward(this.dice.getLastResult().get(), this.gameMap);
+            final GameMapSquare playerPosition = cp.getPosition(this.gameMap); 
+            System.out.println(playerPosition);
+            if (playerPosition.isCoinsGameMapSquare()) {
+                playerPosition.receiveCoins(cp);
+            } else if (playerPosition.isDamageGameMapSquare()) {
+                playerPosition.receiveDamage(cp, this.gameMap);
+            } else if (playerPosition.isStarGameMapSquare()) {
+                playerPosition.receiveStar(cp);
+            } else if (playerPosition.isPowerUpGameMapSquare()) {
+                playerPosition.receivePowerup(cp);
+            }
         }
         if (this.playerTurnProgress == PlayerTurnProgress.ROLL_DICE.getProgress()) {
             if (this.currentPlayer.get().hasDiceToRoll()) {

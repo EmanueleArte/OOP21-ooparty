@@ -215,7 +215,7 @@ public class GameHandlerViewControllerImpl implements GenericViewController {
             Label nicknameLabel = new Label(p.getNickname());
             Label coinsLabel = new Label("Coins: " + p.getCoinsCount());
             Label starsLabel = new Label("Stars: " + p.getStarsCount());
-            Label hpLabel = new Label("Hp: " + p.getLifePoints());
+            Label hpLabel = new Label("Life points: " + p.getLifePoints());
             Label rankLabel = new Label(OrdinalNumber.values()[players.indexOf(p)].getTextFormat());
 
             box.setBorder(new Border(new BorderStroke(p.getColor(), BorderStrokeStyle.SOLID, CornerRadii.EMPTY, new BorderWidths(2))));
