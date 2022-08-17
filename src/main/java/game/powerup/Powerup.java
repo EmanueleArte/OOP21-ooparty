@@ -4,5 +4,5 @@ import game.player.Player;
 
 public interface Powerup {
 
-	void use(Player p);
+    void use(Player p);
 }

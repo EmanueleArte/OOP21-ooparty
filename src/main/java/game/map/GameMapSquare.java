@@ -3,6 +3,7 @@ package game.map;
 import java.util.Set;
 
 import game.player.Player;
+import game.powerup.GenericPowerup;
 
 /**
  * The interface of a game map square.
@@ -57,6 +58,18 @@ public interface GameMapSquare {
      * @param p the player that will receive the star
      */
     void receiveStar(Player p);
+
+    /**
+     * Adds a {@link GenericPowerup} to the player p and generates a new powerup on this square.
+     * @param p the {@link Player} that will receive the powerup
+     */
+    void receivePowerUp(Player p);
+
+    /**
+     * 
+     * @return the {@link GenericPowerup} on this square
+     */
+    GenericPowerup getPowerUp();
 
     /**
      * 
