@@ -68,9 +68,12 @@ public class MemoModelImpl<S> extends MinigameModelAbstr<S> implements MemoModel
      *
      * @returns {@code true} if the 2 cards are a pair, {@code false} otherwise.
      *
-     * @throws IllegalStateException if the game is over.
-     * @throws IndexOutOfBoundsException if {@code indexFirstCard} or {@code indexSecondCard} are out of the list.
-     * @throws IllegalArgumentException if {@code indexFirstCard} is equals to {@code indexSecondCard}.
+     * @throws IllegalStateException     if the game is over.
+     * @throws IndexOutOfBoundsException if {@code indexFirstCard} or
+     *                                   {@code indexSecondCard} are out of the
+     *                                   list.
+     * @throws IllegalArgumentException  if {@code indexFirstCard} is equals to
+     *                                   {@code indexSecondCard}.
      */
     @Override
     public boolean doNextTurn(final int indexFirstCard, final int indexSecondCard) throws RuntimeException {
