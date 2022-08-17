@@ -146,36 +146,45 @@ public class GameHandlerViewControllerImpl implements GenericViewController {
     }
 
     private void nextStep() {
-        int progress = this.controller.nextStep();
-        if (progress == TurnProgress.SHOW_BANNER.getProgress()) {
-            this.setUpdatesLabel("");
-            this.showBanner("Turn " + this.controller.getTurnNumber());
-        } else if (progress == TurnProgress.HIDE_BANNER.getProgress()) {
-            this.hideBanner();
-        } else if (progress == TurnProgress.PLAYERS_TURNS.getProgress()) {
-            int playerProgress = this.controller.nextPlayerTurnStep();
-            if (playerProgress == PlayerTurnProgress.SHOW_BANNER.getProgress()) {
-                this.showBanner(this.controller.getCurrentPlayer().get().getNickname() + "'s turn");
-            } else if (playerProgress == PlayerTurnProgress.HIDE_BANNER.getProgress()) {
+        Optional<TurnProgress> progress = this.controller.nextStep();
+
+        if (progress.isPresent()) {
+            if (progress.get() == TurnProgress.SHOW_BANNER) {
+                this.showBanner("Turn " + this.controller.getTurnNumber());
+            } else if (progress.get() == TurnProgress.HIDE_BANNER) {
                 this.hideBanner();
-            } else if (playerProgress == PlayerTurnProgress.MOVE_PLAYER.getProgress()) {
-                Player currentPlayer = this.controller.getCurrentPlayer().get();
-                this.movePlayer(currentPlayer, 10);
-                if (this.controller.getGameMap().getPlayerPosition(currentPlayer).isCoinsGameMapSquare()) {
-                    this.setUpdatesLabel(currentPlayer.getNickname() + " earned " + currentPlayer.getLastEarnedCoins() + " coins!");
-                } else if (this.controller.getGameMap().getPlayerPosition(currentPlayer).isDamageGameMapSquare()) {
-                    this.setUpdatesLabel(currentPlayer.getNickname() + " lost " + currentPlayer.getLastDamageTaken() + " life points!");
-                } else if (this.controller.getGameMap().getPlayerPosition(currentPlayer).isStarGameMapSquare()) {
-                    if (currentPlayer.getIsLastStarEarned()) {
-                        this.setUpdatesLabel(currentPlayer.getNickname() + " earned a star!");
-                    } else {
-                        this.setUpdatesLabel(currentPlayer.getNickname() + " didn't have enough coins to buy a star!");
+            } else if (progress.get() == TurnProgress.PLAYERS_TURNS) {
+
+                Optional<PlayerTurnProgress> playerProgress = this.controller.nextPlayerTurnStep();
+                System.out.println(playerProgress.get().name());
+
+                if (playerProgress.isPresent()) {
+                    if (playerProgress.get() == PlayerTurnProgress.SHOW_BANNER) {
+                        this.showBanner(this.controller.getCurrentPlayer().get().getNickname() + "'s turn");
+                    } else if (playerProgress.get() == PlayerTurnProgress.HIDE_BANNER) {
+                        this.hideBanner();
+                    } else if (playerProgress.get() == PlayerTurnProgress.MOVE_PLAYER) {
+                        Player currentPlayer = this.controller.getCurrentPlayer().get();
+                        this.movePlayer(currentPlayer, 10);
+                        if (this.controller.getGameMap().getPlayerPosition(currentPlayer).isCoinsGameMapSquare()) {
+                            this.setUpdatesLabel(currentPlayer.getNickname() + " earned " + currentPlayer.getLastEarnedCoins() + " coins!");
+                        } else if (this.controller.getGameMap().getPlayerPosition(currentPlayer).isDamageGameMapSquare()) {
+                            this.setUpdatesLabel(currentPlayer.getNickname() + " lost " + currentPlayer.getLastDamageTaken() + " life points!");
+                        } else if (this.controller.getGameMap().getPlayerPosition(currentPlayer).isStarGameMapSquare()) {
+                            if (currentPlayer.getIsLastStarEarned()) {
+                                this.setUpdatesLabel(currentPlayer.getNickname() + " earned a star!");
+                            } else {
+                                this.setUpdatesLabel(currentPlayer.getNickname() + " didn't have enough coins to buy a star!");
+                            }
+                        } else if (this.controller.getGameMap().getPlayerPosition(currentPlayer).isPowerUpGameMapSquare()) {
+                            this.setUpdatesLabel(currentPlayer.getNickname() + " got a new powerup!");
+                        }
+                        this.updateRank(currentPlayer);
                     }
-                } else if (this.controller.getGameMap().getPlayerPosition(currentPlayer).isPowerUpGameMapSquare()) {
-                    this.setUpdatesLabel(currentPlayer.getNickname() + " got a new powerup!");
                 }
-                this.updateRank(currentPlayer);
             }
+        } else {
+            // game end
         }
     }
 
@@ -239,13 +248,13 @@ public class GameHandlerViewControllerImpl implements GenericViewController {
             Label rankLabel = new Label(OrdinalNumber.values()[players.indexOf(p)].getTextFormat());
 
             box.setBorder(new Border(new BorderStroke(p.getColor(), BorderStrokeStyle.SOLID, CornerRadii.EMPTY, new BorderWidths(2))));
-            box.setPrefWidth(250);
+            box.setPrefWidth(100);
 
             box.getChildren().addAll(nicknameLabel, coinsLabel, starsLabel, hpLabel, rankLabel);
             rankPlayersContainer.getChildren().add(box);
         });
 
-        rankPlayersContainer.setSpacing(20);
+        //rankPlayersContainer.setSpacing(20);
     }
 
     private void initializeMap(final GameMap map) {

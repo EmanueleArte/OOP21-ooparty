@@ -4,6 +4,8 @@ import java.util.Optional;
 
 import game.player.Player;
 import utils.view.GenericViewController;
+import utils.enums.PlayerTurnProgress;
+import utils.enums.TurnProgress;
 import game.map.GameMap;
 
 public interface GameHandlerController {
@@ -16,9 +18,9 @@ public interface GameHandlerController {
 
     int getTurnNumber();
 
-    int nextStep();
+    Optional<TurnProgress> nextStep();
 
-    int nextPlayerTurnStep();
+    Optional<PlayerTurnProgress> nextPlayerTurnStep();
 
     Optional<Player> getCurrentPlayer();
 

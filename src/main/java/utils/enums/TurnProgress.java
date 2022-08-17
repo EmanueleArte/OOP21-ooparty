@@ -7,36 +7,30 @@ public enum TurnProgress {
     /**
      * time to show banner.
      */
-    SHOW_BANNER(0),
+    SHOW_BANNER,
     /**
      * time to hide banner.
      */
-    HIDE_BANNER(1),
+    HIDE_BANNER,
     /**
      * players turns (see PlayerTurnProgress).
      */
-    PLAYERS_TURNS(2),
+    PLAYERS_TURNS,
     /**
      * time to play minigame.
      */
-    PLAY_MINIGAME(3),
+    PLAY_MINIGAME,
     /**
      * time to show leaderboard.
      */
-    SHOW_LEADERBOARD(4),
+    SHOW_LEADERBOARD,
     /**
      * end of turn.
      */
-    END_OF_TURN(5);
+    END_OF_TURN;
 
-    private int progress;
-
-    TurnProgress(final int i) {
-        this.progress = i;
-    }
-
-    public int getProgress() {
-        return this.progress;
+    public static TurnProgress next(final TurnProgress turn) {
+        return turn.ordinal() == values().length - 1 ? values()[0] : values()[turn.ordinal() + 1];
     }
 
 }
