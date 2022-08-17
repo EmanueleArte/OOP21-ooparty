@@ -67,6 +67,10 @@ public class PlayerImpl implements Player {
             throw new IllegalArgumentException("n can't be 0 or negative");
         }
         final int currentSquareIndex = gameMap.getSquares().indexOf(this.getPosition(gameMap));
+        int newSquareIndex = currentSquareIndex + n;
+        if (newSquareIndex >= gameMap.getSquares().size()) {
+            newSquareIndex = newSquareIndex - gameMap.getSquares().size();
+        }
         this.goTo(gameMap, gameMap.getSquares().get(currentSquareIndex + n));
     }
 
