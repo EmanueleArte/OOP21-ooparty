@@ -7,6 +7,7 @@ import java.util.Map;
 import java.util.Map.Entry;
 import java.util.stream.Collectors;
 
+import exceptions.PlayerNotFoundException;
 import game.common.model.GameModelAbstr;
 import game.dice.controller.DiceController;
 import game.dice.controller.DiceControllerImpl;
@@ -113,9 +114,14 @@ public abstract class MinigameModelAbstr<S> extends GameModelAbstr<S> implements
      * Setter for score.
      * 
      * @param score the score of the player
+     * @throws PlayerNotFoundException if the current player is not set
      */
-    protected void setScore(final int score) {
-        this.scoreMapper(this.getCurrPlayer(), score);
+    protected void setScore(final int score) throws PlayerNotFoundException {
+        if (this.hasCurrPlayer()) {
+            this.scoreMapper(this.getCurrPlayer(), score);
+        } else {
+            throw new PlayerNotFoundException("The current player is not set.");
+        }
     }
 
 }
