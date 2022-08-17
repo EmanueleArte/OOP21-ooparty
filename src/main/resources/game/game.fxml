@@ -160,12 +160,12 @@
                   </StackPane>
                   <HBox alignment="CENTER_LEFT" prefHeight="50.0" prefWidth="1017.0">
                      <children>
-                        <Label fx:id="updatesLabel" prefWidth="377.0">
+                        <Label fx:id="updatesLabel" prefWidth="380.0">
                            <font>
                               <Font size="15.0" />
                            </font>
                         </Label>
-                        <VBox fx:id="rankContainer" prefHeight="102.0" prefWidth="242.0">
+                        <VBox fx:id="rankContainer" prefHeight="21.0" prefWidth="600.0">
                            <children>
                               <Label text="Rank" />
                               <HBox fx:id="rankPlayersContainer" prefHeight="85.0" prefWidth="158.0" />

@@ -19,6 +19,9 @@ public class StarGameMapSquare extends GameMapSquareImpl {
         if (this.checkEnoughCoins(p)) {
             p.earnStar();
             p.loseCoins(GameMapImpl.COINS_TO_BUY_STAR);
+            p.setIsLastStarEarned(true);
+        } else {
+            p.setIsLastStarEarned(false);
         }
     }
 

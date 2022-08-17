@@ -19,6 +19,7 @@ public class PlayerImpl implements Player {
     private int coins;
     private int lastEarnedCoins;
     private int stars;
+    private boolean isLastStarEarned;
     private int lifePoints;
     private int lastDamageTaken;
     private int dicesToRoll;
@@ -41,6 +42,7 @@ public class PlayerImpl implements Player {
         this.coins = 0;
         this.lastEarnedCoins = 0;
         this.stars = 0;
+        this.isLastStarEarned = false;
         this.lifePoints = PlayerImpl.MAX_LIFE;
         this.lastDamageTaken = 0;
         this.dicesToRoll = 1;
@@ -226,6 +228,16 @@ public class PlayerImpl implements Player {
     @Override
     public final int getLastDamageTaken() {
         return this.lastDamageTaken;
+    }
+
+    @Override
+    public final boolean getIsLastStarEarned() {
+        return this.isLastStarEarned;
+    }
+
+    @Override
+    public final void setIsLastStarEarned(final boolean isLastStarEarned) {
+        this.isLastStarEarned = isLastStarEarned;
     }
 
 }

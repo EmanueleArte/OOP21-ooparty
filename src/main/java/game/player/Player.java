@@ -151,4 +151,16 @@ public interface Player {
      * @return the amount of damage taken the last time this player was hit
      */
     int getLastDamageTaken();
+
+    /**
+     * Returns if the last star was earned (true) or if the player didn't have enough coins to earn it (false).
+     * @return if the last star was earned (true) or if the player didn't have enough coins to earn it (false)
+     */
+    boolean getIsLastStarEarned();
+
+    /**
+     * Sets if the last star was earned.
+     * @param isLastStarEarned if the last star was earned
+     */
+    void setIsLastStarEarned(boolean isLastStarEarned);
 }

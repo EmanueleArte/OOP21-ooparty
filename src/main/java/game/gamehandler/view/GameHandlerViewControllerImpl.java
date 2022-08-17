@@ -81,7 +81,7 @@ public class GameHandlerViewControllerImpl implements GenericViewController {
     private StackPane stackPaneContainer;
     @FXML
     private Label updatesLabel;
-
+    
     private final Map<Player, Group> playerToAvatar = new HashMap<Player, Group>();
 
     @Override
@@ -148,6 +148,7 @@ public class GameHandlerViewControllerImpl implements GenericViewController {
     private void nextStep() {
         int progress = this.controller.nextStep();
         if (progress == TurnProgress.SHOW_BANNER.getProgress()) {
+            this.setUpdatesLabel("");
             this.showBanner("Turn " + this.controller.getTurnNumber());
         } else if (progress == TurnProgress.HIDE_BANNER.getProgress()) {
             this.hideBanner();
@@ -161,24 +162,43 @@ public class GameHandlerViewControllerImpl implements GenericViewController {
                 Player currentPlayer = this.controller.getCurrentPlayer().get();
                 this.movePlayer(currentPlayer, 10);
                 if (this.controller.getGameMap().getPlayerPosition(currentPlayer).isCoinsGameMapSquare()) {
-                    this.showCoinsEarned(currentPlayer);
+                    this.setUpdatesLabel(currentPlayer.getNickname() + " earned " + currentPlayer.getLastEarnedCoins() + " coins!");
                 } else if (this.controller.getGameMap().getPlayerPosition(currentPlayer).isDamageGameMapSquare()) {
-                    this.showDamageTaken(currentPlayer);
+                    this.setUpdatesLabel(currentPlayer.getNickname() + " lost " + currentPlayer.getLastDamageTaken() + " life points!");
                 } else if (this.controller.getGameMap().getPlayerPosition(currentPlayer).isStarGameMapSquare()) {
-                    //TODO
+                    if (currentPlayer.getIsLastStarEarned()) {
+                        this.setUpdatesLabel(currentPlayer.getNickname() + " earned a star!");
+                    } else {
+                        this.setUpdatesLabel(currentPlayer.getNickname() + " didn't have enough coins to buy a star!");
+                    }
                 } else if (this.controller.getGameMap().getPlayerPosition(currentPlayer).isPowerUpGameMapSquare()) {
-                    //TODO
+                    this.setUpdatesLabel(currentPlayer.getNickname() + " got a new powerup!");
                 }
+                this.updateRank(currentPlayer);
             }
         }
     }
 
-    private void showDamageTaken(final Player p) {
-        this.updatesLabel.setText(p.getNickname() + " lost " + p.getLastDamageTaken() + " life points");
+    private void setUpdatesLabel(final String text) {
+        this.updatesLabel.setText(text);
     }
 
-    private void showCoinsEarned(final Player p) {
-        this.updatesLabel.setText(p.getNickname() + " earned " + p.getLastEarnedCoins() + " coins");
+    private void updateRank(final Player p) {
+        VBox vbox;
+        Label playerNickname;
+        int i = -1;
+        do {
+            i++;
+            vbox = (VBox) this.rankPlayersContainer.getChildren().get(i);
+            playerNickname = (Label) vbox.getChildren().get(0);
+            System.out.println(playerNickname.getText() + " " + p.getNickname() + " " + playerNickname.getText().equals(p.getNickname()));
+        } while (!playerNickname.getText().equals(p.getNickname()));
+        Label l = (Label) vbox.getChildren().get(1);
+        l.setText("Coins: " + p.getCoinsCount());
+        l = (Label) vbox.getChildren().get(2);
+        l.setText("Stars: " + p.getStarsCount());
+        l = (Label) vbox.getChildren().get(3);
+        l.setText("Life points: " + p.getLifePoints());
     }
 
     private void showBanner(final String text) {
@@ -200,7 +220,7 @@ public class GameHandlerViewControllerImpl implements GenericViewController {
         TranslateTransition transition = new TranslateTransition();
         transition.setNode(this.playerToAvatar.get(p));
         transition.setDuration(Duration.millis(1000));
-        transition.setByX(this.playerToAvatar.get(p).getLayoutX() + movement * 10);
+        //transition.setByX(this.playerToAvatar.get(p).getLayoutX() + movement * 10);
         transition.play();
     }
 

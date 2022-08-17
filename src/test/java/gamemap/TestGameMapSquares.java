@@ -31,10 +31,9 @@ public class TestGameMapSquares {
 
     @Test
     public void testCoinsSquares() {
-        this.gameMap.inizializePlayers(List.of(p1, p2));
+        this.gameMap.initializePlayers(List.of(p1, p2));
         int dice = 3;
-        //p1.moveForward(dice, this.gameMap);   //ancora non va moveForward
-        this.p1.goTo(this.gameMap, this.gameMap.getSquares().get(dice));
+        this.p1.moveForward(dice, this.gameMap);
         assertTrue(this.p1.getPosition(this.gameMap).isCoinsGameMapSquare());
         assertFalse(this.p1.getPosition(this.gameMap).isDamageGameMapSquare());
         assertFalse(this.p1.getPosition(this.gameMap).isPowerUpGameMapSquare());
@@ -46,9 +45,9 @@ public class TestGameMapSquares {
 
     @Test
     public void testDamageSquares() {
-        this.gameMap.inizializePlayers(List.of(p1, p2));
+        this.gameMap.initializePlayers(List.of(p1, p2));
         int dice = 7;
-        this.p2.goTo(this.gameMap, this.gameMap.getSquares().get(dice));
+        this.p2.moveForward(dice, this.gameMap);
         assertTrue(this.p2.getPosition(this.gameMap).isDamageGameMapSquare());
         assertFalse(this.p2.getPosition(this.gameMap).isCoinsGameMapSquare());
         assertFalse(this.p2.getPosition(this.gameMap).isPowerUpGameMapSquare());
@@ -64,11 +63,11 @@ public class TestGameMapSquares {
 
     @Test
     public void testStarGameSquares() {
-        this.gameMap.inizializePlayers(List.of(p1, p2));
+        this.gameMap.initializePlayers(List.of(p1, p2));
         int dice = 9;
-        this.p1.goTo(this.gameMap, this.gameMap.getSquares().get(dice));
+        this.p1.moveForward(dice, this.gameMap);
         this.p1.earnCoins(GameMapImpl.COINS_TO_BUY_STAR + 5);
-        this.p2.goTo(this.gameMap, this.gameMap.getSquares().get(dice));
+        this.p2.moveForward(dice, this.gameMap);
         this.p2.getPosition(this.gameMap).receiveStar(p2);
         assertEquals(this.p2.getStarsCount(), 0);
         this.p1.getPosition(this.gameMap).receiveStar(p1);
@@ -77,10 +76,9 @@ public class TestGameMapSquares {
 
     @Test
     public void testPlayerListInSquare() {
-        this.gameMap.inizializePlayers(List.of(p1, p2));
+        this.gameMap.initializePlayers(List.of(p1, p2));
         int dice = 3;
-        //p1.moveForward(dice, this.gameMap);
-        this.p1.goTo(this.gameMap, this.gameMap.getSquares().get(dice));
+        this.p1.moveForward(dice, this.gameMap);
         gameMap.getSquares().get(dice).addPlayer(p1);
         assertEquals(gameMap.getPlayerPosition(p1), gameMap.getSquares().get(dice));
     }
