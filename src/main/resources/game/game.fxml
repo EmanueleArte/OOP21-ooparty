@@ -64,7 +64,10 @@
                                           </VBox>
                                        </right>
                                        <center>
-                                          <Label text="Last Action" BorderPane.alignment="CENTER" />
+                                          <Label fx:id="updatesLabel" BorderPane.alignment="CENTER">
+                                             <font>
+                                                <Font size="15.0" />
+                                             </font></Label>
                                        </center>
                                        <left>
                                           <Button mnemonicParsing="false" text="Pause" BorderPane.alignment="CENTER" />
@@ -182,21 +185,7 @@
                         </Group>
                      </children>
                   </StackPane>
-                  <HBox alignment="CENTER_LEFT" prefHeight="50.0" prefWidth="1017.0">
-                     <children>
-                        <Label fx:id="updatesLabel" prefWidth="380.0">
-                           <font>
-                              <Font size="15.0" />
-                           </font>
-                        </Label>
-                        <VBox fx:id="rankContainer" prefHeight="21.0" prefWidth="600.0">
-                           <children>
-                              <Label text="Rank" />
-                              <HBox fx:id="rankPlayersContainer" prefHeight="85.0" prefWidth="158.0" />
-                           </children>
-                        </VBox>
-                     </children>
-                  </HBox>
+                  <HBox alignment="CENTER_LEFT" prefHeight="50.0" prefWidth="1017.0" />
                </children>
             </VBox>
          </center>

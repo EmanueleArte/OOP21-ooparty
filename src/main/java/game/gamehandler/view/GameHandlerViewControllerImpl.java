@@ -81,7 +81,7 @@ public class GameHandlerViewControllerImpl implements GenericViewController {
     private StackPane stackPaneContainer;
     @FXML
     private Label updatesLabel;
-    
+
     private final Map<Player, Group> playerToAvatar = new HashMap<Player, Group>();
 
     @Override
@@ -184,7 +184,7 @@ public class GameHandlerViewControllerImpl implements GenericViewController {
                 }
             }
         } else {
-            // game end
+            //TODO game end
         }
     }
 
@@ -229,7 +229,7 @@ public class GameHandlerViewControllerImpl implements GenericViewController {
         TranslateTransition transition = new TranslateTransition();
         transition.setNode(this.playerToAvatar.get(p));
         transition.setDuration(Duration.millis(1000));
-        //transition.setByX(this.playerToAvatar.get(p).getLayoutX() + movement * 10);
+        //transition.setByX(this.playerToAvatar.get(p).getLayoutX() + movement * 10);   //ogni tanto dà NullPointerException
         transition.play();
     }
 
