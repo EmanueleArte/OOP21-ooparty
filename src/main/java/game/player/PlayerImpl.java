@@ -3,6 +3,7 @@ package game.player;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
+import java.util.Optional;
 
 import game.map.GameMap;
 import game.map.GameMapSquare;
@@ -187,8 +188,17 @@ public class PlayerImpl implements Player {
     }
 
     @Override
-    public final void usePowerup(final int powerupType) {
+    public final void addPowerup(final GenericPowerup powerup) {
+        this.powerups.add(powerup);
+    }
 
+    @Override
+    public final void usePowerup(final String powerupType, final Player target) {
+        Optional<GenericPowerup> p = this.powerups.stream().filter(x -> x.getPowerupType().equals(powerupType)).findFirst();
+        p.ifPresent(a -> {
+            p.get().usePowerup(target);
+            this.powerups.remove(p.get());
+        });
     }
 
 }

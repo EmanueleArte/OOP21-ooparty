@@ -132,5 +132,11 @@ public interface Player {
      * 
      * @param powerupType type of powerup to use
      */
-    void usePowerup(int powerupType);
+    void usePowerup(String powerupType, Player target);
+
+    /**
+     * Adds a {@link GenericPowerup} to this player's powerups list.
+     * @param powerup the powerup to add to the player
+     */
+    void addPowerup(GenericPowerup powerup);
 }

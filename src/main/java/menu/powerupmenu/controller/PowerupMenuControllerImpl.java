@@ -1,5 +1,9 @@
 package menu.powerupmenu.controller;
 
+import java.util.List;
+import java.util.Optional;
+
+import game.player.Player;
 import menu.powerupmenu.model.PowerupMenuModel;
 import menu.powerupmenu.model.PowerupMenuModelImpl;
 import menu.powerupmenu.view.PowerupMenuViewControllerImpl;
@@ -13,9 +17,13 @@ public class PowerupMenuControllerImpl extends GenericControllerAbstr implements
     private final PowerupMenuModel model;
     private PowerupMenuViewControllerImpl viewController;
 
-    public <S> PowerupMenuControllerImpl(final StageManager<S> s) {
+    private Player currentPlayer;
+    private final List<Player> players;
+
+    public <S> PowerupMenuControllerImpl(final StageManager<S> s, final List<Player> players) {
         super(s);
         this.model = new PowerupMenuModelImpl(s);
+        this.players = players;
     }
 
     @Override
@@ -33,14 +41,25 @@ public class PowerupMenuControllerImpl extends GenericControllerAbstr implements
     }
 
     @Override
-    public final void start() {
-        GenericViewUtils.createScene(this.getStageManager(), this, PowerupMenuViewControllerImpl.class, "game/powerups.fxml");
-        //this.viewController.initialize(p.getColor());
+    public final void start(final Player currentPlayer) {
+        GenericViewUtils.createScene(this.getStageManager(), this, PowerupMenuViewControllerImpl.class,
+                "game/powerups.fxml");
+        this.viewController.initialize(currentPlayer.getPowerupList(), this.players);
+        this.currentPlayer = currentPlayer;
     }
 
     @Override
     public final void returnToGame() {
         this.model.returnToGame();
+    }
+
+    @Override
+    public final void usePowerup(final String powerupType, final String targetName) {
+        Optional<Player> target = this.players.stream().filter(x -> x.getNickname().equals(targetName)).findFirst();
+        target.ifPresent(a -> {
+            this.currentPlayer.usePowerup(powerupType, target.get());
+            this.returnToGame();
+        });
     }
 
 }

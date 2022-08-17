@@ -10,6 +10,7 @@ import game.map.GameMap;
 import game.map.GameMapSquare;
 import game.map.GameMapSquareImpl;
 import game.player.Player;
+import game.powerup.DoubleDicePowerup;
 import menu.powerupmenu.controller.PowerupMenuController;
 import menu.powerupmenu.controller.PowerupMenuControllerImpl;
 import minigames.common.controller.MinigameController;
@@ -39,7 +40,7 @@ public class GameHandlerModelImpl<S> implements GameHandlerModel {
             final GameMap gameMap) {
         this.stageManager = s;
         this.dice = new DiceControllerImpl(this.stageManager, false);
-        this.powerupMenu = new PowerupMenuControllerImpl(this.stageManager);
+        this.powerupMenu = new PowerupMenuControllerImpl(this.stageManager, players);
         this.minigameFactory = new MinigameFactoryImpl<>(players, s);
         this.turnsNumber = turnsNumber;
         this.turn = 1;
@@ -89,11 +90,13 @@ public class GameHandlerModelImpl<S> implements GameHandlerModel {
             this.currentPlayer.get().setDicesNumber(1);
         }
         if (this.playerTurnProgress == PlayerTurnProgress.USE_POWERUP.getProgress()) {
+            if (this.currentPlayer.get().getNickname().compareTo("va") == 0) {
+                this.currentPlayer.get().addPowerup(new DoubleDicePowerup());
+            }
             if (this.currentPlayer.get().getPowerupList().isEmpty()) {
-                this.powerupMenu.start();
-                //this.playerTurnProgress++;
+                this.playerTurnProgress++;
             } else {
-                this.powerupMenu.start();
+                this.powerupMenu.start(this.currentPlayer.get());
             }
         }
         if (this.playerTurnProgress == PlayerTurnProgress.MOVE_PLAYER.getProgress()) {
