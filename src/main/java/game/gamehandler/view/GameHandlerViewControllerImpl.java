@@ -25,7 +25,7 @@ import utils.controller.GenericController;
 import utils.enums.OrdinalNumber;
 import utils.enums.PlayerTurnProgress;
 import utils.enums.TurnProgress;
-import utils.GenericViewController;
+import utils.view.GenericViewController;
 
 public class GameHandlerViewControllerImpl implements GenericViewController {
 

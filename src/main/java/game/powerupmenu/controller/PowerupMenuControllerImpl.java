@@ -3,7 +3,7 @@ package game.powerupmenu.controller;
 import game.powerupmenu.model.PowerupMenuModel;
 import game.powerupmenu.model.PowerupMenuModelImpl;
 import game.powerupmenu.view.PowerupMenuViewControllerImpl;
-import utils.GenericViewController;
+import utils.view.GenericViewController;
 import utils.controller.GenericControllerAbstr;
 import utils.graphics.controller.StageManager;
 import utils.view.GenericViewUtils;
@@ -20,7 +20,7 @@ public class PowerupMenuControllerImpl extends GenericControllerAbstr implements
 
     @Override
     public final GenericViewController getViewController() {
-        return this.getViewController();
+        return this.viewController;
     }
 
     @Override

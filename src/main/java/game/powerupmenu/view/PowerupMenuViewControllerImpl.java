@@ -3,7 +3,7 @@ package game.powerupmenu.view;
 import game.powerupmenu.controller.PowerupMenuController;
 import game.powerupmenu.controller.PowerupMenuControllerImpl;
 import javafx.fxml.FXML;
-import utils.GenericViewController;
+import utils.view.GenericViewController;
 import utils.controller.GenericController;
 
 public class PowerupMenuViewControllerImpl implements GenericViewController {
@@ -20,7 +20,7 @@ public class PowerupMenuViewControllerImpl implements GenericViewController {
     }
 
     @FXML
-    public void close() {
+    public final void close() {
         this.controller.returnToGame();
     }
 }

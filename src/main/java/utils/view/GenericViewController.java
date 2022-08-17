@@ -1,4 +1,4 @@
-package utils;
+package utils.view;
 
 import utils.controller.GenericController;
 

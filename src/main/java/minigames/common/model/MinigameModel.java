@@ -4,14 +4,14 @@ import java.util.List;
 import java.util.Map;
 
 import game.common.model.GameModel;
+import game.player.Player;
 
 /**
  * This interface models a minigame model.
  * 
  * @param <S> the scenes of the stage
- * @param <U> the players
  */
-public interface MinigameModel<S, U> extends GameModel<S, U> {
+public interface MinigameModel<S> extends GameModel<S> {
 
     /**
      * This method returns the results of the minigame that are necessary for points
@@ -20,7 +20,7 @@ public interface MinigameModel<S, U> extends GameModel<S, U> {
      * @return a list of players ordered by their classification in the minigame
      *         with no draws
      */
-    List<U> gameResults();
+    List<Player> gameResults();
 
     /**
      * This method associates a player to his score.
@@ -28,7 +28,7 @@ public interface MinigameModel<S, U> extends GameModel<S, U> {
      * @param player the current {@link game.player.Player}
      * @param score  the score of the player at the minigame
      */
-    void scoreMapper(U player, Integer score);
+    void scoreMapper(Player player, Integer score);
 
     /**
      * Getter for the score.
@@ -42,6 +42,6 @@ public interface MinigameModel<S, U> extends GameModel<S, U> {
      * 
      * @return a map with players as keys and their score as values
      */
-    Map<U, Integer> getPlayersClassification();
+    Map<Player, Integer> getPlayersClassification();
 
 }

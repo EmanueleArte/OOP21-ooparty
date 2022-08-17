@@ -24,7 +24,7 @@ public class GameHandlerModelImpl<S> implements GameHandlerModel {
     private final StageManager<S> stageManager;
     private final DiceController dice;
     private final PowerupMenuController powerupMenu;
-    private final MinigameFactoryImpl<S, ?> minigameFactory;
+    private final MinigameFactoryImpl<S> minigameFactory;
     private final GameMap gameMap;
 
     private final int turnsNumber;

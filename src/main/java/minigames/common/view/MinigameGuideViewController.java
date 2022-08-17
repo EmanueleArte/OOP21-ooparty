@@ -1,6 +1,6 @@
 package minigames.common.view;
 
-import utils.GenericViewController;
+import utils.view.GenericViewController;
 
 /**
  * This interface models a generic view controller for the minigame's guide.
