@@ -1,8 +1,8 @@
-package game.powerupmenu.view;
+package menu.powerupmenu.view;
 
-import game.powerupmenu.controller.PowerupMenuController;
-import game.powerupmenu.controller.PowerupMenuControllerImpl;
 import javafx.fxml.FXML;
+import menu.powerupmenu.controller.PowerupMenuController;
+import menu.powerupmenu.controller.PowerupMenuControllerImpl;
 import utils.view.GenericViewController;
 import utils.controller.GenericController;
 

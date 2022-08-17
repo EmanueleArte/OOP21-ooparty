@@ -1,8 +1,8 @@
-package game.powerupmenu.controller;
+package menu.powerupmenu.controller;
 
-import game.powerupmenu.model.PowerupMenuModel;
-import game.powerupmenu.model.PowerupMenuModelImpl;
-import game.powerupmenu.view.PowerupMenuViewControllerImpl;
+import menu.powerupmenu.model.PowerupMenuModel;
+import menu.powerupmenu.model.PowerupMenuModelImpl;
+import menu.powerupmenu.view.PowerupMenuViewControllerImpl;
 import utils.view.GenericViewController;
 import utils.controller.GenericControllerAbstr;
 import utils.graphics.controller.StageManager;

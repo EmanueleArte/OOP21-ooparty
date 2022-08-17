@@ -1,4 +1,4 @@
-package game.powerupmenu.model;
+package menu.powerupmenu.model;
 
 public interface PowerupMenuModel {
 

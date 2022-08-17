@@ -1,4 +1,4 @@
-package game.powerupmenu.controller;
+package menu.powerupmenu.controller;
 
 public interface PowerupMenuController {
 
