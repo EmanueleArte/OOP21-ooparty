@@ -64,7 +64,7 @@ public abstract class MinigameModelAbstr<S> extends GameModelAbstr<S> implements
 
     @Override
     public final int getScore() {
-        return this.playersClassification.get(this.getCurrPlayer());
+        return this.playersClassification.getOrDefault(this.getCurrPlayer(), 0);
     }
 
     /**
