@@ -3,7 +3,7 @@ package game.dice.model;
 import java.util.ArrayList;
 import java.util.List;
 
-import utils.graphics.stagemanager.StageManager;
+import utils.graphics.controller.StageManager;
 
 public class DiceModelNoRepeatImpl<P> extends DiceModelImpl<P> {
     private final List<Integer> resultsList;

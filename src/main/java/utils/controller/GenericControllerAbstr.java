@@ -1,6 +1,6 @@
 package utils.controller;
 
-import utils.graphics.stagemanager.StageManager;
+import utils.graphics.controller.StageManager;
 
 /**
  * Implementation of {@link GenericController}.

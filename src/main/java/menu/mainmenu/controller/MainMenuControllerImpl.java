@@ -3,15 +3,15 @@ package menu.mainmenu.controller;
 import menu.MenuController;
 import menu.mainmenu.model.MainMenuModel;
 import menu.mainmenu.model.MainMenuModelImpl;
-import menu.mainmenu.view.MainMenuViewImpl;
-import menu.mainmenu.viewcontroller.MainMenuViewControllerImpl;
-import utils.GenericViewController;
+import menu.mainmenu.view.MainMenuViewControllerImpl;
 import utils.controller.GenericControllerAbstr;
-import utils.graphics.stagemanager.StageManager;
-import utils.view.GenericView;
+import utils.graphics.controller.StageManager;
+import utils.view.GenericViewController;
+import utils.view.GenericViewUtils;
 
 /**
- * Extension of {@link GenericControllerAbstr} and implementation of {@link MenuController}.
+ * Extension of {@link GenericControllerAbstr} and implementation of
+ * {@link MenuController}.
  */
 public class MainMenuControllerImpl extends GenericControllerAbstr implements MenuController {
 
@@ -55,8 +55,8 @@ public class MainMenuControllerImpl extends GenericControllerAbstr implements Me
 
     @Override
     public final void createMenu() {
-        final GenericView<?> menuView = new MainMenuViewImpl<>(this.getStageManager());
-        menuView.createScene(this);
+        GenericViewUtils.createScene(this.getStageManager(), this, MainMenuViewControllerImpl.class,
+                "menu/main_menu.fxml");
     }
 
 }

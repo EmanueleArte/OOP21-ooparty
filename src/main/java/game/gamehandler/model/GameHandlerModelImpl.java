@@ -10,18 +10,21 @@ import game.map.GameMap;
 import game.map.GameMapSquare;
 import game.map.GameMapSquareImpl;
 import game.player.Player;
+import game.powerupmenu.controller.PowerupMenuController;
+import game.powerupmenu.controller.PowerupMenuControllerImpl;
 import minigames.common.controller.MinigameController;
 import minigames.whoriskswins.controller.WhoRisksWinsControllerImpl;
 import utils.enums.PlayerTurnProgress;
 import utils.enums.TurnProgress;
 import utils.factories.MinigameFactoryImpl;
-import utils.graphics.stagemanager.StageManager;
+import utils.graphics.controller.StageManager;
 
 public class GameHandlerModelImpl<S> implements GameHandlerModel {
 
     private final StageManager<S> stageManager;
     private final DiceController dice;
-    private final MinigameFactoryImpl<S, ?> minigameFactory;
+    private final PowerupMenuController powerupMenu;
+    private final MinigameFactoryImpl<S> minigameFactory;
     private final GameMap gameMap;
 
     private final int turnsNumber;
@@ -36,6 +39,7 @@ public class GameHandlerModelImpl<S> implements GameHandlerModel {
             final GameMap gameMap) {
         this.stageManager = s;
         this.dice = new DiceControllerImpl(this.stageManager, false);
+        this.powerupMenu = new PowerupMenuControllerImpl(this.stageManager);
         this.minigameFactory = new MinigameFactoryImpl<>(players, s);
         this.turnsNumber = turnsNumber;
         this.turn = 1;
@@ -73,19 +77,36 @@ public class GameHandlerModelImpl<S> implements GameHandlerModel {
 
     @Override
     public final int nextPlayerTurnStep() {
+        if (this.playerTurnProgress == PlayerTurnProgress.ROLL_DICE.getProgress()) {
+            if (this.currentPlayer.get().hasDiceToRoll()) {
+                this.playerTurnProgress--;
+            }
+        }
         this.playerTurnProgress++;
         if (this.playerTurnProgress > PlayerTurnProgress.END_OF_TURN.getProgress()) {
             this.playerTurnProgress = PlayerTurnProgress.SHOW_BANNER.getProgress();
         }
         if (this.playerTurnProgress == PlayerTurnProgress.SHOW_BANNER.getProgress()) {
             this.currentPlayer = Optional.of(this.playersIterator.next());
+            this.currentPlayer.get().setDicesNumber(1);
+        }
+        if (this.playerTurnProgress == PlayerTurnProgress.USE_POWERUP.getProgress()) {
+            if (this.currentPlayer.get().getPowerupList().isEmpty()) {
+                this.powerupMenu.start();
+                //this.playerTurnProgress++;
+            } else {
+                this.powerupMenu.start();
+            }
         }
         if (this.playerTurnProgress == PlayerTurnProgress.MOVE_PLAYER.getProgress()) {
             System.out.println(this.dice.getLastResult());
         }
         if (this.playerTurnProgress == PlayerTurnProgress.ROLL_DICE.getProgress()) {
-            this.dice.rollDice();
-            this.dice.start(this.currentPlayer.get());
+            if (this.currentPlayer.get().hasDiceToRoll()) {
+                this.dice.rollDice();
+                this.currentPlayer.get().rollDice();
+                this.dice.start(this.currentPlayer.get());
+            }
         }
         return this.playerTurnProgress;
     }
@@ -93,25 +114,6 @@ public class GameHandlerModelImpl<S> implements GameHandlerModel {
     private boolean playersTurnsFinished() {
         return !(this.playersIterator.hasNext())
                 && (this.playerTurnProgress == PlayerTurnProgress.END_OF_TURN.getProgress());
-    }
-
-    @Override
-    public void playTurn(final Player player) {
-        /*
-         * System.out.println("Turno di " + player.getNickname() + " - posizione: " +
-         * player.getPosition(this.gameMap)); int roll = dice.rollDice(player);
-         * System.out.println("Lancio del dado: " + roll); player.moveForward(roll,
-         * this.gameMap); // TODO moveForward è da fare GameMapSquare playerPosition =
-         * this.gameMap.getPlayerPosition(player);
-         * System.out.println("Nuova posizione: " + playerPosition); if
-         * (playerPosition.isCoinsGameMapSquare()) {
-         * playerPosition.receiveCoins(player); } else if
-         * (playerPosition.isDamageGameMapSquare()) {
-         * playerPosition.receiveDamage(player); } else if
-         * (playerPosition.isPowerUpGameMapSquare()) { // TODO } else if
-         * (playerPosition.isStarGameMapSquare()) { playerPosition.receiveStar(player);
-         * }
-         */
     }
 
     @SuppressWarnings("unchecked")

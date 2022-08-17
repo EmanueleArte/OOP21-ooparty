@@ -11,7 +11,7 @@ import game.map.GameMapImpl;
 import game.player.Player;
 import game.player.PlayerImpl;
 import utils.enums.PlayerColor;
-import utils.graphics.stagemanager.StageManager;
+import utils.graphics.controller.StageManager;
 
 /**
  * Implementation of {@link GameCreationMenuModel}.
@@ -42,7 +42,7 @@ public class GameCreationMenuModelImpl<S> implements GameCreationMenuModel<S> {
     /**
      * Builds a new {@link GameCreationMenuModelImpl}.
      * 
-     * @param s the {@link utils.graphics.stagemanager.StageManager}.
+     * @param s the {@link utils.graphics.controller.StageManager}.
      */
     public GameCreationMenuModelImpl(final StageManager<S> s) {
         super();

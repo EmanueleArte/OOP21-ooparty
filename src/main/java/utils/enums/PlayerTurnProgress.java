@@ -15,11 +15,15 @@ public enum PlayerTurnProgress {
     /**
      * time to roll the dice.
      */
-    ROLL_DICE(2),
+    USE_POWERUP(2),
+    /**
+     * time to roll the dice.
+     */
+    ROLL_DICE(3),
     /**
      * time to move player's avatar.
      */
-    MOVE_PLAYER(3),
+    MOVE_PLAYER(4),
     /**
      * end of player turn.
      */

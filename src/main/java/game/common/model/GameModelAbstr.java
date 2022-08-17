@@ -3,20 +3,20 @@ package game.common.model;
 import java.util.List;
 import java.util.ListIterator;
 
-import utils.graphics.stagemanager.StageManager;
+import game.player.Player;
+import utils.graphics.controller.StageManager;
 
 /**
  * Implementation of {@link GameModel}.
  * 
  * @param <S> the scenes of the stage
- * @param <U> the players
  */
-public abstract class GameModelAbstr<S, U> implements GameModel<S, U> {
+public abstract class GameModelAbstr<S> implements GameModel<S> {
 
-    private final List<U> players;
+    private final List<Player> players;
     private final StageManager<S> stageManager;
-    private ListIterator<U> playerIterator;
-    private U currPlayer;
+    private ListIterator<Player> playerIterator;
+    private Player currPlayer;
 
     /**
      * Builds a new {@link GameModelAbstr}.
@@ -24,7 +24,7 @@ public abstract class GameModelAbstr<S, U> implements GameModel<S, U> {
      * @param players the list of players
      * @param s       the {@link StageManager}
      */
-    public GameModelAbstr(final List<U> players, final StageManager<S> s) {
+    public GameModelAbstr(final List<Player> players, final StageManager<S> s) {
         this.players = players;
         this.setPlayerIterator(players);
         this.stageManager = s;
@@ -35,12 +35,12 @@ public abstract class GameModelAbstr<S, U> implements GameModel<S, U> {
      * 
      * @param players the list of players
      */
-    public GameModelAbstr(final List<U> players) {
+    public GameModelAbstr(final List<Player> players) {
         this(players, null);
     }
 
     @Override
-    public final List<U> getPlayers() {
+    public final List<Player> getPlayers() {
         return this.players;
     }
 
@@ -53,7 +53,7 @@ public abstract class GameModelAbstr<S, U> implements GameModel<S, U> {
     public abstract boolean runGame();
 
     @Override
-    public final U getCurrPlayer() {
+    public final Player getCurrPlayer() {
         return this.currPlayer;
     }
 
@@ -62,7 +62,7 @@ public abstract class GameModelAbstr<S, U> implements GameModel<S, U> {
      * 
      * @return the next player
      */
-    protected U getNextPlayer() {
+    protected Player getNextPlayer() {
         return this.playerIterator.next();
     }
 
@@ -74,11 +74,6 @@ public abstract class GameModelAbstr<S, U> implements GameModel<S, U> {
     protected boolean hasNextPlayer() {
         return this.playerIterator.hasNext();
     }
-
-    /**
-     * This method starts a new turn if there is another player who has to play.
-     */
-    protected abstract void nextTurn();
 
     /**
      * Setter for the current player.
@@ -94,7 +89,7 @@ public abstract class GameModelAbstr<S, U> implements GameModel<S, U> {
      * 
      * @param players the list of players
      */
-    protected void setPlayerIterator(final List<U> players) {
+    protected void setPlayerIterator(final List<Player> players) {
         this.playerIterator = players.listIterator();
     }
 
