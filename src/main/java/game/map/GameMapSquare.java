@@ -29,7 +29,7 @@ public interface GameMapSquare {
     void removePlayer(Player p);
 
     /**
-     * 
+     * Returns the number of coins located in this square.
      * @return the number of coins located in this square
      */
     int getCoinsNumber();
@@ -41,7 +41,7 @@ public interface GameMapSquare {
     void receiveCoins(Player p);
 
     /**
-     * 
+     * Returns the amount of damage located in this square.
      * @return the amount of damage located in this square
      */
     int getDamage();
@@ -66,31 +66,31 @@ public interface GameMapSquare {
     void receivePowerup(Player p);
 
     /**
-     * 
+     * Returns the {@link GenericPowerup} on this square.
      * @return the {@link GenericPowerup} on this square
      */
     GenericPowerup getPowerup();
 
     /**
-     * 
-     * @return if this is a {@link CoinGameMapSquare}
+     * Returns if this is a {@link CoinsGameMapSquare}.
+     * @return if this is a {@link CoinsGameMapSquare}
      */
     boolean isCoinsGameMapSquare();
 
     /**
-     * 
+     * Returns if this is a {@link StarGameMapSquare}.
      * @return if this is a {@link StarGameMapSquare}
      */
     boolean isStarGameMapSquare();
 
     /**
-     * 
+     * Returns if this is a {@link PowerUpGameMapSquare}.
      * @return if this is a {@link PowerUpGameMapSquare}
      */
     boolean isPowerUpGameMapSquare();
 
     /**
-     * 
+     * Returns if this is a {@link DamageGameMapSquare}.
      * @return if this is a {@link DamageGameMapSquare}
      */
     boolean isDamageGameMapSquare();

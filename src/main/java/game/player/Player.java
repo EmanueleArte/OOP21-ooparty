@@ -139,4 +139,16 @@ public interface Player {
      * @param powerupType type of powerup to use
      */
     void usePowerup(int powerupType);
+
+    /**
+     * 
+     * @return the amount of coins earned the last time this player earned coins
+     */
+    int getLastEarnedCoins();
+
+    /**
+     * 
+     * @return the amount of damage taken the last time this player was hit
+     */
+    int getLastDamageTaken();
 }

@@ -17,8 +17,10 @@ public class PlayerImpl implements Player {
     private final String nickname;
     private final Color color;
     private int coins;
+    private int lastEarnedCoins;
     private int stars;
     private int lifePoints;
+    private int lastDamageTaken;
     private int dicesToRoll;
     private final List<GenericPowerup> powerups;
 
@@ -37,8 +39,10 @@ public class PlayerImpl implements Player {
         this.nickname = nickname;
         this.color = color;
         this.coins = 0;
+        this.lastEarnedCoins = 0;
         this.stars = 0;
         this.lifePoints = PlayerImpl.MAX_LIFE;
+        this.lastDamageTaken = 0;
         this.dicesToRoll = 1;
         this.powerups = new ArrayList<>();
     }
@@ -76,11 +80,18 @@ public class PlayerImpl implements Player {
 
     @Override
     public final void earnCoins(final int n) {
+        if (n <= 0) {
+            throw new IllegalArgumentException("n can't be 0 or negative");
+        }
         this.coins = this.getCoinsCount() + n;
+        this.lastEarnedCoins = n;
     }
 
     @Override
     public final void loseCoins(final int n) {
+        if (n >= 0) {
+            throw new IllegalArgumentException("n can't be 0 or positive");
+        }
         this.coins = this.getCoinsCount() - n;
         if (this.coins < 0) {
             this.coins = 0;
@@ -129,6 +140,7 @@ public class PlayerImpl implements Player {
             throw new IllegalArgumentException("Damage can't be 0 or negative");
         }
         this.lifePoints = this.lifePoints - damage;
+        this.lastDamageTaken = damage;
         if (this.lifePoints <= 0) {
             this.updateCoins(this.getCoinsCount() / 2);
             this.goTo(gameMap, gameMap.getSquares().get(0));
@@ -196,6 +208,16 @@ public class PlayerImpl implements Player {
     @Override
     public final void usePowerup(final int powerupType) {
 
+    }
+
+    @Override
+    public final int getLastEarnedCoins() {
+        return this.lastEarnedCoins;
+    }
+
+    @Override
+    public final int getLastDamageTaken() {
+        return this.lastDamageTaken;
     }
 
 }

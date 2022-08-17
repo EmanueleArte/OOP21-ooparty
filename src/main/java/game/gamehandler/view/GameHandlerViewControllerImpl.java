@@ -160,10 +160,10 @@ public class GameHandlerViewControllerImpl implements GenericViewController {
             } else if (playerProgress == PlayerTurnProgress.MOVE_PLAYER.getProgress()) {
                 Player currentPlayer = this.controller.getCurrentPlayer().get();
                 this.movePlayer(currentPlayer, 10);
-                //if (this.controller.getGameMap().getPlayerPosition(currentPlayer).isCoinsGameMapSquare()) {
-                    this.showPickUpCoins(currentPlayer);
-                /*} else*/ if (this.controller.getGameMap().getPlayerPosition(currentPlayer).isDamageGameMapSquare()) {
-                    //TODO
+                if (this.controller.getGameMap().getPlayerPosition(currentPlayer).isCoinsGameMapSquare()) {
+                    this.showCoinsEarned(currentPlayer);
+                } else if (this.controller.getGameMap().getPlayerPosition(currentPlayer).isDamageGameMapSquare()) {
+                    this.showDamageTaken(currentPlayer);
                 } else if (this.controller.getGameMap().getPlayerPosition(currentPlayer).isStarGameMapSquare()) {
                     //TODO
                 } else if (this.controller.getGameMap().getPlayerPosition(currentPlayer).isPowerUpGameMapSquare()) {
@@ -173,9 +173,12 @@ public class GameHandlerViewControllerImpl implements GenericViewController {
         }
     }
 
-    private void showPickUpCoins(final Player p) {
-        this.updatesLabel.setText(p.getNickname() + " earned " + /*TODO numero monete*/ " coins");
-        //this.showBanner(p.getNickname() + " earned " + /*TODO numero monete*/ " coins");
+    private void showDamageTaken(final Player p) {
+        this.updatesLabel.setText(p.getNickname() + " lost " + p.getLastDamageTaken() + " life points");
+    }
+
+    private void showCoinsEarned(final Player p) {
+        this.updatesLabel.setText(p.getNickname() + " earned " + p.getLastEarnedCoins() + " coins");
     }
 
     private void showBanner(final String text) {

@@ -158,9 +158,13 @@
                         </Group>
                      </children>
                   </StackPane>
-                  <HBox alignment="CENTER" prefHeight="50.0" prefWidth="1000.0">
+                  <HBox alignment="CENTER_LEFT" prefHeight="50.0" prefWidth="1017.0">
                      <children>
-                        <Label fx:id="updatesLabel" prefHeight="50.0" prefWidth="100.0" textAlignment="CENTER" />
+                        <Label fx:id="updatesLabel" prefWidth="377.0">
+                           <font>
+                              <Font size="15.0" />
+                           </font>
+                        </Label>
                         <VBox fx:id="rankContainer" prefHeight="102.0" prefWidth="242.0">
                            <children>
                               <Label text="Rank" />
