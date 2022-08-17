@@ -26,12 +26,22 @@ public class MemoModelImpl<S> extends MinigameModelAbstr<S> implements MemoModel
     }
 
     private List<Integer> initialiseCards() {
-        return IntStream.range(0, NUMBER_OF_PAIRS_PER_PLAYER * this.getPlayers().size()).boxed()
-                .flatMap(t -> IntStream.of(t, t).boxed()).unordered().collect(Collectors.toList());
+        return this.getCardsValues().flatMap(t -> Stream.of(t, t)).unordered().collect(Collectors.toList());
     }
 
+    private Stream<Integer> getCardsValues() {
+        return IntStream.range(0, NUMBER_OF_PAIRS_PER_PLAYER * this.getPlayers().size()).boxed();
+    }
+
+    public final int getCardValue(final int index) {
+        return this.cards.get(index);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
     @Override
-    public final boolean runGame() {
+    public boolean runGame() {
         if (this.isOver()) {
             return true;
         }
@@ -43,22 +53,33 @@ public class MemoModelImpl<S> extends MinigameModelAbstr<S> implements MemoModel
         return true;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
-    public final boolean isOver() {
+    public boolean isOver() {
         return this.cards.isEmpty();
     }
 
+    /**
+     * 
+     * @throws IndexOutOfBoundsException if {@code indexFirstCard} or {@code indexSecondCard} are out of the list.
+     * @throws IllegalArgumentException if {@code indexFirstCard} is equals to {@code indexSecondCard}.
+     */
     @Override
-    public final boolean chooseCards(final int indexFirstCard, final int indexSecondCard) {
+    public boolean chooseCards(final int indexFirstCard, final int indexSecondCard) throws RuntimeException {
+        if (indexFirstCard >= this.cards.size() || indexSecondCard >= this.cards.size()) {
+            throw new IndexOutOfBoundsException();
+        }
         if (indexFirstCard == indexSecondCard) {
-            return false;
+            throw new IllegalArgumentException();
         }
-        if (this.cards.get(indexFirstCard) == this.cards.get(indexSecondCard)) {
-            this.scoreMapper(this.getCurrPlayer(), this.getPlayersClassification().get(getCurrPlayer()) + 1);
-
-        }
+        return this.cards.get(indexFirstCard) == this.cards.get(indexSecondCard);
     }
 
+    /**
+     * 
+     */
     @Override
     public void changeTurn() {
         // TODO Auto-generated method stub
