@@ -104,11 +104,7 @@
                                           <VBox fx:id="rankContainer" alignment="TOP_CENTER" prefHeight="25.0" prefWidth="845.0" BorderPane.alignment="CENTER">
                                              <children>
                                                 <Label text="Rank" />
-                                                <HBox fx:id="rankPlayersContainer" alignment="TOP_CENTER" fillHeight="false" prefHeight="25.0" prefWidth="867.0">
-                                                   <children>
-                                                      <Button mnemonicParsing="false" text="Button" />
-                                                   </children>
-                                                </HBox>
+                                                <HBox fx:id="rankPlayersContainer" alignment="TOP_CENTER" fillHeight="false" prefHeight="25.0" prefWidth="867.0" />
                                              </children>
                                           </VBox>
                                        </center>
