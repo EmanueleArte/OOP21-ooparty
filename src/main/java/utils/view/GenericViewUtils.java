@@ -18,13 +18,10 @@ public final class GenericViewUtils {
      * @param <S>                 the scenes of the stage
      * @param stageManager        the stage manager of the application
      * @param controller          the controller that act on the scene
-     * @param viewControllerClass the class of the viewcontroller that handle the
-     *                            scene
      * @param fxmlUrl             the url to the fxml file to open
      */
-    public static <S> void createScene(final StageManager<S> stageManager, final GenericController controller,
-            final Class<?> viewControllerClass, final String fxmlUrl) {
-        stageManager.addFXMLScene(fxmlUrl, viewControllerClass, controller);
+    public static <S> void createScene(final StageManager<S> stageManager, final GenericController controller, final String fxmlUrl) {
+        stageManager.addFXMLScene(fxmlUrl, controller);
     }
 
 }

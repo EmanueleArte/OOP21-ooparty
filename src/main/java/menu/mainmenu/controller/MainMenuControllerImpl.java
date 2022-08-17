@@ -55,8 +55,7 @@ public class MainMenuControllerImpl extends GenericControllerAbstr implements Me
 
     @Override
     public final void createMenu() {
-        GenericViewUtils.createScene(this.getStageManager(), this, MainMenuViewControllerImpl.class,
-                "menu/main_menu.fxml");
+        GenericViewUtils.createScene(this.getStageManager(), this, "menu/main_menu.fxml");
     }
 
 }

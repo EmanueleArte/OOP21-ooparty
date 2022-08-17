@@ -4,6 +4,7 @@ import java.util.Comparator;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
 import java.util.stream.Collectors;
 
 import game.common.model.GameModelAbstr;
@@ -90,9 +91,7 @@ public abstract class MinigameModelAbstr<S> extends GameModelAbstr<S> implements
                     sorted.put(player, this.dice.getLastResult().get());
                 });
                 players = sorted.entrySet().stream().sorted(Map.Entry.comparingByValue(Comparator.reverseOrder()))
-                        .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue, (x, y) -> y,
-                                LinkedHashMap::new))
-                        .keySet().stream().collect(Collectors.toList());
+                        .map(Entry::getKey).collect(Collectors.toList());
                 element.setValue(players);
             }
         });
