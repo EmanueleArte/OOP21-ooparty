@@ -156,6 +156,13 @@ public class GameHandlerModelImpl<S> implements GameHandlerModel {
         return this.gameMap;
     }
 
+    /**
+     * This method returns the leaderboard. The leaderboard consist in a list of players ordered by:
+     * - stars;
+     * - coins;
+     * - life point;
+     * @return an ordered list of players 
+     */
     @Override
     public List<Player> getLeaderboard() {
         var tmp = new ArrayList<>(this.players);
