@@ -2,9 +2,6 @@ package utils.graphics.model;
 
 import java.util.List;
 
-import minigames.common.controller.MinigameController;
-import utils.controller.GenericController;
-
 /**
  * This interface models the scenes handling.
  * 
@@ -39,14 +36,5 @@ public interface SceneHandler<S> {
      * @return the scenes list
      */
     List<S> getScenes();
-
-    /**
-     * This methods checks if the controller parameter is a minigame controller.
-     * 
-     * @param controller the controller to check
-     * @return the controller casted to {@link MinigameController} if it is a
-     *         minigame controller else null
-     */
-    MinigameController checkGameController(GenericController controller);
 
 }

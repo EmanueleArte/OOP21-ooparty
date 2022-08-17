@@ -38,7 +38,7 @@ public class StageManagerImpl<S> implements StageManager<S> {
     public final void addFXMLScene(final String fxmlUrl, final GenericController controller) {
         final var currScene = this.gui.loadScene(fxmlUrl, controller);
         this.addScene((S) currScene);
-        this.lastGameController = Optional.ofNullable(this.sceneHandler.checkGameController(controller));
+        this.lastGameController = Optional.ofNullable(this.checkGameController(controller));
     }
 
     @Override
@@ -73,6 +73,20 @@ public class StageManagerImpl<S> implements StageManager<S> {
     @Override
     public final Gui getGui() {
         return this.gui;
+    }
+
+    /**
+     * This methods checks if the controller parameter is a minigame controller.
+     * 
+     * @param controller the controller to check
+     * @return the controller casted to {@link MinigameController} if it is a
+     *         minigame controller else null
+     */
+    private MinigameController checkGameController(final GenericController controller) {
+        if (controller instanceof MinigameController) {
+            return (MinigameController) controller;
+        }
+        return null;
     }
 
 }
