@@ -1,5 +1,7 @@
 package minigames.memo.model;
 
+import java.util.List;
+
 import minigames.common.model.MinigameModel;
 
 /**
@@ -12,10 +14,8 @@ public interface MemoModel<S> extends MinigameModel<S> {
 
     boolean isOver();
 
-    boolean chooseCards(int indexFirstCard, int indexSecondCard) throws RuntimeException;
+    boolean doNextTurn(int indexFirstCard, int indexSecondCard) throws RuntimeException;
 
-    int getCardValue(int index);
-
-    void changeTurn();
+    List<Integer> getCards();
 
 }
