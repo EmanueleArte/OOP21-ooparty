@@ -21,6 +21,9 @@ public class MemoModelImpl<S> extends MinigameModelAbstr<S> implements MemoModel
      * The number of pair of cards to create for each player.
      */
     static final int NUMBER_OF_PAIRS_PER_PLAYER = 5;
+    /**
+     * The number of points gave to a player for each pair of cards guessed.
+     */
     static final int SCORE_FOR_GUESSED_PAIR = 1;
     private final List<Integer> cards;
 
