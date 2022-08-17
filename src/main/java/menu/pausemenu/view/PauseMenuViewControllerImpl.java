@@ -2,8 +2,8 @@ package menu.pausemenu.view;
 
 import javafx.fxml.FXML;
 import menu.MenuController;
-import utils.GenericViewController;
 import utils.controller.GenericController;
+import utils.view.GenericViewController;
 
 /**
  * Implementation of {@link GenericViewController}.

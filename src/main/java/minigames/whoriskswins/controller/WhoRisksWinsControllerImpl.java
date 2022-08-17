@@ -2,16 +2,17 @@ package minigames.whoriskswins.controller;
 
 import java.util.List;
 
+import game.player.Player;
 import minigames.common.controller.MinigameGuideControllerImpl;
 import minigames.common.view.MinigameGuideViewControllerImpl;
 import minigames.whoriskswins.model.WhoRisksWinsModel;
 import minigames.whoriskswins.model.WhoRisksWinsModelImpl;
 import minigames.whoriskswins.view.WhoRisksWinsViewController;
 import minigames.whoriskswins.view.WhoRisksWinsViewControllerImpl;
-import utils.GenericViewController;
 import utils.controller.GenericController;
 import utils.controller.GenericControllerAbstr;
 import utils.graphics.controller.StageManager;
+import utils.view.GenericViewController;
 import utils.view.GenericViewUtils;
 
 /**
@@ -20,18 +21,17 @@ import utils.view.GenericViewUtils;
  */
 public class WhoRisksWinsControllerImpl extends GenericControllerAbstr implements WhoRisksWinsController {
 
-    private final WhoRisksWinsModel<?, ?> wrwModel;
+    private final WhoRisksWinsModel<?> wrwModel;
     private WhoRisksWinsViewController wrwViewController;
 
     /**
      * Builder for {@link WhoRisksWinsControllerImpl}.
      * 
      * @param <S>     the scenes of the stage
-     * @param <U>     the players
      * @param s       the {@link StageManager}
      * @param players the list of players
      */
-    public <S, U> WhoRisksWinsControllerImpl(final StageManager<S> s, final List<U> players) {
+    public <S> WhoRisksWinsControllerImpl(final StageManager<S> s, final List<Player> players) {
         super(s);
         this.wrwModel = new WhoRisksWinsModelImpl<>(players, s);
     }

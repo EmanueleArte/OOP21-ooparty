@@ -2,17 +2,17 @@ package minigames.mastermind.controller;
 
 import java.util.List;
 
-import minigames.common.controller.MinigameGuideController;
+import game.player.Player;
 import minigames.common.controller.MinigameGuideControllerImpl;
 import minigames.common.view.MinigameGuideViewControllerImpl;
 import minigames.mastermind.model.MastermindModel;
 import minigames.mastermind.model.MastermindModelImpl;
 import minigames.mastermind.view.MastermindViewController;
 import minigames.mastermind.view.MastermindViewControllerImpl;
-import utils.GenericViewController;
 import utils.controller.GenericController;
 import utils.controller.GenericControllerAbstr;
 import utils.graphics.controller.StageManager;
+import utils.view.GenericViewController;
 import utils.view.GenericViewUtils;
 
 /**
@@ -21,18 +21,17 @@ import utils.view.GenericViewUtils;
  */
 public class MastermindControllerImpl extends GenericControllerAbstr implements MastermindController {
 
-    private final MastermindModel<?, ?> mastermindModel;
+    private final MastermindModel<?> mastermindModel;
     private MastermindViewController mastermindViewController;
 
     /**
      * Builder for {@link MastermindControllerImpl}.
      * 
      * @param <S>     the scenes of the stage
-     * @param <U>     the players
      * @param s       the {@link StageManager}
      * @param players the list of players
      */
-    public <S, U> MastermindControllerImpl(final StageManager<S> s, final List<U> players) {
+    public <S> MastermindControllerImpl(final StageManager<S> s, final List<Player> players) {
         super(s);
         this.mastermindModel = new MastermindModelImpl<>(players, s);
     }

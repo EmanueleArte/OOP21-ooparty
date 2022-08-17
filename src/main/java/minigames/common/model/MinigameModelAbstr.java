@@ -16,11 +16,10 @@ import utils.graphics.controller.StageManager;
  * Implementation of {@link MinigameModel}.
  * 
  * @param <S> the scenes of the stage
- * @param <U> the players
  */
-public abstract class MinigameModelAbstr<S, U> extends GameModelAbstr<S, U> implements MinigameModel<S, U> {
+public abstract class MinigameModelAbstr<S> extends GameModelAbstr<S> implements MinigameModel<S> {
 
-    private final Map<U, Integer> playersClassification;
+    private final Map<Player, Integer> playersClassification;
     private final DiceController dice;
     private int score;
 
@@ -30,7 +29,7 @@ public abstract class MinigameModelAbstr<S, U> extends GameModelAbstr<S, U> impl
      * @param players the list of players
      * @param s       the {@link StageManager}
      */
-    public MinigameModelAbstr(final List<U> players, final StageManager<S> s) {
+    public MinigameModelAbstr(final List<Player> players, final StageManager<S> s) {
         super(players, s);
         this.playersClassification = new LinkedHashMap<>();
         this.dice = new DiceControllerImpl(s, true);
@@ -41,12 +40,12 @@ public abstract class MinigameModelAbstr<S, U> extends GameModelAbstr<S, U> impl
      * 
      * @param players the list of players
      */
-    public MinigameModelAbstr(final List<U> players) {
+    public MinigameModelAbstr(final List<Player> players) {
         this(players, null);
     }
 
     @Override
-    public final Map<U, Integer> getPlayersClassification() {
+    public final Map<Player, Integer> getPlayersClassification() {
         return this.playersClassification;
     }
 
@@ -54,12 +53,12 @@ public abstract class MinigameModelAbstr<S, U> extends GameModelAbstr<S, U> impl
     public abstract boolean runGame();
 
     @Override
-    public final List<U> gameResults() {
+    public final List<Player> gameResults() {
         return this.playoff(this.groupPlayersByScore());
     }
 
     @Override
-    public final void scoreMapper(final U player, final Integer score) {
+    public final void scoreMapper(final Player player, final Integer score) {
         this.playersClassification.put(player, score);
     }
 
@@ -75,17 +74,17 @@ public abstract class MinigameModelAbstr<S, U> extends GameModelAbstr<S, U> impl
      * @return a list of players ordered by their classification in the minigame and
      *         draws already managed
      */
-    private List<U> playoff(final Map<Integer, List<U>> scoreGroups) {
+    private List<Player> playoff(final Map<Integer, List<Player>> scoreGroups) {
         scoreGroups.entrySet().forEach(element -> {
-            List<U> players = element.getValue();
+            List<Player> players = element.getValue();
             if (players.size() > 1) {
-                final Map<U, Integer> sorted = new LinkedHashMap<>();
+                final Map<Player, Integer> sorted = new LinkedHashMap<>();
                 players.forEach(player -> {
                     final var s = this.getStageManager();
                     this.dice.rollDice();
                     if (s != null) {
                         if (s.getGui().getMainStage().isPresent()) {
-                            this.dice.start((Player) player);
+                            this.dice.start(player);
                         }
                     }
                     sorted.put(player, this.dice.getLastResult().get());
@@ -105,18 +104,11 @@ public abstract class MinigameModelAbstr<S, U> extends GameModelAbstr<S, U> impl
      * 
      * @return a map having a score as key and a list of players as value
      */
-    private Map<Integer, List<U>> groupPlayersByScore() {
+    private Map<Integer, List<Player>> groupPlayersByScore() {
         return this.playersClassification.entrySet().stream()
                 .sorted(Map.Entry.comparingByValue(Comparator.reverseOrder()))
                 .collect(Collectors.groupingBy(Map.Entry::getValue, LinkedHashMap::new,
                         Collectors.mapping(Map.Entry::getKey, Collectors.toList())));
-    }
-
-    @Override
-    protected final void nextTurn() {
-        if (this.hasNextPlayer()) {
-            this.runGame();
-        }
     }
 
     /**

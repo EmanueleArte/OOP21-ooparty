@@ -6,9 +6,8 @@ import minigames.common.model.MinigameModel;
  * This interface models the mastermind model and extension of {@link MinigameModel}.
  * 
  * @param <S> the scenes of the stage
- * @param <U> the players
  */
-public interface MastermindModel<S, U> extends MinigameModel<S, U> {
+public interface MastermindModel<S> extends MinigameModel<S> {
 
     /**
      * Getter for win.

@@ -5,9 +5,9 @@ import menu.gamecreationmenu.model.GameCreationMenuModel;
 import menu.gamecreationmenu.model.GameCreationMenuModelImpl;
 import menu.gamecreationmenu.view.GameCreationMenuViewController;
 import menu.gamecreationmenu.view.GameCreationMenuViewControllerImpl;
-import utils.GenericViewController;
 import utils.controller.GenericControllerAbstr;
 import utils.graphics.controller.StageManager;
+import utils.view.GenericViewController;
 import utils.view.GenericViewUtils;
 
 /**

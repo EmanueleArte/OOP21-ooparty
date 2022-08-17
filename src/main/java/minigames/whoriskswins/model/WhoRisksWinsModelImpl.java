@@ -3,6 +3,7 @@ package minigames.whoriskswins.model;
 import java.util.List;
 import java.util.Random;
 
+import game.player.Player;
 import minigames.common.model.MinigameModelAbstr;
 import utils.graphics.controller.StageManager;
 
@@ -11,9 +12,8 @@ import utils.graphics.controller.StageManager;
  * {@link MinigameModelAbstr}.
  * 
  * @param <S> the scenes of the stage
- * @param <U> the players
  */
-public class WhoRisksWinsModelImpl<S, U> extends MinigameModelAbstr<S, U> implements WhoRisksWinsModel<S, U> {
+public class WhoRisksWinsModelImpl<S> extends MinigameModelAbstr<S> implements WhoRisksWinsModel<S> {
 
     /**
      * Range of milliseconds.
@@ -31,7 +31,7 @@ public class WhoRisksWinsModelImpl<S, U> extends MinigameModelAbstr<S, U> implem
      * @param players the list of players
      * @param s       the {@link StageManager}
      */
-    public WhoRisksWinsModelImpl(final List<U> players, final StageManager<S> s) {
+    public WhoRisksWinsModelImpl(final List<Player> players, final StageManager<S> s) {
         super(players, s);
     }
 

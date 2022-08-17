@@ -10,8 +10,8 @@ import javafx.embed.swing.JFXPanel;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import utils.GenericViewController;
 import utils.controller.GenericController;
+import utils.view.GenericViewController;
 
 /**
  * Implementation of {@link Gui}.
