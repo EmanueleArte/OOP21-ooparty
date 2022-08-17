@@ -11,6 +11,8 @@ import game.map.GameMap;
 import game.player.Player;
 import utils.controller.GenericController;
 import utils.controller.GenericControllerAbstr;
+import utils.enums.PlayerTurnProgress;
+import utils.enums.TurnProgress;
 import utils.GenericViewController;
 import utils.graphics.stagemanager.StageManager;
 import utils.view.GenericView;
@@ -48,12 +50,12 @@ public class GameHandlerControllerImpl<S> extends GenericControllerAbstr
     }
 
     @Override
-    public final int nextStep() {
+    public final Optional<TurnProgress> nextStep() {
         return this.model.nextStep();
     }
 
     @Override
-    public final int nextPlayerTurnStep() {
+    public final Optional<PlayerTurnProgress> nextPlayerTurnStep() {
         return this.model.nextPlayerTurnStep();
     }
 

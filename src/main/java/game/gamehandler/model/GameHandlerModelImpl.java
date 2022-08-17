@@ -26,8 +26,8 @@ public class GameHandlerModelImpl<S> implements GameHandlerModel {
 
     private final int turnsNumber;
     private int turn;
-    private int turnProgress;
-    private int playerTurnProgress;
+    private TurnProgress turnProgress;
+    private PlayerTurnProgress playerTurnProgress;
     private Optional<Player> currentPlayer;
     private List<Player> players;
     private Iterator<Player> playersIterator;
@@ -41,8 +41,8 @@ public class GameHandlerModelImpl<S> implements GameHandlerModel {
         this.turn = 1;
         this.players = players;
         this.gameMap = gameMap;
-        this.turnProgress = -1;
-        this.playerTurnProgress = -1;
+        this.turnProgress = TurnProgress.END_OF_TURN;
+        this.playerTurnProgress = PlayerTurnProgress.END_OF_TURN;
         this.playersIterator = players.iterator();
         this.currentPlayer = Optional.empty();
 
@@ -50,49 +50,46 @@ public class GameHandlerModelImpl<S> implements GameHandlerModel {
     }
 
     @Override
-    public final int nextStep() {
-        if (this.turnProgress == TurnProgress.PLAYERS_TURNS.getProgress()) {
+    public final Optional<TurnProgress> nextStep() {
+        if (this.turnProgress == TurnProgress.PLAYERS_TURNS) {
             if (!this.playersTurnsFinished()) {
-                return this.turnProgress;
+                return Optional.of(this.turnProgress);
             }
             this.currentPlayer = Optional.empty();
         }
-        this.turnProgress++;
-        if (this.turnProgress == TurnProgress.END_OF_TURN.getProgress()) {
+        this.turnProgress = TurnProgress.next(this.turnProgress);
+        if (this.turnProgress == TurnProgress.END_OF_TURN) {
             this.startNewTurn();
             if (this.turn == this.turnsNumber + 1) {
                 this.endGame();
-                return -1;
+                return Optional.empty();
             }
         }
-        if (this.turnProgress == TurnProgress.PLAY_MINIGAME.getProgress()) {
+        if (this.turnProgress == TurnProgress.PLAY_MINIGAME) {
             this.playMinigame();
         }
-        return this.turnProgress;
+        return Optional.of(this.turnProgress);
     }
 
     @Override
-    public final int nextPlayerTurnStep() {
-        this.playerTurnProgress++;
-        if (this.playerTurnProgress > PlayerTurnProgress.END_OF_TURN.getProgress()) {
-            this.playerTurnProgress = PlayerTurnProgress.SHOW_BANNER.getProgress();
-        }
-        if (this.playerTurnProgress == PlayerTurnProgress.SHOW_BANNER.getProgress()) {
+    public final Optional<PlayerTurnProgress> nextPlayerTurnStep() {
+        this.playerTurnProgress = PlayerTurnProgress.next(this.playerTurnProgress);
+        if (this.playerTurnProgress == PlayerTurnProgress.SHOW_BANNER) {
             this.currentPlayer = Optional.of(this.playersIterator.next());
         }
-        if (this.playerTurnProgress == PlayerTurnProgress.MOVE_PLAYER.getProgress()) {
+        if (this.playerTurnProgress == PlayerTurnProgress.MOVE_PLAYER) {
             System.out.println(this.dice.getLastResult());
         }
-        if (this.playerTurnProgress == PlayerTurnProgress.ROLL_DICE.getProgress()) {
+        if (this.playerTurnProgress == PlayerTurnProgress.ROLL_DICE) {
             this.dice.rollDice();
             this.dice.start(this.currentPlayer.get());
         }
-        return this.playerTurnProgress;
+        return Optional.of(this.playerTurnProgress);
     }
 
     private boolean playersTurnsFinished() {
         return !(this.playersIterator.hasNext())
-                && (this.playerTurnProgress == PlayerTurnProgress.END_OF_TURN.getProgress());
+                && (this.playerTurnProgress == PlayerTurnProgress.END_OF_TURN);
     }
 
     @Override
@@ -118,8 +115,8 @@ public class GameHandlerModelImpl<S> implements GameHandlerModel {
     private void startNewTurn() {
         this.players = (List<Player>) this.stageManager.getLastGameController().getGameResults();
         this.playersIterator = players.iterator();
-        this.turnProgress = 0;
-        this.playerTurnProgress = -1;
+        this.turnProgress = TurnProgress.SHOW_BANNER;
+        this.playerTurnProgress = PlayerTurnProgress.SHOW_BANNER;
         this.turn++;
     }
 

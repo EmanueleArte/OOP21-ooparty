@@ -146,30 +146,39 @@ public class GameHandlerViewControllerImpl implements GenericViewController {
     }
 
     private void nextStep() {
-        int progress = this.controller.nextStep();
-        if (progress == TurnProgress.SHOW_BANNER.getProgress()) {
-            this.showBanner("Turn " + this.controller.getTurnNumber());
-        } else if (progress == TurnProgress.HIDE_BANNER.getProgress()) {
-            this.hideBanner();
-        } else if (progress == TurnProgress.PLAYERS_TURNS.getProgress()) {
-            int playerProgress = this.controller.nextPlayerTurnStep();
-            if (playerProgress == PlayerTurnProgress.SHOW_BANNER.getProgress()) {
-                this.showBanner(this.controller.getCurrentPlayer().get().getNickname() + "'s turn");
-            } else if (playerProgress == PlayerTurnProgress.HIDE_BANNER.getProgress()) {
+        Optional<TurnProgress> progress = this.controller.nextStep();
+        if (progress.isPresent()) {
+            if (progress.get() == TurnProgress.SHOW_BANNER) {
+                System.out.println("Turn " + this.controller.getTurnNumber());
+                this.showBanner("Turn " + this.controller.getTurnNumber());
+            } else if (progress.get() == TurnProgress.HIDE_BANNER) {
                 this.hideBanner();
-            } else if (playerProgress == PlayerTurnProgress.MOVE_PLAYER.getProgress()) {
-                Player currentPlayer = this.controller.getCurrentPlayer().get();
-                this.movePlayer(currentPlayer, 10);
-                if (this.controller.getGameMap().getPlayerPosition(currentPlayer).isCoinsGameMapSquare()) {
-                    this.showPickUpCoins(currentPlayer);
-                } else if (this.controller.getGameMap().getPlayerPosition(currentPlayer).isDamageGameMapSquare()) {
-                    //TODO
-                } else if (this.controller.getGameMap().getPlayerPosition(currentPlayer).isStarGameMapSquare()) {
-                    //TODO
-                } else if (this.controller.getGameMap().getPlayerPosition(currentPlayer).isPowerUpGameMapSquare()) {
-                    //TODO
+            } else if (progress.get() == TurnProgress.PLAYERS_TURNS) {
+                Optional<PlayerTurnProgress> playerProgress = this.controller.nextPlayerTurnStep();
+
+                if (playerProgress.isPresent()) {
+                    if (playerProgress.get() == PlayerTurnProgress.SHOW_BANNER) {
+                        this.showBanner(this.controller.getCurrentPlayer().get().getNickname() + "'s turn");
+                    } else if (playerProgress.get() == PlayerTurnProgress.HIDE_BANNER) {
+                        this.hideBanner();
+                    } else if (playerProgress.get() == PlayerTurnProgress.MOVE_PLAYER) {
+                        Player currentPlayer = this.controller.getCurrentPlayer().get();
+                        this.movePlayer(currentPlayer, 10);
+                        if (this.controller.getGameMap().getPlayerPosition(currentPlayer).isCoinsGameMapSquare()) {
+                            this.showPickUpCoins(currentPlayer);
+                        } else if (this.controller.getGameMap().getPlayerPosition(currentPlayer).isDamageGameMapSquare()) {
+                            //TODO
+                        } else if (this.controller.getGameMap().getPlayerPosition(currentPlayer).isStarGameMapSquare()) {
+                            //TODO
+                        } else if (this.controller.getGameMap().getPlayerPosition(currentPlayer).isPowerUpGameMapSquare()) {
+                            //TODO
+                        }
+                    }
                 }
+
             }
+        } else {
+            // game end
         }
     }
 

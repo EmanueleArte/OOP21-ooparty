@@ -5,6 +5,8 @@ import java.util.Optional;
 
 import game.map.GameMap;
 import game.player.Player;
+import utils.enums.PlayerTurnProgress;
+import utils.enums.TurnProgress;
 
 /**
  * This interface models the game handler model.
@@ -30,14 +32,14 @@ public interface GameHandlerModel {
      * 
      * @return int representing new turn progress
      */
-    int nextStep();
+    Optional<TurnProgress> nextStep();
 
     /**
      * This method makes players' turn go to the next step.
      * 
      * @return int representing new player turn progress.
      */
-    int nextPlayerTurnStep();
+    Optional<PlayerTurnProgress> nextPlayerTurnStep();
 
     /**
      * This method returns the player currently playing, if there's one.
