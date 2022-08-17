@@ -79,6 +79,8 @@ public class GameHandlerViewControllerImpl implements GenericViewController {
     private GridPane mapGrid;
     @FXML
     private StackPane stackPaneContainer;
+    @FXML
+    private Label updatesLabel;
 
     private final Map<Player, Group> playerToAvatar = new HashMap<Player, Group>();
 
@@ -158,9 +160,9 @@ public class GameHandlerViewControllerImpl implements GenericViewController {
             } else if (playerProgress == PlayerTurnProgress.MOVE_PLAYER.getProgress()) {
                 Player currentPlayer = this.controller.getCurrentPlayer().get();
                 this.movePlayer(currentPlayer, 10);
-                if (this.controller.getGameMap().getPlayerPosition(currentPlayer).isCoinsGameMapSquare()) {
+                //if (this.controller.getGameMap().getPlayerPosition(currentPlayer).isCoinsGameMapSquare()) {
                     this.showPickUpCoins(currentPlayer);
-                } else if (this.controller.getGameMap().getPlayerPosition(currentPlayer).isDamageGameMapSquare()) {
+                /*} else*/ if (this.controller.getGameMap().getPlayerPosition(currentPlayer).isDamageGameMapSquare()) {
                     //TODO
                 } else if (this.controller.getGameMap().getPlayerPosition(currentPlayer).isStarGameMapSquare()) {
                     //TODO
@@ -172,7 +174,8 @@ public class GameHandlerViewControllerImpl implements GenericViewController {
     }
 
     private void showPickUpCoins(final Player p) {
-        this.showBanner(p.getNickname() + " earned " + /*TODO numero monete*/ " coins");
+        this.updatesLabel.setText(p.getNickname() + " earned " + /*TODO numero monete*/ " coins");
+        //this.showBanner(p.getNickname() + " earned " + /*TODO numero monete*/ " coins");
     }
 
     private void showBanner(final String text) {

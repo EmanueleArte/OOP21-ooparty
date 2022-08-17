@@ -160,6 +160,7 @@
                   </StackPane>
                   <HBox alignment="CENTER" prefHeight="50.0" prefWidth="1000.0">
                      <children>
+                        <Label fx:id="updatesLabel" prefHeight="50.0" prefWidth="100.0" textAlignment="CENTER" />
                         <VBox fx:id="rankContainer" prefHeight="102.0" prefWidth="242.0">
                            <children>
                               <Label text="Rank" />
