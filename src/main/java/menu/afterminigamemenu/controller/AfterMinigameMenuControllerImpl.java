@@ -7,7 +7,6 @@ import menu.afterminigamemenu.view.AfterMinigameMenuViewController;
 import utils.controller.GenericControllerAbstr;
 import utils.graphics.controller.StageManager;
 import utils.view.GenericViewController;
-import utils.view.GenericViewUtils;
 
 public class AfterMinigameMenuControllerImpl extends GenericControllerAbstr implements MenuController, AfterMinigameMenuController {
 
@@ -52,11 +51,6 @@ public class AfterMinigameMenuControllerImpl extends GenericControllerAbstr impl
     @Override
     public final void createMenu() {
         this.getViewFactory().createAfterMinigameMenu(this);
-    }
-
-    @Override
-    public final void start() {
-        GenericViewUtils.createScene(this.getStageManager(), this, "menu/after_minigame_menu.fxml");
     }
 
 }
