@@ -2,7 +2,6 @@
 
 <?import java.lang.Double?>
 <?import javafx.scene.Group?>
-<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
@@ -19,104 +18,64 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onKeyReleased="#onKeyPressed" prefHeight="730.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="game.gamehandler.view.GameHandlerViewControllerImpl">
+<VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onKeyReleased="#onKeyPressed" onMouseClicked="#onClick" prefHeight="730.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="game.gamehandler.view.GameHandlerViewControllerImpl">
    <children>
       <BorderPane prefHeight="641.0" prefWidth="1000.0">
          <center>
-            <VBox alignment="TOP_CENTER" prefHeight="282.0" prefWidth="1000.0" style="-fx-spacing: 10;" BorderPane.alignment="CENTER">
+            <VBox alignment="TOP_CENTER" prefHeight="282.0" prefWidth="1000.0" BorderPane.alignment="CENTER">
                <children>
+                  <HBox alignment="TOP_RIGHT" prefHeight="100.0" prefWidth="200.0">
+                     <children>
+                        <VBox fx:id="rankContainer1" prefHeight="102.0" prefWidth="242.0">
+                           <children>
+                              <Label text="Turn Order" />
+                              <HBox fx:id="rankPlayersContainer1" prefHeight="85.0" prefWidth="158.0" style="-fx-spacing: 5;">
+                                 <children>
+                                    <Label prefWidth="15.0" style="-fx-background-color: red;">
+                                       <font>
+                                          <Font size="11.0" />
+                                       </font>
+                                    </Label>
+                                    <Label prefWidth="15.0" style="-fx-background-color: green;" />
+                                 </children>
+                              </HBox>
+                           </children>
+                        </VBox>
+                     </children>
+                  </HBox>
                   <StackPane fx:id="stackPaneContainer" alignment="CENTER_LEFT" prefHeight="150.0" prefWidth="200.0">
                      <children>
-                        <Pane maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="621.0" prefWidth="1000.0">
-                           <children>
-                              <Group fx:id="banner" opacity="0.0">
-                                 <children>
-                                    <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#c70e0ebe" height="240.0" layoutY="240.0" stroke="#ff9900a0" strokeType="INSIDE" width="1000.0" />
-                                    <Text fx:id="bannerText" fill="#dfbe07" fontSmoothingType="LCD" layoutY="400.0" stroke="#a67f00" strokeType="OUTSIDE" text="Turn #" textAlignment="CENTER" wrappingWidth="1000.0">
-                                       <font>
-                                          <Font name="Berlin Sans FB" size="96.0" />
-                                       </font>
-                                    </Text>
-                                 </children>
-                              </Group>
-                           </children>
-                        </Pane>
                         <HBox alignment="CENTER" prefHeight="474.0" prefWidth="1000.0">
                            <children>
-                              <VBox prefHeight="200.0" prefWidth="100.0" style="-fx-spacing: 10;">
+                              <AnchorPane prefHeight="457.0" prefWidth="875.0">
                                  <children>
-                                    <BorderPane prefHeight="200.0" prefWidth="200.0">
-                                       <right>
-                                          <VBox fx:id="rankContainer1" prefHeight="34.0" prefWidth="92.0" BorderPane.alignment="CENTER">
-                                             <children>
-                                                <Label text="Turn Order" />
-                                                <HBox fx:id="rankPlayersContainer1" prefHeight="85.0" prefWidth="158.0" style="-fx-spacing: 5;">
-                                                   <children>
-                                                      <Label prefWidth="15.0" style="-fx-background-color: red;">
-                                                         <font>
-                                                            <Font size="11.0" />
-                                                         </font>
-                                                      </Label>
-                                                      <Label prefWidth="15.0" style="-fx-background-color: green;" />
-                                                   </children>
-                                                </HBox>
-                                             </children>
-                                          </VBox>
-                                       </right>
-                                       <center>
-                                          <Label fx:id="updatesLabel" BorderPane.alignment="CENTER">
-                                             <font>
-                                                <Font size="15.0" />
-                                             </font></Label>
-                                       </center>
-                                       <left>
-                                          <Button mnemonicParsing="false" text="Pause" BorderPane.alignment="CENTER" />
-                                       </left>
-                                    </BorderPane>
-                                    <AnchorPane prefHeight="457.0" prefWidth="875.0">
-                                       <children>
-                                          <GridPane fx:id="mapGrid" gridLinesVisible="true" layoutX="-9.0" prefHeight="600.0" prefWidth="970.0">
-                                            <columnConstraints>
-                                                <ColumnConstraints hgrow="SOMETIMES" maxWidth="200.0" minWidth="10.0" prefWidth="100.0" />
-                                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="200.0" minWidth="10.0" prefWidth="97.0" />
-                                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="200.0" minWidth="10.0" prefWidth="97.0" />
-                                                <ColumnConstraints hgrow="SOMETIMES" maxWidth="117.0" minWidth="0.0" prefWidth="103.0" />
-                                                <ColumnConstraints hgrow="SOMETIMES" maxWidth="117.0" minWidth="10.0" prefWidth="103.0" />
-                                                <ColumnConstraints hgrow="SOMETIMES" maxWidth="117.0" minWidth="10.0" prefWidth="103.0" />
-                                                <ColumnConstraints hgrow="SOMETIMES" maxWidth="117.0" minWidth="10.0" prefWidth="103.0" />
-                                                <ColumnConstraints hgrow="SOMETIMES" maxWidth="117.0" minWidth="10.0" prefWidth="103.0" />
-                                                <ColumnConstraints hgrow="SOMETIMES" maxWidth="117.0" minWidth="10.0" prefWidth="103.0" />
-                                                <ColumnConstraints hgrow="SOMETIMES" maxWidth="117.0" minWidth="10.0" prefWidth="103.0" />
-                                                <ColumnConstraints hgrow="SOMETIMES" maxWidth="117.0" minWidth="10.0" prefWidth="103.0" />
-                                            </columnConstraints>
-                                            <rowConstraints>
-                                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                            </rowConstraints>
-                                          </GridPane>
-                                       </children>
-                                    </AnchorPane>
-                                    <BorderPane prefHeight="200.0" prefWidth="200.0">
-                                       <center>
-                                          <VBox fx:id="rankContainer" alignment="TOP_CENTER" prefHeight="25.0" prefWidth="845.0" BorderPane.alignment="CENTER">
-                                             <children>
-                                                <Label text="Rank" />
-                                                <HBox fx:id="rankPlayersContainer" alignment="TOP_CENTER" prefHeight="25.0" prefWidth="867.0" style="-fx-spacing: 20;" />
-                                             </children>
-                                          </VBox>
-                                       </center>
-                                       <left>
-                                          <Button mnemonicParsing="false" text="Power Up" BorderPane.alignment="CENTER" />
-                                       </left>
-                                    </BorderPane>
+                                    <GridPane fx:id="mapGrid" gridLinesVisible="true" layoutX="-9.0" prefHeight="600.0" prefWidth="970.0">
+                                      <columnConstraints>
+                                          <ColumnConstraints hgrow="SOMETIMES" maxWidth="200.0" minWidth="10.0" prefWidth="100.0" />
+                                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="200.0" minWidth="10.0" prefWidth="97.0" />
+                                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="200.0" minWidth="10.0" prefWidth="97.0" />
+                                          <ColumnConstraints hgrow="SOMETIMES" maxWidth="117.0" minWidth="0.0" prefWidth="103.0" />
+                                          <ColumnConstraints hgrow="SOMETIMES" maxWidth="117.0" minWidth="10.0" prefWidth="103.0" />
+                                          <ColumnConstraints hgrow="SOMETIMES" maxWidth="117.0" minWidth="10.0" prefWidth="103.0" />
+                                          <ColumnConstraints hgrow="SOMETIMES" maxWidth="117.0" minWidth="10.0" prefWidth="103.0" />
+                                          <ColumnConstraints hgrow="SOMETIMES" maxWidth="117.0" minWidth="10.0" prefWidth="103.0" />
+                                          <ColumnConstraints hgrow="SOMETIMES" maxWidth="117.0" minWidth="10.0" prefWidth="103.0" />
+                                          <ColumnConstraints hgrow="SOMETIMES" maxWidth="117.0" minWidth="10.0" prefWidth="103.0" />
+                                          <ColumnConstraints hgrow="SOMETIMES" maxWidth="117.0" minWidth="10.0" prefWidth="103.0" />
+                                      </columnConstraints>
+                                      <rowConstraints>
+                                          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                      </rowConstraints>
+                                    </GridPane>
                                  </children>
-                              </VBox>
+                              </AnchorPane>
                            </children>
                         </HBox>
                         <Group fx:id="avatars">
@@ -183,9 +142,32 @@
                               </Group>
                            </children>
                         </Group>
+                        <Pane maxHeight="-Infinity" maxWidth="-Infinity" opacity="0.0" prefHeight="621.0" prefWidth="1000.0">
+                           <children>
+                              <Group fx:id="banner">
+                                 <children>
+                                    <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#c70e0ebe" height="240.0" layoutY="240.0" stroke="#ff9900a0" strokeType="INSIDE" width="1000.0" />
+                                    <Text fx:id="bannerText" fill="#dfbe07" fontSmoothingType="LCD" layoutY="400.0" stroke="#a67f00" strokeType="OUTSIDE" text="Turn #" textAlignment="CENTER" wrappingWidth="1000.0">
+                                       <font>
+                                          <Font name="Berlin Sans FB" size="96.0" />
+                                       </font>
+                                    </Text>
+                                 </children>
+                              </Group>
+                           </children>
+                        </Pane>
                      </children>
                   </StackPane>
-                  <HBox alignment="CENTER_LEFT" prefHeight="50.0" prefWidth="1017.0" />
+                  <HBox alignment="CENTER" prefHeight="50.0" prefWidth="1000.0">
+                     <children>
+                        <VBox fx:id="rankContainer" prefHeight="102.0" prefWidth="242.0">
+                           <children>
+                              <Label text="Rank" />
+                              <HBox fx:id="rankPlayersContainer" prefHeight="85.0" prefWidth="158.0" />
+                           </children>
+                        </VBox>
+                     </children>
+                  </HBox>
                </children>
             </VBox>
          </center>

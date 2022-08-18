@@ -9,6 +9,7 @@ import game.gamehandler.model.GameHandlerModelImpl;
 import game.map.GameMap;
 import game.gamehandler.view.GameHandlerViewControllerImpl;
 import game.player.Player;
+import menu.pausemenu.controller.PauseMenuControllerImpl;
 import utils.controller.GenericController;
 import utils.controller.GenericControllerAbstr;
 import utils.graphics.controller.StageManager;
@@ -23,7 +24,8 @@ public class GameHandlerControllerImpl<S> extends GenericControllerAbstr
     private GameHandlerViewControllerImpl viewController;
     private GameHandlerModel model;
 
-    public <S, U> GameHandlerControllerImpl(final StageManager<S> s, final List<U> players, final int turnsNumber, final GameMap gameMap) {
+    public <S, U> GameHandlerControllerImpl(final StageManager<S> s, final List<U> players, final int turnsNumber,
+            final GameMap gameMap) {
         super(s);
         this.model = new GameHandlerModelImpl(s, players, turnsNumber, gameMap);
     }
@@ -81,6 +83,12 @@ public class GameHandlerControllerImpl<S> extends GenericControllerAbstr
     @Override
     public final List<Player> getLeaderboard() {
         return this.model.getLeaderboard();
+    }
+
+    @Override
+    public final void pauseMenu() {
+        PauseMenuControllerImpl pauseMenuController = new PauseMenuControllerImpl(this.getStageManager());
+        pauseMenuController.createMenu();
     }
 
 }

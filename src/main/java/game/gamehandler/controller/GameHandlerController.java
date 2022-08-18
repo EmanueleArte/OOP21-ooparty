@@ -56,4 +56,6 @@ public interface GameHandlerController {
     GameMap getGameMap();
 
     List<Player> getLeaderboard();
+
+    void pauseMenu();
 }

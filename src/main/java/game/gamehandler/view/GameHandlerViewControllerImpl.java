@@ -60,10 +60,11 @@ public class GameHandlerViewControllerImpl implements GenericViewController {
     private static final int MAP_HEIGHT = 8;
     private static final int PLAYER_X_START = -825;
     private static final int PLAYER_Y_START = -600;
-/*    private static final int COIN_DIM = 25;
-    private static final int STAR_DIM = 25;
-    private static final int POWERUP_DIM = 25;
-    private static final int DAMAGE_ICON_DIM = 25;*/
+    /*
+     * private static final int COIN_DIM = 25; private static final int STAR_DIM =
+     * 25; private static final int POWERUP_DIM = 25; private static final int
+     * DAMAGE_ICON_DIM = 25;
+     */
     private static final int ICON_DIM = 25;
 
     private GameHandlerController controller;
@@ -124,18 +125,15 @@ public class GameHandlerViewControllerImpl implements GenericViewController {
 
         initializeMap(this.controller.getGameMap());
 
-        final List<Point2D> squarePositions = mapGrid.getChildren()
-                .stream()
-                .filter(l -> l instanceof Label)
-                .map(l -> new Point2D(
-                        mapGrid.getLayoutX() + GridPane.getRowIndex(l) * SQUARE_WIDTH,
+        final List<Point2D> squarePositions = mapGrid.getChildren().stream().filter(l -> l instanceof Label)
+                .map(l -> new Point2D(mapGrid.getLayoutX() + GridPane.getRowIndex(l) * SQUARE_WIDTH,
                         mapGrid.getLayoutY() + GridPane.getColumnIndex(l) * SQUARE_HEIGHT))
                 .collect(Collectors.toList());
 
-        /*avatarsList.forEach(a -> {
-            a.setLayoutX(PLAYER_X_START);
-            a.setLayoutY(PLAYER_Y_START);
-        });*/
+        /*
+         * avatarsList.forEach(a -> { a.setLayoutX(PLAYER_X_START);
+         * a.setLayoutY(PLAYER_Y_START); });
+         */
         avatarsList.forEach(a -> System.out.println(a.isVisible() + ": " + a.getLayoutX() + " " + a.getLayoutY()));
     }
 
@@ -144,6 +142,14 @@ public class GameHandlerViewControllerImpl implements GenericViewController {
         if (ke.getCode().equals(KeyCode.ENTER) || ke.getCode().equals(KeyCode.SPACE)) {
             this.nextStep();
         }
+        if (ke.getCode().equals(KeyCode.ESCAPE)) {
+            this.controller.pauseMenu();
+        }
+    }
+
+    @FXML
+    protected final void onClick() {
+        this.nextStep();
     }
 
     private void nextStep() {
@@ -167,16 +173,22 @@ public class GameHandlerViewControllerImpl implements GenericViewController {
                         Player currentPlayer = this.controller.getCurrentPlayer().get();
                         this.movePlayer(currentPlayer, 10);
                         if (this.controller.getGameMap().getPlayerPosition(currentPlayer).isCoinsGameMapSquare()) {
-                            this.setUpdatesLabel(currentPlayer.getNickname() + " earned " + currentPlayer.getLastEarnedCoins() + " coins!");
-                        } else if (this.controller.getGameMap().getPlayerPosition(currentPlayer).isDamageGameMapSquare()) {
-                            this.setUpdatesLabel(currentPlayer.getNickname() + " lost " + currentPlayer.getLastDamageTaken() + " life points!");
-                        } else if (this.controller.getGameMap().getPlayerPosition(currentPlayer).isStarGameMapSquare()) {
+                            this.setUpdatesLabel(currentPlayer.getNickname() + " earned "
+                                    + currentPlayer.getLastEarnedCoins() + " coins!");
+                        } else if (this.controller.getGameMap().getPlayerPosition(currentPlayer)
+                                .isDamageGameMapSquare()) {
+                            this.setUpdatesLabel(currentPlayer.getNickname() + " lost "
+                                    + currentPlayer.getLastDamageTaken() + " life points!");
+                        } else if (this.controller.getGameMap().getPlayerPosition(currentPlayer)
+                                .isStarGameMapSquare()) {
                             if (currentPlayer.getIsLastStarEarned()) {
                                 this.setUpdatesLabel(currentPlayer.getNickname() + " earned a star!");
                             } else {
-                                this.setUpdatesLabel(currentPlayer.getNickname() + " didn't have enough coins to buy a star!");
+                                this.setUpdatesLabel(
+                                        currentPlayer.getNickname() + " didn't have enough coins to buy a star!");
                             }
-                        } else if (this.controller.getGameMap().getPlayerPosition(currentPlayer).isPowerUpGameMapSquare()) {
+                        } else if (this.controller.getGameMap().getPlayerPosition(currentPlayer)
+                                .isPowerUpGameMapSquare()) {
                             this.setUpdatesLabel(currentPlayer.getNickname() + " got a new powerup!");
                         }
 
@@ -185,7 +197,7 @@ public class GameHandlerViewControllerImpl implements GenericViewController {
                 }
             }
         } else {
-            //TODO game end
+            // TODO game end
         }
     }
 
@@ -212,7 +224,8 @@ public class GameHandlerViewControllerImpl implements GenericViewController {
         TranslateTransition transition = new TranslateTransition();
         transition.setNode(this.playerToAvatar.get(p));
         transition.setDuration(Duration.millis(1000));
-        //transition.setByX(this.playerToAvatar.get(p).getLayoutX() + movement * 10);   //ogni tanto dà NullPointerException
+        // transition.setByX(this.playerToAvatar.get(p).getLayoutX() + movement * 10);
+        // //ogni tanto dà NullPointerException
         transition.play();
     }
 
@@ -226,7 +239,8 @@ public class GameHandlerViewControllerImpl implements GenericViewController {
             Label hpLabel = new Label("Life points: " + p.getLifePoints());
             Label rankLabel = new Label(OrdinalNumber.values()[players.indexOf(p)].getTextFormat());
 
-            box.setBorder(new Border(new BorderStroke(p.getColor(), BorderStrokeStyle.SOLID, CornerRadii.EMPTY, new BorderWidths(2))));
+            box.setBorder(new Border(
+                    new BorderStroke(p.getColor(), BorderStrokeStyle.SOLID, CornerRadii.EMPTY, new BorderWidths(2))));
             box.setPrefWidth(100);
 
             box.getChildren().addAll(nicknameLabel, coinsLabel, starsLabel, hpLabel, rankLabel);
@@ -234,7 +248,7 @@ public class GameHandlerViewControllerImpl implements GenericViewController {
             rankPlayersContainer.getChildren().add(box);
         });
 
-        //rankPlayersContainer.setSpacing(20);
+        // rankPlayersContainer.setSpacing(20);
     }
 
     private void initializeMap(final GameMap map) {
@@ -262,7 +276,8 @@ public class GameHandlerViewControllerImpl implements GenericViewController {
             label.setPrefWidth(SQUARE_WIDTH);
             label.setPrefHeight(SQUARE_HEIGHT);
             label.setAlignment(Pos.CENTER);
-            label.setBorder(new Border(new BorderStroke(Color.BLACK, BorderStrokeStyle.SOLID, CornerRadii.EMPTY, new BorderWidths(1))));
+            label.setBorder(new Border(
+                    new BorderStroke(Color.BLACK, BorderStrokeStyle.SOLID, CornerRadii.EMPTY, new BorderWidths(1))));
             label.setBackground(new Background(new BackgroundFill(Color.GRAY, CornerRadii.EMPTY, Insets.EMPTY)));
 
             return label;
