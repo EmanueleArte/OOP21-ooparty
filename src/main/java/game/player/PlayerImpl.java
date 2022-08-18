@@ -153,9 +153,34 @@ public class PlayerImpl implements Player {
         this.lifePoints = this.lifePoints - damage;
         this.lastDamageTaken = damage;
         if (this.lifePoints <= 0) {
-            this.updateCoins(this.getCoinsCount() / 2);
-            this.goTo(gameMap, gameMap.getSquares().get(0));
-            this.lifePoints = PlayerImpl.MAX_LIFE;
+            this.death(gameMap);
+        }
+    }
+
+    private void death(final GameMap gameMap) {
+        this.updateCoins(this.getCoinsCount() / 2);
+        this.respawn(gameMap);
+        this.lifePoints = PlayerImpl.MAX_LIFE;
+    }
+
+    private void respawn(final GameMap gameMap) {
+        int starSquareIndex = 0;
+        for (GameMapSquare s : gameMap.getSquares()) {
+            if (s.isStarGameMapSquare()) {
+                starSquareIndex = gameMap.getSquares().indexOf(s);
+            }
+        }
+
+        int firstFreeSquareIndex = starSquareIndex + 1;
+        if (firstFreeSquareIndex >= gameMap.getSquares().size()) {
+            firstFreeSquareIndex = 0;
+        }
+        while (gameMap.getSquares().get(firstFreeSquareIndex).isCoinsGameMapSquare() || gameMap.getSquares().get(firstFreeSquareIndex).isPowerUpGameMapSquare()
+                || gameMap.getSquares().get(firstFreeSquareIndex).isDamageGameMapSquare() || gameMap.getSquares().get(firstFreeSquareIndex).isStarGameMapSquare()) {
+            firstFreeSquareIndex++;
+            if (firstFreeSquareIndex >= gameMap.getSquares().size()) {
+                firstFreeSquareIndex = 0;
+            }
         }
     }
 
