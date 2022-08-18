@@ -7,7 +7,6 @@ import menu.pausemenu.view.PauseMenuViewControllerImpl;
 import utils.controller.GenericControllerAbstr;
 import utils.graphics.controller.StageManager;
 import utils.view.GenericViewController;
-import utils.view.GenericViewUtils;
 
 /**
  * Extension of {@link GenericControllerAbstr} and implementation of
@@ -55,7 +54,7 @@ public class PauseMenuControllerImpl extends GenericControllerAbstr implements M
 
     @Override
     public final void createMenu() {
-        GenericViewUtils.createScene(this.getStageManager(), this, "menu/pause_menu.fxml");
+        this.getViewFactory().createPauseMenuView(this);
     }
 
 }
