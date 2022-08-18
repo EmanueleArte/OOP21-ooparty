@@ -7,6 +7,7 @@ import minigames.common.controller.MinigameController;
 import utils.controller.GenericController;
 import utils.graphics.model.SceneHandler;
 import utils.graphics.model.SceneHandlerImpl;
+import utils.graphics.view.EmptyGui;
 import utils.graphics.view.Gui;
 import utils.graphics.view.JavafxGui;
 import utils.graphics.view.JavafxGuiImpl;
@@ -25,12 +26,23 @@ public class StageManagerImpl<S> implements StageManager<S> {
     /**
      * Builds a new {@link StageManagerImpl}.
      * 
-     * @param title the title of the frame
+     * @param title    the title of the frame
+     * @param guiClass the class of the gui
      */
-    public StageManagerImpl(final String title) {
+    public StageManagerImpl(final String title, final Class<?> guiClass) {
         this.sceneHandler = new SceneHandlerImpl<>();
-        this.gui = new JavafxGuiImpl(title, this);
         this.lastGameController = Optional.empty();
+        this.gui = new JavafxGuiImpl(title, this);
+    }
+
+    /**
+     * Builds a new {@link StageManagerImpl}.
+     * 
+     */
+    public StageManagerImpl() {
+        this.sceneHandler = new SceneHandlerImpl<>();
+        this.lastGameController = Optional.empty();
+        this.gui = new EmptyGui();
     }
 
     @Override
