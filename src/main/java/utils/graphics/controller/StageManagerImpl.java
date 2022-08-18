@@ -1,5 +1,6 @@
 package utils.graphics.controller;
 
+import java.lang.reflect.InvocationTargetException;
 import java.util.List;
 import java.util.Optional;
 
@@ -10,7 +11,6 @@ import utils.graphics.model.SceneHandlerImpl;
 import utils.graphics.view.EmptyGui;
 import utils.graphics.view.Gui;
 import utils.graphics.view.JavafxGui;
-import utils.graphics.view.JavafxGuiImpl;
 
 /**
  * Implementation of {@link StageManager}.
@@ -20,29 +20,26 @@ import utils.graphics.view.JavafxGuiImpl;
 public class StageManagerImpl<S> implements StageManager<S> {
 
     private final SceneHandler<S> sceneHandler;
-    private final Gui gui;
+    private Gui gui;
     private Optional<MinigameController> lastGameController;
 
     /**
      * Builds a new {@link StageManagerImpl}.
      * 
-     * @param title    the title of the frame
+     * @param title    the title of the gui window
      * @param guiClass the class of the gui
      */
     public StageManagerImpl(final String title, final Class<?> guiClass) {
         this.sceneHandler = new SceneHandlerImpl<>();
         this.lastGameController = Optional.empty();
-        this.gui = new JavafxGuiImpl(title, this);
+        this.setGui(title, guiClass);
     }
 
     /**
      * Builds a new {@link StageManagerImpl}.
-     * 
      */
     public StageManagerImpl() {
-        this.sceneHandler = new SceneHandlerImpl<>();
-        this.lastGameController = Optional.empty();
-        this.gui = new EmptyGui();
+        this("", EmptyGui.class);
     }
 
     @Override
@@ -105,6 +102,21 @@ public class StageManagerImpl<S> implements StageManager<S> {
             return (MinigameController) controller;
         }
         return this.getLastGameController();
+    }
+
+    /**
+     * This method creates a gui of the class choosen.
+     * 
+     * @param title    the title of the gui window
+     * @param guiClass the class of the gui
+     */
+    private void setGui(final String title, final Class<?> guiClass) {
+        try {
+            this.gui = (Gui) guiClass.getDeclaredConstructor(String.class, StageManager.class).newInstance(title, this);
+        } catch (InstantiationException | IllegalAccessException | IllegalArgumentException | InvocationTargetException
+                | NoSuchMethodException | SecurityException e) {
+            e.printStackTrace();
+        }
     }
 
 }
