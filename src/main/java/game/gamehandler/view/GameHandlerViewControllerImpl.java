@@ -202,7 +202,7 @@ public class GameHandlerViewControllerImpl implements GenericViewController {
     }
 
     private void setUpdatesLabel(final String text) {
-        //this.updatesLabel.setText(text);
+        this.updatesLabel.setText(text);
     }
 
     private void showBanner(final String text) {
