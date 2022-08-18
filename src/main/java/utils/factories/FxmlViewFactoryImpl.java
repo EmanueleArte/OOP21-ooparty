@@ -18,8 +18,8 @@ public class FxmlViewFactoryImpl<S> implements ViewFactory<S> {
      * 
      * @param stageManager the {@link StageManager}.
      */
-    public FxmlViewFactoryImpl(final StageManager<S> stageManager) {
-        this.stageManager = stageManager;
+    public FxmlViewFactoryImpl(final StageManager<S> s) {
+        this.stageManager = s;
     }
 
     @Override
