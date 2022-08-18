@@ -29,7 +29,6 @@
                         <Font size="20.0" />
                      </font>
                   </Label>
-                  <Label text="You have 10 attempts to guess a 4 digit number with all the digits different." textAlignment="CENTER" />
                   <VBox prefHeight="200.0" prefWidth="100.0">
                      <children>
                         <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="40.0">
