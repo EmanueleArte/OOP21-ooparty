@@ -7,7 +7,7 @@ import utils.controller.GenericController;
  *
  * @param <S> the scenes of the stages
  */
-public interface MinigameViewFactory<S> {
+public interface ViewFactory<S> {
 
     /**
      * This method creates a main menu view.
