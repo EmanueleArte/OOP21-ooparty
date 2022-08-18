@@ -11,6 +11,9 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import utils.controller.GenericController;
+import utils.factories.ViewFactory;
+import utils.factories.ViewFactoryImpl;
+import utils.graphics.controller.StageManager;
 import utils.view.GenericViewController;
 
 /**
@@ -31,16 +34,20 @@ public class JavafxGuiImpl extends JFrame implements JavafxGui {
     private FXMLLoader loader;
     private final JFrame frame;
     private Optional<Parent> root;
+    private final ViewFactory<?> viewFactory;
 
     /**
      * Builds a new {@link JavafxGuiImpl}.
      * 
+     * @param <S>   the scenes of the stage
      * @param title the title of the frame
+     * @param s     the {@link StageManager}
      */
-    public JavafxGuiImpl(final String title) {
+    public <S> JavafxGuiImpl(final String title, final StageManager<S> s) {
         this.mainStage = Optional.empty();
         this.root = Optional.empty();
         this.frame = new JFrame(title);
+        this.viewFactory = new ViewFactoryImpl<>(s);
     }
 
     @Override

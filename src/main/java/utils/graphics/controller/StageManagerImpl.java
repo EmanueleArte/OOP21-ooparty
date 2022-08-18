@@ -29,7 +29,7 @@ public class StageManagerImpl<S> implements StageManager<S> {
      */
     public StageManagerImpl(final String title) {
         this.sceneHandler = new SceneHandlerImpl<>();
-        this.gui = new JavafxGuiImpl(title);
+        this.gui = new JavafxGuiImpl(title, this);
         this.lastGameController = Optional.empty();
     }
 
