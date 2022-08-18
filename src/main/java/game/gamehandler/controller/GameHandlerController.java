@@ -58,4 +58,12 @@ public interface GameHandlerController {
     List<Player> getLeaderboard();
 
     void pauseMenu();
+
+    /**
+     * Checks if a {@link Player} is dead and if he is, it makes him respawn.
+     * @param p the {@link Player} that has to be checked 
+     */
+    void checkPlayerDeath(Player p);
+
+    List<Player> getTurnOrder();
 }

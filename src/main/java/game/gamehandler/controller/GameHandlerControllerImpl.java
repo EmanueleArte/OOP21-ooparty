@@ -84,11 +84,20 @@ public class GameHandlerControllerImpl<S> extends GenericControllerAbstr
     public final List<Player> getLeaderboard() {
         return this.model.getLeaderboard();
     }
+    
+    @Override
+    public final List<Player> getTurnOrder() {
+        return this.model.getTurnOrder();
+    }
 
     @Override
     public final void pauseMenu() {
         PauseMenuControllerImpl pauseMenuController = new PauseMenuControllerImpl(this.getStageManager());
         pauseMenuController.createMenu();
+    }
+
+    public final void checkPlayerDeath(final Player p) {
+        this.model.checkPlayerDeath(p);
     }
 
 }

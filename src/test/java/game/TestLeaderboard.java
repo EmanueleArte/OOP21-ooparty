@@ -48,10 +48,10 @@ class TestLeaderboard {
 
         model.getPlayers().get(2).earnStar();
 
-        model.getPlayers().get(0).loseLifePoints(10, map);
-        model.getPlayers().get(1).loseLifePoints(20, map);
-        model.getPlayers().get(2).loseLifePoints(10, map);
-        model.getPlayers().get(3).loseLifePoints(5, map);
+        model.getPlayers().get(0).loseLifePoints(10);
+        model.getPlayers().get(1).loseLifePoints(20);
+        model.getPlayers().get(2).loseLifePoints(10);
+        model.getPlayers().get(3).loseLifePoints(5);
 
         assertEquals(List.of(alex, luigi, martino, mario), model.getLeaderboard());
     }

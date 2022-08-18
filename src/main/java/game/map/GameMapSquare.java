@@ -49,9 +49,8 @@ public interface GameMapSquare {
     /**
      * Makes the player p lose life points.
      * @param p the player that is going to lose life points
-     * @param gameMap the map of the game
      */
-    void receiveDamage(Player p, GameMap gameMap);
+    void receiveDamage(Player p);
 
     /**
      * Adds a star to a player if that player has enough coins.

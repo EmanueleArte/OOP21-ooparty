@@ -27,6 +27,7 @@ public class GameHandlerModelImpl<S> implements GameHandlerModel {
     private final PowerupMenuController powerupMenu;
     private final MinigameFactoryImpl<S> minigameFactory;
     private final GameMap gameMap;
+    private Optional<MinigameController> minigameController = Optional.empty();
 
     private final int turnsNumber;
     private int turn;
@@ -40,7 +41,7 @@ public class GameHandlerModelImpl<S> implements GameHandlerModel {
             final GameMap gameMap) {
         this.stageManager = s;
         this.dice = new DiceControllerImpl(this.stageManager, false);
-        this.powerupMenu = new PowerupMenuControllerImpl(this.stageManager, players, gameMap);
+        this.powerupMenu = new PowerupMenuControllerImpl(this.stageManager, players);
         this.minigameFactory = new MinigameFactoryImpl<>(players, s);
         this.turnsNumber = turnsNumber;
         this.turn = 1;
@@ -104,7 +105,7 @@ public class GameHandlerModelImpl<S> implements GameHandlerModel {
                 if (playerPosition.isCoinsGameMapSquare()) {
                     playerPosition.receiveCoins(cp);
                 } else if (playerPosition.isDamageGameMapSquare()) {
-                    playerPosition.receiveDamage(cp, this.gameMap);
+                    playerPosition.receiveDamage(cp);
                 } else if (playerPosition.isStarGameMapSquare()) {
                     playerPosition.receiveStar(cp);
                 } else if (playerPosition.isPowerUpGameMapSquare()) {
@@ -138,8 +139,8 @@ public class GameHandlerModelImpl<S> implements GameHandlerModel {
 
     @Override
     public final void playMinigame() {
-        final MinigameController minigameController = this.minigameFactory.createRandomMinigameController();
-        minigameController.startGame();
+        minigameController = Optional.of(this.minigameFactory.createRandomMinigameController());
+        minigameController.get().startGame();
     }
 
     @Override
@@ -191,5 +192,21 @@ public class GameHandlerModelImpl<S> implements GameHandlerModel {
             }
         });
         return tmp;
+    }
+
+    @Override
+    public final void checkPlayerDeath(final Player p) {
+        p.checkIfDeadAndRespawn(this.gameMap);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public List<Player> getTurnOrder() {
+        if (this.minigameController.isPresent()) {
+            return this.minigameController.get().getGameResults();
+        }
+        return this.players;
     }
 }

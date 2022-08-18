@@ -78,6 +78,8 @@ public class GameHandlerViewControllerImpl implements GenericViewController {
     @FXML
     private HBox rankPlayersContainer;
     @FXML
+    private HBox turnOrderContainer;
+    @FXML
     private GridPane mapGrid;
     @FXML
     private StackPane stackPaneContainer;
@@ -121,6 +123,7 @@ public class GameHandlerViewControllerImpl implements GenericViewController {
             }
         });
 
+        updateTurnOrder(players);
         updateLeaderboard(players);
 
         initializeMap(this.controller.getGameMap());
@@ -158,9 +161,13 @@ public class GameHandlerViewControllerImpl implements GenericViewController {
         if (progress.isPresent()) {
             if (progress.get() == TurnProgress.SHOW_BANNER) {
                 this.showBanner("Turn " + this.controller.getTurnNumber());
+<<<<<<< HEAD
                 this.playerToAvatar.forEach((a, b) -> {
                     // System.out.println(a.getNickname() + " " + b.toString());
                 });
+=======
+                updateTurnOrder(this.controller.getTurnOrder());
+>>>>>>> 1b852ee2f0aac163d16d2551048da7abc220eed5
             } else if (progress.get() == TurnProgress.HIDE_BANNER) {
                 this.hideBanner();
             } else if (progress.get() == TurnProgress.PLAYERS_TURNS) {
@@ -177,13 +184,16 @@ public class GameHandlerViewControllerImpl implements GenericViewController {
                         this.movePlayer(currentPlayer);
                         if (this.controller.getGameMap().getPlayerPosition(currentPlayer).isCoinsGameMapSquare()) {
                             this.setUpdatesLabel(currentPlayer.getNickname() + " earned "
-                                    + currentPlayer.getLastEarnedCoins() + " coins!");
+                                                    + currentPlayer.getLastEarnedCoins() + " coins!");
                         } else if (this.controller.getGameMap().getPlayerPosition(currentPlayer)
-                                .isDamageGameMapSquare()) {
+                                    .isDamageGameMapSquare()) {
                             this.setUpdatesLabel(currentPlayer.getNickname() + " lost "
-                                    + currentPlayer.getLastDamageTaken() + " life points!");
+                                                    + currentPlayer.getLastDamageTaken() + " life points!");
+                            if (currentPlayer.isDead()) {
+                                this.setUpdatesLabel(this.updatesLabel.getText() + " He died!");
+                            }
                         } else if (this.controller.getGameMap().getPlayerPosition(currentPlayer)
-                                .isStarGameMapSquare()) {
+                                    .isStarGameMapSquare()) {
                             if (currentPlayer.getIsLastStarEarned()) {
                                 this.setUpdatesLabel(currentPlayer.getNickname() + " earned a star!");
                             } else {
@@ -191,10 +201,11 @@ public class GameHandlerViewControllerImpl implements GenericViewController {
                                         currentPlayer.getNickname() + " didn't have enough coins to buy a star!");
                             }
                         } else if (this.controller.getGameMap().getPlayerPosition(currentPlayer)
-                                .isPowerUpGameMapSquare()) {
+                                    .isPowerUpGameMapSquare()) {
                             this.setUpdatesLabel(currentPlayer.getNickname() + " got a new powerup!");
                         }
 
+                        this.controller.checkPlayerDeath(currentPlayer);
                         updateLeaderboard(this.controller.getLeaderboard());
                     }
                 }
@@ -241,6 +252,7 @@ public class GameHandlerViewControllerImpl implements GenericViewController {
                                 .get(this.controller.getGameMap().getSquares()
                                         .indexOf(this.controller.getGameMap().getPlayerPosition(p)) + 1))
                         * SQUARE_HEIGHT);
+        //ogni tanto dà NullPointerException
         transition.play();
     }
 
@@ -264,6 +276,17 @@ public class GameHandlerViewControllerImpl implements GenericViewController {
         });
 
         // rankPlayersContainer.setSpacing(20);
+    }
+
+    private void updateTurnOrder(final List<Player> players) {
+        turnOrderContainer.getChildren().removeAll(turnOrderContainer.getChildren());
+        players.forEach(p -> {
+            Label l = new Label();
+            l.setBackground(new Background(new BackgroundFill(p.getColor(), CornerRadii.EMPTY, Insets.EMPTY)));
+            l.setPrefWidth(15);
+            l.setPrefHeight(15);
+            turnOrderContainer.getChildren().add(l);
+        });
     }
 
     private void initializeMap(final GameMap map) {
