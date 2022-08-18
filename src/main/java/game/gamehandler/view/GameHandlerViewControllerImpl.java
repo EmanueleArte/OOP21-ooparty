@@ -170,6 +170,9 @@ public class GameHandlerViewControllerImpl implements GenericViewController {
                             this.setUpdatesLabel(currentPlayer.getNickname() + " earned " + currentPlayer.getLastEarnedCoins() + " coins!");
                         } else if (this.controller.getGameMap().getPlayerPosition(currentPlayer).isDamageGameMapSquare()) {
                             this.setUpdatesLabel(currentPlayer.getNickname() + " lost " + currentPlayer.getLastDamageTaken() + " life points!");
+                            if (currentPlayer.isDead()) {
+                                this.setUpdatesLabel(this.updatesLabel.getText() + " He died!");
+                            }
                         } else if (this.controller.getGameMap().getPlayerPosition(currentPlayer).isStarGameMapSquare()) {
                             if (currentPlayer.getIsLastStarEarned()) {
                                 this.setUpdatesLabel(currentPlayer.getNickname() + " earned a star!");
@@ -180,6 +183,7 @@ public class GameHandlerViewControllerImpl implements GenericViewController {
                             this.setUpdatesLabel(currentPlayer.getNickname() + " got a new powerup!");
                         }
 
+                        this.controller.checkPlayerDeath(currentPlayer);
                         updateLeaderboard(this.controller.getLeaderboard());
                     }
                 }
@@ -212,7 +216,7 @@ public class GameHandlerViewControllerImpl implements GenericViewController {
         TranslateTransition transition = new TranslateTransition();
         transition.setNode(this.playerToAvatar.get(p));
         transition.setDuration(Duration.millis(1000));
-        transition.setByX(this.playerToAvatar.get(p).getLayoutX() + movement * 10);   //ogni tanto dà NullPointerException
+        //transition.setByX(this.playerToAvatar.get(p).getLayoutX() + movement * 10);   //ogni tanto dà NullPointerException
         transition.play();
     }
 

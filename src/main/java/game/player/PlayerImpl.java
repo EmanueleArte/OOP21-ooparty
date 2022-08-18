@@ -102,8 +102,8 @@ public class PlayerImpl implements Player {
 
     @Override
     public final void loseCoins(final int n) {
-        if (n >= 0) {
-            throw new IllegalArgumentException("n can't be 0 or positive");
+        if (n <= 0) {
+            throw new IllegalArgumentException("n can't be 0 or negative");
         }
         this.coins = this.getCoinsCount() - n;
         if (this.coins < 0) {
@@ -277,7 +277,6 @@ public class PlayerImpl implements Player {
                 firstFreeSquareIndex = 0;
             }
         }
-        System.out.println("fFSI: " + firstFreeSquareIndex);
         this.goTo(gameMap, gameMap.getSquares().get(firstFreeSquareIndex));
     }
 

@@ -56,4 +56,10 @@ public interface GameHandlerController {
     GameMap getGameMap();
 
     List<Player> getLeaderboard();
+
+    /**
+     * Checks if a {@link Player} is dead and if he is, it makes him respawn.
+     * @param p the {@link Player} that has to be checked 
+     */
+    void checkPlayerDeath(Player p);
 }

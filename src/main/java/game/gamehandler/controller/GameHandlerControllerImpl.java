@@ -83,4 +83,9 @@ public class GameHandlerControllerImpl<S> extends GenericControllerAbstr
         return this.model.getLeaderboard();
     }
 
+    @Override
+    public final void checkPlayerDeath(final Player p) {
+        this.model.checkPlayerDeath(p);
+    }
+
 }

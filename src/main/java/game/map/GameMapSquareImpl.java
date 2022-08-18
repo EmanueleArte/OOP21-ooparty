@@ -20,7 +20,7 @@ public class GameMapSquareImpl implements GameMapSquare {
     /**
      * Maximum number of damage that can be taken from a damage square.
      */
-    public static final int MAX_DAMAGE = 1050;
+    public static final int MAX_DAMAGE = 50;
 
     public GameMapSquareImpl() {
         this.players = new HashSet<>();
