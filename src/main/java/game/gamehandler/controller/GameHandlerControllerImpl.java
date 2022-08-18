@@ -3,7 +3,6 @@ package game.gamehandler.controller;
 import java.util.List;
 import java.util.Optional;
 
-import game.dice.view.DiceViewControllerImpl;
 import game.gamehandler.model.GameHandlerModel;
 import game.gamehandler.model.GameHandlerModelImpl;
 import game.map.GameMap;
