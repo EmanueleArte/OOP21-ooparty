@@ -120,7 +120,7 @@ public class GameHandlerViewControllerImpl implements GenericViewController {
             }
         });
 
-        initializeLeaderboard(players);
+        updateLeaderboard(players);
 
         initializeMap(this.controller.getGameMap());
 
@@ -180,7 +180,7 @@ public class GameHandlerViewControllerImpl implements GenericViewController {
                             this.setUpdatesLabel(currentPlayer.getNickname() + " got a new powerup!");
                         }
 
-                        initializeLeaderboard(this.controller.getLeaderboard());
+                        updateLeaderboard(this.controller.getLeaderboard());
                     }
                 }
             }
@@ -212,11 +212,11 @@ public class GameHandlerViewControllerImpl implements GenericViewController {
         TranslateTransition transition = new TranslateTransition();
         transition.setNode(this.playerToAvatar.get(p));
         transition.setDuration(Duration.millis(1000));
-        //transition.setByX(this.playerToAvatar.get(p).getLayoutX() + movement * 10);   //ogni tanto dà NullPointerException
+        transition.setByX(this.playerToAvatar.get(p).getLayoutX() + movement * 10);   //ogni tanto dà NullPointerException
         transition.play();
     }
 
-    private void initializeLeaderboard(final List<Player> players) {
+    private void updateLeaderboard(final List<Player> players) {
         rankPlayersContainer.getChildren().removeAll(rankPlayersContainer.getChildren());
         players.forEach(p -> {
             VBox box = new VBox();
