@@ -142,9 +142,9 @@
                               </Group>
                            </children>
                         </Group>
-                        <Pane maxHeight="-Infinity" maxWidth="-Infinity" opacity="0.0" prefHeight="621.0" prefWidth="1000.0">
+                        <Pane maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="621.0" prefWidth="1000.0">
                            <children>
-                              <Group fx:id="banner">
+                              <Group fx:id="banner" opacity="0.0">
                                  <children>
                                     <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#c70e0ebe" height="240.0" layoutY="240.0" stroke="#ff9900a0" strokeType="INSIDE" width="1000.0" />
                                     <Text fx:id="bannerText" fill="#dfbe07" fontSmoothingType="LCD" layoutY="400.0" stroke="#a67f00" strokeType="OUTSIDE" text="Turn #" textAlignment="CENTER" wrappingWidth="1000.0">

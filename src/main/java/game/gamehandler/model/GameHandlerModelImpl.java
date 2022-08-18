@@ -89,7 +89,6 @@ public class GameHandlerModelImpl<S> implements GameHandlerModel {
             this.currentPlayer.get().setDicesNumber(1);
         }
         if (this.playerTurnProgress == PlayerTurnProgress.USE_POWERUP) {
-            this.currentPlayer.get().addPowerup(new DoubleDicePowerup());
             if (this.currentPlayer.get().getPowerupList().isEmpty()) {
                 this.playerTurnProgress = PlayerTurnProgress.next(this.playerTurnProgress);
             } else {
@@ -129,12 +128,11 @@ public class GameHandlerModelImpl<S> implements GameHandlerModel {
                 && (this.playerTurnProgress == PlayerTurnProgress.END_OF_TURN);
     }
 
-    @SuppressWarnings("unchecked")
     private void startNewTurn() {
         this.players = (List<Player>) this.stageManager.getLastGameController().getGameResults();
         this.playersIterator = players.iterator();
-        this.turnProgress = TurnProgress.SHOW_BANNER;
-        this.playerTurnProgress = PlayerTurnProgress.SHOW_BANNER;
+        this.turnProgress = TurnProgress.END_OF_TURN;
+        this.playerTurnProgress = PlayerTurnProgress.END_OF_TURN;
         this.turn++;
     }
 

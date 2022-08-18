@@ -19,6 +19,9 @@ public class DiceModelNoRepeatImpl<P> extends DiceModelImpl<P> {
         do {
             result = this.getRandom().nextInt(DiceModelImpl.MAX_RESULT) + 1;
         } while (this.resultsList.contains(result));
+        this.resultsList.forEach(r -> {
+            System.out.println(r);
+        });
         this.setResult(result);
         this.resultsList.add(result);
     }
