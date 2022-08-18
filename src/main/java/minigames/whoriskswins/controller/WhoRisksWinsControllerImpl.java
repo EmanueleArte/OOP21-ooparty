@@ -49,7 +49,7 @@ public class WhoRisksWinsControllerImpl extends GenericControllerAbstr implement
     }
 
     @Override
-    public final List<?> getGameResults() {
+    public final List<Player> getGameResults() {
         return this.wrwModel.gameResults();
     }
 
