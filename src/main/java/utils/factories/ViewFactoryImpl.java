@@ -9,16 +9,16 @@ import utils.graphics.controller.StageManager;
  *
  * @param <S> the scenes of the stage
  */
-public class FxmlViewFactoryImpl<S> implements ViewFactory<S> {
+public class ViewFactoryImpl<S> implements ViewFactory<S> {
 
     private final StageManager<S> stageManager;
 
     /**
-     * Builds a new {@link FxmlViewFactoryImpl}.
+     * Builds a new {@link ViewFactoryImpl}.
      * 
      * @param stageManager the {@link StageManager}.
      */
-    public FxmlViewFactoryImpl(final StageManager<S> s) {
+    public ViewFactoryImpl(final StageManager<S> s) {
         this.stageManager = s;
     }
 
