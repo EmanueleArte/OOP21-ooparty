@@ -26,17 +26,30 @@
                <children>
                   <HBox alignment="TOP_RIGHT" prefHeight="100.0" prefWidth="200.0">
                      <children>
-                        <VBox fx:id="rankContainer1" prefHeight="102.0" prefWidth="242.0">
+                        <VBox fx:id="rankContainer1" prefHeight="57.0" prefWidth="1071.0">
                            <children>
-                              <Label text="Turn Order" />
-                              <HBox fx:id="rankPlayersContainer1" prefHeight="85.0" prefWidth="158.0" style="-fx-spacing: 5;">
+                              <HBox alignment="CENTER" prefHeight="100.0" prefWidth="837.0">
                                  <children>
-                                    <Label prefWidth="15.0" style="-fx-background-color: red;">
+                                    <Label fx:id="updatesLabel" prefHeight="21.0" prefWidth="740.0">
                                        <font>
-                                          <Font size="11.0" />
+                                          <Font size="15.0" />
                                        </font>
                                     </Label>
-                                    <Label prefWidth="15.0" style="-fx-background-color: green;" />
+                                    <VBox prefHeight="200.0" prefWidth="100.0">
+                                       <children>
+                                          <Label text="Turn Order" />
+                                          <HBox fx:id="rankPlayersContainer1" prefHeight="85.0" prefWidth="158.0" style="-fx-spacing: 5;">
+                                             <children>
+                                                <Label prefWidth="15.0" style="-fx-background-color: red;">
+                                                   <font>
+                                                      <Font size="11.0" />
+                                                   </font>
+                                                </Label>
+                                                <Label prefWidth="15.0" style="-fx-background-color: green;" />
+                                             </children>
+                                          </HBox>
+                                       </children>
+                                    </VBox>
                                  </children>
                               </HBox>
                            </children>
