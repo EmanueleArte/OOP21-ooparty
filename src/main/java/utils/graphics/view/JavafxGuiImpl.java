@@ -79,8 +79,8 @@ public class JavafxGuiImpl extends JFrame implements JavafxGui {
     }
 
     @Override
-    public final void setScene(final Scene scene) throws RuntimeException {
-        this.mainStage.orElseThrow(() -> new RuntimeException("Optional empty.")).setScene(scene);
+    public final <S> void setScene(final S scene) throws RuntimeException {
+        this.mainStage.orElseThrow(() -> new RuntimeException("Main stage optional empty.")).setScene((Scene) scene);
     }
 
     @Override

@@ -60,7 +60,7 @@ public class GameCreationMenuControllerImpl extends GenericControllerAbstr imple
 
     @Override
     public final void createMenu() {
-        this.getViewFactory().createGameCreationMenu(this);
+        this.getStageManager().getGui().getViewFactory().createGameCreationMenu(this);
     }
 
     /**

@@ -1,7 +1,5 @@
 package utils.controller;
 
-import utils.factories.FxmlViewFactoryImpl;
-import utils.factories.ViewFactory;
 import utils.graphics.controller.StageManager;
 
 /**
@@ -10,7 +8,6 @@ import utils.graphics.controller.StageManager;
 public abstract class GenericControllerAbstr implements GenericController {
 
     private final StageManager<?> stageManager;
-    private final ViewFactory<?> viewFactory;
 
     /**
      * Builder for {@link GenericControllerAbstr}.
@@ -20,7 +17,6 @@ public abstract class GenericControllerAbstr implements GenericController {
      */
     public <S> GenericControllerAbstr(final StageManager<S> s) {
         this.stageManager = s;
-        this.viewFactory = new FxmlViewFactoryImpl<>(s);
     }
 
     @Override
@@ -33,15 +29,6 @@ public abstract class GenericControllerAbstr implements GenericController {
      */
     protected StageManager<?> getStageManager() {
         return this.stageManager;
-    }
-
-    /**
-     * Getter for factory.
-     * 
-     * @return the {@link ViewFactory}
-     */
-    protected ViewFactory<?> getViewFactory() {
-        return this.viewFactory;
     }
 
 }
