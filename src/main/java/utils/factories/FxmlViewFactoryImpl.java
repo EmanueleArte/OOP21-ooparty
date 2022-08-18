@@ -29,7 +29,7 @@ public class FxmlViewFactoryImpl<S> implements ViewFactory<S> {
 
     @Override
     public final void createGameCreationMenu(final GenericController controller) {
-        this.createScene(controller, "manu/creation_menu.fxml");
+        this.createScene(controller, "menu/creation_menu.fxml");
     }
 
     @Override
