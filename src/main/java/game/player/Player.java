@@ -103,7 +103,7 @@ public interface Player {
      * @param damage the amount of life to be taken away
      * @param gameMap the game map (used to move the {@link Player} if he dies)
      */
-    void loseLifePoints(int damage, GameMap gameMap);
+    void loseLifePoints(int damage);
 
     /**
      * Sets number of dices to roll during the next turn.
@@ -138,7 +138,7 @@ public interface Player {
      * 
      * @param powerupType type of powerup to use
      */
-    void usePowerup(String powerupType, Player target, GameMap gameMap);
+    void usePowerup(String powerupType, Player target);
 
     /**
      * 
@@ -163,4 +163,16 @@ public interface Player {
      * @param isLastStarEarned if the last star was earned
      */
     void setIsLastStarEarned(boolean isLastStarEarned);
+
+    /**
+     * Returns if the player died in the last turn.
+     * @return if the player died in the last turn
+     */
+    boolean isDead();
+
+    /**
+     * Checks if the player is dead and if he is, makes him respawn.
+     * @param gameMap the map of the game
+     */
+    void checkIfDeadAndRespawn(GameMap gameMap);
 }

@@ -21,8 +21,8 @@ public class DamageGameMapSquare extends GameMapSquareImpl {
     }
 
     @Override
-    public final void receiveDamage(final Player p, final GameMap gameMap) {
-        p.loseLifePoints(this.damage, gameMap);
+    public final void receiveDamage(final Player p) {
+        p.loseLifePoints(this.damage);
         this.generateNewDamage();
     }
 

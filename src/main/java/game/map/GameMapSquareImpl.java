@@ -1,6 +1,5 @@
 package game.map;
 
-import java.lang.annotation.Inherited;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -73,7 +72,7 @@ public class GameMapSquareImpl implements GameMapSquare {
      * {@inheritDoc}
      */
     @Override
-    public void receiveDamage(final Player p, final GameMap gameMap) {
+    public void receiveDamage(final Player p) {
         throw new UnsupportedOperationException("This is not a damage game map square");
     }
 

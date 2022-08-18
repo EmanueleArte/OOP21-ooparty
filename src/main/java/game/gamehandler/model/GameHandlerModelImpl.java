@@ -41,7 +41,7 @@ public class GameHandlerModelImpl<S> implements GameHandlerModel {
             final GameMap gameMap) {
         this.stageManager = s;
         this.dice = new DiceControllerImpl(this.stageManager, false);
-        this.powerupMenu = new PowerupMenuControllerImpl(this.stageManager, players, gameMap);
+        this.powerupMenu = new PowerupMenuControllerImpl(this.stageManager, players);
         this.minigameFactory = new MinigameFactoryImpl<>(players, s);
         this.turnsNumber = turnsNumber;
         this.turn = 1;
@@ -105,7 +105,7 @@ public class GameHandlerModelImpl<S> implements GameHandlerModel {
                 if (playerPosition.isCoinsGameMapSquare()) {
                     playerPosition.receiveCoins(cp);
                 } else if (playerPosition.isDamageGameMapSquare()) {
-                    playerPosition.receiveDamage(cp, this.gameMap);
+                    playerPosition.receiveDamage(cp);
                 } else if (playerPosition.isStarGameMapSquare()) {
                     playerPosition.receiveStar(cp);
                 } else if (playerPosition.isPowerUpGameMapSquare()) {
@@ -192,6 +192,11 @@ public class GameHandlerModelImpl<S> implements GameHandlerModel {
             }
         });
         return tmp;
+    }
+
+    @Override
+    public final void checkPlayerDeath(final Player p) {
+        p.checkIfDeadAndRespawn(this.gameMap);
     }
 
     /**

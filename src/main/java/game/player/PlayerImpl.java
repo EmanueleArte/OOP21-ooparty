@@ -25,6 +25,7 @@ public class PlayerImpl implements Player {
     private int lastDamageTaken;
     private int dicesToRoll;
     private final List<GenericPowerup> powerups;
+    private boolean isDead;
 
     /**
      * The maximum amount of life points.
@@ -48,6 +49,7 @@ public class PlayerImpl implements Player {
         this.lastDamageTaken = 0;
         this.dicesToRoll = 1;
         this.powerups = new ArrayList<>();
+        this.isDead = false;
     }
 
     public PlayerImpl(final String nickname) {
@@ -100,8 +102,8 @@ public class PlayerImpl implements Player {
 
     @Override
     public final void loseCoins(final int n) {
-        if (n >= 0) {
-            throw new IllegalArgumentException("n can't be 0 or positive");
+        if (n <= 0) {
+            throw new IllegalArgumentException("n can't be 0 or negative");
         }
         this.coins = this.getCoinsCount() - n;
         if (this.coins < 0) {
@@ -146,17 +148,22 @@ public class PlayerImpl implements Player {
     }
 
     @Override
-    public final void loseLifePoints(final int damage, final GameMap gameMap) {
+    public final void loseLifePoints(final int damage) {
         if (damage <= 0) {
             throw new IllegalArgumentException("Damage can't be 0 or negative");
         }
         this.lifePoints = this.lifePoints - damage;
         this.lastDamageTaken = damage;
         if (this.lifePoints <= 0) {
+            this.isDead = true;
+            this.lifePoints = 0;
             this.updateCoins(this.getCoinsCount() / 2);
-            this.goTo(gameMap, gameMap.getSquares().get(0));
-            this.lifePoints = PlayerImpl.MAX_LIFE;
         }
+    }
+
+    @Override
+    public final boolean isDead() {
+        return this.isDead;
     }
 
     @Override
@@ -217,10 +224,10 @@ public class PlayerImpl implements Player {
     }
 
     @Override
-    public final void usePowerup(final String powerupType, final Player target, final GameMap gameMap) {
+    public final void usePowerup(final String powerupType, final Player target) {
         Optional<GenericPowerup> p = this.powerups.stream().filter(x -> x.getPowerupType().equals(powerupType)).findFirst();
         p.ifPresent(a -> {
-            p.get().usePowerup(target, gameMap);
+            p.get().usePowerup(target);
             this.powerups.remove(p.get());
         });
     }
@@ -243,6 +250,44 @@ public class PlayerImpl implements Player {
     @Override
     public final void setIsLastStarEarned(final boolean isLastStarEarned) {
         this.isLastStarEarned = isLastStarEarned;
+    }
+
+    @Override
+    public final void checkIfDeadAndRespawn(final GameMap gameMap) {
+        if (this.isDead()) {
+            this.death(gameMap);
+        }
+    }
+
+    private void death(final GameMap gameMap) {
+        this.respawn(gameMap);
+        this.lifePoints = PlayerImpl.MAX_LIFE;
+        this.isDead = false;
+    }
+
+    private void respawn(final GameMap gameMap) {
+        int firstFreeSquareIndex = this.getStarSquareIndex(gameMap) + 1;
+        if (firstFreeSquareIndex >= gameMap.getSquares().size()) {
+            firstFreeSquareIndex = 0;
+        }
+        while (gameMap.getSquares().get(firstFreeSquareIndex).isCoinsGameMapSquare() || gameMap.getSquares().get(firstFreeSquareIndex).isPowerUpGameMapSquare()
+                || gameMap.getSquares().get(firstFreeSquareIndex).isDamageGameMapSquare() || gameMap.getSquares().get(firstFreeSquareIndex).isStarGameMapSquare()) {
+            firstFreeSquareIndex++;
+            if (firstFreeSquareIndex >= gameMap.getSquares().size()) {
+                firstFreeSquareIndex = 0;
+            }
+        }
+        this.goTo(gameMap, gameMap.getSquares().get(firstFreeSquareIndex));
+    }
+
+    private int getStarSquareIndex(final GameMap gameMap) {
+        int starSquareIndex = 0;
+        for (GameMapSquare s : gameMap.getSquares()) {
+            if (s.isStarGameMapSquare()) {
+                starSquareIndex = gameMap.getSquares().indexOf(s);
+            }
+        }
+        return starSquareIndex;
     }
 
 }
