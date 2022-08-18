@@ -160,9 +160,9 @@ public class GameHandlerViewControllerImpl implements GenericViewController {
         if (progress.isPresent()) {
             if (progress.get() == TurnProgress.SHOW_BANNER) {
                 this.showBanner("Turn " + this.controller.getTurnNumber());
-                this.playerToAvatar.forEach((a, b) -> {
+                /*this.playerToAvatar.forEach((a, b) -> {
                     // System.out.println(a.getNickname() + " " + b.toString());
-                });
+                });*/
                 updateTurnOrder(this.controller.getTurnOrder());
             } else if (progress.get() == TurnProgress.HIDE_BANNER) {
                 this.hideBanner();
