@@ -5,9 +5,9 @@ import javafx.scene.Scene;
 import utils.controller.GenericController;
 
 /**
- * This interface models the javafx gui.
+ * Javafx implementation of {@link Gui} .
  */
-public interface FxmlGui extends Gui {
+public interface JavafxGui extends Gui {
 
     /**
      * This method loads a scene from FXML file.

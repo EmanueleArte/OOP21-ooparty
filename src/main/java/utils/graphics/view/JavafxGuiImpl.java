@@ -14,9 +14,9 @@ import utils.controller.GenericController;
 import utils.view.GenericViewController;
 
 /**
- * Implementation of {@link FxmlGui}.
+ * Implementation of {@link JavafxGui}.
  */
-public class FxmlGuiImpl extends JFrame implements FxmlGui {
+public class JavafxGuiImpl extends JFrame implements JavafxGui {
 
     private static final long serialVersionUID = -4895173910811030481L;
     /**
@@ -33,11 +33,11 @@ public class FxmlGuiImpl extends JFrame implements FxmlGui {
     private Optional<Parent> root;
 
     /**
-     * Builds a new {@link FxmlGuiImpl}.
+     * Builds a new {@link JavafxGuiImpl}.
      * 
      * @param title the title of the frame
      */
-    public FxmlGuiImpl(final String title) {
+    public JavafxGuiImpl(final String title) {
         this.mainStage = Optional.empty();
         this.root = Optional.empty();
         this.frame = new JFrame(title);
@@ -48,7 +48,7 @@ public class FxmlGuiImpl extends JFrame implements FxmlGui {
         this.mainStage = Optional.of(new JFXPanel());
         this.frame.add(this.mainStage.get());
         this.frame.pack();
-        this.frame.setMinimumSize(new Dimension(FxmlGuiImpl.MIN_WIDTH, FxmlGuiImpl.MIN_HEIGHT));
+        this.frame.setMinimumSize(new Dimension(JavafxGuiImpl.MIN_WIDTH, JavafxGuiImpl.MIN_HEIGHT));
         this.frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
         this.frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.frame.setVisible(true);
