@@ -1,6 +1,9 @@
 package menu.afterminigamemenu.controller;
 
 import menu.MenuController;
+import menu.afterminigamemenu.model.AfterMinigameMenuModel;
+import menu.afterminigamemenu.model.AfterMinigameMenuModelImpl;
+import menu.gamecreationmenu.model.GameCreationMenuModel;
 import menu.gamecreationmenu.view.GameCreationMenuViewController;
 import menu.gamecreationmenu.view.GameCreationMenuViewControllerImpl;
 import utils.controller.GenericControllerAbstr;
@@ -9,6 +12,7 @@ import utils.view.GenericViewController;
 
 public class AfterMinigameMenuControllerImpl extends GenericControllerAbstr implements MenuController {
 
+    private final AfterMinigameMenuModel menuModel;
     private GameCreationMenuViewController menuViewController;
 
     /**
@@ -19,7 +23,7 @@ public class AfterMinigameMenuControllerImpl extends GenericControllerAbstr impl
      */
     public <S> AfterMinigameMenuControllerImpl(final StageManager<S> s) {
         super(s);
-        // TODO Auto-generated constructor stub
+        this.menuModel = new AfterMinigameMenuModelImpl();
     }
 
     @Override
