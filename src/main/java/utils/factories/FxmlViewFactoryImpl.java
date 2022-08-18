@@ -48,7 +48,8 @@ public class FxmlViewFactoryImpl<S> implements ViewFactory<S> {
     }
 
     /**
-     * This method create a specific scene given the arguments.
+     * This method creates a specific scene given the arguments and adds it to the
+     * scene list.
      * 
      * @param controller the controller that act on the scene
      * @param fxmlUrl    the url to the fxml file to open
