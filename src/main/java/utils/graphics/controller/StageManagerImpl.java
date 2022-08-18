@@ -8,6 +8,7 @@ import minigames.common.controller.MinigameController;
 import utils.controller.GenericController;
 import utils.graphics.model.SceneHandler;
 import utils.graphics.model.SceneHandlerImpl;
+import utils.graphics.view.Gui;
 import utils.graphics.view.JavafxGui;
 import utils.graphics.view.JavafxGuiImpl;
 
@@ -19,7 +20,7 @@ import utils.graphics.view.JavafxGuiImpl;
 public class StageManagerImpl<S> implements StageManager<S> {
 
     private final SceneHandler<S> sceneHandler;
-    private final JavafxGui gui;
+    private final Gui gui;
     private Optional<MinigameController> lastGameController;
 
     /**
@@ -36,7 +37,7 @@ public class StageManagerImpl<S> implements StageManager<S> {
     @Override
     @SuppressWarnings("unchecked")
     public final void addFXMLScene(final String fxmlUrl, final GenericController controller) {
-        final var currScene = this.gui.loadScene(fxmlUrl, controller);
+        final var currScene = ((JavafxGui) this.gui).loadScene(fxmlUrl, controller);
         this.addScene((S) currScene);
         this.lastGameController = Optional.ofNullable(this.checkGameController(controller));
     }
@@ -76,7 +77,7 @@ public class StageManagerImpl<S> implements StageManager<S> {
     }
 
     @Override
-    public final JavafxGui getGui() {
+    public final Gui getGui() {
         return this.gui;
     }
 

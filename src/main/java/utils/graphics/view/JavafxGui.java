@@ -3,6 +3,7 @@ package utils.graphics.view;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import utils.controller.GenericController;
+import utils.factories.ViewFactory;
 
 /**
  * Javafx implementation of {@link Gui} .
@@ -12,8 +13,8 @@ public interface JavafxGui extends Gui {
     /**
      * This method loads a scene from FXML file.
      * 
-     * @param fxmlUrl             the url of the fxml file to load
-     * @param controller          the controller to be used
+     * @param fxmlUrl    the url of the fxml file to load
+     * @param controller the controller to be used
      * @return the scene loaded
      */
     Scene loadScene(String fxmlUrl, GenericController controller);
@@ -40,5 +41,12 @@ public interface JavafxGui extends Gui {
      * @throws RuntimeException if the stage is not set
      */
     Scene getStageScene() throws RuntimeException;
+
+    /**
+     * Getter for the view factory.
+     * 
+     * @return the view factory
+     */
+    ViewFactory<?> getViewFactory();
 
 }

@@ -12,7 +12,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import utils.controller.GenericController;
 import utils.factories.ViewFactory;
-import utils.factories.ViewFactoryImpl;
+import utils.factories.FxmlViewFactoryImpl;
 import utils.graphics.controller.StageManager;
 import utils.view.GenericViewController;
 
@@ -47,7 +47,7 @@ public class JavafxGuiImpl extends JFrame implements JavafxGui {
         this.mainStage = Optional.empty();
         this.root = Optional.empty();
         this.frame = new JFrame(title);
-        this.viewFactory = new ViewFactoryImpl<>(s);
+        this.viewFactory = new FxmlViewFactoryImpl<>(s);
     }
 
     @Override
@@ -96,6 +96,11 @@ public class JavafxGuiImpl extends JFrame implements JavafxGui {
     @Override
     public final boolean mainStagePresence() {
         return this.mainStage.isPresent();
+    }
+
+    @Override
+    public final ViewFactory<?> getViewFactory() {
+        return this.viewFactory;
     }
 
 }

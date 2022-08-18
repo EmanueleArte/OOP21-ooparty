@@ -4,7 +4,7 @@ import java.util.List;
 
 import minigames.common.controller.MinigameController;
 import utils.controller.GenericController;
-import utils.graphics.view.JavafxGui;
+import utils.graphics.view.Gui;
 
 /**
  * This interface models a stage manager.
@@ -68,6 +68,6 @@ public interface StageManager<S> {
      * 
      * @return the gui used
      */
-    JavafxGui getGui();
+    Gui getGui();
 
 }

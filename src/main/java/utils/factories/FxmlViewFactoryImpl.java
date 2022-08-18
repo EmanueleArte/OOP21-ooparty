@@ -2,6 +2,7 @@ package utils.factories;
 
 import utils.controller.GenericController;
 import utils.graphics.controller.StageManager;
+import utils.graphics.view.JavafxGui;
 
 /**
  * 
@@ -9,16 +10,16 @@ import utils.graphics.controller.StageManager;
  *
  * @param <S> the scenes of the stage
  */
-public class ViewFactoryImpl<S> implements ViewFactory<S> {
+public class FxmlViewFactoryImpl<S> implements ViewFactory<S> {
 
     private final StageManager<S> stageManager;
 
     /**
-     * Builds a new {@link ViewFactoryImpl}.
+     * Builds a new {@link FxmlViewFactoryImpl}.
      * 
      * @param stageManager the {@link StageManager}.
      */
-    public ViewFactoryImpl(final StageManager<S> s) {
+    public FxmlViewFactoryImpl(final StageManager<S> s) {
         this.stageManager = s;
     }
 
@@ -56,7 +57,7 @@ public class ViewFactoryImpl<S> implements ViewFactory<S> {
      */
     @SuppressWarnings("unchecked")
     private void createScene(final GenericController controller, final String fxmlUrl) {
-        final var currScene = this.stageManager.getGui().loadScene(fxmlUrl, controller);
+        final var currScene = ((JavafxGui) this.stageManager.getGui()).loadScene(fxmlUrl, controller);
         this.stageManager.setLastGameController(controller);
         this.stageManager.addScene((S) currScene);
     }
