@@ -2,6 +2,7 @@ package game.common.model;
 
 import java.util.List;
 import java.util.ListIterator;
+import java.util.Optional;
 
 import game.player.Player;
 import utils.graphics.controller.StageManager;
@@ -16,7 +17,7 @@ public abstract class GameModelAbstr<S> implements GameModel<S> {
     private final List<Player> players;
     private final StageManager<S> stageManager;
     private ListIterator<Player> playerIterator;
-    private Player currPlayer;
+    private Optional<Player> currPlayer;
 
     /**
      * Builds a new {@link GameModelAbstr}.
@@ -28,6 +29,7 @@ public abstract class GameModelAbstr<S> implements GameModel<S> {
         this.players = players;
         this.setPlayerIterator(players);
         this.stageManager = s;
+        this.currPlayer = Optional.empty();
     }
 
     /**
@@ -54,7 +56,7 @@ public abstract class GameModelAbstr<S> implements GameModel<S> {
 
     @Override
     public final Player getCurrPlayer() {
-        return this.currPlayer;
+        return this.currPlayer.orElse(null);
     }
 
     /**
@@ -76,11 +78,20 @@ public abstract class GameModelAbstr<S> implements GameModel<S> {
     }
 
     /**
+     * This method controls if exists the current player.
+     * 
+     * @return true if there exists a current player, false otherwise
+     */
+    protected boolean hasCurrPlayer() {
+        return this.currPlayer.isPresent();
+    }
+
+    /**
      * Setter for the current player.
      */
     protected void setCurrPlayer() {
         if (this.hasNextPlayer()) {
-            this.currPlayer = this.getNextPlayer();
+            this.currPlayer = Optional.ofNullable(this.getNextPlayer());
         }
     }
 
