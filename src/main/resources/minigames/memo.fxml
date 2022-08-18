@@ -10,6 +10,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
+<?import java.util.ArrayList?>
 
 <VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onKeyReleased="#onEnter" prefHeight="730.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="game.gamehandler.viewcontroller.GameHandlerViewControllerImpl">
    <children>
@@ -97,4 +98,50 @@
          </top>
       </BorderPane>
    </children>
+   
+   
+   <fx:define>
+      <ArrayList fx:id="cards">
+         <fx:reference source="card_0" />
+         <fx:reference source="card_1" />
+         <fx:reference source="card_2" />
+         <fx:reference source="card_3" />
+         <fx:reference source="card_4" />
+         <fx:reference source="card_5" />
+         <fx:reference source="card_6" />
+         <fx:reference source="card_7" />
+         <fx:reference source="card_8" />
+         <fx:reference source="card_9" />
+         <fx:reference source="card_10" />
+         <fx:reference source="card_11" />
+         <fx:reference source="card_12" />
+         <fx:reference source="card_13" />
+         <fx:reference source="card_14" />
+         <fx:reference source="card_15" />
+         <fx:reference source="card_16" />
+         <fx:reference source="card_17" />
+         <fx:reference source="card_18" />
+         <fx:reference source="card_19" />
+         <fx:reference source="card_20" />
+         <fx:reference source="card_21" />
+         <fx:reference source="card_22" />
+         <fx:reference source="card_23" />
+         <fx:reference source="card_24" />
+         <fx:reference source="card_25" />
+         <fx:reference source="card_26" />
+         <fx:reference source="card_27" />
+         <fx:reference source="card_28" />
+         <fx:reference source="card_29" />
+         <fx:reference source="card_30" />
+         <fx:reference source="card_31" />
+         <fx:reference source="card_32" />
+         <fx:reference source="card_33" />
+         <fx:reference source="card_34" />
+         <fx:reference source="card_35" />
+         <fx:reference source="card_36" />
+         <fx:reference source="card_37" />
+         <fx:reference source="card_38" />
+         <fx:reference source="card_39" />
+      </ArrayList>
+   </fx:define>
 </VBox>
