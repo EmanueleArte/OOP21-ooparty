@@ -2,6 +2,7 @@ package minigames.common.controller;
 
 import java.util.List;
 
+import game.player.Player;
 import utils.controller.GenericController;
 
 /**
@@ -15,7 +16,7 @@ public interface MinigameController extends GenericController {
      * @return the list of players ordered by their score in the minigame (from
      *         higher to lower)
      */
-    List<?> getGameResults();
+    List<Player> getGameResults();
 
     /**
      * This method starts the minigame routine, opens a guide if exists.
