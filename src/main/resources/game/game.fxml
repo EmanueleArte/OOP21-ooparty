@@ -8,6 +8,7 @@
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
@@ -90,70 +91,74 @@
                               </AnchorPane>
                            </children>
                         </HBox>
-                        <Group fx:id="avatars">
+                        <Pane maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="600.0" prefWidth="970.0" StackPane.alignment="CENTER">
                            <children>
-                              <Group>
+                              <Group fx:id="avatars">
                                  <children>
-                                    <Polygon fill="DODGERBLUE" scaleX="0.8" stroke="BLACK" strokeType="INSIDE">
-                                       <points>
-                                          <Double fx:value="-21.0" />
-                                          <Double fx:value="-25.0" />
-                                          <Double fx:value="21.0" />
-                                          <Double fx:value="-25.0" />
-                                          <Double fx:value="0.0" />
-                                          <Double fx:value="-60.0" />
-                                       </points>
-                                    </Polygon>
-                                    <Circle fill="DODGERBLUE" layoutY="-59.0" radius="10.0" stroke="BLACK" strokeType="INSIDE" />
-                                 </children>
-                              </Group>
-                              <Group layoutY="150.0">
-                                 <children>
-                                    <Polygon fill="DODGERBLUE" scaleX="0.8" stroke="BLACK" strokeType="INSIDE">
-                                       <points>
-                                          <Double fx:value="-21.0" />
-                                          <Double fx:value="-25.0" />
-                                          <Double fx:value="21.0" />
-                                          <Double fx:value="-25.0" />
-                                          <Double fx:value="0.0" />
-                                          <Double fx:value="-60.0" />
-                                       </points>
-                                    </Polygon>
-                                    <Circle fill="DODGERBLUE" layoutY="-59.0" radius="10.0" stroke="BLACK" strokeType="INSIDE" />
-                                 </children>
-                              </Group>
-                              <Group layoutY="300.0">
-                                 <children>
-                                    <Polygon fill="DODGERBLUE" scaleX="0.8" stroke="BLACK" strokeType="INSIDE">
-                                       <points>
-                                          <Double fx:value="-21.0" />
-                                          <Double fx:value="-25.0" />
-                                          <Double fx:value="21.0" />
-                                          <Double fx:value="-25.0" />
-                                          <Double fx:value="0.0" />
-                                          <Double fx:value="-60.0" />
-                                       </points>
-                                    </Polygon>
-                                    <Circle fill="DODGERBLUE" layoutY="-59.0" radius="10.0" stroke="BLACK" strokeType="INSIDE" />
-                                 </children>
-                              </Group>
-                              <Group layoutY="450.0">
-                                 <children>
-                                    <Polygon fill="DODGERBLUE" scaleX="0.8" stroke="BLACK" strokeType="INSIDE">
-                                       <points>
-                                          <Double fx:value="-21.0" />
-                                          <Double fx:value="-25.0" />
-                                          <Double fx:value="21.0" />
-                                          <Double fx:value="-25.0" />
-                                          <Double fx:value="0.0" />
-                                          <Double fx:value="-60.0" />
-                                       </points>
-                                    </Polygon>
-                                    <Circle fill="DODGERBLUE" layoutY="-59.0" radius="10.0" stroke="BLACK" strokeType="INSIDE" />
+                                    <Group>
+                                       <children>
+                                          <Polygon fill="DODGERBLUE" layoutY="59.0" scaleX="0.8" stroke="BLACK" strokeType="INSIDE">
+                                             <points>
+                                                <Double fx:value="-21.0" />
+                                                <Double fx:value="-25.0" />
+                                                <Double fx:value="21.0" />
+                                                <Double fx:value="-25.0" />
+                                                <Double fx:value="0.0" />
+                                                <Double fx:value="-60.0" />
+                                             </points>
+                                          </Polygon>
+                                          <Circle fill="DODGERBLUE" radius="10.0" stroke="BLACK" strokeType="INSIDE" />
+                                       </children>
+                                    </Group>
+                                    <Group>
+                                       <children>
+                                          <Polygon fill="DODGERBLUE" layoutY="59.0" scaleX="0.8" stroke="BLACK" strokeType="INSIDE">
+                                             <points>
+                                                <Double fx:value="-21.0" />
+                                                <Double fx:value="-25.0" />
+                                                <Double fx:value="21.0" />
+                                                <Double fx:value="-25.0" />
+                                                <Double fx:value="0.0" />
+                                                <Double fx:value="-60.0" />
+                                             </points>
+                                          </Polygon>
+                                          <Circle fill="DODGERBLUE" radius="10.0" stroke="BLACK" strokeType="INSIDE" />
+                                       </children>
+                                    </Group>
+                                    <Group>
+                                       <children>
+                                          <Polygon fill="DODGERBLUE" layoutY="59.0" scaleX="0.8" stroke="BLACK" strokeType="INSIDE">
+                                             <points>
+                                                <Double fx:value="-21.0" />
+                                                <Double fx:value="-25.0" />
+                                                <Double fx:value="21.0" />
+                                                <Double fx:value="-25.0" />
+                                                <Double fx:value="0.0" />
+                                                <Double fx:value="-60.0" />
+                                             </points>
+                                          </Polygon>
+                                          <Circle fill="DODGERBLUE" radius="10.0" stroke="BLACK" strokeType="INSIDE" />
+                                       </children>
+                                    </Group>
+                                    <Group>
+                                       <children>
+                                          <Polygon fill="DODGERBLUE" layoutY="59.0" scaleX="0.8" stroke="BLACK" strokeType="INSIDE">
+                                             <points>
+                                                <Double fx:value="-21.0" />
+                                                <Double fx:value="-25.0" />
+                                                <Double fx:value="21.0" />
+                                                <Double fx:value="-25.0" />
+                                                <Double fx:value="0.0" />
+                                                <Double fx:value="-60.0" />
+                                             </points>
+                                          </Polygon>
+                                          <Circle fill="DODGERBLUE" radius="10.0" stroke="BLACK" strokeType="INSIDE" />
+                                       </children>
+                                    </Group>
                                  </children>
                               </Group>
                            </children>
-                        </Group>
+                        </Pane>
                         <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
                            <children>
                               <Group fx:id="banner" opacity="0.0">

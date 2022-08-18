@@ -158,6 +158,9 @@ public class GameHandlerViewControllerImpl implements GenericViewController {
         if (progress.isPresent()) {
             if (progress.get() == TurnProgress.SHOW_BANNER) {
                 this.showBanner("Turn " + this.controller.getTurnNumber());
+                this.playerToAvatar.forEach((a, b) -> {
+                    // System.out.println(a.getNickname() + " " + b.toString());
+                });
             } else if (progress.get() == TurnProgress.HIDE_BANNER) {
                 this.hideBanner();
             } else if (progress.get() == TurnProgress.PLAYERS_TURNS) {
@@ -171,7 +174,7 @@ public class GameHandlerViewControllerImpl implements GenericViewController {
                         this.hideBanner();
                     } else if (playerProgress.get() == PlayerTurnProgress.MOVE_PLAYER) {
                         Player currentPlayer = this.controller.getCurrentPlayer().get();
-                        this.movePlayer(currentPlayer, 10);
+                        this.movePlayer(currentPlayer);
                         if (this.controller.getGameMap().getPlayerPosition(currentPlayer).isCoinsGameMapSquare()) {
                             this.setUpdatesLabel(currentPlayer.getNickname() + " earned "
                                     + currentPlayer.getLastEarnedCoins() + " coins!");
@@ -220,12 +223,24 @@ public class GameHandlerViewControllerImpl implements GenericViewController {
         fade.play();
     }
 
-    private void movePlayer(final Player p, final int movement) {
+    private void movePlayer(final Player p) {
         TranslateTransition transition = new TranslateTransition();
         transition.setNode(this.playerToAvatar.get(p));
         transition.setDuration(Duration.millis(1000));
-        //transition.setByX(this.playerToAvatar.get(p).getLayoutX() + movement * 10);
-        //ogni tanto dà NullPointerException
+        transition.setFromX(this.playerToAvatar.get(p).getTranslateX());
+        transition.setFromY(this.playerToAvatar.get(p).getTranslateY());
+        transition
+                .setToX(GridPane
+                        .getColumnIndex(this.mapGrid.getChildren()
+                                .get(this.controller.getGameMap().getSquares()
+                                        .indexOf(this.controller.getGameMap().getPlayerPosition(p)) + 1))
+                        * SQUARE_WIDTH);
+        transition
+                .setToY(GridPane
+                        .getRowIndex(this.mapGrid.getChildren()
+                                .get(this.controller.getGameMap().getSquares()
+                                        .indexOf(this.controller.getGameMap().getPlayerPosition(p)) + 1))
+                        * SQUARE_HEIGHT);
         transition.play();
     }
 
@@ -288,6 +303,12 @@ public class GameHandlerViewControllerImpl implements GenericViewController {
             GridPane.setColumnIndex(l, (int) layout.get(index).getX());
             GridPane.setHalignment(l, HPos.CENTER);
             GridPane.setValignment(l, VPos.CENTER);
+
+            /*
+             * if (mapGrid.getChildren().indexOf(l) == 0) {
+             * this.avatars.getChildren().forEach(a -> { a.setLayoutX(l.getLayoutX());
+             * a.setLayoutY(l.getLayoutY()); }); }
+             */
         });
 
         mapGrid.setHgap(2);
