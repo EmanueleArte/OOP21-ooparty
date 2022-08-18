@@ -177,10 +177,10 @@
                   </StackPane>
                   <HBox alignment="CENTER" prefHeight="50.0" prefWidth="1000.0">
                      <children>
-                        <VBox fx:id="rankContainer" prefHeight="102.0" prefWidth="242.0">
+                        <VBox fx:id="rankContainer" alignment="CENTER" prefHeight="17.0" prefWidth="1000.0">
                            <children>
                               <Label text="Rank" />
-                              <HBox fx:id="rankPlayersContainer" prefHeight="85.0" prefWidth="158.0" />
+                              <HBox fx:id="rankPlayersContainer" alignment="CENTER" prefHeight="85.0" prefWidth="158.0" />
                            </children>
                         </VBox>
                      </children>
