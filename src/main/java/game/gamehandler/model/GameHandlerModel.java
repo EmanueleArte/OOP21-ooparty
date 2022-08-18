@@ -3,7 +3,10 @@ package game.gamehandler.model;
 import java.util.List;
 import java.util.Optional;
 
+import game.map.GameMap;
 import game.player.Player;
+import utils.enums.PlayerTurnProgress;
+import utils.enums.TurnProgress;
 
 /**
  * This interface models the game handler model.
@@ -25,16 +28,16 @@ public interface GameHandlerModel {
     /**
      * This method makes the turn advance to the next step.
      * 
-     * @return int representing new turn progress
+     * @return Optional containing new turn
      */
-    int nextStep();
+    Optional<TurnProgress> nextStep();
 
     /**
      * This method makes players' turn go to the next step.
      * 
-     * @return int representing new player turn progress.
+     * @return Optional containing new player turn
      */
-    int nextPlayerTurnStep();
+    Optional<PlayerTurnProgress> nextPlayerTurnStep();
 
     /**
      * This method returns the player currently playing, if there's one.
@@ -55,4 +58,15 @@ public interface GameHandlerModel {
      */
     void endGame();
 
+    /**
+     * 
+     * @return the {@link GameMap} of the current game
+     */
+    GameMap getGameMap();
+
+    /**
+     * This method returns the leaderboard after a player's turn ends.
+     * @return an ordered list of players
+     */
+    List<Player> getLeaderboard();
 }

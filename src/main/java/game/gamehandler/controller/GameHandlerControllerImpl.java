@@ -6,6 +6,7 @@ import java.util.Optional;
 import game.dice.view.DiceViewControllerImpl;
 import game.gamehandler.model.GameHandlerModel;
 import game.gamehandler.model.GameHandlerModelImpl;
+import game.map.GameMap;
 import game.gamehandler.view.GameHandlerViewControllerImpl;
 import game.player.Player;
 import utils.controller.GenericController;
@@ -13,6 +14,8 @@ import utils.controller.GenericControllerAbstr;
 import utils.graphics.controller.StageManager;
 import utils.view.GenericViewUtils;
 import utils.view.GenericViewController;
+import utils.enums.PlayerTurnProgress;
+import utils.enums.TurnProgress;
 
 public class GameHandlerControllerImpl<S> extends GenericControllerAbstr
         implements GenericController, GameHandlerController {
@@ -20,9 +23,9 @@ public class GameHandlerControllerImpl<S> extends GenericControllerAbstr
     private GameHandlerViewControllerImpl viewController;
     private GameHandlerModel model;
 
-    public GameHandlerControllerImpl(final StageManager<S> s, final List<Player> players, final int turnsNumber) {
+    public <S, U> GameHandlerControllerImpl(final StageManager<S> s, final List<U> players, final int turnsNumber, final GameMap gameMap) {
         super(s);
-        this.model = new GameHandlerModelImpl<S>(s, players, turnsNumber, null);
+        this.model = new GameHandlerModelImpl(s, players, turnsNumber, gameMap);
     }
 
     @Override
@@ -34,7 +37,7 @@ public class GameHandlerControllerImpl<S> extends GenericControllerAbstr
     public final <C> void setViewController(final C viewController) {
         if (viewController instanceof GameHandlerViewControllerImpl) {
             this.viewController = (GameHandlerViewControllerImpl) viewController;
-            this.viewController.initialize(this.model.getPlayers());
+            this.viewController.initialize(this.model.getPlayers(), this);
         } else {
             throw new IllegalArgumentException("The parameter must be an instance of GameHandlerViewControllerImpl");
         }
@@ -46,12 +49,12 @@ public class GameHandlerControllerImpl<S> extends GenericControllerAbstr
     }
 
     @Override
-    public final int nextStep() {
+    public final Optional<TurnProgress> nextStep() {
         return this.model.nextStep();
     }
 
     @Override
-    public final int nextPlayerTurnStep() {
+    public final Optional<PlayerTurnProgress> nextPlayerTurnStep() {
         return this.model.nextPlayerTurnStep();
     }
 
@@ -63,6 +66,21 @@ public class GameHandlerControllerImpl<S> extends GenericControllerAbstr
     @Override
     public final Optional<Player> getCurrentPlayer() {
         return this.model.getCurrentPlayer();
+    }
+
+    @Override
+    public final GameMap getGameMap() {
+        return this.model.getGameMap();
+    }
+
+    @Override
+    public final List<Player> getPlayers() {
+        return this.model.getPlayers();
+    }
+
+    @Override
+    public final List<Player> getLeaderboard() {
+        return this.model.getLeaderboard();
     }
 
 }

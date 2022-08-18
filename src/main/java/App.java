@@ -1,5 +1,3 @@
-import game.map.GameMap;
-import game.map.GameMapImpl;
 import javafx.scene.Scene;
 import menu.MenuController;
 import menu.mainmenu.controller.MainMenuControllerImpl;
@@ -18,7 +16,6 @@ public final class App {
         stageManager.run();
         final MenuController mainMenu = new MainMenuControllerImpl(stageManager);
         mainMenu.createMenu();
-        final GameMap gameMap = new GameMapImpl(null);
 
         /*
          * GameHandlerModel game = new GameHandlerModelImpl(stageManager, List.of(new

@@ -1,10 +1,15 @@
 package game.map;
 
+import java.lang.annotation.Inherited;
 import java.util.HashSet;
 import java.util.Set;
 
 import game.player.Player;
+import game.powerup.GenericPowerup;
 
+/**
+ * The implementation of a generic {@link GameMapSquare}.
+ */
 public class GameMapSquareImpl implements GameMapSquare {
     private Set<Player> players;
 
@@ -41,7 +46,7 @@ public class GameMapSquareImpl implements GameMapSquare {
     }
 
     /**
-     * 
+     * {@inheritDoc}
      */
     @Override
     public int getCoinsNumber() {
@@ -49,7 +54,7 @@ public class GameMapSquareImpl implements GameMapSquare {
     }
 
     /**
-     * 
+     * {@inheritDoc}
      */
     @Override
     public void receiveCoins(final Player p) {
@@ -57,7 +62,7 @@ public class GameMapSquareImpl implements GameMapSquare {
     }
 
     /**
-     * 
+     * {@inheritDoc}
      */
     @Override
     public int getDamage() {
@@ -65,15 +70,15 @@ public class GameMapSquareImpl implements GameMapSquare {
     }
 
     /**
-     * 
+     * {@inheritDoc}
      */
     @Override
-    public void receiveDamage(final Player p) {
+    public void receiveDamage(final Player p, final GameMap gameMap) {
         throw new UnsupportedOperationException("This is not a damage game map square");
     }
 
     /**
-     * 
+     * {@inheritDoc}
      */
     @Override
     public void receiveStar(final Player p) {
@@ -81,7 +86,23 @@ public class GameMapSquareImpl implements GameMapSquare {
     }
 
     /**
-     * 
+     * {@inheritDoc}
+     */
+    @Override
+    public void receivePowerup(final Player p) {
+        throw new UnsupportedOperationException("This is not a powerup game map square");
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public GenericPowerup getPowerup() {
+        throw new UnsupportedOperationException("This is not a powerup game map square");
+    }
+
+    /**
+     * {@inheritDoc}
      */
     @Override
     public boolean isCoinsGameMapSquare() {
@@ -89,7 +110,7 @@ public class GameMapSquareImpl implements GameMapSquare {
     }
 
     /**
-     * 
+     * {@inheritDoc}
      */
     @Override
     public boolean isStarGameMapSquare() {
@@ -97,7 +118,7 @@ public class GameMapSquareImpl implements GameMapSquare {
     }
 
     /**
-     * 
+     * {@inheritDoc}
      */
     @Override
     public boolean isPowerUpGameMapSquare() {
@@ -105,10 +126,20 @@ public class GameMapSquareImpl implements GameMapSquare {
     }
 
     /**
-     * 
+     * {@inheritDoc}
      */
     @Override
     public boolean isDamageGameMapSquare() {
         return false;
     }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public String toString() {
+        return "GameMapSquare []";
+    }
+
+
 }

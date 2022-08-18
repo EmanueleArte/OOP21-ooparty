@@ -99,9 +99,9 @@ public interface Player {
     void addLifePoints(int amount);
 
     /**
-     * Takes Away life from the player.
-     * 
+     * Takes away life points from the player.
      * @param damage the amount of life to be taken away
+     * @param gameMap the game map (used to move the {@link Player} if he dies)
      */
     void loseLifePoints(int damage, GameMap gameMap);
 
@@ -128,6 +128,12 @@ public interface Player {
     List<GenericPowerup> getPowerupList();
 
     /**
+     * Adds a {@link GenericPowerup} to this player's powerups list.
+     * @param powerup the powerup to add to the player
+     */
+    void addPowerup(GenericPowerup powerup);
+
+    /**
      * Uses one powerup and removes it from the list.
      * 
      * @param powerupType type of powerup to use
@@ -135,8 +141,26 @@ public interface Player {
     void usePowerup(String powerupType, Player target, GameMap gameMap);
 
     /**
-     * Adds a {@link GenericPowerup} to this player's powerups list.
-     * @param powerup the powerup to add to the player
+     * 
+     * @return the amount of coins earned the last time this player earned coins
      */
-    void addPowerup(GenericPowerup powerup);
+    int getLastEarnedCoins();
+
+    /**
+     * 
+     * @return the amount of damage taken the last time this player was hit
+     */
+    int getLastDamageTaken();
+
+    /**
+     * Returns if the last star was earned (true) or if the player didn't have enough coins to earn it (false).
+     * @return if the last star was earned (true) or if the player didn't have enough coins to earn it (false)
+     */
+    boolean getIsLastStarEarned();
+
+    /**
+     * Sets if the last star was earned.
+     * @param isLastStarEarned if the last star was earned
+     */
+    void setIsLastStarEarned(boolean isLastStarEarned);
 }

@@ -1,20 +1,44 @@
 package game.gamehandler.view;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
+import java.util.Optional;
+import java.util.stream.Collectors;
 import game.gamehandler.controller.GameHandlerController;
+import game.map.CoinsGameMapSquare;
+import game.map.DamageGameMapSquare;
+import game.map.GameMap;
+import game.map.GameMapSquare;
+import game.map.PowerUpGameMapSquare;
+import game.map.StarGameMapSquare;
 import game.player.Player;
 import javafx.animation.FadeTransition;
 import javafx.animation.TranslateTransition;
 import javafx.fxml.FXML;
+import javafx.geometry.HPos;
+import javafx.geometry.Insets;
+import javafx.geometry.Point2D;
+import javafx.geometry.Pos;
+import javafx.geometry.VPos;
 import javafx.scene.Group;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.layout.Background;
+import javafx.scene.layout.BackgroundFill;
+import javafx.scene.layout.Border;
+import javafx.scene.layout.BorderStroke;
+import javafx.scene.layout.BorderStrokeStyle;
+import javafx.scene.layout.BorderWidths;
+import javafx.scene.layout.CornerRadii;
+import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
@@ -25,9 +49,22 @@ import utils.controller.GenericController;
 import utils.enums.OrdinalNumber;
 import utils.enums.PlayerTurnProgress;
 import utils.enums.TurnProgress;
+import utils.readers.MapLayoutReader;
 import utils.view.GenericViewController;
 
 public class GameHandlerViewControllerImpl implements GenericViewController {
+
+    private static final int SQUARE_WIDTH = 87;
+    private static final int SQUARE_HEIGHT = 74;
+    private static final int MAP_WIDTH = 11;
+    private static final int MAP_HEIGHT = 8;
+    private static final int PLAYER_X_START = -825;
+    private static final int PLAYER_Y_START = -600;
+/*    private static final int COIN_DIM = 25;
+    private static final int STAR_DIM = 25;
+    private static final int POWERUP_DIM = 25;
+    private static final int DAMAGE_ICON_DIM = 25;*/
+    private static final int ICON_DIM = 25;
 
     private GameHandlerController controller;
 
@@ -39,6 +76,12 @@ public class GameHandlerViewControllerImpl implements GenericViewController {
     private Group avatars;
     @FXML
     private HBox rankPlayersContainer;
+    @FXML
+    private GridPane mapGrid;
+    @FXML
+    private StackPane stackPaneContainer;
+    @FXML
+    private Label updatesLabel;
 
     private final Map<Player, Group> playerToAvatar = new HashMap<Player, Group>();
 
@@ -51,7 +94,9 @@ public class GameHandlerViewControllerImpl implements GenericViewController {
         }
     }
 
-    public final void initialize(final List<Player> players) {
+    public final void initialize(final List<Player> players, final GenericController controller) {
+        this.setController(controller);
+
         List<Group> avatarsList = new ArrayList<Group>();
         this.avatars.getChildren().forEach(c -> {
             avatarsList.add((Group) c);
@@ -75,7 +120,23 @@ public class GameHandlerViewControllerImpl implements GenericViewController {
             }
         });
 
-        initializeRank(players);
+        initializeLeaderboard(players);
+
+        initializeMap(this.controller.getGameMap());
+
+        final List<Point2D> squarePositions = mapGrid.getChildren()
+                .stream()
+                .filter(l -> l instanceof Label)
+                .map(l -> new Point2D(
+                        mapGrid.getLayoutX() + GridPane.getRowIndex(l) * SQUARE_WIDTH,
+                        mapGrid.getLayoutY() + GridPane.getColumnIndex(l) * SQUARE_HEIGHT))
+                .collect(Collectors.toList());
+
+        /*avatarsList.forEach(a -> {
+            a.setLayoutX(PLAYER_X_START);
+            a.setLayoutY(PLAYER_Y_START);
+        });*/
+        avatarsList.forEach(a -> System.out.println(a.isVisible() + ": " + a.getLayoutX() + " " + a.getLayoutY()));
     }
 
     @FXML
@@ -86,21 +147,50 @@ public class GameHandlerViewControllerImpl implements GenericViewController {
     }
 
     private void nextStep() {
-        int progress = this.controller.nextStep();
-        if (progress == TurnProgress.SHOW_BANNER.getProgress()) {
-            this.showBanner("Turn " + this.controller.getTurnNumber());
-        } else if (progress == TurnProgress.HIDE_BANNER.getProgress()) {
-            this.hideBanner();
-        } else if (progress == TurnProgress.PLAYERS_TURNS.getProgress()) {
-            int playerProgress = this.controller.nextPlayerTurnStep();
-            if (playerProgress == PlayerTurnProgress.SHOW_BANNER.getProgress()) {
-                this.showBanner(this.controller.getCurrentPlayer().get().getNickname() + "'s turn");
-            } else if (playerProgress == PlayerTurnProgress.HIDE_BANNER.getProgress()) {
+        Optional<TurnProgress> progress = this.controller.nextStep();
+
+        if (progress.isPresent()) {
+            if (progress.get() == TurnProgress.SHOW_BANNER) {
+                this.showBanner("Turn " + this.controller.getTurnNumber());
+            } else if (progress.get() == TurnProgress.HIDE_BANNER) {
                 this.hideBanner();
-            } else if (playerProgress == PlayerTurnProgress.MOVE_PLAYER.getProgress()) {
-                this.movePlayer(this.controller.getCurrentPlayer().get(), 10);
+            } else if (progress.get() == TurnProgress.PLAYERS_TURNS) {
+
+                Optional<PlayerTurnProgress> playerProgress = this.controller.nextPlayerTurnStep();
+
+                if (playerProgress.isPresent()) {
+                    if (playerProgress.get() == PlayerTurnProgress.SHOW_BANNER) {
+                        this.showBanner(this.controller.getCurrentPlayer().get().getNickname() + "'s turn");
+                    } else if (playerProgress.get() == PlayerTurnProgress.HIDE_BANNER) {
+                        this.hideBanner();
+                    } else if (playerProgress.get() == PlayerTurnProgress.MOVE_PLAYER) {
+                        Player currentPlayer = this.controller.getCurrentPlayer().get();
+                        this.movePlayer(currentPlayer, 10);
+                        if (this.controller.getGameMap().getPlayerPosition(currentPlayer).isCoinsGameMapSquare()) {
+                            this.setUpdatesLabel(currentPlayer.getNickname() + " earned " + currentPlayer.getLastEarnedCoins() + " coins!");
+                        } else if (this.controller.getGameMap().getPlayerPosition(currentPlayer).isDamageGameMapSquare()) {
+                            this.setUpdatesLabel(currentPlayer.getNickname() + " lost " + currentPlayer.getLastDamageTaken() + " life points!");
+                        } else if (this.controller.getGameMap().getPlayerPosition(currentPlayer).isStarGameMapSquare()) {
+                            if (currentPlayer.getIsLastStarEarned()) {
+                                this.setUpdatesLabel(currentPlayer.getNickname() + " earned a star!");
+                            } else {
+                                this.setUpdatesLabel(currentPlayer.getNickname() + " didn't have enough coins to buy a star!");
+                            }
+                        } else if (this.controller.getGameMap().getPlayerPosition(currentPlayer).isPowerUpGameMapSquare()) {
+                            this.setUpdatesLabel(currentPlayer.getNickname() + " got a new powerup!");
+                        }
+
+                        initializeLeaderboard(this.controller.getLeaderboard());
+                    }
+                }
             }
+        } else {
+            //TODO game end
         }
+    }
+
+    private void setUpdatesLabel(final String text) {
+        this.updatesLabel.setText(text);
     }
 
     private void showBanner(final String text) {
@@ -122,42 +212,86 @@ public class GameHandlerViewControllerImpl implements GenericViewController {
         TranslateTransition transition = new TranslateTransition();
         transition.setNode(this.playerToAvatar.get(p));
         transition.setDuration(Duration.millis(1000));
-        transition.setByX(this.playerToAvatar.get(p).getLayoutX() + movement * 10);
+        //transition.setByX(this.playerToAvatar.get(p).getLayoutX() + movement * 10);   //ogni tanto dà NullPointerException
         transition.play();
     }
 
-    public void rollDice() {
-        System.out.println("Dado tirato");
-    }
-
-    private void initializeRank(final List<Player> players) {
-        System.out.println("init rank");
+    private void initializeLeaderboard(final List<Player> players) {
+        rankPlayersContainer.getChildren().removeAll(rankPlayersContainer.getChildren());
         players.forEach(p -> {
             VBox box = new VBox();
             Label nicknameLabel = new Label(p.getNickname());
             Label coinsLabel = new Label("Coins: " + p.getCoinsCount());
             Label starsLabel = new Label("Stars: " + p.getStarsCount());
-            Label hpLabel = new Label("Hp: " + p.getLifePoints());
+            Label hpLabel = new Label("Life points: " + p.getLifePoints());
             Label rankLabel = new Label(OrdinalNumber.values()[players.indexOf(p)].getTextFormat());
 
-            String cssVBoxLayout = "-fx-border-color: " + toHexString(p.getColor()) + ";\n"
-                    + "-fx-border-insets: 5;\n"
-                    + "-fx-border-width: 3;\n";
+            box.setBorder(new Border(new BorderStroke(p.getColor(), BorderStrokeStyle.SOLID, CornerRadii.EMPTY, new BorderWidths(2))));
+            box.setPrefWidth(100);
 
-            box.setStyle(cssVBoxLayout);
             box.getChildren().addAll(nicknameLabel, coinsLabel, starsLabel, hpLabel, rankLabel);
+
             rankPlayersContainer.getChildren().add(box);
         });
 
-        rankPlayersContainer.setSpacing(20);
+        //rankPlayersContainer.setSpacing(20);
     }
 
-    private static String toHexString(final Color color) {
-        int r = ((int) Math.round(color.getRed()     * 255)) << 24;
-        int g = ((int) Math.round(color.getGreen()   * 255)) << 16;
-        int b = ((int) Math.round(color.getBlue()    * 255)) << 8;
-        int a = ((int) Math.round(color.getOpacity() * 255));
+    private void initializeMap(final GameMap map) {
+        MapLayoutReader reader = new MapLayoutReader();
+        var layoutType = map.getLayout();
+        var layout = reader.loadMapLayout(layoutType); // list of Point2D
 
-        return String.format("#%08X", (r + g + b + a));
-      }
+        map.getSquares().stream().map(s -> {
+            var img = getImage(s);
+            Label label = new Label();
+
+            if (img.isPresent()) {
+                ImageView view = new ImageView(img.get());
+                view.setFitHeight(ICON_DIM);
+                view.setPreserveRatio(true);
+                label.setGraphic(view);
+            } else {
+                if (map.getSquares().indexOf(s) == 0) {
+                    label.setText("Start");
+                }
+            }
+
+            label.setId(map.getSquares().indexOf(s) + "");
+
+            label.setPrefWidth(SQUARE_WIDTH);
+            label.setPrefHeight(SQUARE_HEIGHT);
+            label.setAlignment(Pos.CENTER);
+            label.setBorder(new Border(new BorderStroke(Color.BLACK, BorderStrokeStyle.SOLID, CornerRadii.EMPTY, new BorderWidths(1))));
+            label.setBackground(new Background(new BackgroundFill(Color.GRAY, CornerRadii.EMPTY, Insets.EMPTY)));
+
+            return label;
+        }).forEach(l -> {
+            var index = Integer.parseInt(l.getId());
+            mapGrid.getChildren().add(l);
+            GridPane.setRowIndex(l, (int) layout.get(index).getY());
+            GridPane.setColumnIndex(l, (int) layout.get(index).getX());
+            GridPane.setHalignment(l, HPos.CENTER);
+            GridPane.setValignment(l, VPos.CENTER);
+        });
+
+        mapGrid.setHgap(2);
+        mapGrid.setVgap(2);
+    }
+
+    private Optional<Image> getImage(final GameMapSquare s) {
+        if (s.getClass().equals(CoinsGameMapSquare.class)) {
+            return Optional.of(new Image("game/coin.png"));
+        }
+        if (s.getClass().equals(DamageGameMapSquare.class)) {
+            return Optional.of(new Image("game/damage.png"));
+        }
+        if (s.getClass().equals(PowerUpGameMapSquare.class)) {
+            return Optional.of(new Image("game/powerup.png"));
+        }
+        if (s.getClass().equals(StarGameMapSquare.class)) {
+            return Optional.of(new Image("game/star.png"));
+        }
+        return Optional.empty();
+    }
 }

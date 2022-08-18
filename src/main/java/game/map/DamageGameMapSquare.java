@@ -4,6 +4,9 @@ import java.util.Random;
 
 import game.player.Player;
 
+/**
+ * A game map square where you get damage.
+ */
 public class DamageGameMapSquare extends GameMapSquareImpl {
     private int damage;
 
@@ -18,8 +21,8 @@ public class DamageGameMapSquare extends GameMapSquareImpl {
     }
 
     @Override
-    public final void receiveDamage(final Player p) {
-        p.loseLifePoints(this.damage);
+    public final void receiveDamage(final Player p, final GameMap gameMap) {
+        p.loseLifePoints(this.damage, gameMap);
         this.generateNewDamage();
     }
 
@@ -45,5 +48,10 @@ public class DamageGameMapSquare extends GameMapSquareImpl {
     @Override
     public final boolean isDamageGameMapSquare() {
         return true;
+    }
+
+    @Override
+    public final String toString() {
+        return "GameMapSquare [Damage]";
     }
 }
