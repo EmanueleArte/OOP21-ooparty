@@ -14,9 +14,9 @@ import utils.controller.GenericController;
 import utils.view.GenericViewController;
 
 /**
- * Implementation of {@link Gui}.
+ * Implementation of {@link FxmlGui}.
  */
-public class GuiImpl extends JFrame implements Gui {
+public class FxmlGuiImpl extends JFrame implements FxmlGui {
 
     private static final long serialVersionUID = -4895173910811030481L;
     /**
@@ -33,11 +33,11 @@ public class GuiImpl extends JFrame implements Gui {
     private Optional<Parent> root;
 
     /**
-     * Builds a new {@link GuiImpl}.
+     * Builds a new {@link FxmlGuiImpl}.
      * 
      * @param title the title of the frame
      */
-    public GuiImpl(final String title) {
+    public FxmlGuiImpl(final String title) {
         this.mainStage = Optional.empty();
         this.root = Optional.empty();
         this.frame = new JFrame(title);
@@ -48,7 +48,7 @@ public class GuiImpl extends JFrame implements Gui {
         this.mainStage = Optional.of(new JFXPanel());
         this.frame.add(this.mainStage.get());
         this.frame.pack();
-        this.frame.setMinimumSize(new Dimension(GuiImpl.MIN_WIDTH, GuiImpl.MIN_HEIGHT));
+        this.frame.setMinimumSize(new Dimension(FxmlGuiImpl.MIN_WIDTH, FxmlGuiImpl.MIN_HEIGHT));
         this.frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
         this.frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.frame.setVisible(true);
@@ -87,8 +87,8 @@ public class GuiImpl extends JFrame implements Gui {
     }
 
     @Override
-    public final Optional<JFXPanel> getMainStage() {
-        return this.mainStage;
+    public final boolean mainStagePresence() {
+        return this.mainStage.isPresent();
     }
 
 }

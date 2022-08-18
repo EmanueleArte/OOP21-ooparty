@@ -8,8 +8,8 @@ import minigames.common.controller.MinigameController;
 import utils.controller.GenericController;
 import utils.graphics.model.SceneHandler;
 import utils.graphics.model.SceneHandlerImpl;
-import utils.graphics.view.Gui;
-import utils.graphics.view.GuiImpl;
+import utils.graphics.view.FxmlGui;
+import utils.graphics.view.FxmlGuiImpl;
 
 /**
  * Implementation of {@link StageManager}.
@@ -19,7 +19,7 @@ import utils.graphics.view.GuiImpl;
 public class StageManagerImpl<S> implements StageManager<S> {
 
     private final SceneHandler<S> sceneHandler;
-    private final Gui gui;
+    private final FxmlGui gui;
     private Optional<MinigameController> lastGameController;
 
     /**
@@ -29,7 +29,7 @@ public class StageManagerImpl<S> implements StageManager<S> {
      */
     public StageManagerImpl(final String title) {
         this.sceneHandler = new SceneHandlerImpl<>();
-        this.gui = new GuiImpl(title);
+        this.gui = new FxmlGuiImpl(title);
         this.lastGameController = Optional.empty();
     }
 
@@ -49,7 +49,7 @@ public class StageManagerImpl<S> implements StageManager<S> {
     @Override
     public final S popScene() {
         var poppedScene = this.sceneHandler.popScene();
-        if (gui.getMainStage().isPresent()) {
+        if (gui.mainStagePresence()) {
             gui.setScene((Scene) this.getScenes().get(this.sceneHandler.lastSceneIndex()));
         }
         return poppedScene;
@@ -76,7 +76,7 @@ public class StageManagerImpl<S> implements StageManager<S> {
     }
 
     @Override
-    public final Gui getGui() {
+    public final FxmlGui getGui() {
         return this.gui;
     }
 
