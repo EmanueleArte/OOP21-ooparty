@@ -22,10 +22,10 @@ public class TestGameMapSquares {
 
     private final GameMap gameMap = new GameMapImpl(List.of(new GameMapSquareImpl(), new DamageGameMapSquare(), new CoinsGameMapSquare(), new CoinsGameMapSquare(), new CoinsGameMapSquare(),
                                                         new PowerUpGameMapSquare(), new PowerUpGameMapSquare(), new DamageGameMapSquare(), new PowerUpGameMapSquare(), new StarGameMapSquare(),
-                                                        new CoinsGameMapSquare(), new StarGameMapSquare(), new StarGameMapSquare(), new CoinsGameMapSquare(), new CoinsGameMapSquare(),
                                                         new CoinsGameMapSquare(), new PowerUpGameMapSquare(), new DamageGameMapSquare(), new CoinsGameMapSquare(), new CoinsGameMapSquare(),
-                                                        new PowerUpGameMapSquare(), new CoinsGameMapSquare(), new DamageGameMapSquare(), new StarGameMapSquare(), new CoinsGameMapSquare(),
-                                                        new StarGameMapSquare(), new CoinsGameMapSquare(), new DamageGameMapSquare(), new DamageGameMapSquare(), new PowerUpGameMapSquare()));
+                                                        new CoinsGameMapSquare(), new PowerUpGameMapSquare(), new DamageGameMapSquare(), new CoinsGameMapSquare(), new CoinsGameMapSquare(),
+                                                        new PowerUpGameMapSquare(), new CoinsGameMapSquare(), new DamageGameMapSquare(), new CoinsGameMapSquare(), new CoinsGameMapSquare(),
+                                                        new CoinsGameMapSquare(), new CoinsGameMapSquare(), new DamageGameMapSquare(), new DamageGameMapSquare(), new PowerUpGameMapSquare()));
     private final Player p1 = new PlayerImpl("Giocatore 1");
     private final Player p2 = new PlayerImpl("Giocatore 2");
 
@@ -53,12 +53,8 @@ public class TestGameMapSquares {
         assertFalse(this.p2.getPosition(this.gameMap).isPowerUpGameMapSquare());
         assertFalse(this.p2.getPosition(this.gameMap).isStarGameMapSquare());
         int damageNum = gameMap.getSquares().get(dice).getDamage();
-        this.p2.getPosition(this.gameMap).receiveDamage(p2, this.gameMap);
+        this.p2.getPosition(this.gameMap).receiveDamage(p2);
         assertEquals(damageNum, PlayerImpl.MAX_LIFE - p2.getLifePoints());
-        while (this.p2.getLifePoints() != PlayerImpl.MAX_LIFE) {
-            this.p2.getPosition(this.gameMap).receiveDamage(p2, this.gameMap);
-        }
-        assertEquals(this.p2.getPosition(this.gameMap), this.gameMap.getSquares().get(0));
     }
 
     @Test

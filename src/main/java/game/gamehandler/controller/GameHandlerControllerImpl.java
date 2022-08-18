@@ -91,4 +91,8 @@ public class GameHandlerControllerImpl<S> extends GenericControllerAbstr
         pauseMenuController.createMenu();
     }
 
+    public final void checkPlayerDeath(final Player p) {
+        this.model.checkPlayerDeath(p);
+    }
+
 }

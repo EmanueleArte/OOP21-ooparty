@@ -16,7 +16,7 @@ public class GameMapImpl implements GameMap {
     /**
      * Number of coins required to buy a star.
      */
-    public static final int COINS_TO_BUY_STAR = 50;
+    public static final int COINS_TO_BUY_STAR = 30;
 
     public GameMapImpl() {
         GameBoardFactory f = new SimpleGameBoardFactory();

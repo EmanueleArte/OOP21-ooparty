@@ -20,13 +20,11 @@ public class PowerupMenuControllerImpl extends GenericControllerAbstr implements
 
     private Player currentPlayer;
     private final List<Player> players;
-    private final GameMap gameMap;
 
-    public <S> PowerupMenuControllerImpl(final StageManager<S> s, final List<Player> players, final GameMap gameMap) {
+    public <S> PowerupMenuControllerImpl(final StageManager<S> s, final List<Player> players) {
         super(s);
         this.model = new PowerupMenuModelImpl(s);
         this.players = players;
-        this.gameMap = gameMap;
     }
 
     @Override
@@ -59,7 +57,7 @@ public class PowerupMenuControllerImpl extends GenericControllerAbstr implements
     public final void usePowerup(final String powerupType, final String targetName) {
         Optional<Player> target = this.players.stream().filter(x -> x.getNickname().equals(targetName)).findFirst();
         target.ifPresent(a -> {
-            this.currentPlayer.usePowerup(powerupType, target.get(), this.gameMap);
+            this.currentPlayer.usePowerup(powerupType, target.get());
             this.returnToGame();
         });
     }

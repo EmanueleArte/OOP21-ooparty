@@ -174,13 +174,16 @@ public class GameHandlerViewControllerImpl implements GenericViewController {
                         this.movePlayer(currentPlayer, 10);
                         if (this.controller.getGameMap().getPlayerPosition(currentPlayer).isCoinsGameMapSquare()) {
                             this.setUpdatesLabel(currentPlayer.getNickname() + " earned "
-                                    + currentPlayer.getLastEarnedCoins() + " coins!");
+                                                    + currentPlayer.getLastEarnedCoins() + " coins!");
                         } else if (this.controller.getGameMap().getPlayerPosition(currentPlayer)
-                                .isDamageGameMapSquare()) {
+                                    .isDamageGameMapSquare()) {
                             this.setUpdatesLabel(currentPlayer.getNickname() + " lost "
-                                    + currentPlayer.getLastDamageTaken() + " life points!");
+                                                    + currentPlayer.getLastDamageTaken() + " life points!");
+                            if (currentPlayer.isDead()) {
+                                this.setUpdatesLabel(this.updatesLabel.getText() + " He died!");
+                            }
                         } else if (this.controller.getGameMap().getPlayerPosition(currentPlayer)
-                                .isStarGameMapSquare()) {
+                                    .isStarGameMapSquare()) {
                             if (currentPlayer.getIsLastStarEarned()) {
                                 this.setUpdatesLabel(currentPlayer.getNickname() + " earned a star!");
                             } else {
@@ -188,10 +191,11 @@ public class GameHandlerViewControllerImpl implements GenericViewController {
                                         currentPlayer.getNickname() + " didn't have enough coins to buy a star!");
                             }
                         } else if (this.controller.getGameMap().getPlayerPosition(currentPlayer)
-                                .isPowerUpGameMapSquare()) {
+                                    .isPowerUpGameMapSquare()) {
                             this.setUpdatesLabel(currentPlayer.getNickname() + " got a new powerup!");
                         }
 
+                        this.controller.checkPlayerDeath(currentPlayer);
                         updateLeaderboard(this.controller.getLeaderboard());
                     }
                 }
@@ -224,8 +228,7 @@ public class GameHandlerViewControllerImpl implements GenericViewController {
         TranslateTransition transition = new TranslateTransition();
         transition.setNode(this.playerToAvatar.get(p));
         transition.setDuration(Duration.millis(1000));
-        //transition.setByX(this.playerToAvatar.get(p).getLayoutX() + movement * 10);
-        //ogni tanto dà NullPointerException
+        //transition.setByX(this.playerToAvatar.get(p).getLayoutX() + movement * 10);   //ogni tanto dà NullPointerException
         transition.play();
     }
 
