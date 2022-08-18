@@ -25,6 +25,7 @@ public class PlayerImpl implements Player {
     private int lastDamageTaken;
     private int dicesToRoll;
     private final List<GenericPowerup> powerups;
+    private boolean isDead;
 
     /**
      * The maximum amount of life points.
@@ -48,6 +49,7 @@ public class PlayerImpl implements Player {
         this.lastDamageTaken = 0;
         this.dicesToRoll = 1;
         this.powerups = new ArrayList<>();
+        this.isDead = false;
     }
 
     public PlayerImpl(final String nickname) {
@@ -146,15 +148,21 @@ public class PlayerImpl implements Player {
     }
 
     @Override
-    public final void loseLifePoints(final int damage, final GameMap gameMap) {
+    public final void loseLifePoints(final int damage) {
         if (damage <= 0) {
             throw new IllegalArgumentException("Damage can't be 0 or negative");
         }
         this.lifePoints = this.lifePoints - damage;
         this.lastDamageTaken = damage;
         if (this.lifePoints <= 0) {
-            this.death(gameMap);
+            this.isDead = true;
+            this.lifePoints = 0;
         }
+    }
+
+    @Override
+    public final boolean isDead() {
+        return this.isDead;
     }
 
     private void death(final GameMap gameMap) {
@@ -164,14 +172,7 @@ public class PlayerImpl implements Player {
     }
 
     private void respawn(final GameMap gameMap) {
-        int starSquareIndex = 0;
-        for (GameMapSquare s : gameMap.getSquares()) {
-            if (s.isStarGameMapSquare()) {
-                starSquareIndex = gameMap.getSquares().indexOf(s);
-            }
-        }
-
-        int firstFreeSquareIndex = starSquareIndex + 1;
+        int firstFreeSquareIndex = this.getStarSquareIndex(gameMap) + 1;
         if (firstFreeSquareIndex >= gameMap.getSquares().size()) {
             firstFreeSquareIndex = 0;
         }
@@ -182,6 +183,18 @@ public class PlayerImpl implements Player {
                 firstFreeSquareIndex = 0;
             }
         }
+        System.out.println("fFSI: " + firstFreeSquareIndex);
+        this.goTo(gameMap, gameMap.getSquares().get(firstFreeSquareIndex));
+    }
+
+    private int getStarSquareIndex(final GameMap gameMap) {
+        int starSquareIndex = 0;
+        for (GameMapSquare s : gameMap.getSquares()) {
+            if (s.isStarGameMapSquare()) {
+                starSquareIndex = gameMap.getSquares().indexOf(s);
+            }
+        }
+        return starSquareIndex;
     }
 
     @Override
@@ -242,10 +255,10 @@ public class PlayerImpl implements Player {
     }
 
     @Override
-    public final void usePowerup(final String powerupType, final Player target, final GameMap gameMap) {
+    public final void usePowerup(final String powerupType, final Player target) {
         Optional<GenericPowerup> p = this.powerups.stream().filter(x -> x.getPowerupType().equals(powerupType)).findFirst();
         p.ifPresent(a -> {
-            p.get().usePowerup(target, gameMap);
+            p.get().usePowerup(target);
             this.powerups.remove(p.get());
         });
     }

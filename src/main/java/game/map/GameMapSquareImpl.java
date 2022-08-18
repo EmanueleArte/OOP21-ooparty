@@ -1,6 +1,5 @@
 package game.map;
 
-import java.lang.annotation.Inherited;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -21,7 +20,7 @@ public class GameMapSquareImpl implements GameMapSquare {
     /**
      * Maximum number of damage that can be taken from a damage square.
      */
-    public static final int MAX_DAMAGE = 50;
+    public static final int MAX_DAMAGE = 1050;
 
     public GameMapSquareImpl() {
         this.players = new HashSet<>();
@@ -73,7 +72,7 @@ public class GameMapSquareImpl implements GameMapSquare {
      * {@inheritDoc}
      */
     @Override
-    public void receiveDamage(final Player p, final GameMap gameMap) {
+    public void receiveDamage(final Player p) {
         throw new UnsupportedOperationException("This is not a damage game map square");
     }
 
