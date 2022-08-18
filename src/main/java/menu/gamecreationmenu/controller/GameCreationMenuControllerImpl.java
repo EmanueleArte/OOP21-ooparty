@@ -6,10 +6,8 @@ import menu.gamecreationmenu.model.GameCreationMenuModelImpl;
 import menu.gamecreationmenu.view.GameCreationMenuViewController;
 import menu.gamecreationmenu.view.GameCreationMenuViewControllerImpl;
 import utils.controller.GenericControllerAbstr;
-import utils.factories.FxmlViewFactoryImpl;
 import utils.graphics.controller.StageManager;
 import utils.view.GenericViewController;
-import utils.view.GenericViewUtils;
 
 /**
  * Extension of {@link GenericControllerAbstr} and implementation of
@@ -62,7 +60,7 @@ public class GameCreationMenuControllerImpl extends GenericControllerAbstr imple
 
     @Override
     public final void createMenu() {
-        GenericViewUtils.createScene(this.getStageManager(), this, "menu/creation_menu.fxml");
+        this.getViewFactory().createGameCreationMenu(this);
     }
 
     /**
