@@ -157,44 +157,13 @@ public class PlayerImpl implements Player {
         if (this.lifePoints <= 0) {
             this.isDead = true;
             this.lifePoints = 0;
+            this.updateCoins(this.getCoinsCount() / 2);
         }
     }
 
     @Override
     public final boolean isDead() {
         return this.isDead;
-    }
-
-    private void death(final GameMap gameMap) {
-        this.updateCoins(this.getCoinsCount() / 2);
-        this.respawn(gameMap);
-        this.lifePoints = PlayerImpl.MAX_LIFE;
-    }
-
-    private void respawn(final GameMap gameMap) {
-        int firstFreeSquareIndex = this.getStarSquareIndex(gameMap) + 1;
-        if (firstFreeSquareIndex >= gameMap.getSquares().size()) {
-            firstFreeSquareIndex = 0;
-        }
-        while (gameMap.getSquares().get(firstFreeSquareIndex).isCoinsGameMapSquare() || gameMap.getSquares().get(firstFreeSquareIndex).isPowerUpGameMapSquare()
-                || gameMap.getSquares().get(firstFreeSquareIndex).isDamageGameMapSquare() || gameMap.getSquares().get(firstFreeSquareIndex).isStarGameMapSquare()) {
-            firstFreeSquareIndex++;
-            if (firstFreeSquareIndex >= gameMap.getSquares().size()) {
-                firstFreeSquareIndex = 0;
-            }
-        }
-        System.out.println("fFSI: " + firstFreeSquareIndex);
-        this.goTo(gameMap, gameMap.getSquares().get(firstFreeSquareIndex));
-    }
-
-    private int getStarSquareIndex(final GameMap gameMap) {
-        int starSquareIndex = 0;
-        for (GameMapSquare s : gameMap.getSquares()) {
-            if (s.isStarGameMapSquare()) {
-                starSquareIndex = gameMap.getSquares().indexOf(s);
-            }
-        }
-        return starSquareIndex;
     }
 
     @Override
@@ -281,6 +250,45 @@ public class PlayerImpl implements Player {
     @Override
     public final void setIsLastStarEarned(final boolean isLastStarEarned) {
         this.isLastStarEarned = isLastStarEarned;
+    }
+
+    @Override
+    public final void checkIfDeadAndRespawn(final GameMap gameMap) {
+        if (this.isDead()) {
+            this.death(gameMap);
+        }
+    }
+
+    private void death(final GameMap gameMap) {
+        this.respawn(gameMap);
+        this.lifePoints = PlayerImpl.MAX_LIFE;
+        this.isDead = false;
+    }
+
+    private void respawn(final GameMap gameMap) {
+        int firstFreeSquareIndex = this.getStarSquareIndex(gameMap) + 1;
+        if (firstFreeSquareIndex >= gameMap.getSquares().size()) {
+            firstFreeSquareIndex = 0;
+        }
+        while (gameMap.getSquares().get(firstFreeSquareIndex).isCoinsGameMapSquare() || gameMap.getSquares().get(firstFreeSquareIndex).isPowerUpGameMapSquare()
+                || gameMap.getSquares().get(firstFreeSquareIndex).isDamageGameMapSquare() || gameMap.getSquares().get(firstFreeSquareIndex).isStarGameMapSquare()) {
+            firstFreeSquareIndex++;
+            if (firstFreeSquareIndex >= gameMap.getSquares().size()) {
+                firstFreeSquareIndex = 0;
+            }
+        }
+        System.out.println("fFSI: " + firstFreeSquareIndex);
+        this.goTo(gameMap, gameMap.getSquares().get(firstFreeSquareIndex));
+    }
+
+    private int getStarSquareIndex(final GameMap gameMap) {
+        int starSquareIndex = 0;
+        for (GameMapSquare s : gameMap.getSquares()) {
+            if (s.isStarGameMapSquare()) {
+                starSquareIndex = gameMap.getSquares().indexOf(s);
+            }
+        }
+        return starSquareIndex;
     }
 
 }

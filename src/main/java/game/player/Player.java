@@ -169,4 +169,10 @@ public interface Player {
      * @return if the player died in the last turn
      */
     boolean isDead();
+
+    /**
+     * Checks if the player is dead and if he is, makes him respawn.
+     * @param gameMap the map of the game
+     */
+    void checkIfDeadAndRespawn(GameMap gameMap);
 }

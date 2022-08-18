@@ -111,7 +111,9 @@ public class GameHandlerModelImpl<S> implements GameHandlerModel {
                 } else if (playerPosition.isPowerUpGameMapSquare()) {
                     playerPosition.receivePowerup(cp);
                 }
-                System.out.println(this.gameMap.getSquares().indexOf(playerPosition));
+                System.out.println("Before: " + this.gameMap.getSquares().indexOf(playerPosition));
+                cp.checkIfDeadAndRespawn(this.gameMap);
+                System.out.println("After: " + this.gameMap.getSquares().indexOf(playerPosition));
             }
         }
 
