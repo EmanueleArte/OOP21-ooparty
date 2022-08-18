@@ -32,7 +32,7 @@ public class GameHandlerControllerImpl<S> extends GenericControllerAbstr
 
     @Override
     public final void start() {
-        GenericViewUtils.createScene(this.getStageManager(), this, DiceViewControllerImpl.class, "game/game.fxml");
+        GenericViewUtils.createScene(this.getStageManager(), this, "game/game.fxml");
     }
 
     @Override

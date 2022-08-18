@@ -21,7 +21,7 @@
                   <Insets top="40.0" />
                </BorderPane.margin>
                <children>
-                  <Label fx:id="titleLabel" text="Memo">
+                  <Label fx:id="titleLabel" text="You're the Bob-omb">
                      <font>
                         <Font size="48.0" />
                      </font>
@@ -35,7 +35,7 @@
                                     <Font size="36.0" />
                                  </font>
                               </Label>
-                              <TextArea fx:id="rulesTxtArea" editable="false" focusTraversable="false" prefHeight="403.0" prefWidth="500.0" text="In Memo there is a deck of cards composed by N couple of colored cards. At the start the deck si disposed with each card face down. In turn, each player chooses two cards and turns them face up. If they are of the same color then that player wins the pair and plays again. If they are not of the same color, they are turned face down again and player's turn ends. &#10;The game ends when the last pair has been picked up. The winner is the person with the most pairs." wrapText="true">
+                              <TextArea fx:id="rulesTxtArea" editable="false" focusTraversable="false" prefHeight="403.0" prefWidth="500.0" text="In You're the Bob-omb each player has in front of him a bomb with 5 buttons. One of them detonates the bomb, while the others do nothing. The goal is not to press the button which activate the bomb." wrapText="true">
                                  <font>
                                     <Font size="18.0" />
                                  </font>

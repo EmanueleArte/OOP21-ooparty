@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox alignment="TOP_CENTER" minHeight="-Infinity" minWidth="-Infinity" prefHeight="2160.0" prefWidth="3840.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="minigames.common.view.MinigameGuideViewControllerImpl">
+<VBox alignment="TOP_CENTER" minHeight="-Infinity" minWidth="-Infinity" prefHeight="2160.0" prefWidth="3840.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="minigames.common.view.MinigameGuideViewControllerImplminigames.common.view.MinigameGuideViewControllerImpl">
    <children>
       <BorderPane prefHeight="735.0" prefWidth="1000.0">
          <center>
@@ -21,7 +21,7 @@
                   <Insets top="40.0" />
                </BorderPane.margin>
                <children>
-                  <Label fx:id="titleLabel" text="Memo">
+                  <Label fx:id="titleLabel" text="Cut From the Team">
                      <font>
                         <Font size="48.0" />
                      </font>
@@ -35,7 +35,7 @@
                                     <Font size="36.0" />
                                  </font>
                               </Label>
-                              <TextArea fx:id="rulesTxtArea" editable="false" focusTraversable="false" prefHeight="403.0" prefWidth="500.0" text="In Memo there is a deck of cards composed by N couple of colored cards. At the start the deck si disposed with each card face down. In turn, each player chooses two cards and turns them face up. If they are of the same color then that player wins the pair and plays again. If they are not of the same color, they are turned face down again and player's turn ends. &#10;The game ends when the last pair has been picked up. The winner is the person with the most pairs." wrapText="true">
+                              <TextArea fx:id="rulesTxtArea" editable="false" focusTraversable="false" prefHeight="403.0" prefWidth="500.0" text="In Cut from the Team players line up and take turns cutting one of the ten wires, (nplayers - 1) of which are &quot;live.&quot; A player who cuts a dead wire is safe and moves to the back of the line. A player who cuts a &quot;live&quot; wire is eliminated. The minigame continues until one player remains, and that player wins." wrapText="true">
                                  <font>
                                     <Font size="18.0" />
                                  </font>

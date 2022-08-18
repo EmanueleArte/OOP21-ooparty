@@ -27,7 +27,7 @@ public class DiceControllerImpl extends GenericControllerAbstr implements DiceCo
 
     @Override
     public final void start(final Player p) {
-        GenericViewUtils.createScene(this.getStageManager(), this, DiceViewControllerImpl.class, "game/dice.fxml");
+        GenericViewUtils.createScene(this.getStageManager(), this, "game/dice.fxml");
         this.viewController.initialize(p.getColor());
     }
 

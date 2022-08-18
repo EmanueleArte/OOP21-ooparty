@@ -36,7 +36,7 @@ public interface GameModel<S> {
     /**
      * Getter for the current player.
      * 
-     * @return the current player
+     * @return the current player if exists
      */
     Player getCurrPlayer();
 

@@ -4,8 +4,10 @@ import java.util.Comparator;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
 import java.util.stream.Collectors;
 
+import exceptions.PlayerNotFoundException;
 import game.common.model.GameModelAbstr;
 import game.dice.controller.DiceController;
 import game.dice.controller.DiceControllerImpl;
@@ -21,7 +23,6 @@ public abstract class MinigameModelAbstr<S> extends GameModelAbstr<S> implements
 
     private final Map<Player, Integer> playersClassification;
     private final DiceController dice;
-    private int score;
 
     /**
      * Builds a new {@link MinigameModelAbstr}.
@@ -64,7 +65,7 @@ public abstract class MinigameModelAbstr<S> extends GameModelAbstr<S> implements
 
     @Override
     public final int getScore() {
-        return this.score;
+        return this.playersClassification.getOrDefault(this.getCurrPlayer(), 0);
     }
 
     /**
@@ -90,9 +91,7 @@ public abstract class MinigameModelAbstr<S> extends GameModelAbstr<S> implements
                     sorted.put(player, this.dice.getLastResult().get());
                 });
                 players = sorted.entrySet().stream().sorted(Map.Entry.comparingByValue(Comparator.reverseOrder()))
-                        .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue, (x, y) -> y,
-                                LinkedHashMap::new))
-                        .keySet().stream().collect(Collectors.toList());
+                        .map(Entry::getKey).collect(Collectors.toList());
                 element.setValue(players);
             }
         });
@@ -115,9 +114,14 @@ public abstract class MinigameModelAbstr<S> extends GameModelAbstr<S> implements
      * Setter for score.
      * 
      * @param score the score of the player
+     * @throws PlayerNotFoundException if the current player is not set
      */
-    protected void setScore(final int score) {
-        this.score = score;
+    protected void setScore(final int score) throws PlayerNotFoundException {
+        if (this.hasCurrPlayer()) {
+            this.scoreMapper(this.getCurrPlayer(), score);
+        } else {
+            throw new PlayerNotFoundException("The current player is not set.");
+        }
     }
 
 }

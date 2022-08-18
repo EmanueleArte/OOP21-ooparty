@@ -4,9 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-import minigames.common.controller.MinigameController;
-import utils.controller.GenericController;
-
 /**
  * Implementation of {@link SceneHandler}.
  * 
@@ -51,14 +48,6 @@ public class SceneHandlerImpl<S> implements SceneHandler<S> {
     @Override
     public final List<S> getScenes() {
         return this.scenes;
-    }
-
-    @Override
-    public final MinigameController checkGameController(final GenericController controller) {
-        if (controller instanceof MinigameController) {
-            return (MinigameController) controller;
-        }
-        return null;
     }
 
 }

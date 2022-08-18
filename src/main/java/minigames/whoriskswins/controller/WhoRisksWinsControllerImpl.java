@@ -4,11 +4,9 @@ import java.util.List;
 
 import game.player.Player;
 import minigames.common.controller.MinigameGuideControllerImpl;
-import minigames.common.view.MinigameGuideViewControllerImpl;
 import minigames.whoriskswins.model.WhoRisksWinsModel;
 import minigames.whoriskswins.model.WhoRisksWinsModelImpl;
 import minigames.whoriskswins.view.WhoRisksWinsViewController;
-import minigames.whoriskswins.view.WhoRisksWinsViewControllerImpl;
 import utils.controller.GenericController;
 import utils.controller.GenericControllerAbstr;
 import utils.graphics.controller.StageManager;
@@ -51,15 +49,15 @@ public class WhoRisksWinsControllerImpl extends GenericControllerAbstr implement
     }
 
     @Override
-    public final List<?> getGameResults() {
+    public final List<Player> getGameResults() {
         return this.wrwModel.gameResults();
     }
 
     @Override
     public final void startGame() {
-        GenericViewUtils.createScene(this.getStageManager(), this, WhoRisksWinsViewControllerImpl.class, "minigames/who_risks_wins.fxml");
+        GenericViewUtils.createScene(this.getStageManager(), this, "minigames/who_risks_wins.fxml");
         final GenericController guideController = new MinigameGuideControllerImpl(this.getStageManager(), this);
-        GenericViewUtils.createScene(this.getStageManager(), guideController, MinigameGuideViewControllerImpl.class, "minigames/who_risks_wins_guide.fxml");
+        GenericViewUtils.createScene(this.getStageManager(), guideController, "minigames/who_risks_wins_guide.fxml");
     }
 
     @Override

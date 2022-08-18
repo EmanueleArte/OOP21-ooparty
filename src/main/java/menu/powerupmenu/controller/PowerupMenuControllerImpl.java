@@ -45,8 +45,7 @@ public class PowerupMenuControllerImpl extends GenericControllerAbstr implements
 
     @Override
     public final void start(final Player currentPlayer) {
-        GenericViewUtils.createScene(this.getStageManager(), this, PowerupMenuViewControllerImpl.class,
-                "game/powerups.fxml");
+        GenericViewUtils.createScene(this.getStageManager(), this, "game/powerups.fxml");
         this.viewController.initialize(currentPlayer.getPowerupList(), this.players);
         this.currentPlayer = currentPlayer;
     }
