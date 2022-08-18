@@ -69,4 +69,10 @@ public interface GameHandlerModel {
      * @return an ordered list of players
      */
     List<Player> getLeaderboard();
+
+    /**
+     * This method returns the turn order.
+     * @return an ordered list of players representing the turn order
+     */
+    List<Player> getTurnOrder();
 }

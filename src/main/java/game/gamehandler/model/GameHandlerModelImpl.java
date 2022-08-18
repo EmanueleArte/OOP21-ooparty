@@ -27,6 +27,7 @@ public class GameHandlerModelImpl<S> implements GameHandlerModel {
     private final PowerupMenuController powerupMenu;
     private final MinigameFactoryImpl<S> minigameFactory;
     private final GameMap gameMap;
+    private Optional<MinigameController> minigameController = Optional.empty();
 
     private final int turnsNumber;
     private int turn;
@@ -138,8 +139,8 @@ public class GameHandlerModelImpl<S> implements GameHandlerModel {
 
     @Override
     public final void playMinigame() {
-        final MinigameController minigameController = this.minigameFactory.createRandomMinigameController();
-        minigameController.startGame();
+        minigameController = Optional.of(this.minigameFactory.createRandomMinigameController());
+        minigameController.get().startGame();
     }
 
     @Override
@@ -191,5 +192,12 @@ public class GameHandlerModelImpl<S> implements GameHandlerModel {
             }
         });
         return tmp;
+    }
+
+    public List<Player> getTurnOrder() {
+        if (this.minigameController.isPresent()) {
+            return this.minigameController.get().getGameResults();
+        }
+        return this.players;
     }
 }

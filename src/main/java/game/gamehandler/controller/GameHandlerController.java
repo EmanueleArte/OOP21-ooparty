@@ -58,4 +58,6 @@ public interface GameHandlerController {
     List<Player> getLeaderboard();
 
     void pauseMenu();
+
+    List<Player> getTurnOrder();
 }
