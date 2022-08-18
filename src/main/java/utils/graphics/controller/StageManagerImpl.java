@@ -71,6 +71,11 @@ public class StageManagerImpl<S> implements StageManager<S> {
     }
 
     @Override
+    public final void setLastGameController(final GenericController controller) {
+        this.lastGameController = Optional.ofNullable(this.checkGameController(controller));
+    }
+
+    @Override
     public final Gui getGui() {
         return this.gui;
     }
