@@ -103,7 +103,7 @@ public interface Player {
      * 
      * @param damage the amount of life to be taken away
      */
-    void loseLifePoints(int damage);
+    void loseLifePoints(int damage, GameMap gameMap);
 
     /**
      * Sets number of dices to roll during the next turn.
