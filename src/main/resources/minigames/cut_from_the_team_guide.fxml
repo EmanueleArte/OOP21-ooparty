@@ -8,6 +8,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
 <VBox alignment="TOP_CENTER" minHeight="-Infinity" minWidth="-Infinity" prefHeight="2160.0" prefWidth="3840.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="minigames.common.view.MinigameGuideViewControllerImplminigames.common.view.MinigameGuideViewControllerImpl">
    <children>
@@ -21,11 +22,11 @@
                   <Insets top="40.0" />
                </BorderPane.margin>
                <children>
-                  <Label fx:id="titleLabel" text="Cut From the Team">
+                  <Text fill="#dfbe07" stroke="#a67f00" strokeLineJoin="BEVEL" strokeType="OUTSIDE" strokeWidth="2.0" text="Cut From the Team">
                      <font>
-                        <Font size="48.0" />
+                        <Font name="Phosphate Inline" size="80.0" />
                      </font>
-                  </Label>
+                  </Text>
                   <HBox alignment="CENTER" prefHeight="453.0" prefWidth="1000.0">
                      <children>
                         <VBox alignment="TOP_CENTER" prefHeight="100.0" prefWidth="496.0" translateX="-2.0">
