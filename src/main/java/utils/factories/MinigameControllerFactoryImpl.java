@@ -9,20 +9,20 @@ import minigames.mastermind.controller.MastermindControllerImpl;
 import minigames.whoriskswins.controller.WhoRisksWinsControllerImpl;
 import utils.graphics.controller.StageManager;
 
-public class MinigameFactoryImpl<S> {
+public class MinigameControllerFactoryImpl<S> {
     private static final int MINIGAMES_NUMBER = 2;
 
     private final StageManager<S> stageManager;
     private final List<Player> players;
 
-    public MinigameFactoryImpl(final List<Player> players, final StageManager<S> s) {
+    public MinigameControllerFactoryImpl(final List<Player> players, final StageManager<S> s) {
         this.players = players;
         this.stageManager = s;
     }
 
     public final MinigameController createRandomMinigameController() {
         Random rand = new Random();
-        switch (rand.nextInt(MinigameFactoryImpl.MINIGAMES_NUMBER)) {
+        switch (rand.nextInt(MinigameControllerFactoryImpl.MINIGAMES_NUMBER)) {
         case 0:
             return this.createMastermindController();
         case 1:

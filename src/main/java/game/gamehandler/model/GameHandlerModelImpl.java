@@ -11,13 +11,12 @@ import game.dice.controller.DiceControllerImpl;
 import game.map.GameMap;
 import game.map.GameMapSquare;
 import game.player.Player;
-import game.powerup.DoubleDicePowerup;
 import menu.powerupmenu.controller.PowerupMenuController;
 import menu.powerupmenu.controller.PowerupMenuControllerImpl;
 import minigames.common.controller.MinigameController;
 import utils.enums.PlayerTurnProgress;
 import utils.enums.TurnProgress;
-import utils.factories.MinigameFactoryImpl;
+import utils.factories.MinigameControllerFactoryImpl;
 import utils.graphics.controller.StageManager;
 
 public class GameHandlerModelImpl<S> implements GameHandlerModel {
@@ -25,7 +24,7 @@ public class GameHandlerModelImpl<S> implements GameHandlerModel {
     private final StageManager<S> stageManager;
     private final DiceController dice;
     private final PowerupMenuController powerupMenu;
-    private final MinigameFactoryImpl<S> minigameFactory;
+    private final MinigameControllerFactoryImpl<S> minigameFactory;
     private final GameMap gameMap;
     private Optional<MinigameController> minigameController = Optional.empty();
 
@@ -42,7 +41,7 @@ public class GameHandlerModelImpl<S> implements GameHandlerModel {
         this.stageManager = s;
         this.dice = new DiceControllerImpl(this.stageManager, false);
         this.powerupMenu = new PowerupMenuControllerImpl(this.stageManager, players);
-        this.minigameFactory = new MinigameFactoryImpl<>(players, s);
+        this.minigameFactory = new MinigameControllerFactoryImpl<>(players, s);
         this.turnsNumber = turnsNumber;
         this.turn = 1;
         this.players = players;
