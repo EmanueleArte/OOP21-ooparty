@@ -194,6 +194,10 @@ public class GameHandlerModelImpl<S> implements GameHandlerModel {
         return tmp;
     }
 
+    /**
+     * {@inheritDoc}
+     */
+    @Override
     public List<Player> getTurnOrder() {
         if (this.minigameController.isPresent()) {
             return this.minigameController.get().getGameResults();
