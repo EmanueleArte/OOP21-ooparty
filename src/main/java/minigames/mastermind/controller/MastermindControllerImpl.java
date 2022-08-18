@@ -49,7 +49,7 @@ public class MastermindControllerImpl extends GenericControllerAbstr implements 
     }
 
     @Override
-    public final List<?> getGameResults() {
+    public final List<Player> getGameResults() {
         return this.mastermindModel.gameResults();
     }
 
