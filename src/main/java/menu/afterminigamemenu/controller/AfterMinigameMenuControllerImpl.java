@@ -3,17 +3,16 @@ package menu.afterminigamemenu.controller;
 import menu.MenuController;
 import menu.afterminigamemenu.model.AfterMinigameMenuModel;
 import menu.afterminigamemenu.model.AfterMinigameMenuModelImpl;
-import menu.gamecreationmenu.model.GameCreationMenuModel;
-import menu.gamecreationmenu.view.GameCreationMenuViewController;
-import menu.gamecreationmenu.view.GameCreationMenuViewControllerImpl;
+import menu.afterminigamemenu.view.AfterMinigameMenuViewController;
 import utils.controller.GenericControllerAbstr;
 import utils.graphics.controller.StageManager;
 import utils.view.GenericViewController;
+import utils.view.GenericViewUtils;
 
-public class AfterMinigameMenuControllerImpl extends GenericControllerAbstr implements MenuController {
+public class AfterMinigameMenuControllerImpl extends GenericControllerAbstr implements MenuController, AfterMinigameMenuController {
 
     private final AfterMinigameMenuModel menuModel;
-    private GameCreationMenuViewController menuViewController;
+    private AfterMinigameMenuViewController menuViewController;
 
     /**
      * Builder for {@link AfterMinigameMenuControllerImpl}.
@@ -29,7 +28,7 @@ public class AfterMinigameMenuControllerImpl extends GenericControllerAbstr impl
     @Override
     public final <C> void setViewController(final C viewController) {
         if (viewController instanceof AfterMinigameMenuControllerImpl) {
-            this.menuViewController = (GameCreationMenuViewControllerImpl) viewController;
+            this.menuViewController = (AfterMinigameMenuViewController) viewController;
         } else {
             throw new IllegalArgumentException("The parameter must be an instance of AfterMinigameMenuControllerImpl");
         }
@@ -52,7 +51,12 @@ public class AfterMinigameMenuControllerImpl extends GenericControllerAbstr impl
 
     @Override
     public final void createMenu() {
-        this.getViewFactory().createMainMenuView(this);
+        this.getViewFactory().createAfterMinigameMenu(this);
+    }
+
+    @Override
+    public final void start() {
+        GenericViewUtils.createScene(this.getStageManager(), this, "menu/after_minigame_menu.fxml");
     }
 
 }

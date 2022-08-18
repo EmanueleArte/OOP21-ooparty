@@ -205,6 +205,8 @@ public class GameHandlerViewControllerImpl implements GenericViewController {
                         updateLeaderboard(this.controller.getLeaderboard());
                     }
                 }
+            } else if (progress.get() == TurnProgress.SHOW_LEADERBOARD) {
+                System.out.println("jkfdfjkuksdfhsdfhjhfsdfduosfujgfsdgiufd");
             }
         } else {
             // TODO game end
