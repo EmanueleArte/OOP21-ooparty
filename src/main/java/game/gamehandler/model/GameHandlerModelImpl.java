@@ -1,5 +1,7 @@
 package game.gamehandler.model;
 
+import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Optional;
@@ -166,5 +168,31 @@ public class GameHandlerModelImpl<S> implements GameHandlerModel {
     @Override
     public final GameMap getGameMap() {
         return this.gameMap;
+    }
+
+    /**
+     * This method returns the leaderboard. The leaderboard consist in a list of players ordered by:
+     * - stars;
+     * - coins;
+     * - life point;
+     * @return an ordered list of players 
+     */
+    @Override
+    public List<Player> getLeaderboard() {
+        var tmp = new ArrayList<>(this.players);
+
+        tmp.sort(new Comparator<Player>() {
+
+            @Override
+            public int compare(final Player o1, final Player o2) {
+                if (o2.getStarsCount() != o1.getStarsCount()) {
+                    return o2.getStarsCount() - o1.getStarsCount();
+                } else if (o2.getCoinsCount() != o1.getCoinsCount()) {
+                    return o2.getCoinsCount() - o1.getCoinsCount();
+                }
+                return o2.getLifePoints() - o1.getLifePoints();
+            }
+        });
+        return tmp;
     }
 }

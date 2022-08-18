@@ -73,4 +73,14 @@ public class GameHandlerControllerImpl<S> extends GenericControllerAbstr
         return this.model.getGameMap();
     }
 
+    @Override
+    public List<Player> getPlayers() {
+        return this.model.getPlayers();
+    }
+
+    @Override
+    public List<Player> getLeaderboard() {
+        return this.model.getLeaderboard();
+    }
+
 }

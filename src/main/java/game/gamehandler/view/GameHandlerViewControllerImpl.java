@@ -1,6 +1,7 @@
 package game.gamehandler.view;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -119,7 +120,7 @@ public class GameHandlerViewControllerImpl implements GenericViewController {
             }
         });
 
-        initializeRank(players);
+        initializeLeaderboard(players);
 
         initializeMap(this.controller.getGameMap());
 
@@ -156,7 +157,6 @@ public class GameHandlerViewControllerImpl implements GenericViewController {
             } else if (progress.get() == TurnProgress.PLAYERS_TURNS) {
 
                 Optional<PlayerTurnProgress> playerProgress = this.controller.nextPlayerTurnStep();
-                System.out.println(playerProgress.get().name());
 
                 if (playerProgress.isPresent()) {
                     if (playerProgress.get() == PlayerTurnProgress.SHOW_BANNER) {
@@ -179,7 +179,8 @@ public class GameHandlerViewControllerImpl implements GenericViewController {
                         } else if (this.controller.getGameMap().getPlayerPosition(currentPlayer).isPowerUpGameMapSquare()) {
                             this.setUpdatesLabel(currentPlayer.getNickname() + " got a new powerup!");
                         }
-                        this.updateRank(currentPlayer);
+
+                        initializeLeaderboard(this.controller.getLeaderboard());
                     }
                 }
             }
@@ -190,24 +191,6 @@ public class GameHandlerViewControllerImpl implements GenericViewController {
 
     private void setUpdatesLabel(final String text) {
         this.updatesLabel.setText(text);
-    }
-
-    private void updateRank(final Player p) {
-        VBox vbox;
-        Label playerNickname;
-        int i = -1;
-        do {
-            i++;
-            vbox = (VBox) this.rankPlayersContainer.getChildren().get(i);
-            playerNickname = (Label) vbox.getChildren().get(0);
-            System.out.println(playerNickname.getText() + " " + p.getNickname() + " " + playerNickname.getText().equals(p.getNickname()));
-        } while (!playerNickname.getText().equals(p.getNickname()));
-        Label l = (Label) vbox.getChildren().get(1);
-        l.setText("Coins: " + p.getCoinsCount());
-        l = (Label) vbox.getChildren().get(2);
-        l.setText("Stars: " + p.getStarsCount());
-        l = (Label) vbox.getChildren().get(3);
-        l.setText("Life points: " + p.getLifePoints());
     }
 
     private void showBanner(final String text) {
@@ -233,12 +216,8 @@ public class GameHandlerViewControllerImpl implements GenericViewController {
         transition.play();
     }
 
-    public void rollDice() {
-
-    }
-
-    private void initializeRank(final List<Player> players) {
-        System.out.println("init rank");
+    private void initializeLeaderboard(final List<Player> players) {
+        rankPlayersContainer.getChildren().removeAll(rankPlayersContainer.getChildren());
         players.forEach(p -> {
             VBox box = new VBox();
             Label nicknameLabel = new Label(p.getNickname());
@@ -251,6 +230,7 @@ public class GameHandlerViewControllerImpl implements GenericViewController {
             box.setPrefWidth(100);
 
             box.getChildren().addAll(nicknameLabel, coinsLabel, starsLabel, hpLabel, rankLabel);
+
             rankPlayersContainer.getChildren().add(box);
         });
 
