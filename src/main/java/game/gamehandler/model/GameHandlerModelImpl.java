@@ -14,14 +14,14 @@ import minigames.common.controller.MinigameController;
 import minigames.whoriskswins.controller.WhoRisksWinsControllerImpl;
 import utils.enums.PlayerTurnProgress;
 import utils.enums.TurnProgress;
-import utils.factories.MinigameFactoryImpl;
+import utils.factories.MinigameControllerFactoryImpl;
 import utils.graphics.controller.StageManager;
 
 public class GameHandlerModelImpl<S> implements GameHandlerModel {
 
     private final StageManager<S> stageManager;
     private final DiceController dice;
-    private final MinigameFactoryImpl<S> minigameFactory;
+    private final MinigameControllerFactoryImpl<S> minigameFactory;
     private final GameMap gameMap;
 
     private final int turnsNumber;
@@ -36,7 +36,7 @@ public class GameHandlerModelImpl<S> implements GameHandlerModel {
             final GameMap gameMap) {
         this.stageManager = s;
         this.dice = new DiceControllerImpl(this.stageManager, false);
-        this.minigameFactory = new MinigameFactoryImpl<>(players, s);
+        this.minigameFactory = new MinigameControllerFactoryImpl<>(players, s);
         this.turnsNumber = turnsNumber;
         this.turn = 1;
         this.players = players;
