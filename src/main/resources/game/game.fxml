@@ -21,9 +21,9 @@
    <children>
       <BorderPane prefHeight="641.0" prefWidth="1000.0">
          <center>
-            <VBox alignment="TOP_CENTER" prefHeight="282.0" prefWidth="1000.0" BorderPane.alignment="CENTER">
+            <VBox alignment="TOP_CENTER" prefHeight="282.0" prefWidth="500.0" style="-fx-spacing: 5;" BorderPane.alignment="CENTER">
                <children>
-                  <HBox alignment="TOP_RIGHT" prefHeight="100.0" prefWidth="200.0">
+                  <HBox alignment="TOP_CENTER" prefHeight="100.0" prefWidth="200.0">
                      <children>
                         <VBox fx:id="rankContainer1" prefHeight="57.0" prefWidth="1071.0">
                            <children>
