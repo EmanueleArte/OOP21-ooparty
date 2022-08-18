@@ -22,7 +22,7 @@ public class GameHandlerControllerImpl<S> extends GenericControllerAbstr
 
     public GameHandlerControllerImpl(final StageManager<S> s, final List<Player> players, final int turnsNumber) {
         super(s);
-        this.model = new GameHandlerModelImpl(s, players, turnsNumber, null);
+        this.model = new GameHandlerModelImpl<S>(s, players, turnsNumber, null);
     }
 
     @Override

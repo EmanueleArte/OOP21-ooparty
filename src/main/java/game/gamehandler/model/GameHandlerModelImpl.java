@@ -40,7 +40,7 @@ public class GameHandlerModelImpl<S> implements GameHandlerModel {
             final GameMap gameMap) {
         this.stageManager = s;
         this.dice = new DiceControllerImpl(this.stageManager, false);
-        this.powerupMenu = new PowerupMenuControllerImpl(this.stageManager, players);
+        this.powerupMenu = new PowerupMenuControllerImpl(this.stageManager, players, gameMap);
         this.minigameFactory = new MinigameFactoryImpl<>(players, s);
         this.turnsNumber = turnsNumber;
         this.turn = 1;

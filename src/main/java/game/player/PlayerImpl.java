@@ -193,10 +193,10 @@ public class PlayerImpl implements Player {
     }
 
     @Override
-    public final void usePowerup(final String powerupType, final Player target) {
+    public final void usePowerup(final String powerupType, final Player target, final GameMap gameMap) {
         Optional<GenericPowerup> p = this.powerups.stream().filter(x -> x.getPowerupType().equals(powerupType)).findFirst();
         p.ifPresent(a -> {
-            p.get().usePowerup(target);
+            p.get().usePowerup(target, gameMap);
             this.powerups.remove(p.get());
         });
     }

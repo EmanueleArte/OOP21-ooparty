@@ -8,7 +8,7 @@ import utils.graphics.controller.StageManager;
 public class DiceModelImpl<P> implements DiceModel<P> {
 
     /**
-     * 
+     * The maximum valid result of the dice roll.
      */
     protected static final int MAX_RESULT = 6;
 
