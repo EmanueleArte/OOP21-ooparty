@@ -78,6 +78,8 @@ public class GameHandlerViewControllerImpl implements GenericViewController {
     @FXML
     private HBox rankPlayersContainer;
     @FXML
+    private HBox turnOrderContainer;
+    @FXML
     private GridPane mapGrid;
     @FXML
     private StackPane stackPaneContainer;
@@ -121,6 +123,7 @@ public class GameHandlerViewControllerImpl implements GenericViewController {
             }
         });
 
+        updateTurnOrder(players);
         updateLeaderboard(players);
 
         initializeMap(this.controller.getGameMap());
@@ -158,6 +161,7 @@ public class GameHandlerViewControllerImpl implements GenericViewController {
         if (progress.isPresent()) {
             if (progress.get() == TurnProgress.SHOW_BANNER) {
                 this.showBanner("Turn " + this.controller.getTurnNumber());
+                updateTurnOrder(this.controller.getTurnOrder());
             } else if (progress.get() == TurnProgress.HIDE_BANNER) {
                 this.hideBanner();
             } else if (progress.get() == TurnProgress.PLAYERS_TURNS) {
@@ -252,6 +256,17 @@ public class GameHandlerViewControllerImpl implements GenericViewController {
         });
 
         // rankPlayersContainer.setSpacing(20);
+    }
+
+    private void updateTurnOrder(final List<Player> players) {
+        turnOrderContainer.getChildren().removeAll(turnOrderContainer.getChildren());
+        players.forEach(p -> {
+            Label l = new Label();
+            l.setBackground(new Background(new BackgroundFill(p.getColor(), CornerRadii.EMPTY, Insets.EMPTY)));
+            l.setPrefWidth(15);
+            l.setPrefHeight(15);
+            turnOrderContainer.getChildren().add(l);
+        });
     }
 
     private void initializeMap(final GameMap map) {

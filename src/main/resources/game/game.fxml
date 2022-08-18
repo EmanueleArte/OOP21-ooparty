@@ -21,9 +21,9 @@
    <children>
       <BorderPane prefHeight="641.0" prefWidth="1000.0">
          <center>
-            <VBox alignment="TOP_CENTER" prefHeight="282.0" prefWidth="1000.0" BorderPane.alignment="CENTER">
+            <VBox alignment="TOP_CENTER" prefHeight="282.0" prefWidth="500.0" style="-fx-spacing: 5;" BorderPane.alignment="CENTER">
                <children>
-                  <HBox alignment="TOP_RIGHT" prefHeight="100.0" prefWidth="200.0">
+                  <HBox alignment="TOP_CENTER" prefHeight="100.0" prefWidth="200.0">
                      <children>
                         <VBox fx:id="rankContainer1" prefHeight="57.0" prefWidth="1071.0">
                            <children>
@@ -37,7 +37,7 @@
                                     <VBox prefHeight="200.0" prefWidth="100.0">
                                        <children>
                                           <Label text="Turn Order" />
-                                          <HBox fx:id="rankPlayersContainer1" prefHeight="85.0" prefWidth="158.0" style="-fx-spacing: 5;">
+                                          <HBox fx:id="turnOrderContainer" prefHeight="85.0" prefWidth="158.0" style="-fx-spacing: 5;">
                                              <children>
                                                 <Label prefWidth="15.0" style="-fx-background-color: red;">
                                                    <font>
@@ -61,7 +61,7 @@
                            <children>
                               <AnchorPane prefHeight="457.0" prefWidth="875.0">
                                  <children>
-                                    <GridPane fx:id="mapGrid" gridLinesVisible="true" layoutX="-9.0" prefHeight="600.0" prefWidth="970.0">
+                                    <GridPane fx:id="mapGrid" layoutX="-9.0" prefHeight="600.0" prefWidth="970.0">
                                       <columnConstraints>
                                           <ColumnConstraints hgrow="SOMETIMES" maxWidth="200.0" minWidth="10.0" prefWidth="100.0" />
                                         <ColumnConstraints hgrow="SOMETIMES" maxWidth="200.0" minWidth="10.0" prefWidth="97.0" />

@@ -75,4 +75,9 @@ public interface GameHandlerModel {
      * @param p the {@link Player} that has to be checked 
      */
     void checkPlayerDeath(Player p);
+
+    /** This method returns the turn order.
+    * @return an ordered list of players representing the turn order
+    */
+    List<Player> getTurnOrder();
 }

@@ -64,4 +64,6 @@ public interface GameHandlerController {
      * @param p the {@link Player} that has to be checked 
      */
     void checkPlayerDeath(Player p);
+
+    List<Player> getTurnOrder();
 }
