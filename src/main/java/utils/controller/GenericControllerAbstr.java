@@ -1,6 +1,7 @@
 package utils.controller;
 
 import utils.graphics.controller.StageManager;
+import utils.view.GenericViewController;
 
 /**
  * Implementation of {@link GenericController}.
@@ -21,6 +22,9 @@ public abstract class GenericControllerAbstr implements GenericController {
 
     @Override
     public abstract <C> void setViewController(C viewController);
+
+    @Override
+    public abstract GenericViewController getViewController();
 
     /**
      * Getter for stageManager.
