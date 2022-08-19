@@ -1,21 +1,18 @@
 package menu.mainmenu.controller;
 
 import menu.common.controller.MenuController;
+import menu.common.controller.SimpleMenuControllerAbstr;
 import menu.mainmenu.model.MainMenuModel;
 import menu.mainmenu.model.MainMenuModelImpl;
-import menu.mainmenu.view.MainMenuViewControllerImpl;
-import utils.controller.GenericControllerAbstr;
 import utils.graphics.controller.StageManager;
-import utils.view.GenericViewController;
 
 /**
- * Extension of {@link GenericControllerAbstr} and implementation of
+ * Extension of {@link SimpleMenuControllerAbstr} and implementation of
  * {@link MenuController}.
  */
-public class MainMenuControllerImpl extends GenericControllerAbstr implements MenuController {
+public class MainMenuControllerImpl extends SimpleMenuControllerAbstr implements MenuController {
 
     private final MainMenuModel<?> menuModel;
-    private GenericViewController menuViewController;
 
     /**
      * Builder for {@link MainMenuControllerImpl}.
@@ -26,20 +23,6 @@ public class MainMenuControllerImpl extends GenericControllerAbstr implements Me
     public <S> MainMenuControllerImpl(final StageManager<S> s) {
         super(s);
         this.menuModel = new MainMenuModelImpl<>(s);
-    }
-
-    @Override
-    public final <C> void setViewController(final C viewController) throws IllegalArgumentException {
-        if (viewController instanceof MainMenuViewControllerImpl) {
-            this.menuViewController = (MainMenuViewControllerImpl) viewController;
-        } else {
-            throw new IllegalArgumentException("The parameter must be an instance of MainMenuViewControllerImpl");
-        }
-    }
-
-    @Override
-    public final GenericViewController getViewController() {
-        return this.menuViewController;
     }
 
     @Override
