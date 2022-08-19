@@ -83,9 +83,6 @@ public class MemoModelImpl<S> extends MinigameModelAbstr<S> implements MemoModel
         if (this.isOver()) {
             throw new IllegalStateException("Game is over");
         }
-        if (indexFirstCard >= this.cards.size() || indexSecondCard >= this.cards.size()) {
-            throw new IndexOutOfBoundsException();
-        }
         if (indexFirstCard == indexSecondCard) {
             throw new IllegalArgumentException("The same card has been choosen twice");
         }
