@@ -4,6 +4,8 @@ import java.util.List;
 import java.util.Random;
 
 import game.player.Player;
+import game.powerup.GenericPowerup;
+import game.powerup.PowerupFactoryImpl;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.Border;
@@ -46,7 +48,19 @@ public class AfterMinigameMenuViewControllerImpl implements AfterMinigameMenuVie
 
             Label coinsEarned = (Label) v.getChildren().get(2);
             coinsEarned.setText(this.earnCoins(players, i) + " coins earned");
+
+            if (i < players.size() / 2) {
+                Label powerupGot = (Label) v.getChildren().get(3);
+                powerupGot.setText("Got " + this.getPowerup(players, i));
+            }
         }
+    }
+
+    private GenericPowerup getPowerup(final List<Player> players, final int i) {
+        PowerupFactoryImpl powerupFactory = new PowerupFactoryImpl();
+        GenericPowerup powerup = powerupFactory.getRandomPowerup();
+        players.get(i).addPowerup(powerup);
+        return powerup;
     }
 
     private int earnCoins(final List<Player> players, final int i) {

@@ -19,4 +19,9 @@ public class DoubleDicePowerup implements GenericPowerup {
         return POWERUP_TYPE;
     }
 
+    @Override
+    public final String toString() {
+        return DoubleDicePowerup.POWERUP_TYPE;
+    }
+
 }

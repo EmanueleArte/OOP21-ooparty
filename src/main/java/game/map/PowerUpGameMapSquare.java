@@ -1,17 +1,13 @@
 package game.map;
 
-import java.util.Random;
-
 import game.player.Player;
-import game.powerup.DoubleDicePowerup;
 import game.powerup.GenericPowerup;
-import game.powerup.GunPowerup;
+import game.powerup.PowerupFactoryImpl;
 
 /**
  * A game map square where you can get a {@link GenericPowerup}.
  */
 public class PowerUpGameMapSquare extends GameMapSquareImpl {
-    private static final int POWERUPS_NUMBER = 2;
 
     private GenericPowerup powerup;
 
@@ -21,15 +17,8 @@ public class PowerUpGameMapSquare extends GameMapSquareImpl {
     }
 
     private void generateRandomPowerUp() {
-        Random rand = new Random();
-        switch (rand.nextInt(POWERUPS_NUMBER)) {
-        case 0:
-            this.powerup = new DoubleDicePowerup();
-        case 1:
-            this.powerup = new GunPowerup();
-        default:
-            this.powerup = new GunPowerup();
-        }
+        PowerupFactoryImpl powerupFactory = new PowerupFactoryImpl();
+        this.powerup = powerupFactory.getRandomPowerup();
     }
 
     @Override

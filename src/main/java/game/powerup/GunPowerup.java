@@ -24,4 +24,9 @@ public class GunPowerup implements GenericPowerup {
         return POWERUP_TYPE;
     }
 
+    @Override
+    public final String toString() {
+        return GunPowerup.POWERUP_TYPE;
+    }
+
 }
