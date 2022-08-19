@@ -4,8 +4,6 @@ import java.util.List;
 
 import game.player.Player;
 import menu.MenuController;
-import menu.afterminigamemenu.model.AfterMinigameMenuModel;
-import menu.afterminigamemenu.model.AfterMinigameMenuModelImpl;
 import menu.afterminigamemenu.view.AfterMinigameMenuViewController;
 import menu.afterminigamemenu.view.AfterMinigameMenuViewControllerImpl;
 import utils.controller.GenericControllerAbstr;
@@ -14,7 +12,6 @@ import utils.view.GenericViewController;
 
 public class AfterMinigameMenuControllerImpl extends GenericControllerAbstr implements MenuController, AfterMinigameMenuController {
 
-    private final AfterMinigameMenuModel menuModel;
     private AfterMinigameMenuViewController menuViewController;
 
     /**
@@ -25,7 +22,6 @@ public class AfterMinigameMenuControllerImpl extends GenericControllerAbstr impl
      */
     public <S> AfterMinigameMenuControllerImpl(final StageManager<S> s) {
         super(s);
-        this.menuModel = new AfterMinigameMenuModelImpl();
     }
 
     @Override
