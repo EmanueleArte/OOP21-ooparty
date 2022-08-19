@@ -6,13 +6,13 @@ import javafx.scene.Group;
 import javafx.scene.control.Label;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.shape.Shape;
-import utils.NoticeUserAbstr;
+import utils.NoticeUser;
 
 /**
- * Extension of {@link NoticeUserAbstr} and implementation of
+ * Extension of {@link NoticeUser} and implementation of
  * {@link MinigameViewController}.
  */
-public abstract class MinigameViewControllerAbstr extends NoticeUserAbstr implements MinigameViewController {
+public abstract class MinigameViewControllerAbstr extends NoticeUser implements MinigameViewController {
 
     @FXML
     private Label playerLabel;

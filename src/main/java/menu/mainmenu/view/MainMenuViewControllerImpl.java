@@ -1,16 +1,12 @@
 package menu.mainmenu.view;
 
 import javafx.fxml.FXML;
-import menu.common.controller.MenuController;
-import utils.controller.GenericController;
-import utils.view.GenericViewController;
+import menu.common.view.SimpleMenuViewControllerAbstr;
 
 /**
- * Implementation of {@link GenericViewController}.
+ * Extension of {@link SimpleMenuViewControllerAbstr}.
  */
-public class MainMenuViewControllerImpl implements GenericViewController {
-
-    private MenuController menuController;
+public class MainMenuViewControllerImpl extends SimpleMenuViewControllerAbstr {
 
     /**
      * Builds a new {@link MainMenuViewControllerImpl}.
@@ -23,7 +19,7 @@ public class MainMenuViewControllerImpl implements GenericViewController {
      */
     @FXML
     private void exitGame() {
-        this.menuController.exit();
+        this.getController().exit();
     }
 
     /**
@@ -31,16 +27,7 @@ public class MainMenuViewControllerImpl implements GenericViewController {
      */
     @FXML
     private void createGame() {
-        this.menuController.goNext();
-    }
-
-    @Override
-    public final void setController(final GenericController controller) throws IllegalArgumentException {
-        if (controller instanceof MenuController) {
-            this.menuController = (MenuController) controller;
-        } else {
-            throw new IllegalArgumentException("The parameter must be an instance of MenuController");
-        }
+        this.getController().goNext();
     }
 
 }

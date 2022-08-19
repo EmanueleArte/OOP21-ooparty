@@ -7,7 +7,7 @@ import utils.view.GenericViewController;
 /**
  * Extension of {@link GenericControllerAbstr}.
  */
-public class SimpleMenuControllerAbstr extends GenericControllerAbstr {
+public abstract class SimpleMenuControllerAbstr extends GenericControllerAbstr {
 
     private GenericViewController menuViewController;
 
