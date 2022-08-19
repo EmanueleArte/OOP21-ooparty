@@ -4,6 +4,7 @@ import menu.MenuController;
 import menu.afterminigamemenu.model.AfterMinigameMenuModel;
 import menu.afterminigamemenu.model.AfterMinigameMenuModelImpl;
 import menu.afterminigamemenu.view.AfterMinigameMenuViewController;
+import menu.afterminigamemenu.view.AfterMinigameMenuViewControllerImpl;
 import utils.controller.GenericControllerAbstr;
 import utils.graphics.controller.StageManager;
 import utils.view.GenericViewController;
@@ -12,7 +13,6 @@ public class AfterMinigameMenuControllerImpl extends GenericControllerAbstr impl
 
     private final AfterMinigameMenuModel menuModel;
     private AfterMinigameMenuViewController menuViewController;
-
     /**
      * Builder for {@link AfterMinigameMenuControllerImpl}.
      * 
@@ -26,7 +26,7 @@ public class AfterMinigameMenuControllerImpl extends GenericControllerAbstr impl
 
     @Override
     public final <C> void setViewController(final C viewController) {
-        if (viewController instanceof AfterMinigameMenuControllerImpl) {
+        if (viewController instanceof AfterMinigameMenuViewControllerImpl) {
             this.menuViewController = (AfterMinigameMenuViewController) viewController;
         } else {
             throw new IllegalArgumentException("The parameter must be an instance of AfterMinigameMenuControllerImpl");
@@ -40,12 +40,13 @@ public class AfterMinigameMenuControllerImpl extends GenericControllerAbstr impl
 
     @Override
     public void goNext() {
-        // TODO Auto-generated method stub
     }
 
     @Override
-    public void exit() {
-        // TODO Auto-generated method stub
+    public final void exit() {
+        if (!this.getStageManager().getScenes().isEmpty()) {
+            this.getStageManager().popScene();
+        }
     }
 
     @Override

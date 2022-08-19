@@ -122,10 +122,10 @@ public class GameHandlerViewControllerImpl implements GenericViewController {
             }
         });
 
-        updateTurnOrder(players);
-        updateLeaderboard(players);
+        this.updateTurnOrder(players);
+        this.updateLeaderboard(players);
 
-        initializeMap(this.controller.getGameMap());
+        this.initializeMap(this.controller.getGameMap());
 
         final List<Point2D> squarePositions = mapGrid.getChildren().stream().filter(l -> l instanceof Label)
                 .map(l -> new Point2D(mapGrid.getLayoutX() + GridPane.getRowIndex(l) * SQUARE_WIDTH,

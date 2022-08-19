@@ -40,7 +40,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox alignment="TOP_CENTER" prefHeight="760.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="menu.mainmenu.view.AfterMinigameMenuViewControllerImpl">
+<VBox alignment="TOP_CENTER" prefHeight="760.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="menu.afterminigamemenu.view.AfterMinigameMenuViewControllerImpl">
   <children>
       <BorderPane prefHeight="200.0" prefWidth="200.0">
          <center>
@@ -48,7 +48,7 @@
                <children>
                   <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
                      <children>
-                        <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
+                        <VBox fx:id="vBox1" alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
                            <children>
                               <Label text="Player">
                                  <font>
@@ -67,7 +67,7 @@
                               </Label>
                            </children>
                         </VBox>
-                        <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
+                        <VBox fx:id="vBox2" alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
                            <children>
                               <Label text="Player">
                                  <font>
@@ -86,7 +86,7 @@
                               </Label>
                            </children>
                         </VBox>
-                        <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
+                        <VBox fx:id="vBox3" alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
                            <children>
                               <Label text="Player">
                                  <font>
@@ -105,7 +105,7 @@
                               </Label>
                            </children>
                         </VBox>
-                        <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
+                        <VBox fx:id="vBox4" alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
                            <children>
                               <Label text="Player">
                                  <font>
@@ -126,7 +126,7 @@
                         </VBox>
                      </children>
                   </HBox>
-                  <Button fx:id="continueButton" alignment="CENTER" mnemonicParsing="false" onAction="#exitGame" prefHeight="42.0" prefWidth="148.0" text="Continue">
+                  <Button alignment="CENTER" mnemonicParsing="false" onAction="#exitMenu" prefHeight="42.0" prefWidth="148.0" text="Continue">
                      <font>
                         <Font size="25.0" />
                      </font>
