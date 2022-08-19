@@ -1,5 +1,6 @@
 package minigames.memo.model;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
@@ -36,6 +37,7 @@ public class MemoModelImpl<S> extends MinigameModelAbstr<S> implements MemoModel
     public MemoModelImpl(final List<Player> players, final StageManager<S> s) {
         super(players, s);
         this.cards = this.initialiseCards();
+        this.setPlayerIterator(this.getPlayers());
     }
 
     /**
@@ -97,7 +99,9 @@ public class MemoModelImpl<S> extends MinigameModelAbstr<S> implements MemoModel
     }
 
     private List<Integer> initialiseCards() {
-        return this.getCardsValues().flatMap(t -> Stream.of(t, t)).unordered().collect(Collectors.toList());
+        final List<Integer> temp = this.getCardsValues().flatMap(t -> Stream.of(t, t)).collect(Collectors.toList());
+        Collections.shuffle(temp);
+        return temp;
     }
 
     private Stream<Integer> getCardsValues() {
