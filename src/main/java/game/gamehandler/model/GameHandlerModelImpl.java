@@ -77,7 +77,7 @@ public class GameHandlerModelImpl<S> implements GameHandlerModel {
         if (this.turnProgress == TurnProgress.SHOW_LEADERBOARD) {
             AfterMinigameMenuControllerImpl afterMinigameMenuControllerImpl = new AfterMinigameMenuControllerImpl(this.stageManager);
             afterMinigameMenuControllerImpl.createMenu();
-            afterMinigameMenuControllerImpl.makeLeaderboard(this.players);
+            afterMinigameMenuControllerImpl.makeLeaderboard(this.getTurnOrder());
         }
         return Optional.of(this.turnProgress);
     }

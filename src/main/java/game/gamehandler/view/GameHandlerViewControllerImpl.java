@@ -159,6 +159,7 @@ public class GameHandlerViewControllerImpl implements GenericViewController {
 
         if (progress.isPresent()) {
             if (progress.get() == TurnProgress.SHOW_BANNER) {
+                this.updateLeaderboard(this.controller.getLeaderboard());
                 this.showBanner("Turn " + this.controller.getTurnNumber());
                 /*this.playerToAvatar.forEach((a, b) -> {
                     // System.out.println(a.getNickname() + " " + b.toString());
@@ -202,12 +203,14 @@ public class GameHandlerViewControllerImpl implements GenericViewController {
                         }
 
                         this.controller.checkPlayerDeath(currentPlayer);
-                        updateLeaderboard(this.controller.getLeaderboard());
+                        this.updateLeaderboard(this.controller.getLeaderboard());
                     }
                 }
-            } /*else if (progress.get() == TurnProgress.SHOW_LEADERBOARD) {
-                System.out.println("jkfdfjkuksdfhsdfhjhfsdfduosfujgfsdgiufd");
-            }*/
+            } else if (progress.get() == TurnProgress.PLAY_MINIGAME) {
+                this.setUpdatesLabel("");
+            } else if (progress.get() == TurnProgress.END_OF_TURN) {
+                this.updateLeaderboard(this.controller.getLeaderboard());
+            }
         } else {
             // TODO game end
         }
