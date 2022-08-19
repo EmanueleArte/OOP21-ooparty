@@ -95,7 +95,7 @@
                            <children>
                               <Group fx:id="avatars">
                                  <children>
-                                    <Group>
+                                    <Group layoutX="48.0" layoutY="5.0">
                                        <children>
                                           <Polygon fill="DODGERBLUE" layoutY="59.0" scaleX="0.8" stroke="BLACK" strokeType="INSIDE">
                                              <points>
@@ -110,7 +110,7 @@
                                           <Circle fill="DODGERBLUE" radius="10.0" stroke="BLACK" strokeType="INSIDE" />
                                        </children>
                                     </Group>
-                                    <Group>
+                                    <Group layoutX="13.0" layoutY="14.0">
                                        <children>
                                           <Polygon fill="DODGERBLUE" layoutY="59.0" scaleX="0.8" stroke="BLACK" strokeType="INSIDE">
                                              <points>
@@ -125,7 +125,7 @@
                                           <Circle fill="DODGERBLUE" radius="10.0" stroke="BLACK" strokeType="INSIDE" />
                                        </children>
                                     </Group>
-                                    <Group>
+                                    <Group layoutX="64.0" layoutY="24.0">
                                        <children>
                                           <Polygon fill="DODGERBLUE" layoutY="59.0" scaleX="0.8" stroke="BLACK" strokeType="INSIDE">
                                              <points>
@@ -140,7 +140,7 @@
                                           <Circle fill="DODGERBLUE" radius="10.0" stroke="BLACK" strokeType="INSIDE" />
                                        </children>
                                     </Group>
-                                    <Group>
+                                    <Group layoutX="32.0" layoutY="33.0">
                                        <children>
                                           <Polygon fill="DODGERBLUE" layoutY="59.0" scaleX="0.8" stroke="BLACK" strokeType="INSIDE">
                                              <points>

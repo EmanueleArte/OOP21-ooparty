@@ -6,12 +6,13 @@ import game.player.Player;
 import game.powerup.DoubleDicePowerup;
 import game.powerup.GenericPowerup;
 import game.powerup.GunPowerup;
+import game.powerup.MedikitPowerup;
 
 /**
  * A game map square where you can get a {@link GenericPowerup}.
  */
 public class PowerUpGameMapSquare extends GameMapSquareImpl {
-    private static final int POWERUPS_NUMBER = 2;
+    private static final int POWERUPS_NUMBER = 3;
 
     private GenericPowerup powerup;
 
@@ -27,6 +28,8 @@ public class PowerUpGameMapSquare extends GameMapSquareImpl {
             this.powerup = new DoubleDicePowerup();
         case 1:
             this.powerup = new GunPowerup();
+        case 2:
+            this.powerup = new MedikitPowerup();
         default:
             this.powerup = new GunPowerup();
         }
