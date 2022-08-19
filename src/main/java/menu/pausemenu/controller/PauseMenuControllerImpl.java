@@ -1,6 +1,6 @@
 package menu.pausemenu.controller;
 
-import menu.MenuController;
+import menu.common.controller.MenuController;
 import menu.pausemenu.model.PauseMenuModel;
 import menu.pausemenu.model.PauseMenuModelImpl;
 import menu.pausemenu.view.PauseMenuViewControllerImpl;

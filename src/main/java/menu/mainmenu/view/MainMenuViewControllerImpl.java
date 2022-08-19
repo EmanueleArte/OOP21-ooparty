@@ -1,7 +1,7 @@
 package menu.mainmenu.view;
 
 import javafx.fxml.FXML;
-import menu.MenuController;
+import menu.common.controller.MenuController;
 import utils.controller.GenericController;
 import utils.view.GenericViewController;
 

@@ -1,6 +1,6 @@
 package menu.gamecreationmenu.controller;
 
-import menu.MenuController;
+import menu.common.controller.MenuController;
 import menu.gamecreationmenu.model.GameCreationMenuModel;
 import menu.gamecreationmenu.model.GameCreationMenuModelImpl;
 import menu.gamecreationmenu.view.GameCreationMenuViewController;

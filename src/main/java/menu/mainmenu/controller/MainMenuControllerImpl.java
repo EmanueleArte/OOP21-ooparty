@@ -1,6 +1,6 @@
 package menu.mainmenu.controller;
 
-import menu.MenuController;
+import menu.common.controller.MenuController;
 import menu.mainmenu.model.MainMenuModel;
 import menu.mainmenu.model.MainMenuModelImpl;
 import menu.mainmenu.view.MainMenuViewControllerImpl;

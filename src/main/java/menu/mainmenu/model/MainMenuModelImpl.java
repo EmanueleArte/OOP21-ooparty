@@ -1,6 +1,6 @@
 package menu.mainmenu.model;
 
-import menu.MenuController;
+import menu.common.controller.MenuController;
 import menu.gamecreationmenu.controller.GameCreationMenuControllerImpl;
 import utils.graphics.controller.StageManager;
 

@@ -2,7 +2,7 @@
 import game.map.GameMap;
 import game.map.GameMapImpl;
 import javafx.scene.Scene;
-import menu.MenuController;
+import menu.common.controller.MenuController;
 import menu.mainmenu.controller.MainMenuControllerImpl;
 import utils.graphics.controller.StageManager;
 import utils.graphics.controller.StageManagerImpl;

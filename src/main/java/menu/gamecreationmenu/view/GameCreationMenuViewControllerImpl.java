@@ -8,7 +8,7 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.Spinner;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.VBox;
-import menu.MenuController;
+import menu.common.controller.MenuController;
 import menu.gamecreationmenu.model.GameCreationMenuModelImpl;
 import utils.NoticeUserAbstr;
 import utils.controller.GenericController;
