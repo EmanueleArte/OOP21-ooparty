@@ -38,6 +38,13 @@ public interface ViewFactory<S> {
     void createMastermindView(GenericController controller);
 
     /**
+     * This method creates a memo view.
+     * 
+     * @param controller the controller to be used
+     */
+    void createMemoView(GenericController controller);
+
+    /**
      * This method creates a who risks wins view.
      * 
      * @param controller the controller to be used

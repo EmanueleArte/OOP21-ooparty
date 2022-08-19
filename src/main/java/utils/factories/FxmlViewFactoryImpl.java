@@ -22,26 +22,49 @@ public class FxmlViewFactoryImpl<S> implements ViewFactory<S> {
         this.stageManager = s;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public final void createMainMenuView(final GenericController controller) {
         this.createScene(controller, "menu/main_menu.fxml");
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public final void createGameCreationMenu(final GenericController controller) {
         this.createScene(controller, "menu/creation_menu.fxml");
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public final void createPauseMenuView(final GenericController controller) {
         this.createScene(controller, "menu/pause_menu.fxml");
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public final void createMastermindView(final GenericController controller) {
         this.createScene(controller, "minigames/mastermind.fxml");
     }
 
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public final void createMemoView(final GenericController controller) {
+        this.createScene(controller, "minigames/memo.fxml");
+    }
+
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public final void createWhoRisksWinsView(final GenericController controller) {
         this.createScene(controller, "minigames/who_risks_wins.fxml");
