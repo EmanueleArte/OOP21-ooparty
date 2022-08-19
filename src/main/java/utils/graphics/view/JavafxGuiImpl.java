@@ -68,7 +68,7 @@ public class JavafxGuiImpl extends JFrame implements JavafxGui {
             this.root = Optional.ofNullable(this.loader.load());
             this.setScene(new Scene(this.root.get()));
             this.root.get().requestFocus();
-            controller.setViewController(null);
+            controller.setViewController(this.loader.getController());
             ((GenericViewController) this.loader.getController()).setController(controller);
         } catch (IOException e1) {
             e1.printStackTrace();
