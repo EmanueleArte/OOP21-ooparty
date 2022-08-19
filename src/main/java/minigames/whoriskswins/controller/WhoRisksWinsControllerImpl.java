@@ -35,7 +35,7 @@ public class WhoRisksWinsControllerImpl extends GenericControllerAbstr implement
     }
 
     @Override
-    public final <C> void setViewController(final C viewController) throws IllegalArgumentException {
+    public final void setViewController(final GenericViewController viewController) throws IllegalArgumentException {
         if (viewController instanceof WhoRisksWinsViewController) {
             this.wrwViewController = (WhoRisksWinsViewController) viewController;
         } else {

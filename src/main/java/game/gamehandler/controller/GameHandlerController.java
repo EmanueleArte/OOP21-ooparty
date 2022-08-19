@@ -9,7 +9,7 @@ public interface GameHandlerController {
 
     void start();
 
-    <C> void setViewController(C viewController);
+    <C> void setViewController(GenericViewController viewController);
 
     GenericViewController getViewController();
 

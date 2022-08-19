@@ -10,11 +10,10 @@ public interface GenericController {
     /**
      * Setter for the view controller.
      * 
-     * @param <C>            the view controller type
-     * @param viewController the view controller
+     * @param viewController the view controller to use
      * @throws IllegalArgumentException if the parameter is of the wrong type
      */
-    <C> void setViewController(C viewController) throws IllegalArgumentException;
+    void setViewController(GenericViewController viewController) throws IllegalArgumentException;
 
     /**
      * Getter for the view controller.

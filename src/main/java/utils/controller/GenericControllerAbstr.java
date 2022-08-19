@@ -21,7 +21,7 @@ public abstract class GenericControllerAbstr implements GenericController {
     }
 
     @Override
-    public abstract <C> void setViewController(C viewController);
+    public abstract void setViewController(GenericViewController viewController);
 
     @Override
     public abstract GenericViewController getViewController();
