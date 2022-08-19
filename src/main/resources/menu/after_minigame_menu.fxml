@@ -32,6 +32,7 @@
   OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 -->
 
+<?import java.util.ArrayList?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
@@ -50,17 +51,22 @@
                      <children>
                         <VBox fx:id="vBox1" alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
                            <children>
-                              <Label text="Player">
+                              <Label>
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font>
+                              </Label>
+                              <Label>
                                  <font>
                                     <Font size="24.0" />
                                  </font>
                               </Label>
-                              <Label text="Coins">
+                              <Label>
                                  <font>
                                     <Font size="15.0" />
                                  </font>
                               </Label>
-                              <Label text="Powerup">
+                              <Label>
                                  <font>
                                     <Font size="15.0" />
                                  </font>
@@ -69,17 +75,22 @@
                         </VBox>
                         <VBox fx:id="vBox2" alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
                            <children>
-                              <Label text="Player">
+                              <Label>
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font>
+                              </Label>
+                              <Label>
                                  <font>
                                     <Font size="24.0" />
                                  </font>
                               </Label>
-                              <Label text="Coins">
+                              <Label>
                                  <font>
                                     <Font size="15.0" />
                                  </font>
                               </Label>
-                              <Label text="Powerup">
+                              <Label>
                                  <font>
                                     <Font size="15.0" />
                                  </font>
@@ -88,17 +99,22 @@
                         </VBox>
                         <VBox fx:id="vBox3" alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
                            <children>
-                              <Label text="Player">
+                              <Label>
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font>
+                              </Label>
+                              <Label>
                                  <font>
                                     <Font size="24.0" />
                                  </font>
                               </Label>
-                              <Label text="Coins">
+                              <Label>
                                  <font>
                                     <Font size="15.0" />
                                  </font>
                               </Label>
-                              <Label text="Powerup">
+                              <Label>
                                  <font>
                                     <Font size="15.0" />
                                  </font>
@@ -107,17 +123,22 @@
                         </VBox>
                         <VBox fx:id="vBox4" alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
                            <children>
-                              <Label text="Player">
+                              <Label>
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font>
+                              </Label>
+                              <Label>
                                  <font>
                                     <Font size="24.0" />
                                  </font>
                               </Label>
-                              <Label text="Coins">
+                              <Label>
                                  <font>
                                     <Font size="15.0" />
                                  </font>
                               </Label>
-                              <Label text="Powerup">
+                              <Label>
                                  <font>
                                     <Font size="15.0" />
                                  </font>
@@ -145,4 +166,13 @@
          </center>
       </BorderPane>
   </children>
+  
+  <fx:define>
+    <ArrayList fx:id="vBoxes">
+      <fx:reference source="vBox1" />
+      <fx:reference source="vBox2" />
+      <fx:reference source="vBox3" />
+      <fx:reference source="vBox4" />
+    </ArrayList>
+  </fx:define>
 </VBox>

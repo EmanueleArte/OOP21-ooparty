@@ -1,5 +1,8 @@
 package menu.afterminigamemenu.controller;
 
+import java.util.List;
+
+import game.player.Player;
 import menu.MenuController;
 import menu.afterminigamemenu.model.AfterMinigameMenuModel;
 import menu.afterminigamemenu.model.AfterMinigameMenuModelImpl;
@@ -13,6 +16,7 @@ public class AfterMinigameMenuControllerImpl extends GenericControllerAbstr impl
 
     private final AfterMinigameMenuModel menuModel;
     private AfterMinigameMenuViewController menuViewController;
+
     /**
      * Builder for {@link AfterMinigameMenuControllerImpl}.
      * 
@@ -52,6 +56,11 @@ public class AfterMinigameMenuControllerImpl extends GenericControllerAbstr impl
     @Override
     public final void createMenu() {
         this.getViewFactory().createAfterMinigameMenu(this);
+    }
+
+    @Override
+    public final void makeLeaderboard(final List<Player> players) {
+        this.menuViewController.makeLeaderboard(players);
     }
 
 }
