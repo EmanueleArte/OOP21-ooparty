@@ -1,15 +1,16 @@
 package utils.graphics.controller;
 
+import java.lang.reflect.InvocationTargetException;
 import java.util.List;
 import java.util.Optional;
 
-import javafx.scene.Scene;
 import minigames.common.controller.MinigameController;
 import utils.controller.GenericController;
 import utils.graphics.model.SceneHandler;
 import utils.graphics.model.SceneHandlerImpl;
+import utils.graphics.view.EmptyGui;
 import utils.graphics.view.Gui;
-import utils.graphics.view.GuiImpl;
+import utils.graphics.view.JavafxGui;
 
 /**
  * Implementation of {@link StageManager}.
@@ -19,24 +20,32 @@ import utils.graphics.view.GuiImpl;
 public class StageManagerImpl<S> implements StageManager<S> {
 
     private final SceneHandler<S> sceneHandler;
-    private final Gui gui;
+    private Gui gui;
     private Optional<MinigameController> lastGameController;
 
     /**
      * Builds a new {@link StageManagerImpl}.
      * 
-     * @param title the title of the frame
+     * @param title    the title of the gui window
+     * @param guiClass the class of the gui
      */
-    public StageManagerImpl(final String title) {
+    public StageManagerImpl(final String title, final Class<?> guiClass) {
         this.sceneHandler = new SceneHandlerImpl<>();
-        this.gui = new GuiImpl(title);
         this.lastGameController = Optional.empty();
+        this.setGui(title, guiClass);
+    }
+
+    /**
+     * Builds a new {@link StageManagerImpl}.
+     */
+    public StageManagerImpl() {
+        this("", EmptyGui.class);
     }
 
     @Override
     @SuppressWarnings("unchecked")
     public final void addFXMLScene(final String fxmlUrl, final GenericController controller) {
-        final var currScene = this.gui.loadScene(fxmlUrl, controller);
+        final var currScene = ((JavafxGui) this.gui).loadScene(fxmlUrl, controller);
         this.addScene((S) currScene);
         this.lastGameController = Optional.ofNullable(this.checkGameController(controller));
     }
@@ -49,8 +58,8 @@ public class StageManagerImpl<S> implements StageManager<S> {
     @Override
     public final S popScene() {
         var poppedScene = this.sceneHandler.popScene();
-        if (gui.getMainStage().isPresent()) {
-            gui.setScene((Scene) this.getScenes().get(this.sceneHandler.lastSceneIndex()));
+        if (gui.mainStagePresence()) {
+            gui.setScene(this.getScenes().get(this.sceneHandler.lastSceneIndex()));
         }
         return poppedScene;
     }
@@ -93,6 +102,21 @@ public class StageManagerImpl<S> implements StageManager<S> {
             return (MinigameController) controller;
         }
         return this.getLastGameController();
+    }
+
+    /**
+     * This method creates a gui of the class choosen.
+     * 
+     * @param title    the title of the gui window
+     * @param guiClass the class of the gui
+     */
+    private void setGui(final String title, final Class<?> guiClass) {
+        try {
+            this.gui = (Gui) guiClass.getDeclaredConstructor(String.class, StageManager.class).newInstance(title, this);
+        } catch (InstantiationException | IllegalAccessException | IllegalArgumentException | InvocationTargetException
+                | NoSuchMethodException | SecurityException e) {
+            e.printStackTrace();
+        }
     }
 
 }

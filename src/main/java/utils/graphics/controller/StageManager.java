@@ -64,7 +64,7 @@ public interface StageManager<S> {
     void setLastGameController(GenericController controller);
 
     /**
-     * Getter for the {@link Gui}.
+     * Getter for the {@link JavafxGui}.
      * 
      * @return the gui used
      */

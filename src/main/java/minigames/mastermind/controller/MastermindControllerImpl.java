@@ -35,7 +35,7 @@ public class MastermindControllerImpl extends GenericControllerAbstr implements 
     }
 
     @Override
-    public final <C> void setViewController(final C viewController) throws IllegalArgumentException {
+    public final void setViewController(final GenericViewController viewController) throws IllegalArgumentException {
         if (viewController instanceof MastermindViewController) {
             this.mastermindViewController = (MastermindViewController) viewController;
         } else {
@@ -55,7 +55,7 @@ public class MastermindControllerImpl extends GenericControllerAbstr implements 
 
     @Override
     public final void startGame() {
-        this.getViewFactory().createMastermindView(this);
+        this.getStageManager().getGui().getViewFactory().createMastermindView(this);
         final GenericController guideController = new MinigameGuideControllerImpl(this.getStageManager(), this);
         GenericViewUtils.createScene(this.getStageManager(), guideController, "minigames/mastermind_guide.fxml");
     }

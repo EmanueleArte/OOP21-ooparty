@@ -84,7 +84,7 @@ public abstract class MinigameModelAbstr<S> extends GameModelAbstr<S> implements
                     final var s = this.getStageManager();
                     this.dice.rollDice();
                     if (s != null) {
-                        if (s.getGui().getMainStage().isPresent()) {
+                        if (s.getGui().mainStagePresence()) {
                             this.dice.start(player);
                         }
                     }

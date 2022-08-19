@@ -19,7 +19,7 @@ import utils.graphics.controller.StageManagerImpl;
  */
 class TestMastermind {
 
-    private final StageManager<String> s = new StageManagerImpl<String>("");
+    private final StageManager<String> s = new StageManagerImpl<String>();
     private final List<Player> players = List.of(new PlayerImpl("Luca"), new PlayerImpl("Giovanni"),
             new PlayerImpl("Lorenzo"), new PlayerImpl("Marco"));
 

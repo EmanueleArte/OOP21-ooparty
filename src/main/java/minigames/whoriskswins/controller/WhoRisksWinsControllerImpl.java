@@ -35,7 +35,7 @@ public class WhoRisksWinsControllerImpl extends GenericControllerAbstr implement
     }
 
     @Override
-    public final <C> void setViewController(final C viewController) throws IllegalArgumentException {
+    public final void setViewController(final GenericViewController viewController) throws IllegalArgumentException {
         if (viewController instanceof WhoRisksWinsViewController) {
             this.wrwViewController = (WhoRisksWinsViewController) viewController;
         } else {
@@ -55,7 +55,7 @@ public class WhoRisksWinsControllerImpl extends GenericControllerAbstr implement
 
     @Override
     public final void startGame() {
-        this.getViewFactory().createWhoRisksWinsView(this);
+        this.getStageManager().getGui().getViewFactory().createWhoRisksWinsView(this);
         final GenericController guideController = new MinigameGuideControllerImpl(this.getStageManager(), this);
         GenericViewUtils.createScene(this.getStageManager(), guideController, "minigames/who_risks_wins_guide.fxml");
     }

@@ -66,7 +66,7 @@ public class WhoRisksWinsModelImpl<S> extends MinigameModelAbstr<S> implements W
      */
     private void generateBlockFallingSpeed() {
         final Random rand = new Random();
-        this.blockFallingSpeed = rand.nextInt(WhoRisksWinsModelImpl.TIME_RANGE + WhoRisksWinsModelImpl.MINIMUM_TIME);
+        this.blockFallingSpeed = rand.nextInt(WhoRisksWinsModelImpl.TIME_RANGE) + WhoRisksWinsModelImpl.MINIMUM_TIME;
     }
 
 }

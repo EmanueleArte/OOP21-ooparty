@@ -21,7 +21,7 @@ public interface ViewFactory<S> {
      * 
      * @param controller the controller to be used
      */
-    void createGameCreationMenu(GenericController controller);
+    void createGameCreationMenuView(GenericController controller);
 
     /**
      * This method creates a pause menu view.

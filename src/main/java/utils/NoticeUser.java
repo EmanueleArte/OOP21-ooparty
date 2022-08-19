@@ -4,15 +4,14 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 
 /**
- * This abstract class models a class that uses a notice label.
+ * This class models a class that uses a notice label.
  */
-public class NoticeUserAbstr {
+public class NoticeUser {
 
     @FXML
     private Label noticeLabel;
 
-    public NoticeUserAbstr() {
-
+    public NoticeUser() {
     }
 
     /**

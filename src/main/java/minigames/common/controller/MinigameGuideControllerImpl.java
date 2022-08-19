@@ -28,7 +28,7 @@ public class MinigameGuideControllerImpl extends GenericControllerAbstr implemen
     }
 
     @Override
-    public <C> void setViewController(final C viewController) {
+    public void setViewController(final GenericViewController viewController) {
         if (viewController instanceof MinigameGuideViewControllerImpl) {
            this.guideViewController = (MinigameGuideViewControllerImpl) viewController;
         } else {

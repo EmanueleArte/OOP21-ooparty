@@ -8,19 +8,19 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.Spinner;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.VBox;
-import menu.MenuController;
+import menu.common.controller.MenuController;
 import menu.gamecreationmenu.model.GameCreationMenuModelImpl;
-import utils.NoticeUserAbstr;
+import utils.NoticeUser;
 import utils.controller.GenericController;
 import utils.GuiUtils;
 import utils.enums.Notice;
 import utils.enums.PlayerColor;
 
 /**
- * Extension of {@link NoticeUserAbstr} and implementation of
+ * Extension of {@link NoticeUser} and implementation of
  * {@link GameCreationMenuViewController}.
  */
-public class GameCreationMenuViewControllerImpl extends NoticeUserAbstr implements GameCreationMenuViewController {
+public class GameCreationMenuViewControllerImpl extends NoticeUser implements GameCreationMenuViewController {
 
     private MenuController menuController;
     @FXML

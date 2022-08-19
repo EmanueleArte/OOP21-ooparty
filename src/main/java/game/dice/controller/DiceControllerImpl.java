@@ -39,7 +39,7 @@ public class DiceControllerImpl extends GenericControllerAbstr implements DiceCo
     }
 
     @Override
-    public final <C> void setViewController(final C viewController) {
+    public final void setViewController(final GenericViewController viewController) {
         if (viewController instanceof DiceViewControllerImpl) {
             this.viewController = (DiceViewControllerImpl) viewController;
         } else {
