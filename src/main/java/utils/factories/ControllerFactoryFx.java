@@ -17,6 +17,7 @@ import menu.gamecreationmenu.controller.GameCreationMenuControllerImpl;
 import menu.gamecreationmenu.model.GameCreationMenuModelImpl;
 import menu.mainmenu.controller.MainMenuControllerImpl;
 import menu.mainmenu.model.MainMenuModelImpl;
+import menu.pausemenu.controller.PauseMenuControllerImpl;
 import minigames.common.controller.MinigameController;
 import minigames.mastermind.controller.MastermindControllerImpl;
 import minigames.mastermind.model.MastermindModelImpl;
@@ -57,8 +58,8 @@ public class ControllerFactoryFx<S> implements ControllerFactory {
 
     @Override
     public final MenuController createPauseMenuController() {
-        // TODO Auto-generated method stub
-        return null;
+        var controller = new PauseMenuControllerImpl(this.stageManager);
+        return controller;
     }
 
     @Override
