@@ -5,20 +5,16 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import game.gamehandler.controller.GameHandlerController;
-import game.gamehandler.controller.GameHandlerControllerImpl;
 import game.map.GameMap;
 import game.map.GameMapImpl;
 import game.player.Player;
 import game.player.PlayerImpl;
 import utils.enums.PlayerColor;
-import utils.graphics.controller.StageManager;
 
 /**
  * Implementation of {@link GameCreationMenuModel}.
- * 
- * @param <S> the scenes of the stage
  */
-public class GameCreationMenuModelImpl<S> implements GameCreationMenuModel<S> {
+public class GameCreationMenuModelImpl implements GameCreationMenuModel {
 
     /**
      * Minimum number of players.
@@ -36,17 +32,12 @@ public class GameCreationMenuModelImpl<S> implements GameCreationMenuModel<S> {
      * Maximum number of turns.
      */
     public static final int N_MAX_TURNS = 20;
-    private final StageManager<S> stageManager;
     private int actualNPlayers;
 
     /**
      * Builds a new {@link GameCreationMenuModelImpl}.
-     * 
-     * @param s the {@link utils.graphics.controller.StageManager}.
      */
-    public GameCreationMenuModelImpl(final StageManager<S> s) {
-        super();
-        this.stageManager = s;
+    public GameCreationMenuModelImpl() {
         this.actualNPlayers = GameCreationMenuModelImpl.N_MIN_PLAYERS;
     }
 

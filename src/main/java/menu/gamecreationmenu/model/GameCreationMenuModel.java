@@ -5,10 +5,8 @@ import utils.enums.PlayerColor;
 
 /**
  * This interface models the game creation menu model of the game.
- * 
- * @param <S> the scenes of the stage
  */
-public interface GameCreationMenuModel<S> {
+public interface GameCreationMenuModel {
 
     /**
      * This method returns to the main menu of the game.
