@@ -17,7 +17,7 @@ public enum OrdinalNumber {
     /**
      * Third.
      */
-    THIRD("3td"),
+    THIRD("3rd"),
     /**
      * Fourth.
      */
@@ -38,17 +38,6 @@ public enum OrdinalNumber {
     }
 
     public static Optional<OrdinalNumber> intToOrdinalNumber(final int n) {
-        switch (n) {
-            case 1:
-                return Optional.of(OrdinalNumber.FIRST);
-            case 2:
-                return Optional.of(OrdinalNumber.SECOND);
-            case 3:
-                return Optional.of(OrdinalNumber.THIRD);
-            case 4:
-                return Optional.of(OrdinalNumber.FOURTH);
-            default:
-                return Optional.empty();
-        }
+        return n > 0 && n <= OrdinalNumber.values().length ? Optional.of(OrdinalNumber.values()[n - 1]) : Optional.empty();
     }
 }
