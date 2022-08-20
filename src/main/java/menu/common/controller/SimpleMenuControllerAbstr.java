@@ -26,8 +26,11 @@ public abstract class SimpleMenuControllerAbstr extends GenericControllerAbstr {
         return this.menuViewController;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
-    public final void setViewController(final GenericViewController viewController) {
+    public void setViewController(final GenericViewController viewController) {
         if (viewController instanceof GenericViewController) {
             this.menuViewController = (GenericViewController) viewController;
         } else {
