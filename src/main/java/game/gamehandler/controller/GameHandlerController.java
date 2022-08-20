@@ -66,4 +66,9 @@ public interface GameHandlerController {
     void checkPlayerDeath(Player p);
 
     List<Player> getTurnOrder();
+
+    /**
+     * Shows the after minigame menu.
+     */
+    void showAfterMinigameMenu();
 }
