@@ -63,15 +63,19 @@ public class GameHandlerModelImpl<S> implements GameHandlerModel {
             this.currentPlayer = Optional.empty();
         }
         this.turnProgress = TurnProgress.next(this.turnProgress);
-        if (this.turnProgress == TurnProgress.END_OF_TURN) {
+        switch (this.turnProgress) {
+        case END_OF_TURN:
             this.startNewTurn();
             if (this.turn == this.turnsNumber + 1) {
                 this.endGame();
                 return Optional.empty();
             }
-        }
-        if (this.turnProgress == TurnProgress.PLAY_MINIGAME) {
+            break;
+        case PLAY_MINIGAME:
             this.playMinigame();
+            break;
+        default:
+            break;
         }
         return Optional.of(this.turnProgress);
     }
@@ -79,46 +83,72 @@ public class GameHandlerModelImpl<S> implements GameHandlerModel {
     @Override
     public final Optional<PlayerTurnProgress> nextPlayerTurnStep() {
         this.playerTurnProgress = PlayerTurnProgress.next(this.playerTurnProgress);
-        if (this.playerTurnProgress == PlayerTurnProgress.SHOW_BANNER) {
-            this.currentPlayer = Optional.of(this.playersIterator.next());
-            this.currentPlayer.get().setDicesNumber(1);
-            this.dice.reset();
-        }
-        if (this.playerTurnProgress == PlayerTurnProgress.USE_POWERUP) {
-            if (this.currentPlayer.get().getPowerupList().isEmpty()) {
-                this.playerTurnProgress = PlayerTurnProgress.next(this.playerTurnProgress);
-            } else {
-                this.powerupMenu.start(this.currentPlayer.get());
-            }
-        }
-        if (this.playerTurnProgress == PlayerTurnProgress.MOVE_PLAYER) {
-            final Player cp = this.currentPlayer.get();
-            if (this.dice.getTotal() > 0) {
-                cp.moveForward(this.dice.getTotal(), this.gameMap);
-                final GameMapSquare playerPosition = cp.getPosition(this.gameMap);
-                if (playerPosition.isCoinsGameMapSquare()) {
-                    playerPosition.receiveCoins(cp);
-                } else if (playerPosition.isDamageGameMapSquare()) {
-                    playerPosition.receiveDamage(cp);
-                } else if (playerPosition.isStarGameMapSquare()) {
-                    playerPosition.receiveStar(cp);
-                } else if (playerPosition.isPowerUpGameMapSquare()) {
-                    playerPosition.receivePowerup(cp);
-                }
-            }
-        }
-
-        if (this.playerTurnProgress == PlayerTurnProgress.ROLL_DICE) {
-            for (int i = 0; i < this.currentPlayer.get().getDicesToRoll(); i++) {
-                this.dice.rollDice(this.currentPlayer.get());
-                //this.dice.start(this.currentPlayer.get());
-            }
+        switch (this.playerTurnProgress) {
+        case SHOW_BANNER:
+            this.newPlayerTurn();
+            break;
+        case USE_POWERUP:
+            this.powerupMenu();
+            break;
+        case MOVE_PLAYER:
+            this.movePlayer();
+            break;
+        case ROLL_DICE:
+            this.rollDices();
+            break;
+        default:
+            break;
         }
         return Optional.of(this.playerTurnProgress);
     }
 
+    private void newPlayerTurn() {
+        this.currentPlayer = Optional.of(this.playersIterator.next());
+        this.currentPlayer.get().setDicesNumber(1);
+        this.dice.reset();
+    }
+
+    private void rollDices() {
+        final Player cp = this.currentPlayer.get();
+        for (int i = 0; i < cp.getDicesToRoll(); i++) {
+            this.dice.rollDice(cp);
+        }
+    }
+
+    private void movePlayer() {
+        final Player cp = this.currentPlayer.get();
+        if (this.dice.getTotal() > 0) {
+            cp.moveForward(this.dice.getTotal(), this.gameMap);
+            final GameMapSquare playerPosition = cp.getPosition(this.gameMap);
+            if (playerPosition.isCoinsGameMapSquare()) {
+                playerPosition.receiveCoins(cp);
+            } else if (playerPosition.isDamageGameMapSquare()) {
+                playerPosition.receiveDamage(cp);
+                checkPlayerDeath(cp);
+            } else if (playerPosition.isStarGameMapSquare()) {
+                playerPosition.receiveStar(cp);
+            } else if (playerPosition.isPowerUpGameMapSquare()) {
+                playerPosition.receivePowerup(cp);
+            }
+        }
+    }
+
+    private void powerupMenu() {
+        final Player cp = this.currentPlayer.get();
+        if (cp.getPowerupList().isEmpty()) {
+            this.playerTurnProgress = PlayerTurnProgress.next(this.playerTurnProgress);
+        } else {
+            this.powerupMenu.start(cp);
+        }
+    }
+
     private boolean playersTurnsFinished() {
         return !(this.playersIterator.hasNext()) && (this.playerTurnProgress == PlayerTurnProgress.END_OF_TURN);
+    }
+
+    private void playMinigame() {
+        minigameController = Optional.of(this.minigameFactory.createRandomMinigameController());
+        minigameController.get().startGame();
     }
 
     private void startNewTurn() {
@@ -127,12 +157,6 @@ public class GameHandlerModelImpl<S> implements GameHandlerModel {
         this.turnProgress = TurnProgress.END_OF_TURN;
         this.playerTurnProgress = PlayerTurnProgress.END_OF_TURN;
         this.turn++;
-    }
-
-    @Override
-    public final void playMinigame() {
-        minigameController = Optional.of(this.minigameFactory.createRandomMinigameController());
-        minigameController.get().startGame();
     }
 
     @Override

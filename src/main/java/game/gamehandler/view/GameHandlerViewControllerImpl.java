@@ -151,15 +151,16 @@ public class GameHandlerViewControllerImpl implements GenericViewController {
 
     private void nextStep() {
         Optional<TurnProgress> progress = this.controller.nextStep();
-
         if (progress.isPresent()) {
-            if (progress.get() == TurnProgress.SHOW_BANNER) {
+            switch (progress.get()) {
+            case SHOW_BANNER:
                 this.showBanner("Turn " + this.controller.getTurnNumber());
                 updateTurnOrder(this.controller.getTurnOrder());
-            } else if (progress.get() == TurnProgress.HIDE_BANNER) {
+                break;
+            case HIDE_BANNER:
                 this.hideBanner();
-            } else if (progress.get() == TurnProgress.PLAYERS_TURNS) {
-
+                break;
+            case PLAYERS_TURNS:
                 Optional<PlayerTurnProgress> playerProgress = this.controller.nextPlayerTurnStep();
 
                 if (playerProgress.isPresent()) {
@@ -192,18 +193,31 @@ public class GameHandlerViewControllerImpl implements GenericViewController {
                                 .isPowerUpGameMapSquare()) {
                             this.setUpdatesLabel(currentPlayer.getNickname() + " got a new powerup!");
                         }
-
+                        boolean respawn = false;
+                        if (currentPlayer.isDead()) {
+                            respawn = true;
+                        }
                         this.controller.checkPlayerDeath(currentPlayer);
+                        if (respawn) {
+                            this.movePlayer(currentPlayer);
+                        }
                         this.updateLeaderboard(this.controller.getLeaderboard());
                     }
                 }
-            } else if (progress.get() == TurnProgress.PLAY_MINIGAME) {
+                break;
+            case PLAY_MINIGAME:
                 this.setUpdatesLabel("");
-            } else if (progress.get() == TurnProgress.SHOW_LEADERBOARD) {
+                break;
+            case SHOW_LEADERBOARD:
                 this.controller.showAfterMinigameMenu();
-            } else if (progress.get() == TurnProgress.END_OF_TURN) {
+                break;
+            case END_OF_TURN:
                 this.updateLeaderboard(this.controller.getLeaderboard());
+                break;
+            default:
+                break;
             }
+
         } else {
             this.controller.endGame();
         }
@@ -235,13 +249,11 @@ public class GameHandlerViewControllerImpl implements GenericViewController {
         transition.setDuration(Duration.millis(1000));
         transition.setFromX(avatar.getTranslateX());
         transition.setFromY(avatar.getTranslateY());
-        transition.setToX(this.mapGrid.getChildren()
-                .get(this.controller.getGameMap().getSquares()
-                        .indexOf(this.controller.getGameMap().getPlayerPosition(p)))
+        transition.setToX(this.mapGrid.getChildren().get(
+                this.controller.getGameMap().getSquares().indexOf(this.controller.getGameMap().getPlayerPosition(p)))
                 .getLayoutX());
-        transition.setToY(this.mapGrid.getChildren()
-                .get(this.controller.getGameMap().getSquares()
-                        .indexOf(this.controller.getGameMap().getPlayerPosition(p)))
+        transition.setToY(this.mapGrid.getChildren().get(
+                this.controller.getGameMap().getSquares().indexOf(this.controller.getGameMap().getPlayerPosition(p)))
                 .getLayoutY());
         transition.play();
     }

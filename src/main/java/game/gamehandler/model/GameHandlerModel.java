@@ -14,11 +14,6 @@ import utils.enums.TurnProgress;
 public interface GameHandlerModel {
 
     /**
-     * This method selects a minigame and plays it.
-     */
-    void playMinigame();
-
-    /**
      * This method returns the players in the game.
      * 
      * @return a list containing the players in the game
