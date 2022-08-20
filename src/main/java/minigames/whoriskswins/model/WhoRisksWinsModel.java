@@ -4,10 +4,8 @@ import minigames.common.model.MinigameModel;
 
 /**
  * This interface models the who risks wins model.
- * 
- * @param <S> the scenes of the stage
  */
-public interface WhoRisksWinsModel<S> extends MinigameModel<S> {
+public interface WhoRisksWinsModel extends MinigameModel {
 
     /**
      * This method stops the bolck's fall.

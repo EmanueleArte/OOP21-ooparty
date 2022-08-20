@@ -8,7 +8,7 @@ import java.util.Random;
 import game.player.Player;
 import utils.graphics.controller.StageManager;
 
-public class DiceModelImpl<P> implements DiceModel<P> {
+public class DiceModelImpl implements DiceModel {
 
     /**
      * The maximum valid result of the dice roll.

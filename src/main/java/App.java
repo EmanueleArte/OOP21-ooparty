@@ -14,18 +14,10 @@ public final class App {
      */
     public static void main(final String[] args) {
         final StageManager<Scene> stageManager = new StageManagerImpl<>("OOparty", JavafxGuiImpl.class);
-        ControllerFactory controllerFactory = new ControllerFactoryFx(stageManager);
+        ControllerFactory controllerFactory = new ControllerFactoryFx<>(stageManager);
         stageManager.setControllerFactory(controllerFactory);
         stageManager.run();
-
         stageManager.getControllerFactory().createMainMenuController().createMenu();
-
-
-        /*
-         * GameHandlerModel game = new GameHandlerModelImpl(stageManager, List.of(new
-         * PlayerImpl("Mario"), new PlayerImpl("Luigi"), new PlayerImpl("Yoshi")),
-         * gameMap); game.start();
-         */
     }
 
     private App() {

@@ -13,7 +13,7 @@ import utils.graphics.controller.StageManager;
 import utils.view.GenericViewController;
 
 public class DiceControllerImpl extends GenericControllerAbstr implements DiceController {
-    private final DiceModel<?> model;
+    private final DiceModel model;
     private DiceViewControllerImpl viewController;
     private final boolean noRepeat;
 

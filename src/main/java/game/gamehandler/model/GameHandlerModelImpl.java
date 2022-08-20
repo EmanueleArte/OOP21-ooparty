@@ -25,7 +25,7 @@ public class GameHandlerModelImpl<S> implements GameHandlerModel {
 
     private final StageManager<S> stageManager;
     //private final DiceController dice;
-    private final DiceModel<?> dice;
+    private final DiceModel dice;
     private final MinigameControllerFactoryImpl<S> minigameFactory;
     private final PowerupMenuController powerupMenu;
     private final GameMap gameMap;
@@ -39,7 +39,7 @@ public class GameHandlerModelImpl<S> implements GameHandlerModel {
     private List<Player> players;
     private Iterator<Player> playersIterator;
 
-    public GameHandlerModelImpl(final StageManager<S> s, final DiceModel<?> dice, final List<Player> players, final int turnsNumber) {
+    public GameHandlerModelImpl(final StageManager<S> s, final DiceModel dice, final List<Player> players, final int turnsNumber) {
         this.stageManager = s;
         this.dice = dice;
         this.minigameFactory = new MinigameControllerFactoryImpl<>(players, s);

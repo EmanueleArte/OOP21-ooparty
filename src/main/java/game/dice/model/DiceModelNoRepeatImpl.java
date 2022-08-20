@@ -2,7 +2,7 @@ package game.dice.model;
 
 import utils.graphics.controller.StageManager;
 
-public class DiceModelNoRepeatImpl<P> extends DiceModelImpl<P> {
+public class DiceModelNoRepeatImpl extends DiceModelImpl {
 
     public DiceModelNoRepeatImpl(final StageManager<?> s) {
         super(s);

@@ -5,17 +5,13 @@ import java.util.ListIterator;
 import java.util.Optional;
 
 import game.player.Player;
-import utils.graphics.controller.StageManager;
 
 /**
  * Implementation of {@link GameModel}.
- * 
- * @param <S> the scenes of the stage
  */
-public abstract class GameModelAbstr<S> implements GameModel<S> {
+public abstract class GameModelAbstr implements GameModel {
 
     private final List<Player> players;
-    private final StageManager<S> stageManager;
     private ListIterator<Player> playerIterator;
     private Optional<Player> currPlayer;
 
@@ -23,32 +19,16 @@ public abstract class GameModelAbstr<S> implements GameModel<S> {
      * Builds a new {@link GameModelAbstr}.
      * 
      * @param players the list of players
-     * @param s       the {@link StageManager}
-     */
-    public GameModelAbstr(final List<Player> players, final StageManager<S> s) {
-        this.players = players;
-        this.setPlayerIterator(players);
-        this.stageManager = s;
-        this.currPlayer = Optional.empty();
-    }
-
-    /**
-     * Builds a new {@link GameModelAbstr} with no {@link StageManager}.
-     * 
-     * @param players the list of players
      */
     public GameModelAbstr(final List<Player> players) {
-        this(players, null);
+        this.players = players;
+        this.setPlayerIterator(players);
+        this.currPlayer = Optional.empty();
     }
 
     @Override
     public final List<Player> getPlayers() {
         return this.players;
-    }
-
-    @Override
-    public final StageManager<S> getStageManager() {
-        return this.stageManager;
     }
 
     @Override

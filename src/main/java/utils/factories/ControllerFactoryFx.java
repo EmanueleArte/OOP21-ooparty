@@ -16,6 +16,10 @@ import menu.common.controller.MenuController;
 import menu.mainmenu.controller.MainMenuControllerImpl;
 import menu.mainmenu.model.MainMenuModelImpl;
 import minigames.common.controller.MinigameController;
+import minigames.mastermind.controller.MastermindControllerImpl;
+import minigames.mastermind.model.MastermindModelImpl;
+import minigames.whoriskswins.controller.WhoRisksWinsControllerImpl;
+import minigames.whoriskswins.model.WhoRisksWinsModelImpl;
 import utils.controller.GenericController;
 import utils.graphics.controller.StageManager;
 
@@ -32,14 +36,14 @@ public class ControllerFactoryFx<S> implements ControllerFactory {
     public GameHandlerController createGameHandlerController(final List<Player> players, final int turnsNumber) {
         var diceController = this.createDiceController(false);
         var model = new GameHandlerModelImpl<S>(stageManager, diceController.getModel(), players, turnsNumber);
-        var controller = new GameHandlerControllerImpl<S>(stageManager, diceController, model);
+        GameHandlerController controller = new GameHandlerControllerImpl<S>(stageManager, diceController, model);
         return controller;
     }
 
     @Override
     public MenuController createMainMenuController() {
         var model = new MainMenuModelImpl<S>(this.stageManager);
-        var controller = new MainMenuControllerImpl(stageManager);
+        var controller = new MainMenuControllerImpl(this.stageManager);
         return controller;
     }
 
@@ -62,30 +66,34 @@ public class ControllerFactoryFx<S> implements ControllerFactory {
     }
 
     @Override
-    public MinigameController createMastermindController() {
+    public final MinigameController createMastermindController(final List<Player> players) {
+        var diceController = this.createDiceController(false);
+        var model = new MastermindModelImpl(players, diceController.getModel());
+        var controller = new MastermindControllerImpl(this.stageManager, model, diceController);
+        return controller;
+    }
+
+    @Override
+    public final MinigameController createWhoRisksWinsController(final List<Player> players) {
+        var diceController = this.createDiceController(false);
+        var model = new WhoRisksWinsModelImpl(players, diceController.getModel());
+        var controller = new WhoRisksWinsControllerImpl(this.stageManager, model, diceController);
+        return controller;
+    }
+
+    @Override
+    public MinigameController createMemoController(final List<Player> players) {
         // TODO Auto-generated method stub
         return null;
     }
 
     @Override
-    public MinigameController createWhoRisksWinsController() {
-        // TODO Auto-generated method stub
-        return null;
-    }
-
-    @Override
-    public MinigameController createMemoController() {
-        // TODO Auto-generated method stub
-        return null;
-    }
-
-    @Override
-    public <P> DiceController createDiceController(final boolean noRepeat) {
-        DiceModel<P> model;
+    public DiceController createDiceController(final boolean noRepeat) {
+        DiceModel model;
         if (noRepeat) {
-            model = new DiceModelNoRepeatImpl<P>(stageManager);
+            model = new DiceModelNoRepeatImpl(stageManager);
         } else {
-            model = new DiceModelImpl<P>(this.stageManager);
+            model = new DiceModelImpl(this.stageManager);
         }
         var controller = new DiceControllerImpl(stageManager, model, noRepeat);
         return controller;

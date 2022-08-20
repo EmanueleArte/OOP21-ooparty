@@ -24,9 +24,9 @@ public class MinigameControllerFactoryImpl<S> {
         Random rand = new Random();
         switch (rand.nextInt(MinigameControllerFactoryImpl.MINIGAMES_NUMBER)) {
         case 0:
-            return this.stageManager.getControllerFactory().createMastermindController();
+            return this.stageManager.getControllerFactory().createMastermindController(this.players);
         case 1:
-            return this.stageManager.getControllerFactory().createWhoRisksWinsController();
+            return this.stageManager.getControllerFactory().createWhoRisksWinsController(this.players);
         default:
             return null;
         }

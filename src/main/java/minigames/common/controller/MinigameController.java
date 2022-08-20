@@ -32,4 +32,9 @@ public interface MinigameController extends GenericController {
      */
     boolean nextTurn();
 
+    /**
+     * This method closes the window of the game.
+     */
+    void closeGame();
+
 }
