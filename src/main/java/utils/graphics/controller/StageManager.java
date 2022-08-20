@@ -16,8 +16,8 @@ public interface StageManager<S> {
     /**
      * This method adds an FXML scene to the scene list.
      * 
-     * @param fxmlUrl             the url of the fxml file to load
-     * @param controller          the controller to be used
+     * @param fxmlUrl    the url of the fxml file to load
+     * @param controller the controller to be used
      */
     void addFXMLScene(String fxmlUrl, GenericController controller);
 
@@ -54,6 +54,14 @@ public interface StageManager<S> {
      *         already been created
      */
     MinigameController getLastGameController();
+
+    /**
+     * Setter for the last game controller used.
+     * 
+     * @param controller the last minigame controller created or null if no
+     *                   minigames have already been created
+     */
+    void setLastGameController(GenericController controller);
 
     /**
      * Getter for the {@link Gui}.

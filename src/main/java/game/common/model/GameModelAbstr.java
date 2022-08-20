@@ -56,7 +56,7 @@ public abstract class GameModelAbstr<S> implements GameModel<S> {
 
     @Override
     public final Player getCurrPlayer() {
-        return this.currPlayer.orElse(null);
+        return this.currPlayer.get();
     }
 
     /**
