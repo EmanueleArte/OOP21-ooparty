@@ -10,6 +10,9 @@ import game.player.Player;
 public class DamageGameMapSquare extends GameMapSquareImpl {
     private int damage;
 
+    /**
+     * Builder for {@link DamageGameMapSquare}.
+     */
     public DamageGameMapSquare() {
         super();
         this.generateNewDamage();

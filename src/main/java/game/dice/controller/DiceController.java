@@ -27,4 +27,8 @@ public interface DiceController {
      * Closes the dice and returns to the previous screen.
      */
     void returnToGame();
+
+    void reset();
+
+    Optional<Integer> getTotal();
 }
