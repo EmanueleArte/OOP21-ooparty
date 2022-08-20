@@ -208,7 +208,7 @@ public class GameHandlerViewControllerImpl implements GenericViewController {
                 this.updateLeaderboard(this.controller.getLeaderboard());
             }
         } else {
-            // TODO game end
+            this.controller.endGame();
         }
     }
 

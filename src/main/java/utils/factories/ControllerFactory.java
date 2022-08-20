@@ -4,6 +4,7 @@ import java.util.List;
 
 import game.player.Player;
 import utils.controller.GenericController;
+import menu.afterminigamemenu.controller.AfterMinigameMenuController;
 import menu.common.controller.MenuController;
 import minigames.common.controller.MinigameController;
 
@@ -19,7 +20,7 @@ public interface ControllerFactory {
     
     MenuController createPauseMenuController();
     
-    MenuController createAfterMinigameController();
+    AfterMinigameMenuController createAfterMinigameController();
     
     MinigameController createMastermindController();
     

@@ -13,7 +13,7 @@ import utils.view.GenericViewController;
 /**
  * Controller for the after minigame menu.
  */
-public class AfterMinigameMenuControllerImpl extends GenericControllerAbstr implements MenuController, AfterMinigameMenuController {
+public class AfterMinigameMenuControllerImpl extends GenericControllerAbstr implements AfterMinigameMenuController {
 
     private AfterMinigameMenuViewController menuViewController;
 
@@ -60,6 +60,11 @@ public class AfterMinigameMenuControllerImpl extends GenericControllerAbstr impl
     @Override
     public final void makeLeaderboard(final List<Player> players) {
         this.menuViewController.makeLeaderboard(players);
+    }
+
+    @Override
+    public final void makeEndGameLeaderboard(final List<Player> players) {
+        this.menuViewController.makeEndGameLeaderboard(players);
     }
 
 }

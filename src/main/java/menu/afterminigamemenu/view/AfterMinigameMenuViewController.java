@@ -15,4 +15,10 @@ public interface AfterMinigameMenuViewController extends GenericViewController {
      */
     void makeLeaderboard(List<Player> players);
 
+    /**
+     * Initializes the scene components to make the end of the game.
+     * @param players
+     */
+    void makeEndGameLeaderboard(List<Player> players);
+
 }
