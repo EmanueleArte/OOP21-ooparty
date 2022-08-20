@@ -1,6 +1,8 @@
 package menu.gamecreationmenu.model;
 
 import java.util.List;
+
+import game.player.Player;
 import utils.enums.PlayerColor;
 
 /**
@@ -24,5 +26,19 @@ public interface GameCreationMenuModel {
      * @param nPlayers the new number of players
      */
     void setActualNPlayers(Integer nPlayers);
+
+    /**
+     * This method creates the list of players that will join the game.
+     * 
+     * @return the list of the players
+     */
+    List<Player> createPlayersList();
+
+    /**
+     * Getter for the turns number.
+     * 
+     * @return the turns number
+     */
+    int getTurnsNumber();
 
 }

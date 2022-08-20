@@ -13,6 +13,8 @@ import game.gamehandler.model.GameHandlerModelImpl;
 import game.map.GameMapImpl;
 import game.player.Player;
 import menu.common.controller.MenuController;
+import menu.gamecreationmenu.controller.GameCreationMenuControllerImpl;
+import menu.gamecreationmenu.model.GameCreationMenuModelImpl;
 import menu.mainmenu.controller.MainMenuControllerImpl;
 import menu.mainmenu.model.MainMenuModelImpl;
 import minigames.common.controller.MinigameController;
@@ -48,8 +50,9 @@ public class ControllerFactoryFx<S> implements ControllerFactory {
 
     @Override
     public final MenuController createGameCreationMenuController() {
-        // TODO Auto-generated method stub
-        return null;
+        var model = new GameCreationMenuModelImpl();
+        var controller = new GameCreationMenuControllerImpl(this.stageManager, model);
+        return controller;
     }
 
     @Override

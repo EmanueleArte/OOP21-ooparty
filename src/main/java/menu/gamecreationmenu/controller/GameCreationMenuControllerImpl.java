@@ -1,5 +1,6 @@
 package menu.gamecreationmenu.controller;
 
+import game.gamehandler.controller.GameHandlerController;
 import menu.common.controller.MenuController;
 import menu.gamecreationmenu.model.GameCreationMenuModel;
 import menu.gamecreationmenu.view.GameCreationMenuViewController;
@@ -47,8 +48,12 @@ public class GameCreationMenuControllerImpl extends GenericControllerAbstr imple
     @Override
     public final void goNext() {
         this.setActualNumberOfPlayers();
-        if (!this.menuModel.startGame(this.menuViewController.getPlayersNicknames(),
+        if (this.menuModel.startGame(this.menuViewController.getPlayersNicknames(),
                 this.menuViewController.getColorsValues(), this.menuViewController.getTurnsNumber())) {
+            final GameHandlerController game = this.getStageManager().getControllerFactory()
+                    .createGameHandlerController(this.menuModel.createPlayersList(), this.menuModel.getTurnsNumber());
+            game.start();
+        } else {
             this.menuViewController.showError();
         }
     }
