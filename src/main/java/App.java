@@ -1,12 +1,4 @@
-<<<<<<< HEAD
-
-import game.map.GameMap;
-import game.map.GameMapImpl;
-=======
->>>>>>> map
 import javafx.scene.Scene;
-import menu.common.controller.MenuController;
-import menu.mainmenu.controller.MainMenuControllerImpl;
 import utils.factories.ControllerFactory;
 import utils.factories.ControllerFactoryFx;
 import utils.graphics.controller.StageManager;
@@ -25,9 +17,9 @@ public final class App {
         ControllerFactory controllerFactory = new ControllerFactoryFx(stageManager);
         stageManager.setControllerFactory(controllerFactory);
         stageManager.run();
-        
+
         stageManager.getControllerFactory().createMainMenuController().createMenu();
-        
+
 
         /*
          * GameHandlerModel game = new GameHandlerModelImpl(stageManager, List.of(new

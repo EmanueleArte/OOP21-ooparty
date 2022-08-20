@@ -11,7 +11,6 @@ import game.dice.controller.DiceControllerImpl;
 import game.map.GameMap;
 import game.map.GameMapSquare;
 import game.player.Player;
-import game.powerup.DoubleDicePowerup;
 import menu.powerupmenu.controller.PowerupMenuController;
 import menu.powerupmenu.controller.PowerupMenuControllerImpl;
 import minigames.common.controller.MinigameController;
@@ -24,12 +23,8 @@ public class GameHandlerModelImpl<S> implements GameHandlerModel {
 
     private final StageManager<S> stageManager;
     private final DiceController dice;
-<<<<<<< HEAD
     private final MinigameControllerFactoryImpl<S> minigameFactory;
-=======
     private final PowerupMenuController powerupMenu;
-    private final MinigameFactoryImpl<S> minigameFactory;
->>>>>>> map
     private final GameMap gameMap;
     private Optional<MinigameController> minigameController = Optional.empty();
 
@@ -48,7 +43,7 @@ public class GameHandlerModelImpl<S> implements GameHandlerModel {
 
         this.minigameFactory = new MinigameControllerFactoryImpl<>(players, s);
 
-        //this.powerupMenu = new PowerupMenuControllerImpl(this.stageManager, players);
+        this.powerupMenu = new PowerupMenuControllerImpl(this.stageManager, players);   //TODO da cambiare, non va bene
         //this.minigameFactory = new MinigameFactoryImpl<>(players, s);
 
         this.turnsNumber = turnsNumber;
