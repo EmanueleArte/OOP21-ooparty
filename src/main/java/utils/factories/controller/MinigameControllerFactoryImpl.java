@@ -7,7 +7,7 @@ import game.player.Player;
 import minigames.common.controller.MinigameController;
 import utils.graphics.controller.StageManager;
 
-public class MinigameControllerFactoryImpl<S> {
+public class MinigameControllerFactoryImpl<S> implements MinigameControllerFactory<S> {
     private static final int MINIGAMES_NUMBER = 2;
 
     private final StageManager<S> stageManager;
@@ -18,6 +18,7 @@ public class MinigameControllerFactoryImpl<S> {
         this.stageManager = s;
     }
 
+    @Override
     public final MinigameController createRandomMinigameController() {
         Random rand = new Random();
         switch (rand.nextInt(MinigameControllerFactoryImpl.MINIGAMES_NUMBER)) {

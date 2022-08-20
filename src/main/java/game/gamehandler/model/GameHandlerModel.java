@@ -15,11 +15,6 @@ import utils.model.GenericModel;
 public interface GameHandlerModel extends GenericModel{
 
     /**
-     * This method selects a minigame and plays it.
-     */
-    void playMinigame();
-
-    /**
      * This method returns the players in the game.
      * 
      * @return a list containing the players in the game
@@ -53,11 +48,6 @@ public interface GameHandlerModel extends GenericModel{
      * @return current turn number
      */
     int getTurnNumber();
-
-    /**
-     * This method ends the game and returns to main menu.
-     */
-    void endGame();
 
     /**
      * 

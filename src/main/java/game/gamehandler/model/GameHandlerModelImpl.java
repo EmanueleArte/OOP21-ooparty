@@ -18,16 +18,14 @@ import menu.powerupmenu.controller.PowerupMenuControllerImpl;
 import minigames.common.controller.MinigameController;
 import utils.enums.PlayerTurnProgress;
 import utils.enums.TurnProgress;
+import utils.factories.controller.MinigameControllerFactory;
 import utils.factories.controller.MinigameControllerFactoryImpl;
 import utils.graphics.controller.StageManager;
 
-public class GameHandlerModelImpl<S> implements GameHandlerModel {
+public class GameHandlerModelImpl implements GameHandlerModel {
 
-    private final StageManager<S> stageManager;
-    //private final DiceController dice;
     private final DiceModel dice;
-    private final MinigameControllerFactoryImpl<S> minigameFactory;
-    private final PowerupMenuController powerupMenu;
+    //private final PowerupMenuController powerupMenu;
     private final GameMap gameMap;
     private Optional<MinigameController> minigameController = Optional.empty();
 
@@ -39,11 +37,9 @@ public class GameHandlerModelImpl<S> implements GameHandlerModel {
     private List<Player> players;
     private Iterator<Player> playersIterator;
 
-    public GameHandlerModelImpl(final StageManager<S> s, final DiceModel dice, final List<Player> players, final int turnsNumber) {
-        this.stageManager = s;
+    public GameHandlerModelImpl(final DiceModel dice, final List<Player> players, final int turnsNumber) {
         this.dice = dice;
-        this.minigameFactory = new MinigameControllerFactoryImpl<>(players, s);
-        this.powerupMenu = new PowerupMenuControllerImpl(this.stageManager, players);   //TODO da cambiare, non va bene
+        //this.powerupMenu = new PowerupMenuControllerImpl(players);   //TODO da cambiare, non va bene
         this.turnsNumber = turnsNumber;
         this.turn = 1;
         this.players = players;
@@ -68,12 +64,11 @@ public class GameHandlerModelImpl<S> implements GameHandlerModel {
         if (this.turnProgress == TurnProgress.END_OF_TURN) {
             this.startNewTurn();
             if (this.turn == this.turnsNumber + 1) {
-                this.endGame();
                 return Optional.empty();
             }
         }
         if (this.turnProgress == TurnProgress.PLAY_MINIGAME) {
-            this.playMinigame();
+            //this.playMinigame();
         }
         return Optional.of(this.turnProgress);
     }
@@ -95,7 +90,7 @@ public class GameHandlerModelImpl<S> implements GameHandlerModel {
             if (this.currentPlayer.get().getPowerupList().isEmpty()) {
                 this.playerTurnProgress = PlayerTurnProgress.next(this.playerTurnProgress);
             } else {
-                this.powerupMenu.start(this.currentPlayer.get());
+                //this.powerupMenu.start(this.currentPlayer.get());
             }
         }
         if (this.playerTurnProgress == PlayerTurnProgress.MOVE_PLAYER) {
@@ -121,7 +116,6 @@ public class GameHandlerModelImpl<S> implements GameHandlerModel {
             if (this.currentPlayer.get().hasDiceToRoll()) {
                 this.dice.rollDice();
                 this.currentPlayer.get().rollDice();
-                //this.dice.start(this.currentPlayer.get());
             }
         }
         return Optional.of(this.playerTurnProgress);
@@ -133,17 +127,11 @@ public class GameHandlerModelImpl<S> implements GameHandlerModel {
     }
 
     private void startNewTurn() {
-        this.players = (List<Player>) this.stageManager.getLastGameController().getGameResults();
+        //this.players = (List<Player>) this.stageManager.getLastGameController().getGameResults();
         this.playersIterator = players.iterator();
         this.turnProgress = TurnProgress.END_OF_TURN;
         this.playerTurnProgress = PlayerTurnProgress.END_OF_TURN;
         this.turn++;
-    }
-
-    @Override
-    public final void playMinigame() {
-        minigameController = Optional.of(this.minigameFactory.createRandomMinigameController());
-        minigameController.get().startGame();
     }
 
     @Override
@@ -159,11 +147,6 @@ public class GameHandlerModelImpl<S> implements GameHandlerModel {
     @Override
     public final Optional<Player> getCurrentPlayer() {
         return this.currentPlayer;
-    }
-
-    @Override
-    public final void endGame() {
-        this.stageManager.popScene();
     }
 
     @Override

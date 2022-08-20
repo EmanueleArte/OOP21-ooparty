@@ -98,9 +98,9 @@ public class ControllerFactoryFx<S> implements ControllerFactory {
     public final DiceController createDiceController(final boolean noRepeat) {
         DiceModel model;
         if (noRepeat) {
-            model = new DiceModelNoRepeatImpl(stageManager);
+            model = new DiceModelNoRepeatImpl();
         } else {
-            model = new DiceModelImpl(this.stageManager);
+            model = new DiceModelImpl();
         }
         var controller = new DiceControllerImpl(stageManager, model, noRepeat);
         return controller;

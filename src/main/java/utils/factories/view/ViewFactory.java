@@ -26,7 +26,7 @@ public interface ViewFactory<S> {
     /**
      * This method creates an after minigame menu.
      * 
-     * @param controller the controller to be used 
+     * @param controller the controller to be used
      */
     void createAfterMinigameMenu(GenericController controller);
 
@@ -50,5 +50,12 @@ public interface ViewFactory<S> {
      * @param controller the controller to be used
      */
     void createWhoRisksWinsView(GenericController controller);
+
+    /**
+     * This method creates a dice view.
+     * 
+     * @param controller the controller to be used
+     */
+    void createDiceView(GenericController controller);
 
 }
