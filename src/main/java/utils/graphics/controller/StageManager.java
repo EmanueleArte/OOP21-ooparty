@@ -4,6 +4,7 @@ import java.util.List;
 
 import minigames.common.controller.MinigameController;
 import utils.controller.GenericController;
+import utils.factories.ControllerFactory;
 import utils.graphics.view.Gui;
 
 /**
@@ -69,5 +70,9 @@ public interface StageManager<S> {
      * @return the gui used
      */
     Gui getGui();
+    
+    void setControllerFactory(ControllerFactory factory);
+    
+    ControllerFactory getControllerFactory();
 
 }
