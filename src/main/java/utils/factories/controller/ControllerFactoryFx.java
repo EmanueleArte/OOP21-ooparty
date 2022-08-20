@@ -41,8 +41,8 @@ public class ControllerFactoryFx<S> implements ControllerFactory {
     @Override
     public final GameHandlerController createGameHandlerController(final List<Player> players, final int turnsNumber) {
         var diceController = this.createDiceController(false);
-        var model = new GameHandlerModelImpl<S>(stageManager, diceController.getModel(), players, turnsNumber);
-        GameHandlerController controller = new GameHandlerControllerImpl<S>(stageManager, diceController, model);
+        var model = new GameHandlerModelImpl(diceController.getModel(), players, turnsNumber);
+        GameHandlerController controller = new GameHandlerControllerImpl(stageManager, diceController, model);
         return controller;
     }
 
