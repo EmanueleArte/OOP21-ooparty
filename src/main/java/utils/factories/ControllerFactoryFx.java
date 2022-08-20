@@ -13,6 +13,8 @@ import menu.mainmenu.model.MainMenuModelImpl;
 import minigames.common.controller.MinigameController;
 import minigames.mastermind.controller.MastermindControllerImpl;
 import minigames.mastermind.model.MastermindModelImpl;
+import minigames.whoriskswins.controller.WhoRisksWinsControllerImpl;
+import minigames.whoriskswins.model.WhoRisksWinsModelImpl;
 import utils.controller.GenericController;
 import utils.graphics.controller.StageManager;
 
@@ -68,8 +70,10 @@ public class ControllerFactoryFx<S> implements ControllerFactory {
 
     @Override
     public final MinigameController createWhoRisksWinsController(final List<Player> players) {
-        // TODO Auto-generated method stub
-        return null;
+        var diceController = this.createDiceController();
+        var model = new WhoRisksWinsModelImpl(players, diceController.getModel());
+        var controller = new WhoRisksWinsControllerImpl(this.stageManager, model, diceController);
+        return controller;
     }
 
     @Override

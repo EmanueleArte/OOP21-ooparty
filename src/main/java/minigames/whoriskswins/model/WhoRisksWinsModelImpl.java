@@ -10,10 +10,8 @@ import utils.graphics.controller.StageManager;
 /**
  * Implementation of {@link WhoRisksWinsModel} and extension of
  * {@link MinigameModelAbstr}.
- * 
- * @param <S> the scenes of the stage
  */
-public class WhoRisksWinsModelImpl<S> extends MinigameModelAbstr<S> implements WhoRisksWinsModel<S> {
+public class WhoRisksWinsModelImpl extends MinigameModelAbstr implements WhoRisksWinsModel {
 
     /**
      * Range of milliseconds.
@@ -22,7 +20,7 @@ public class WhoRisksWinsModelImpl<S> extends MinigameModelAbstr<S> implements W
     /**
      * Minimum milliseconds.
      */
-    private static final int MINIMUM_TIME = 700;
+    private static final int MINIMUM_TIME = 500;
     private int blockFallingSpeed;
 
     /**
@@ -43,7 +41,6 @@ public class WhoRisksWinsModelImpl<S> extends MinigameModelAbstr<S> implements W
             return true;
         }
         this.setGameResults();
-        this.getStageManager().popScene();
         return false;
     }
 
