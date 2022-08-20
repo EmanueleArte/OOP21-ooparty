@@ -24,6 +24,13 @@ public interface ViewFactory<S> {
     void createGameCreationMenuView(GenericController controller);
 
     /**
+     * This method creates an after minigame menu.
+     * 
+     * @param controller the controller to be used 
+     */
+    void createAfterMinigameMenu(GenericController controller);
+
+    /**
      * This method creates a pause menu view.
      * 
      * @param controller the controller to be used

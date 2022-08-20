@@ -11,7 +11,6 @@ import game.dice.controller.DiceControllerImpl;
 import game.map.GameMap;
 import game.map.GameMapSquare;
 import game.player.Player;
-import game.powerup.DoubleDicePowerup;
 import menu.powerupmenu.controller.PowerupMenuController;
 import menu.powerupmenu.controller.PowerupMenuControllerImpl;
 import minigames.common.controller.MinigameController;
@@ -24,12 +23,8 @@ public class GameHandlerModelImpl<S> implements GameHandlerModel {
 
     private final StageManager<S> stageManager;
     private final DiceController dice;
-<<<<<<< HEAD
     private final MinigameControllerFactoryImpl<S> minigameFactory;
-=======
     private final PowerupMenuController powerupMenu;
-    private final MinigameFactoryImpl<S> minigameFactory;
->>>>>>> map
     private final GameMap gameMap;
     private Optional<MinigameController> minigameController = Optional.empty();
 
@@ -45,12 +40,8 @@ public class GameHandlerModelImpl<S> implements GameHandlerModel {
             final GameMap gameMap) {
         this.stageManager = s;
         this.dice = new DiceControllerImpl(this.stageManager, false);
-
         this.minigameFactory = new MinigameControllerFactoryImpl<>(players, s);
-
-        //this.powerupMenu = new PowerupMenuControllerImpl(this.stageManager, players);
-        //this.minigameFactory = new MinigameFactoryImpl<>(players, s);
-
+        this.powerupMenu = new PowerupMenuControllerImpl(this.stageManager, players);   //TODO da cambiare, non va bene
         this.turnsNumber = turnsNumber;
         this.turn = 1;
         this.players = players;
@@ -96,6 +87,7 @@ public class GameHandlerModelImpl<S> implements GameHandlerModel {
         if (this.playerTurnProgress == PlayerTurnProgress.SHOW_BANNER) {
             this.currentPlayer = Optional.of(this.playersIterator.next());
             this.currentPlayer.get().setDicesNumber(1);
+            this.dice.reset();
         }
         if (this.playerTurnProgress == PlayerTurnProgress.USE_POWERUP) {
             if (this.currentPlayer.get().getPowerupList().isEmpty()) {
@@ -106,7 +98,6 @@ public class GameHandlerModelImpl<S> implements GameHandlerModel {
         }
         if (this.playerTurnProgress == PlayerTurnProgress.MOVE_PLAYER) {
             final Player cp = this.currentPlayer.get();
-            System.out.println(this.dice.getLastResult());
             if (this.dice.getLastResult().isPresent()) {
                 cp.moveForward(this.dice.getLastResult().get(), this.gameMap);
                 final GameMapSquare playerPosition = cp.getPosition(this.gameMap);
@@ -180,7 +171,7 @@ public class GameHandlerModelImpl<S> implements GameHandlerModel {
      * This method returns the leaderboard. The leaderboard consist in a list of players ordered by:
      * - stars;
      * - coins;
-     * - life point;
+     * - life points;
      * @return an ordered list of players 
      */
     @Override

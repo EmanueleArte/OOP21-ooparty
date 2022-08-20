@@ -22,6 +22,9 @@ public class GameMapSquareImpl implements GameMapSquare {
      */
     public static final int MAX_DAMAGE = 50;
 
+    /**
+     * Builder for {@link GameMapSquareImpl}.
+     */
     public GameMapSquareImpl() {
         this.players = new HashSet<>();
     }

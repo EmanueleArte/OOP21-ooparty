@@ -5,6 +5,7 @@ import java.util.Optional;
 
 import game.map.GameMap;
 import game.player.Player;
+import menu.common.controller.MenuController;
 import menu.powerupmenu.model.PowerupMenuModel;
 import menu.powerupmenu.model.PowerupMenuModelImpl;
 import menu.powerupmenu.view.PowerupMenuViewControllerImpl;
@@ -33,7 +34,7 @@ public class PowerupMenuControllerImpl extends GenericControllerAbstr implements
     }
 
     @Override
-    public final <C> void setViewController(final C viewController) throws IllegalArgumentException {
+    public final void setViewController(final GenericViewController viewController) throws IllegalArgumentException {
         if (viewController instanceof PowerupMenuViewControllerImpl) {
             this.viewController = (PowerupMenuViewControllerImpl) viewController;
         } else {

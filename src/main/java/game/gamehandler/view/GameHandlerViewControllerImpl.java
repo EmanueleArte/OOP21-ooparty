@@ -59,11 +59,6 @@ public class GameHandlerViewControllerImpl implements GenericViewController {
     private static final int MAP_HEIGHT = 8;
     private static final int PLAYER_X_START = -825;
     private static final int PLAYER_Y_START = -600;
-    /*
-     * private static final int COIN_DIM = 25; private static final int STAR_DIM =
-     * 25; private static final int POWERUP_DIM = 25; private static final int
-     * DAMAGE_ICON_DIM = 25;
-     */
     private static final int ICON_DIM = 25;
 
     private GameHandlerController controller;
@@ -122,10 +117,10 @@ public class GameHandlerViewControllerImpl implements GenericViewController {
             }
         });
 
-        updateTurnOrder(players);
-        updateLeaderboard(players);
+        this.updateTurnOrder(players);
+        this.updateLeaderboard(players);
 
-        initializeMap(this.controller.getGameMap());
+        this.initializeMap(this.controller.getGameMap());
 
         final List<Point2D> squarePositions = mapGrid.getChildren().stream().filter(l -> l instanceof Label)
                 .map(l -> new Point2D(mapGrid.getLayoutX() + GridPane.getRowIndex(l) * SQUARE_WIDTH,
@@ -202,9 +197,15 @@ public class GameHandlerViewControllerImpl implements GenericViewController {
                         }
 
                         this.controller.checkPlayerDeath(currentPlayer);
-                        updateLeaderboard(this.controller.getLeaderboard());
+                        this.updateLeaderboard(this.controller.getLeaderboard());
                     }
                 }
+            } else if (progress.get() == TurnProgress.PLAY_MINIGAME) {
+                this.setUpdatesLabel("");
+            } else if (progress.get() == TurnProgress.SHOW_LEADERBOARD) {
+                this.controller.showAfterMinigameMenu();
+            } else if (progress.get() == TurnProgress.END_OF_TURN) {
+                this.updateLeaderboard(this.controller.getLeaderboard());
             }
         } else {
             // TODO game end

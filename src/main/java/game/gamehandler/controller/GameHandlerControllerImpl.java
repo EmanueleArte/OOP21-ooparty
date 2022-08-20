@@ -8,6 +8,7 @@ import game.gamehandler.model.GameHandlerModelImpl;
 import game.map.GameMap;
 import game.gamehandler.view.GameHandlerViewControllerImpl;
 import game.player.Player;
+import menu.afterminigamemenu.controller.AfterMinigameMenuControllerImpl;
 import menu.pausemenu.controller.PauseMenuControllerImpl;
 import utils.controller.GenericController;
 import utils.controller.GenericControllerAbstr;
@@ -83,7 +84,7 @@ public class GameHandlerControllerImpl<S> extends GenericControllerAbstr
     public final List<Player> getLeaderboard() {
         return this.model.getLeaderboard();
     }
-    
+
     @Override
     public final List<Player> getTurnOrder() {
         return this.model.getTurnOrder();
@@ -97,6 +98,13 @@ public class GameHandlerControllerImpl<S> extends GenericControllerAbstr
 
     public final void checkPlayerDeath(final Player p) {
         this.model.checkPlayerDeath(p);
+    }
+
+    @Override
+    public final void showAfterMinigameMenu() {
+        AfterMinigameMenuControllerImpl afterMinigameMenuControllerImpl = new AfterMinigameMenuControllerImpl(this.getStageManager());
+        afterMinigameMenuControllerImpl.createMenu();
+        afterMinigameMenuControllerImpl.makeLeaderboard(this.getTurnOrder());
     }
 
 }

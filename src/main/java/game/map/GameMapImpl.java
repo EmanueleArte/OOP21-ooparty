@@ -8,6 +8,9 @@ import utils.exceptions.PlayerNotFoundException;
 import utils.factories.board.GameBoardFactory;
 import utils.factories.board.SimpleGameBoardFactory;
 
+/**
+ * Implementation of {@link GameMap}.
+ */
 public class GameMapImpl implements GameMap {
 
     private List<GameMapSquare> squares;
@@ -18,6 +21,9 @@ public class GameMapImpl implements GameMap {
      */
     public static final int COINS_TO_BUY_STAR = 30;
 
+    /**
+     * Builder for {@link GameMap}.
+     */
     public GameMapImpl() {
         GameBoardFactory f = new SimpleGameBoardFactory();
         this.squares = f.createGameBoard();

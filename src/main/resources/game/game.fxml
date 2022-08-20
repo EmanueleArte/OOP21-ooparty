@@ -158,33 +158,8 @@
                                  </children>
                               </Group>
                            </children>
-
-                        </Group>
-                     </children>
-                  </Group>
-                  <Group fx:id="banner" opacity="0.0">
-                     <children>
-                        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#c70e0ebe" height="240.0" layoutY="240.0" stroke="#ff9900a0" strokeType="INSIDE" width="1000.0" />
-                        <Text fx:id="bannerText" fill="#dfbe07" fontSmoothingType="LCD" layoutY="400.0" stroke="#a67f00" strokeType="OUTSIDE" strokeWidth="2.0" text="Turn #" textAlignment="CENTER" wrappingWidth="1000.0">
-                           <font>
-                              <Font name="Phosphate Inline" size="96.0" />
-                           </font>
-                        </Text>
-                     </children>
-                  </Group>
-               </children>
-            </Pane>
-         </bottom>
-         <center>
-            <VBox alignment="TOP_CENTER" prefHeight="282.0" prefWidth="1000.0" BorderPane.alignment="CENTER">
-               <children>
-                  <HBox alignment="CENTER" prefHeight="474.0" prefWidth="1000.0">
-                     <children>
-                        <AnchorPane prefHeight="457.0" prefWidth="875.0">
-
-                        <!-- </Pane>
-                        <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">  -->
-
+                        </Pane>
+                        <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
                            <children>
                               <Group fx:id="banner" opacity="0.0">
                                  <children>
