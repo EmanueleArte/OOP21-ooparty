@@ -7,6 +7,9 @@ import game.powerup.GenericPowerup;
 import game.powerup.GunPowerup;
 import game.powerup.MedikitPowerup;
 
+/**
+ * Implementation of {@link PowerupFactory}.
+ */
 public class PowerupFactoryImpl implements PowerupFactory {
 
     private static final int POWERUPS_NUMBER = 3;
