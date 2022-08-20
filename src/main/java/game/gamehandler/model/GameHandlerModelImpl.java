@@ -25,6 +25,10 @@ public class GameHandlerModelImpl<S> implements GameHandlerModel {
     private final DiceController dice;
     private final MinigameControllerFactoryImpl<S> minigameFactory;
     private final PowerupMenuController powerupMenu;
+<<<<<<< HEAD
+=======
+    //private final MinigameFactoryImpl<S> minigameFactory;
+>>>>>>> 24fac273d525a7f1096eb4c8a709e8654df8267d
     private final GameMap gameMap;
     private Optional<MinigameController> minigameController = Optional.empty();
 
@@ -43,7 +47,11 @@ public class GameHandlerModelImpl<S> implements GameHandlerModel {
 
         this.minigameFactory = new MinigameControllerFactoryImpl<>(players, s);
 
+<<<<<<< HEAD
         this.powerupMenu = new PowerupMenuControllerImpl(this.stageManager, players);   //TODO da cambiare, non va bene
+=======
+        this.powerupMenu = new PowerupMenuControllerImpl(this.stageManager, players);
+>>>>>>> 24fac273d525a7f1096eb4c8a709e8654df8267d
         //this.minigameFactory = new MinigameFactoryImpl<>(players, s);
 
         this.turnsNumber = turnsNumber;
