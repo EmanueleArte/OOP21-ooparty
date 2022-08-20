@@ -13,6 +13,9 @@ import javafx.scene.layout.VBox;
 import menu.MenuController;
 import utils.controller.GenericController;
 
+/**
+ * ViewController for the after minigame menu.
+ */
 public class AfterMinigameMenuViewControllerImpl implements AfterMinigameMenuViewController {
 
     private static final int VBOX_WIDTH = 200;

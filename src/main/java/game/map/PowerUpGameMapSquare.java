@@ -11,6 +11,9 @@ public class PowerUpGameMapSquare extends GameMapSquareImpl {
 
     private GenericPowerup powerup;
 
+    /**
+     * Builder for {@link PowerUpGameMapSquare}.
+     */
     public PowerUpGameMapSquare() {
         super();
         this.generateRandomPowerUp();
