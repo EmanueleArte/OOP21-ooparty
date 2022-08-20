@@ -42,8 +42,8 @@ public class WhoRisksWinsModelImpl<S> extends MinigameModelAbstr<S> implements W
             this.setCurrPlayer();
             return true;
         }
-        this.setGameResults();
         this.getStageManager().popScene();
+        this.setGameResults();
         return false;
     }
 

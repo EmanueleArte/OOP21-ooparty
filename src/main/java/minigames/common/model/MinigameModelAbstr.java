@@ -82,8 +82,7 @@ public abstract class MinigameModelAbstr<S> extends GameModelAbstr<S> implements
             if (players.size() > 1) {
                 final Map<Player, Integer> sorted = new LinkedHashMap<>();
                 players.forEach(player -> {
-                    final var s = this.getStageManager();
-                    /*
+                    /* final var s = this.getStageManager();
                      * if (s != null) { if (s.getGui().mainStagePresence()) {
                      * this.dice.start(player); } }
                      */
@@ -113,6 +112,7 @@ public abstract class MinigameModelAbstr<S> extends GameModelAbstr<S> implements
      * Setter for gameResults.
      */
     protected void setGameResults() {
+        System.out.println("OK");
         this.gameResults = this.playoff(this.groupPlayersByScore());
     }
 
