@@ -50,7 +50,7 @@ class TestMinigame {
         players.forEach(p -> m.scoreMapper(p, scores.get(players.indexOf(p))));
         final List<Player> orderedList = List.of(new PlayerImpl("Giovanni"), new PlayerImpl("Lorenzo"),
                 new PlayerImpl("Luca"), new PlayerImpl("Marco"));
-        assertEquals(orderedList, m.gameResults());
+        assertEquals(orderedList, m.getGameResults());
     }
 
     @Test
@@ -62,7 +62,7 @@ class TestMinigame {
                         new PlayerImpl("Lorenzo")),
                 List.of(new PlayerImpl("Giovanni"), new PlayerImpl("Marco"), new PlayerImpl("Lorenzo"),
                         new PlayerImpl("Luca")));
-        assertTrue(orderedDuplList.contains(m.gameResults()));
+        assertTrue(orderedDuplList.contains(m.getGameResults()));
 
     }
 

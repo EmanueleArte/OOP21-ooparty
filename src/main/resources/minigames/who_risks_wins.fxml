@@ -28,7 +28,6 @@
                         <Font size="20.0" />
                      </font>
                   </Label>
-                  <Label text="Press ENTER to stop the block when falling. " textAlignment="CENTER" />
                   <Pane prefHeight="400.0" prefWidth="3840.0">
                      <children>
                         <Group fx:id="playerAvatar" layoutX="1920.0" layoutY="385.0" scaleX="0.5" scaleY="0.5">

@@ -1,6 +1,6 @@
 package menu.gamecreationmenu.controller;
 
-import menu.MenuController;
+import menu.common.controller.MenuController;
 import menu.gamecreationmenu.model.GameCreationMenuModel;
 import menu.gamecreationmenu.model.GameCreationMenuModelImpl;
 import menu.gamecreationmenu.view.GameCreationMenuViewController;
@@ -30,7 +30,7 @@ public class GameCreationMenuControllerImpl extends GenericControllerAbstr imple
     }
 
     @Override
-    public final <C> void setViewController(final C viewController) throws IllegalArgumentException {
+    public final void setViewController(final GenericViewController viewController) throws IllegalArgumentException {
         if (viewController instanceof GameCreationMenuViewControllerImpl) {
             this.menuViewController = (GameCreationMenuViewControllerImpl) viewController;
         } else {
@@ -60,7 +60,7 @@ public class GameCreationMenuControllerImpl extends GenericControllerAbstr imple
 
     @Override
     public final void createMenu() {
-        this.getViewFactory().createGameCreationMenu(this);
+        this.getStageManager().getGui().getViewFactory().createGameCreationMenuView(this);
     }
 
     /**

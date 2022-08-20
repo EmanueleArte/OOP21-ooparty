@@ -10,7 +10,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.Border;
 import javafx.scene.layout.VBox;
-import menu.MenuController;
+import menu.common.controller.MenuController;
 import utils.controller.GenericController;
 import utils.enums.OrdinalNumber;
 import utils.factories.PowerupFactoryImpl;

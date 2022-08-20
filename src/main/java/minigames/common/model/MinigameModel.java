@@ -20,7 +20,7 @@ public interface MinigameModel<S> extends GameModel<S> {
      * @return a list of players ordered by their classification in the minigame
      *         with no draws
      */
-    List<Player> gameResults();
+    List<Player> getGameResults();
 
     /**
      * This method associates a player to his score.

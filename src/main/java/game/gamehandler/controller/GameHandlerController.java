@@ -16,6 +16,10 @@ public interface GameHandlerController {
      */
     void start();
 
+    <C> void setViewController(GenericViewController viewController);
+
+    GenericViewController getViewController();
+
     /**
      * Returns the current turn number.
      * 

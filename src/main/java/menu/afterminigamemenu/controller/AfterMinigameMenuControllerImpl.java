@@ -3,7 +3,7 @@ package menu.afterminigamemenu.controller;
 import java.util.List;
 
 import game.player.Player;
-import menu.MenuController;
+import menu.common.controller.MenuController;
 import menu.afterminigamemenu.view.AfterMinigameMenuViewController;
 import menu.afterminigamemenu.view.AfterMinigameMenuViewControllerImpl;
 import utils.controller.GenericControllerAbstr;
@@ -28,7 +28,7 @@ public class AfterMinigameMenuControllerImpl extends GenericControllerAbstr impl
     }
 
     @Override
-    public final <C> void setViewController(final C viewController) {
+    public final void setViewController(final GenericViewController viewController) {
         if (viewController instanceof AfterMinigameMenuViewControllerImpl) {
             this.menuViewController = (AfterMinigameMenuViewController) viewController;
         } else {
@@ -54,7 +54,7 @@ public class AfterMinigameMenuControllerImpl extends GenericControllerAbstr impl
 
     @Override
     public final void createMenu() {
-        this.getViewFactory().createAfterMinigameMenu(this);
+        this.getStageManager().getGui().getViewFactory().createAfterMinigameMenu(this);
     }
 
     @Override

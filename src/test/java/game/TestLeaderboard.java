@@ -1,6 +1,6 @@
 package game;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.util.List;
 
@@ -18,7 +18,7 @@ class TestLeaderboard {
 
     @Test
     void startingLeaderboardTest() {
-        final StageManager<?> stageManager = new StageManagerImpl<>("Test");
+        final StageManager<?> stageManager = new StageManagerImpl<>("Test", null /*TODO non va così ma mancava un argomento prima*/);
         final List<Player> players = List.of(new PlayerImpl("Mario"), new PlayerImpl("Luigi"), new PlayerImpl("Alex"));
         final int turns = 5;
         final GameMap map = new GameMapImpl();
@@ -29,7 +29,7 @@ class TestLeaderboard {
 
     @Test
     void midGameLeaderboardTest() {
-        final StageManager<?> stageManager = new StageManagerImpl<>("Test");
+        final StageManager<?> stageManager = new StageManagerImpl<>("Test", null /*TODO non va così ma mancava un argomento prima*/);
 
         final Player mario = new PlayerImpl("Mario");
         final Player luigi = new PlayerImpl("Luigi");

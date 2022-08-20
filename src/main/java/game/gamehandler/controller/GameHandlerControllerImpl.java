@@ -36,7 +36,7 @@ public class GameHandlerControllerImpl<S> extends GenericControllerAbstr
     }
 
     @Override
-    public final <C> void setViewController(final C viewController) {
+    public final void setViewController(final GenericViewController viewController) {
         if (viewController instanceof GameHandlerViewControllerImpl) {
             this.viewController = (GameHandlerViewControllerImpl) viewController;
             this.viewController.initialize(this.model.getPlayers(), this);

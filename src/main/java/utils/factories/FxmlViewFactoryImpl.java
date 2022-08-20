@@ -2,6 +2,7 @@ package utils.factories;
 
 import utils.controller.GenericController;
 import utils.graphics.controller.StageManager;
+import utils.graphics.view.JavafxGui;
 
 /**
  * 
@@ -27,13 +28,12 @@ public class FxmlViewFactoryImpl<S> implements ViewFactory<S> {
         this.createScene(controller, "menu/main_menu.fxml");
     }
 
-    @Override
     public final void createAfterMinigameMenu(final GenericController controller) {
         this.createScene(controller, "menu/after_minigame_menu.fxml");
     }
 
     @Override
-    public final void createGameCreationMenu(final GenericController controller) {
+    public final void createGameCreationMenuView(final GenericController controller) {
         this.createScene(controller, "menu/creation_menu.fxml");
     }
 
@@ -66,7 +66,7 @@ public class FxmlViewFactoryImpl<S> implements ViewFactory<S> {
      */
     @SuppressWarnings("unchecked")
     private void createScene(final GenericController controller, final String fxmlUrl) {
-        final var currScene = this.stageManager.getGui().loadScene(fxmlUrl, controller);
+        final var currScene = ((JavafxGui) this.stageManager.getGui()).loadScene(fxmlUrl, controller);
         this.stageManager.setLastGameController(controller);
         this.stageManager.addScene((S) currScene);
     }

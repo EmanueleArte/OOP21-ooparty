@@ -1,4 +1,4 @@
-package menu;
+package menu.common.controller;
 
 /**
  * This interface models a menu controller.

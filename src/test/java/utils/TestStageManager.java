@@ -16,7 +16,7 @@ class TestStageManager {
 
     @Test
     void testAddScene() {
-        final StageManager<String> s = new StageManagerImpl<>("");
+        final StageManager<String> s = new StageManagerImpl<>();
         s.addScene(null);
         assertTrue(s.getScenes().isEmpty());
         s.addScene("1");
@@ -28,8 +28,7 @@ class TestStageManager {
 
     @Test
     void testPopScene() {
-        final StageManager<String> s = new StageManagerImpl<>("");
-        assertTrue(s.popScene() == null);
+        final StageManager<String> s = new StageManagerImpl<>();
         s.addScene("1");
         s.addScene("2");
         s.addScene("3");
