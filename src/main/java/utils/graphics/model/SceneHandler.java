@@ -20,8 +20,9 @@ public interface SceneHandler<S> {
      * This method removes the last scene created.
      * 
      * @return the last added scene or null if the scenes list is empty.
+     * @throws IllegalStateException if the scenes list is empty
      */
-    S popScene();
+    S popScene() throws IllegalStateException;
 
     /**
      * This method calculates the index of the last added scene.

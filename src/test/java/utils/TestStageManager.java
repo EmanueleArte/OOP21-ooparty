@@ -29,7 +29,6 @@ class TestStageManager {
     @Test
     void testPopScene() {
         final StageManager<String> s = new StageManagerImpl<>();
-        assertTrue(s.popScene() == null);
         s.addScene("1");
         s.addScene("2");
         s.addScene("3");

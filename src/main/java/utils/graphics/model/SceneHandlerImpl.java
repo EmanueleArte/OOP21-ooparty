@@ -29,9 +29,9 @@ public class SceneHandlerImpl<S> implements SceneHandler<S> {
     }
 
     @Override
-    public final S popScene() {
+    public final S popScene() throws IllegalStateException {
         if (this.scenes.isEmpty()) {
-            return null;
+            throw new IllegalStateException("No previous page");
         }
         return this.scenes.remove(this.lastSceneIndex());
     }

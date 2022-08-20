@@ -23,6 +23,7 @@ public abstract class MinigameModelAbstr<S> extends GameModelAbstr<S> implements
 
     private final Map<Player, Integer> playersClassification;
     private final DiceController dice;
+    private List<Player> gameResults;
 
     /**
      * Builds a new {@link MinigameModelAbstr}.
@@ -54,8 +55,8 @@ public abstract class MinigameModelAbstr<S> extends GameModelAbstr<S> implements
     public abstract boolean runGame();
 
     @Override
-    public final List<Player> gameResults() {
-        return this.playoff(this.groupPlayersByScore());
+    public final List<Player> getGameResults() {
+        return this.gameResults;
     }
 
     @Override
@@ -116,7 +117,7 @@ public abstract class MinigameModelAbstr<S> extends GameModelAbstr<S> implements
      * @param score the new score.
      * @throws PlayerNotFoundException if the current player is not set
      */
-    protected void setScore(final int score) throws PlayerNotFoundException {
+    protected void setScore(final int score) {
         if (this.hasCurrPlayer()) {
             this.scoreMapper(this.getCurrPlayer(), score);
         } else {

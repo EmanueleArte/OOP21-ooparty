@@ -25,14 +25,20 @@ public abstract class MinigameViewControllerAbstr extends NoticeUser implements 
     @Override
     public abstract void startNextTurn();
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
-    public final void setPlayerLabelText(final Player player) {
+    public void setPlayerLabelText(final Player player) {
         this.playerLabel.setTextFill((player.getColor()));
         this.playerLabel.setText((player.getNickname() + "'s turn"));
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
-    public final void setPlayerAvatarColor(final Player player) {
+    public void setPlayerAvatarColor(final Player player) {
         this.playerAvatar.getChildren().forEach(shape -> {
             ((Shape) shape).setFill(player.getColor());
         });
