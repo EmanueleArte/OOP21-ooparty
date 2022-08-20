@@ -4,7 +4,7 @@ import java.util.Random;
 
 public class PowerupFactoryImpl implements PowerupFactory {
 
-    private static final int POWERUPS_NUMBER = 2;
+    private static final int POWERUPS_NUMBER = 3;
 
     @Override
     public final GenericPowerup getRandomPowerup() {
@@ -14,6 +14,8 @@ public class PowerupFactoryImpl implements PowerupFactory {
             return new DoubleDicePowerup();
         case 1:
             return new GunPowerup();
+        case 2:
+            return new MedikitPowerup();
         default:
             return new GunPowerup();
         }

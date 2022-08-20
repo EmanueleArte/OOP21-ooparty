@@ -51,7 +51,7 @@ public class AfterMinigameMenuViewControllerImpl implements AfterMinigameMenuVie
 
             if (i < players.size() / 2) {
                 Label powerupGot = (Label) v.getChildren().get(3);
-                powerupGot.setText("Got " + this.getPowerup(players, i));
+                powerupGot.setText("Got " + this.getPowerup(players, i).getPowerupType());
             }
         }
     }
