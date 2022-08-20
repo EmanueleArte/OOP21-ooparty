@@ -27,6 +27,8 @@ public class AfterMinigameMenuViewControllerImpl implements AfterMinigameMenuVie
     private MenuController menuController;
     @FXML
     private List<VBox> vBoxes;
+    @FXML
+    private Label endGameLabel;
 
     @Override
     public final void setController(final GenericController controller) throws IllegalArgumentException {
@@ -41,14 +43,9 @@ public class AfterMinigameMenuViewControllerImpl implements AfterMinigameMenuVie
     public final void makeLeaderboard(final List<Player> players) {
         for (int i = 0; i < players.size(); i++) {
             VBox v = this.vBoxes.get(i);
-            v.setBorder(Border.stroke(players.get(i).getColor()));
-            v.setPrefSize(VBOX_WIDTH, VBOX_HEIGHT);
 
-            Label position = (Label) v.getChildren().get(0);
-            position.setText(this.getPositionFromIndex(i));
-
-            Label playerNickname = (Label) v.getChildren().get(1);
-            playerNickname.setText(players.get(i).getNickname());
+            this.setVBoxStyle(v, players.get(i));
+            this.setPositionAndNickname(v, players.get(i).getNickname(), i);
 
             Label coinsEarned = (Label) v.getChildren().get(2);
             coinsEarned.setText(this.earnCoins(players, i) + " coins earned");
@@ -85,5 +82,28 @@ public class AfterMinigameMenuViewControllerImpl implements AfterMinigameMenuVie
     @FXML
     private void exitMenu() {
         this.menuController.exit();
+    }
+
+    @Override
+    public final void makeEndGameLeaderboard(final List<Player> players) {
+        this.endGameLabel.setText("Game End");
+        for (int i = 0; i < players.size(); i++) {
+            VBox v = this.vBoxes.get(i);
+            this.setVBoxStyle(v, players.get(i));
+            this.setPositionAndNickname(v, players.get(i).getNickname(), i);
+        }
+    }
+
+    private void setVBoxStyle(final VBox v, final Player p) {
+        v.setBorder(Border.stroke(p.getColor()));
+        v.setPrefSize(VBOX_WIDTH, VBOX_HEIGHT);
+    }
+
+    private void setPositionAndNickname(final VBox vBox, final String playerNickname, final int i) {
+        Label positionLabel = (Label) vBox.getChildren().get(0);
+        positionLabel.setText(this.getPositionFromIndex(i));
+
+        Label playerNicknameLabel = (Label) vBox.getChildren().get(1);
+        playerNicknameLabel.setText(playerNickname);
     }
 }

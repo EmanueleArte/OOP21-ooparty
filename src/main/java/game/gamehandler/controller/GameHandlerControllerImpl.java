@@ -8,6 +8,7 @@ import game.gamehandler.model.GameHandlerModelImpl;
 import game.map.GameMap;
 import game.gamehandler.view.GameHandlerViewControllerImpl;
 import game.player.Player;
+import menu.afterminigamemenu.controller.AfterMinigameMenuController;
 import menu.afterminigamemenu.controller.AfterMinigameMenuControllerImpl;
 import menu.pausemenu.controller.PauseMenuControllerImpl;
 import utils.controller.GenericController;
@@ -102,9 +103,16 @@ public class GameHandlerControllerImpl<S> extends GenericControllerAbstr
 
     @Override
     public final void showAfterMinigameMenu() {
-        AfterMinigameMenuControllerImpl afterMinigameMenuControllerImpl = new AfterMinigameMenuControllerImpl(this.getStageManager());
-        afterMinigameMenuControllerImpl.createMenu();
-        afterMinigameMenuControllerImpl.makeLeaderboard(this.getTurnOrder());
+        AfterMinigameMenuController afterMinigameMenuController = this.getStageManager().getControllerFactory().createAfterMinigameController();
+        afterMinigameMenuController.createMenu();
+        afterMinigameMenuController.makeLeaderboard(this.getTurnOrder());
+    }
+
+    @Override
+    public final void endGame() {
+        AfterMinigameMenuController afterMinigameMenuController = this.getStageManager().getControllerFactory().createAfterMinigameController();
+        afterMinigameMenuController.createMenu();
+        afterMinigameMenuController.makeEndGameLeaderboard(this.getLeaderboard());
     }
 
 }

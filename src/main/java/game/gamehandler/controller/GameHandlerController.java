@@ -75,4 +75,9 @@ public interface GameHandlerController {
      * Shows the after minigame menu.
      */
     void showAfterMinigameMenu();
+
+    /**
+     * Ends the game.
+     */
+    void endGame();
 }
