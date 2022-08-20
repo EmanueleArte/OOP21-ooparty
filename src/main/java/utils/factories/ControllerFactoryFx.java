@@ -10,7 +10,6 @@ import game.dice.model.DiceModelNoRepeatImpl;
 import game.gamehandler.controller.GameHandlerController;
 import game.gamehandler.controller.GameHandlerControllerImpl;
 import game.gamehandler.model.GameHandlerModelImpl;
-import game.map.GameMapImpl;
 import game.player.Player;
 import menu.common.controller.MenuController;
 import menu.gamecreationmenu.controller.GameCreationMenuControllerImpl;
