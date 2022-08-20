@@ -5,10 +5,7 @@ import java.util.List;
 import java.util.Optional;
 import java.util.Random;
 
-import game.player.Player;
-import utils.graphics.controller.StageManager;
-
-public class DiceModelImpl<P> implements DiceModel<P> {
+public class DiceModelImpl implements DiceModel {
 
     /**
      * The maximum valid result of the dice roll.
@@ -16,19 +13,20 @@ public class DiceModelImpl<P> implements DiceModel<P> {
     protected static final int MAX_RESULT = 6;
 
     private final Random rand;
-    private final StageManager<?> stageManager;
     private Optional<Integer> lastResult;
     private Optional<Integer> total;
     private final List<Integer> resultsList;
 
-    public DiceModelImpl(final StageManager<?> s) {
-        this.stageManager = s;
+    public DiceModelImpl() {
         rand = new Random();
         this.lastResult = Optional.empty();
         this.total = Optional.empty();
         this.resultsList = new ArrayList<>();
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void rollDice() {
         int result = this.rand.nextInt(DiceModelImpl.MAX_RESULT) + 1;

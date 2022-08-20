@@ -38,6 +38,11 @@ public class FxmlViewFactoryImpl<S> implements ViewFactory<S> {
     }
 
     @Override
+    public final void createDiceView(final GenericController controller) {
+        this.createScene(controller, "game/dice.fxml");
+    }
+
+    @Override
     public final void createPauseMenuView(final GenericController controller) {
         this.createScene(controller, "menu/pause_menu.fxml");
     }

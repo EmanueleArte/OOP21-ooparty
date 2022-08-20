@@ -24,6 +24,13 @@ public interface ViewFactory<S> {
     void createGameCreationMenu(GenericController controller);
 
     /**
+     * This method creates a dice view.
+     * 
+     * @param controller the controller to be used
+     */
+    void createDiceView(GenericController controller);
+
+    /**
      * This method creates an after minigame menu.
      * 
      * @param controller the controller to be used 

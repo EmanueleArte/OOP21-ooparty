@@ -1,12 +1,6 @@
 package game.dice.model;
 
-import utils.graphics.controller.StageManager;
-
-public class DiceModelNoRepeatImpl<P> extends DiceModelImpl<P> {
-
-    public DiceModelNoRepeatImpl(final StageManager<?> s) {
-        super(s);
-    }
+public class DiceModelNoRepeatImpl extends DiceModelImpl {
 
     @Override
     public final void rollDice() {

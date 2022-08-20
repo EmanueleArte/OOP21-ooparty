@@ -13,16 +13,16 @@ import utils.graphics.controller.StageManager;
 import utils.view.GenericViewController;
 
 public class DiceControllerImpl extends GenericControllerAbstr implements DiceController {
-    private final DiceModel<?> model;
+    private final DiceModel model;
     private DiceViewControllerImpl viewController;
     private final boolean noRepeat;
 
-    public <S, P> DiceControllerImpl(final StageManager<S> s, final boolean noRepeat) {
+    public <S> DiceControllerImpl(final StageManager<S> s, final boolean noRepeat) {
         super(s);
         if (noRepeat) {
-            this.model = new DiceModelNoRepeatImpl<P>(s);
+            this.model = new DiceModelNoRepeatImpl();
         } else {
-            this.model = new DiceModelImpl<P>(s);
+            this.model = new DiceModelImpl();
         }
         this.noRepeat = noRepeat;
     }
