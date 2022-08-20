@@ -20,7 +20,6 @@ import minigames.mastermind.controller.MastermindControllerImpl;
 import minigames.mastermind.model.MastermindModelImpl;
 import minigames.whoriskswins.controller.WhoRisksWinsControllerImpl;
 import minigames.whoriskswins.model.WhoRisksWinsModelImpl;
-import utils.controller.GenericController;
 import utils.graphics.controller.StageManager;
 
 public class ControllerFactoryFx<S> implements ControllerFactory {
@@ -33,7 +32,7 @@ public class ControllerFactoryFx<S> implements ControllerFactory {
     }
 
     @Override
-    public GameHandlerController createGameHandlerController(final List<Player> players, final int turnsNumber) {
+    public final GameHandlerController createGameHandlerController(final List<Player> players, final int turnsNumber) {
         var diceController = this.createDiceController(false);
         var model = new GameHandlerModelImpl<S>(stageManager, diceController.getModel(), players, turnsNumber);
         GameHandlerController controller = new GameHandlerControllerImpl<S>(stageManager, diceController, model);
@@ -41,26 +40,26 @@ public class ControllerFactoryFx<S> implements ControllerFactory {
     }
 
     @Override
-    public MenuController createMainMenuController() {
-        var model = new MainMenuModelImpl<S>(this.stageManager);
-        var controller = new MainMenuControllerImpl(this.stageManager);
+    public final MenuController createMainMenuController() {
+        var model = new MainMenuModelImpl();
+        var controller = new MainMenuControllerImpl(this.stageManager, model);
         return controller;
     }
 
     @Override
-    public MenuController createGameCreationMenuController() {
+    public final MenuController createGameCreationMenuController() {
         // TODO Auto-generated method stub
         return null;
     }
 
     @Override
-    public MenuController createPauseMenuController() {
+    public final MenuController createPauseMenuController() {
         // TODO Auto-generated method stub
         return null;
     }
 
     @Override
-    public MenuController createAfterMinigameController() {
+    public final MenuController createAfterMinigameController() {
         // TODO Auto-generated method stub
         return null;
     }
@@ -82,13 +81,13 @@ public class ControllerFactoryFx<S> implements ControllerFactory {
     }
 
     @Override
-    public MinigameController createMemoController(final List<Player> players) {
+    public final MinigameController createMemoController(final List<Player> players) {
         // TODO Auto-generated method stub
         return null;
     }
 
     @Override
-    public DiceController createDiceController(final boolean noRepeat) {
+    public final DiceController createDiceController(final boolean noRepeat) {
         DiceModel model;
         if (noRepeat) {
             model = new DiceModelNoRepeatImpl(stageManager);

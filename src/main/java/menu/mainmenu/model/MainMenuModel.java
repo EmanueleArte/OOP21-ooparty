@@ -2,10 +2,8 @@ package menu.mainmenu.model;
 
 /**
  * This interface models the main menu model of the game.
- * 
- * @param <S> the scenes of the stage
  */
-public interface MainMenuModel<S> {
+public interface MainMenuModel {
 
     /**
      * This method exits from the game.

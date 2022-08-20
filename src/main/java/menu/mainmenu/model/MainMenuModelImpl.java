@@ -2,25 +2,16 @@ package menu.mainmenu.model;
 
 import menu.common.controller.MenuController;
 import menu.gamecreationmenu.controller.GameCreationMenuControllerImpl;
-import utils.graphics.controller.StageManager;
 
 /**
  * Implementation of {@link MainMenuModel}.
- * 
- * @param <S> the scenes of the stage
  */
-public class MainMenuModelImpl<S> implements MainMenuModel<S> {
-
-    private final StageManager<S> stageManager;
+public class MainMenuModelImpl implements MainMenuModel {
 
     /**
      * Builds a new {@link MainMenuModelImpl}.
-     * 
-     * @param s the {@link StageManager}
      */
-    public MainMenuModelImpl(final StageManager<S> s) {
-        super();
-        this.stageManager = s;
+    public MainMenuModelImpl() {
     }
 
     @Override
