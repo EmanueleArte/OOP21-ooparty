@@ -26,7 +26,7 @@ public class ControllerFactoryFx<S> implements ControllerFactory {
     public GenericController createGameHandlerController(final List<Player> players, final int turnsNumber) {
         var controllerDice = this.createDiceController();
         var model = new GameHandlerModelImpl<S>(stageManager, players, turnsNumber, null);
-        var controller = new GameHandlerControllerImpl<S>(stageManager, players, turnsNumber);
+        var controller = new GameHandlerControllerImpl<S>(stageManager, players, turnsNumber, null);
         return controller;
     }
 

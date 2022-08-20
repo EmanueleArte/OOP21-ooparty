@@ -4,6 +4,9 @@ import java.util.Random;
 
 import game.player.Player;
 
+/**
+ * A game map square where you can earn coins.
+ */
 public class CoinsGameMapSquare extends GameMapSquareImpl {
     private int coinsNumber;
 
@@ -45,5 +48,10 @@ public class CoinsGameMapSquare extends GameMapSquareImpl {
     @Override
     public final boolean isDamageGameMapSquare() {
         return false;
+    }
+
+    @Override
+    public final String toString() {
+        return "GameMapSquare [Coin]";
     }
 }

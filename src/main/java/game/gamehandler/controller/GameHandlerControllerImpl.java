@@ -5,14 +5,17 @@ import java.util.Optional;
 
 import game.gamehandler.model.GameHandlerModel;
 import game.gamehandler.model.GameHandlerModelImpl;
-import game.gamehandler.view.GameHandlerViewImpl;
-import game.gamehandler.viewcontroller.GameHandlerViewControllerImpl;
+import game.map.GameMap;
+import game.gamehandler.view.GameHandlerViewControllerImpl;
 import game.player.Player;
+import menu.pausemenu.controller.PauseMenuControllerImpl;
 import utils.controller.GenericController;
 import utils.controller.GenericControllerAbstr;
 import utils.graphics.controller.StageManager;
-import utils.view.GenericView;
+import utils.view.GenericViewUtils;
 import utils.view.GenericViewController;
+import utils.enums.PlayerTurnProgress;
+import utils.enums.TurnProgress;
 
 public class GameHandlerControllerImpl<S> extends GenericControllerAbstr
         implements GenericController, GameHandlerController {
@@ -20,22 +23,22 @@ public class GameHandlerControllerImpl<S> extends GenericControllerAbstr
     private GameHandlerViewControllerImpl viewController;
     private GameHandlerModel model;
 
-    public GameHandlerControllerImpl(final StageManager<S> s, final List<Player> players, final int turnsNumber) {
+    public <S, U> GameHandlerControllerImpl(final StageManager<S> s, final List<U> players, final int turnsNumber,
+            final GameMap gameMap) {
         super(s);
-        this.model = new GameHandlerModelImpl(s, players, turnsNumber, null);
+        this.model = new GameHandlerModelImpl(s, players, turnsNumber, gameMap);
     }
 
     @Override
     public final void start() {
-        final GenericView<?> gameView = new GameHandlerViewImpl<>(this.getStageManager());
-        gameView.createScene(this);
+        GenericViewUtils.createScene(this.getStageManager(), this, "game/game.fxml");
     }
 
     @Override
     public final void setViewController(final GenericViewController viewController) {
         if (viewController instanceof GameHandlerViewControllerImpl) {
             this.viewController = (GameHandlerViewControllerImpl) viewController;
-            this.viewController.initialize(this.model.getPlayers());
+            this.viewController.initialize(this.model.getPlayers(), this);
         } else {
             throw new IllegalArgumentException("The parameter must be an instance of GameHandlerViewControllerImpl");
         }
@@ -47,12 +50,12 @@ public class GameHandlerControllerImpl<S> extends GenericControllerAbstr
     }
 
     @Override
-    public final int nextStep() {
+    public final Optional<TurnProgress> nextStep() {
         return this.model.nextStep();
     }
 
     @Override
-    public final int nextPlayerTurnStep() {
+    public final Optional<PlayerTurnProgress> nextPlayerTurnStep() {
         return this.model.nextPlayerTurnStep();
     }
 
@@ -64,6 +67,36 @@ public class GameHandlerControllerImpl<S> extends GenericControllerAbstr
     @Override
     public final Optional<Player> getCurrentPlayer() {
         return this.model.getCurrentPlayer();
+    }
+
+    @Override
+    public final GameMap getGameMap() {
+        return this.model.getGameMap();
+    }
+
+    @Override
+    public final List<Player> getPlayers() {
+        return this.model.getPlayers();
+    }
+
+    @Override
+    public final List<Player> getLeaderboard() {
+        return this.model.getLeaderboard();
+    }
+    
+    @Override
+    public final List<Player> getTurnOrder() {
+        return this.model.getTurnOrder();
+    }
+
+    @Override
+    public final void pauseMenu() {
+        PauseMenuControllerImpl pauseMenuController = new PauseMenuControllerImpl(this.getStageManager());
+        pauseMenuController.createMenu();
+    }
+
+    public final void checkPlayerDeath(final Player p) {
+        this.model.checkPlayerDeath(p);
     }
 
 }

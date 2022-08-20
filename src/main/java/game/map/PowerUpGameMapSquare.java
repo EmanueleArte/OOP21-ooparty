@@ -1,10 +1,49 @@
 package game.map;
 
+import java.util.Random;
+
+import game.player.Player;
+import game.powerup.DoubleDicePowerup;
+import game.powerup.GenericPowerup;
+import game.powerup.GunPowerup;
+import game.powerup.MedikitPowerup;
+
+/**
+ * A game map square where you can get a {@link GenericPowerup}.
+ */
 public class PowerUpGameMapSquare extends GameMapSquareImpl {
-    //TODO usare la classe PowerUp di Roby
+    private static final int POWERUPS_NUMBER = 3;
+
+    private GenericPowerup powerup;
 
     public PowerUpGameMapSquare() {
         super();
+        this.generateRandomPowerUp();
+    }
+
+    private void generateRandomPowerUp() {
+        Random rand = new Random();
+        switch (rand.nextInt(POWERUPS_NUMBER)) {
+        case 0:
+            this.powerup = new DoubleDicePowerup();
+        case 1:
+            this.powerup = new GunPowerup();
+        case 2:
+            this.powerup = new MedikitPowerup();
+        default:
+            this.powerup = new GunPowerup();
+        }
+    }
+
+    @Override
+    public final void receivePowerup(final Player p) {
+        p.addPowerup(this.powerup);
+        this.generateRandomPowerUp();
+    }
+
+    @Override
+    public final GenericPowerup getPowerup() {
+        return this.powerup;
     }
 
     @Override
@@ -27,4 +66,8 @@ public class PowerUpGameMapSquare extends GameMapSquareImpl {
         return false;
     }
 
+    @Override
+    public final String toString() {
+        return "GameMapSquare [PowerUp]";
+    }
 }

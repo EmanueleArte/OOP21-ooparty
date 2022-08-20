@@ -6,6 +6,8 @@ import java.util.stream.Collectors;
 
 import game.gamehandler.controller.GameHandlerController;
 import game.gamehandler.controller.GameHandlerControllerImpl;
+import game.map.GameMap;
+import game.map.GameMapImpl;
 import game.player.Player;
 import game.player.PlayerImpl;
 import utils.enums.PlayerColor;
@@ -58,11 +60,12 @@ public class GameCreationMenuModelImpl<S> implements GameCreationMenuModel<S> {
             final int turnsNumber) {
         final List<String> playersNicknames = allPlayersNicknames.subList(0, this.actualNPlayers);
         final List<PlayerColor> playersColors = allPlayersColors.subList(0, this.actualNPlayers);
+        final GameMap gameMap = new GameMapImpl();
         if (!checkForms(playersNicknames, playersColors)) {
             return false;
         } else {
             final GameHandlerController game = new GameHandlerControllerImpl<>(this.stageManager,
-                    this.createPlayersList(playersNicknames, playersColors), turnsNumber);
+                    this.createPlayersList(playersNicknames, playersColors), turnsNumber, gameMap);
             game.start();
         }
         return true;

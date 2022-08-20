@@ -5,12 +5,11 @@ import java.util.Optional;
 import game.dice.model.DiceModel;
 import game.dice.model.DiceModelImpl;
 import game.dice.model.DiceModelNoRepeatImpl;
-import game.dice.view.DiceViewImpl;
-import game.dice.viewcontroller.DiceViewControllerImpl;
+import game.dice.view.DiceViewControllerImpl;
+import utils.view.GenericViewUtils;
 import game.player.Player;
 import utils.controller.GenericControllerAbstr;
 import utils.graphics.controller.StageManager;
-import utils.view.GenericView;
 import utils.view.GenericViewController;
 
 public class DiceControllerImpl extends GenericControllerAbstr implements DiceController {
@@ -28,8 +27,7 @@ public class DiceControllerImpl extends GenericControllerAbstr implements DiceCo
 
     @Override
     public final void start(final Player p) {
-        final GenericView<?> view = new DiceViewImpl<>(this.getStageManager());
-        view.createScene(this);
+        GenericViewUtils.createScene(this.getStageManager(), this, "game/dice.fxml");
         this.viewController.initialize(p.getColor());
     }
 

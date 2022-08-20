@@ -7,7 +7,7 @@ import java.util.Map;
 import java.util.Map.Entry;
 import java.util.stream.Collectors;
 
-import exceptions.PlayerNotFoundException;
+import utils.exceptions.PlayerNotFoundException;
 import game.common.model.GameModelAbstr;
 import game.dice.controller.DiceController;
 import game.dice.controller.DiceControllerImpl;
