@@ -1,6 +1,7 @@
 package menu.afterminigamemenu.view;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.Random;
 
 import game.player.Player;
@@ -11,6 +12,7 @@ import javafx.scene.layout.Border;
 import javafx.scene.layout.VBox;
 import menu.MenuController;
 import utils.controller.GenericController;
+import utils.enums.OrdinalNumber;
 import utils.factories.PowerupFactoryImpl;
 
 /**
@@ -73,14 +75,11 @@ public class AfterMinigameMenuViewControllerImpl implements AfterMinigameMenuVie
     }
 
     private String getPositionFromIndex(final int i) {
-        if (i == 0) {
-            return "1st";
-        } else if (i == 1) {
-            return "2nd";
-        } else if (i == 2) {
-            return "3rd";
+        Optional<OrdinalNumber> o = OrdinalNumber.intToOrdinalNumber(i + 1);
+        if (o.isPresent()) {
+            return o.get().getTextFormat();
         }
-        return (i + 1) + "th";
+        return "";
     }
 
     @FXML

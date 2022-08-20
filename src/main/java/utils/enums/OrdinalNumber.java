@@ -1,5 +1,7 @@
 package utils.enums;
 
+import java.util.Optional;
+
 /**
  * Enumeration which represents the ordinal numbers in text format.
  */
@@ -33,5 +35,20 @@ public enum OrdinalNumber {
      */
     public String getTextFormat() {
         return this.text;
+    }
+
+    public static Optional<OrdinalNumber> intToOrdinalNumber(final int n) {
+        switch (n) {
+            case 1:
+                return Optional.of(OrdinalNumber.FIRST);
+            case 2:
+                return Optional.of(OrdinalNumber.SECOND);
+            case 3:
+                return Optional.of(OrdinalNumber.THIRD);
+            case 4:
+                return Optional.of(OrdinalNumber.FOURTH);
+            default:
+                return Optional.empty();
+        }
     }
 }
