@@ -16,7 +16,7 @@ public interface ControllerFactory {
 
     GameHandlerController createGameHandlerController(List<Player> players, int turnsNumber);
     
-    <P> DiceController createDiceController(boolean noRepeat);
+    DiceController createDiceController(boolean noRepeat);
 
 
     MenuController createMainMenuController();
