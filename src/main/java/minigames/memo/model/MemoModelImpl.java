@@ -2,6 +2,7 @@ package minigames.memo.model;
 
 import java.util.Collections;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 import java.util.stream.Stream;
@@ -27,6 +28,7 @@ public class MemoModelImpl<S> extends MinigameModelAbstr<S> implements MemoModel
      */
     static final int SCORE_FOR_GUESSED_PAIR = 1;
     private final List<Integer> cards;
+    private Optional<Integer> tempCard;
 
     /**
      * Builds a new {@link MemoModelImpl}.
@@ -37,7 +39,7 @@ public class MemoModelImpl<S> extends MinigameModelAbstr<S> implements MemoModel
     public MemoModelImpl(final List<Player> players, final StageManager<S> s) {
         super(players, s);
         this.cards = this.initialiseCards();
-        this.setPlayerIterator(this.getPlayers());
+        this.changeTurn();
     }
 
     /**
@@ -69,27 +71,23 @@ public class MemoModelImpl<S> extends MinigameModelAbstr<S> implements MemoModel
     }
 
     /**
-     * This method runs a turn of memo.
-     *
-     * @returns {@code true} if the 2 cards are a pair, {@code false} otherwise.
-     *
-     * @throws IllegalStateException     if the game is over.
-     * @throws IndexOutOfBoundsException if {@code indexFirstCard} or
-     *                                   {@code indexSecondCard} are out of the
-     *                                   list.
-     * @throws IllegalArgumentException  if {@code indexFirstCard} is equals to
-     *                                   {@code indexSecondCard}.
+     * {@inheritDoc}
      */
     @Override
-    public boolean doNextTurn(final int indexFirstCard, final int indexSecondCard) throws RuntimeException {
+    public boolean pickCard(final int indexFirstCard) {
         if (this.isOver()) {
-            throw new IllegalStateException("Game is over");
+            return false;
         }
-        if (indexFirstCard == indexSecondCard) {
-            throw new IllegalArgumentException("The same card has been choosen twice");
+        if (!hasCurrPlayer()) {
+            this.changeTurn();
         }
         final var tempCardValue = this.cards.get(indexFirstCard);
-        if (tempCardValue.equals(this.cards.get(indexSecondCard))) {
+        if (this.tempCard.isEmpty()) {
+            this.tempCard = Optional.of(tempCardValue);
+            return true;
+        }
+        this.tempCard = Optional.empty();
+        if (tempCardValue.equals(this.tempCard.get())) {
             this.cards.removeIf(i -> i.equals(tempCardValue));
             this.setScore(this.getScore() + SCORE_FOR_GUESSED_PAIR);
             return true;
@@ -113,5 +111,6 @@ public class MemoModelImpl<S> extends MinigameModelAbstr<S> implements MemoModel
             this.setPlayerIterator(this.getPlayers());
         }
         this.setCurrPlayer();
+        this.tempCard = Optional.empty();
     }
 }
