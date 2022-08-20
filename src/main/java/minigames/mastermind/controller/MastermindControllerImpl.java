@@ -4,22 +4,21 @@ import java.util.List;
 
 import game.dice.controller.DiceController;
 import game.player.Player;
+import minigames.common.controller.MinigameControllerAbstr;
 import minigames.common.controller.MinigameGuideControllerImpl;
 import minigames.mastermind.model.MastermindModel;
 import minigames.mastermind.view.MastermindViewController;
 import utils.controller.GenericController;
-import utils.controller.GenericControllerAbstr;
 import utils.graphics.controller.StageManager;
 import utils.view.GenericViewController;
 import utils.view.GenericViewUtils;
 
 /**
- * Extension of {@link GenericControllerAbstr} and implementation of
+ * Extension of {@link MinigameControllerAbstr} and implementation of
  * {@link MastermindController}.
  */
-public class MastermindControllerImpl extends GenericControllerAbstr implements MastermindController {
+public class MastermindControllerImpl extends MinigameControllerAbstr implements MastermindController {
 
-    private final DiceController dice;
     private final MastermindModel mastermindModel;
     private MastermindViewController mastermindViewController;
 
@@ -33,9 +32,8 @@ public class MastermindControllerImpl extends GenericControllerAbstr implements 
      */
     public <S> MastermindControllerImpl(final StageManager<S> s, final MastermindModel model,
             final DiceController dice) {
-        super(s);
+        super(s, dice);
         this.mastermindModel = model;
-        this.dice = dice;
     }
 
     @Override
@@ -89,7 +87,8 @@ public class MastermindControllerImpl extends GenericControllerAbstr implements 
 
     @Override
     public void closeGame() {
-        this.getStageManager().popScene();
+        // TODO Auto-generated method stub
+
     }
 
 }
