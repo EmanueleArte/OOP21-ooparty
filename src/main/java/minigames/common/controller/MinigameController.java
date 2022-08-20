@@ -2,8 +2,10 @@ package minigames.common.controller;
 
 import java.util.List;
 
+import game.dice.controller.DiceController;
 import game.player.Player;
 import utils.controller.GenericController;
+import utils.graphics.controller.StageManager;
 
 /**
  * Extension of {@link GenericController}.

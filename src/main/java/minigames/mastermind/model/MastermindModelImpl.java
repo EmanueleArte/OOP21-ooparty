@@ -5,6 +5,7 @@ import java.util.Random;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
+import game.dice.model.DiceModel;
 import game.player.Player;
 import minigames.common.model.MinigameModelAbstr;
 import utils.graphics.controller.StageManager;
@@ -30,8 +31,8 @@ public class MastermindModelImpl<S> extends MinigameModelAbstr<S> implements Mas
      * @param players the list of players
      * @param s       the {@link StageManager}
      */
-    public MastermindModelImpl(final List<Player> players, final StageManager<S> s) {
-        super(players, s);
+    public MastermindModelImpl(final List<Player> players, final StageManager<S> s, final DiceModel<?> diceModel) {
+        super(players, s, diceModel);
     }
 
     @Override

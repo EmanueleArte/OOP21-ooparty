@@ -3,6 +3,7 @@ package game.gamehandler.controller;
 import java.util.List;
 import java.util.Optional;
 
+import game.dice.controller.DiceController;
 import game.gamehandler.model.GameHandlerModel;
 import game.gamehandler.model.GameHandlerModelImpl;
 import game.map.GameMap;
@@ -13,6 +14,7 @@ import menu.pausemenu.controller.PauseMenuControllerImpl;
 import utils.controller.GenericController;
 import utils.controller.GenericControllerAbstr;
 import utils.graphics.controller.StageManager;
+import utils.model.GenericModel;
 import utils.view.GenericViewUtils;
 import utils.view.GenericViewController;
 import utils.enums.PlayerTurnProgress;
@@ -23,11 +25,12 @@ public class GameHandlerControllerImpl<S> extends GenericControllerAbstr
 
     private GameHandlerViewControllerImpl viewController;
     private GameHandlerModel model;
+    private DiceController dice;
 
-    public <S, U> GameHandlerControllerImpl(final StageManager<S> s, final List<U> players, final int turnsNumber,
-            final GameMap gameMap) {
+    public <S, U> GameHandlerControllerImpl(final StageManager<S> s, final DiceController diceController, final GameHandlerModel model) {
         super(s);
-        this.model = new GameHandlerModelImpl(s, players, turnsNumber, gameMap);
+        this.model = model;
+        this.dice = diceController;
     }
 
     @Override
@@ -57,7 +60,11 @@ public class GameHandlerControllerImpl<S> extends GenericControllerAbstr
 
     @Override
     public final Optional<PlayerTurnProgress> nextPlayerTurnStep() {
-        return this.model.nextPlayerTurnStep();
+        var nextPlayerTurnStep = this.model.nextPlayerTurnStep();
+        if (nextPlayerTurnStep.isPresent() && nextPlayerTurnStep.get() == PlayerTurnProgress.ROLL_DICE) {
+            this.dice.start(this.getCurrentPlayer().get());
+        }
+        return nextPlayerTurnStep;
     }
 
     @Override

@@ -3,6 +3,7 @@ package minigames.whoriskswins.model;
 import java.util.List;
 import java.util.Random;
 
+import game.dice.model.DiceModel;
 import game.player.Player;
 import minigames.common.model.MinigameModelAbstr;
 import utils.graphics.controller.StageManager;
@@ -31,8 +32,8 @@ public class WhoRisksWinsModelImpl<S> extends MinigameModelAbstr<S> implements W
      * @param players the list of players
      * @param s       the {@link StageManager}
      */
-    public WhoRisksWinsModelImpl(final List<Player> players, final StageManager<S> s) {
-        super(players, s);
+    public WhoRisksWinsModelImpl(final List<Player> players, final StageManager<S> s, final DiceModel diceModel) {
+        super(players, s, diceModel);
     }
 
     @Override

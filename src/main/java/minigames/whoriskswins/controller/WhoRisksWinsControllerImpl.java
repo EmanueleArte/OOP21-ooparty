@@ -29,9 +29,9 @@ public class WhoRisksWinsControllerImpl extends GenericControllerAbstr implement
      * @param s       the {@link StageManager}
      * @param players the list of players
      */
-    public <S> WhoRisksWinsControllerImpl(final StageManager<S> s, final List<Player> players) {
+    public <S> WhoRisksWinsControllerImpl(final StageManager<S> s, final List<Player> players, final WhoRisksWinsModel<S> model) {
         super(s);
-        this.wrwModel = new WhoRisksWinsModelImpl<>(players, s);
+        this.wrwModel = model;
     }
 
     @Override

@@ -2,6 +2,7 @@ package game.dice.controller;
 
 import java.util.Optional;
 
+import game.dice.model.DiceModel;
 import game.player.Player;
 
 public interface DiceController {
@@ -31,4 +32,6 @@ public interface DiceController {
     void reset();
 
     Optional<Integer> getTotal();
+    
+    DiceModel getModel();
 }

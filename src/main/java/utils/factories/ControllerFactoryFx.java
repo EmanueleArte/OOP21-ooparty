@@ -2,6 +2,12 @@ package utils.factories;
 
 import java.util.List;
 
+import game.dice.controller.DiceController;
+import game.dice.controller.DiceControllerImpl;
+import game.dice.model.DiceModel;
+import game.dice.model.DiceModelImpl;
+import game.dice.model.DiceModelNoRepeatImpl;
+import game.gamehandler.controller.GameHandlerController;
 import game.gamehandler.controller.GameHandlerControllerImpl;
 import game.gamehandler.model.GameHandlerModelImpl;
 import game.map.GameMapImpl;
@@ -23,10 +29,10 @@ public class ControllerFactoryFx<S> implements ControllerFactory {
     }
 
     @Override
-    public GenericController createGameHandlerController(final List<Player> players, final int turnsNumber) {
-        var controllerDice = this.createDiceController();
-        var model = new GameHandlerModelImpl<S>(stageManager, players, turnsNumber, null);
-        var controller = new GameHandlerControllerImpl<S>(stageManager, players, turnsNumber, null);
+    public GameHandlerController createGameHandlerController(final List<Player> players, final int turnsNumber) {
+        var diceController = this.createDiceController(false);
+        var model = new GameHandlerModelImpl<S>(stageManager, diceController.getModel(), players, turnsNumber);
+        var controller = new GameHandlerControllerImpl<S>(stageManager, diceController, model);
         return controller;
     }
 
@@ -74,9 +80,15 @@ public class ControllerFactoryFx<S> implements ControllerFactory {
     }
 
     @Override
-    public GenericController createDiceController() {
-        // TODO Auto-generated method stub
-        return null;
+    public <P> DiceController createDiceController(final boolean noRepeat) {
+        DiceModel<P> model;
+        if (noRepeat) {
+            model = new DiceModelNoRepeatImpl<P>(stageManager);
+        } else {
+            model = new DiceModelImpl<P>(this.stageManager);
+        }
+        var controller = new DiceControllerImpl(stageManager, model, noRepeat);
+        return controller;
     }
 
 }

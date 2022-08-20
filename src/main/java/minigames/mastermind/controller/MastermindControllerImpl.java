@@ -29,9 +29,9 @@ public class MastermindControllerImpl extends GenericControllerAbstr implements 
      * @param s       the {@link StageManager}
      * @param players the list of players
      */
-    public <S> MastermindControllerImpl(final StageManager<S> s, final List<Player> players) {
+    public <S> MastermindControllerImpl(final StageManager<S> s, final List<Player> players, final MastermindModel model) {
         super(s);
-        this.mastermindModel = new MastermindModelImpl<>(players, s);
+        this.mastermindModel = model;
     }
 
     @Override

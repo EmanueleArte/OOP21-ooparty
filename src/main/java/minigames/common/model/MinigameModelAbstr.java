@@ -5,12 +5,14 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 import utils.exceptions.PlayerNotFoundException;
 import game.common.model.GameModelAbstr;
 import game.dice.controller.DiceController;
 import game.dice.controller.DiceControllerImpl;
+import game.dice.model.DiceModel;
 import game.player.Player;
 import utils.graphics.controller.StageManager;
 
@@ -22,7 +24,7 @@ import utils.graphics.controller.StageManager;
 public abstract class MinigameModelAbstr<S> extends GameModelAbstr<S> implements MinigameModel<S> {
 
     private final Map<Player, Integer> playersClassification;
-    private final DiceController dice;
+    private final DiceModel<?> dice;
     private List<Player> gameResults;
 
     /**
@@ -31,10 +33,10 @@ public abstract class MinigameModelAbstr<S> extends GameModelAbstr<S> implements
      * @param players the list of players
      * @param s       the {@link StageManager}
      */
-    public MinigameModelAbstr(final List<Player> players, final StageManager<S> s) {
+    public MinigameModelAbstr(final List<Player> players, final StageManager<S> s, final DiceModel<?> diceModel) {
         super(players, s);
         this.playersClassification = new LinkedHashMap<>();
-        this.dice = new DiceControllerImpl(s, true);
+        this.dice = diceModel;
     }
 
     /**
@@ -42,8 +44,8 @@ public abstract class MinigameModelAbstr<S> extends GameModelAbstr<S> implements
      * 
      * @param players the list of players
      */
-    public MinigameModelAbstr(final List<Player> players) {
-        this(players, null);
+    public MinigameModelAbstr(final List<Player> players, final DiceModel<?> diceModel) {
+        this(players, null, diceModel);
     }
 
     @Override
@@ -86,7 +88,8 @@ public abstract class MinigameModelAbstr<S> extends GameModelAbstr<S> implements
                     this.dice.rollDice();
                     if (s != null) {
                         if (s.getGui().mainStagePresence()) {
-                            this.dice.start(player);
+                            // TODO: dice.start cannot stay here!
+                            //this.dice.start(player);
                         }
                     }
                     sorted.put(player, this.dice.getLastResult().get());

@@ -8,7 +8,9 @@ import java.util.Optional;
 
 import game.dice.controller.DiceController;
 import game.dice.controller.DiceControllerImpl;
+import game.dice.model.DiceModel;
 import game.map.GameMap;
+import game.map.GameMapImpl;
 import game.map.GameMapSquare;
 import game.player.Player;
 import menu.powerupmenu.controller.PowerupMenuController;
@@ -22,7 +24,8 @@ import utils.graphics.controller.StageManager;
 public class GameHandlerModelImpl<S> implements GameHandlerModel {
 
     private final StageManager<S> stageManager;
-    private final DiceController dice;
+    //private final DiceController dice;
+    private final DiceModel<?> dice;
     private final MinigameControllerFactoryImpl<S> minigameFactory;
     private final PowerupMenuController powerupMenu;
     private final GameMap gameMap;
@@ -36,16 +39,15 @@ public class GameHandlerModelImpl<S> implements GameHandlerModel {
     private List<Player> players;
     private Iterator<Player> playersIterator;
 
-    public GameHandlerModelImpl(final StageManager<S> s, final List<Player> players, final int turnsNumber,
-            final GameMap gameMap) {
+    public GameHandlerModelImpl(final StageManager<S> s, final DiceModel<?> dice, final List<Player> players, final int turnsNumber) {
         this.stageManager = s;
-        this.dice = new DiceControllerImpl(this.stageManager, false);
+        this.dice = dice;
         this.minigameFactory = new MinigameControllerFactoryImpl<>(players, s);
         this.powerupMenu = new PowerupMenuControllerImpl(this.stageManager, players);   //TODO da cambiare, non va bene
         this.turnsNumber = turnsNumber;
         this.turn = 1;
         this.players = players;
-        this.gameMap = gameMap;
+        this.gameMap = new GameMapImpl();
         this.turnProgress = TurnProgress.END_OF_TURN;
         this.playerTurnProgress = PlayerTurnProgress.END_OF_TURN;
         this.playersIterator = players.iterator();
@@ -99,6 +101,8 @@ public class GameHandlerModelImpl<S> implements GameHandlerModel {
         if (this.playerTurnProgress == PlayerTurnProgress.MOVE_PLAYER) {
             final Player cp = this.currentPlayer.get();
             if (this.dice.getLastResult().isPresent()) {
+                System.out.println(this.dice.getLastResult());
+                System.out.println(this.dice.getLastResult().getClass());
                 cp.moveForward(this.dice.getLastResult().get(), this.gameMap);
                 final GameMapSquare playerPosition = cp.getPosition(this.gameMap);
                 if (playerPosition.isCoinsGameMapSquare()) {
@@ -117,7 +121,7 @@ public class GameHandlerModelImpl<S> implements GameHandlerModel {
             if (this.currentPlayer.get().hasDiceToRoll()) {
                 this.dice.rollDice();
                 this.currentPlayer.get().rollDice();
-                this.dice.start(this.currentPlayer.get());
+                //this.dice.start(this.currentPlayer.get());
             }
         }
         return Optional.of(this.playerTurnProgress);

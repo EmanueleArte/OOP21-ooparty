@@ -17,13 +17,9 @@ public class DiceControllerImpl extends GenericControllerAbstr implements DiceCo
     private DiceViewControllerImpl viewController;
     private final boolean noRepeat;
 
-    public <S, P> DiceControllerImpl(final StageManager<S> s, final boolean noRepeat) {
+    public <S, P> DiceControllerImpl(final StageManager<S> s, final DiceModel model, final boolean noRepeat) {
         super(s);
-        if (noRepeat) {
-            this.model = new DiceModelNoRepeatImpl<P>(s);
-        } else {
-            this.model = new DiceModelImpl<P>(s);
-        }
+        this.model = model;
         this.noRepeat = noRepeat;
     }
 
@@ -76,4 +72,8 @@ public class DiceControllerImpl extends GenericControllerAbstr implements DiceCo
         return this.model.getTotal();
     }
 
+    @Override
+    public final DiceModel getModel() {
+        return this.model;
+    }
 }
