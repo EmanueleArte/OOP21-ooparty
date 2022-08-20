@@ -37,6 +37,11 @@ public enum OrdinalNumber {
         return this.text;
     }
 
+    /**
+     * Converts an integer to an {@link Optional} of the corresponding {@link OrdinalNumber}.
+     * @param n the integer to convert
+     * @return an {@link Optional} with the {@link OrdinalNumber} if n is between 1 and the last ordinal number existent, otherwise it returns an empty {@link Optional}
+     */
     public static Optional<OrdinalNumber> intToOrdinalNumber(final int n) {
         return n > 0 && n <= OrdinalNumber.values().length ? Optional.of(OrdinalNumber.values()[n - 1]) : Optional.empty();
     }
