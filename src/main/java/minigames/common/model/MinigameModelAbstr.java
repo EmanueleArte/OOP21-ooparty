@@ -46,24 +46,40 @@ public abstract class MinigameModelAbstr<S> extends GameModelAbstr<S> implements
         this(players, null);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public final Map<Player, Integer> getPlayersClassification() {
         return this.playersClassification;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public abstract boolean runGame();
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public final List<Player> getGameResults() {
+        this.gameResults = this.playoff(this.groupPlayersByScore());
         return this.gameResults;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public final void scoreMapper(final Player player, final Integer score) {
         this.playersClassification.put(player, score);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public final int getScore() {
         return this.getPlayersClassification().getOrDefault(this.getCurrPlayer(), 0);
