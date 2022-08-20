@@ -25,7 +25,7 @@ public abstract class MinigameModelAbstr extends GameModelAbstr implements Minig
      * Builds a new {@link MinigameModelAbstr}.
      * 
      * @param players the list of players
-     * @param dice    the dice model
+     * @param dice    the {@link DiceModel}
      */
     public MinigameModelAbstr(final List<Player> players, final DiceModel dice) {
         super(players);
@@ -79,11 +79,10 @@ public abstract class MinigameModelAbstr extends GameModelAbstr implements Minig
                 final Map<Player, Integer> sorted = new LinkedHashMap<>();
                 players.forEach(player -> {
                     this.dice.rollDice();
-                    /*if (s != null) {
-                        if (s.getGui().mainStagePresence()) {
-                            this.dice.start(player);
-                        }
-                    }*/
+                    /*
+                     * if (s != null) { if (s.getGui().mainStagePresence()) {
+                     * this.dice.start(player); } }
+                     */
                     sorted.put(player, (Integer) this.dice.getLastResult().get());
                 });
                 players = sorted.entrySet().stream().sorted(Map.Entry.comparingByValue(Comparator.reverseOrder()))
