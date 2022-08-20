@@ -27,7 +27,7 @@ public class MainMenuControllerImpl extends SimpleMenuControllerAbstr implements
 
     @Override
     public final void goNext() {
-        this.menuModel.gameCreationMenu();
+        this.getStageManager().getControllerFactory().createGameCreationMenuController().createMenu();
     }
 
     @Override
