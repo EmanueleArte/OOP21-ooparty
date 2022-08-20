@@ -1,19 +1,14 @@
 package menu.gamecreationmenu.model;
 
 import java.util.List;
+
+import game.player.Player;
 import utils.enums.PlayerColor;
 
 /**
  * This interface models the game creation menu model of the game.
- * 
- * @param <S> the scenes of the stage
  */
-public interface GameCreationMenuModel<S> {
-
-    /**
-     * This method returns to the main menu of the game.
-     */
-    void returnToMainMenu();
+public interface GameCreationMenuModel {
 
     /**
      * This method starts the game if the forms have correct values.
@@ -31,5 +26,19 @@ public interface GameCreationMenuModel<S> {
      * @param nPlayers the new number of players
      */
     void setActualNPlayers(Integer nPlayers);
+
+    /**
+     * This method creates the list of players that will join the game.
+     * 
+     * @return the list of the players
+     */
+    List<Player> createPlayersList();
+
+    /**
+     * Getter for the turns number.
+     * 
+     * @return the turns number
+     */
+    int getTurnsNumber();
 
 }

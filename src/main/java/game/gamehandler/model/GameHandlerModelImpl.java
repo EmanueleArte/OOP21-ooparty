@@ -6,25 +6,19 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Optional;
 
-import game.dice.controller.DiceController;
-import game.dice.controller.DiceControllerImpl;
+import game.dice.model.DiceModel;
 import game.map.GameMap;
+import game.map.GameMapImpl;
 import game.map.GameMapSquare;
 import game.player.Player;
-import menu.powerupmenu.controller.PowerupMenuController;
-import menu.powerupmenu.controller.PowerupMenuControllerImpl;
 import minigames.common.controller.MinigameController;
 import utils.enums.PlayerTurnProgress;
 import utils.enums.TurnProgress;
-import utils.factories.MinigameControllerFactoryImpl;
-import utils.graphics.controller.StageManager;
 
-public class GameHandlerModelImpl<S> implements GameHandlerModel {
+public class GameHandlerModelImpl implements GameHandlerModel {
 
-    private final StageManager<S> stageManager;
-    private final DiceController dice;
-    private final MinigameControllerFactoryImpl<S> minigameFactory;
-    private final PowerupMenuController powerupMenu;
+    private final DiceModel dice;
+    //private final PowerupMenuController powerupMenu;
     private final GameMap gameMap;
     private Optional<MinigameController> minigameController = Optional.empty();
 
@@ -36,16 +30,13 @@ public class GameHandlerModelImpl<S> implements GameHandlerModel {
     private List<Player> players;
     private Iterator<Player> playersIterator;
 
-    public GameHandlerModelImpl(final StageManager<S> s, final List<Player> players, final int turnsNumber,
-            final GameMap gameMap) {
-        this.stageManager = s;
-        this.dice = new DiceControllerImpl(this.stageManager, false);
-        this.minigameFactory = new MinigameControllerFactoryImpl<>(players, s);
-        this.powerupMenu = new PowerupMenuControllerImpl(this.stageManager, players); // TODO da cambiare, non va bene
+
+    public GameHandlerModelImpl(final DiceModel dice, final List<Player> players, final int turnsNumber) {
+        this.dice = dice;
         this.turnsNumber = turnsNumber;
         this.turn = 1;
         this.players = players;
-        this.gameMap = gameMap;
+        this.gameMap = new GameMapImpl();
         this.turnProgress = TurnProgress.END_OF_TURN;
         this.playerTurnProgress = PlayerTurnProgress.END_OF_TURN;
         this.playersIterator = players.iterator();
@@ -67,12 +58,8 @@ public class GameHandlerModelImpl<S> implements GameHandlerModel {
         case END_OF_TURN:
             this.startNewTurn();
             if (this.turn == this.turnsNumber + 1) {
-                this.endGame();
                 return Optional.empty();
             }
-            break;
-        case PLAY_MINIGAME:
-            this.playMinigame();
             break;
         default:
             break;
@@ -93,9 +80,6 @@ public class GameHandlerModelImpl<S> implements GameHandlerModel {
         case MOVE_PLAYER:
             this.movePlayer();
             break;
-        case ROLL_DICE:
-            this.rollDices();
-            break;
         default:
             break;
         }
@@ -106,13 +90,6 @@ public class GameHandlerModelImpl<S> implements GameHandlerModel {
         this.currentPlayer = Optional.of(this.playersIterator.next());
         this.currentPlayer.get().setDicesNumber(1);
         this.dice.reset();
-    }
-
-    private void rollDices() {
-        final Player cp = this.currentPlayer.get();
-        for (int i = 0; i < cp.getDicesToRoll(); i++) {
-            this.dice.rollDice(cp);
-        }
     }
 
     private void movePlayer() {
@@ -138,7 +115,7 @@ public class GameHandlerModelImpl<S> implements GameHandlerModel {
         if (cp.getPowerupList().isEmpty()) {
             this.playerTurnProgress = PlayerTurnProgress.next(this.playerTurnProgress);
         } else {
-            this.powerupMenu.start(cp);
+            //this.powerupMenu.start(cp);
         }
     }
 
@@ -147,12 +124,12 @@ public class GameHandlerModelImpl<S> implements GameHandlerModel {
     }
 
     private void playMinigame() {
-        minigameController = Optional.of(this.minigameFactory.createRandomMinigameController());
-        minigameController.get().startGame();
+        //minigameController = Optional.of(this.minigameFactory.createRandomMinigameController());
+        //minigameController.get().startGame();
     }
 
     private void startNewTurn() {
-        this.players = (List<Player>) this.stageManager.getLastGameController().getGameResults();
+        //this.players = (List<Player>) this.stageManager.getLastGameController().getGameResults();
         this.playersIterator = players.iterator();
         this.turnProgress = TurnProgress.END_OF_TURN;
         this.playerTurnProgress = PlayerTurnProgress.END_OF_TURN;
@@ -172,11 +149,6 @@ public class GameHandlerModelImpl<S> implements GameHandlerModel {
     @Override
     public final Optional<Player> getCurrentPlayer() {
         return this.currentPlayer;
-    }
-
-    @Override
-    public final void endGame() {
-        this.stageManager.popScene();
     }
 
     @Override

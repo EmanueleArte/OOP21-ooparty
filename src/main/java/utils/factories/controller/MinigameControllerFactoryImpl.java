@@ -1,15 +1,13 @@
-package utils.factories;
+package utils.factories.controller;
 
 import java.util.List;
 import java.util.Random;
 
 import game.player.Player;
 import minigames.common.controller.MinigameController;
-import minigames.mastermind.controller.MastermindControllerImpl;
-import minigames.whoriskswins.controller.WhoRisksWinsControllerImpl;
 import utils.graphics.controller.StageManager;
 
-public class MinigameControllerFactoryImpl<S> {
+public class MinigameControllerFactoryImpl<S> implements MinigameControllerFactory<S> {
     private static final int MINIGAMES_NUMBER = 2;
 
     private final StageManager<S> stageManager;
@@ -20,23 +18,17 @@ public class MinigameControllerFactoryImpl<S> {
         this.stageManager = s;
     }
 
+    @Override
     public final MinigameController createRandomMinigameController() {
         Random rand = new Random();
         switch (rand.nextInt(MinigameControllerFactoryImpl.MINIGAMES_NUMBER)) {
         case 0:
-            return this.createMastermindController();
+            return this.stageManager.getControllerFactory().createMastermindController(this.players);
         case 1:
-            return this.createWhoRisksWinsController();
+            return this.stageManager.getControllerFactory().createWhoRisksWinsController(this.players);
         default:
             return null;
         }
     }
 
-    public final MinigameController createMastermindController() {
-        return new MastermindControllerImpl(this.stageManager, this.players);
-    }
-
-    public final MinigameController createWhoRisksWinsController() {
-        return new WhoRisksWinsControllerImpl(this.stageManager, this.players);
-    }
 }

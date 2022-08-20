@@ -2,36 +2,38 @@ package minigames.whoriskswins.controller;
 
 import java.util.List;
 
+import game.dice.controller.DiceController;
 import game.player.Player;
+import minigames.common.controller.MinigameControllerAbstr;
 import minigames.common.controller.MinigameGuideControllerImpl;
 import minigames.whoriskswins.model.WhoRisksWinsModel;
-import minigames.whoriskswins.model.WhoRisksWinsModelImpl;
 import minigames.whoriskswins.view.WhoRisksWinsViewController;
 import utils.controller.GenericController;
-import utils.controller.GenericControllerAbstr;
 import utils.graphics.controller.StageManager;
 import utils.view.GenericViewController;
 import utils.view.GenericViewUtils;
 
 /**
- * Extension of {@link GenericControllerAbstr} and implementation of
+ * Extension of {@link MinigameControllerAbstr} and implementation of
  * {@link WhoRisksWinsController}.
  */
-public class WhoRisksWinsControllerImpl extends GenericControllerAbstr implements WhoRisksWinsController {
+public class WhoRisksWinsControllerImpl extends MinigameControllerAbstr implements WhoRisksWinsController {
 
-    private final WhoRisksWinsModel<?> wrwModel;
+    private final WhoRisksWinsModel wrwModel;
     private WhoRisksWinsViewController wrwViewController;
 
     /**
      * Builder for {@link WhoRisksWinsControllerImpl}.
      * 
-     * @param <S>     the scenes of the stage
-     * @param s       the {@link StageManager}
-     * @param players the list of players
+     * @param <S>   the scenes of the stage
+     * @param s     the {@link StageManager}
+     * @param model the {@link WhoRisksWinsModel}
+     * @param dice  the {@link DiceController}
      */
-    public <S> WhoRisksWinsControllerImpl(final StageManager<S> s, final List<Player> players) {
-        super(s);
-        this.wrwModel = new WhoRisksWinsModelImpl<>(players, s);
+    public <S> WhoRisksWinsControllerImpl(final StageManager<S> s, final WhoRisksWinsModel model,
+            final DiceController dice) {
+        super(s, dice);
+        this.wrwModel = model;
     }
 
     @Override

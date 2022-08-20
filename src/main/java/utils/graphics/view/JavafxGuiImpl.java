@@ -11,8 +11,8 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import utils.controller.GenericController;
-import utils.factories.ViewFactory;
-import utils.factories.FxmlViewFactoryImpl;
+import utils.factories.view.FxmlViewFactoryImpl;
+import utils.factories.view.ViewFactory;
 import utils.graphics.controller.StageManager;
 import utils.view.GenericViewController;
 

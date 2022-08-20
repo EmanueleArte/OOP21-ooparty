@@ -4,7 +4,7 @@ import java.util.List;
 
 import minigames.common.controller.MinigameController;
 import utils.controller.GenericController;
-import utils.factories.ControllerFactory;
+import utils.factories.controller.ControllerFactory;
 import utils.graphics.view.Gui;
 
 /**
@@ -65,14 +65,24 @@ public interface StageManager<S> {
     void setLastGameController(GenericController controller);
 
     /**
-     * Getter for the {@link JavafxGui}.
+     * Getter for the {@link Gui}.
      * 
      * @return the gui used
      */
     Gui getGui();
-    
+
+    /**
+     * Setter for the controller factory.
+     * 
+     * @param factory the controller factory used
+     */
     void setControllerFactory(ControllerFactory factory);
-    
+
+    /**
+     * Getter for the controller factory.
+     * 
+     * @return the controller factory used
+     */
     ControllerFactory getControllerFactory();
 
 }

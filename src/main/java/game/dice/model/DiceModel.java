@@ -28,6 +28,13 @@ public interface DiceModel {
     Optional<Integer> getLastResult();
 
     /**
+     * Getter for the first result in the results list.
+     * 
+     * @return the first result in the results list
+     */
+    int popFirstResult();
+
+    /**
      * Getter for the sum of all the previous rolls.
      * 
      * @return the sum of the previous rolls

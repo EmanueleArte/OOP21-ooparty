@@ -81,4 +81,12 @@ public class DiceModelImpl implements DiceModel {
     protected final Random getRandom() {
         return this.rand;
     }
+
+    @Override
+    public final int popFirstResult() {
+        if (this.resultsList.size() == 0) {
+            throw new RuntimeException("Result list is empty");
+        }
+        return this.resultsList.remove(0);
+    }
 }

@@ -2,6 +2,7 @@ package game.dice.controller;
 
 import java.util.Optional;
 
+import game.dice.model.DiceModel;
 import game.player.Player;
 
 /**
@@ -41,4 +42,6 @@ public interface DiceController {
      * Closes the dice scene and returns to the previous one.
      */
     void returnToGame();
+
+    DiceModel getModel();
 }

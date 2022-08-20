@@ -1,4 +1,4 @@
-package utils.factories;
+package utils.factories.view;
 
 import utils.controller.GenericController;
 import utils.graphics.controller.StageManager;
@@ -17,7 +17,7 @@ public class FxmlViewFactoryImpl<S> implements ViewFactory<S> {
     /**
      * Builds a new {@link FxmlViewFactoryImpl}.
      * 
-     * @param stageManager the {@link StageManager}.
+     * @param s the {@link StageManager}.
      */
     public FxmlViewFactoryImpl(final StageManager<S> s) {
         this.stageManager = s;
@@ -38,11 +38,6 @@ public class FxmlViewFactoryImpl<S> implements ViewFactory<S> {
     }
 
     @Override
-    public final void createDiceView(final GenericController controller) {
-        this.createScene(controller, "game/dice.fxml");
-    }
-
-    @Override
     public final void createPauseMenuView(final GenericController controller) {
         this.createScene(controller, "menu/pause_menu.fxml");
     }
@@ -55,6 +50,16 @@ public class FxmlViewFactoryImpl<S> implements ViewFactory<S> {
     @Override
     public final void createWhoRisksWinsView(final GenericController controller) {
         this.createScene(controller, "minigames/who_risks_wins.fxml");
+    }
+
+    @Override
+    public final void createDiceView(final GenericController controller) {
+        this.createScene(controller, "game/dice.fxml");
+    }
+
+    @Override
+    public final void createGameHandlerView(final GenericController controller) {
+        this.createScene(controller, "game/game.fxml");
     }
 
     /**
