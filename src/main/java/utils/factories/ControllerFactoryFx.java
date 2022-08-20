@@ -2,6 +2,7 @@ package utils.factories;
 
 import java.util.List;
 
+import game.dice.controller.DiceController;
 import game.gamehandler.controller.GameHandlerControllerImpl;
 import game.gamehandler.model.GameHandlerModelImpl;
 import game.map.GameMapImpl;
@@ -10,6 +11,8 @@ import menu.common.controller.MenuController;
 import menu.mainmenu.controller.MainMenuControllerImpl;
 import menu.mainmenu.model.MainMenuModelImpl;
 import minigames.common.controller.MinigameController;
+import minigames.mastermind.controller.MastermindControllerImpl;
+import minigames.mastermind.model.MastermindModelImpl;
 import utils.controller.GenericController;
 import utils.graphics.controller.StageManager;
 
@@ -25,15 +28,15 @@ public class ControllerFactoryFx<S> implements ControllerFactory {
     @Override
     public GenericController createGameHandlerController(final List<Player> players, final int turnsNumber) {
         var controllerDice = this.createDiceController();
-        var model = new GameHandlerModelImpl<S>(stageManager, players, turnsNumber, null);
-        var controller = new GameHandlerControllerImpl<S>(stageManager, players, turnsNumber, null);
+        var model = new GameHandlerModelImpl<S>(this.stageManager, players, turnsNumber, null);
+        var controller = new GameHandlerControllerImpl<S>(this.stageManager, players, turnsNumber, null);
         return controller;
     }
 
     @Override
     public MenuController createMainMenuController() {
         var model = new MainMenuModelImpl<S>(this.stageManager);
-        var controller = new MainMenuControllerImpl(stageManager);
+        var controller = new MainMenuControllerImpl(this.stageManager);
         return controller;
     }
 
@@ -56,25 +59,27 @@ public class ControllerFactoryFx<S> implements ControllerFactory {
     }
 
     @Override
-    public MinigameController createMastermindController() {
+    public final MinigameController createMastermindController(final List<Player> players) {
+        var diceController = this.createDiceController();
+        var model = new MastermindModelImpl(players, diceController.getModel());
+        var controller = new MastermindControllerImpl(this.stageManager, model, diceController);
+        return controller;
+    }
+
+    @Override
+    public final MinigameController createWhoRisksWinsController(final List<Player> players) {
         // TODO Auto-generated method stub
         return null;
     }
 
     @Override
-    public MinigameController createWhoRisksWinsController() {
+    public MinigameController createMemoController(final List<Player> players) {
         // TODO Auto-generated method stub
         return null;
     }
 
     @Override
-    public MinigameController createMemoController() {
-        // TODO Auto-generated method stub
-        return null;
-    }
-
-    @Override
-    public GenericController createDiceController() {
+    public DiceController createDiceController() {
         // TODO Auto-generated method stub
         return null;
     }

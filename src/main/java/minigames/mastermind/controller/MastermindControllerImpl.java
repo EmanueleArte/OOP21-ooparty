@@ -2,10 +2,10 @@ package minigames.mastermind.controller;
 
 import java.util.List;
 
+import game.dice.controller.DiceController;
 import game.player.Player;
 import minigames.common.controller.MinigameGuideControllerImpl;
 import minigames.mastermind.model.MastermindModel;
-import minigames.mastermind.model.MastermindModelImpl;
 import minigames.mastermind.view.MastermindViewController;
 import utils.controller.GenericController;
 import utils.controller.GenericControllerAbstr;
@@ -19,19 +19,23 @@ import utils.view.GenericViewUtils;
  */
 public class MastermindControllerImpl extends GenericControllerAbstr implements MastermindController {
 
-    private final MastermindModel<?> mastermindModel;
+    private final DiceController dice;
+    private final MastermindModel mastermindModel;
     private MastermindViewController mastermindViewController;
 
     /**
      * Builder for {@link MastermindControllerImpl}.
      * 
-     * @param <S>     the scenes of the stage
-     * @param s       the {@link StageManager}
-     * @param players the list of players
+     * @param <S>   the scenes of the stage
+     * @param s     the {@link StageManager}
+     * @param model the {@link MastermindModel}
+     * @param dice  the {@link DiceController}
      */
-    public <S> MastermindControllerImpl(final StageManager<S> s, final List<Player> players) {
+    public <S> MastermindControllerImpl(final StageManager<S> s, final MastermindModel model,
+            final DiceController dice) {
         super(s);
-        this.mastermindModel = new MastermindModelImpl<>(players, s);
+        this.mastermindModel = model;
+        this.dice = dice;
     }
 
     @Override
