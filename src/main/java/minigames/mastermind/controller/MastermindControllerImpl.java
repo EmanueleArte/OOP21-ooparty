@@ -87,4 +87,9 @@ public class MastermindControllerImpl extends GenericControllerAbstr implements 
                 this.mastermindModel.getNAttempts());
     }
 
+    @Override
+    public void closeGame() {
+        this.getStageManager().popScene();
+    }
+
 }
