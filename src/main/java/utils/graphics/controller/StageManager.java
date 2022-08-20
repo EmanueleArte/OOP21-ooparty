@@ -70,9 +70,19 @@ public interface StageManager<S> {
      * @return the gui used
      */
     Gui getGui();
-    
+
+    /**
+     * Setter for the controller factory.
+     * 
+     * @param factory the controller factory used
+     */
     void setControllerFactory(ControllerFactory factory);
-    
+
+    /**
+     * Getter for the controller factory.
+     * 
+     * @return the controller factory used
+     */
     ControllerFactory getControllerFactory();
 
 }
