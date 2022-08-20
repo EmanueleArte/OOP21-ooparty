@@ -4,24 +4,41 @@ import java.util.Optional;
 
 import game.player.Player;
 
+/**
+ * This interface model the dice controller.
+ */
 public interface DiceController {
 
     /**
-     * Rolls the dice generating a random result.
+     * Rolls the dice generating a random result and starting the scene of the dice
+     * roll.
+     * 
+     * @param p {@link Player} the player who is rolling the dice
+     * @return int containing the result of the roll
      */
     int rollDice(Player p);
 
     /**
-     * Returns the last roll of the dice.
+     * Getter for the result of the last roll.
+     * 
+     * @return {@link Optional} containing the result of the last roll.
      */
     Optional<Integer> getLastResult();
 
     /**
-     * Closes the dice and returns to the previous screen.
+     * Getter for the sum of all the rolls of the dice.
+     * 
+     * @return int representing the sum of all the rolls of the dice.
      */
-    void returnToGame();
+    int getTotal();
 
+    /**
+     * Resets the model of the dice to the default state.
+     */
     void reset();
 
-    int getTotal();
+    /**
+     * Closes the dice scene and returns to the previous one.
+     */
+    void returnToGame();
 }

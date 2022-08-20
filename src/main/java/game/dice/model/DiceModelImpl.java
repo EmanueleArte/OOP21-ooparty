@@ -1,8 +1,13 @@
 package game.dice.model;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 import java.util.Random;
 
+/**
+ * Implementation of {@link DiceModel}.
+ */
 public class DiceModelImpl implements DiceModel {
 
     /**
@@ -12,10 +17,12 @@ public class DiceModelImpl implements DiceModel {
 
     private final Random rand;
     private Optional<Integer> lastResult;
+    private final List<Integer> resultsList;
 
     public DiceModelImpl() {
         rand = new Random();
         this.lastResult = Optional.empty();
+        this.resultsList = new ArrayList<>();
     }
 
     /**
@@ -29,17 +36,28 @@ public class DiceModelImpl implements DiceModel {
     }
 
     @Override
+    public final void reset() {
+        this.lastResult = Optional.empty();
+        this.resultsList.clear();
+    }
+
+    @Override
     public final Optional<Integer> getLastResult() {
         return this.lastResult;
     }
 
     @Override
-    public final void reset() {
-        this.lastResult = Optional.empty();
+    public final int getTotal() {
+        return this.resultsList.stream().reduce(0, Integer::sum);
     }
 
     protected final void setResult(final int result) {
         this.lastResult = Optional.of(result);
+        this.resultsList.add(result);
+    }
+
+    protected final List<Integer> getResultsList() {
+        return this.resultsList;
     }
 
     protected final Random getRandom() {

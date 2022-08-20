@@ -14,12 +14,21 @@ import utils.controller.GenericControllerAbstr;
 import utils.graphics.controller.StageManager;
 import utils.view.GenericViewController;
 
+/**
+ * Implementation of the {@link DiceController} interface.
+ */
 public class DiceControllerImpl extends GenericControllerAbstr implements DiceController {
     private final DiceModel model;
     private DiceViewControllerImpl viewController;
     private final boolean playoff;
-    private final List<Integer> resultsList;
 
+    /**
+     * Constructor for this class.
+     * 
+     * @param <S>
+     * @param s 
+     * @param noRepeat {@link Boolean} representing whether the dice must avoid repetition or not
+     */
     public <S> DiceControllerImpl(final StageManager<S> s, final boolean noRepeat) {
         super(s);
         if (noRepeat) {
@@ -28,7 +37,6 @@ public class DiceControllerImpl extends GenericControllerAbstr implements DiceCo
             this.model = new DiceModelImpl();
         }
         this.playoff = noRepeat;
-        this.resultsList = new ArrayList<>();
     }
 
     @Override
@@ -46,11 +54,6 @@ public class DiceControllerImpl extends GenericControllerAbstr implements DiceCo
     }
 
     @Override
-    public final void returnToGame() {
-        this.getStageManager().popScene();
-    }
-
-    @Override
     public final int rollDice(final Player p) {
         int result = this.model.rollDice();
         GenericViewUtils.createScene(this.getStageManager(), this, "game/dice.fxml");
@@ -59,7 +62,6 @@ public class DiceControllerImpl extends GenericControllerAbstr implements DiceCo
         } else {
             this.viewController.initialize(result, p.getColor(), "Roll the Dice!");
         }
-        this.resultsList.add(result);
         return result;
     }
 
@@ -69,14 +71,18 @@ public class DiceControllerImpl extends GenericControllerAbstr implements DiceCo
     }
 
     @Override
+    public final int getTotal() {
+        return this.model.getTotal();
+    }
+
+    @Override
     public final void reset() {
-        this.resultsList.clear();
         this.model.reset();
     }
 
     @Override
-    public final int getTotal() {
-        return this.resultsList.stream().reduce(0, Integer::sum);
+    public final void returnToGame() {
+        this.getStageManager().popScene();
     }
 
 }

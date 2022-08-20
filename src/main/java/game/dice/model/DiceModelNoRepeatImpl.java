@@ -1,24 +1,19 @@
 package game.dice.model;
 
-import java.util.ArrayList;
-import java.util.List;
-
+/**
+ * Extension of the {@link DiceModelImpl class}.
+ */
 public class DiceModelNoRepeatImpl extends DiceModelImpl {
-    private final List<Integer> resultsList;
-
-    public DiceModelNoRepeatImpl() {
-        this.resultsList = new ArrayList<>();
-    }
 
     @Override
     public final int rollDice() {
-        if (this.resultsList.size() == MAX_RESULT) {
+        if (this.getResultsList().size() == MAX_RESULT) {
             return 0;
         }
         int result;
         do {
             result = this.getRandom().nextInt(MAX_RESULT) + 1;
-        } while (this.resultsList.contains(result));
+        } while (this.getResultsList().contains(result));
         this.setResult(result);
         return result;
     }
