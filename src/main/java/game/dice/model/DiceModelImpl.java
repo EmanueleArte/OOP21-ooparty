@@ -16,13 +16,11 @@ public class DiceModelImpl implements DiceModel {
     protected static final int MAX_RESULT = 6;
 
     private final Random rand;
-    private final StageManager<?> stageManager;
     private Optional<Integer> lastResult;
     private Optional<Integer> total;
     private final List<Integer> resultsList;
 
-    public DiceModelImpl(final StageManager<?> s) {
-        this.stageManager = s;
+    public DiceModelImpl() {
         rand = new Random();
         this.lastResult = Optional.empty();
         this.total = Optional.empty();

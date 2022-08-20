@@ -17,7 +17,7 @@ import javafx.util.Duration;
 import utils.controller.GenericController;
 import utils.view.GenericViewController;
 
-public class DiceViewControllerImpl implements GenericViewController {
+public class DiceViewControllerImpl implements GenericViewController, DiceViewController {
 
     /**
      * duration of jump animation in milliseconds.
@@ -63,7 +63,8 @@ public class DiceViewControllerImpl implements GenericViewController {
         this.nextStep();
     }
 
-    public final void nextStep() {
+    @Override
+	public final void nextStep() {
         if (this.end) {
             this.controller.returnToGame();
         } else {
@@ -75,7 +76,8 @@ public class DiceViewControllerImpl implements GenericViewController {
         }
     }
 
-    public final void jumpToDice(final int roll) {
+    @Override
+	public final void jumpToDice(final int roll) {
         TranslateTransition transition = new TranslateTransition();
         transition.setNode(player);
         transition.setDuration(Duration.millis(JUMP_DURATION));
@@ -89,7 +91,8 @@ public class DiceViewControllerImpl implements GenericViewController {
         transition.play();
     }
 
-    public final void initialize(final Color color, final String text) {
+    @Override
+	public final void initialize(final Color color, final String text) {
         this.playerBody.setFill(color);
         this.playerHead.setFill(color);
         this.label.setText(text);

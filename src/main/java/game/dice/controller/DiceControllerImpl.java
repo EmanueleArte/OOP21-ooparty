@@ -3,10 +3,7 @@ package game.dice.controller;
 import java.util.Optional;
 
 import game.dice.model.DiceModel;
-import game.dice.model.DiceModelImpl;
-import game.dice.model.DiceModelNoRepeatImpl;
-import game.dice.view.DiceViewControllerImpl;
-import utils.view.GenericViewUtils;
+import game.dice.view.DiceViewController;
 import game.player.Player;
 import utils.controller.GenericControllerAbstr;
 import utils.graphics.controller.StageManager;
@@ -14,10 +11,10 @@ import utils.view.GenericViewController;
 
 public class DiceControllerImpl extends GenericControllerAbstr implements DiceController {
     private final DiceModel model;
-    private DiceViewControllerImpl viewController;
+    private DiceViewController viewController;
     private final boolean noRepeat;
 
-    public <S, P> DiceControllerImpl(final StageManager<S> s, final DiceModel model, final boolean noRepeat) {
+    public <S> DiceControllerImpl(final StageManager<S> s, final DiceModel model, final boolean noRepeat) {
         super(s);
         this.model = model;
         this.noRepeat = noRepeat;
@@ -25,7 +22,7 @@ public class DiceControllerImpl extends GenericControllerAbstr implements DiceCo
 
     @Override
     public final void start(final Player p) {
-        GenericViewUtils.createScene(this.getStageManager(), this, "game/dice.fxml");
+        this.getStageManager().getGui().getViewFactory().createDiceView(this);
         if (this.noRepeat) {
             this.viewController.initialize(p.getColor(), "Playoff!");
         } else {
@@ -40,10 +37,10 @@ public class DiceControllerImpl extends GenericControllerAbstr implements DiceCo
 
     @Override
     public final void setViewController(final GenericViewController viewController) {
-        if (viewController instanceof DiceViewControllerImpl) {
-            this.viewController = (DiceViewControllerImpl) viewController;
+        if (viewController instanceof DiceViewController) {
+            this.viewController = (DiceViewController) viewController;
         } else {
-            throw new IllegalArgumentException("The parameter must be an instance of DiceViewControllerImpl");
+            throw new IllegalArgumentException("The parameter must be an instance of DiceViewController");
         }
     }
 
