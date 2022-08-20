@@ -8,10 +8,8 @@ import game.player.Player;
 
 /**
  * This interface models a minigame model.
- * 
- * @param <S> the scenes of the stage
  */
-public interface MinigameModel<S> extends GameModel<S> {
+public interface MinigameModel extends GameModel {
 
     /**
      * This method returns the results of the minigame that are necessary for points

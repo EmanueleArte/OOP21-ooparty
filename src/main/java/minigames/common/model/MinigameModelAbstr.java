@@ -9,32 +9,28 @@ import java.util.stream.Collectors;
 
 import utils.exceptions.PlayerNotFoundException;
 import game.common.model.GameModelAbstr;
-import game.dice.controller.DiceController;
-import game.dice.controller.DiceControllerImpl;
+import game.dice.model.DiceModel;
 import game.player.Player;
-import utils.graphics.controller.StageManager;
 
 /**
  * Implementation of {@link MinigameModel}.
- * 
- * @param <S> the scenes of the stage
  */
-public abstract class MinigameModelAbstr<S> extends GameModelAbstr<S> implements MinigameModel<S> {
+public abstract class MinigameModelAbstr extends GameModelAbstr implements MinigameModel {
 
     private final Map<Player, Integer> playersClassification;
-    private final DiceController dice;
+    private final DiceModel dice;
     private List<Player> gameResults;
 
     /**
      * Builds a new {@link MinigameModelAbstr}.
      * 
      * @param players the list of players
-     * @param s       the {@link StageManager}
+     * @param dice    the dice model
      */
-    public MinigameModelAbstr(final List<Player> players, final StageManager<S> s) {
-        super(players, s);
+    public MinigameModelAbstr(final List<Player> players, final DiceModel dice) {
+        super(players);
         this.playersClassification = new LinkedHashMap<>();
-        this.dice = new DiceControllerImpl(s, true);
+        this.dice = dice;
     }
 
     /**
@@ -82,14 +78,13 @@ public abstract class MinigameModelAbstr<S> extends GameModelAbstr<S> implements
             if (players.size() > 1) {
                 final Map<Player, Integer> sorted = new LinkedHashMap<>();
                 players.forEach(player -> {
-                    final var s = this.getStageManager();
                     this.dice.rollDice();
-                    if (s != null) {
+                    /*if (s != null) {
                         if (s.getGui().mainStagePresence()) {
                             this.dice.start(player);
                         }
-                    }
-                    sorted.put(player, this.dice.getLastResult().get());
+                    }*/
+                    sorted.put(player, (Integer) this.dice.getLastResult().get());
                 });
                 players = sorted.entrySet().stream().sorted(Map.Entry.comparingByValue(Comparator.reverseOrder()))
                         .map(Entry::getKey).collect(Collectors.toList());
