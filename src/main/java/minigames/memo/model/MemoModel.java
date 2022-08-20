@@ -25,7 +25,11 @@ public interface MemoModel<S> extends MinigameModel<S> {
      * player, this method sets one.
      * 
      * @param index the index of the chosen card.
-     * @return {@code true} if this card has been chosen, {@code false} otherwise.
+     * @return {@code true} if this card is the second of a pair, {@code false}
+     *         otherwise.
+     * 
+     * @throws IndexOutOfBoundsException if the card passed has already been guessed.
+     * @throws IllegalStateException    if che game is over.
      */
     boolean pickCard(int index);
 

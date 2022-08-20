@@ -39,7 +39,7 @@ public class MemoModelImpl<S> extends MinigameModelAbstr<S> implements MemoModel
     public MemoModelImpl(final List<Player> players, final StageManager<S> s) {
         super(players, s);
         this.cards = this.initialiseCards();
-        this.changeTurn();
+        this.getCurrPlayer();
     }
 
     /**
@@ -76,7 +76,7 @@ public class MemoModelImpl<S> extends MinigameModelAbstr<S> implements MemoModel
     @Override
     public boolean pickCard(final int indexFirstCard) {
         if (this.isOver()) {
-            return false;
+            throw new IllegalStateException("The game is already over");
         }
         if (!hasCurrPlayer()) {
             this.changeTurn();
@@ -84,7 +84,7 @@ public class MemoModelImpl<S> extends MinigameModelAbstr<S> implements MemoModel
         final var tempCardValue = this.cards.get(indexFirstCard);
         if (this.tempCard.isEmpty()) {
             this.tempCard = Optional.of(tempCardValue);
-            return true;
+            return false;
         }
         this.tempCard = Optional.empty();
         if (tempCardValue.equals(this.tempCard.get())) {
