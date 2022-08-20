@@ -86,9 +86,8 @@ public class MastermindControllerImpl extends MinigameControllerAbstr implements
     }
 
     @Override
-    public void closeGame() {
-        // TODO Auto-generated method stub
-
+    public final void closeGame() {
+        this.getStageManager().popScene();
     }
 
 }

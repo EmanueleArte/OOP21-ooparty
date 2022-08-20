@@ -20,7 +20,7 @@ public class WhoRisksWinsModelImpl extends MinigameModelAbstr implements WhoRisk
     /**
      * Minimum milliseconds.
      */
-    private static final int MINIMUM_TIME = 500;
+    private static final int MINIMUM_TIME = 300;
     private int blockFallingSpeed;
 
     /**
