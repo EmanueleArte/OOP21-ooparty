@@ -85,9 +85,4 @@ public class MastermindControllerImpl extends MinigameControllerAbstr implements
                 this.mastermindModel.getNAttempts());
     }
 
-    @Override
-    public final void closeGame() {
-        this.getStageManager().popScene();
-    }
-
 }
