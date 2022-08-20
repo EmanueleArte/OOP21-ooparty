@@ -5,14 +5,10 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
-import java.util.Optional;
 import java.util.stream.Collectors;
 
 import utils.exceptions.PlayerNotFoundException;
-import utils.graphics.controller.StageManager;
 import game.common.model.GameModelAbstr;
-import game.dice.controller.DiceController;
-import game.dice.controller.DiceControllerImpl;
 import game.dice.model.DiceModel;
 import game.player.Player;
 
@@ -27,10 +23,11 @@ public abstract class MinigameModelAbstr extends GameModelAbstr implements Minig
 
     /**
      * Builds a new {@link MinigameModelAbstr}.
-     * @param <S>
      * 
-     * @param players the list of players
-     * @param dice    the {@link DiceModel}
+     * @param <S>       the scenes of the stage
+     * 
+     * @param players   the list of players
+     * @param diceModel the {@link DiceModel}
      */
     public <S> MinigameModelAbstr(final List<Player> players, final DiceModel diceModel) {
         super(players);

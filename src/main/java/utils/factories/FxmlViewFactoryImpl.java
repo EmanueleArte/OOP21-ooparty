@@ -17,7 +17,7 @@ public class FxmlViewFactoryImpl<S> implements ViewFactory<S> {
     /**
      * Builds a new {@link FxmlViewFactoryImpl}.
      * 
-     * @param stageManager the {@link StageManager}.
+     * @param s the {@link StageManager}.
      */
     public FxmlViewFactoryImpl(final StageManager<S> s) {
         this.stageManager = s;

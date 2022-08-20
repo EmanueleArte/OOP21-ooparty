@@ -28,6 +28,11 @@ public class ControllerFactoryFx<S> implements ControllerFactory {
 
     private final StageManager<S> stageManager;
 
+    /**
+     * Builds a {@link ControllerFactoryFx}.
+     * 
+     * @param stageManager the {@link StageManager}
+     */
     public ControllerFactoryFx(final StageManager<S> stageManager) {
         super();
         this.stageManager = stageManager;
