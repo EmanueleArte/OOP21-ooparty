@@ -1,12 +1,10 @@
-package utils.factories;
+package utils.factories.controller;
 
 import java.util.List;
 import java.util.Random;
 
 import game.player.Player;
 import minigames.common.controller.MinigameController;
-import minigames.mastermind.controller.MastermindControllerImpl;
-import minigames.whoriskswins.controller.WhoRisksWinsControllerImpl;
 import utils.graphics.controller.StageManager;
 
 public class MinigameControllerFactoryImpl<S> {
@@ -32,11 +30,4 @@ public class MinigameControllerFactoryImpl<S> {
         }
     }
 
-    /*public final MinigameController createMastermindController() {
-        return new MastermindControllerImpl(this.stageManager, this.players);
-    }
-
-    public final MinigameController createWhoRisksWinsController() {
-        return new WhoRisksWinsControllerImpl(this.stageManager, this.players);
-    }*/
 }

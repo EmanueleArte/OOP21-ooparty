@@ -6,7 +6,7 @@ import java.util.Optional;
 
 import minigames.common.controller.MinigameController;
 import utils.controller.GenericController;
-import utils.factories.ControllerFactory;
+import utils.factories.controller.ControllerFactory;
 import utils.graphics.model.SceneHandler;
 import utils.graphics.model.SceneHandlerImpl;
 import utils.graphics.view.EmptyGui;

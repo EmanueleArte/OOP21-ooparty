@@ -1,6 +1,6 @@
 import javafx.scene.Scene;
-import utils.factories.ControllerFactory;
-import utils.factories.ControllerFactoryFx;
+import utils.factories.controller.ControllerFactory;
+import utils.factories.controller.ControllerFactoryFx;
 import utils.graphics.controller.StageManager;
 import utils.graphics.controller.StageManagerImpl;
 import utils.graphics.view.JavafxGuiImpl;

@@ -1,4 +1,4 @@
-package utils.factories;
+package utils.factories.view;
 
 import utils.controller.GenericController;
 import utils.graphics.controller.StageManager;

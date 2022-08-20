@@ -4,7 +4,7 @@ import java.util.List;
 
 import minigames.common.controller.MinigameController;
 import utils.controller.GenericController;
-import utils.factories.ControllerFactory;
+import utils.factories.controller.ControllerFactory;
 import utils.graphics.view.Gui;
 
 /**

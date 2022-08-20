@@ -18,7 +18,7 @@ import menu.powerupmenu.controller.PowerupMenuControllerImpl;
 import minigames.common.controller.MinigameController;
 import utils.enums.PlayerTurnProgress;
 import utils.enums.TurnProgress;
-import utils.factories.MinigameControllerFactoryImpl;
+import utils.factories.controller.MinigameControllerFactoryImpl;
 import utils.graphics.controller.StageManager;
 
 public class GameHandlerModelImpl<S> implements GameHandlerModel {
