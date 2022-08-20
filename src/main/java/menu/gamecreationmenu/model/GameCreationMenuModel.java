@@ -9,11 +9,6 @@ import utils.enums.PlayerColor;
 public interface GameCreationMenuModel {
 
     /**
-     * This method returns to the main menu of the game.
-     */
-    void returnToMainMenu();
-
-    /**
      * This method starts the game if the forms have correct values.
      * 
      * @param playersNicknames the nicknames of the players

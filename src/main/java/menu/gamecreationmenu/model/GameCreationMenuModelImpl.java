@@ -42,11 +42,6 @@ public class GameCreationMenuModelImpl implements GameCreationMenuModel {
     }
 
     @Override
-    public final void returnToMainMenu() {
-        this.stageManager.popScene();
-    }
-
-    @Override
     public final boolean startGame(final List<String> allPlayersNicknames, final List<PlayerColor> allPlayersColors,
             final int turnsNumber) {
         final List<String> playersNicknames = allPlayersNicknames.subList(0, this.actualNPlayers);
@@ -55,9 +50,13 @@ public class GameCreationMenuModelImpl implements GameCreationMenuModel {
         if (!checkForms(playersNicknames, playersColors)) {
             return false;
         } else {
-            final GameHandlerController game = this.stageManager.getControllerFactory().createGameHandlerController(this.createPlayersList(playersNicknames, playersColors), turnsNumber);
-            /*new GameHandlerControllerImpl<>(this.stageManager,
-                    this.createPlayersList(playersNicknames, playersColors), turnsNumber, gameMap);*/
+            final GameHandlerController game = this.stageManager.getControllerFactory()
+                    .createGameHandlerController(this.createPlayersList(playersNicknames, playersColors), turnsNumber);
+            /*
+             * new GameHandlerControllerImpl<>(this.stageManager,
+             * this.createPlayersList(playersNicknames, playersColors), turnsNumber,
+             * gameMap);
+             */
             game.start();
         }
         return true;

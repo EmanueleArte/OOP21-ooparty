@@ -2,7 +2,6 @@ package menu.gamecreationmenu.controller;
 
 import menu.common.controller.MenuController;
 import menu.gamecreationmenu.model.GameCreationMenuModel;
-import menu.gamecreationmenu.model.GameCreationMenuModelImpl;
 import menu.gamecreationmenu.view.GameCreationMenuViewController;
 import menu.gamecreationmenu.view.GameCreationMenuViewControllerImpl;
 import utils.controller.GenericControllerAbstr;
@@ -15,18 +14,19 @@ import utils.view.GenericViewController;
  */
 public class GameCreationMenuControllerImpl extends GenericControllerAbstr implements MenuController {
 
-    private final GameCreationMenuModel<?> menuModel;
+    private final GameCreationMenuModel menuModel;
     private GameCreationMenuViewController menuViewController;
 
     /**
      * Builder for {@link GameCreationMenuControllerImpl}.
      * 
-     * @param <S> the scenes of the stage
-     * @param s   the {@link StageManager}
+     * @param <S>   the scenes of the stage
+     * @param s     the {@link StageManager}
+     * @param model the {@link GameCreationMenuModel}
      */
-    public <S> GameCreationMenuControllerImpl(final StageManager<S> s) {
+    public <S> GameCreationMenuControllerImpl(final StageManager<S> s, final GameCreationMenuModel model) {
         super(s);
-        this.menuModel = new GameCreationMenuModelImpl<>(s);
+        this.menuModel = model;
     }
 
     @Override
@@ -55,7 +55,7 @@ public class GameCreationMenuControllerImpl extends GenericControllerAbstr imple
 
     @Override
     public final void exit() {
-        this.menuModel.returnToMainMenu();
+        this.getStageManager().popScene();
     }
 
     @Override
