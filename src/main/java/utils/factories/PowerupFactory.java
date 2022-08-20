@@ -1,4 +1,6 @@
-package game.powerup;
+package utils.factories;
+
+import game.powerup.GenericPowerup;
 
 public interface PowerupFactory {
 

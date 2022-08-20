@@ -1,6 +1,11 @@
-package game.powerup;
+package utils.factories;
 
 import java.util.Random;
+
+import game.powerup.DoubleDicePowerup;
+import game.powerup.GenericPowerup;
+import game.powerup.GunPowerup;
+import game.powerup.MedikitPowerup;
 
 public class PowerupFactoryImpl implements PowerupFactory {
 
