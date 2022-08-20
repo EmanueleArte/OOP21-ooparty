@@ -1,4 +1,4 @@
-package game.map.factories;
+package utils.factories.board;
 
 /**
  * Extension of {@link GameBoardFactory} which represents a factory of boards with a specified size (34 squares).

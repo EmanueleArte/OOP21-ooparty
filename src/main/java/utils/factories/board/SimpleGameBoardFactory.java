@@ -1,4 +1,4 @@
-package game.map.factories;
+package utils.factories.board;
 
 import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;

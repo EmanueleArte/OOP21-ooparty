@@ -9,8 +9,8 @@ import game.map.DamageGameMapSquare;
 import game.map.GameMapSquareImpl;
 import game.map.PowerUpGameMapSquare;
 import game.map.StarGameMapSquare;
-import game.map.factories.GameBoardFactory;
-import game.map.factories.SimpleGameBoardFactory;
+import utils.factories.board.GameBoardFactory;
+import utils.factories.board.SimpleGameBoardFactory;
 
 class TestGameBoard {
 

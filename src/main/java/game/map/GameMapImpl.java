@@ -2,11 +2,11 @@ package game.map;
 
 import java.util.List;
 
-import game.map.factories.GameBoardFactory;
-import game.map.factories.SimpleGameBoardFactory;
 import game.player.Player;
 import utils.enums.MapLayout;
 import utils.exceptions.PlayerNotFoundException;
+import utils.factories.board.GameBoardFactory;
+import utils.factories.board.SimpleGameBoardFactory;
 
 public class GameMapImpl implements GameMap {
 
