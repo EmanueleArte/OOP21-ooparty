@@ -19,6 +19,9 @@ public class DiceModelImpl implements DiceModel {
     private Optional<Integer> lastResult;
     private final List<Integer> resultsList;
 
+    /**
+     * Builds a {@link DiceModelImpl}.
+     */
     public DiceModelImpl() {
         rand = new Random();
         this.lastResult = Optional.empty();
@@ -51,15 +54,30 @@ public class DiceModelImpl implements DiceModel {
         return this.resultsList.stream().reduce(0, Integer::sum);
     }
 
-    protected final void setResult(final int result) {
+    /**
+     * Sets the {@link Optional} containing the last result.
+     * 
+     * @param result the value of the last roll
+     */
+    protected void setResult(final int result) {
         this.lastResult = Optional.of(result);
         this.resultsList.add(result);
     }
 
-    protected final List<Integer> getResultsList() {
+    /**
+     * Getter for the {@link List} containing the previous rolls.
+     * 
+     * @return a list containing the previous rolls
+     */
+    protected List<Integer> getResultsList() {
         return this.resultsList;
     }
 
+    /**
+     * Getter for the {@link Random} inside this class.
+     * 
+     * @return the Random
+     */
     protected final Random getRandom() {
         return this.rand;
     }
