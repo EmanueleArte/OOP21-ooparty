@@ -7,6 +7,8 @@ import game.dice.controller.DiceControllerImpl;
 import javafx.animation.TranslateTransition;
 import javafx.fxml.FXML;
 import javafx.scene.Group;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Polygon;
@@ -37,6 +39,8 @@ public class DiceViewControllerImpl implements GenericViewController {
     private Circle playerHead;
     @FXML
     private Text diceText;
+    @FXML
+    private Text label;
 
     @Override
     public final void setController(final GenericController controller) {
@@ -48,6 +52,17 @@ public class DiceViewControllerImpl implements GenericViewController {
     }
 
     @FXML
+    protected final void onKeyPressed(final KeyEvent ke) {
+        if (ke.getCode().equals(KeyCode.ENTER) || ke.getCode().equals(KeyCode.SPACE)) {
+            this.nextStep();
+        }
+    }
+
+    @FXML
+    protected final void onClick() {
+        this.nextStep();
+    }
+
     public final void nextStep() {
         if (this.end) {
             this.controller.returnToGame();
@@ -74,9 +89,9 @@ public class DiceViewControllerImpl implements GenericViewController {
         transition.play();
     }
 
-    @FXML
-    public final void initialize(final Color color) {
+    public final void initialize(final Color color, final String text) {
         this.playerBody.setFill(color);
         this.playerHead.setFill(color);
+        this.label.setText(text);
     }
 }

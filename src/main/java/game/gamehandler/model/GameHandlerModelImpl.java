@@ -93,6 +93,7 @@ public class GameHandlerModelImpl<S> implements GameHandlerModel {
         if (this.playerTurnProgress == PlayerTurnProgress.SHOW_BANNER) {
             this.currentPlayer = Optional.of(this.playersIterator.next());
             this.currentPlayer.get().setDicesNumber(1);
+            this.dice.reset();
         }
         if (this.playerTurnProgress == PlayerTurnProgress.USE_POWERUP) {
             if (this.currentPlayer.get().getPowerupList().isEmpty()) {
@@ -103,7 +104,6 @@ public class GameHandlerModelImpl<S> implements GameHandlerModel {
         }
         if (this.playerTurnProgress == PlayerTurnProgress.MOVE_PLAYER) {
             final Player cp = this.currentPlayer.get();
-            System.out.println(this.dice.getLastResult());
             if (this.dice.getLastResult().isPresent()) {
                 cp.moveForward(this.dice.getLastResult().get(), this.gameMap);
                 final GameMapSquare playerPosition = cp.getPosition(this.gameMap);

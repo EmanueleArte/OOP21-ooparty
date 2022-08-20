@@ -15,6 +15,7 @@ import utils.view.GenericViewController;
 public class DiceControllerImpl extends GenericControllerAbstr implements DiceController {
     private final DiceModel<?> model;
     private DiceViewControllerImpl viewController;
+    private final boolean noRepeat;
 
     public <S, P> DiceControllerImpl(final StageManager<S> s, final boolean noRepeat) {
         super(s);
@@ -23,12 +24,17 @@ public class DiceControllerImpl extends GenericControllerAbstr implements DiceCo
         } else {
             this.model = new DiceModelImpl<P>(s);
         }
+        this.noRepeat = noRepeat;
     }
 
     @Override
     public final void start(final Player p) {
         GenericViewUtils.createScene(this.getStageManager(), this, "game/dice.fxml");
-        this.viewController.initialize(p.getColor());
+        if (this.noRepeat) {
+            this.viewController.initialize(p.getColor(), "Playoff!");
+        } else {
+            this.viewController.initialize(p.getColor(), "Roll the Dice!");
+        }
     }
 
     @Override
@@ -47,7 +53,7 @@ public class DiceControllerImpl extends GenericControllerAbstr implements DiceCo
 
     @Override
     public final void returnToGame() {
-        this.model.returnToGame();
+        this.getStageManager().popScene();
     }
 
     @Override
@@ -58,6 +64,16 @@ public class DiceControllerImpl extends GenericControllerAbstr implements DiceCo
     @Override
     public final Optional<Integer> getLastResult() {
         return this.model.getLastResult();
+    }
+
+    @Override
+    public final void reset() {
+        this.model.reset();
+    }
+
+    @Override
+    public final Optional<Integer> getTotal() {
+        return this.model.getTotal();
     }
 
 }
