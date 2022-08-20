@@ -54,8 +54,11 @@ public abstract class GameModelAbstr<S> implements GameModel<S> {
     @Override
     public abstract boolean runGame();
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
-    public final Player getCurrPlayer() {
+    public Player getCurrPlayer() {
         return this.currPlayer.get();
     }
 
