@@ -7,12 +7,15 @@ import game.player.Player;
  */
 public class StarGameMapSquare extends GameMapSquareImpl {
 
+    /**
+     * Builder for {@link StarGameMapSquare}.
+     */
     public StarGameMapSquare() {
         super();
     }
 
     /**
-     * 
+     * {@inheritDoc}
      */
     @Override
     public void receiveStar(final Player p) {

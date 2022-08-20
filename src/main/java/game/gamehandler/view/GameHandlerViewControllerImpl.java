@@ -59,11 +59,6 @@ public class GameHandlerViewControllerImpl implements GenericViewController {
     private static final int MAP_HEIGHT = 8;
     private static final int PLAYER_X_START = -825;
     private static final int PLAYER_Y_START = -600;
-    /*
-     * private static final int COIN_DIM = 25; private static final int STAR_DIM =
-     * 25; private static final int POWERUP_DIM = 25; private static final int
-     * DAMAGE_ICON_DIM = 25;
-     */
     private static final int ICON_DIM = 25;
 
     private GameHandlerController controller;
@@ -207,6 +202,8 @@ public class GameHandlerViewControllerImpl implements GenericViewController {
                 }
             } else if (progress.get() == TurnProgress.PLAY_MINIGAME) {
                 this.setUpdatesLabel("");
+            } else if (progress.get() == TurnProgress.SHOW_LEADERBOARD) {
+                this.controller.showAfterMinigameMenu();
             } else if (progress.get() == TurnProgress.END_OF_TURN) {
                 this.updateLeaderboard(this.controller.getLeaderboard());
             }

@@ -10,6 +10,9 @@ import utils.controller.GenericControllerAbstr;
 import utils.graphics.controller.StageManager;
 import utils.view.GenericViewController;
 
+/**
+ * Controller for the after minigame menu.
+ */
 public class AfterMinigameMenuControllerImpl extends GenericControllerAbstr implements MenuController, AfterMinigameMenuController {
 
     private AfterMinigameMenuViewController menuViewController;

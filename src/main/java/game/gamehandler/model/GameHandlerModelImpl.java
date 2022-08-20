@@ -11,7 +11,6 @@ import game.dice.controller.DiceControllerImpl;
 import game.map.GameMap;
 import game.map.GameMapSquare;
 import game.player.Player;
-import menu.afterminigamemenu.controller.AfterMinigameMenuControllerImpl;
 import menu.powerupmenu.controller.PowerupMenuController;
 import menu.powerupmenu.controller.PowerupMenuControllerImpl;
 import minigames.common.controller.MinigameController;
@@ -73,11 +72,6 @@ public class GameHandlerModelImpl<S> implements GameHandlerModel {
         }
         if (this.turnProgress == TurnProgress.PLAY_MINIGAME) {
             this.playMinigame();
-        }
-        if (this.turnProgress == TurnProgress.SHOW_LEADERBOARD) {
-            AfterMinigameMenuControllerImpl afterMinigameMenuControllerImpl = new AfterMinigameMenuControllerImpl(this.stageManager);
-            afterMinigameMenuControllerImpl.createMenu();
-            afterMinigameMenuControllerImpl.makeLeaderboard(this.getTurnOrder());
         }
         return Optional.of(this.turnProgress);
     }
@@ -177,7 +171,7 @@ public class GameHandlerModelImpl<S> implements GameHandlerModel {
      * This method returns the leaderboard. The leaderboard consist in a list of players ordered by:
      * - stars;
      * - coins;
-     * - life point;
+     * - life points;
      * @return an ordered list of players 
      */
     @Override

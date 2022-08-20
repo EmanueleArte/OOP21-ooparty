@@ -5,6 +5,9 @@ import java.util.List;
 import game.player.Player;
 import utils.enums.MapLayout;
 
+/**
+ * Interface for the game map.
+ */
 public interface GameMap {
 
     /**

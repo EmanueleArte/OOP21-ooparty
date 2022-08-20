@@ -5,14 +5,17 @@ import java.util.Random;
 
 import game.player.Player;
 import game.powerup.GenericPowerup;
-import game.powerup.PowerupFactoryImpl;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.Border;
 import javafx.scene.layout.VBox;
 import menu.MenuController;
 import utils.controller.GenericController;
+import utils.factories.PowerupFactoryImpl;
 
+/**
+ * ViewController for the after minigame menu.
+ */
 public class AfterMinigameMenuViewControllerImpl implements AfterMinigameMenuViewController {
 
     private static final int VBOX_WIDTH = 200;
@@ -20,7 +23,6 @@ public class AfterMinigameMenuViewControllerImpl implements AfterMinigameMenuVie
     private static final int MAX_COINS_FROM_MINIGAME = 10;
 
     private MenuController menuController;
-    private List<Player> players;
     @FXML
     private List<VBox> vBoxes;
 
@@ -51,7 +53,7 @@ public class AfterMinigameMenuViewControllerImpl implements AfterMinigameMenuVie
 
             if (i < players.size() / 2) {
                 Label powerupGot = (Label) v.getChildren().get(3);
-                powerupGot.setText("Got " + this.getPowerup(players, i));
+                powerupGot.setText("Got " + this.getPowerup(players, i).getPowerupType());
             }
         }
     }
