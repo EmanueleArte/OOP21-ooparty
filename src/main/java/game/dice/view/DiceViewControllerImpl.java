@@ -1,7 +1,5 @@
 package game.dice.view;
 
-import java.util.Optional;
-
 import game.dice.controller.DiceController;
 import game.dice.controller.DiceControllerImpl;
 import javafx.animation.TranslateTransition;
@@ -28,6 +26,7 @@ public class DiceViewControllerImpl implements GenericViewController {
      */
     public static final int JUMP_HEIGHT = 170;
 
+    private int result;
     private DiceController controller;
     private boolean end = false;
 
@@ -63,25 +62,22 @@ public class DiceViewControllerImpl implements GenericViewController {
         this.nextStep();
     }
 
-    public final void nextStep() {
+    private void nextStep() {
         if (this.end) {
             this.controller.returnToGame();
         } else {
-            Optional<Integer> roll = this.controller.getLastResult();
-            if (roll.isPresent()) {
-                this.jumpToDice(roll.get());
-            }
+                this.jumpToDice();
             this.end = true;
         }
     }
 
-    public final void jumpToDice(final int roll) {
+    private void jumpToDice() {
         TranslateTransition transition = new TranslateTransition();
         transition.setNode(player);
         transition.setDuration(Duration.millis(JUMP_DURATION));
         transition.setByY(-JUMP_HEIGHT);
         transition.setOnFinished(e -> {
-            diceText.setText(Integer.toString(roll));
+            diceText.setText(Integer.toString(this.result));
             transition.setByY(JUMP_HEIGHT);
             transition.setOnFinished(null);
             transition.play();
@@ -89,7 +85,8 @@ public class DiceViewControllerImpl implements GenericViewController {
         transition.play();
     }
 
-    public final void initialize(final Color color, final String text) {
+    public final void initialize(final int result, final Color color, final String text) {
+        this.result = result;
         this.playerBody.setFill(color);
         this.playerHead.setFill(color);
         this.label.setText(text);

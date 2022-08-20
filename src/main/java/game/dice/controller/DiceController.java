@@ -9,14 +9,7 @@ public interface DiceController {
     /**
      * Rolls the dice generating a random result.
      */
-    void rollDice();
-
-    /**
-     * Starts the dice screen.
-     * 
-     * @param p the player that has to roll the dice
-     */
-    void start(Player p);
+    int rollDice(Player p);
 
     /**
      * Returns the last roll of the dice.
@@ -30,5 +23,5 @@ public interface DiceController {
 
     void reset();
 
-    Optional<Integer> getTotal();
+    int getTotal();
 }

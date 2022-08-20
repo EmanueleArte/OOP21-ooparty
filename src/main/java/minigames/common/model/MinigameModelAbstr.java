@@ -83,13 +83,11 @@ public abstract class MinigameModelAbstr<S> extends GameModelAbstr<S> implements
                 final Map<Player, Integer> sorted = new LinkedHashMap<>();
                 players.forEach(player -> {
                     final var s = this.getStageManager();
-                    this.dice.rollDice();
-                    if (s != null) {
-                        if (s.getGui().mainStagePresence()) {
-                            this.dice.start(player);
-                        }
-                    }
-                    sorted.put(player, this.dice.getLastResult().get());
+                    /*
+                     * if (s != null) { if (s.getGui().mainStagePresence()) {
+                     * this.dice.start(player); } }
+                     */
+                    sorted.put(player, this.dice.rollDice(player));
                 });
                 players = sorted.entrySet().stream().sorted(Map.Entry.comparingByValue(Comparator.reverseOrder()))
                         .map(Entry::getKey).collect(Collectors.toList());

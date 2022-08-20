@@ -1,7 +1,5 @@
 package game.dice.model;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Optional;
 import java.util.Random;
 
@@ -14,23 +12,20 @@ public class DiceModelImpl implements DiceModel {
 
     private final Random rand;
     private Optional<Integer> lastResult;
-    private Optional<Integer> total;
-    private final List<Integer> resultsList;
 
     public DiceModelImpl() {
         rand = new Random();
         this.lastResult = Optional.empty();
-        this.total = Optional.empty();
-        this.resultsList = new ArrayList<>();
     }
 
     /**
      * {@inheritDoc}
      */
     @Override
-    public void rollDice() {
+    public int rollDice() {
         int result = this.rand.nextInt(DiceModelImpl.MAX_RESULT) + 1;
         this.setResult(result);
+        return result;
     }
 
     @Override
@@ -41,28 +36,10 @@ public class DiceModelImpl implements DiceModel {
     @Override
     public final void reset() {
         this.lastResult = Optional.empty();
-        this.total = Optional.empty();
-        this.resultsList.clear();
-    }
-
-    @Override
-    public final List<Integer> getResultsList() {
-        return this.resultsList;
-    }
-
-    @Override
-    public final Optional<Integer> getTotal() {
-        return this.total;
     }
 
     protected final void setResult(final int result) {
         this.lastResult = Optional.of(result);
-        this.resultsList.add(result);
-        this.total.ifPresentOrElse(v -> {
-            this.total = Optional.of(v + result);
-        }, () -> {
-            this.total = Optional.of(result);
-        });
     }
 
     protected final Random getRandom() {

@@ -1,5 +1,7 @@
 package game.dice.controller;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 import game.dice.model.DiceModel;
@@ -15,7 +17,8 @@ import utils.view.GenericViewController;
 public class DiceControllerImpl extends GenericControllerAbstr implements DiceController {
     private final DiceModel model;
     private DiceViewControllerImpl viewController;
-    private final boolean noRepeat;
+    private final boolean playoff;
+    private final List<Integer> resultsList;
 
     public <S> DiceControllerImpl(final StageManager<S> s, final boolean noRepeat) {
         super(s);
@@ -24,17 +27,8 @@ public class DiceControllerImpl extends GenericControllerAbstr implements DiceCo
         } else {
             this.model = new DiceModelImpl();
         }
-        this.noRepeat = noRepeat;
-    }
-
-    @Override
-    public final void start(final Player p) {
-        GenericViewUtils.createScene(this.getStageManager(), this, "game/dice.fxml");
-        if (this.noRepeat) {
-            this.viewController.initialize(p.getColor(), "Playoff!");
-        } else {
-            this.viewController.initialize(p.getColor(), "Roll the Dice!");
-        }
+        this.playoff = noRepeat;
+        this.resultsList = new ArrayList<>();
     }
 
     @Override
@@ -57,8 +51,16 @@ public class DiceControllerImpl extends GenericControllerAbstr implements DiceCo
     }
 
     @Override
-    public final void rollDice() {
-        this.model.rollDice();
+    public final int rollDice(final Player p) {
+        int result = this.model.rollDice();
+        GenericViewUtils.createScene(this.getStageManager(), this, "game/dice.fxml");
+        if (this.playoff) {
+            this.viewController.initialize(result, p.getColor(), "Playoff!");
+        } else {
+            this.viewController.initialize(result, p.getColor(), "Roll the Dice!");
+        }
+        this.resultsList.add(result);
+        return result;
     }
 
     @Override
@@ -68,12 +70,13 @@ public class DiceControllerImpl extends GenericControllerAbstr implements DiceCo
 
     @Override
     public final void reset() {
+        this.resultsList.clear();
         this.model.reset();
     }
 
     @Override
-    public final Optional<Integer> getTotal() {
-        return this.model.getTotal();
+    public final int getTotal() {
+        return this.resultsList.stream().reduce(0, Integer::sum);
     }
 
 }

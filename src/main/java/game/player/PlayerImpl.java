@@ -204,13 +204,8 @@ public class PlayerImpl implements Player {
     }
 
     @Override
-    public final boolean hasDiceToRoll() {
-        return this.dicesToRoll > 0;
-    }
-
-    @Override
-    public final void rollDice() {
-        this.dicesToRoll--;
+    public final int getDicesToRoll() {
+        return this.dicesToRoll;
     }
 
     @Override
