@@ -154,9 +154,6 @@ public class GameHandlerViewControllerImpl implements GenericViewController {
 
         if (progress.isPresent()) {
             if (progress.get() == TurnProgress.SHOW_BANNER) {
-                this.playerToAvatar.forEach((a, b) -> {
-                    System.out.println(a + " " + b.toString());
-                });
                 this.showBanner("Turn " + this.controller.getTurnNumber());
                 updateTurnOrder(this.controller.getTurnOrder());
             } else if (progress.get() == TurnProgress.HIDE_BANNER) {
@@ -238,7 +235,6 @@ public class GameHandlerViewControllerImpl implements GenericViewController {
         transition.setDuration(Duration.millis(1000));
         transition.setFromX(avatar.getTranslateX());
         transition.setFromY(avatar.getTranslateY());
-        // ogni tanto dà NullPointerException
         transition.setToX(this.mapGrid.getChildren()
                 .get(this.controller.getGameMap().getSquares()
                         .indexOf(this.controller.getGameMap().getPlayerPosition(p)))
