@@ -96,6 +96,21 @@ public class MemoModelImpl<S> extends MinigameModelAbstr<S> implements MemoModel
         return false;
     }
 
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public Player getCurrPlayer() {
+        Player player;
+        try {
+            player = super.getCurrPlayer();
+        } catch (Exception e) {
+            this.setPlayerIterator(getPlayers());
+            player = super.getCurrPlayer();
+        }
+        return player;
+    }
+
     private List<Integer> initialiseCards() {
         final List<Integer> temp = this.getCardsValues().flatMap(t -> Stream.of(t, t)).collect(Collectors.toList());
         Collections.shuffle(temp);

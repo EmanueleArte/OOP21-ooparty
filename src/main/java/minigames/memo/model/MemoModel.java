@@ -1,6 +1,8 @@
 package minigames.memo.model;
 
 import java.util.List;
+
+import game.player.Player;
 import minigames.common.model.MinigameModel;
 
 /**
@@ -26,6 +28,14 @@ public interface MemoModel<S> extends MinigameModel<S> {
      * @return {@code true} if this card has been chosen, {@code false} otherwise.
      */
     boolean pickCard(int index);
+
+    /**
+     * This method gives back the current player managing whether it does not
+     * exists.
+     *
+     * @return the current player.
+     */
+    Player getCurrPlayer();
 
     /**
      * This method tells the active cards.
