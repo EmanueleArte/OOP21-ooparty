@@ -24,12 +24,9 @@ public class GameHandlerModelImpl<S> implements GameHandlerModel {
 
     private final StageManager<S> stageManager;
     private final DiceController dice;
-<<<<<<< HEAD
     private final MinigameControllerFactoryImpl<S> minigameFactory;
-=======
     private final PowerupMenuController powerupMenu;
-    private final MinigameFactoryImpl<S> minigameFactory;
->>>>>>> map
+    //private final MinigameFactoryImpl<S> minigameFactory;
     private final GameMap gameMap;
     private Optional<MinigameController> minigameController = Optional.empty();
 
@@ -48,7 +45,7 @@ public class GameHandlerModelImpl<S> implements GameHandlerModel {
 
         this.minigameFactory = new MinigameControllerFactoryImpl<>(players, s);
 
-        //this.powerupMenu = new PowerupMenuControllerImpl(this.stageManager, players);
+        this.powerupMenu = new PowerupMenuControllerImpl(this.stageManager, players);
         //this.minigameFactory = new MinigameFactoryImpl<>(players, s);
 
         this.turnsNumber = turnsNumber;
