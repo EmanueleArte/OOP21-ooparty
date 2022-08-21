@@ -53,15 +53,11 @@ public class GameHandlerModelImpl implements GameHandlerModel {
             this.currentPlayer = Optional.empty();
         }
         this.turnProgress = TurnProgress.next(this.turnProgress);
-        switch (this.turnProgress) {
-        case END_OF_TURN:
+        if (this.turnProgress == TurnProgress.END_OF_TURN) {
             this.startNewTurn();
             if (this.turn == this.turnsNumber + 1) {
                 return Optional.empty();
             }
-            break;
-        default:
-            break;
         }
         return Optional.of(this.turnProgress);
     }
@@ -70,12 +66,19 @@ public class GameHandlerModelImpl implements GameHandlerModel {
     public final Optional<PlayerTurnProgress> nextPlayerTurnStep() {
         this.playerTurnProgress = PlayerTurnProgress.next(this.playerTurnProgress);
         switch (this.playerTurnProgress) {
+        case END_OF_TURN:
+            if (this.playersTurnsFinished()) {
+                break;
+            }
+            this.playerTurnProgress = PlayerTurnProgress.next(this.playerTurnProgress);
         case SHOW_BANNER:
             this.newPlayerTurn();
             break;
         case USE_POWERUP:
-            this.powerupMenu();
-            break;
+            if (this.getCurrentPlayer().isEmpty() || !this.getCurrentPlayer().get().getPowerupList().isEmpty()) {
+                break;
+            }
+            this.playerTurnProgress = PlayerTurnProgress.next(this.playerTurnProgress);
         case ROLL_DICE:
             this.rollDices();
             break;
@@ -118,29 +121,11 @@ public class GameHandlerModelImpl implements GameHandlerModel {
         }
     }
 
-    private void powerupMenu() {
-        final Player cp = this.currentPlayer.get();
-        if (cp.getPowerupList().isEmpty()) {
-            this.playerTurnProgress = PlayerTurnProgress.next(this.playerTurnProgress);
-            this.rollDices();
-        } else {
-            // this.powerupMenu.start(cp);
-        }
-    }
-
     private boolean playersTurnsFinished() {
         return !(this.playersIterator.hasNext()) && (this.playerTurnProgress == PlayerTurnProgress.END_OF_TURN);
     }
 
-    private void playMinigame() {
-        // minigameController =
-        // Optional.of(this.minigameFactory.createRandomMinigameController());
-        // minigameController.get().startGame();
-    }
-
     private void startNewTurn() {
-        // this.players = (List<Player>)
-        // this.stageManager.getLastGameController().getGameResults();
         this.playersIterator = players.iterator();
         this.turnProgress = TurnProgress.END_OF_TURN;
         this.playerTurnProgress = PlayerTurnProgress.END_OF_TURN;

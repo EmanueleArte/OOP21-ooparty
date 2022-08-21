@@ -10,6 +10,8 @@ import game.gamehandler.view.GameHandlerViewControllerImpl;
 import game.player.Player;
 import menu.afterminigamemenu.controller.AfterMinigameMenuControllerImpl;
 import menu.pausemenu.controller.PauseMenuControllerImpl;
+import menu.powerupmenu.controller.PowerupMenuController;
+import menu.powerupmenu.controller.PowerupMenuControllerImpl;
 import minigames.common.controller.MinigameController;
 import utils.controller.GenericController;
 import utils.controller.GenericControllerAbstr;
@@ -58,35 +60,95 @@ public class GameHandlerControllerImpl extends GenericControllerAbstr
     }
 
     @Override
-    public final Optional<TurnProgress> nextStep() {
-        Optional<TurnProgress> turnProgress = this.model.nextStep();
-        if (turnProgress.isPresent() && turnProgress.get() == TurnProgress.PLAY_MINIGAME) {
-            MinigameController minigameController = this.minigameFactory.createRandomMinigameController();
-            minigameController.startGame();
+    public final void nextStep() {
+        Optional<TurnProgress> progress = this.model.nextStep();
+        if (progress.isPresent()) {
+            switch (progress.get()) {
+            case SHOW_BANNER:
+                this.viewController.showBanner("Turn " + this.model.getTurnNumber());
+                break;
+            case HIDE_BANNER:
+                this.viewController.hideBanner();
+                break;
+            case PLAYERS_TURNS:
+                Optional<PlayerTurnProgress> playerProgress = this.model.nextPlayerTurnStep();
+                if (playerProgress.isPresent()) {
+                    Player currentPlayer = this.model.getCurrentPlayer().get();
+                    switch (playerProgress.get()) {
+                    case SHOW_BANNER:
+                        this.viewController.showBanner(this.model.getCurrentPlayer().get().getNickname() + "'s turn");
+                        break;
+                    case HIDE_BANNER:
+                        this.viewController.hideBanner();
+                        break;
+                    case USE_POWERUP:
+                        final PowerupMenuController powerupMenu = new PowerupMenuControllerImpl(this.getStageManager(),
+                                this.model.getPlayers());
+                        powerupMenu.start(currentPlayer);
+                        break;
+                    case ROLL_DICE:
+                        this.dice.start();
+                        break;
+                    case MOVE_PLAYER:
+                        this.viewController.movePlayer(currentPlayer);
+                        if (this.getGameMap().getPlayerPosition(currentPlayer).isCoinsGameMapSquare()) {
+                            this.viewController.setUpdatesLabel(currentPlayer.getNickname() + " earned "
+                                    + currentPlayer.getLastEarnedCoins() + " coins!");
+                        } else if (this.getGameMap().getPlayerPosition(currentPlayer).isDamageGameMapSquare()) {
+                            if (!currentPlayer.isDead()) {
+                                this.viewController.setUpdatesLabel(currentPlayer.getNickname() + " lost "
+                                        + currentPlayer.getLastDamageTaken() + " life points!");
+                            } else {
+                                this.viewController.setUpdatesLabel(currentPlayer.getNickname() + " lost "
+                                        + currentPlayer.getLastDamageTaken() + " life points! He died!");
+                            }
+                        } else if (this.getGameMap().getPlayerPosition(currentPlayer).isStarGameMapSquare()) {
+                            if (currentPlayer.getIsLastStarEarned()) {
+                                this.viewController.setUpdatesLabel(currentPlayer.getNickname() + " earned a star!");
+                            } else {
+                                this.viewController.setUpdatesLabel(
+                                        currentPlayer.getNickname() + " didn't have enough coins to buy a star!");
+                            }
+                        } else if (this.getGameMap().getPlayerPosition(currentPlayer).isPowerUpGameMapSquare()) {
+                            this.viewController.setUpdatesLabel(currentPlayer.getNickname() + " got a new powerup!");
+                        }
+                        boolean respawn = false;
+                        if (currentPlayer.isDead()) {
+                            respawn = true;
+                            this.viewController.setUpdatesLabel(currentPlayer.getNickname() + " lost "
+                                    + currentPlayer.getLastDamageTaken() + " life points! He died!");
+                        }
+                        System.out.println("Respawn: " + respawn);
+                        this.checkPlayerDeath(currentPlayer);
+                        if (respawn) {
+                            this.viewController.movePlayer(currentPlayer);
+                        }
+                        this.viewController.updateLeaderboard(this.getLeaderboard());
+                        break;
+                    default:
+                        break;
+                    }
+                }
+                break;
+            case PLAY_MINIGAME:
+                this.viewController.setUpdatesLabel("");
+                MinigameController minigameController = this.minigameFactory.createRandomMinigameController();
+                minigameController.startGame();
+                break;
+            case SHOW_LEADERBOARD:
+                this.model.setPlayers(this.getStageManager().getLastGameController().getGameResults());
+                this.showAfterMinigameMenu();
+                break;
+            case END_OF_TURN:
+                this.viewController.updateTurnOrder(this.model.getTurnOrder());
+                this.viewController.updateLeaderboard(this.model.getLeaderboard());
+                break;
+            default:
+                break;
+            }
+        } else {
+            this.endGame();
         }
-        if (turnProgress.isPresent() && turnProgress.get() == TurnProgress.SHOW_LEADERBOARD) {
-            this.model.setPlayers(this.getStageManager().getLastGameController().getGameResults());
-        }
-        return turnProgress;
-    }
-
-    @Override
-    public final Optional<PlayerTurnProgress> nextPlayerTurnStep() {
-        var nextPlayerTurnStep = this.model.nextPlayerTurnStep();
-        if (nextPlayerTurnStep.isPresent() && nextPlayerTurnStep.get() == PlayerTurnProgress.ROLL_DICE) {
-            this.dice.start();
-        }
-        return nextPlayerTurnStep;
-    }
-
-    @Override
-    public final int getTurnNumber() {
-        return this.model.getTurnNumber();
-    }
-
-    @Override
-    public final Optional<Player> getCurrentPlayer() {
-        return this.model.getCurrentPlayer();
     }
 
     @Override

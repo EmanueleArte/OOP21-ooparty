@@ -31,14 +31,14 @@ public interface GameHandlerModel extends GenericModel {
     /**
      * This method makes the turn advance to the next step.
      * 
-     * @return Optional containing new turn
+     * @return Optional containing new turn progress
      */
     Optional<TurnProgress> nextStep();
 
     /**
      * This method makes players' turn go to the next step.
      * 
-     * @return Optional containing new player turn
+     * @return Optional containing new player turn progress
      */
     Optional<PlayerTurnProgress> nextPlayerTurnStep();
 

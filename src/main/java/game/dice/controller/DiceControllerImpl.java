@@ -1,9 +1,12 @@
 package game.dice.controller;
 
-import java.util.Optional;
+import game.player.Player;
+
+import java.util.Iterator;
 
 import game.dice.model.DiceModel;
 import game.dice.view.DiceViewController;
+import utils.Pair;
 import utils.controller.GenericControllerAbstr;
 import utils.graphics.controller.StageManager;
 import utils.view.GenericViewController;
@@ -14,7 +17,9 @@ import utils.view.GenericViewController;
 public class DiceControllerImpl extends GenericControllerAbstr implements DiceController {
     private final DiceModel model;
     private DiceViewController viewController;
+    private Iterator<Pair<Player, Integer>> results;
     private final boolean playoff;
+    private boolean end;
 
     /**
      * Constructor for this class.
@@ -28,6 +33,7 @@ public class DiceControllerImpl extends GenericControllerAbstr implements DiceCo
         super(s);
         this.model = model;
         this.playoff = noRepeat;
+        this.end = false;
     }
 
     @Override
@@ -46,35 +52,38 @@ public class DiceControllerImpl extends GenericControllerAbstr implements DiceCo
 
     @Override
     public final void start() {
-        System.out.println(this.model.getResults());
-        this.model.getResults().forEach(r -> {
-            this.getStageManager().getGui().getViewFactory().createDiceView(this);
-            if (this.playoff) {
-                this.viewController.initialize(r.getY(), r.getX().getColor(), "Playoff!");
-            } else {
-                this.viewController.initialize(r.getY(), r.getX().getColor(), "Roll the Dice!");
+        this.end = false;
+        this.results = this.model.getResults().iterator();
+        if (this.results.hasNext()) {
+            this.nextScene();
+        }
+    }
+
+    @Override
+    public final void nextStep() {
+        if (this.end) {
+            this.getStageManager().popScene();
+            this.end = false;
+            if (this.results.hasNext()) {
+                this.nextScene();
             }
-        });
+        } else {
+            this.viewController.jumpToDice();
+            this.end = true;
+        }
     }
 
-    @Override
-    public final Optional<Integer> getLastResult() {
-        return this.model.getLastResult();
-    }
-
-    @Override
-    public final int getTotal() {
-        return this.model.getTotal();
-    }
-
-    @Override
-    public final void reset() {
-        this.model.reset();
-    }
-
-    @Override
-    public final void returnToGame() {
-        this.getStageManager().popScene();
+    private void nextScene() {
+        if (!this.results.hasNext()) {
+            throw new RuntimeException("No more dice rolls to show");
+        }
+        final Pair<Player, Integer> r = this.results.next();
+        this.getStageManager().getGui().getViewFactory().createDiceView(this);
+        if (this.playoff) {
+            this.viewController.initialize(r.getY(), r.getX().getColor(), "Playoff!");
+        } else {
+            this.viewController.initialize(r.getY(), r.getX().getColor(), "Roll the Dice!");
+        }
     }
 
     @Override
