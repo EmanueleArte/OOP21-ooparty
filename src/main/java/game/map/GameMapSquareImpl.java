@@ -4,6 +4,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 import game.player.Player;
+import game.player.PlayerImpl;
 import game.powerup.GenericPowerup;
 
 /**
@@ -15,12 +16,12 @@ public class GameMapSquareImpl implements GameMapSquare {
     /**
      * Maximum number of coins that can be found on a coin square.
      */
-    public static final int MAX_COINS = 10;
+    public static final int MAX_COINS = 20;
 
     /**
      * Maximum number of damage that can be taken from a damage square.
      */
-    public static final int MAX_DAMAGE = 50;
+    public static final int MAX_DAMAGE = PlayerImpl.MAX_LIFE / 2;
 
     /**
      * Builder for {@link GameMapSquareImpl}.

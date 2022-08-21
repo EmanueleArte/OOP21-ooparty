@@ -179,7 +179,7 @@ public class PlayerImpl implements Player {
 
     @Override
     public final int hashCode() {
-        return Objects.hash(coins, color, nickname, stars);
+        return Objects.hash(this.nickname);
     }
 
     @Override
@@ -194,8 +194,19 @@ public class PlayerImpl implements Player {
             return false;
         }
         PlayerImpl other = (PlayerImpl) obj;
-        return coins == other.coins && Objects.equals(color, other.color) && Objects.equals(nickname, other.nickname)
-                && stars == other.stars;
+        return this.coins == other.coins && Objects.equals(this.color, other.color) && this.dicesToRoll == other.dicesToRoll
+                && this.isDead == other.isDead && this.isLastStarEarned == other.isLastStarEarned
+                && this.lastDamageTaken == other.lastDamageTaken && this.lastEarnedCoins == other.lastEarnedCoins
+                && this.lifePoints == other.lifePoints && Objects.equals(this.nickname, other.nickname)
+                && Objects.equals(this.powerups, other.powerups) && this.stars == other.stars;
+    }
+
+    @Override
+    public final String toString() {
+        return "PlayerImpl [nickname=" + nickname + ", color=" + color + ", coins=" + coins + ", lastEarnedCoins="
+                + lastEarnedCoins + ", stars=" + stars + ", isLastStarEarned=" + isLastStarEarned + ", lifePoints="
+                + lifePoints + ", lastDamageTaken=" + lastDamageTaken + ", dicesToRoll=" + dicesToRoll + ", powerups="
+                + powerups + ", isDead=" + isDead + "]";
     }
 
     @Override

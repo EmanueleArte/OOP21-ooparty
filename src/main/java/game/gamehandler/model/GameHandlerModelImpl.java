@@ -110,7 +110,6 @@ public class GameHandlerModelImpl implements GameHandlerModel {
                 playerPosition.receiveCoins(cp);
             } else if (playerPosition.isDamageGameMapSquare()) {
                 playerPosition.receiveDamage(cp);
-                checkPlayerDeath(cp);
             } else if (playerPosition.isStarGameMapSquare()) {
                 playerPosition.receiveStar(cp);
             } else if (playerPosition.isPowerUpGameMapSquare()) {

@@ -195,7 +195,10 @@ public class GameHandlerViewControllerImpl implements GenericViewController {
                         boolean respawn = false;
                         if (currentPlayer.isDead()) {
                             respawn = true;
+                            this.setUpdatesLabel(currentPlayer.getNickname() + " lost "
+                                    + currentPlayer.getLastDamageTaken() + " life points! He died!");
                         }
+                        System.out.println("Respawn: " + respawn);
                         this.controller.checkPlayerDeath(currentPlayer);
                         if (respawn) {
                             this.movePlayer(currentPlayer);
