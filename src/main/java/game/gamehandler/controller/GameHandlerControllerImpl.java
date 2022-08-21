@@ -130,6 +130,10 @@ public class GameHandlerControllerImpl extends GenericControllerAbstr
     @Override
     public final void endGame() {
         this.getStageManager().popScene();
+        AfterMinigameMenuControllerImpl afterMinigameMenuControllerImpl = new AfterMinigameMenuControllerImpl(
+                this.getStageManager());
+        afterMinigameMenuControllerImpl.createMenu();
+        afterMinigameMenuControllerImpl.makeEndGameLeaderboard(this.getLeaderboard());
     }
 
 }

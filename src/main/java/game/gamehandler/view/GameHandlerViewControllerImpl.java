@@ -211,7 +211,7 @@ public class GameHandlerViewControllerImpl implements GenericViewController {
                 this.controller.showAfterMinigameMenu();
                 break;
             case END_OF_TURN:
-                updateTurnOrder(this.controller.getTurnOrder());
+                this.updateTurnOrder(this.controller.getTurnOrder());
                 this.updateLeaderboard(this.controller.getLeaderboard());
                 break;
             default:
