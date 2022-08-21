@@ -14,10 +14,10 @@ public interface DiceController {
      * Rolls the dice generating a random result and starting the scene of the dice
      * roll.
      * 
-     * @param p {@link Player} the player who is rolling the dice
      * @return int containing the result of the roll
      */
-    int rollDice(Player p);
+    //TODO
+    void start();
 
     /**
      * Getter for the result of the last roll.

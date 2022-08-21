@@ -74,7 +74,7 @@ public class ControllerFactoryFx<S> implements ControllerFactory {
 
     @Override
     public final MinigameController createMastermindController(final List<Player> players) {
-        var diceController = this.createDiceController(false);
+        var diceController = this.createDiceController(true);
         var model = new MastermindModelImpl(players, diceController.getModel());
         var controller = new MastermindControllerImpl(this.stageManager, model, diceController);
         return controller;
@@ -82,7 +82,7 @@ public class ControllerFactoryFx<S> implements ControllerFactory {
 
     @Override
     public final MinigameController createWhoRisksWinsController(final List<Player> players) {
-        var diceController = this.createDiceController(false);
+        var diceController = this.createDiceController(true);
         var model = new WhoRisksWinsModelImpl(players, diceController.getModel());
         var controller = new WhoRisksWinsControllerImpl(this.stageManager, model, diceController);
         return controller;

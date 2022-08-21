@@ -1,6 +1,10 @@
 package game.dice.model;
 
+import java.util.List;
 import java.util.Optional;
+
+import game.player.Player;
+import utils.Pair;
 
 /**
  * This interface models the dice model.
@@ -12,7 +16,7 @@ public interface DiceModel {
      * 
      * @return int containing the result of the roll
      */
-    int rollDice();
+    int rollDice(Player player);
 
     /**
      * Resets the dice to default values, deleting everything about the previous
@@ -32,7 +36,7 @@ public interface DiceModel {
      * 
      * @return the first result in the results list
      */
-    int popFirstResult();
+    List<Pair<Player, Integer>> getResults();
 
     /**
      * Getter for the sum of all the previous rolls.

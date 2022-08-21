@@ -64,6 +64,9 @@ public class GameHandlerControllerImpl extends GenericControllerAbstr
             MinigameController minigameController = this.minigameFactory.createRandomMinigameController();
             minigameController.startGame();
         }
+        if (turnProgress.isPresent() && turnProgress.get() == TurnProgress.SHOW_LEADERBOARD) {
+            this.model.setPlayers(this.getStageManager().getLastGameController().getGameResults());
+        }
         return turnProgress;
     }
 
@@ -71,9 +74,7 @@ public class GameHandlerControllerImpl extends GenericControllerAbstr
     public final Optional<PlayerTurnProgress> nextPlayerTurnStep() {
         var nextPlayerTurnStep = this.model.nextPlayerTurnStep();
         if (nextPlayerTurnStep.isPresent() && nextPlayerTurnStep.get() == PlayerTurnProgress.ROLL_DICE) {
-            for (int i = 0; i < this.model.getCurrentPlayer().get().getDicesToRoll(); i++) {
-                this.dice.rollDice(this.getCurrentPlayer().get());
-            }
+            this.dice.start();
         }
         return nextPlayerTurnStep;
     }

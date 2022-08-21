@@ -4,7 +4,6 @@ import java.util.Optional;
 
 import game.dice.model.DiceModel;
 import game.dice.view.DiceViewController;
-import game.player.Player;
 import utils.controller.GenericControllerAbstr;
 import utils.graphics.controller.StageManager;
 import utils.view.GenericViewController;
@@ -46,15 +45,16 @@ public class DiceControllerImpl extends GenericControllerAbstr implements DiceCo
     }
 
     @Override
-    public final int rollDice(final Player p) {
-        int result = this.model.popFirstResult();
-        this.getStageManager().getGui().getViewFactory().createDiceView(this);
-        if (this.playoff) {
-            this.viewController.initialize(result, p.getColor(), "Playoff!");
-        } else {
-            this.viewController.initialize(result, p.getColor(), "Roll the Dice!");
-        }
-        return result;
+    public final void start() {
+        System.out.println(this.model.getResults());
+        this.model.getResults().forEach(r -> {
+            this.getStageManager().getGui().getViewFactory().createDiceView(this);
+            if (this.playoff) {
+                this.viewController.initialize(r.getY(), r.getX().getColor(), "Playoff!");
+            } else {
+                this.viewController.initialize(r.getY(), r.getX().getColor(), "Roll the Dice!");
+            }
+        });
     }
 
     @Override

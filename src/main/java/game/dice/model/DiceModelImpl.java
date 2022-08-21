@@ -5,6 +5,10 @@ import java.util.List;
 import java.util.Optional;
 import java.util.Random;
 
+import game.player.Player;
+import utils.Pair;
+import utils.PairImpl;
+
 /**
  * Implementation of {@link DiceModel}.
  */
@@ -17,7 +21,7 @@ public class DiceModelImpl implements DiceModel {
 
     private final Random rand;
     private Optional<Integer> lastResult;
-    private final List<Integer> resultsList;
+    private final List<Pair<Player, Integer>> results;
 
     /**
      * Builds a {@link DiceModelImpl}.
@@ -25,23 +29,23 @@ public class DiceModelImpl implements DiceModel {
     public DiceModelImpl() {
         rand = new Random();
         this.lastResult = Optional.empty();
-        this.resultsList = new ArrayList<>();
+        this.results = new ArrayList<>();
     }
 
     /**
      * {@inheritDoc}
      */
     @Override
-    public int rollDice() {
+    public int rollDice(final Player player) {
         int result = this.rand.nextInt(DiceModelImpl.MAX_RESULT) + 1;
-        this.setResult(result);
+        this.setResult(player, result);
         return result;
     }
 
     @Override
     public final void reset() {
         this.lastResult = Optional.empty();
-        this.resultsList.clear();
+        this.results.clear();
     }
 
     @Override
@@ -51,7 +55,7 @@ public class DiceModelImpl implements DiceModel {
 
     @Override
     public final int getTotal() {
-        return this.resultsList.stream().reduce(0, Integer::sum);
+        return this.results.stream().map(r -> r.getY()).reduce(0, Integer::sum);
     }
 
     /**
@@ -59,9 +63,9 @@ public class DiceModelImpl implements DiceModel {
      * 
      * @param result the value of the last roll
      */
-    protected void setResult(final int result) {
+    protected void setResult(final Player player, final int result) {
         this.lastResult = Optional.of(result);
-        this.resultsList.add(result);
+        this.results.add(new PairImpl<>(player, result));
     }
 
     /**
@@ -69,8 +73,8 @@ public class DiceModelImpl implements DiceModel {
      * 
      * @return a list containing the previous rolls
      */
-    protected List<Integer> getResultsList() {
-        return this.resultsList;
+    public final List<Pair<Player, Integer>> getResults() {
+        return this.results;
     }
 
     /**
@@ -80,13 +84,5 @@ public class DiceModelImpl implements DiceModel {
      */
     protected final Random getRandom() {
         return this.rand;
-    }
-
-    @Override
-    public final int popFirstResult() {
-        if (this.resultsList.size() == 0) {
-            throw new RuntimeException("Result list is empty");
-        }
-        return this.resultsList.remove(0);
     }
 }

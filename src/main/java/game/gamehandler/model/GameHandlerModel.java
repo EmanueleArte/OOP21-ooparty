@@ -22,6 +22,13 @@ public interface GameHandlerModel extends GenericModel {
     List<Player> getPlayers();
 
     /**
+     * Sets the players list.
+     * 
+     * @param players {@link List} of players
+     */
+    void setPlayers(List<Player> players);
+
+    /**
      * This method makes the turn advance to the next step.
      * 
      * @return Optional containing new turn
