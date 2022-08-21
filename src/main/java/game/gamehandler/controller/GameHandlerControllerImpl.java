@@ -84,6 +84,14 @@ public class GameHandlerControllerImpl extends GenericControllerAbstr
                         powerupMenu.start(currentPlayer);
                         break;
                     case ROLL_DICE:
+                        this.viewController.updateLeaderboard(this.model.getTurnOrder());
+                        this.model.getPlayers().forEach(p -> {
+                            if (p.isDead()) {
+                                this.viewController.setUpdatesLabel(p.getNickname() + " died!");
+                                this.model.checkPlayerDeath(p);
+                            }
+                            this.viewController.movePlayer(p, this.model.getGameMap());
+                        });
                         this.dice.start();
                         break;
                     case MOVE_PLAYER:
@@ -115,7 +123,6 @@ public class GameHandlerControllerImpl extends GenericControllerAbstr
                             this.viewController.setUpdatesLabel(currentPlayer.getNickname() + " lost "
                                     + currentPlayer.getLastDamageTaken() + " life points! He died!");
                         }
-                        System.out.println("Respawn: " + respawn);
                         this.checkPlayerDeath(currentPlayer);
                         if (respawn) {
                             this.viewController.movePlayer(currentPlayer, this.model.getGameMap());
