@@ -11,7 +11,7 @@ import game.map.GameMap;
 import game.map.GameMapImpl;
 import game.map.GameMapSquare;
 import game.player.Player;
-import minigames.common.controller.MinigameController;
+import minigames.common.model.MinigameModel;
 import utils.enums.PlayerTurnProgress;
 import utils.enums.TurnProgress;
 
@@ -20,7 +20,7 @@ public class GameHandlerModelImpl implements GameHandlerModel {
     private final DiceModel dice;
     // private final PowerupMenuController powerupMenu;
     private final GameMap gameMap;
-    private Optional<MinigameController> minigameController = Optional.empty();
+    private Optional<MinigameModel> minigameModel = Optional.empty();
 
     private final int turnsNumber;
     private int turn;
@@ -208,8 +208,8 @@ public class GameHandlerModelImpl implements GameHandlerModel {
      */
     @Override
     public List<Player> getTurnOrder() {
-        if (this.minigameController.isPresent()) {
-            return this.minigameController.get().getGameResults();
+        if (this.minigameModel.isPresent()) {
+            return this.minigameModel.get().getGameResults();
         }
         return this.players;
     }
