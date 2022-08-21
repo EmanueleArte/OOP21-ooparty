@@ -1,12 +1,8 @@
 package game.gamehandler.controller;
 
 import java.util.List;
-import java.util.Optional;
 
 import game.player.Player;
-import utils.view.GenericViewController;
-import utils.enums.PlayerTurnProgress;
-import utils.enums.TurnProgress;
 import game.map.GameMap;
 
 public interface GameHandlerController {
@@ -16,40 +12,11 @@ public interface GameHandlerController {
      */
     void start();
 
-    <C> void setViewController(GenericViewController viewController);
-
-    GenericViewController getViewController();
-
     /**
-     * Returns the current turn number.
-     * 
-     * @return int representing the current turn.
+     * Makes the model go to the next step of the game and updates the
+     * viewController accordingly.
      */
-    int getTurnNumber();
-
-    /**
-     * Calls the nextStep() function of the model.
-     * 
-     * @return int representing new turn progress
-     */
-    //int nextStep();
-
-    /**
-     * Calls the nextPlayerTurnStep() function of the model.
-     * 
-     * @return int representing new players' turn progress
-     */
-    //int nextPlayerTurnStep();
-    Optional<TurnProgress> nextStep();
-
-    Optional<PlayerTurnProgress> nextPlayerTurnStep();
-
-    /**
-     * Returns the player who's currently playing, if there's one.
-     * 
-     * @return an Optional containing the current player.
-     */
-    Optional<Player> getCurrentPlayer();
+    void nextStep();
 
     List<Player> getPlayers();
 
@@ -65,7 +32,8 @@ public interface GameHandlerController {
 
     /**
      * Checks if a {@link Player} is dead and if he is, it makes him respawn.
-     * @param p the {@link Player} that has to be checked 
+     * 
+     * @param p the {@link Player} that has to be checked
      */
     void checkPlayerDeath(Player p);
 

@@ -15,20 +15,22 @@ import javafx.util.Duration;
 import utils.controller.GenericController;
 import utils.view.GenericViewController;
 
+/**
+ * Implementation of {@link DiceViewController}.
+ */
 public class DiceViewControllerImpl implements GenericViewController, DiceViewController {
 
     /**
-     * duration of jump animation in milliseconds.
+     * Duration of jump animation in milliseconds.
      */
     public static final int JUMP_DURATION = 500;
     /**
-     * height of jump in pixels.
+     * Height of jump in pixels.
      */
     public static final int JUMP_HEIGHT = 170;
 
     private int result;
     private DiceController controller;
-    private boolean end = false;
 
     @FXML
     private Group player;
@@ -53,25 +55,17 @@ public class DiceViewControllerImpl implements GenericViewController, DiceViewCo
     @FXML
     protected final void onKeyPressed(final KeyEvent ke) {
         if (ke.getCode().equals(KeyCode.ENTER) || ke.getCode().equals(KeyCode.SPACE)) {
-            this.nextStep();
+            this.controller.nextStep();
         }
     }
 
     @FXML
     protected final void onClick() {
-        this.nextStep();
+        this.controller.nextStep();
     }
 
-    private void nextStep() {
-        if (this.end) {
-            this.controller.returnToGame();
-        } else {
-            this.jumpToDice();
-            this.end = true;
-        }
-    }
-
-    private void jumpToDice() {
+    @Override
+    public final void jumpToDice() {
         TranslateTransition transition = new TranslateTransition();
         transition.setNode(player);
         transition.setDuration(Duration.millis(JUMP_DURATION));

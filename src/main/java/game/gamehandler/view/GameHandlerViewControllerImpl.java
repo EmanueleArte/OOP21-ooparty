@@ -44,17 +44,19 @@ import javafx.scene.text.Text;
 import javafx.util.Duration;
 import utils.controller.GenericController;
 import utils.enums.OrdinalNumber;
-import utils.enums.PlayerTurnProgress;
-import utils.enums.TurnProgress;
 import utils.readers.MapLayoutReader;
 import utils.readers.SimpleMapLayoutReader;
 import utils.view.GenericViewController;
 
-public class GameHandlerViewControllerImpl implements GenericViewController {
+/**
+ * Implementation of the {@link GameHandlerViewController} interface.
+ */
+public class GameHandlerViewControllerImpl implements GenericViewController, GameHandlerViewController {
 
     private static final int SQUARE_WIDTH = 87;
     private static final int SQUARE_HEIGHT = 74;
     private static final int SQUARE_BORDER_WIDTH = 1;
+
     private static final int ICON_DIM = 25;
     private static final int TURN_ORDER_SQUARE_EDGE = 15;
     private static final int GRID_SPACING = 2;
@@ -89,6 +91,7 @@ public class GameHandlerViewControllerImpl implements GenericViewController {
         }
     }
 
+    @Override
     public final void initialize(final List<Player> players, final GenericController controller) {
         this.setController(controller);
 
@@ -124,7 +127,7 @@ public class GameHandlerViewControllerImpl implements GenericViewController {
     @FXML
     protected final void onKeyPressed(final KeyEvent ke) {
         if (ke.getCode().equals(KeyCode.ENTER) || ke.getCode().equals(KeyCode.SPACE)) {
-            this.nextStep();
+            this.controller.nextStep();
         }
         if (ke.getCode().equals(KeyCode.ESCAPE)) {
             this.controller.pauseMenu();
@@ -133,91 +136,16 @@ public class GameHandlerViewControllerImpl implements GenericViewController {
 
     @FXML
     protected final void onClick() {
-        this.nextStep();
+        this.controller.nextStep();
     }
 
-    private void nextStep() {
-        Optional<TurnProgress> progress = this.controller.nextStep();
-        if (progress.isPresent()) {
-            switch (progress.get()) {
-            case SHOW_BANNER:
-                this.showBanner("Turn " + this.controller.getTurnNumber());
-                break;
-            case HIDE_BANNER:
-                this.hideBanner();
-                break;
-            case PLAYERS_TURNS:
-                Optional<PlayerTurnProgress> playerProgress = this.controller.nextPlayerTurnStep();
-
-                if (playerProgress.isPresent()) {
-                    if (playerProgress.get() == PlayerTurnProgress.SHOW_BANNER) {
-                        this.showBanner(this.controller.getCurrentPlayer().get().getNickname() + "'s turn");
-                    } else if (playerProgress.get() == PlayerTurnProgress.HIDE_BANNER) {
-                        this.hideBanner();
-                    } else if (playerProgress.get() == PlayerTurnProgress.MOVE_PLAYER) {
-                        Player currentPlayer = this.controller.getCurrentPlayer().get();
-                        this.movePlayer(currentPlayer);
-                        if (this.controller.getGameMap().getPlayerPosition(currentPlayer).isCoinsGameMapSquare()) {
-                            this.setUpdatesLabel(currentPlayer.getNickname() + " earned "
-                                    + currentPlayer.getLastEarnedCoins() + " coins!");
-                        } else if (this.controller.getGameMap().getPlayerPosition(currentPlayer)
-                                .isDamageGameMapSquare()) {
-                            this.setUpdatesLabel(currentPlayer.getNickname() + " lost "
-                                    + currentPlayer.getLastDamageTaken() + " life points!");
-                            if (currentPlayer.isDead()) {
-                                this.setUpdatesLabel(this.updatesLabel.getText() + " He died!");
-                            }
-                        } else if (this.controller.getGameMap().getPlayerPosition(currentPlayer)
-                                .isStarGameMapSquare()) {
-                            if (currentPlayer.getIsLastStarEarned()) {
-                                this.setUpdatesLabel(currentPlayer.getNickname() + " earned a star!");
-                            } else {
-                                this.setUpdatesLabel(
-                                        currentPlayer.getNickname() + " didn't have enough coins to buy a star!");
-                            }
-                        } else if (this.controller.getGameMap().getPlayerPosition(currentPlayer)
-                                .isPowerUpGameMapSquare()) {
-                            this.setUpdatesLabel(currentPlayer.getNickname() + " got a new powerup!");
-                        }
-                        boolean respawn = false;
-                        if (currentPlayer.isDead()) {
-                            respawn = true;
-                            this.setUpdatesLabel(currentPlayer.getNickname() + " lost "
-                                    + currentPlayer.getLastDamageTaken() + " life points! He died!");
-                        }
-                        System.out.println("Respawn: " + respawn);
-                        this.controller.checkPlayerDeath(currentPlayer);
-                        if (respawn) {
-                            this.movePlayer(currentPlayer);
-                        }
-                        this.updateLeaderboard(this.controller.getLeaderboard());
-                    }
-                }
-                break;
-            case PLAY_MINIGAME:
-                this.setUpdatesLabel("");
-                break;
-            case SHOW_LEADERBOARD:
-                this.controller.showAfterMinigameMenu();
-                break;
-            case END_OF_TURN:
-                this.updateTurnOrder(this.controller.getTurnOrder());
-                this.updateLeaderboard(this.controller.getLeaderboard());
-                break;
-            default:
-                break;
-            }
-
-        } else {
-            this.controller.endGame();
-        }
-    }
-
-    private void setUpdatesLabel(final String text) {
+    @Override
+    public final void setUpdatesLabel(final String text) {
         this.updatesLabel.setText(text);
     }
 
-    private void showBanner(final String text) {
+    @Override
+    public final void showBanner(final String text) {
         bannerText.setText(text);
         FadeTransition fade = new FadeTransition(Duration.millis(1000), banner);
         fade.setFromValue(0);
@@ -225,14 +153,16 @@ public class GameHandlerViewControllerImpl implements GenericViewController {
         fade.play();
     }
 
-    private void hideBanner() {
+    @Override
+    public final void hideBanner() {
         FadeTransition fade = new FadeTransition(Duration.millis(1000), banner);
         fade.setFromValue(1);
         fade.setToValue(0);
         fade.play();
     }
 
-    private void movePlayer(final Player p) {
+    @Override
+    public final void movePlayer(final Player p) {
         TranslateTransition transition = new TranslateTransition();
         Group avatar = this.playerToAvatar.get(p.getNickname());
         transition.setNode(avatar);
@@ -248,7 +178,8 @@ public class GameHandlerViewControllerImpl implements GenericViewController {
         transition.play();
     }
 
-    private void updateLeaderboard(final List<Player> players) {
+    @Override
+    public final void updateLeaderboard(final List<Player> players) {
         rankPlayersContainer.getChildren().removeAll(rankPlayersContainer.getChildren());
         players.forEach(p -> {
             VBox box = new VBox();
@@ -268,7 +199,8 @@ public class GameHandlerViewControllerImpl implements GenericViewController {
         });
     }
 
-    private void updateTurnOrder(final List<Player> players) {
+    @Override
+    public final void updateTurnOrder(final List<Player> players) {
         turnOrderContainer.getChildren().removeAll(turnOrderContainer.getChildren());
         players.forEach(p -> {
             Label l = new Label();
