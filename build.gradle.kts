@@ -50,3 +50,9 @@ javafx {
     version = "18"
     modules("javafx.base", "javafx.controls", "javafx.fxml", "javafx.swing", "javafx.graphics")
 }
+
+tasks.withType<Jar> {
+    manifest {
+        attributes["Main-Class"] = "App"
+    }
+}
