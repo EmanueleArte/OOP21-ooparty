@@ -3,12 +3,15 @@ package minigames.common.view;
 import minigames.common.controller.MinigameGuideController;
 import utils.controller.GenericController;
 
+/**
+ * Implementation for the view controller of the minigame's guide.
+ */
 public class MinigameGuideViewControllerImpl implements MinigameGuideViewController {
 
     private MinigameGuideController minigameController;
 
     @Override
-    public void setController(final GenericController controller) {
+    public final void setController(final GenericController controller) {
         if (controller instanceof MinigameGuideController) {
             this.minigameController = (MinigameGuideController) controller;
         } else {
@@ -17,7 +20,7 @@ public class MinigameGuideViewControllerImpl implements MinigameGuideViewControl
     }
 
     @Override
-    public void startMinigame() {
+    public final void startMinigame() {
         this.minigameController.startGame();
     }
 

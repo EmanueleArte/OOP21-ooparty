@@ -58,7 +58,7 @@ public class WhoRisksWinsControllerImpl extends MinigameControllerAbstr implemen
     @Override
     public final void startGame() {
         this.getStageManager().getGui().getViewFactory().createWhoRisksWinsView(this);
-        final GenericController guideController = new MinigameGuideControllerImpl(this.getStageManager(), this);
+        final GenericController guideController = new MinigameGuideControllerImpl(this.getStageManager());
         this.getStageManager().getGui().getViewFactory().createWhoRisksWinsGuideView(guideController);
     }
 

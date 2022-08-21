@@ -5,7 +5,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
-import java.util.stream.Collectors;
 import game.gamehandler.controller.GameHandlerController;
 import game.map.CoinsGameMapSquare;
 import game.map.DamageGameMapSquare;
@@ -19,7 +18,6 @@ import javafx.animation.TranslateTransition;
 import javafx.fxml.FXML;
 import javafx.geometry.HPos;
 import javafx.geometry.Insets;
-import javafx.geometry.Point2D;
 import javafx.geometry.Pos;
 import javafx.geometry.VPos;
 import javafx.scene.Group;
@@ -49,17 +47,17 @@ import utils.enums.OrdinalNumber;
 import utils.enums.PlayerTurnProgress;
 import utils.enums.TurnProgress;
 import utils.readers.MapLayoutReader;
+import utils.readers.SimpleMapLayoutReader;
 import utils.view.GenericViewController;
 
 public class GameHandlerViewControllerImpl implements GenericViewController {
 
     private static final int SQUARE_WIDTH = 87;
     private static final int SQUARE_HEIGHT = 74;
-    private static final int MAP_WIDTH = 11;
-    private static final int MAP_HEIGHT = 8;
-    private static final int PLAYER_X_START = -825;
-    private static final int PLAYER_Y_START = -600;
+    private static final int SQUARE_BORDER_WIDTH = 1;
     private static final int ICON_DIM = 25;
+    private static final int TURN_ORDER_SQUARE_EDGE = 15;
+    private static final int GRID_SPACING = 2;
 
     private GameHandlerController controller;
 
@@ -121,17 +119,6 @@ public class GameHandlerViewControllerImpl implements GenericViewController {
         this.updateLeaderboard(players);
 
         this.initializeMap(this.controller.getGameMap());
-
-        final List<Point2D> squarePositions = mapGrid.getChildren().stream().filter(l -> l instanceof Label)
-                .map(l -> new Point2D(mapGrid.getLayoutX() + GridPane.getRowIndex(l) * SQUARE_WIDTH,
-                        mapGrid.getLayoutY() + GridPane.getColumnIndex(l) * SQUARE_HEIGHT))
-                .collect(Collectors.toList());
-
-        /*
-         * avatarsList.forEach(a -> { a.setLayoutX(PLAYER_X_START);
-         * a.setLayoutY(PLAYER_Y_START); });
-         */
-        avatarsList.forEach(a -> System.out.println(a.isVisible() + ": " + a.getLayoutX() + " " + a.getLayoutY()));
     }
 
     @FXML
@@ -279,8 +266,6 @@ public class GameHandlerViewControllerImpl implements GenericViewController {
 
             rankPlayersContainer.getChildren().add(box);
         });
-
-        // rankPlayersContainer.setSpacing(20);
     }
 
     private void updateTurnOrder(final List<Player> players) {
@@ -288,16 +273,16 @@ public class GameHandlerViewControllerImpl implements GenericViewController {
         players.forEach(p -> {
             Label l = new Label();
             l.setBackground(new Background(new BackgroundFill(p.getColor(), CornerRadii.EMPTY, Insets.EMPTY)));
-            l.setPrefWidth(15);
-            l.setPrefHeight(15);
+            l.setPrefWidth(TURN_ORDER_SQUARE_EDGE);
+            l.setPrefHeight(TURN_ORDER_SQUARE_EDGE);
             turnOrderContainer.getChildren().add(l);
         });
     }
 
     private void initializeMap(final GameMap map) {
-        MapLayoutReader reader = new MapLayoutReader();
+        MapLayoutReader reader = new SimpleMapLayoutReader();
         var layoutType = map.getLayout();
-        var layout = reader.loadMapLayout(layoutType); // list of Point2D
+        var layout = reader.loadMapLayout(layoutType);
 
         map.getSquares().stream().map(s -> {
             var img = getImage(s);
@@ -320,7 +305,7 @@ public class GameHandlerViewControllerImpl implements GenericViewController {
             label.setPrefHeight(SQUARE_HEIGHT);
             label.setAlignment(Pos.CENTER);
             label.setBorder(new Border(
-                    new BorderStroke(Color.BLACK, BorderStrokeStyle.SOLID, CornerRadii.EMPTY, new BorderWidths(1))));
+                    new BorderStroke(Color.BLACK, BorderStrokeStyle.SOLID, CornerRadii.EMPTY, new BorderWidths(SQUARE_BORDER_WIDTH))));
             label.setBackground(new Background(new BackgroundFill(Color.GRAY, CornerRadii.EMPTY, Insets.EMPTY)));
 
             return label;
@@ -333,8 +318,8 @@ public class GameHandlerViewControllerImpl implements GenericViewController {
             GridPane.setValignment(l, VPos.CENTER);
         });
 
-        mapGrid.setHgap(2);
-        mapGrid.setVgap(2);
+        mapGrid.setHgap(GRID_SPACING);
+        mapGrid.setVgap(GRID_SPACING);
     }
 
     private Optional<Image> getImage(final GameMapSquare s) {

@@ -7,11 +7,7 @@ public enum MapLayout {
     /**
      * A rectangle like layout.
      */
-    DEFAULT(34),
-    /**
-     * A layout with a lot of turns.
-     */
-    SNAKE(50);
+    DEFAULT(34);
 
     private final int size;
 
@@ -19,6 +15,10 @@ public enum MapLayout {
         this.size = size;
     }
 
+    /**
+     * Returns the number of {@link GameMapSquare} which the map is composed.
+     * @return the size of the map.
+     */
     public int getSize() {
         return this.size;
     }
