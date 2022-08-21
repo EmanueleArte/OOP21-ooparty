@@ -62,6 +62,11 @@ public class FxmlViewFactoryImpl<S> implements ViewFactory<S> {
         this.createScene(controller, "game/game.fxml");
     }
 
+    @Override
+    public final void createPowerupMenuView(final GenericController controller) {
+        this.createScene(controller, "menu/powerupmenu.fxml");
+    }
+
     /**
      * This method creates a specific scene given the arguments and adds it to the
      * scene list.

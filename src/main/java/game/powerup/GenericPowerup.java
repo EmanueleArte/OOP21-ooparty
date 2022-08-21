@@ -7,4 +7,6 @@ public interface GenericPowerup {
     void usePowerup(Player target);
 
     String getPowerupType();
+
+    boolean useOnSelf();
 }

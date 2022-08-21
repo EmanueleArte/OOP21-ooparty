@@ -18,7 +18,6 @@ import utils.enums.TurnProgress;
 public class GameHandlerModelImpl implements GameHandlerModel {
 
     private final DiceModel dice;
-    // private final PowerupMenuController powerupMenu;
     private final GameMap gameMap;
     private Optional<MinigameModel> minigameModel = Optional.empty();
 

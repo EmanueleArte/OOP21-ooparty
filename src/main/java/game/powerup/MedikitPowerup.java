@@ -20,4 +20,8 @@ public class MedikitPowerup implements GenericPowerup {
         return POWERUP_TYPE;
     }
 
+    @Override
+    public final boolean useOnSelf() {
+        return true;
+    }
 }

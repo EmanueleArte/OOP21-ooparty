@@ -6,6 +6,7 @@ import game.dice.controller.DiceController;
 import game.gamehandler.controller.GameHandlerController;
 import game.player.Player;
 import menu.common.controller.MenuController;
+import menu.powerupmenu.controller.PowerupMenuController;
 import minigames.common.controller.MinigameController;
 
 /**
@@ -83,4 +84,12 @@ public interface ControllerFactory {
      * @return
      */
     MinigameController createMemoController(List<Player> players);
+
+    /**
+     * This method creates a {@link PowerupMenuController}.
+     * 
+     * @param players the list of {@link Player} in the game
+     * @return the {@link PowerupMenuController} created
+     */
+    PowerupMenuController createPowerupMenuController(List<Player> players);
 }

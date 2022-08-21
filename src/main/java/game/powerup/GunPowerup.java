@@ -24,4 +24,8 @@ public class GunPowerup implements GenericPowerup {
         return POWERUP_TYPE;
     }
 
+    @Override
+    public final boolean useOnSelf() {
+        return false;
+    }
 }

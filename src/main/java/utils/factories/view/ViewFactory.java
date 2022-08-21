@@ -100,4 +100,11 @@ public interface ViewFactory<S> {
      */
     void createCutFromTheTeamGuideView(GenericController controller);
 
+    /**
+     * This method created a power-up menu view.
+     * 
+     * @param controller the controller to be used
+     */
+    void createPowerupMenuView(GenericController controller);
+
 }

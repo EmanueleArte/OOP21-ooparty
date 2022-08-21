@@ -82,8 +82,8 @@ public class GameHandlerControllerImpl extends GenericControllerAbstr
                         this.viewController.hideBanner();
                         break;
                     case USE_POWERUP:
-                        final PowerupMenuController powerupMenu = new PowerupMenuControllerImpl(this.getStageManager(),
-                                this.model.getPlayers());
+                        final PowerupMenuController powerupMenu = this.getStageManager().getControllerFactory()
+                                .createPowerupMenuController(this.getPlayers());
                         powerupMenu.start(currentPlayer);
                         break;
                     case ROLL_DICE:

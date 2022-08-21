@@ -18,6 +18,9 @@ import menu.gamecreationmenu.model.GameCreationMenuModelImpl;
 import menu.mainmenu.controller.MainMenuControllerImpl;
 import menu.mainmenu.model.MainMenuModelImpl;
 import menu.pausemenu.controller.PauseMenuControllerImpl;
+import menu.powerupmenu.controller.PowerupMenuController;
+import menu.powerupmenu.controller.PowerupMenuControllerImpl;
+import menu.powerupmenu.model.PowerupMenuModelImpl;
 import minigames.common.controller.MinigameController;
 import minigames.mastermind.controller.MastermindControllerImpl;
 import minigames.mastermind.model.MastermindModelImpl;
@@ -86,6 +89,13 @@ public class ControllerFactoryFx<S> implements ControllerFactory {
         var diceController = this.createDiceController(true);
         var model = new WhoRisksWinsModelImpl(players, diceController.getModel());
         var controller = new WhoRisksWinsControllerImpl(this.stageManager, model, diceController);
+        return controller;
+    }
+
+    @Override
+    public final PowerupMenuController createPowerupMenuController(final List<Player> players) {
+        var model = new PowerupMenuModelImpl(players);
+        var controller = new PowerupMenuControllerImpl(this.stageManager, model);
         return controller;
     }
 
