@@ -44,7 +44,7 @@ public class MastermindModelImpl<S> extends MinigameModelAbstr<S> implements Mas
             this.setCurrPlayer();
             return true;
         }
-        this.setGameResults();
+        this.getGameResults();
         this.getStageManager().popScene();
         return false;
     }
