@@ -2,6 +2,7 @@ package game.gamehandler.view;
 
 import java.util.List;
 
+import game.map.GameMap;
 import game.player.Player;
 import utils.controller.GenericController;
 
@@ -15,8 +16,9 @@ public interface GameHandlerViewController {
      * 
      * @param players    the {@link List} of the players in the game
      * @param controller the {@link GameHandlerController} of the game
+     * @param gameMap    the {@link GameMap} of the game
      */
-    void initialize(List<Player> players, GenericController controller);
+    void initialize(List<Player> players, GenericController controller, GameMap gameMap);
 
     /**
      * Sets the text of the updates label.
@@ -40,9 +42,10 @@ public interface GameHandlerViewController {
     /**
      * Moves the avatar of a player from its old position to its new one.
      * 
-     * @param p the {@link Player} to move
+     * @param p       the {@link Player} to move
+     * @param gameMap the {@link GameMap} of the game
      */
-    void movePlayer(Player p);
+    void movePlayer(Player p, GameMap gameMap);
 
     /**
      * Updates the game leaderboard.

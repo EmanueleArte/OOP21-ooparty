@@ -15,6 +15,9 @@ import minigames.common.model.MinigameModel;
 import utils.enums.PlayerTurnProgress;
 import utils.enums.TurnProgress;
 
+/**
+ * Implementation of the {@link GameHandlerModel} interface.
+ */
 public class GameHandlerModelImpl implements GameHandlerModel {
 
     private final DiceModel dice;
@@ -29,6 +32,13 @@ public class GameHandlerModelImpl implements GameHandlerModel {
     private List<Player> players;
     private Iterator<Player> playersIterator;
 
+    /**
+     * Constructor for this class.
+     * 
+     * @param dice        the {@link DiceModel} to use
+     * @param players     the {@link List} of the players in the game
+     * @param turnsNumber the duration of the game in turns
+     */
     public GameHandlerModelImpl(final DiceModel dice, final List<Player> players, final int turnsNumber) {
         this.dice = dice;
         this.turnsNumber = turnsNumber;
@@ -186,11 +196,8 @@ public class GameHandlerModelImpl implements GameHandlerModel {
         p.checkIfDeadAndRespawn(this.gameMap);
     }
 
-    /**
-     * {@inheritDoc}
-     */
     @Override
-    public List<Player> getTurnOrder() {
+    public final List<Player> getTurnOrder() {
         if (this.minigameModel.isPresent()) {
             return this.minigameModel.get().getGameResults();
         }

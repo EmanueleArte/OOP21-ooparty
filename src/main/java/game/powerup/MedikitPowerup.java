@@ -3,6 +3,9 @@ package game.powerup;
 import game.player.Player;
 import game.player.PlayerImpl;
 
+/**
+ * Implementation of the {@link GenericPowerup} interface.
+ */
 public class MedikitPowerup implements GenericPowerup {
 
     /**

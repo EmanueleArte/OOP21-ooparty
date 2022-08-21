@@ -2,6 +2,9 @@ package game.powerup;
 
 import game.player.Player;
 
+/**
+ * Implementation of the {@link GenericPowerup} interface.
+ */
 public class GunPowerup implements GenericPowerup {
 
     /**

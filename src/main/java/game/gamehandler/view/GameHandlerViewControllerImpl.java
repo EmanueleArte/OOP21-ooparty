@@ -92,7 +92,7 @@ public class GameHandlerViewControllerImpl implements GenericViewController, Gam
     }
 
     @Override
-    public final void initialize(final List<Player> players, final GenericController controller) {
+    public final void initialize(final List<Player> players, final GenericController controller, final GameMap gameMap) {
         this.setController(controller);
 
         List<Group> avatarsList = new ArrayList<Group>();
@@ -121,7 +121,7 @@ public class GameHandlerViewControllerImpl implements GenericViewController, Gam
         this.updateTurnOrder(players);
         this.updateLeaderboard(players);
 
-        this.initializeMap(this.controller.getGameMap());
+        this.initializeMap(gameMap);
     }
 
     @FXML
@@ -162,7 +162,7 @@ public class GameHandlerViewControllerImpl implements GenericViewController, Gam
     }
 
     @Override
-    public final void movePlayer(final Player p) {
+    public final void movePlayer(final Player p, final GameMap gameMap) {
         TranslateTransition transition = new TranslateTransition();
         Group avatar = this.playerToAvatar.get(p.getNickname());
         transition.setNode(avatar);
@@ -170,10 +170,10 @@ public class GameHandlerViewControllerImpl implements GenericViewController, Gam
         transition.setFromX(avatar.getTranslateX());
         transition.setFromY(avatar.getTranslateY());
         transition.setToX(this.mapGrid.getChildren().get(
-                this.controller.getGameMap().getSquares().indexOf(this.controller.getGameMap().getPlayerPosition(p)))
+                gameMap.getSquares().indexOf(gameMap.getPlayerPosition(p)))
                 .getLayoutX());
         transition.setToY(this.mapGrid.getChildren().get(
-                this.controller.getGameMap().getSquares().indexOf(this.controller.getGameMap().getPlayerPosition(p)))
+                gameMap.getSquares().indexOf(gameMap.getPlayerPosition(p)))
                 .getLayoutY());
         transition.play();
     }

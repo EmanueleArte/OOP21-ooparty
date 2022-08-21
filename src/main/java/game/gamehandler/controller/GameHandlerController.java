@@ -1,9 +1,6 @@
 package game.gamehandler.controller;
 
-import java.util.List;
-
 import game.player.Player;
-import game.map.GameMap;
 
 public interface GameHandlerController {
 
@@ -18,16 +15,9 @@ public interface GameHandlerController {
      */
     void nextStep();
 
-    List<Player> getPlayers();
-
     /**
-     * 
-     * @return the {@link GameMap} of the current game
+     * Starts the pause menu.
      */
-    GameMap getGameMap();
-
-    List<Player> getLeaderboard();
-
     void pauseMenu();
 
     /**
@@ -36,8 +26,6 @@ public interface GameHandlerController {
      * @param p the {@link Player} that has to be checked
      */
     void checkPlayerDeath(Player p);
-
-    List<Player> getTurnOrder();
 
     /**
      * Shows the after minigame menu.

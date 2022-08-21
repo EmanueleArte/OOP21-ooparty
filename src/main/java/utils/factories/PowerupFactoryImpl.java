@@ -5,6 +5,7 @@ import java.util.Random;
 import game.powerup.DoubleDicePowerup;
 import game.powerup.GenericPowerup;
 import game.powerup.GunPowerup;
+import game.powerup.MagnetPowerup;
 import game.powerup.MedikitPowerup;
 
 /**
@@ -12,7 +13,7 @@ import game.powerup.MedikitPowerup;
  */
 public class PowerupFactoryImpl implements PowerupFactory {
 
-    private static final int POWERUPS_NUMBER = 3;
+    private static final int POWERUPS_NUMBER = 4;
 
     @Override
     public final GenericPowerup getRandomPowerup() {
@@ -24,6 +25,8 @@ public class PowerupFactoryImpl implements PowerupFactory {
             return new GunPowerup();
         case 2:
             return new MedikitPowerup();
+        case 3:
+            return new MagnetPowerup();
         default:
             return new GunPowerup();
         }

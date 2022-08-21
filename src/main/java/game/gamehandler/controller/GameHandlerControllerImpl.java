@@ -1,17 +1,14 @@
 package game.gamehandler.controller;
 
-import java.util.List;
 import java.util.Optional;
 
 import game.dice.controller.DiceController;
 import game.gamehandler.model.GameHandlerModel;
-import game.map.GameMap;
 import game.gamehandler.view.GameHandlerViewControllerImpl;
 import game.player.Player;
 import menu.afterminigamemenu.controller.AfterMinigameMenuControllerImpl;
 import menu.pausemenu.controller.PauseMenuControllerImpl;
 import menu.powerupmenu.controller.PowerupMenuController;
-import menu.powerupmenu.controller.PowerupMenuControllerImpl;
 import minigames.common.controller.MinigameController;
 import utils.controller.GenericController;
 import utils.controller.GenericControllerAbstr;
@@ -36,7 +33,7 @@ public class GameHandlerControllerImpl extends GenericControllerAbstr
         super(s);
         this.model = model;
         this.dice = diceController;
-        this.minigameFactory = new MinigameControllerFactoryImpl<>(getPlayers(), s);
+        this.minigameFactory = new MinigameControllerFactoryImpl<>(this.model.getPlayers(), s);
     }
 
     @Override
@@ -48,7 +45,7 @@ public class GameHandlerControllerImpl extends GenericControllerAbstr
     public final void setViewController(final GenericViewController viewController) {
         if (viewController instanceof GameHandlerViewControllerImpl) {
             this.viewController = (GameHandlerViewControllerImpl) viewController;
-            this.viewController.initialize(this.model.getPlayers(), this);
+            this.viewController.initialize(this.model.getPlayers(), this, this.model.getGameMap());
         } else {
             throw new IllegalArgumentException("The parameter must be an instance of GameHandlerViewControllerImpl");
         }
@@ -83,18 +80,18 @@ public class GameHandlerControllerImpl extends GenericControllerAbstr
                         break;
                     case USE_POWERUP:
                         final PowerupMenuController powerupMenu = this.getStageManager().getControllerFactory()
-                                .createPowerupMenuController(this.getPlayers());
+                                .createPowerupMenuController(this.model.getPlayers());
                         powerupMenu.start(currentPlayer);
                         break;
                     case ROLL_DICE:
                         this.dice.start();
                         break;
                     case MOVE_PLAYER:
-                        this.viewController.movePlayer(currentPlayer);
-                        if (this.getGameMap().getPlayerPosition(currentPlayer).isCoinsGameMapSquare()) {
+                        this.viewController.movePlayer(currentPlayer, this.model.getGameMap());
+                        if (this.model.getGameMap().getPlayerPosition(currentPlayer).isCoinsGameMapSquare()) {
                             this.viewController.setUpdatesLabel(currentPlayer.getNickname() + " earned "
                                     + currentPlayer.getLastEarnedCoins() + " coins!");
-                        } else if (this.getGameMap().getPlayerPosition(currentPlayer).isDamageGameMapSquare()) {
+                        } else if (this.model.getGameMap().getPlayerPosition(currentPlayer).isDamageGameMapSquare()) {
                             if (!currentPlayer.isDead()) {
                                 this.viewController.setUpdatesLabel(currentPlayer.getNickname() + " lost "
                                         + currentPlayer.getLastDamageTaken() + " life points!");
@@ -102,14 +99,14 @@ public class GameHandlerControllerImpl extends GenericControllerAbstr
                                 this.viewController.setUpdatesLabel(currentPlayer.getNickname() + " lost "
                                         + currentPlayer.getLastDamageTaken() + " life points! He died!");
                             }
-                        } else if (this.getGameMap().getPlayerPosition(currentPlayer).isStarGameMapSquare()) {
+                        } else if (this.model.getGameMap().getPlayerPosition(currentPlayer).isStarGameMapSquare()) {
                             if (currentPlayer.getIsLastStarEarned()) {
                                 this.viewController.setUpdatesLabel(currentPlayer.getNickname() + " earned a star!");
                             } else {
                                 this.viewController.setUpdatesLabel(
                                         currentPlayer.getNickname() + " didn't have enough coins to buy a star!");
                             }
-                        } else if (this.getGameMap().getPlayerPosition(currentPlayer).isPowerUpGameMapSquare()) {
+                        } else if (this.model.getGameMap().getPlayerPosition(currentPlayer).isPowerUpGameMapSquare()) {
                             this.viewController.setUpdatesLabel(currentPlayer.getNickname() + " got a new powerup!");
                         }
                         boolean respawn = false;
@@ -121,9 +118,9 @@ public class GameHandlerControllerImpl extends GenericControllerAbstr
                         System.out.println("Respawn: " + respawn);
                         this.checkPlayerDeath(currentPlayer);
                         if (respawn) {
-                            this.viewController.movePlayer(currentPlayer);
+                            this.viewController.movePlayer(currentPlayer, this.model.getGameMap());
                         }
-                        this.viewController.updateLeaderboard(this.getLeaderboard());
+                        this.viewController.updateLeaderboard(this.model.getLeaderboard());
                         break;
                     default:
                         break;
@@ -152,26 +149,6 @@ public class GameHandlerControllerImpl extends GenericControllerAbstr
     }
 
     @Override
-    public final GameMap getGameMap() {
-        return this.model.getGameMap();
-    }
-
-    @Override
-    public final List<Player> getPlayers() {
-        return this.model.getPlayers();
-    }
-
-    @Override
-    public final List<Player> getLeaderboard() {
-        return this.model.getLeaderboard();
-    }
-
-    @Override
-    public final List<Player> getTurnOrder() {
-        return this.model.getTurnOrder();
-    }
-
-    @Override
     public final void pauseMenu() {
         PauseMenuControllerImpl pauseMenuController = new PauseMenuControllerImpl(this.getStageManager());
         pauseMenuController.createMenu();
@@ -186,7 +163,7 @@ public class GameHandlerControllerImpl extends GenericControllerAbstr
         AfterMinigameMenuControllerImpl afterMinigameMenuControllerImpl = new AfterMinigameMenuControllerImpl(
                 this.getStageManager());
         afterMinigameMenuControllerImpl.createMenu();
-        afterMinigameMenuControllerImpl.makeLeaderboard(this.getTurnOrder());
+        afterMinigameMenuControllerImpl.makeLeaderboard(this.model.getTurnOrder());
     }
 
     @Override
@@ -195,7 +172,7 @@ public class GameHandlerControllerImpl extends GenericControllerAbstr
         AfterMinigameMenuControllerImpl afterMinigameMenuControllerImpl = new AfterMinigameMenuControllerImpl(
                 this.getStageManager());
         afterMinigameMenuControllerImpl.createMenu();
-        afterMinigameMenuControllerImpl.makeEndGameLeaderboard(this.getLeaderboard());
+        afterMinigameMenuControllerImpl.makeEndGameLeaderboard(this.model.getLeaderboard());
     }
 
 }
