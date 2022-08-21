@@ -7,6 +7,8 @@ import java.util.List;
 import java.util.Map;
 import org.junit.jupiter.api.Test;
 
+import game.dice.model.DiceModel;
+import game.dice.model.DiceModelNoRepeatImpl;
 import game.player.Player;
 import game.player.PlayerImpl;
 import minigames.common.model.MinigameModel;
@@ -22,14 +24,15 @@ class TestMinigame {
     private final List<Integer> scores = List.of(4, 7, 5, 2);
     private final List<Integer> scoresDupl = List.of(2, 7, 2, 5);
 
-    class MinigameModelImpl<S> extends MinigameModelAbstr<S> {
+    class MinigameModelImpl extends MinigameModelAbstr {
 
-        MinigameModelImpl(final List<Player> players) {
-            super(players);
+        MinigameModelImpl(final List<Player> players, final DiceModel dice) {
+            super(players, dice);
         }
 
         @Override
         public boolean runGame() {
+            this.setGameResults();
             return false;
         }
 
@@ -37,7 +40,7 @@ class TestMinigame {
 
     @Test
     void testScoreMapper() {
-        final MinigameModel<Integer> m = new MinigameModelImpl<>(players);
+        final MinigameModel m = new MinigameModelImpl(players, new DiceModelNoRepeatImpl());
         players.forEach(p -> m.scoreMapper(p, scores.get(players.indexOf(p))));
         final Map<Player, Integer> correctMap = Map.of(new PlayerImpl("Luca"), 4, new PlayerImpl("Giovanni"), 7,
                 new PlayerImpl("Lorenzo"), 5, new PlayerImpl("Marco"), 2);
@@ -46,22 +49,24 @@ class TestMinigame {
 
     @Test
     void testSortPlayerByScore() {
-        final MinigameModel<Integer> m = new MinigameModelImpl<>(players);
+        final MinigameModel m = new MinigameModelImpl(players, new DiceModelNoRepeatImpl());
         players.forEach(p -> m.scoreMapper(p, scores.get(players.indexOf(p))));
         final List<Player> orderedList = List.of(new PlayerImpl("Giovanni"), new PlayerImpl("Lorenzo"),
                 new PlayerImpl("Luca"), new PlayerImpl("Marco"));
+        m.runGame();
         assertEquals(orderedList, m.getGameResults());
     }
 
     @Test
     void testSortPlayerByScoreWithDraws() {
-        final MinigameModel<Integer> m = new MinigameModelImpl<>(players);
+        final MinigameModel m = new MinigameModelImpl(players, new DiceModelNoRepeatImpl());
         players.forEach(p -> m.scoreMapper(p, scoresDupl.get(players.indexOf(p))));
         List<List<Player>> orderedDuplList = List.of(
                 List.of(new PlayerImpl("Giovanni"), new PlayerImpl("Marco"), new PlayerImpl("Luca"),
                         new PlayerImpl("Lorenzo")),
                 List.of(new PlayerImpl("Giovanni"), new PlayerImpl("Marco"), new PlayerImpl("Lorenzo"),
                         new PlayerImpl("Luca")));
+        m.runGame();
         assertTrue(orderedDuplList.contains(m.getGameResults()));
 
     }

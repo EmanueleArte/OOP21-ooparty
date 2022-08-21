@@ -12,15 +12,12 @@ import game.player.Player;
 import game.player.PlayerImpl;
 import minigames.mastermind.model.MastermindModel;
 import minigames.mastermind.model.MastermindModelImpl;
-import utils.graphics.controller.StageManager;
-import utils.graphics.controller.StageManagerImpl;
 
 /**
  * Test class for MastermindModel.
  */
 class TestMastermind {
 
-    private final StageManager<String> s = new StageManagerImpl<String>();
     private final List<Player> players = List.of(new PlayerImpl("Luca"), new PlayerImpl("Giovanni"),
             new PlayerImpl("Lorenzo"), new PlayerImpl("Marco"));
 
