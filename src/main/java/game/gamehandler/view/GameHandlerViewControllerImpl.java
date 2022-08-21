@@ -155,7 +155,6 @@ public class GameHandlerViewControllerImpl implements GenericViewController {
             switch (progress.get()) {
             case SHOW_BANNER:
                 this.showBanner("Turn " + this.controller.getTurnNumber());
-                updateTurnOrder(this.controller.getTurnOrder());
                 break;
             case HIDE_BANNER:
                 this.hideBanner();
@@ -212,6 +211,7 @@ public class GameHandlerViewControllerImpl implements GenericViewController {
                 this.controller.showAfterMinigameMenu();
                 break;
             case END_OF_TURN:
+                updateTurnOrder(this.controller.getTurnOrder());
                 this.updateLeaderboard(this.controller.getLeaderboard());
                 break;
             default:
