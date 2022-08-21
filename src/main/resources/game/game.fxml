@@ -38,16 +38,7 @@
                                     <VBox prefHeight="200.0" prefWidth="100.0">
                                        <children>
                                           <Label text="Turn Order" />
-                                          <HBox fx:id="turnOrderContainer" prefHeight="85.0" prefWidth="158.0" style="-fx-spacing: 5;">
-                                             <children>
-                                                <Label prefWidth="15.0" style="-fx-background-color: red;">
-                                                   <font>
-                                                      <Font size="11.0" />
-                                                   </font>
-                                                </Label>
-                                                <Label prefWidth="15.0" style="-fx-background-color: green;" />
-                                             </children>
-                                          </HBox>
+                                          <HBox fx:id="turnOrderContainer" prefHeight="85.0" prefWidth="158.0" style="-fx-spacing: 5;" />
                                        </children>
                                     </VBox>
                                  </children>
@@ -179,7 +170,7 @@
                      <children>
                         <VBox fx:id="rankContainer" alignment="CENTER" prefHeight="17.0" prefWidth="1000.0">
                            <children>
-                              <Label text="Rank" />
+                              <Label text="Leaderboard" />
                               <HBox fx:id="rankPlayersContainer" alignment="CENTER" prefHeight="85.0" prefWidth="158.0" />
                            </children>
                         </VBox>
