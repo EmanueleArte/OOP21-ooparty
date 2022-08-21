@@ -65,4 +65,39 @@ public interface ViewFactory<S> {
      */
     void createGameHandlerView(GenericController controller);
 
+    /**
+     * This method created a 'Mastermind' guide view.
+     * 
+     * @param controller the controller to be used
+     */
+    void createMastermindGuideView(GenericController controller);
+
+    /**
+     * This method created a 'Who Risks Wins' guide view.
+     * 
+     * @param controller the controller to be used
+     */
+    void createWhoRisksWinsGuideView(GenericController controller);
+
+    /**
+     * This method created a 'Memo' guide view.
+     * 
+     * @param controller the controller to be used
+     */
+    void createMemoGuideView(GenericController controller);
+
+    /**
+     * This method created a 'You're the Bob-omb' guide view.
+     * 
+     * @param controller the controller to be used
+     */
+    void createYoureTheBobombGuideView(GenericController controller);
+
+    /**
+     * This method created a 'Cut From the Team' guide view.
+     * 
+     * @param controller the controller to be used
+     */
+    void createCutFromTheTeamGuideView(GenericController controller);
+
 }

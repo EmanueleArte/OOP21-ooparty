@@ -76,4 +76,29 @@ public class FxmlViewFactoryImpl<S> implements ViewFactory<S> {
         this.stageManager.addScene((S) currScene);
     }
 
+    @Override
+    public final void createMastermindGuideView(final GenericController controller) {
+        this.createScene(controller, "minigames/mastermind_guide.fxml");
+    }
+
+    @Override
+    public final void createWhoRisksWinsGuideView(final GenericController controller) {
+        this.createScene(controller, "minigames/who_risks_wins_guide.fxml");
+    }
+
+    @Override
+    public final void createMemoGuideView(final GenericController controller) {
+        this.createScene(controller, "minigames/memo_guide.fxml");
+    }
+
+    @Override
+    public final void createYoureTheBobombGuideView(final GenericController controller) {
+        this.createScene(controller, "minigames/you_are_the_bobomb_guide.fxml");
+    }
+
+    @Override
+    public final void createCutFromTheTeamGuideView(final GenericController controller) {
+        this.createScene(controller, "minigames/cut_from_the_team_guide.fxml");
+    }
+
 }

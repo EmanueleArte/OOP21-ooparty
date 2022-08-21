@@ -59,7 +59,7 @@ public class MastermindControllerImpl extends MinigameControllerAbstr implements
     public final void startGame() {
         this.getStageManager().getGui().getViewFactory().createMastermindView(this);
         final GenericController guideController = new MinigameGuideControllerImpl(this.getStageManager(), this);
-        GenericViewUtils.createScene(this.getStageManager(), guideController, "minigames/mastermind_guide.fxml");
+        this.getStageManager().getGui().getViewFactory().createMastermindGuideView(guideController);
     }
 
     @Override
