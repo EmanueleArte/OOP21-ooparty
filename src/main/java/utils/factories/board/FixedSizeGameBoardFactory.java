@@ -7,6 +7,9 @@ public abstract class FixedSizeGameBoardFactory implements GameBoardFactory {
 
     private static final int SIZE = 34;
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public final int getSize() {
         return SIZE;

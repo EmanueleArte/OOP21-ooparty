@@ -7,12 +7,11 @@ import game.map.GameMap;
 import game.player.Player;
 import utils.enums.PlayerTurnProgress;
 import utils.enums.TurnProgress;
-import utils.model.GenericModel;
 
 /**
  * This interface models the game handler model.
  */
-public interface GameHandlerModel extends GenericModel {
+public interface GameHandlerModel {
 
     /**
      * This method returns the players in the game.
