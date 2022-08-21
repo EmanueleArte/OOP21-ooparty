@@ -57,6 +57,11 @@ public class FxmlViewFactoryImpl<S> implements ViewFactory<S> {
         this.createScene(controller, "game/dice.fxml");
     }
 
+    @Override
+    public final void createGameHandlerView(final GenericController controller) {
+        this.createScene(controller, "game/game.fxml");
+    }
+
     /**
      * This method creates a specific scene given the arguments and adds it to the
      * scene list.

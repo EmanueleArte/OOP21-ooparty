@@ -29,6 +29,7 @@ public abstract class MinigameControllerAbstr extends GenericControllerAbstr imp
     @Override
     public void closeGame() {
         this.getStageManager().popScene();
+        this.dice.start();
     }
 
     /**

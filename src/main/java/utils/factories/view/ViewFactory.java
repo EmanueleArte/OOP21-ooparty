@@ -58,4 +58,11 @@ public interface ViewFactory<S> {
      */
     void createDiceView(GenericController controller);
 
+    /**
+     * This method creates a game handler view.
+     * 
+     * @param controller the controller to be used
+     */
+    void createGameHandlerView(GenericController controller);
+
 }

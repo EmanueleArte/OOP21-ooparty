@@ -5,7 +5,6 @@ import java.util.Optional;
 
 import game.dice.controller.DiceController;
 import game.gamehandler.model.GameHandlerModel;
-import game.gamehandler.model.GameHandlerModelImpl;
 import game.map.GameMap;
 import game.gamehandler.view.GameHandlerViewControllerImpl;
 import game.player.Player;
@@ -15,7 +14,6 @@ import minigames.common.controller.MinigameController;
 import utils.controller.GenericController;
 import utils.controller.GenericControllerAbstr;
 import utils.graphics.controller.StageManager;
-import utils.model.GenericModel;
 import utils.view.GenericViewUtils;
 import utils.view.GenericViewController;
 import utils.enums.PlayerTurnProgress;
@@ -23,15 +21,15 @@ import utils.enums.TurnProgress;
 import utils.factories.controller.MinigameControllerFactory;
 import utils.factories.controller.MinigameControllerFactoryImpl;
 
-public class GameHandlerControllerImpl<S> extends GenericControllerAbstr
+public class GameHandlerControllerImpl extends GenericControllerAbstr
         implements GenericController, GameHandlerController {
 
     private GameHandlerViewControllerImpl viewController;
     private GameHandlerModel model;
     private DiceController dice;
-    private final MinigameControllerFactory minigameFactory;
+    private final MinigameControllerFactory<?> minigameFactory;
 
-    public <S, U> GameHandlerControllerImpl(final StageManager<S> s, final DiceController diceController,
+    public <S> GameHandlerControllerImpl(final StageManager<S> s, final DiceController diceController,
             final GameHandlerModel model) {
         super(s);
         this.model = model;
@@ -66,6 +64,9 @@ public class GameHandlerControllerImpl<S> extends GenericControllerAbstr
             MinigameController minigameController = this.minigameFactory.createRandomMinigameController();
             minigameController.startGame();
         }
+        if (turnProgress.isPresent() && turnProgress.get() == TurnProgress.SHOW_LEADERBOARD) {
+            this.model.setPlayers(this.getStageManager().getLastGameController().getGameResults());
+        }
         return turnProgress;
     }
 
@@ -73,7 +74,7 @@ public class GameHandlerControllerImpl<S> extends GenericControllerAbstr
     public final Optional<PlayerTurnProgress> nextPlayerTurnStep() {
         var nextPlayerTurnStep = this.model.nextPlayerTurnStep();
         if (nextPlayerTurnStep.isPresent() && nextPlayerTurnStep.get() == PlayerTurnProgress.ROLL_DICE) {
-            this.dice.start(this.getCurrentPlayer().get());
+            this.dice.start();
         }
         return nextPlayerTurnStep;
     }
@@ -124,6 +125,11 @@ public class GameHandlerControllerImpl<S> extends GenericControllerAbstr
                 this.getStageManager());
         afterMinigameMenuControllerImpl.createMenu();
         afterMinigameMenuControllerImpl.makeLeaderboard(this.getTurnOrder());
+    }
+
+    @Override
+    public final void endGame() {
+        this.getStageManager().popScene();
     }
 
 }

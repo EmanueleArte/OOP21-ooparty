@@ -1,0 +1,1 @@
+memberSearchIndex = [{"p":"game.dice.model","c":"DiceModel","l":"getLastResult()"},{"p":"game.dice.model","c":"DiceModel","l":"reset()"},{"p":"game.dice.model","c":"DiceModel","l":"rollDice()"}];updateSearchResults();

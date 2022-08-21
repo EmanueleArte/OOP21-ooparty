@@ -76,7 +76,7 @@ public class PlayerImpl implements Player {
         if (newSquareIndex >= gameMap.getSquares().size()) {
             newSquareIndex = newSquareIndex - gameMap.getSquares().size();
         }
-        this.goTo(gameMap, gameMap.getSquares().get(currentSquareIndex + n));
+        this.goTo(gameMap, gameMap.getSquares().get(newSquareIndex));
     }
 
     @Override
@@ -204,13 +204,8 @@ public class PlayerImpl implements Player {
     }
 
     @Override
-    public final boolean hasDiceToRoll() {
-        return this.dicesToRoll > 0;
-    }
-
-    @Override
-    public final void rollDice() {
-        this.dicesToRoll--;
+    public final int getDicesToRoll() {
+        return this.dicesToRoll;
     }
 
     @Override
@@ -225,7 +220,8 @@ public class PlayerImpl implements Player {
 
     @Override
     public final void usePowerup(final String powerupType, final Player target) {
-        Optional<GenericPowerup> p = this.powerups.stream().filter(x -> x.getPowerupType().equals(powerupType)).findFirst();
+        Optional<GenericPowerup> p = this.powerups.stream().filter(x -> x.getPowerupType().equals(powerupType))
+                .findFirst();
         p.ifPresent(a -> {
             p.get().usePowerup(target);
             this.powerups.remove(p.get());
@@ -270,8 +266,10 @@ public class PlayerImpl implements Player {
         if (firstFreeSquareIndex >= gameMap.getSquares().size()) {
             firstFreeSquareIndex = 0;
         }
-        while (gameMap.getSquares().get(firstFreeSquareIndex).isCoinsGameMapSquare() || gameMap.getSquares().get(firstFreeSquareIndex).isPowerUpGameMapSquare()
-                || gameMap.getSquares().get(firstFreeSquareIndex).isDamageGameMapSquare() || gameMap.getSquares().get(firstFreeSquareIndex).isStarGameMapSquare()) {
+        while (gameMap.getSquares().get(firstFreeSquareIndex).isCoinsGameMapSquare()
+                || gameMap.getSquares().get(firstFreeSquareIndex).isPowerUpGameMapSquare()
+                || gameMap.getSquares().get(firstFreeSquareIndex).isDamageGameMapSquare()
+                || gameMap.getSquares().get(firstFreeSquareIndex).isStarGameMapSquare()) {
             firstFreeSquareIndex++;
             if (firstFreeSquareIndex >= gameMap.getSquares().size()) {
                 firstFreeSquareIndex = 0;

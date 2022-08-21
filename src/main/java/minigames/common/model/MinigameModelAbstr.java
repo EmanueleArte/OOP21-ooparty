@@ -71,13 +71,9 @@ public abstract class MinigameModelAbstr extends GameModelAbstr implements Minig
             if (players.size() > 1) {
                 final Map<Player, Integer> sorted = new LinkedHashMap<>();
                 players.forEach(player -> {
-                    this.dice.rollDice();
-
-                    /*
-                     * if (s != null) { if (s.getGui().mainStagePresence()) {
-                     * this.dice.start(player); } }
-                     */
+                    this.dice.rollDice(player);
                     sorted.put(player, this.dice.getLastResult().get());
+                    System.out.println(sorted);
                 });
                 players = sorted.entrySet().stream().sorted(Map.Entry.comparingByValue(Comparator.reverseOrder()))
                         .map(Entry::getKey).collect(Collectors.toList());

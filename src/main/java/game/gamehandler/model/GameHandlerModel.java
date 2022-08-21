@@ -12,7 +12,7 @@ import utils.model.GenericModel;
 /**
  * This interface models the game handler model.
  */
-public interface GameHandlerModel extends GenericModel{
+public interface GameHandlerModel extends GenericModel {
 
     /**
      * This method returns the players in the game.
@@ -20,6 +20,13 @@ public interface GameHandlerModel extends GenericModel{
      * @return a list containing the players in the game
      */
     List<Player> getPlayers();
+
+    /**
+     * Sets the players list.
+     * 
+     * @param players {@link List} of players
+     */
+    void setPlayers(List<Player> players);
 
     /**
      * This method makes the turn advance to the next step.
@@ -57,18 +64,22 @@ public interface GameHandlerModel extends GenericModel{
 
     /**
      * This method returns the leaderboard after a player's turn ends.
+     * 
      * @return an ordered list of players
      */
     List<Player> getLeaderboard();
 
     /**
      * Checks if a {@link Player} is dead and if he is, it makes him respawn.
-     * @param p the {@link Player} that has to be checked 
+     * 
+     * @param p the {@link Player} that has to be checked
      */
     void checkPlayerDeath(Player p);
 
-    /** This method returns the turn order.
-    * @return an ordered list of players representing the turn order
-    */
+    /**
+     * This method returns the turn order.
+     * 
+     * @return an ordered list of players representing the turn order
+     */
     List<Player> getTurnOrder();
 }
