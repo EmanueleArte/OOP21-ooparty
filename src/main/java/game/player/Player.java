@@ -13,16 +13,23 @@ import javafx.scene.paint.Color;
 public interface Player {
 
     /**
+<<<<<<< HEAD
      * Returns the player's nickname.
+=======
+     * <<<<<<< HEAD
+>>>>>>> 1f0fb6b271b353351afa2dc9834491fce36d47ce
      * 
-     * @return the player's nickname
+     * @return the name of the player ======= Returns the player's nickanme.
+     * 
+     * @return the player's nickname >>>>>>>
+     *         169da5602b80ba9ca3fc56a251620ce58f58c58d
      */
     String getNickname();
 
     /**
      * Returns the player's color.
      * 
-     * @return the player's color.
+     * @return the player's color
      */
     Color getColor();
 
@@ -72,19 +79,23 @@ public interface Player {
     void updateCoins(int n);
 
     /**
-     * Returns the amount of player's coins. 
+     * <<<<<<< HEAD ======= Returns the amount of player's coins.
+     * 
+     * >>>>>>> 169da5602b80ba9ca3fc56a251620ce58f58c58d
      * 
      * @return amount of player's coins
      */
     int getCoinsCount();
 
     /**
-     * Makes the player earn a star.
+     * <<<<<<< HEAD Make player earn a star. ======= Makes the player earn a star.
+     * >>>>>>> 169da5602b80ba9ca3fc56a251620ce58f58c58d
      */
     void earnStar();
 
     /**
-     * Makes the player lose a star.
+     * <<<<<<< HEAD Make player lose a star. ======= Makes the player lose a star.
+     * >>>>>>> 169da5602b80ba9ca3fc56a251620ce58f58c58d
      */
     void loseStar();
 
@@ -112,8 +123,8 @@ public interface Player {
     /**
      * Takes away life points from the player.
      * 
-     * @param damage  the amount of life to be taken away
-     * @param gameMap the game map (used to move the {@link Player} if he dies)
+     * @param damage the amount of life to be taken away
+     * @param gameMap the game map
      */
     void loseLifePoints(int damage);
 
@@ -125,7 +136,6 @@ public interface Player {
     void setDicesNumber(int n);
 
     /**
-     * 
      * Returns an {@link int} containing the number of dices the player has to roll.
      * 
      * @return an {@link int} containing the number of dices the player has to roll
@@ -133,7 +143,7 @@ public interface Player {
     int getDicesToRoll();
 
     /**
-     * Returns a list containing all the {@link GenericPowerup}s the player has got. 
+     * Returns a list containing all the {@link GenericPowerup}s the player has got.
      * 
      * @return a list containing all the {@link GenericPowerup}s the player has got.
      */
@@ -196,4 +206,4 @@ public interface Player {
      * @param gameMap the map of the game
      */
     void checkIfDeadAndRespawn(GameMap gameMap);
-    }
+}
