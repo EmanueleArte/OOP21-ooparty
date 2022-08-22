@@ -12,6 +12,7 @@ import javafx.scene.layout.Border;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import menu.common.controller.MenuController;
+import menu.gamecreationmenu.model.GameCreationMenuModelImpl;
 import utils.controller.GenericController;
 import utils.enums.OrdinalNumber;
 import utils.factories.PowerupFactoryImpl;
@@ -23,7 +24,7 @@ public class AfterMinigameMenuViewControllerImpl implements AfterMinigameMenuVie
 
     private static final int VBOX_WIDTH = 200;
     private static final int VBOX_HEIGHT = 200;
-    private static final int MAX_COINS_FROM_MINIGAME = 16;
+    private static final int COIN_STEP = 6;
 
     private MenuController menuController;
     @FXML
@@ -67,7 +68,7 @@ public class AfterMinigameMenuViewControllerImpl implements AfterMinigameMenuVie
 
     private int earnCoins(final List<Player> players, final int i) {
         Random r = new Random();
-        int coins = r.nextInt(MAX_COINS_FROM_MINIGAME / (i + 1)) + (MAX_COINS_FROM_MINIGAME / (i + 2));
+        int coins = r.nextInt(COIN_STEP) + (COIN_STEP * (GameCreationMenuModelImpl.N_MAX_PLAYERS - (i + 1))) + 1;
         players.get(i).earnCoins(coins);
         return coins;
     }
