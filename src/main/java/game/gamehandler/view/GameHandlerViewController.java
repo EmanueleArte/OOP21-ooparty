@@ -15,7 +15,7 @@ public interface GameHandlerViewController {
      * Initializes the scene of the game.
      * 
      * @param players    the {@link List} of the players in the game
-     * @param controller the {@link GameHandlerController} of the game
+     * @param controller the {@link game.gamehandler.controller.GameHandlerController GameHandlerController} of the game
      * @param gameMap    the {@link GameMap} of the game
      */
     void initialize(List<Player> players, GenericController controller, GameMap gameMap);

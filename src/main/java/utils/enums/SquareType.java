@@ -1,7 +1,7 @@
 package utils.enums;
 
 /**
- * This enum defines the different {@link GameMapSquare} used.
+ * This enum defines the different {@link game.map.GameMapSquare GameMapSquare} used.
  */
 public enum SquareType {
     /**
