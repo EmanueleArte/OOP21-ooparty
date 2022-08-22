@@ -35,17 +35,11 @@ public abstract class MinigameModelAbstr extends GameModelAbstr implements Minig
         this.dice = diceModel;
     }
 
-    /**
-     * {@inheritDoc}
-     */
     @Override
     public final Map<Player, Integer> getPlayersClassification() {
         return this.playersClassification;
     }
 
-    /**
-     * {@inheritDoc}
-     */
     @Override
     public abstract boolean runGame();
 
@@ -53,7 +47,7 @@ public abstract class MinigameModelAbstr extends GameModelAbstr implements Minig
      * {@inheritDoc}
      */
     @Override
-    public final List<Player> getGameResults() {
+    public List<Player> getGameResults() {
         this.gameResults = this.playoff(this.groupPlayersByScore());
         return this.gameResults;
     }
@@ -62,13 +56,10 @@ public abstract class MinigameModelAbstr extends GameModelAbstr implements Minig
      * {@inheritDoc}
      */
     @Override
-    public final void scoreMapper(final Player player, final Integer score) {
+    public void scoreMapper(final Player player, final Integer score) {
         this.playersClassification.put(player, score);
     }
 
-    /**
-     * {@inheritDoc}
-     */
     @Override
     public final int getScore() {
         return this.getPlayersClassification().getOrDefault(this.getCurrPlayer(), 0);
@@ -111,11 +102,6 @@ public abstract class MinigameModelAbstr extends GameModelAbstr implements Minig
     }
 
     /**
-<<<<<<< HEAD
-     * Setter for the score of the current player.
-     *
-     * @param score the new score.
-=======
      * Calculates and sets the game results.
      */
     protected void setGameResults() {
@@ -126,7 +112,6 @@ public abstract class MinigameModelAbstr extends GameModelAbstr implements Minig
      * Setter for score.
      * 
      * @param score the score of the player
->>>>>>> a53efb5ffd6ccbc6ee931c6a157847c158cc7b92
      * @throws PlayerNotFoundException if the current player is not set
      */
     protected void setScore(final int score) {
