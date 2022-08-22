@@ -10,7 +10,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<VBox alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="2160.0" prefWidth="3840.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="menu.powerupmenu.view.PowerupMenuViewControllerImpl">
+<VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="2160.0" prefWidth="3840.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="menu.powerupmenu.view.PowerupMenuViewControllerImpl">
    <stylesheets> 
      <URL value="@../fonts/fonts.css"/> 
    </stylesheets>
@@ -32,10 +32,8 @@
             </Button>
          </bottom>
          <top>
-            <Text fill="#dfbe07" stroke="#a67f00" strokeType="OUTSIDE" text="Your Power-Ups" BorderPane.alignment="CENTER">
-               <font>
-                  <Font size="64.0" />
-               </font>
+            <Text fill="#dfbe07" stroke="#a67f00" text="YOUR POWER-UPS" BorderPane.alignment="CENTER">
+               
                <BorderPane.margin>
                   <Insets top="40.0" />
                </BorderPane.margin>

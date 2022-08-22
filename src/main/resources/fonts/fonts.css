@@ -1,9 +1,10 @@
 @font-face {
-    font-family: 'Phosphate Inline';
-    src: url('PhosphateInline.ttf');
+    src: url('PhosphateInline.ttf') format('truetype');
 }
 
-.Text {
-    font-family: 'Phosphate Inline';
-    -fx-font-family: 'Phosphate Inline';
+Text {
+    -fx-font-family: 'PhosphateInline';
+    -fx-font-size: 85px;
+    -fx-stroke-type: OUTSIDE;
+    -fx-stroke-width: 2;
 }

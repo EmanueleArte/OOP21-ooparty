@@ -15,19 +15,17 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<VBox alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="2160.0" prefWidth="3840.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="minigames.mastermind.view.MastermindViewControllerImpl">
+<VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="2160.0" prefWidth="3840.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="minigames.mastermind.view.MastermindViewControllerImpl">
    <stylesheets> 
      <URL value="@../fonts/fonts.css"/> 
    </stylesheets>
    <children>
       <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="2160.0" prefWidth="3840.0">
          <center>
-            <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0" spacing="30.0" BorderPane.alignment="CENTER">
+            <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" spacing="30.0" BorderPane.alignment="CENTER">
                <children>
-                  <Text fill="#dfbe07" stroke="#a67f00" strokeLineJoin="BEVEL" strokeType="OUTSIDE" strokeWidth="2.0" text="Mastermind">
-                     <font>
-                        <Font name="Phosphate Inline" size="80.0" />
-                     </font>
+                  <Text fill="#dfbe07" stroke="#a67f00" text="MASTERMIND">
+                     
                   </Text>
                   <Label fx:id="playerLabel" text="Player">
                      <font>

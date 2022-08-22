@@ -76,7 +76,7 @@ public class GameMapImpl implements GameMap {
     }
 
     @Override
-    public MapLayout getLayout() {
+    public final MapLayout getLayout() {
         return this.layout;
     }
 }

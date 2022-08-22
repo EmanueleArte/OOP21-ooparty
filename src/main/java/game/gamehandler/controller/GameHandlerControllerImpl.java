@@ -62,7 +62,7 @@ public class GameHandlerControllerImpl extends GenericControllerAbstr
         if (progress.isPresent()) {
             switch (progress.get()) {
             case SHOW_BANNER:
-                this.viewController.showBanner("Turn " + this.model.getTurnNumber());
+                this.viewController.showBanner("TURN " + this.model.getTurnNumber());
                 break;
             case HIDE_BANNER:
                 this.viewController.hideBanner();
@@ -73,7 +73,7 @@ public class GameHandlerControllerImpl extends GenericControllerAbstr
                     Player currentPlayer = this.model.getCurrentPlayer().get();
                     switch (playerProgress.get()) {
                     case SHOW_BANNER:
-                        this.viewController.showBanner(this.model.getCurrentPlayer().get().getNickname() + "'s turn");
+                        this.viewController.showBanner(this.model.getCurrentPlayer().get().getNickname().toUpperCase() + "'S TURN");
                         break;
                     case HIDE_BANNER:
                         this.viewController.hideBanner();

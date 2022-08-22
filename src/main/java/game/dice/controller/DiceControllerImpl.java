@@ -80,9 +80,9 @@ public class DiceControllerImpl extends GenericControllerAbstr implements DiceCo
         final Pair<Player, Integer> r = this.results.next();
         this.getStageManager().getGui().getViewFactory().createDiceView(this);
         if (this.playoff) {
-            this.viewController.initialize(r.getValue(), r.getKey().getColor(), "Playoff!");
+            this.viewController.initialize(r.getValue(), r.getKey().getColor(), "PLAYOFF!");
         } else {
-            this.viewController.initialize(r.getValue(), r.getKey().getColor(), "Roll the Dice!");
+            this.viewController.initialize(r.getValue(), r.getKey().getColor(), "ROLL THE DICE!");
         }
     }
 

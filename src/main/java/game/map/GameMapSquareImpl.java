@@ -5,7 +5,6 @@ import java.util.Set;
 
 import game.player.Player;
 import game.player.PlayerImpl;
-import game.powerup.GenericPowerup;
 
 /**
  * The implementation of a generic {@link GameMapSquare}.
@@ -30,9 +29,6 @@ public class GameMapSquareImpl implements GameMapSquare {
         this.players = new HashSet<>();
     }
 
-    /**
-     *
-     */
     @Override
     public final Set<Player> getPlayers() {
         return Set.copyOf(this.players);
@@ -49,59 +45,10 @@ public class GameMapSquareImpl implements GameMapSquare {
     }
 
     /**
-     * {@inheritDoc}
+     * This method doesn't do anything because this is not a special game square.
      */
     @Override
-    public int getCoinsNumber() {
-        return 0;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public void receiveCoins(final Player p) {
-        throw new UnsupportedOperationException("This is not a coins game map square");
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public int getDamage() {
-        return 0;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public void receiveDamage(final Player p) {
-        throw new UnsupportedOperationException("This is not a damage game map square");
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public void receiveStar(final Player p) {
-        throw new UnsupportedOperationException("This is not a star game map square");
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public void receivePowerup(final Player p) {
-        throw new UnsupportedOperationException("This is not a powerup game map square");
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public GenericPowerup getPowerup() {
-        throw new UnsupportedOperationException("This is not a powerup game map square");
+    public void makeSpecialAction(final Player p) {
     }
 
     /**
