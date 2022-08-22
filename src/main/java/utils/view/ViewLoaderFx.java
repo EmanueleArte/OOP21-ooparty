@@ -1,4 +1,4 @@
-package utils.factories.view;
+package utils.view;
 
 import utils.controller.GenericController;
 import utils.graphics.controller.StageManager;
@@ -6,20 +6,20 @@ import utils.graphics.view.JavafxGui;
 
 /**
  * 
- * Implementation of {@link ViewFactory}.
+ * Implementation of {@link ViewLoader}.
  *
  * @param <S> the scenes of the stage
  */
-public class FxmlViewFactoryImpl<S> implements ViewFactory<S> {
+public class ViewLoaderFx<S> implements ViewLoader<S> {
 
     private final StageManager<S> stageManager;
 
     /**
-     * Builds a new {@link FxmlViewFactoryImpl}.
+     * Builds a new {@link ViewLoaderFx}.
      * 
      * @param s the {@link StageManager}.
      */
-    public FxmlViewFactoryImpl(final StageManager<S> s) {
+    public ViewLoaderFx(final StageManager<S> s) {
         this.stageManager = s;
     }
 

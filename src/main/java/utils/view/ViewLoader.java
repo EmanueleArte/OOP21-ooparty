@@ -1,4 +1,4 @@
-package utils.factories.view;
+package utils.view;
 
 import utils.controller.GenericController;
 
@@ -7,7 +7,7 @@ import utils.controller.GenericController;
  *
  * @param <S> the scenes of the stages
  */
-public interface ViewFactory<S> {
+public interface ViewLoader<S> {
 
     /**
      * This method creates a main menu view.
