@@ -95,9 +95,7 @@ public class GameHandlerViewControllerImpl implements GenericViewController, Gam
     }
 
     @Override
-    public final void initialize(final List<Player> players, final GenericController controller, final GameMap gameMap) {
-        this.setController(controller);
-
+    public final void initialize(final List<Player> players, final GameMap gameMap) {
         List<Group> avatarsList = new ArrayList<Group>();
         this.avatars.getChildren().forEach(c -> {
             avatarsList.add((Group) c);
@@ -127,6 +125,11 @@ public class GameHandlerViewControllerImpl implements GenericViewController, Gam
         this.initializeMap(gameMap);
     }
 
+    /**
+     * This method gets called when a key is pressed on this scene.
+     * 
+     * @param ke the {@link KeyEvent}
+     */
     @FXML
     protected final void onKeyPressed(final KeyEvent ke) {
         if (ke.getCode().equals(KeyCode.ENTER) || ke.getCode().equals(KeyCode.SPACE)) {
@@ -137,6 +140,9 @@ public class GameHandlerViewControllerImpl implements GenericViewController, Gam
         }
     }
 
+    /**
+     * This method gets called when the mouse clicks on this scene.
+     */
     @FXML
     protected final void onClick() {
         this.controller.nextStep();
@@ -172,11 +178,9 @@ public class GameHandlerViewControllerImpl implements GenericViewController, Gam
         transition.setDuration(Duration.millis(1000));
         transition.setFromX(avatar.getTranslateX());
         transition.setFromY(avatar.getTranslateY());
-        transition.setToX(this.mapGrid.getChildren().get(
-                gameMap.getSquares().indexOf(gameMap.getPlayerPosition(p)))
+        transition.setToX(this.mapGrid.getChildren().get(gameMap.getSquares().indexOf(gameMap.getPlayerPosition(p)))
                 .getLayoutX());
-        transition.setToY(this.mapGrid.getChildren().get(
-                gameMap.getSquares().indexOf(gameMap.getPlayerPosition(p)))
+        transition.setToY(this.mapGrid.getChildren().get(gameMap.getSquares().indexOf(gameMap.getPlayerPosition(p)))
                 .getLayoutY());
         transition.play();
     }
@@ -241,8 +245,8 @@ public class GameHandlerViewControllerImpl implements GenericViewController, Gam
                 label.setPrefWidth(SQUARE_WIDTH);
                 label.setPrefHeight(SQUARE_HEIGHT);
                 label.setAlignment(Pos.CENTER);
-                label.setBorder(new Border(
-                        new BorderStroke(Color.BLACK, BorderStrokeStyle.SOLID, CornerRadii.EMPTY, new BorderWidths(SQUARE_BORDER_WIDTH))));
+                label.setBorder(new Border(new BorderStroke(Color.BLACK, BorderStrokeStyle.SOLID, CornerRadii.EMPTY,
+                        new BorderWidths(SQUARE_BORDER_WIDTH))));
                 label.setBackground(new Background(new BackgroundFill(Color.GRAY, CornerRadii.EMPTY, Insets.EMPTY)));
 
                 return label;
@@ -260,7 +264,6 @@ public class GameHandlerViewControllerImpl implements GenericViewController, Gam
             errorAlert.setContentText("Error while loading the map layout");
             errorAlert.showAndWait();
         }
-
 
         mapGrid.setHgap(GRID_SPACING);
         mapGrid.setVgap(GRID_SPACING);

@@ -52,6 +52,11 @@ public class DiceViewControllerImpl implements GenericViewController, DiceViewCo
         }
     }
 
+    /**
+     * This method gets called when a key is pressed in this scene.
+     * 
+     * @param ke the {@link KeyEvent}
+     */
     @FXML
     protected final void onKeyPressed(final KeyEvent ke) {
         if (ke.getCode().equals(KeyCode.ENTER) || ke.getCode().equals(KeyCode.SPACE)) {
@@ -59,6 +64,9 @@ public class DiceViewControllerImpl implements GenericViewController, DiceViewCo
         }
     }
 
+    /**
+     * This method gets called when the mouse clicks on this scene.
+     */
     @FXML
     protected final void onClick() {
         this.controller.nextStep();

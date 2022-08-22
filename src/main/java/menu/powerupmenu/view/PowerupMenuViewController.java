@@ -13,6 +13,8 @@ public interface PowerupMenuViewController extends GenericViewController {
 
     /**
      * This method initializes the scene of the power-up menu.
+     * 
+     * @param powerups the {@link List} of the current player's power-ups
      */
     void initializeScene(List<GenericPowerup> powerups);
 
@@ -24,6 +26,10 @@ public interface PowerupMenuViewController extends GenericViewController {
     /**
      * This method sets the available target buttons for the currently selected
      * power-up.
+     * 
+     * @param powerup       the selected {@link GenericPowerup}
+     * @param players       the {@link List} of the players in the game
+     * @param currentPlayer the current {@link Player}
      */
     void setTargetsList(GenericPowerup powerup, List<Player> players, Player currentPlayer);
 

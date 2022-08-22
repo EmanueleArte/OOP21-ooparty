@@ -2,6 +2,9 @@ package game.gamehandler.controller;
 
 import game.player.Player;
 
+/**
+ * This interface models the game handler controller of the game.
+ */
 public interface GameHandlerController {
 
     /**
