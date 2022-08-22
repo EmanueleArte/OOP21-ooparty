@@ -13,16 +13,9 @@ import javafx.scene.paint.Color;
 public interface Player {
 
     /**
-<<<<<<< HEAD
      * Returns the player's nickname.
-=======
-     * <<<<<<< HEAD
->>>>>>> 1f0fb6b271b353351afa2dc9834491fce36d47ce
      * 
-     * @return the name of the player ======= Returns the player's nickanme.
-     * 
-     * @return the player's nickname >>>>>>>
-     *         169da5602b80ba9ca3fc56a251620ce58f58c58d
+     * @return the player's nickname
      */
     String getNickname();
 
@@ -79,23 +72,19 @@ public interface Player {
     void updateCoins(int n);
 
     /**
-     * <<<<<<< HEAD ======= Returns the amount of player's coins.
-     * 
-     * >>>>>>> 169da5602b80ba9ca3fc56a251620ce58f58c58d
+     * Returns the amount of player's coins.
      * 
      * @return amount of player's coins
      */
     int getCoinsCount();
 
     /**
-     * <<<<<<< HEAD Make player earn a star. ======= Makes the player earn a star.
-     * >>>>>>> 169da5602b80ba9ca3fc56a251620ce58f58c58d
+     * Makes the player earn a star.
      */
     void earnStar();
 
     /**
-     * <<<<<<< HEAD Make player lose a star. ======= Makes the player lose a star.
-     * >>>>>>> 169da5602b80ba9ca3fc56a251620ce58f58c58d
+     * Makes the player lose a star.
      */
     void loseStar();
 
