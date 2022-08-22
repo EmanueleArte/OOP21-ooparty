@@ -59,7 +59,7 @@ public interface ControllerFactory {
      * 
      * @return the after minigame menu created
      */
-    MenuController createAfterMinigameController();
+    MenuController createAfterMinigameMenuController();
 
     /**
      * This method creates a

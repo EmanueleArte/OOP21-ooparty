@@ -15,7 +15,7 @@ import menu.common.controller.MenuController;
 import menu.gamecreationmenu.model.GameCreationMenuModelImpl;
 import utils.controller.GenericController;
 import utils.enums.OrdinalNumber;
-import utils.factories.PowerupFactoryImpl;
+import utils.factories.powerup.PowerupFactoryImpl;
 
 /**
  * ViewController for the after minigame menu.

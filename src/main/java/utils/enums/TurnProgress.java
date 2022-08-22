@@ -1,36 +1,42 @@
 package utils.enums;
 
 /**
- * this enum defines the progress in every turn.
+ * This enum defines the progress in every turn.
  */
 public enum TurnProgress {
     /**
-     * time to show banner.
+     * Time to show banner.
      */
     SHOW_BANNER,
     /**
-     * time to hide banner.
+     * Time to hide banner.
      */
     HIDE_BANNER,
     /**
-     * players turns (see PlayerTurnProgress).
+     * Time of the players turns (see {@link PlayerTurnProgress}).
      */
     PLAYERS_TURNS,
     /**
-     * time to play minigame.
+     * Time to play minigame.
      */
     PLAY_MINIGAME,
     /**
-     * time to show leaderboard.
+     * Time to show leaderboard.
      */
     SHOW_LEADERBOARD,
     /**
-     * end of turn.
+     * End of the turn.
      */
     END_OF_TURN;
 
-    public static TurnProgress next(final TurnProgress turn) {
-        return turn.ordinal() == values().length - 1 ? values()[0] : values()[turn.ordinal() + 1];
+    /**
+     * This method returns the next step of a turn progress.
+     * 
+     * @param turnProgress the {@link TurnProgress} to increment
+     * @return the next step
+     */
+    public static TurnProgress next(final TurnProgress turnProgress) {
+        return turnProgress.ordinal() == values().length - 1 ? values()[0] : values()[turnProgress.ordinal() + 1];
     }
 
 }

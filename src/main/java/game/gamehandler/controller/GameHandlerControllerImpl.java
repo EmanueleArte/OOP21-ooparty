@@ -3,6 +3,7 @@ package game.gamehandler.controller;
 import java.util.Optional;
 
 import game.dice.controller.DiceController;
+import game.dice.model.DiceModel;
 import game.gamehandler.model.GameHandlerModel;
 import game.gamehandler.view.GameHandlerViewControllerImpl;
 import game.player.Player;
@@ -19,6 +20,9 @@ import utils.enums.TurnProgress;
 import utils.factories.controller.MinigameControllerFactory;
 import utils.factories.controller.MinigameControllerFactoryImpl;
 
+/**
+ * Implementation of {@link GameHandlerController}.
+ */
 public class GameHandlerControllerImpl extends GenericControllerAbstr
         implements GenericController, GameHandlerController {
 
@@ -27,6 +31,14 @@ public class GameHandlerControllerImpl extends GenericControllerAbstr
     private DiceController dice;
     private final MinigameControllerFactory<?> minigameFactory;
 
+    /**
+     * Constructor for this class.
+     * 
+     * @param <S>            the scenes of the stage
+     * @param s              the {@link StageManager}
+     * @param diceController the {@link DiceController}
+     * @param model          the {@link DiceModel}
+     */
     public <S> GameHandlerControllerImpl(final StageManager<S> s, final DiceController diceController,
             final GameHandlerModel model) {
         super(s);
@@ -44,7 +56,7 @@ public class GameHandlerControllerImpl extends GenericControllerAbstr
     public final void setViewController(final GenericViewController viewController) {
         if (viewController instanceof GameHandlerViewControllerImpl) {
             this.viewController = (GameHandlerViewControllerImpl) viewController;
-            this.viewController.initialize(this.model.getPlayers(), this, this.model.getGameMap());
+            this.viewController.initialize(this.model.getPlayers(), this.model.getGameMap());
         } else {
             throw new IllegalArgumentException("The parameter must be an instance of GameHandlerViewControllerImpl");
         }
@@ -72,7 +84,8 @@ public class GameHandlerControllerImpl extends GenericControllerAbstr
                     Player currentPlayer = this.model.getCurrentPlayer().get();
                     switch (playerProgress.get()) {
                     case SHOW_BANNER:
-                        this.viewController.showBanner(this.model.getCurrentPlayer().get().getNickname().toUpperCase() + "'S TURN");
+                        this.viewController.showBanner(
+                                this.model.getCurrentPlayer().get().getNickname().toUpperCase() + "'S TURN");
                         break;
                     case HIDE_BANNER:
                         this.viewController.hideBanner();

@@ -20,7 +20,7 @@ public class PowerupMenuControllerImpl extends GenericControllerAbstr implements
     /**
      * Constructor for this class.
      * 
-     * @param <S>
+     * @param <S> the scenes of the stage
      * @param s     the {@link StageManager}
      * @param model the {@link PowerupMenuModel} to use
      */
