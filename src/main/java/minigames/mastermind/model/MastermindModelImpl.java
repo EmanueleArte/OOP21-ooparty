@@ -42,12 +42,7 @@ public class MastermindModelImpl extends MinigameModelAbstr implements Mastermin
             this.setCurrPlayer();
             return true;
         }
-<<<<<<< HEAD
-        this.getGameResults();
-        this.getStageManager().popScene();
-=======
         this.setGameResults();
->>>>>>> a53efb5ffd6ccbc6ee931c6a157847c158cc7b92
         return false;
     }
 
