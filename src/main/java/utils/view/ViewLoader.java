@@ -38,25 +38,39 @@ public interface ViewLoader<S> {
     void createPauseMenuView(GenericController controller);
 
     /**
-     * This method creates a mastermind view.
+     * This method creates a 'Mastermind' view.
      *
      * @param controller the controller to be used
      */
     void createMastermindView(GenericController controller);
 
     /**
-     * This method creates a who risks wins view.
+     * This method creates a 'Who Risks Wins' view.
      *
      * @param controller the controller to be used
      */
     void createWhoRisksWinsView(GenericController controller);
 
     /**
-     * This method creates a memo view.
+     * This method creates a 'Memo' view.
      *
      * @param controller the controller to be used
      */
     void createMemoView(GenericController memoControllerImpl);
+
+    /**
+     * This method created a 'You're the Bob-omb' view.
+     *
+     * @param controller the controller to be used
+     */
+    void createYoureTheBobombView(GenericController controller);
+
+    /**
+     * This method creates a 'Cut From the Team' view.
+     *
+     * @param controller the controller to be used
+     */
+    void createCutFromTheTeamView(GenericController memoControllerImpl);
 
     /**
      * This method creates a dice view.

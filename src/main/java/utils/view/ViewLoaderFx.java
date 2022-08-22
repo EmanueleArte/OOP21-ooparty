@@ -58,6 +58,16 @@ public class ViewLoaderFx<S> implements ViewLoader<S> {
     }
 
     @Override
+    public final void createYoureTheBobombView(final GenericController controller) {
+        this.createScene(controller, "minigames/you_are_the_bobomb.fxml");
+    }
+
+    @Override
+    public final void createCutFromTheTeamView(final GenericController controller) {
+        this.createScene(controller, "minigames/cut_from_the_team.fxml");
+    }
+
+    @Override
     public final void createDiceView(final GenericController controller) {
         this.createScene(controller, "game/dice.fxml");
     }
