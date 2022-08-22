@@ -9,13 +9,13 @@ import utils.view.GenericViewController;
 public interface MinigameViewController extends GenericViewController {
 
     /**
-     * This method starts the minigame next turn.
+     * This method starts the next turn.
      */
     void startNextTurn();
 
     /**
      * This method sets the player label with the current player nickname and color.
-     * 
+     *
      * @param player the current player
      */
     void setPlayerLabelText(Player player);
