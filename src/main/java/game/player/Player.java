@@ -13,7 +13,7 @@ import javafx.scene.paint.Color;
 public interface Player {
 
     /**
-     * Returns the player's nickanme.
+     * Returns the player's nickname.
      * 
      * @return the player's nickname
      */
