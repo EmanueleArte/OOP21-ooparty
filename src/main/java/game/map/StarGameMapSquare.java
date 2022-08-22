@@ -15,10 +15,11 @@ public class StarGameMapSquare extends GameMapSquareImpl {
     }
 
     /**
-     * {@inheritDoc}
+     * Adds a star to a player if that player has enough coins.
+     * @param p the player that will receive the star
      */
     @Override
-    public void receiveStar(final Player p) {
+    public void makeSpecialAction(final Player p) {
         if (this.checkEnoughCoins(p)) {
             p.earnStar();
             p.loseCoins(GameMapImpl.COINS_TO_BUY_STAR);
@@ -33,23 +34,8 @@ public class StarGameMapSquare extends GameMapSquareImpl {
     }
 
     @Override
-    public final boolean isCoinsGameMapSquare() {
-        return false;
-    }
-
-    @Override
     public final boolean isStarGameMapSquare() {
         return true;
-    }
-
-    @Override
-    public final boolean isPowerUpGameMapSquare() {
-        return false;
-    }
-
-    @Override
-    public final boolean isDamageGameMapSquare() {
-        return false;
     }
 
     @Override

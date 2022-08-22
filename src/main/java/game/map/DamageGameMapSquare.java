@@ -18,34 +18,27 @@ public class DamageGameMapSquare extends GameMapSquareImpl {
         this.generateNewDamage();
     }
 
-    @Override
-    public final int getDamage() {
-        return this.damage;
+    /**
+     * Builder for {@link DamageGameMapSquare}.
+     * @param damage the damage that will be contained in this square
+     */
+    public DamageGameMapSquare(final int damage) {
+        super();
+        this.damage = damage;
     }
 
+    /**
+     * Makes the player p lose life points.
+     * @param p the player that is going to lose life points
+     */
     @Override
-    public final void receiveDamage(final Player p) {
+    public final void makeSpecialAction(final Player p) {
         p.loseLifePoints(this.damage);
         this.generateNewDamage();
     }
 
     private void generateNewDamage() {
         this.damage = new Random().nextInt(GameMapSquareImpl.MAX_DAMAGE) + 1;
-    }
-
-    @Override
-    public final boolean isCoinsGameMapSquare() {
-        return false;
-    }
-
-    @Override
-    public final boolean isStarGameMapSquare() {
-        return false;
-    }
-
-    @Override
-    public final boolean isPowerUpGameMapSquare() {
-        return false;
     }
 
     @Override
