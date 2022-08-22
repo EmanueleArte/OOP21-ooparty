@@ -24,8 +24,9 @@ public class DiceControllerImpl extends GenericControllerAbstr implements DiceCo
     /**
      * Constructor for this class.
      * 
-     * @param <S>
-     * @param s
+     * @param <S>      the scenes of the stage
+     * @param s        the {@link StageManager}
+     * @param model    the {@link DiceModel}
      * @param noRepeat {@link Boolean} representing whether the dice must avoid
      *                 repetition or not
      */
