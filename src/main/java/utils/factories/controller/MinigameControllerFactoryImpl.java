@@ -19,7 +19,6 @@ public class MinigameControllerFactoryImpl<S> implements MinigameControllerFacto
 
     @Override
     public final MinigameController createRandomMinigameController() {
-        /*
         Random rand = new Random();
         switch (rand.nextInt(MinigameControllerFactoryImpl.MINIGAMES_NUMBER)) {
         case 0:
@@ -31,8 +30,6 @@ public class MinigameControllerFactoryImpl<S> implements MinigameControllerFacto
         default:
             return null;
         }
-        */
-        return this.stageManager.getControllerFactory().createMemoController(this.players);
     }
 }
 
