@@ -16,7 +16,7 @@ public class ViewLoaderFx<S> implements ViewLoader<S> {
 
     /**
      * Builds a new {@link ViewLoaderFx}.
-     * 
+     *
      * @param s the {@link StageManager}.
      */
     public ViewLoaderFx(final StageManager<S> s) {
@@ -53,6 +53,11 @@ public class ViewLoaderFx<S> implements ViewLoader<S> {
     }
 
     @Override
+    public final void createMemoView(final GenericController controller) {
+        this.createScene(controller, "minigames/memo.fxml");
+    }
+
+    @Override
     public final void createDiceView(final GenericController controller) {
         this.createScene(controller, "game/dice.fxml");
     }
@@ -70,7 +75,7 @@ public class ViewLoaderFx<S> implements ViewLoader<S> {
     /**
      * This method creates a specific scene given the arguments and adds it to the
      * scene list.
-     * 
+     *
      * @param controller the controller that act on the scene
      * @param fxmlUrl    the url to the fxml file to open
      */
