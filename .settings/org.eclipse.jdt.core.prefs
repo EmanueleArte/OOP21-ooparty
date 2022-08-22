@@ -54,6 +54,7 @@ org.eclipse.jdt.core.formatter.alignment_for_record_components=16
 org.eclipse.jdt.core.formatter.alignment_for_relational_operator=0
 org.eclipse.jdt.core.formatter.alignment_for_resources_in_try=80
 org.eclipse.jdt.core.formatter.alignment_for_selector_in_method_invocation=16
+
 org.eclipse.jdt.core.formatter.alignment_for_shift_operator=0
 org.eclipse.jdt.core.formatter.alignment_for_string_concatenation=16
 org.eclipse.jdt.core.formatter.alignment_for_superclass_in_type_declaration=16
@@ -70,11 +71,13 @@ org.eclipse.jdt.core.formatter.blank_lines_after_imports=1
 org.eclipse.jdt.core.formatter.blank_lines_after_last_class_body_declaration=0
 org.eclipse.jdt.core.formatter.blank_lines_after_package=1
 org.eclipse.jdt.core.formatter.blank_lines_before_abstract_method=1
+
 org.eclipse.jdt.core.formatter.blank_lines_before_field=0
 org.eclipse.jdt.core.formatter.blank_lines_before_first_class_body_declaration=0
 org.eclipse.jdt.core.formatter.blank_lines_before_imports=1
 org.eclipse.jdt.core.formatter.blank_lines_before_member_type=1
 org.eclipse.jdt.core.formatter.blank_lines_before_method=1
+
 org.eclipse.jdt.core.formatter.blank_lines_before_new_chunk=1
 org.eclipse.jdt.core.formatter.blank_lines_before_package=0
 org.eclipse.jdt.core.formatter.blank_lines_between_import_groups=1
@@ -101,6 +104,7 @@ org.eclipse.jdt.core.formatter.comment.clear_blank_lines_in_javadoc_comment=fals
 org.eclipse.jdt.core.formatter.comment.count_line_length_from_starting_position=true
 org.eclipse.jdt.core.formatter.comment.format_block_comments=true
 org.eclipse.jdt.core.formatter.comment.format_header=false
+
 org.eclipse.jdt.core.formatter.comment.format_html=true
 org.eclipse.jdt.core.formatter.comment.format_javadoc_comments=true
 org.eclipse.jdt.core.formatter.comment.format_line_comments=true

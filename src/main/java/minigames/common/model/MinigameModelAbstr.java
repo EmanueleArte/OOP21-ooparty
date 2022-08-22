@@ -95,7 +95,7 @@ public abstract class MinigameModelAbstr extends GameModelAbstr implements Minig
     }
 
     /**
-     * Setter for gameResults.
+     * Calculates and sets the game results.
      */
     protected void setGameResults() {
         this.gameResults = this.playoff(this.groupPlayersByScore());
