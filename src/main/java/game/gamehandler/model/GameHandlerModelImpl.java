@@ -118,7 +118,8 @@ public class GameHandlerModelImpl implements GameHandlerModel {
         if (this.dice.getTotal() > 0) {
             cp.moveForward(this.dice.getTotal(), this.gameMap);
             final GameMapSquare playerPosition = cp.getPosition(this.gameMap);
-            if (playerPosition.isCoinsGameMapSquare()) {
+            playerPosition.makeSpecialAction(cp);
+            /*if (playerPosition.isCoinsGameMapSquare()) {
                 playerPosition.makeSpecialAction(cp);
             } else if (playerPosition.isDamageGameMapSquare()) {
                 playerPosition.makeSpecialAction(cp);
@@ -126,7 +127,7 @@ public class GameHandlerModelImpl implements GameHandlerModel {
                 playerPosition.makeSpecialAction(cp);
             } else if (playerPosition.isPowerUpGameMapSquare()) {
                 playerPosition.makeSpecialAction(cp);
-            }
+            }*/
         }
     }
 

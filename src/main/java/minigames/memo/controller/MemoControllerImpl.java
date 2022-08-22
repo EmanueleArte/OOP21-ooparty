@@ -99,7 +99,6 @@ public class MemoControllerImpl extends MinigameControllerAbstr implements MemoC
     public boolean nextTurn() {
         var temp = this.memoModel.runGame();
         if (this.isOver()) {
-            System.out.println(this.memoModel.getPlayersClassification());
             this.closeGame();
         }
         return temp;

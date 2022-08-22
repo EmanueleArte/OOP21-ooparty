@@ -5,7 +5,6 @@ import java.util.Set;
 
 import game.player.Player;
 import game.player.PlayerImpl;
-import game.powerup.GenericPowerup;
 
 /**
  * The implementation of a generic {@link GameMapSquare}.

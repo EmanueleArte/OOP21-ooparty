@@ -41,21 +41,18 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
 <VBox alignment="CENTER" prefHeight="760.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="menu.afterminigamemenu.view.AfterMinigameMenuViewControllerImpl">
   <stylesheets> 
-     <URL value="@../fonts/fonts.css"/> 
+     <URL value="@../fonts/fonts.css" /> 
    </stylesheets>
   <children>
       <BorderPane prefHeight="200.0" prefWidth="200.0">
          <center>
             <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" spacing="20.0" BorderPane.alignment="CENTER">
                <children>
-                  <Label fx:id="endGameLabel">
-                     <font>
-                        <Font size="24.0" />
-                     </font>
-                  </Label>
+                  <Text fx:id="endGameText" fill="#dfbe07" stroke="#a67f00" />
                   <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
                      <children>
                         <VBox fx:id="vBox1" alignment="CENTER" prefHeight="0.0" prefWidth="0.0">
