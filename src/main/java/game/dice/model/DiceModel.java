@@ -14,6 +14,7 @@ public interface DiceModel {
     /**
      * This method makes the dice roll, generating one random result.
      * 
+     * @param player the {@link Player} who's rolling the dice
      * @return int containing the result of the roll
      */
     int rollDice(Player player);
@@ -32,9 +33,9 @@ public interface DiceModel {
     Optional<Integer> getLastResult();
 
     /**
-     * Getter for the first result in the results list.
+     * Getter for the {@link List} containing the previous rolls.
      * 
-     * @return the first result in the results list
+     * @return a list containing the previous rolls
      */
     List<Pair<Player, Integer>> getResults();
 
