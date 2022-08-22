@@ -13,7 +13,6 @@ import minigames.common.controller.MinigameController;
 import utils.controller.GenericController;
 import utils.controller.GenericControllerAbstr;
 import utils.graphics.controller.StageManager;
-import utils.view.GenericViewUtils;
 import utils.view.GenericViewController;
 import utils.enums.PlayerTurnProgress;
 import utils.enums.TurnProgress;
@@ -38,7 +37,7 @@ public class GameHandlerControllerImpl extends GenericControllerAbstr
 
     @Override
     public final void start() {
-        GenericViewUtils.createScene(this.getStageManager(), this, "game/game.fxml");
+        this.getStageManager().getGui().getViewLoader().createGameHandlerView(this);
     }
 
     @Override
