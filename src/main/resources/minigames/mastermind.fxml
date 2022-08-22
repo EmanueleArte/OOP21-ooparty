@@ -22,7 +22,7 @@
    <children>
       <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="2160.0" prefWidth="3840.0">
          <center>
-            <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0" spacing="30.0" BorderPane.alignment="CENTER">
+            <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" spacing="30.0" BorderPane.alignment="CENTER">
                <children>
                   <Text fill="#dfbe07" stroke="#a67f00" text="MASTERMIND">
                      

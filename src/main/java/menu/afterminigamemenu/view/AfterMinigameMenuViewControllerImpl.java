@@ -87,7 +87,7 @@ public class AfterMinigameMenuViewControllerImpl implements AfterMinigameMenuVie
 
     @Override
     public final void makeEndGameLeaderboard(final List<Player> players) {
-        this.endGameText.setText("Game End");
+        this.endGameText.setText("GAME END");
         for (int i = 0; i < players.size(); i++) {
             VBox v = this.vBoxes.get(i);
             this.setVBoxStyle(v, players.get(i));
