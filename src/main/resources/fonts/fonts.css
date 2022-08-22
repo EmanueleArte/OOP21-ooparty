@@ -3,7 +3,7 @@
     src: url('PhosphateInline.ttf');
 }
 
-.text {
+.Text {
     font-family: 'Phosphate Inline';
     -fx-font-family: 'Phosphate Inline';
 }

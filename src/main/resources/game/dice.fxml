@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.net.*?>
 <?import java.lang.Double?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.Group?>
@@ -11,6 +12,9 @@
 <?import javafx.scene.text.Text?>
 
 <VBox alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onKeyReleased="#onKeyPressed" onMouseClicked="#onClick" prefHeight="2160.0" prefWidth="3840.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="game.dice.view.DiceViewControllerImpl">
+   <stylesheets> 
+     <URL value="@../fonts/fonts.css"/> 
+   </stylesheets>
    <children>
       <Text fx:id="label" fill="#dfbe07" stroke="#a67f00" strokeType="OUTSIDE" text="Roll the Dice!">
          <VBox.margin>
