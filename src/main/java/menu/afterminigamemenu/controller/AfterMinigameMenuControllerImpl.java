@@ -3,7 +3,6 @@ package menu.afterminigamemenu.controller;
 import java.util.List;
 
 import game.player.Player;
-import menu.common.controller.MenuController;
 import menu.afterminigamemenu.view.AfterMinigameMenuViewController;
 import menu.afterminigamemenu.view.AfterMinigameMenuViewControllerImpl;
 import utils.controller.GenericControllerAbstr;
