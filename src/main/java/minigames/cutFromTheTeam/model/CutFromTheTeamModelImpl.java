@@ -1,24 +1,109 @@
 package minigames.cutFromTheTeam.model;
 
+import java.util.Collections;
+import java.util.LinkedList;
 import java.util.List;
+import java.util.Optional;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 import game.dice.model.DiceModel;
 import game.player.Player;
 import minigames.common.model.MinigameModelAbstr;
 
+/**
+ * Implementation of {@link CutFromTheTeamModel} and extension of
+ * {@link MinigameModelAbstr}.
+ */
 public class CutFromTheTeamModelImpl extends MinigameModelAbstr implements CutFromTheTeamModel {
 
-    public CutFromTheTeamModelImpl(final List<Player> players, final DiceModel diceModel) {
-        super(players, diceModel);
+    private static final int TOTAL_ROPES_NUMBER = 10;
+    private static final int SCORE_FOR_EACH_ROPE_GUESSED = 1;
+
+    private final List<Boolean> ropes;
+    private Optional<Boolean> ropeChosen;
+    private final List<Player> deadPlayer;
+
+    /**
+     * Builds a new {@link CutFromTheTeamModelImpl}.
+     *
+     * @param players the players of the game.
+     * @param dice    the dice controller.
+     */
+    public CutFromTheTeamModelImpl(final List<Player> players, final DiceModel dice) {
+        super(players, dice);
+        this.ropes = this.initializeAllRopes();
+        this.ropeChosen = Optional.empty();
+        this.deadPlayer = new LinkedList<>();
+        this.changeTurn();
+        this.initializePlayersScores();
+    }
+
+    /**
+     * {@inheritDoc}
+     *
+     * @return {@code true} if this turn , {@code false} otherwise.
+     *
+     * @throws IllegalStateException if the game is over.
+     */
+    public boolean runGame() {
+        if (this.isOver()) {
+            throw new IllegalStateException("The game is already over");
+        }
+        if (this.ropeChosen.isEmpty()) {
+            return false;
+        }
+        if (!this.hasCurrPlayer()) {
+            this.changeTurn();
+        }
+        final var ropeChosen = this.ropeChosen.get();
+        this.ropeChosen = Optional.empty();
+        if (ropeChosen) {
+            this.deadPlayer.add(this.getCurrPlayer());
+        }
+        this.ropes.remove(!ropeChosen);
+        this.setScore(this.getScore() + SCORE_FOR_EACH_ROPE_GUESSED);
+        return false;
     }
 
     /**
      * {@inheritDoc}
      */
     @Override
-    public boolean runGame() {
-        // TODO Auto-generated method stub
-        return false;
+    public void setRope(final Boolean rope) {
+        this.ropeChosen = Optional.of(rope);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public boolean isOver() {
+        return this.deadPlayer.size() >= this.getPlayers().size() - 1;
+    }
+
+    private void changeTurn() {
+        if (this.deadPlayer.size() >= this.getPlayers().size() - 1) {
+            throw new IllegalStateException("The game is over");
+        }
+        if (!this.hasNextPlayer()) {
+            this.setPlayerIterator(
+                    this.getPlayers().stream().filter(p -> !this.deadPlayer.contains(p)).collect(Collectors.toList()));
+
+        }
+        this.setCurrPlayer();
+        this.ropeChosen = Optional.empty();
+    }
+
+    private List<Boolean> initializeAllRopes() {
+        final var listRopes = IntStream.range(0, TOTAL_ROPES_NUMBER).boxed().map(i -> i < this.getPlayers().size() - 1)
+                .collect(Collectors.toList());
+        Collections.shuffle(listRopes);
+        return listRopes;
+    }
+
+    private void initializePlayersScores() {
+        this.getPlayers().stream().forEach(p -> this.setScore(0));
     }
 
 }
