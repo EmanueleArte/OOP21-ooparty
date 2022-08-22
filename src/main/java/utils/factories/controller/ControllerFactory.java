@@ -55,14 +55,14 @@ public interface ControllerFactory {
     MenuController createPauseMenuController();
 
     /**
-     * This method creates a {@link AfterMinigameMenuController}.
+     * This method creates a {@link MenuController} for the after minigame menu.
      * 
-     * @return the {@link AfterMinigameMenuController} created
+     * @return the after minigame menu created
      */
     MenuController createAfterMinigameController();
 
     /**
-     * This method creates a {@link MastermindController}.
+     * This method creates a {@link MinigameController} for the minigame mastermind.
      * 
      * @param players the list of {@link Player} that participates to the minigame
      * @return the {@link MastermindController} created
