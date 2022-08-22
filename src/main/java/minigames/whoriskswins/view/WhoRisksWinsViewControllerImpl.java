@@ -7,11 +7,10 @@ import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.shape.Rectangle;
 import javafx.util.Duration;
+import javafx.util.Pair;
 import minigames.common.view.MinigameViewControllerAbstr;
 import minigames.whoriskswins.controller.WhoRisksWinsController;
 import utils.GuiUtils;
-import utils.Pair;
-import utils.PairImpl;
 import utils.controller.GenericController;
 import utils.enums.Notice;
 
@@ -40,8 +39,8 @@ public class WhoRisksWinsViewControllerImpl extends MinigameViewControllerAbstr 
 
     @FXML
     private void initialize() {
-        this.blockCoordinates = new PairImpl<>(this.block.getLayoutX(), this.block.getLayoutY());
-        this.playerCoordinates = new PairImpl<>(this.getPlayerAvatar().getLayoutX(),
+        this.blockCoordinates = new Pair<>(this.block.getLayoutX(), this.block.getLayoutY());
+        this.playerCoordinates = new Pair<>(this.getPlayerAvatar().getLayoutX(),
                 this.getPlayerAvatar().getBoundsInParent().getMinY());
     }
 
@@ -63,7 +62,7 @@ public class WhoRisksWinsViewControllerImpl extends MinigameViewControllerAbstr 
     @Override
     public final void startNextTurn() {
         if (this.wrwController.nextTurn()) {
-            GuiUtils.resetPositionY(this.block, this.blockCoordinates.getY());
+            GuiUtils.resetPositionY(this.block, this.blockCoordinates.getValue());
             this.setBlockFallingSpeed();
             this.showNotice(Notice.PRESS_ENTER_TO.getNotice() + "start.");
             this.nextTurn = false;
@@ -89,7 +88,7 @@ public class WhoRisksWinsViewControllerImpl extends MinigameViewControllerAbstr 
             this.fallingStarted = false;
             this.blockFall.stop();
             this.wrwController.stopBlockFall(this.block.getTranslateY() + this.block.getHeight(),
-                    this.playerCoordinates.getY());
+                    this.playerCoordinates.getValue());
         } else {
             if (this.nextTurn) {
                 this.startNextTurn();
@@ -108,7 +107,7 @@ public class WhoRisksWinsViewControllerImpl extends MinigameViewControllerAbstr 
         this.blockFall = new TranslateTransition();
         this.blockFall.setNode(this.block);
         this.blockFall.setDuration(Duration.millis(this.wrwController.getFallingSpeed()));
-        this.blockFall.setToY(this.playerCoordinates.getY() - this.block.getHeight() + 1);
+        this.blockFall.setToY(this.playerCoordinates.getValue() - this.block.getHeight() + 1);
         this.blockFall.setInterpolator(Interpolator.EASE_IN);
         this.blockFall.setOnFinished(e -> this.gameAction());
     }

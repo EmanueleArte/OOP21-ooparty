@@ -4,10 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.Random;
+import javafx.util.Pair;
 
 import game.player.Player;
-import utils.Pair;
-import utils.PairImpl;
 
 /**
  * Implementation of {@link DiceModel}.
@@ -55,7 +54,7 @@ public class DiceModelImpl implements DiceModel {
 
     @Override
     public final int getTotal() {
-        return this.results.stream().map(r -> r.getY()).reduce(0, Integer::sum);
+        return this.results.stream().map(r -> r.getValue()).reduce(0, Integer::sum);
     }
 
     /**
@@ -65,7 +64,7 @@ public class DiceModelImpl implements DiceModel {
      */
     protected void setResult(final Player player, final int result) {
         this.lastResult = Optional.of(result);
-        this.results.add(new PairImpl<>(player, result));
+        this.results.add(new Pair<>(player, result));
     }
 
     /**

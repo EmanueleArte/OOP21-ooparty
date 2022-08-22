@@ -3,10 +3,10 @@ package game.dice.controller;
 import game.player.Player;
 
 import java.util.Iterator;
+import javafx.util.Pair;
 
 import game.dice.model.DiceModel;
 import game.dice.view.DiceViewController;
-import utils.Pair;
 import utils.controller.GenericControllerAbstr;
 import utils.graphics.controller.StageManager;
 import utils.view.GenericViewController;
@@ -80,9 +80,9 @@ public class DiceControllerImpl extends GenericControllerAbstr implements DiceCo
         final Pair<Player, Integer> r = this.results.next();
         this.getStageManager().getGui().getViewFactory().createDiceView(this);
         if (this.playoff) {
-            this.viewController.initialize(r.getY(), r.getX().getColor(), "Playoff!");
+            this.viewController.initialize(r.getValue(), r.getKey().getColor(), "Playoff!");
         } else {
-            this.viewController.initialize(r.getY(), r.getX().getColor(), "Roll the Dice!");
+            this.viewController.initialize(r.getValue(), r.getKey().getColor(), "Roll the Dice!");
         }
     }
 
