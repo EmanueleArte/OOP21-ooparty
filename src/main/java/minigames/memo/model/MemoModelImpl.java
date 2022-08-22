@@ -16,14 +16,10 @@ import minigames.common.model.MinigameModelAbstr;
  * {@link MinigameModelAbstr}.
  */
 public class MemoModelImpl extends MinigameModelAbstr implements MemoModel {
-    /**
-     * The number of pair of cards to create for each player.
-     */
-    static final int NUMBER_OF_PAIRS_PER_PLAYER = 5;
-    /**
-     * The number of points gave to a player for each pair of cards guessed.
-     */
-    static final int SCORE_FOR_GUESSED_PAIR = 1;
+
+    private static final int NUMBER_OF_PAIRS_PER_PLAYER = 4;
+    private static final int SCORE_FOR_GUESSED_PAIR = 1;
+
     private final List<Integer> cards;
     private Optional<Integer> firstCard;
     private Optional<Integer> secondCard;
@@ -38,6 +34,7 @@ public class MemoModelImpl extends MinigameModelAbstr implements MemoModel {
         super(players, dice);
         this.cards = this.initialiseCards();
         this.changeTurn();
+        this.initializePlayersScores();
     }
 
     /**
@@ -129,6 +126,10 @@ public class MemoModelImpl extends MinigameModelAbstr implements MemoModel {
 
     private Stream<Integer> getCardsValues() {
         return IntStream.range(0, NUMBER_OF_PAIRS_PER_PLAYER * this.getPlayers().size()).boxed();
+    }
+
+    private void initializePlayersScores() {
+        this.getPlayers().stream().forEach(p -> this.setScore(0));
     }
 
 }
