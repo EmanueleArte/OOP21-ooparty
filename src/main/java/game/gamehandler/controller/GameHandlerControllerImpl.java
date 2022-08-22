@@ -3,7 +3,6 @@ package game.gamehandler.controller;
 import java.util.Optional;
 
 import game.dice.controller.DiceController;
-import game.dice.model.DiceModel;
 import game.gamehandler.model.GameHandlerModel;
 import game.gamehandler.view.GameHandlerViewControllerImpl;
 import game.player.Player;
@@ -37,7 +36,7 @@ public class GameHandlerControllerImpl extends GenericControllerAbstr
      * @param <S>            the scenes of the stage
      * @param s              the {@link StageManager}
      * @param diceController the {@link DiceController}
-     * @param model          the {@link DiceModel}
+     * @param model          the {@link GameHandlerModel}
      */
     public <S> GameHandlerControllerImpl(final StageManager<S> s, final DiceController diceController,
             final GameHandlerModel model) {
