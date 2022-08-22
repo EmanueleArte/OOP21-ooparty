@@ -3,7 +3,8 @@ package minigames.mastermind.view;
 import minigames.common.view.MinigameViewController;
 
 /**
- * Extension of {@link MinigameViewController}.
+ * This interface models the Mastermind view controller. Specialization of
+ * {@link MinigameViewController}.
  */
 public interface MastermindViewController extends MinigameViewController {
 

@@ -34,7 +34,7 @@ public class PauseMenuControllerImpl extends SimpleMenuControllerAbstr implement
 
     @Override
     public final void createMenu() {
-        this.getStageManager().getGui().getViewFactory().createPauseMenuView(this);
+        this.getStageManager().getGui().getViewLoader().createPauseMenuView(this);
     }
 
 }

@@ -4,7 +4,8 @@ import game.player.Player;
 import utils.view.GenericViewController;
 
 /**
- * This interface models a minigame view controller.
+ * This interface models a minigame view controller. Specilization of
+ * {@link GenericViewController}.
  */
 public interface MinigameViewController extends GenericViewController {
 
