@@ -14,7 +14,7 @@ public class MagnetPowerup implements GenericPowerup {
 
     @Override
     public final void usePowerup(final Player target) {
-        target.loseCoins(target.getCoinsCount());
+        target.loseCoins(target.getCoinsCount() / 3);
     }
 
     @Override
