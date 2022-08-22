@@ -1,5 +1,6 @@
 package game.gamehandler.view;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -21,6 +22,8 @@ import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.geometry.VPos;
 import javafx.scene.Group;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -214,41 +217,50 @@ public class GameHandlerViewControllerImpl implements GenericViewController, Gam
     private void initializeMap(final GameMap map) {
         MapLayoutReader reader = new SimpleMapLayoutReader();
         var layoutType = map.getLayout();
-        var layout = reader.loadMapLayout(layoutType);
 
-        map.getSquares().stream().map(s -> {
-            var img = getImage(s);
-            Label label = new Label();
+        try {
+            var layout = reader.loadMapLayout(layoutType);
 
-            if (img.isPresent()) {
-                ImageView view = new ImageView(img.get());
-                view.setFitHeight(ICON_DIM);
-                view.setPreserveRatio(true);
-                label.setGraphic(view);
-            } else {
-                if (map.getSquares().indexOf(s) == 0) {
-                    label.setText("Start");
+            map.getSquares().stream().map(s -> {
+                var img = getImage(s);
+                Label label = new Label();
+
+                if (img.isPresent()) {
+                    ImageView view = new ImageView(img.get());
+                    view.setFitHeight(ICON_DIM);
+                    view.setPreserveRatio(true);
+                    label.setGraphic(view);
+                } else {
+                    if (map.getSquares().indexOf(s) == 0) {
+                        label.setText("Start");
+                    }
                 }
-            }
 
-            label.setId(map.getSquares().indexOf(s) + "");
+                label.setId(map.getSquares().indexOf(s) + "");
 
-            label.setPrefWidth(SQUARE_WIDTH);
-            label.setPrefHeight(SQUARE_HEIGHT);
-            label.setAlignment(Pos.CENTER);
-            label.setBorder(new Border(
-                    new BorderStroke(Color.BLACK, BorderStrokeStyle.SOLID, CornerRadii.EMPTY, new BorderWidths(SQUARE_BORDER_WIDTH))));
-            label.setBackground(new Background(new BackgroundFill(Color.GRAY, CornerRadii.EMPTY, Insets.EMPTY)));
+                label.setPrefWidth(SQUARE_WIDTH);
+                label.setPrefHeight(SQUARE_HEIGHT);
+                label.setAlignment(Pos.CENTER);
+                label.setBorder(new Border(
+                        new BorderStroke(Color.BLACK, BorderStrokeStyle.SOLID, CornerRadii.EMPTY, new BorderWidths(SQUARE_BORDER_WIDTH))));
+                label.setBackground(new Background(new BackgroundFill(Color.GRAY, CornerRadii.EMPTY, Insets.EMPTY)));
 
-            return label;
-        }).forEach(l -> {
-            var index = Integer.parseInt(l.getId());
-            mapGrid.getChildren().add(l);
-            GridPane.setRowIndex(l, (int) layout.get(index).getY());
-            GridPane.setColumnIndex(l, (int) layout.get(index).getX());
-            GridPane.setHalignment(l, HPos.CENTER);
-            GridPane.setValignment(l, VPos.CENTER);
-        });
+                return label;
+            }).forEach(l -> {
+                var index = Integer.parseInt(l.getId());
+                mapGrid.getChildren().add(l);
+                GridPane.setRowIndex(l, (int) layout.get(index).getY());
+                GridPane.setColumnIndex(l, (int) layout.get(index).getX());
+                GridPane.setHalignment(l, HPos.CENTER);
+                GridPane.setValignment(l, VPos.CENTER);
+            });
+        } catch (IOException e) {
+            Alert errorAlert = new Alert(AlertType.ERROR);
+            errorAlert.setHeaderText("Error");
+            errorAlert.setContentText("Error while loading the map layout");
+            errorAlert.showAndWait();
+        }
+
 
         mapGrid.setHgap(GRID_SPACING);
         mapGrid.setVgap(GRID_SPACING);

@@ -19,7 +19,7 @@ import utils.enums.SquareType;
 
 /**
  * Factory which creates a simple game board, or rather, a board with the special squares randomly disposed on the board.
- * {@link SimpleGameBoardFactory} has a fixed size (defined by {@link FixedSizeGameBoard} which extends).
+ * {@link SimpleGameBoardFactory} has a fixed size (defined by {@link FixedSizeGameBoardFactory} which extends).
  */
 public class SimpleGameBoardFactory extends FixedSizeGameBoardFactory {
 
