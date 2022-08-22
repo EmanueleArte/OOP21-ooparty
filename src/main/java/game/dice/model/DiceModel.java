@@ -32,9 +32,9 @@ public interface DiceModel {
     Optional<Integer> getLastResult();
 
     /**
-     * Getter for the first result in the results list.
+     * Getter for the {@link List} containing the previous rolls.
      * 
-     * @return the first result in the results list
+     * @return a list containing the previous rolls
      */
     List<Pair<Player, Integer>> getResults();
 
