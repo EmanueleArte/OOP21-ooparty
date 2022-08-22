@@ -52,6 +52,11 @@ public class PlayerImpl implements Player {
         this.isDead = false;
     }
 
+    /**
+     * Constructor for this class.
+     * 
+     * @param nickname the selected nickname
+     */
     public PlayerImpl(final String nickname) {
         this(nickname, null);
     }
@@ -194,11 +199,12 @@ public class PlayerImpl implements Player {
             return false;
         }
         PlayerImpl other = (PlayerImpl) obj;
-        return this.coins == other.coins && Objects.equals(this.color, other.color) && this.dicesToRoll == other.dicesToRoll
-                && this.isDead == other.isDead && this.isLastStarEarned == other.isLastStarEarned
-                && this.lastDamageTaken == other.lastDamageTaken && this.lastEarnedCoins == other.lastEarnedCoins
-                && this.lifePoints == other.lifePoints && Objects.equals(this.nickname, other.nickname)
-                && Objects.equals(this.powerups, other.powerups) && this.stars == other.stars;
+        return this.coins == other.coins && Objects.equals(this.color, other.color)
+                && this.dicesToRoll == other.dicesToRoll && this.isDead == other.isDead
+                && this.isLastStarEarned == other.isLastStarEarned && this.lastDamageTaken == other.lastDamageTaken
+                && this.lastEarnedCoins == other.lastEarnedCoins && this.lifePoints == other.lifePoints
+                && Objects.equals(this.nickname, other.nickname) && Objects.equals(this.powerups, other.powerups)
+                && this.stars == other.stars;
     }
 
     @Override
