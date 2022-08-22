@@ -9,7 +9,7 @@ public interface GenericController {
 
     /**
      * Setter for the view controller.
-     * 
+     *
      * @param viewController the view controller to use
      * @throws IllegalArgumentException if the parameter is of the wrong type
      */
@@ -17,7 +17,7 @@ public interface GenericController {
 
     /**
      * Getter for the view controller.
-     * 
+     *
      * @return the view controller
      */
     GenericViewController getViewController();

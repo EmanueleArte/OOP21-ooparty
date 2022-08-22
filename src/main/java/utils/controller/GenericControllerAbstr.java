@@ -12,7 +12,7 @@ public abstract class GenericControllerAbstr implements GenericController {
 
     /**
      * Builder for {@link GenericControllerAbstr}.
-     * 
+     *
      * @param <S> the scenes of the stage
      * @param s   the {@link StageManager}
      */
@@ -20,15 +20,21 @@ public abstract class GenericControllerAbstr implements GenericController {
         this.stageManager = s;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public abstract void setViewController(GenericViewController viewController);
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public abstract GenericViewController getViewController();
 
     /**
      * Getter for stageManager.
-     * 
+     *
      * @return the {@link StageManager}
      */
     protected StageManager<?> getStageManager() {
