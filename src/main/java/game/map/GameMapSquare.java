@@ -3,7 +3,6 @@ package game.map;
 import java.util.Set;
 
 import game.player.Player;
-import game.powerup.GenericPowerup;
 
 /**
  * The interface of a game map square.
