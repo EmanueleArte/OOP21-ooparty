@@ -24,6 +24,7 @@ import menu.powerupmenu.model.PowerupMenuModelImpl;
 import minigames.common.controller.MinigameController;
 import minigames.mastermind.controller.MastermindControllerImpl;
 import minigames.mastermind.model.MastermindModelImpl;
+import minigames.memo.controller.MemoControllerImpl;
 import minigames.memo.model.MemoModelImpl;
 import minigames.whoriskswins.controller.WhoRisksWinsControllerImpl;
 import minigames.whoriskswins.model.WhoRisksWinsModelImpl;
@@ -35,7 +36,7 @@ public class ControllerFactoryFx<S> implements ControllerFactory {
 
     /**
      * Builds a {@link ControllerFactoryFx}.
-     * 
+     *
      * @param stageManager the {@link StageManager}
      */
     public ControllerFactoryFx(final StageManager<S> stageManager) {
@@ -94,17 +95,17 @@ public class ControllerFactoryFx<S> implements ControllerFactory {
     }
 
     @Override
-    public final PowerupMenuController createPowerupMenuController(final List<Player> players) {
-        var model = new PowerupMenuModelImpl(players);
-        var controller = new PowerupMenuControllerImpl(this.stageManager, model);
-        return controller;
-    }
-
-    @Override
     public final MinigameController createMemoController(final List<Player> players) {
         var diceController = this.createDiceController(true);
         var model = new MemoModelImpl(players, diceController.getModel());
         var controller = new MemoControllerImpl(this.stageManager, model, diceController);
+        return controller;
+    }
+
+    @Override
+    public final PowerupMenuController createPowerupMenuController(final List<Player> players) {
+        var model = new PowerupMenuModelImpl(players);
+        var controller = new PowerupMenuControllerImpl(this.stageManager, model);
         return controller;
     }
 
