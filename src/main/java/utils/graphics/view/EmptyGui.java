@@ -1,6 +1,6 @@
 package utils.graphics.view;
 
-import utils.factories.ViewFactory;
+import utils.factories.view.ViewFactory;
 import utils.graphics.controller.StageManager;
 
 /**

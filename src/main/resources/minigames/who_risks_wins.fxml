@@ -28,9 +28,9 @@
                         <Font size="20.0" />
                      </font>
                   </Label>
-                  <Pane prefHeight="400.0" prefWidth="3840.0">
+                  <Pane prefHeight="470.0" prefWidth="3840.0">
                      <children>
-                        <Group fx:id="playerAvatar" layoutX="1920.0" layoutY="385.0" scaleX="0.5" scaleY="0.5">
+                        <Group fx:id="playerAvatar" layoutX="1920.0" layoutY="450.0" scaleX="0.5" scaleY="0.5">
                            <children>
                               <Polygon fill="DODGERBLUE" points="-50.0, 40.0, 50.0, 40.0, 0.0, -60.0" scaleX="0.8" stroke="BLACK" strokeType="INSIDE" />
                               <Circle fill="DODGERBLUE" layoutY="-59.0" radius="27.0" stroke="BLACK" strokeType="INSIDE" />

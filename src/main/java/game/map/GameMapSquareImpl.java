@@ -4,20 +4,28 @@ import java.util.HashSet;
 import java.util.Set;
 
 import game.player.Player;
+import game.player.PlayerImpl;
+import game.powerup.GenericPowerup;
 
+/**
+ * The implementation of a generic {@link GameMapSquare}.
+ */
 public class GameMapSquareImpl implements GameMapSquare {
     private Set<Player> players;
 
     /**
      * Maximum number of coins that can be found on a coin square.
      */
-    public static final int MAX_COINS = 10;
+    public static final int MAX_COINS = 20;
 
     /**
      * Maximum number of damage that can be taken from a damage square.
      */
-    public static final int MAX_DAMAGE = 50;
+    public static final int MAX_DAMAGE = PlayerImpl.MAX_LIFE / 2;
 
+    /**
+     * Builder for {@link GameMapSquareImpl}.
+     */
     public GameMapSquareImpl() {
         this.players = new HashSet<>();
     }
@@ -41,7 +49,7 @@ public class GameMapSquareImpl implements GameMapSquare {
     }
 
     /**
-     * 
+     * {@inheritDoc}
      */
     @Override
     public int getCoinsNumber() {
@@ -49,7 +57,7 @@ public class GameMapSquareImpl implements GameMapSquare {
     }
 
     /**
-     * 
+     * {@inheritDoc}
      */
     @Override
     public void receiveCoins(final Player p) {
@@ -57,7 +65,7 @@ public class GameMapSquareImpl implements GameMapSquare {
     }
 
     /**
-     * 
+     * {@inheritDoc}
      */
     @Override
     public int getDamage() {
@@ -65,7 +73,7 @@ public class GameMapSquareImpl implements GameMapSquare {
     }
 
     /**
-     * 
+     * {@inheritDoc}
      */
     @Override
     public void receiveDamage(final Player p) {
@@ -73,7 +81,7 @@ public class GameMapSquareImpl implements GameMapSquare {
     }
 
     /**
-     * 
+     * {@inheritDoc}
      */
     @Override
     public void receiveStar(final Player p) {
@@ -81,7 +89,23 @@ public class GameMapSquareImpl implements GameMapSquare {
     }
 
     /**
-     * 
+     * {@inheritDoc}
+     */
+    @Override
+    public void receivePowerup(final Player p) {
+        throw new UnsupportedOperationException("This is not a powerup game map square");
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public GenericPowerup getPowerup() {
+        throw new UnsupportedOperationException("This is not a powerup game map square");
+    }
+
+    /**
+     * {@inheritDoc}
      */
     @Override
     public boolean isCoinsGameMapSquare() {
@@ -89,7 +113,7 @@ public class GameMapSquareImpl implements GameMapSquare {
     }
 
     /**
-     * 
+     * {@inheritDoc}
      */
     @Override
     public boolean isStarGameMapSquare() {
@@ -97,7 +121,7 @@ public class GameMapSquareImpl implements GameMapSquare {
     }
 
     /**
-     * 
+     * {@inheritDoc}
      */
     @Override
     public boolean isPowerUpGameMapSquare() {
@@ -105,10 +129,20 @@ public class GameMapSquareImpl implements GameMapSquare {
     }
 
     /**
-     * 
+     * {@inheritDoc}
      */
     @Override
     public boolean isDamageGameMapSquare() {
         return false;
     }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public String toString() {
+        return "GameMapSquare []";
+    }
+
+
 }

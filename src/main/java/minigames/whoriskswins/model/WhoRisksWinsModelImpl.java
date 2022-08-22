@@ -3,17 +3,15 @@ package minigames.whoriskswins.model;
 import java.util.List;
 import java.util.Random;
 
+import game.dice.model.DiceModel;
 import game.player.Player;
 import minigames.common.model.MinigameModelAbstr;
-import utils.graphics.controller.StageManager;
 
 /**
  * Implementation of {@link WhoRisksWinsModel} and extension of
  * {@link MinigameModelAbstr}.
- * 
- * @param <S> the scenes of the stage
  */
-public class WhoRisksWinsModelImpl<S> extends MinigameModelAbstr<S> implements WhoRisksWinsModel<S> {
+public class WhoRisksWinsModelImpl extends MinigameModelAbstr implements WhoRisksWinsModel {
 
     /**
      * Range of milliseconds.
@@ -22,17 +20,17 @@ public class WhoRisksWinsModelImpl<S> extends MinigameModelAbstr<S> implements W
     /**
      * Minimum milliseconds.
      */
-    private static final int MINIMUM_TIME = 700;
+    private static final int MINIMUM_TIME = 300;
     private int blockFallingSpeed;
 
     /**
      * Builds a new {@link WhoRisksWinsModelImpl}.
      * 
      * @param players the list of players
-     * @param s       the {@link StageManager}
+     * @param dice    the {@link DiceModel}
      */
-    public WhoRisksWinsModelImpl(final List<Player> players, final StageManager<S> s) {
-        super(players, s);
+    public WhoRisksWinsModelImpl(final List<Player> players, final DiceModel dice) {
+        super(players, dice);
     }
 
     @Override
@@ -43,7 +41,6 @@ public class WhoRisksWinsModelImpl<S> extends MinigameModelAbstr<S> implements W
             return true;
         }
         this.setGameResults();
-        this.getStageManager().popScene();
         return false;
     }
 

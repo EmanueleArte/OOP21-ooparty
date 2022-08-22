@@ -7,32 +7,34 @@ public enum PlayerTurnProgress {
     /**
      * time to show banner.
      */
-    SHOW_BANNER(0),
+    SHOW_BANNER,
     /**
      * time to hide banner.
      */
-    HIDE_BANNER(1),
+    HIDE_BANNER,
     /**
      * time to roll the dice.
      */
-    ROLL_DICE(2),
+    USE_POWERUP,
+    /**
+     * time to roll the dice.
+     */
+    ROLL_DICE,
     /**
      * time to move player's avatar.
      */
-    MOVE_PLAYER(3),
+    MOVE_PLAYER,
     /**
      * end of player turn.
      */
-    END_OF_TURN(5);
+    END_OF_TURN;
 
-    private int progress;
-
-    PlayerTurnProgress(final int i) {
-        this.progress = i;
+    public static PlayerTurnProgress next(final PlayerTurnProgress turn) {
+        return turn.ordinal() == values().length - 1 ? values()[0] : values()[turn.ordinal() + 1];
     }
 
-    public int getProgress() {
-        return this.progress;
+    public static PlayerTurnProgress previous(final PlayerTurnProgress turn) {
+        return turn.ordinal() == 0 ? values()[values().length - 1] : values()[turn.ordinal() - 1];
     }
 
 }

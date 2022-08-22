@@ -2,36 +2,38 @@ package minigames.mastermind.controller;
 
 import java.util.List;
 
+import game.dice.controller.DiceController;
 import game.player.Player;
+import minigames.common.controller.MinigameControllerAbstr;
 import minigames.common.controller.MinigameGuideControllerImpl;
 import minigames.mastermind.model.MastermindModel;
-import minigames.mastermind.model.MastermindModelImpl;
 import minigames.mastermind.view.MastermindViewController;
 import utils.controller.GenericController;
-import utils.controller.GenericControllerAbstr;
 import utils.graphics.controller.StageManager;
 import utils.view.GenericViewController;
 import utils.view.GenericViewUtils;
 
 /**
- * Extension of {@link GenericControllerAbstr} and implementation of
+ * Extension of {@link MinigameControllerAbstr} and implementation of
  * {@link MastermindController}.
  */
-public class MastermindControllerImpl extends GenericControllerAbstr implements MastermindController {
+public class MastermindControllerImpl extends MinigameControllerAbstr implements MastermindController {
 
-    private final MastermindModel<?> mastermindModel;
+    private final MastermindModel mastermindModel;
     private MastermindViewController mastermindViewController;
 
     /**
      * Builder for {@link MastermindControllerImpl}.
      * 
-     * @param <S>     the scenes of the stage
-     * @param s       the {@link StageManager}
-     * @param players the list of players
+     * @param <S>   the scenes of the stage
+     * @param s     the {@link StageManager}
+     * @param model the {@link MastermindModel}
+     * @param dice  the {@link DiceController}
      */
-    public <S> MastermindControllerImpl(final StageManager<S> s, final List<Player> players) {
-        super(s);
-        this.mastermindModel = new MastermindModelImpl<>(players, s);
+    public <S> MastermindControllerImpl(final StageManager<S> s, final MastermindModel model,
+            final DiceController dice) {
+        super(s, dice);
+        this.mastermindModel = model;
     }
 
     @Override
@@ -56,8 +58,8 @@ public class MastermindControllerImpl extends GenericControllerAbstr implements 
     @Override
     public final void startGame() {
         this.getStageManager().getGui().getViewFactory().createMastermindView(this);
-        final GenericController guideController = new MinigameGuideControllerImpl(this.getStageManager(), this);
-        GenericViewUtils.createScene(this.getStageManager(), guideController, "minigames/mastermind_guide.fxml");
+        final GenericController guideController = new MinigameGuideControllerImpl(this.getStageManager());
+        this.getStageManager().getGui().getViewFactory().createMastermindGuideView(guideController);
     }
 
     @Override

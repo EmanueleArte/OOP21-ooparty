@@ -3,14 +3,11 @@ package game.common.model;
 import java.util.List;
 
 import game.player.Player;
-import utils.graphics.controller.StageManager;
 
 /**
  * This interface models the game model.
- * 
- * @param <S> the scenes of the stage
  */
-public interface GameModel<S> {
+public interface GameModel {
 
     /**
      * This method runs the game as long as there are turns to do.
@@ -18,13 +15,6 @@ public interface GameModel<S> {
      * @return true if there is another turn to play
      */
     boolean runGame();
-
-    /**
-     * Getter for the {@link StageManager}.
-     * 
-     * @return the stage manager instance else null
-     */
-    StageManager<S> getStageManager();
 
     /**
      * Getter for the list of players.

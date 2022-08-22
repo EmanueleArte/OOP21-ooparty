@@ -11,8 +11,8 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import utils.controller.GenericController;
-import utils.factories.ViewFactory;
-import utils.factories.FxmlViewFactoryImpl;
+import utils.factories.view.FxmlViewFactoryImpl;
+import utils.factories.view.ViewFactory;
 import utils.graphics.controller.StageManager;
 import utils.view.GenericViewController;
 
@@ -25,11 +25,11 @@ public class JavafxGuiImpl extends JFrame implements JavafxGui {
     /**
      * Minimum window width.
      */
-    public static final int MIN_WIDTH = 1000;
+    public static final int MIN_WIDTH = 1280;
     /**
      * Minimum window height.
      */
-    public static final int MIN_HEIGHT = 750;
+    public static final int MIN_HEIGHT = 800;
     private Optional<JFXPanel> mainStage;
     private FXMLLoader loader;
     private final JFrame frame;

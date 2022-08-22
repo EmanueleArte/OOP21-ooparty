@@ -1,17 +1,28 @@
 package game.dice.controller;
 
-import java.util.Optional;
+import game.dice.model.DiceModel;
 
-import game.player.Player;
-
+/**
+ * This interface models the dice controller.
+ */
 public interface DiceController {
 
-    void returnToGame();
+    /**
+     * This method starts a dice scene for every roll result present in the model.
+     */
+    void start();
 
-    void rollDice();
+    /**
+     * This method makes the dice scene go the next step. If a dice scene is over,
+     * the next one is played. If all the dice scenes are over, the game goes back
+     * to the previous scene.
+     */
+    void nextStep();
 
-    void start(Player p);
-
-    Optional<Integer> getLastResult();
-
+    /**
+     * Getter for the model of the dice.
+     * 
+     * @return {@link DiceModel} of this dice controller
+     */
+    DiceModel getModel();
 }

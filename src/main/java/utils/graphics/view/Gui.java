@@ -1,6 +1,6 @@
 package utils.graphics.view;
 
-import utils.factories.ViewFactory;
+import utils.factories.view.ViewFactory;
 
 /**
  * This interface models a generic gui.

@@ -1,46 +1,87 @@
 package game.dice.model;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 import java.util.Random;
 
-import utils.graphics.controller.StageManager;
+import game.player.Player;
+import utils.Pair;
+import utils.PairImpl;
 
-public class DiceModelImpl<P> implements DiceModel<P> {
+/**
+ * Implementation of {@link DiceModel}.
+ */
+public class DiceModelImpl implements DiceModel {
 
     /**
-     * 
+     * The maximum valid result of the dice roll.
      */
     protected static final int MAX_RESULT = 6;
 
     private final Random rand;
-    private final StageManager<?> stageManager;
-    private Optional<Integer> result;
+    private Optional<Integer> lastResult;
+    private final List<Pair<Player, Integer>> results;
 
-    public DiceModelImpl(final StageManager<?> s) {
-        this.stageManager = s;
+    /**
+     * Builds a {@link DiceModelImpl}.
+     */
+    public DiceModelImpl() {
         rand = new Random();
-        this.result = Optional.empty();
+        this.lastResult = Optional.empty();
+        this.results = new ArrayList<>();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public int rollDice(final Player player) {
+        int result = this.rand.nextInt(DiceModelImpl.MAX_RESULT) + 1;
+        this.setResult(player, result);
+        return result;
     }
 
     @Override
-    public void rollDice() {
-        this.setResult(this.rand.nextInt(DiceModelImpl.MAX_RESULT) + 1);
-    }
-
-    @Override
-    public final void returnToGame() {
-        this.stageManager.popScene();
+    public final void reset() {
+        this.lastResult = Optional.empty();
+        this.results.clear();
     }
 
     @Override
     public final Optional<Integer> getLastResult() {
-        return this.result;
+        return this.lastResult;
     }
 
-    protected final void setResult(final int result) {
-        this.result = Optional.of(result);
+    @Override
+    public final int getTotal() {
+        return this.results.stream().map(r -> r.getY()).reduce(0, Integer::sum);
     }
 
+    /**
+     * Sets the {@link Optional} containing the last result.
+     * 
+     * @param result the value of the last roll
+     */
+    protected void setResult(final Player player, final int result) {
+        this.lastResult = Optional.of(result);
+        this.results.add(new PairImpl<>(player, result));
+    }
+
+    /**
+     * Getter for the {@link List} containing the previous rolls.
+     * 
+     * @return a list containing the previous rolls
+     */
+    public final List<Pair<Player, Integer>> getResults() {
+        return this.results;
+    }
+
+    /**
+     * Getter for the {@link Random} inside this class.
+     * 
+     * @return the Random
+     */
     protected final Random getRandom() {
         return this.rand;
     }

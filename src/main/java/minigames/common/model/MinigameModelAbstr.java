@@ -7,43 +7,32 @@ import java.util.Map;
 import java.util.Map.Entry;
 import java.util.stream.Collectors;
 
-import exceptions.PlayerNotFoundException;
+import utils.exceptions.PlayerNotFoundException;
 import game.common.model.GameModelAbstr;
-import game.dice.controller.DiceController;
-import game.dice.controller.DiceControllerImpl;
+import game.dice.model.DiceModel;
 import game.player.Player;
-import utils.graphics.controller.StageManager;
 
 /**
  * Implementation of {@link MinigameModel}.
- * 
- * @param <S> the scenes of the stage
  */
-public abstract class MinigameModelAbstr<S> extends GameModelAbstr<S> implements MinigameModel<S> {
+public abstract class MinigameModelAbstr extends GameModelAbstr implements MinigameModel {
 
     private final Map<Player, Integer> playersClassification;
-    private final DiceController dice;
+    private final DiceModel dice;
     private List<Player> gameResults;
 
     /**
      * Builds a new {@link MinigameModelAbstr}.
      * 
-     * @param players the list of players
-     * @param s       the {@link StageManager}
-     */
-    public MinigameModelAbstr(final List<Player> players, final StageManager<S> s) {
-        super(players, s);
-        this.playersClassification = new LinkedHashMap<>();
-        this.dice = new DiceControllerImpl(s, true);
-    }
-
-    /**
-     * Builds a new {@link MinigameModelAbstr} with no {@link StageManager}.
+     * @param <S>       the scenes of the stage
      * 
-     * @param players the list of players
+     * @param players   the list of players
+     * @param diceModel the {@link DiceModel}
      */
-    public MinigameModelAbstr(final List<Player> players) {
-        this(players, null);
+    public <S> MinigameModelAbstr(final List<Player> players, final DiceModel diceModel) {
+        super(players);
+        this.playersClassification = new LinkedHashMap<>();
+        this.dice = diceModel;
     }
 
     @Override
@@ -82,13 +71,7 @@ public abstract class MinigameModelAbstr<S> extends GameModelAbstr<S> implements
             if (players.size() > 1) {
                 final Map<Player, Integer> sorted = new LinkedHashMap<>();
                 players.forEach(player -> {
-                    final var s = this.getStageManager();
-                    this.dice.rollDice();
-                    if (s != null) {
-                        if (s.getGui().mainStagePresence()) {
-                            this.dice.start(player);
-                        }
-                    }
+                    this.dice.rollDice(player);
                     sorted.put(player, this.dice.getLastResult().get());
                 });
                 players = sorted.entrySet().stream().sorted(Map.Entry.comparingByValue(Comparator.reverseOrder()))
@@ -112,7 +95,7 @@ public abstract class MinigameModelAbstr<S> extends GameModelAbstr<S> implements
     }
 
     /**
-     * Setter for gameResults.
+     * Calculates and sets the game results.
      */
     protected void setGameResults() {
         this.gameResults = this.playoff(this.groupPlayersByScore());

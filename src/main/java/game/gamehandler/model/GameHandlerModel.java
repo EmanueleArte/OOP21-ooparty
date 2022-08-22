@@ -3,19 +3,15 @@ package game.gamehandler.model;
 import java.util.List;
 import java.util.Optional;
 
+import game.map.GameMap;
 import game.player.Player;
+import utils.enums.PlayerTurnProgress;
+import utils.enums.TurnProgress;
 
 /**
  * This interface models the game handler model.
  */
 public interface GameHandlerModel {
-
-    void playTurn(Player player);
-
-    /**
-     * This method selects a minigame and plays it.
-     */
-    void playMinigame();
 
     /**
      * This method returns the players in the game.
@@ -25,18 +21,25 @@ public interface GameHandlerModel {
     List<Player> getPlayers();
 
     /**
+     * Sets the players list.
+     * 
+     * @param players {@link List} of players
+     */
+    void setPlayers(List<Player> players);
+
+    /**
      * This method makes the turn advance to the next step.
      * 
-     * @return int representing new turn progress
+     * @return Optional containing new turn progress
      */
-    int nextStep();
+    Optional<TurnProgress> nextStep();
 
     /**
      * This method makes players' turn go to the next step.
      * 
-     * @return int representing new player turn progress.
+     * @return Optional containing new player turn progress
      */
-    int nextPlayerTurnStep();
+    Optional<PlayerTurnProgress> nextPlayerTurnStep();
 
     /**
      * This method returns the player currently playing, if there's one.
@@ -53,8 +56,29 @@ public interface GameHandlerModel {
     int getTurnNumber();
 
     /**
-     * This method ends the game and returns to main menu.
+     * 
+     * @return the {@link GameMap} of the current game
      */
-    void endGame();
+    GameMap getGameMap();
 
+    /**
+     * This method returns the leaderboard after a player's turn ends.
+     * 
+     * @return an ordered list of players
+     */
+    List<Player> getLeaderboard();
+
+    /**
+     * Checks if a {@link Player} is dead and if he is, it makes him respawn.
+     * 
+     * @param p the {@link Player} that has to be checked
+     */
+    void checkPlayerDeath(Player p);
+
+    /**
+     * This method returns the turn order.
+     * 
+     * @return an ordered list of players representing the turn order
+     */
+    List<Player> getTurnOrder();
 }

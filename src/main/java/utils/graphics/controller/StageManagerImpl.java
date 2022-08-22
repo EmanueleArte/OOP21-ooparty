@@ -6,6 +6,7 @@ import java.util.Optional;
 
 import minigames.common.controller.MinigameController;
 import utils.controller.GenericController;
+import utils.factories.controller.ControllerFactory;
 import utils.graphics.model.SceneHandler;
 import utils.graphics.model.SceneHandlerImpl;
 import utils.graphics.view.EmptyGui;
@@ -22,6 +23,7 @@ public class StageManagerImpl<S> implements StageManager<S> {
     private final SceneHandler<S> sceneHandler;
     private Gui gui;
     private Optional<MinigameController> lastGameController;
+    private ControllerFactory controllerFactory;
 
     /**
      * Builds a new {@link StageManagerImpl}.
@@ -87,6 +89,16 @@ public class StageManagerImpl<S> implements StageManager<S> {
     @Override
     public final Gui getGui() {
         return this.gui;
+    }
+
+    @Override
+    public final void setControllerFactory(final ControllerFactory factory) {
+        this.controllerFactory = factory;
+    }
+
+    @Override
+    public final ControllerFactory getControllerFactory() {
+        return this.controllerFactory;
     }
 
     /**
