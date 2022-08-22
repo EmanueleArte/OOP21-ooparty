@@ -78,12 +78,20 @@ public interface ControllerFactory {
     MinigameController createWhoRisksWinsController(List<Player> players);
 
     /**
-     * This method creates a .
+     * This method creates a {@link MemoController}.
      * 
      * @param players the list of {@link Player} that participates to the minigame
-     * @return
+     * @return the {@link MemoController} created.
      */
     MinigameController createMemoController(List<Player> players);
+
+    /**
+     * This method creates a {@link CutFromTheTeamController}.
+     *
+     * @param players the list of {@link Player} that participates to the minigame
+     * @return the {@link CutFromTheTeamController} created.
+     */
+    MinigameController createCutFromTheTeamController(List<Player> players);
 
     /**
      * This method creates a {@link PowerupMenuController}.
@@ -92,4 +100,5 @@ public interface ControllerFactory {
      * @return the {@link PowerupMenuController} created
      */
     PowerupMenuController createPowerupMenuController(List<Player> players);
+
 }

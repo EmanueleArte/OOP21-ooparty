@@ -22,6 +22,8 @@ import menu.powerupmenu.controller.PowerupMenuController;
 import menu.powerupmenu.controller.PowerupMenuControllerImpl;
 import menu.powerupmenu.model.PowerupMenuModelImpl;
 import minigames.common.controller.MinigameController;
+import minigames.cutFromTheTeam.controller.CutFromTheTeamControllerImpl;
+import minigames.cutFromTheTeam.model.CutFromTheTeamModelImpl;
 import minigames.mastermind.controller.MastermindControllerImpl;
 import minigames.mastermind.model.MastermindModelImpl;
 import minigames.memo.controller.MemoControllerImpl;
@@ -99,6 +101,14 @@ public class ControllerFactoryFx<S> implements ControllerFactory {
         var diceController = this.createDiceController(true);
         var model = new MemoModelImpl(players, diceController.getModel());
         var controller = new MemoControllerImpl(this.stageManager, model, diceController);
+        return controller;
+    }
+
+    @Override
+    public final MinigameController createCutFromTheTeamController(final List<Player> players) {
+        var diceController = this.createDiceController(true);
+        var model = new CutFromTheTeamModelImpl(players, diceController.getModel());
+        var controller = new CutFromTheTeamControllerImpl(this.stageManager, model, diceController);
         return controller;
     }
 
