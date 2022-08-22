@@ -38,9 +38,7 @@ public class MemoModelImpl extends MinigameModelAbstr implements MemoModel {
     }
 
     /**
-     * This method return a copy of the card-list.
-     *
-     * @return a copy of the list of the remaining cards.
+     * {@inheritDoc}
      */
     @Override
     public List<Integer> getCards() {
@@ -51,6 +49,8 @@ public class MemoModelImpl extends MinigameModelAbstr implements MemoModel {
      * {@inheritDoc}
      *
      * @return {@code true} if this turn scored a point, {@code false} otherwise.
+     *
+     * @throws IllegalStateException if the game is over.
      */
     @Override
     public boolean runGame() {
