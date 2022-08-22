@@ -2,9 +2,9 @@ package game.dice.model;
 
 import java.util.List;
 import java.util.Optional;
+import javafx.util.Pair;
 
 import game.player.Player;
-import utils.Pair;
 
 /**
  * This interface models the dice model.
