@@ -3,7 +3,7 @@ package minigames.whoriskswins.view;
 import minigames.common.view.MinigameViewController;
 
 /**
- * Extension of {@link MinigameViewController}.
+ * This interface models the Who risks wins view controller. Specialization of {@link MinigameViewController}.
  */
 public interface WhoRisksWinsViewController extends MinigameViewController {
 
