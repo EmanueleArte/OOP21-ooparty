@@ -4,9 +4,15 @@ import java.util.Random;
 
 import game.player.Player;
 
+/**
+ * A game map square where you earn coins.
+ */
 public class CoinsGameMapSquare extends GameMapSquareImpl {
     private int coinsNumber;
 
+    /**
+     * Builder for {@link CoinsGameMapSquare}.
+     */
     public CoinsGameMapSquare() {
         super();
         this.generateNewCoins();
@@ -45,5 +51,10 @@ public class CoinsGameMapSquare extends GameMapSquareImpl {
     @Override
     public final boolean isDamageGameMapSquare() {
         return false;
+    }
+
+    @Override
+    public final String toString() {
+        return "GameMapSquare [Coin]";
     }
 }

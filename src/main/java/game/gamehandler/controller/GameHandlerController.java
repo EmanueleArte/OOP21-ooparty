@@ -1,24 +1,39 @@
 package game.gamehandler.controller;
 
-import java.util.Optional;
-
 import game.player.Player;
-import utils.view.GenericViewController;
 
 public interface GameHandlerController {
 
+    /**
+     * Starts the game, creating the scene.
+     */
     void start();
 
-    <C> void setViewController(GenericViewController viewController);
+    /**
+     * Makes the model go to the next step of the game and updates the
+     * viewController accordingly.
+     */
+    void nextStep();
 
-    GenericViewController getViewController();
+    /**
+     * Starts the pause menu.
+     */
+    void pauseMenu();
 
-    int getTurnNumber();
+    /**
+     * Checks if a {@link Player} is dead and if he is, it makes him respawn.
+     * 
+     * @param p the {@link Player} that has to be checked
+     */
+    void checkPlayerDeath(Player p);
 
-    int nextStep();
+    /**
+     * Shows the after minigame menu.
+     */
+    void showAfterMinigameMenu();
 
-    int nextPlayerTurnStep();
-
-    Optional<Player> getCurrentPlayer();
-
+    /**
+     * Ends the game.
+     */
+    void endGame();
 }

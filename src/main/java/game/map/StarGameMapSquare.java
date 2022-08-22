@@ -2,20 +2,29 @@ package game.map;
 
 import game.player.Player;
 
-public class StarsGameMapSquare extends GameMapSquareImpl {
+/**
+ * A game map square where you can earn a star.
+ */
+public class StarGameMapSquare extends GameMapSquareImpl {
 
-    public StarsGameMapSquare() {
+    /**
+     * Builder for {@link StarGameMapSquare}.
+     */
+    public StarGameMapSquare() {
         super();
     }
 
     /**
-     * 
+     * {@inheritDoc}
      */
     @Override
     public void receiveStar(final Player p) {
         if (this.checkEnoughCoins(p)) {
             p.earnStar();
             p.loseCoins(GameMapImpl.COINS_TO_BUY_STAR);
+            p.setIsLastStarEarned(true);
+        } else {
+            p.setIsLastStarEarned(false);
         }
     }
 
@@ -41,5 +50,10 @@ public class StarsGameMapSquare extends GameMapSquareImpl {
     @Override
     public final boolean isDamageGameMapSquare() {
         return false;
+    }
+
+    @Override
+    public final String toString() {
+        return "GameMapSquare [Star]";
     }
 }

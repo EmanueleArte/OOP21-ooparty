@@ -5,17 +5,15 @@ import java.util.Random;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
+import game.dice.model.DiceModel;
 import game.player.Player;
 import minigames.common.model.MinigameModelAbstr;
-import utils.graphics.controller.StageManager;
 
 /**
  * Implementation of {@link MastermindModel} and extension of
  * {@link MinigameModelAbstr}.
- * 
- * @param <S> the scenes of the stage
  */
-public class MastermindModelImpl<S> extends MinigameModelAbstr<S> implements MastermindModel<S> {
+public class MastermindModelImpl extends MinigameModelAbstr implements MastermindModel {
 
     private static final String EMPTY_STRING = "";
     private int maxAttempts;
@@ -28,10 +26,10 @@ public class MastermindModelImpl<S> extends MinigameModelAbstr<S> implements Mas
      * Builds a new {@link MastermindModelImpl}.
      * 
      * @param players the list of players
-     * @param s       the {@link StageManager}
+     * @param dice    the {@link DiceModel}
      */
-    public MastermindModelImpl(final List<Player> players, final StageManager<S> s) {
-        super(players, s);
+    public MastermindModelImpl(final List<Player> players, final DiceModel dice) {
+        super(players, dice);
     }
 
     @Override
@@ -44,8 +42,12 @@ public class MastermindModelImpl<S> extends MinigameModelAbstr<S> implements Mas
             this.setCurrPlayer();
             return true;
         }
+<<<<<<< HEAD
         this.getGameResults();
         this.getStageManager().popScene();
+=======
+        this.setGameResults();
+>>>>>>> a53efb5ffd6ccbc6ee931c6a157847c158cc7b92
         return false;
     }
 

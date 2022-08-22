@@ -7,25 +7,23 @@ import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
+import game.dice.model.DiceModelNoRepeatImpl;
 import game.player.Player;
 import game.player.PlayerImpl;
 import minigames.mastermind.model.MastermindModel;
 import minigames.mastermind.model.MastermindModelImpl;
-import utils.graphics.controller.StageManager;
-import utils.graphics.controller.StageManagerImpl;
 
 /**
  * Test class for MastermindModel.
  */
 class TestMastermind {
 
-    private final StageManager<String> s = new StageManagerImpl<String>();
     private final List<Player> players = List.of(new PlayerImpl("Luca"), new PlayerImpl("Giovanni"),
             new PlayerImpl("Lorenzo"), new PlayerImpl("Marco"));
 
     @Test
     void testInput() {
-        final MastermindModel<String> m = new MastermindModelImpl<>(players, s);
+        final MastermindModel m = new MastermindModelImpl(players, new DiceModelNoRepeatImpl());
         m.setMaxAttempts(10);
         m.runGame();
         m.doAttempt("");
@@ -40,7 +38,7 @@ class TestMastermind {
 
     @Test
     void testWin() {
-        final MastermindModel<String> m = new MastermindModelImpl<>(players, s);
+        final MastermindModel m = new MastermindModelImpl(players, new DiceModelNoRepeatImpl());
         m.setMaxAttempts(10);
         m.runGame();
         m.doAttempt(m.getSolution());
@@ -49,7 +47,7 @@ class TestMastermind {
 
     @Test
     void testLose() {
-        final MastermindModel<String> m = new MastermindModelImpl<>(players, s);
+        final MastermindModel m = new MastermindModelImpl(players, new DiceModelNoRepeatImpl());
         m.setMaxAttempts(1);
         m.runGame();
         final char[] attemptDigits = m.getSolution().toCharArray();

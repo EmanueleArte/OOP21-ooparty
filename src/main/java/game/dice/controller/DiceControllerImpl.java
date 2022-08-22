@@ -1,36 +1,39 @@
 package game.dice.controller;
 
-import java.util.Optional;
+import game.player.Player;
+
+import java.util.Iterator;
 
 import game.dice.model.DiceModel;
-import game.dice.model.DiceModelImpl;
-import game.dice.model.DiceModelNoRepeatImpl;
-import game.dice.view.DiceViewImpl;
-import game.dice.viewcontroller.DiceViewControllerImpl;
-import game.player.Player;
+import game.dice.view.DiceViewController;
+import utils.Pair;
 import utils.controller.GenericControllerAbstr;
 import utils.graphics.controller.StageManager;
-import utils.view.GenericView;
 import utils.view.GenericViewController;
 
+/**
+ * Implementation of the {@link DiceController} interface.
+ */
 public class DiceControllerImpl extends GenericControllerAbstr implements DiceController {
-    private final DiceModel<?> model;
-    private DiceViewControllerImpl viewController;
+    private final DiceModel model;
+    private DiceViewController viewController;
+    private Iterator<Pair<Player, Integer>> results;
+    private final boolean playoff;
+    private boolean end;
 
-    public <S, P> DiceControllerImpl(final StageManager<S> s, final boolean noRepeat) {
+    /**
+     * Constructor for this class.
+     * 
+     * @param <S>
+     * @param s
+     * @param noRepeat {@link Boolean} representing whether the dice must avoid
+     *                 repetition or not
+     */
+    public <S> DiceControllerImpl(final StageManager<S> s, final DiceModel model, final boolean noRepeat) {
         super(s);
-        if (noRepeat) {
-            this.model = new DiceModelNoRepeatImpl<P>(s);
-        } else {
-            this.model = new DiceModelImpl<P>(s);
-        }
-    }
-
-    @Override
-    public final void start(final Player p) {
-        final GenericView<?> view = new DiceViewImpl<>(this.getStageManager());
-        view.createScene(this);
-        this.viewController.initialize(p.getColor());
+        this.model = model;
+        this.playoff = noRepeat;
+        this.end = false;
     }
 
     @Override
@@ -40,26 +43,51 @@ public class DiceControllerImpl extends GenericControllerAbstr implements DiceCo
 
     @Override
     public final void setViewController(final GenericViewController viewController) {
-        if (viewController instanceof DiceViewControllerImpl) {
-            this.viewController = (DiceViewControllerImpl) viewController;
+        if (viewController instanceof DiceViewController) {
+            this.viewController = (DiceViewController) viewController;
         } else {
-            throw new IllegalArgumentException("The parameter must be an instance of DiceViewControllerImpl");
+            throw new IllegalArgumentException("The parameter must be an instance of DiceViewController");
         }
     }
 
     @Override
-    public final void returnToGame() {
-        this.model.returnToGame();
+    public final void start() {
+        this.end = false;
+        this.results = this.model.getResults().iterator();
+        if (this.results.hasNext()) {
+            this.nextScene();
+        }
     }
 
     @Override
-    public final void rollDice() {
-        this.model.rollDice();
+    public final void nextStep() {
+        if (this.end) {
+            this.getStageManager().popScene();
+            this.end = false;
+            if (this.results.hasNext()) {
+                this.nextScene();
+            }
+        } else {
+            this.viewController.jumpToDice();
+            this.end = true;
+        }
+    }
+
+    private void nextScene() {
+        if (!this.results.hasNext()) {
+            throw new RuntimeException("No more dice rolls to show");
+        }
+        final Pair<Player, Integer> r = this.results.next();
+        this.getStageManager().getGui().getViewFactory().createDiceView(this);
+        if (this.playoff) {
+            this.viewController.initialize(r.getY(), r.getX().getColor(), "Playoff!");
+        } else {
+            this.viewController.initialize(r.getY(), r.getX().getColor(), "Roll the Dice!");
+        }
     }
 
     @Override
-    public final Optional<Integer> getLastResult() {
-        return this.model.getLastResult();
+    public final DiceModel getModel() {
+        return this.model;
     }
-
 }

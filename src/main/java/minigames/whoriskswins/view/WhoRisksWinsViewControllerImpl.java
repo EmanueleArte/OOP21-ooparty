@@ -67,6 +67,8 @@ public class WhoRisksWinsViewControllerImpl extends MinigameViewControllerAbstr 
             this.setBlockFallingSpeed();
             this.showNotice(Notice.PRESS_ENTER_TO.getNotice() + "start.");
             this.nextTurn = false;
+        } else {
+            this.wrwController.closeGame();
         }
     }
 

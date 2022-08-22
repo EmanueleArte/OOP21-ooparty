@@ -2,7 +2,6 @@
 
 <?import java.lang.Double?>
 <?import javafx.scene.Group?>
-<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
@@ -11,6 +10,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.shape.Circle?>
 <?import javafx.scene.shape.Polygon?>
@@ -18,186 +18,160 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onKeyReleased="#onEnter" prefHeight="730.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="game.gamehandler.viewcontroller.GameHandlerViewControllerImpl">
+<VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onKeyReleased="#onKeyPressed" onMouseClicked="#onClick" prefHeight="2160.0" prefWidth="3840.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="game.gamehandler.view.GameHandlerViewControllerImpl">
    <children>
       <BorderPane prefHeight="641.0" prefWidth="1000.0">
-         <bottom>
-            <Pane maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="101.0" prefWidth="1000.0" BorderPane.alignment="CENTER">
-               <children>
-                  <Group fx:id="avatars" layoutX="124.0" layoutY="163.0">
-                     <children>
-                        <Group>
-                           <children>
-                              <Polygon fill="DODGERBLUE" scaleX="0.8" stroke="BLACK" strokeType="INSIDE">
-                                <points>
-                                  <Double fx:value="-50.0" />
-                                  <Double fx:value="40.0" />
-                                  <Double fx:value="50.0" />
-                                  <Double fx:value="40.0" />
-                                  <Double fx:value="0.0" />
-                                  <Double fx:value="-60.0" />
-                                </points>
-                              </Polygon>
-                              <Circle fill="DODGERBLUE" layoutY="-59.0" radius="27.0" stroke="BLACK" strokeType="INSIDE" />
-                           </children>
-                        </Group>
-                        <Group layoutY="150.0">
-                           <children>
-                              <Polygon fill="DODGERBLUE" scaleX="0.8" stroke="BLACK" strokeType="INSIDE">
-                                 <points>
-                                    <Double fx:value="-50.0" />
-                                    <Double fx:value="40.0" />
-                                    <Double fx:value="50.0" />
-                                    <Double fx:value="40.0" />
-                                    <Double fx:value="0.0" />
-                                    <Double fx:value="-60.0" />
-                                 </points>
-                              </Polygon>
-                              <Circle fill="DODGERBLUE" layoutY="-59.0" radius="27.0" stroke="BLACK" strokeType="INSIDE" />
-                           </children>
-                        </Group>
-                        <Group layoutY="300.0">
-                           <children>
-                              <Polygon fill="DODGERBLUE" scaleX="0.8" stroke="BLACK" strokeType="INSIDE">
-                                 <points>
-                                    <Double fx:value="-50.0" />
-                                    <Double fx:value="40.0" />
-                                    <Double fx:value="50.0" />
-                                    <Double fx:value="40.0" />
-                                    <Double fx:value="0.0" />
-                                    <Double fx:value="-60.0" />
-                                 </points>
-                              </Polygon>
-                              <Circle fill="DODGERBLUE" layoutY="-59.0" radius="27.0" stroke="BLACK" strokeType="INSIDE" />
-                           </children>
-                        </Group>
-                        <Group layoutY="450.0">
-                           <children>
-                              <Polygon fill="DODGERBLUE" scaleX="0.8" stroke="BLACK" strokeType="INSIDE">
-                                 <points>
-                                    <Double fx:value="-50.0" />
-                                    <Double fx:value="40.0" />
-                                    <Double fx:value="50.0" />
-                                    <Double fx:value="40.0" />
-                                    <Double fx:value="0.0" />
-                                    <Double fx:value="-60.0" />
-                                 </points>
-                              </Polygon>
-                              <Circle fill="DODGERBLUE" layoutY="-59.0" radius="27.0" stroke="BLACK" strokeType="INSIDE" />
-                           </children>
-                        </Group>
-                     </children>
-                  </Group>
-                  <Group fx:id="banner" opacity="0.0">
-                     <children>
-                        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#c70e0ebe" height="240.0" layoutY="240.0" stroke="#ff9900a0" strokeType="INSIDE" width="1000.0" />
-                        <Text fx:id="bannerText" fill="#dfbe07" fontSmoothingType="LCD" layoutY="400.0" stroke="#a67f00" strokeType="OUTSIDE" strokeWidth="2.0" text="Turn #" textAlignment="CENTER" wrappingWidth="1000.0">
-                           <font>
-                              <Font name="Phosphate Inline" size="96.0" />
-                           </font>
-                        </Text>
-                     </children>
-                  </Group>
-               </children>
-            </Pane>
-         </bottom>
          <center>
-            <VBox alignment="TOP_CENTER" prefHeight="282.0" prefWidth="1000.0" BorderPane.alignment="CENTER">
+            <VBox alignment="TOP_CENTER" prefHeight="282.0" prefWidth="500.0" style="-fx-spacing: 5;" BorderPane.alignment="CENTER">
                <children>
-                  <HBox alignment="CENTER" prefHeight="474.0" prefWidth="1000.0">
+                  <HBox alignment="TOP_CENTER" prefHeight="100.0" prefWidth="200.0">
                      <children>
-                        <AnchorPane prefHeight="457.0" prefWidth="875.0">
+                        <VBox fx:id="rankContainer1" prefHeight="57.0" prefWidth="1071.0">
                            <children>
-                              <GridPane layoutX="16.0" layoutY="1.0" prefHeight="455.0" prefWidth="870.0">
-                                <columnConstraints>
-                                    <ColumnConstraints hgrow="SOMETIMES" maxWidth="200.0" minWidth="10.0" prefWidth="100.0" />
-                                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="200.0" minWidth="10.0" prefWidth="97.0" />
-                                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="200.0" minWidth="10.0" prefWidth="97.0" />
-                                    <ColumnConstraints hgrow="SOMETIMES" maxWidth="117.0" minWidth="0.0" prefWidth="103.0" />
-                                    <ColumnConstraints hgrow="SOMETIMES" maxWidth="117.0" minWidth="10.0" prefWidth="103.0" />
-                                    <ColumnConstraints hgrow="SOMETIMES" maxWidth="117.0" minWidth="10.0" prefWidth="103.0" />
-                                    <ColumnConstraints hgrow="SOMETIMES" maxWidth="117.0" minWidth="10.0" prefWidth="103.0" />
-                                    <ColumnConstraints hgrow="SOMETIMES" maxWidth="117.0" minWidth="10.0" prefWidth="103.0" />
-                                    <ColumnConstraints hgrow="SOMETIMES" maxWidth="117.0" minWidth="10.0" prefWidth="103.0" />
-                                    <ColumnConstraints hgrow="SOMETIMES" maxWidth="117.0" minWidth="10.0" prefWidth="103.0" />
-                                    <ColumnConstraints hgrow="SOMETIMES" maxWidth="117.0" minWidth="10.0" prefWidth="103.0" />
-                                </columnConstraints>
-                                <rowConstraints>
-                                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                </rowConstraints>
+                              <HBox alignment="CENTER" prefHeight="100.0" prefWidth="837.0">
                                  <children>
-                                    <Button mnemonicParsing="false" prefHeight="77.0" prefWidth="94.0" text="Start" />
-                                    <Button mnemonicParsing="false" prefHeight="77.0" prefWidth="94.0" GridPane.columnIndex="1" />
-                                    <Button mnemonicParsing="false" prefHeight="77.0" prefWidth="94.0" GridPane.columnIndex="3" />
-                                    <Button mnemonicParsing="false" prefHeight="77.0" prefWidth="94.0" GridPane.columnIndex="4" />
-                                    <Button mnemonicParsing="false" prefHeight="77.0" prefWidth="94.0" GridPane.rowIndex="1" />
-                                    <Button mnemonicParsing="false" prefHeight="77.0" prefWidth="94.0" GridPane.rowIndex="2" />
-                                    <Button mnemonicParsing="false" prefHeight="77.0" prefWidth="94.0" GridPane.rowIndex="3" />
-                                    <Button mnemonicParsing="false" prefHeight="77.0" prefWidth="94.0" GridPane.rowIndex="4" />
-                                    <Button mnemonicParsing="false" prefHeight="77.0" prefWidth="94.0" GridPane.rowIndex="5" />
-                                    <Button mnemonicParsing="false" prefHeight="77.0" prefWidth="94.0" GridPane.columnIndex="5" />
-                                    <Button mnemonicParsing="false" prefHeight="77.0" prefWidth="94.0" GridPane.columnIndex="6" />
-                                    <Button mnemonicParsing="false" prefHeight="77.0" prefWidth="94.0" GridPane.columnIndex="7" />
-                                    <Button mnemonicParsing="false" prefHeight="77.0" prefWidth="94.0" GridPane.columnIndex="8" />
-                                    <Button mnemonicParsing="false" prefHeight="77.0" prefWidth="94.0" GridPane.columnIndex="9" />
-                                    <Button mnemonicParsing="false" prefHeight="77.0" prefWidth="94.0" GridPane.columnIndex="10" />
-                                    <Button mnemonicParsing="false" prefHeight="77.0" prefWidth="94.0" GridPane.columnIndex="10" GridPane.rowIndex="1" />
-                                    <Button mnemonicParsing="false" prefHeight="77.0" prefWidth="94.0" GridPane.columnIndex="10" GridPane.rowIndex="2" />
-                                    <Button mnemonicParsing="false" prefHeight="77.0" prefWidth="94.0" GridPane.columnIndex="10" GridPane.rowIndex="3" />
-                                    <Button mnemonicParsing="false" prefHeight="77.0" prefWidth="94.0" GridPane.columnIndex="10" GridPane.rowIndex="4" />
-                                    <Button mnemonicParsing="false" prefHeight="77.0" prefWidth="94.0" GridPane.columnIndex="10" GridPane.rowIndex="5" />
-                                    <Button mnemonicParsing="false" prefHeight="77.0" prefWidth="94.0" GridPane.columnIndex="10" GridPane.rowIndex="6" />
-                                    <Button mnemonicParsing="false" prefHeight="77.0" prefWidth="94.0" GridPane.rowIndex="7" />
-                                    <Button mnemonicParsing="false" prefHeight="77.0" prefWidth="94.0" GridPane.columnIndex="2" GridPane.rowIndex="7" />
-                                    <Button mnemonicParsing="false" prefHeight="77.0" prefWidth="94.0" GridPane.columnIndex="1" GridPane.rowIndex="7" />
-                                    <Button mnemonicParsing="false" prefHeight="77.0" prefWidth="94.0" GridPane.columnIndex="2" />
-                                    <Button mnemonicParsing="false" prefHeight="77.0" prefWidth="94.0" GridPane.columnIndex="2" />
-                                    <Button mnemonicParsing="false" prefHeight="77.0" prefWidth="94.0" GridPane.columnIndex="2" />
-                                    <Button mnemonicParsing="false" prefHeight="77.0" prefWidth="94.0" GridPane.columnIndex="2" />
-                                    <Button mnemonicParsing="false" prefHeight="77.0" prefWidth="94.0" GridPane.columnIndex="2" />
-                                    <Button mnemonicParsing="false" prefHeight="77.0" prefWidth="94.0" GridPane.columnIndex="2" />
-                                    <Button mnemonicParsing="false" prefHeight="77.0" prefWidth="94.0" GridPane.columnIndex="2" />
-                                    <Button mnemonicParsing="false" prefHeight="77.0" prefWidth="94.0" GridPane.columnIndex="2" />
-                                    <Button mnemonicParsing="false" prefHeight="77.0" prefWidth="94.0" GridPane.columnIndex="2" />
-                                    <Button mnemonicParsing="false" prefHeight="77.0" prefWidth="94.0" GridPane.columnIndex="2" />
-                                    <Button mnemonicParsing="false" prefHeight="77.0" prefWidth="94.0" GridPane.rowIndex="6" />
-                                    <Button mnemonicParsing="false" prefHeight="77.0" prefWidth="94.0" GridPane.rowIndex="6" />
-                                    <Button mnemonicParsing="false" prefHeight="77.0" prefWidth="94.0" GridPane.rowIndex="6" />
-                                    <Button mnemonicParsing="false" prefHeight="77.0" prefWidth="94.0" GridPane.rowIndex="6" />
-                                    <Button mnemonicParsing="false" prefHeight="77.0" prefWidth="94.0" GridPane.rowIndex="6" />
-                                    <Button mnemonicParsing="false" prefHeight="77.0" prefWidth="94.0" GridPane.rowIndex="6" />
-                                    <Button mnemonicParsing="false" prefHeight="77.0" prefWidth="94.0" GridPane.rowIndex="6" />
-                                    <Button mnemonicParsing="false" prefHeight="77.0" prefWidth="94.0" GridPane.rowIndex="6" />
-                                    <Button mnemonicParsing="false" prefHeight="77.0" prefWidth="94.0" GridPane.rowIndex="6" />
-                                    <Button mnemonicParsing="false" prefHeight="77.0" prefWidth="94.0" GridPane.rowIndex="6" />
-                                    <Button mnemonicParsing="false" prefHeight="77.0" prefWidth="94.0" GridPane.columnIndex="3" GridPane.rowIndex="7" />
-                                    <Button mnemonicParsing="false" prefHeight="77.0" prefWidth="94.0" GridPane.columnIndex="4" GridPane.rowIndex="7" />
-                                    <Button mnemonicParsing="false" prefHeight="77.0" prefWidth="94.0" GridPane.columnIndex="5" GridPane.rowIndex="7" />
-                                    <Button mnemonicParsing="false" prefHeight="77.0" prefWidth="94.0" GridPane.columnIndex="6" GridPane.rowIndex="7" />
-                                    <Button mnemonicParsing="false" prefHeight="77.0" prefWidth="94.0" GridPane.columnIndex="7" GridPane.rowIndex="7" />
-                                    <Button mnemonicParsing="false" prefHeight="77.0" prefWidth="94.0" GridPane.columnIndex="8" GridPane.rowIndex="7" />
-                                    <Button mnemonicParsing="false" prefHeight="77.0" prefWidth="94.0" GridPane.columnIndex="9" GridPane.rowIndex="7" />
-                                    <Button mnemonicParsing="false" prefHeight="77.0" prefWidth="94.0" GridPane.columnIndex="10" GridPane.rowIndex="7" />
+                                    <Label fx:id="updatesLabel" prefHeight="21.0" prefWidth="740.0">
+                                       <font>
+                                          <Font size="15.0" />
+                                       </font>
+                                    </Label>
+                                    <VBox prefHeight="200.0" prefWidth="100.0">
+                                       <children>
+                                          <Label text="Turn Order" />
+                                          <HBox fx:id="turnOrderContainer" prefHeight="85.0" prefWidth="158.0" style="-fx-spacing: 5;" />
+                                       </children>
+                                    </VBox>
                                  </children>
-                              </GridPane>
+                              </HBox>
                            </children>
-                        </AnchorPane>
+                        </VBox>
                      </children>
                   </HBox>
-                  <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+                  <StackPane fx:id="stackPaneContainer" alignment="CENTER_LEFT" prefHeight="150.0" prefWidth="200.0">
                      <children>
-                        <Button fx:id="rollDiceButton" mnemonicParsing="false" onAction="#rollDice" text="Roll Dice" />
-                        <VBox fx:id="rankContainer" prefHeight="102.0" prefWidth="242.0">
+                        <HBox alignment="CENTER" prefHeight="474.0" prefWidth="1000.0">
                            <children>
-                              <Label text="Rank" />
-                              <HBox fx:id="rankPlayersContainer" prefHeight="85.0" prefWidth="158.0" />
+                              <AnchorPane prefHeight="457.0" prefWidth="875.0">
+                                 <children>
+                                    <GridPane fx:id="mapGrid" layoutX="-9.0" prefHeight="600.0" prefWidth="970.0">
+                                      <columnConstraints>
+                                          <ColumnConstraints hgrow="SOMETIMES" maxWidth="200.0" minWidth="10.0" prefWidth="100.0" />
+                                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="200.0" minWidth="10.0" prefWidth="97.0" />
+                                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="200.0" minWidth="10.0" prefWidth="97.0" />
+                                          <ColumnConstraints hgrow="SOMETIMES" maxWidth="117.0" minWidth="0.0" prefWidth="103.0" />
+                                          <ColumnConstraints hgrow="SOMETIMES" maxWidth="117.0" minWidth="10.0" prefWidth="103.0" />
+                                          <ColumnConstraints hgrow="SOMETIMES" maxWidth="117.0" minWidth="10.0" prefWidth="103.0" />
+                                          <ColumnConstraints hgrow="SOMETIMES" maxWidth="117.0" minWidth="10.0" prefWidth="103.0" />
+                                          <ColumnConstraints hgrow="SOMETIMES" maxWidth="117.0" minWidth="10.0" prefWidth="103.0" />
+                                          <ColumnConstraints hgrow="SOMETIMES" maxWidth="117.0" minWidth="10.0" prefWidth="103.0" />
+                                          <ColumnConstraints hgrow="SOMETIMES" maxWidth="117.0" minWidth="10.0" prefWidth="103.0" />
+                                          <ColumnConstraints hgrow="SOMETIMES" maxWidth="117.0" minWidth="10.0" prefWidth="103.0" />
+                                      </columnConstraints>
+                                      <rowConstraints>
+                                          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                      </rowConstraints>
+                                    </GridPane>
+                                 </children>
+                              </AnchorPane>
+                           </children>
+                        </HBox>
+                        <Pane maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="600.0" prefWidth="970.0" StackPane.alignment="CENTER">
+                           <children>
+                              <Group fx:id="avatars">
+                                 <children>
+                                    <Group layoutX="48.0" layoutY="5.0">
+                                       <children>
+                                          <Polygon fill="DODGERBLUE" layoutY="59.0" scaleX="0.8" stroke="BLACK" strokeType="INSIDE">
+                                             <points>
+                                                <Double fx:value="-21.0" />
+                                                <Double fx:value="-25.0" />
+                                                <Double fx:value="21.0" />
+                                                <Double fx:value="-25.0" />
+                                                <Double fx:value="0.0" />
+                                                <Double fx:value="-60.0" />
+                                             </points>
+                                          </Polygon>
+                                          <Circle fill="DODGERBLUE" radius="10.0" stroke="BLACK" strokeType="INSIDE" />
+                                       </children>
+                                    </Group>
+                                    <Group layoutX="13.0" layoutY="14.0">
+                                       <children>
+                                          <Polygon fill="DODGERBLUE" layoutY="59.0" scaleX="0.8" stroke="BLACK" strokeType="INSIDE">
+                                             <points>
+                                                <Double fx:value="-21.0" />
+                                                <Double fx:value="-25.0" />
+                                                <Double fx:value="21.0" />
+                                                <Double fx:value="-25.0" />
+                                                <Double fx:value="0.0" />
+                                                <Double fx:value="-60.0" />
+                                             </points>
+                                          </Polygon>
+                                          <Circle fill="DODGERBLUE" radius="10.0" stroke="BLACK" strokeType="INSIDE" />
+                                       </children>
+                                    </Group>
+                                    <Group layoutX="64.0" layoutY="24.0">
+                                       <children>
+                                          <Polygon fill="DODGERBLUE" layoutY="59.0" scaleX="0.8" stroke="BLACK" strokeType="INSIDE">
+                                             <points>
+                                                <Double fx:value="-21.0" />
+                                                <Double fx:value="-25.0" />
+                                                <Double fx:value="21.0" />
+                                                <Double fx:value="-25.0" />
+                                                <Double fx:value="0.0" />
+                                                <Double fx:value="-60.0" />
+                                             </points>
+                                          </Polygon>
+                                          <Circle fill="DODGERBLUE" radius="10.0" stroke="BLACK" strokeType="INSIDE" />
+                                       </children>
+                                    </Group>
+                                    <Group layoutX="32.0" layoutY="33.0">
+                                       <children>
+                                          <Polygon fill="DODGERBLUE" layoutY="59.0" scaleX="0.8" stroke="BLACK" strokeType="INSIDE">
+                                             <points>
+                                                <Double fx:value="-21.0" />
+                                                <Double fx:value="-25.0" />
+                                                <Double fx:value="21.0" />
+                                                <Double fx:value="-25.0" />
+                                                <Double fx:value="0.0" />
+                                                <Double fx:value="-60.0" />
+                                             </points>
+                                          </Polygon>
+                                          <Circle fill="DODGERBLUE" radius="10.0" stroke="BLACK" strokeType="INSIDE" />
+                                       </children>
+                                    </Group>
+                                 </children>
+                              </Group>
+                           </children>
+                        </Pane>
+                        <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
+                           <children>
+                              <Group fx:id="banner" opacity="0.0">
+                                 <children>
+                                    <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#c70e0ebe" height="240.0" layoutY="240.0" stroke="#ff9900a0" strokeType="INSIDE" width="2000.0" />
+                                    <Text fx:id="bannerText" fill="#dfbe07" fontSmoothingType="LCD" layoutY="400.0" stroke="#a67f00" strokeType="OUTSIDE" text="Turn #" textAlignment="CENTER" wrappingWidth="2000.0">
+                                       <font>
+                                          <Font name="Berlin Sans FB" size="96.0" />
+                                       </font>
+                                    </Text>
+                                 </children>
+                              </Group>
+                           </children>
+                        </VBox>
+                     </children>
+                  </StackPane>
+                  <HBox alignment="CENTER" prefHeight="50.0" prefWidth="1000.0">
+                     <children>
+                        <VBox fx:id="rankContainer" alignment="CENTER" prefHeight="17.0" prefWidth="1000.0">
+                           <children>
+                              <Label text="Leaderboard" />
+                              <HBox fx:id="rankPlayersContainer" alignment="CENTER" prefHeight="85.0" prefWidth="158.0" />
                            </children>
                         </VBox>
                      </children>

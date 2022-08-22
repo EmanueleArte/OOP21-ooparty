@@ -1,4 +1,4 @@
-package exceptions;
+package utils.exceptions;
 
 public class PlayerNotFoundException extends RuntimeException {
 

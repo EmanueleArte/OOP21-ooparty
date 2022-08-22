@@ -4,19 +4,14 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import game.gamehandler.controller.GameHandlerController;
-import game.gamehandler.controller.GameHandlerControllerImpl;
 import game.player.Player;
 import game.player.PlayerImpl;
 import utils.enums.PlayerColor;
-import utils.graphics.controller.StageManager;
 
 /**
  * Implementation of {@link GameCreationMenuModel}.
- * 
- * @param <S> the scenes of the stage
  */
-public class GameCreationMenuModelImpl<S> implements GameCreationMenuModel<S> {
+public class GameCreationMenuModelImpl implements GameCreationMenuModel {
 
     /**
      * Minimum number of players.
@@ -34,36 +29,27 @@ public class GameCreationMenuModelImpl<S> implements GameCreationMenuModel<S> {
      * Maximum number of turns.
      */
     public static final int N_MAX_TURNS = 20;
-    private final StageManager<S> stageManager;
     private int actualNPlayers;
+    private int turnsNumber;
+    private List<String> playersNicknames;
+    private List<PlayerColor> playersColors;
 
     /**
      * Builds a new {@link GameCreationMenuModelImpl}.
-     * 
-     * @param s the {@link utils.graphics.controller.StageManager}.
      */
-    public GameCreationMenuModelImpl(final StageManager<S> s) {
-        super();
-        this.stageManager = s;
+    public GameCreationMenuModelImpl() {
         this.actualNPlayers = GameCreationMenuModelImpl.N_MIN_PLAYERS;
-    }
-
-    @Override
-    public final void returnToMainMenu() {
-        this.stageManager.popScene();
     }
 
     @Override
     public final boolean startGame(final List<String> allPlayersNicknames, final List<PlayerColor> allPlayersColors,
             final int turnsNumber) {
-        final List<String> playersNicknames = allPlayersNicknames.subList(0, this.actualNPlayers);
-        final List<PlayerColor> playersColors = allPlayersColors.subList(0, this.actualNPlayers);
+        playersNicknames = allPlayersNicknames.subList(0, this.actualNPlayers);
+        playersColors = allPlayersColors.subList(0, this.actualNPlayers);
         if (!checkForms(playersNicknames, playersColors)) {
             return false;
         } else {
-            final GameHandlerController game = new GameHandlerControllerImpl<>(this.stageManager,
-                    this.createPlayersList(playersNicknames, playersColors), turnsNumber);
-            game.start();
+            this.turnsNumber = turnsNumber;
         }
         return true;
     }
@@ -71,6 +57,21 @@ public class GameCreationMenuModelImpl<S> implements GameCreationMenuModel<S> {
     @Override
     public final void setActualNPlayers(final Integer nPlayers) {
         this.actualNPlayers = nPlayers;
+    }
+
+    @Override
+    public final List<Player> createPlayersList() {
+        final List<Player> playersList = new ArrayList<>();
+        this.playersNicknames.forEach(nickname -> {
+            playersList.add(new PlayerImpl(nickname,
+                    this.playersColors.get(this.playersNicknames.indexOf(nickname)).getColor()));
+        });
+        return playersList;
+    }
+
+    @Override
+    public final int getTurnsNumber() {
+        return this.turnsNumber;
     }
 
     /**
@@ -90,21 +91,6 @@ public class GameCreationMenuModelImpl<S> implements GameCreationMenuModel<S> {
             formsCorrect = false;
         }
         return formsCorrect;
-    }
-
-    /**
-     * This method creates the list of players that will join the game.
-     * 
-     * @param playersNicknames the list of players nicknames
-     * @param playerColors     the list of players colors
-     * @return the list of the players
-     */
-    private List<Player> createPlayersList(final List<String> playersNicknames, final List<PlayerColor> playerColors) {
-        final List<Player> playersList = new ArrayList<>();
-        playersNicknames.forEach(nickname -> {
-            playersList.add(new PlayerImpl(nickname, playerColors.get(playersNicknames.indexOf(nickname)).getColor()));
-        });
-        return playersList;
     }
 
 }

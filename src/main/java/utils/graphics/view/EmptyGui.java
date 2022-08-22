@@ -1,7 +1,7 @@
 package utils.graphics.view;
 
-import utils.factories.ViewFactory;
 import utils.graphics.controller.StageManager;
+import utils.view.ViewLoader;
 
 /**
  * An empty implementation of {@link Gui}.
@@ -28,7 +28,7 @@ public class EmptyGui implements Gui {
     }
 
     @Override
-    public final ViewFactory<?> getViewFactory() {
+    public final ViewLoader<?> getViewFactory() {
         return null;
     }
 

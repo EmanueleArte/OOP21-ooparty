@@ -51,6 +51,8 @@ public class MastermindViewControllerImpl extends MinigameViewControllerAbstr im
             GuiUtils.hideNode(this.continueButton);
             this.clearNotice();
             this.enableInput();
+        } else {
+            this.mastermindController.closeGame();
         }
     }
 

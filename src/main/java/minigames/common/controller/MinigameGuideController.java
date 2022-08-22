@@ -1,7 +1,7 @@
 package minigames.common.controller;
 
 /**
- * Interface modelling a controller for the minigame's guide.
+ * Interface modeling a controller for the minigame's guide.
  */
 public interface MinigameGuideController {
     /**

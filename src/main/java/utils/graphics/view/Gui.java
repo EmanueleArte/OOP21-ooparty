@@ -1,6 +1,6 @@
 package utils.graphics.view;
 
-import utils.factories.ViewFactory;
+import utils.view.ViewLoader;
 
 /**
  * This interface models a generic gui.
@@ -24,7 +24,7 @@ public interface Gui {
      * 
      * @return the view factory
      */
-    ViewFactory<?> getViewFactory();
+    ViewLoader<?> getViewFactory();
 
     /**
      * This method shows the actual scene.

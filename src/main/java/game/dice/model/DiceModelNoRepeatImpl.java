@@ -1,25 +1,24 @@
 package game.dice.model;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.stream.Collectors;
 
-import utils.graphics.controller.StageManager;
+import game.player.Player;
 
-public class DiceModelNoRepeatImpl<P> extends DiceModelImpl<P> {
-    private final List<Integer> resultsList;
-
-    public DiceModelNoRepeatImpl(final StageManager<?> s) {
-        super(s);
-        this.resultsList = new ArrayList<>();
-    }
+/**
+ * Extension of the {@link DiceModelImpl class}.
+ */
+public class DiceModelNoRepeatImpl extends DiceModelImpl {
 
     @Override
-    public final void rollDice() {
+    public final int rollDice(final Player player) {
+        if (this.getResults().size() == MAX_RESULT) {
+            throw new RuntimeException("No more results available");
+        }
         int result;
         do {
-            result = this.getRandom().nextInt(DiceModelImpl.MAX_RESULT) + 1;
-        } while (this.resultsList.contains(result));
-        this.setResult(result);
-        this.resultsList.add(result);
+            result = this.getRandom().nextInt(MAX_RESULT) + 1;
+        } while (this.getResults().stream().map(r -> r.getY()).collect(Collectors.toList()).contains(result));
+        this.setResult(player, result);
+        return result;
     }
 }

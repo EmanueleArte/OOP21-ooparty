@@ -5,30 +5,37 @@ import utils.controller.GenericControllerAbstr;
 import utils.graphics.controller.StageManager;
 import utils.view.GenericViewController;
 
+/**
+ * Implementation for the controller of the minigame's guide.
+ */
 public class MinigameGuideControllerImpl extends GenericControllerAbstr implements MinigameGuideController {
 
     private GenericViewController guideViewController;
-    private final MinigameController minigameController;
 
-    public MinigameGuideControllerImpl(final StageManager s, final MinigameController minigameController) {
+    /**
+     * Builds a {@link MinigameGuideControllerImpl}.
+     * 
+     * @param <S>  the scenes of the stage
+     * @param s    the {@link StageManager}
+     */
+    public <S> MinigameGuideControllerImpl(final StageManager<S> s) {
         super(s);
-        this.minigameController = minigameController;
     }
 
     @Override
-    public void startGame() {
+    public final void startGame() {
         if (!this.getStageManager().getScenes().isEmpty()) {
             this.getStageManager().popScene();
         }
     }
 
     @Override
-    public GenericViewController getViewController() {
+    public final GenericViewController getViewController() {
         return this.guideViewController;
     }
 
     @Override
-    public void setViewController(final GenericViewController viewController) {
+    public final void setViewController(final GenericViewController viewController) {
         if (viewController instanceof MinigameGuideViewControllerImpl) {
            this.guideViewController = (MinigameGuideViewControllerImpl) viewController;
         } else {

@@ -1,13 +1,12 @@
-package game.dice.viewcontroller;
-
-import java.util.Optional;
-import java.util.Random;
+package game.dice.view;
 
 import game.dice.controller.DiceController;
 import game.dice.controller.DiceControllerImpl;
 import javafx.animation.TranslateTransition;
 import javafx.fxml.FXML;
 import javafx.scene.Group;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Polygon;
@@ -16,10 +15,22 @@ import javafx.util.Duration;
 import utils.controller.GenericController;
 import utils.view.GenericViewController;
 
-public class DiceViewControllerImpl implements GenericViewController {
+/**
+ * Implementation of {@link DiceViewController}.
+ */
+public class DiceViewControllerImpl implements GenericViewController, DiceViewController {
+
+    /**
+     * Duration of jump animation in milliseconds.
+     */
+    public static final int JUMP_DURATION = 500;
+    /**
+     * Height of jump in pixels.
+     */
+    public static final int JUMP_HEIGHT = 170;
+
+    private int result;
     private DiceController controller;
-    private boolean end = false;
-    private final Random rand = new Random();
 
     @FXML
     private Group player;
@@ -29,6 +40,8 @@ public class DiceViewControllerImpl implements GenericViewController {
     private Circle playerHead;
     @FXML
     private Text diceText;
+    @FXML
+    private Text label;
 
     @Override
     public final void setController(final GenericController controller) {
@@ -40,35 +53,37 @@ public class DiceViewControllerImpl implements GenericViewController {
     }
 
     @FXML
-    public final void nextStep() {
-        if (this.end) {
-            this.controller.returnToGame();
-        } else {
-            Optional<Integer> roll = this.controller.getLastResult();
-            if (roll.isPresent()) {
-                this.jumpToDice(roll.get());
-            }
-            this.end = true;
+    protected final void onKeyPressed(final KeyEvent ke) {
+        if (ke.getCode().equals(KeyCode.ENTER) || ke.getCode().equals(KeyCode.SPACE)) {
+            this.controller.nextStep();
         }
     }
 
-    public final void jumpToDice(final int roll) {
+    @FXML
+    protected final void onClick() {
+        this.controller.nextStep();
+    }
+
+    @Override
+    public final void jumpToDice() {
         TranslateTransition transition = new TranslateTransition();
         transition.setNode(player);
-        transition.setDuration(Duration.millis(500));
-        transition.setByY(-170);
+        transition.setDuration(Duration.millis(JUMP_DURATION));
+        transition.setByY(-JUMP_HEIGHT);
         transition.setOnFinished(e -> {
-            diceText.setText(Integer.toString(roll));
-            transition.setByY(170);
+            diceText.setText(Integer.toString(this.result));
+            transition.setByY(JUMP_HEIGHT);
             transition.setOnFinished(null);
             transition.play();
         });
         transition.play();
     }
 
-    @FXML
-    public final void initialize(final Color color) {
+    @Override
+    public final void initialize(final int result, final Color color, final String text) {
+        this.result = result;
         this.playerBody.setFill(color);
         this.playerHead.setFill(color);
+        this.label.setText(text);
     }
 }
