@@ -49,10 +49,8 @@
          <center>
             <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" spacing="20.0" BorderPane.alignment="CENTER">
                <children>
-                  <Text fill="#dfbe07" stroke="#a67f00" strokeLineJoin="BEVEL" strokeType="OUTSIDE" strokeWidth="2.0" text="OOParty">
-                     <font>
-                        <Font name="Phosphate Inline" size="96.0" />
-                     </font>
+                  <Text fill="#dfbe07" stroke="#a67f00" text="OOPARTY">
+                     
                   </Text>
                   <Button alignment="CENTER" mnemonicParsing="false" onAction="#createGame" text="Create game">
                      <font>

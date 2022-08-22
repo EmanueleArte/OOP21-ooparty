@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.net.*?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
@@ -15,6 +16,9 @@
 <?import java.util.ArrayList?>
 
 <VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onKeyReleased="#onEnter" prefHeight="730.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="minigames.memo.view.MemoViewControllerImpl">
+   <stylesheets> 
+      <URL value="@../fonts/fonts.css"/> 
+   </stylesheets>
    <children>
       <BorderPane prefHeight="641.0" prefWidth="1000.0">
          <center>
@@ -103,10 +107,8 @@
          <top>
             <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0" spacing="30.0" BorderPane.alignment="CENTER">
                <children>
-                  <Text fill="#dfbe07" stroke="#a67f00" strokeLineJoin="BEVEL" strokeType="OUTSIDE" strokeWidth="2.0" text="Memo">
-                     <font>
-                        <Font name="Phosphate Inline" size="80.0" />
-                     </font>
+                  <Text fill="#dfbe07" stroke="#a67f00" text="MEMO">
+                     
                   </Text>
                   <Label fx:id="playerLabel" text="Player">
                      <font>

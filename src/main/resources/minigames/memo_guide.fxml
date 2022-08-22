@@ -26,10 +26,8 @@
                   <Insets top="40.0" />
                </BorderPane.margin>
                <children>
-                  <Text fill="#dfbe07" stroke="#a67f00" strokeLineJoin="BEVEL" strokeType="OUTSIDE" strokeWidth="2.0" text="Memo">
-                     <font>
-                        <Font name="Phosphate Inline" size="80.0" />
-                     </font>
+                  <Text fill="#dfbe07" stroke="#a67f00" text="MEMO">
+                     
                   </Text>
                   <HBox alignment="CENTER" prefHeight="453.0" prefWidth="1000.0">
                      <children>

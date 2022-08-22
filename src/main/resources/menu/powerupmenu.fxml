@@ -32,10 +32,8 @@
             </Button>
          </bottom>
          <top>
-            <Text fill="#dfbe07" stroke="#a67f00" strokeType="OUTSIDE" text="Your Power-Ups" BorderPane.alignment="CENTER">
-               <font>
-                  <Font size="64.0" />
-               </font>
+            <Text fill="#dfbe07" stroke="#a67f00" text="YOUR POWER-UPS" BorderPane.alignment="CENTER">
+               
                <BorderPane.margin>
                   <Insets top="40.0" />
                </BorderPane.margin>

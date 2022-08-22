@@ -16,13 +16,10 @@
      <URL value="@../fonts/fonts.css"/> 
    </stylesheets>
    <children>
-      <Text fx:id="label" fill="#dfbe07" stroke="#a67f00" strokeType="OUTSIDE" text="Roll the Dice!">
+      <Text fx:id="label" fill="#dfbe07" stroke="#a67f00" strokeType="OUTSIDE" text="ROLL THE DICE!">
          <VBox.margin>
             <Insets top="40.0" />
          </VBox.margin>
-         <font>
-            <Font size="72.0" />
-         </font>
       </Text>
       <Group fx:id="dice">
          <children>
