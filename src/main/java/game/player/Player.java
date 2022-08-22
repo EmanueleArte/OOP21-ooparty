@@ -13,12 +13,21 @@ import javafx.scene.paint.Color;
 public interface Player {
 
     /**
-     * @return the name of the player
+     * <<<<<<< HEAD
+     * 
+     * @return the name of the player ======= Returns the player's nickanme.
+     * 
+     * @return the player's nickname >>>>>>>
+     *         169da5602b80ba9ca3fc56a251620ce58f58c58d
      */
     String getNickname();
 
     /**
-     * @return the color of the player
+     * <<<<<<< HEAD
+     * 
+     * @return the color of the player ======= Returns the player's color.
+     * 
+     * @return the player's color. >>>>>>> 169da5602b80ba9ca3fc56a251620ce58f58c58d
      */
     Color getColor();
 
@@ -39,9 +48,15 @@ public interface Player {
     void goTo(GameMap gameMap, GameMapSquare newGameMapSquare);
 
     /**
+     * <<<<<<< HEAD
      * 
      * @param gameMap the map of the game
-     * @return the player's position (the square where he is located)
+     * @return the player's position (the square where he is located) =======
+     *         Returns the {@link GameMapSquare} where this player is located.
+     * 
+     * @param gameMap the map of the game
+     * @return the player's position (the {@link GameMapSquare} where he is located)
+     *         >>>>>>> 169da5602b80ba9ca3fc56a251620ce58f58c58d
      */
     GameMapSquare getPosition(GameMap gameMap);
 
@@ -67,27 +82,44 @@ public interface Player {
     void updateCoins(int n);
 
     /**
+     * <<<<<<< HEAD ======= Returns the amount of player's coins.
+     * 
+     * >>>>>>> 169da5602b80ba9ca3fc56a251620ce58f58c58d
+     * 
      * @return amount of player's coins
      */
     int getCoinsCount();
 
     /**
-     * Make player earn a star.
+     * <<<<<<< HEAD Make player earn a star. ======= Makes the player earn a star.
+     * >>>>>>> 169da5602b80ba9ca3fc56a251620ce58f58c58d
      */
     void earnStar();
 
     /**
-     * Make player lose a star.
+     * <<<<<<< HEAD Make player lose a star. ======= Makes the player lose a star.
+     * >>>>>>> 169da5602b80ba9ca3fc56a251620ce58f58c58d
      */
     void loseStar();
 
     /**
-     * @return number of player'stars
+     * <<<<<<< HEAD
+     * 
+     * @return number of player'stars ======= Returns the number of player'stars.
+     * 
+     * @return the number of player'stars >>>>>>>
+     *         169da5602b80ba9ca3fc56a251620ce58f58c58d
      */
     int getStarsCount();
 
     /**
-     * @return the amount of life points
+     * <<<<<<< HEAD
+     * 
+     * @return the amount of life points ======= Returns the amount of this player's
+     *         life points.
+     * 
+     * @return the amount of this player's life points >>>>>>>
+     *         169da5602b80ba9ca3fc56a251620ce58f58c58d
      */
     int getLifePoints();
 
@@ -101,7 +133,12 @@ public interface Player {
     /**
      * Takes away life points from the player.
      * 
-     * @param damage the amount of life to be taken away
+     * <<<<<<< HEAD
+     * 
+     * @param damage  the amount of life to be taken away =======
+     * @param damage  the amount of life to be taken away
+     * @param gameMap the game map (used to move the {@link Player} if he dies)
+     *                >>>>>>> 169da5602b80ba9ca3fc56a251620ce58f58c58d
      */
     void loseLifePoints(int damage);
 
@@ -113,12 +150,27 @@ public interface Player {
     void setDicesNumber(int n);
 
     /**
-     * @return int containing the number of dices the player has to roll
+     * <<<<<<< HEAD
+     * 
+     * @return int containing the number of dices the player has to roll =======
+     * 
+     *         Returns an {@link int} containing the number of dices the player has
+     *         to roll.
+     * 
+     * @return an {@link int} containing the number of dices the player has to roll
+     *         >>>>>>> 169da5602b80ba9ca3fc56a251620ce58f58c58d
      */
     int getDicesToRoll();
 
     /**
-     * @return a list containing all the powerups the player has got.
+     * <<<<<<< HEAD
+     * 
+     * @return a list containing all the powerups the player has got. =======
+     *         Returns a list containing all the {@link GenericPowerup}s the player
+     *         has got.
+     * 
+     * @return a list containing all the {@link GenericPowerup}s the player has got.
+     *         >>>>>>> 169da5602b80ba9ca3fc56a251620ce58f58c58d
      */
     List<GenericPowerup> getPowerupList();
 
@@ -137,13 +189,14 @@ public interface Player {
     void usePowerup(String powerupType, Player target);
 
     /**
-     * Getter for the last amount of coins earned by this player.
+     * Returns the amount of coins earned the last time this player earned coins.
      * 
      * @return the amount of coins earned the last time this player earned coins
      */
     int getLastEarnedCoins();
 
     /**
+     * Returns the amount of damage taken the last time this player was hit.
      * 
      * @return the amount of damage taken the last time this player was hit
      */

@@ -11,13 +11,16 @@ import utils.view.GenericViewController;
 public interface AfterMinigameMenuViewController extends GenericViewController {
 
     /**
-     * Initializes the scene components.
+     * Makes the after minigame leaderboard.
+     * 
+     * @param players the sorted list of the players
      */
     void makeLeaderboard(List<Player> players);
 
     /**
-     * Initializes the scene components to make the end of the game.
-     * @param players
+     * Makes the end of the game leaderboard.
+     * 
+     * @param players the sorted list of the players
      */
     void makeEndGameLeaderboard(List<Player> players);
 
