@@ -1,0 +1,9 @@
+@font-face {
+    font-family: 'Phosphate Inline';
+    src: url('PhosphateInline.ttf');
+}
+
+.text {
+    font-family: 'Phosphate Inline';
+    -fx-font-family: 'Phosphate Inline';
+}
