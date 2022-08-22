@@ -10,6 +10,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.Border;
 import javafx.scene.layout.VBox;
+import javafx.scene.text.Text;
 import menu.common.controller.MenuController;
 import utils.controller.GenericController;
 import utils.enums.OrdinalNumber;
@@ -28,7 +29,7 @@ public class AfterMinigameMenuViewControllerImpl implements AfterMinigameMenuVie
     @FXML
     private List<VBox> vBoxes;
     @FXML
-    private Label endGameLabel;
+    private Text endGameText;
 
     @Override
     public final void setController(final GenericController controller) throws IllegalArgumentException {
@@ -86,7 +87,7 @@ public class AfterMinigameMenuViewControllerImpl implements AfterMinigameMenuVie
 
     @Override
     public final void makeEndGameLeaderboard(final List<Player> players) {
-        this.endGameLabel.setText("Game End");
+        this.endGameText.setText("Game End");
         for (int i = 0; i < players.size(); i++) {
             VBox v = this.vBoxes.get(i);
             this.setVBoxStyle(v, players.get(i));
