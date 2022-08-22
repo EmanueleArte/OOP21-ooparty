@@ -24,35 +24,19 @@ public class PowerUpGameMapSquare extends GameMapSquareImpl {
         this.powerup = powerupFactory.getRandomPowerup();
     }
 
+    /**
+     * Adds a {@link GenericPowerup} to the player p and generates a new powerup on this square.
+     * @param p the {@link Player} that will receive the powerup
+     */
     @Override
-    public final void receivePowerup(final Player p) {
+    public final void makeSpecialAction(final Player p) {
         p.addPowerup(this.powerup);
         this.generateRandomPowerUp();
     }
 
     @Override
-    public final GenericPowerup getPowerup() {
-        return this.powerup;
-    }
-
-    @Override
-    public final boolean isCoinsGameMapSquare() {
-        return false;
-    }
-
-    @Override
-    public final boolean isStarGameMapSquare() {
-        return false;
-    }
-
-    @Override
     public final boolean isPowerUpGameMapSquare() {
         return true;
-    }
-
-    @Override
-    public final boolean isDamageGameMapSquare() {
-        return false;
     }
 
     @Override

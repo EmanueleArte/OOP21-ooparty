@@ -18,13 +18,21 @@ public class CoinsGameMapSquare extends GameMapSquareImpl {
         this.generateNewCoins();
     }
 
-    @Override
-    public final int getCoinsNumber() {
-        return this.coinsNumber;
+    /**
+     * Builder for {@link CoinsGameMapSquare}.
+     * @param coinsNumber the amount of coins that will be contained in this square
+     */
+    public CoinsGameMapSquare(final int coinsNumber) {
+        super();
+        this.coinsNumber = coinsNumber;
     }
 
+    /**
+     * Adds the coins to the player p.
+     * @param p the player that is going to receive the coins
+     */
     @Override
-    public final void receiveCoins(final Player p) {
+    public final void makeSpecialAction(final Player p) {
         p.earnCoins(this.coinsNumber);
         this.generateNewCoins();
     }
@@ -36,21 +44,6 @@ public class CoinsGameMapSquare extends GameMapSquareImpl {
     @Override
     public final boolean isCoinsGameMapSquare() {
         return true;
-    }
-
-    @Override
-    public final boolean isStarGameMapSquare() {
-        return false;
-    }
-
-    @Override
-    public final boolean isPowerUpGameMapSquare() {
-        return false;
-    }
-
-    @Override
-    public final boolean isDamageGameMapSquare() {
-        return false;
     }
 
     @Override
