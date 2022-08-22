@@ -65,6 +65,7 @@ public class DiceModelImpl implements DiceModel {
     /**
      * Sets the {@link Optional} containing the last result.
      * 
+     * @param player the {@link Player} to associate to the result
      * @param result the value of the last roll
      */
     protected void setResult(final Player player, final int result) {
