@@ -7,7 +7,7 @@ import game.common.model.GameModel;
 import game.player.Player;
 
 /**
- * This interface models a minigame model.
+ * This interface models a minigame model. Specialization of {@link GameModel}.
  */
 public interface MinigameModel extends GameModel {
 

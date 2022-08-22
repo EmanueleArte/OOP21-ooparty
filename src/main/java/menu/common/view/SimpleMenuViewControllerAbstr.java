@@ -5,7 +5,8 @@ import utils.controller.GenericController;
 import utils.view.GenericViewController;
 
 /**
- * Implementation of {@link GenericViewController}.
+ * This abstract class models a simple menu view controller. Implementation of
+ * {@link GenericViewController}.
  */
 public abstract class SimpleMenuViewControllerAbstr implements GenericViewController {
 

@@ -79,7 +79,7 @@ public class DiceControllerImpl extends GenericControllerAbstr implements DiceCo
             throw new RuntimeException("No more dice rolls to show");
         }
         final Pair<Player, Integer> r = this.results.next();
-        this.getStageManager().getGui().getViewFactory().createDiceView(this);
+        this.getStageManager().getGui().getViewLoader().createDiceView(this);
         if (this.playoff) {
             this.viewController.initialize(r.getValue(), r.getKey().getColor(), "PLAYOFF!");
         } else {

@@ -37,7 +37,7 @@ public class MainMenuControllerImpl extends SimpleMenuControllerAbstr implements
 
     @Override
     public final void createMenu() {
-        this.getStageManager().getGui().getViewFactory().createMainMenuView(this);
+        this.getStageManager().getGui().getViewLoader().createMainMenuView(this);
     }
 
 }

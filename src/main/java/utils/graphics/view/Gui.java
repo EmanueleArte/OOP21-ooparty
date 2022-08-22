@@ -24,7 +24,7 @@ public interface Gui {
      * 
      * @return the view factory
      */
-    ViewLoader<?> getViewFactory();
+    ViewLoader<?> getViewLoader();
 
     /**
      * This method shows the actual scene.
