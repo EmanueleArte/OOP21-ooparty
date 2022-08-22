@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.net.*?>
 <?import java.lang.Double?>
 <?import javafx.scene.Group?>
 <?import javafx.scene.control.Label?>
@@ -19,6 +20,9 @@
 <?import javafx.scene.text.Text?>
 
 <VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onKeyReleased="#onKeyPressed" onMouseClicked="#onClick" prefHeight="2160.0" prefWidth="3840.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="game.gamehandler.view.GameHandlerViewControllerImpl">
+   <stylesheets> 
+      <URL value="@../fonts/fonts.css"/> 
+   </stylesheets>
    <children>
       <BorderPane prefHeight="641.0" prefWidth="1000.0">
          <center>

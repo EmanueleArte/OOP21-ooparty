@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.net.*?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
@@ -11,6 +12,9 @@
 <?import javafx.scene.text.Text?>
 
 <VBox alignment="TOP_CENTER" minHeight="-Infinity" minWidth="-Infinity" prefHeight="2160.0" prefWidth="3840.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="minigames.common.view.MinigameGuideViewControllerImplminigames.common.view.MinigameGuideViewControllerImpl">
+   <stylesheets> 
+     <URL value="@../fonts/fonts.css"/> 
+   </stylesheets>
    <children>
       <BorderPane prefHeight="735.0" prefWidth="1000.0">
          <center>

@@ -22,7 +22,7 @@ public class AfterMinigameMenuViewControllerImpl implements AfterMinigameMenuVie
 
     private static final int VBOX_WIDTH = 200;
     private static final int VBOX_HEIGHT = 200;
-    private static final int MAX_COINS_FROM_MINIGAME = 10;
+    private static final int MAX_COINS_FROM_MINIGAME = 16;
 
     private MenuController menuController;
     @FXML

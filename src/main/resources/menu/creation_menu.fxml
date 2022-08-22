@@ -32,6 +32,7 @@
   OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 -->
 
+<?import java.net.*?>
 <?import java.util.ArrayList?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>

@@ -32,6 +32,7 @@
   OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 -->
 
+<?import java.net.*?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.layout.BorderPane?>
@@ -40,6 +41,9 @@
 <?import javafx.scene.text.Text?>
 
 <VBox alignment="TOP_CENTER" prefHeight="2160.0" prefWidth="3840.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="menu.mainmenu.view.MainMenuViewControllerImpl">
+  <stylesheets> 
+    <URL value="@../fonts/fonts.css"/> 
+  </stylesheets>
   <children>
       <BorderPane prefHeight="200.0" prefWidth="200.0">
          <center>
