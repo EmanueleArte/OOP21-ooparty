@@ -5,6 +5,7 @@ import java.util.List;
 import game.dice.controller.DiceController;
 import game.gamehandler.controller.GameHandlerController;
 import game.player.Player;
+import menu.afterminigamemenu.controller.AfterMinigameMenuController;
 import menu.common.controller.MenuController;
 import menu.powerupmenu.controller.PowerupMenuController;
 import minigames.common.controller.MinigameController;
@@ -59,7 +60,7 @@ public interface ControllerFactory {
      * 
      * @return the after minigame menu created.
      */
-    MenuController createAfterMinigameMenuController();
+    AfterMinigameMenuController createAfterMinigameMenuController();
 
     /**
      * This method creates a

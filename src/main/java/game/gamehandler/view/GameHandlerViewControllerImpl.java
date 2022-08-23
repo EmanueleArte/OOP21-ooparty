@@ -67,7 +67,6 @@ public class GameHandlerViewControllerImpl implements GenericViewController, Gam
     private static final int GRID_SPACING = 2;
 
     private GameHandlerController controller;
-
     @FXML
     private Group banner;
     @FXML
