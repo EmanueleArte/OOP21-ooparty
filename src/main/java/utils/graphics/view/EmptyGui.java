@@ -28,7 +28,7 @@ public class EmptyGui implements Gui {
     }
 
     @Override
-    public final ViewLoader<?> getViewFactory() {
+    public final ViewLoader<?> getViewLoader() {
         return null;
     }
 

@@ -46,9 +46,9 @@ public class MemoControllerImpl extends MinigameControllerAbstr implements MemoC
      */
     @Override
     public void startGame() {
-        this.getStageManager().getGui().getViewFactory().createMemoView(this);
+        this.getStageManager().getGui().getViewLoader().createMemoView(this);
         final GenericController guideController = new MinigameGuideControllerImpl(this.getStageManager());
-        this.getStageManager().getGui().getViewFactory().createMemoGuideView(guideController);
+        this.getStageManager().getGui().getViewLoader().createMemoGuideView(guideController);
 
         this.memoView.start(this.memoModel.getCards());
         this.memoView.setPlayerLabelText(this.memoModel.getCurrPlayer());

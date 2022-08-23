@@ -2,7 +2,7 @@ package game.map;
 
 import game.player.Player;
 import game.powerup.GenericPowerup;
-import utils.factories.PowerupFactoryImpl;
+import utils.factories.powerup.PowerupFactoryImpl;
 
 /**
  * A game map square where you can get a {@link GenericPowerup}.

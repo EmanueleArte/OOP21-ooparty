@@ -24,8 +24,9 @@ public class DiceControllerImpl extends GenericControllerAbstr implements DiceCo
     /**
      * Constructor for this class.
      * 
-     * @param <S>
-     * @param s
+     * @param <S>      the scenes of the stage
+     * @param s        the {@link StageManager}
+     * @param model    the {@link DiceModel}
      * @param noRepeat {@link Boolean} representing whether the dice must avoid
      *                 repetition or not
      */
@@ -78,7 +79,7 @@ public class DiceControllerImpl extends GenericControllerAbstr implements DiceCo
             throw new RuntimeException("No more dice rolls to show");
         }
         final Pair<Player, Integer> r = this.results.next();
-        this.getStageManager().getGui().getViewFactory().createDiceView(this);
+        this.getStageManager().getGui().getViewLoader().createDiceView(this);
         if (this.playoff) {
             this.viewController.initialize(r.getValue(), r.getKey().getColor(), "PLAYOFF!");
         } else {

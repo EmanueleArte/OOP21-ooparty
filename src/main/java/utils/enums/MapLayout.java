@@ -16,7 +16,7 @@ public enum MapLayout {
     }
 
     /**
-     * Returns the number of {@link GameMapSquare} which the map is composed.
+     * Returns the number of {@link game.map.GameMapSquare GameMapSquare} which the map is composed.
      * @return the size of the map.
      */
     public int getSize() {

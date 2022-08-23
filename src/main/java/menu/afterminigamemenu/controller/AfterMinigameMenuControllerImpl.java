@@ -53,7 +53,7 @@ public class AfterMinigameMenuControllerImpl extends GenericControllerAbstr impl
 
     @Override
     public final void createMenu() {
-        this.getStageManager().getGui().getViewFactory().createAfterMinigameMenu(this);
+        this.getStageManager().getGui().getViewLoader().createAfterMinigameMenu(this);
     }
 
     @Override

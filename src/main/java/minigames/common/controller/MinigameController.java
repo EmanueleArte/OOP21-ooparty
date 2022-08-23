@@ -6,7 +6,8 @@ import game.player.Player;
 import utils.controller.GenericController;
 
 /**
- * Extension of {@link GenericController}.
+ * This interface models a generic minigame controller. Specialization of
+ * {@link GenericController}.
  */
 public interface MinigameController extends GenericController {
 

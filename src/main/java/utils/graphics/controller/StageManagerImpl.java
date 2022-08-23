@@ -11,7 +11,6 @@ import utils.graphics.model.SceneHandler;
 import utils.graphics.model.SceneHandlerImpl;
 import utils.graphics.view.EmptyGui;
 import utils.graphics.view.Gui;
-import utils.graphics.view.JavafxGui;
 
 /**
  * Implementation of {@link StageManager}.
@@ -42,14 +41,6 @@ public class StageManagerImpl<S> implements StageManager<S> {
      */
     public StageManagerImpl() {
         this("", EmptyGui.class);
-    }
-
-    @Override
-    @SuppressWarnings("unchecked")
-    public final void addFXMLScene(final String fxmlUrl, final GenericController controller) {
-        final var currScene = ((JavafxGui) this.gui).loadScene(fxmlUrl, controller);
-        this.addScene((S) currScene);
-        this.lastGameController = Optional.ofNullable(this.checkGameController(controller));
     }
 
     @Override

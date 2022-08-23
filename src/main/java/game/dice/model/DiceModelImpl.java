@@ -57,23 +57,20 @@ public class DiceModelImpl implements DiceModel {
         return this.results.stream().map(r -> r.getValue()).reduce(0, Integer::sum);
     }
 
+    @Override
+    public final List<Pair<Player, Integer>> getResults() {
+        return this.results;
+    }
+
     /**
      * Sets the {@link Optional} containing the last result.
      * 
+     * @param player the {@link Player} to associate to the result
      * @param result the value of the last roll
      */
     protected void setResult(final Player player, final int result) {
         this.lastResult = Optional.of(result);
         this.results.add(new Pair<>(player, result));
-    }
-
-    /**
-     * Getter for the {@link List} containing the previous rolls.
-     * 
-     * @return a list containing the previous rolls
-     */
-    public final List<Pair<Player, Integer>> getResults() {
-        return this.results;
     }
 
     /**

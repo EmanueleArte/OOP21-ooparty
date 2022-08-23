@@ -27,6 +27,9 @@ public class PowerupMenuViewControllerImpl implements PowerupMenuViewController 
     @FXML
     private HBox targetsList;
 
+    /**
+     * This method gets called when a power-up is selected in the power-up selector.
+     */
     @FXML
     public final void onPowerupSelected() {
         this.controller.updateTargetsList(this.powerupSelector.getValue());

@@ -3,7 +3,8 @@ package minigames.whoriskswins.model;
 import minigames.common.model.MinigameModel;
 
 /**
- * This interface models the who risks wins model.
+ * This interface models the Who risks wins model. Specialization of
+ * {@link MinigameModel}.
  */
 public interface WhoRisksWinsModel extends MinigameModel {
 

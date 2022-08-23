@@ -48,7 +48,6 @@ public abstract class MinigameModelAbstr extends GameModelAbstr implements Minig
      */
     @Override
     public List<Player> getGameResults() {
-        this.gameResults = this.playoff(this.groupPlayersByScore());
         return this.gameResults;
     }
 

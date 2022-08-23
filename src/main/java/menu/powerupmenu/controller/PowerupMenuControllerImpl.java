@@ -20,7 +20,7 @@ public class PowerupMenuControllerImpl extends GenericControllerAbstr implements
     /**
      * Constructor for this class.
      * 
-     * @param <S>
+     * @param <S> the scenes of the stage
      * @param s     the {@link StageManager}
      * @param model the {@link PowerupMenuModel} to use
      */
@@ -45,7 +45,7 @@ public class PowerupMenuControllerImpl extends GenericControllerAbstr implements
 
     @Override
     public final void start(final Player currentPlayer) {
-        this.getStageManager().getGui().getViewFactory().createPowerupMenuView(this);
+        this.getStageManager().getGui().getViewLoader().createPowerupMenuView(this);
         this.model.setCurrentPlayer(currentPlayer);
         this.viewController.initializeScene(this.model.getCurrentPlayer().get().getPowerupList());
     }
