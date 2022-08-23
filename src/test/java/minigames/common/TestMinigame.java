@@ -67,7 +67,6 @@ class TestMinigame {
                         new PlayerImpl("Luca")));
         m.runGame();
         assertTrue(orderedDuplList.contains(m.getGameResults()));
-
     }
 
 }
