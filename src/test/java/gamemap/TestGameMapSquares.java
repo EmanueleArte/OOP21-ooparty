@@ -20,12 +20,15 @@ import game.player.PlayerImpl;
 
 public class TestGameMapSquares {
 
-    private final GameMap gameMap = new GameMapImpl(List.of(new GameMapSquareImpl(), new DamageGameMapSquare(), new CoinsGameMapSquare(), new CoinsGameMapSquare(8), new CoinsGameMapSquare(),
-                                                        new PowerUpGameMapSquare(), new PowerUpGameMapSquare(), new DamageGameMapSquare(15), new PowerUpGameMapSquare(), new StarGameMapSquare(),
-                                                        new CoinsGameMapSquare(), new PowerUpGameMapSquare(), new DamageGameMapSquare(), new CoinsGameMapSquare(), new CoinsGameMapSquare(),
-                                                        new CoinsGameMapSquare(), new PowerUpGameMapSquare(), new DamageGameMapSquare(), new CoinsGameMapSquare(), new CoinsGameMapSquare(),
-                                                        new PowerUpGameMapSquare(), new CoinsGameMapSquare(), new DamageGameMapSquare(), new CoinsGameMapSquare(), new CoinsGameMapSquare(),
-                                                        new CoinsGameMapSquare(), new CoinsGameMapSquare(), new DamageGameMapSquare(), new DamageGameMapSquare(), new PowerUpGameMapSquare()));
+    private final GameMap gameMap = new GameMapImpl(List.of(new GameMapSquareImpl(), new DamageGameMapSquare(),
+            new CoinsGameMapSquare(), new CoinsGameMapSquare(8), new CoinsGameMapSquare(), new PowerUpGameMapSquare(),
+            new PowerUpGameMapSquare(), new DamageGameMapSquare(15), new PowerUpGameMapSquare(),
+            new StarGameMapSquare(), new CoinsGameMapSquare(), new PowerUpGameMapSquare(), new DamageGameMapSquare(),
+            new CoinsGameMapSquare(), new CoinsGameMapSquare(), new CoinsGameMapSquare(), new PowerUpGameMapSquare(),
+            new DamageGameMapSquare(), new CoinsGameMapSquare(), new CoinsGameMapSquare(), new PowerUpGameMapSquare(),
+            new CoinsGameMapSquare(), new DamageGameMapSquare(), new CoinsGameMapSquare(), new CoinsGameMapSquare(),
+            new CoinsGameMapSquare(), new CoinsGameMapSquare(), new DamageGameMapSquare(), new DamageGameMapSquare(),
+            new PowerUpGameMapSquare()));
     private final Player p1 = new PlayerImpl("Giocatore 1");
     private final Player p2 = new PlayerImpl("Giocatore 2");
 
@@ -50,7 +53,7 @@ public class TestGameMapSquares {
         assertTrue(this.p2.getPosition(this.gameMap).isDamageGameMapSquare());
         assertFalse(this.p2.getPosition(this.gameMap).isCoinsGameMapSquare());
         assertFalse(this.p2.getPosition(this.gameMap).isPowerUpGameMapSquare());
-        assertFalse(this.p2.getPosition(this.gameMap).isStarGameMapSquare());;
+        assertFalse(this.p2.getPosition(this.gameMap).isStarGameMapSquare());
         this.p2.getPosition(this.gameMap).makeSpecialAction(p2);
         assertEquals(15, PlayerImpl.MAX_LIFE - p2.getLifePoints());
     }
