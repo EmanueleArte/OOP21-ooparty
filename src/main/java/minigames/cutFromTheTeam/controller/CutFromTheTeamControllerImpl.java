@@ -5,9 +5,11 @@ import java.util.List;
 import game.dice.controller.DiceController;
 import game.player.Player;
 import minigames.common.controller.MinigameControllerAbstr;
+import minigames.common.controller.MinigameGuideControllerImpl;
 import minigames.cutFromTheTeam.model.CutFromTheTeamModel;
 import minigames.cutFromTheTeam.model.CutFromTheTeamModelImpl;
 import minigames.cutFromTheTeam.view.CutFromTheTeamViewController;
+import utils.controller.GenericController;
 import utils.graphics.controller.StageManager;
 import utils.view.GenericViewController;
 
@@ -27,14 +29,28 @@ public class CutFromTheTeamControllerImpl extends MinigameControllerAbstr implem
      */
     @Override
     public List<Player> getGameResults() {
-        // TODO Auto-generated method stub
-        return null;
+        return this.cutFromTheTeamModel.getGameResults();
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void startGame() {
-        // TODO Auto-generated method stub
+        this.getStageManager().getGui().getViewLoader().createCutFromTheTeamView(this);
+        final GenericController guideController = new MinigameGuideControllerImpl(this.getStageManager());
+        this.getStageManager().getGui().getViewLoader().createCutFromTheTeamGuideView(guideController);
 
+        this.cutFromTheTeamView.start(this.cutFromTheTeamModel.getRopes());
+        this.cutFromTheTeamView.setPlayerLabelText(this.cutFromTheTeamModel.getCurrPlayer());
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public void pickRope(final Boolean ropeValue) {
+        this.cutFromTheTeamModel.setRope(ropeValue);
     }
 
     /**
@@ -42,8 +58,11 @@ public class CutFromTheTeamControllerImpl extends MinigameControllerAbstr implem
      */
     @Override
     public boolean nextTurn() {
-        // TODO Auto-generated method stub
-        return false;
+        var temp = this.cutFromTheTeamModel.runGame();
+        if (this.isOver()) {
+            this.closeGame();
+        }
+        return temp;
     }
 
     /**
@@ -64,6 +83,22 @@ public class CutFromTheTeamControllerImpl extends MinigameControllerAbstr implem
     @Override
     public GenericViewController getViewController() {
         return this.cutFromTheTeamView;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public void updateCurrentPlayerLabel() {
+        this.cutFromTheTeamView.setPlayerLabelText(this.cutFromTheTeamModel.getCurrPlayer());
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public boolean isOver() {
+        return this.cutFromTheTeamModel.isOver();
     }
 
 }
