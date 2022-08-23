@@ -6,8 +6,8 @@ import game.dice.controller.DiceController;
 import game.gamehandler.model.GameHandlerModel;
 import game.gamehandler.view.GameHandlerViewControllerImpl;
 import game.player.Player;
-import menu.afterminigamemenu.controller.AfterMinigameMenuControllerImpl;
-import menu.pausemenu.controller.PauseMenuControllerImpl;
+import menu.afterminigamemenu.controller.AfterMinigameMenuController;
+import menu.common.controller.MenuController;
 import menu.powerupmenu.controller.PowerupMenuController;
 import minigames.common.controller.MinigameController;
 import utils.controller.GenericController;
@@ -16,6 +16,8 @@ import utils.graphics.controller.StageManager;
 import utils.view.GenericViewController;
 import utils.enums.PlayerTurnProgress;
 import utils.enums.TurnProgress;
+import utils.factories.controller.ControllerFactory;
+import utils.factories.controller.ControllerFactoryFx;
 import utils.factories.controller.MinigameControllerFactory;
 import utils.factories.controller.MinigameControllerFactoryImpl;
 
@@ -168,7 +170,8 @@ public class GameHandlerControllerImpl extends GenericControllerAbstr
 
     @Override
     public final void pauseMenu() {
-        PauseMenuControllerImpl pauseMenuController = new PauseMenuControllerImpl(this.getStageManager());
+        ControllerFactory controllerFactory = new ControllerFactoryFx<>(this.getStageManager());
+        MenuController pauseMenuController = controllerFactory.createPauseMenuController();
         pauseMenuController.createMenu();
     }
 
@@ -178,19 +181,19 @@ public class GameHandlerControllerImpl extends GenericControllerAbstr
 
     @Override
     public final void showAfterMinigameMenu() {
-        AfterMinigameMenuControllerImpl afterMinigameMenuControllerImpl = new AfterMinigameMenuControllerImpl(
-                this.getStageManager());
-        afterMinigameMenuControllerImpl.createMenu();
-        afterMinigameMenuControllerImpl.makeLeaderboard(this.model.getTurnOrder());
+        ControllerFactory controllerFactory = new ControllerFactoryFx<>(this.getStageManager());
+        AfterMinigameMenuController afterMinigameMenuController = controllerFactory.createAfterMinigameMenuController();
+        afterMinigameMenuController.createMenu();
+        afterMinigameMenuController.makeLeaderboard(this.model.getTurnOrder());
     }
 
     @Override
     public final void endGame() {
         this.getStageManager().popScene();
-        AfterMinigameMenuControllerImpl afterMinigameMenuControllerImpl = new AfterMinigameMenuControllerImpl(
-                this.getStageManager());
-        afterMinigameMenuControllerImpl.createMenu();
-        afterMinigameMenuControllerImpl.makeEndGameLeaderboard(this.model.getLeaderboard());
+        ControllerFactory controllerFactory = new ControllerFactoryFx<>(this.getStageManager());
+        AfterMinigameMenuController afterMinigameMenuController = controllerFactory.createAfterMinigameMenuController();
+        afterMinigameMenuController.createMenu();
+        afterMinigameMenuController.makeEndGameLeaderboard(this.model.getLeaderboard());
     }
 
 }

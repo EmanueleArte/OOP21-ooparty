@@ -11,6 +11,7 @@ import game.gamehandler.controller.GameHandlerController;
 import game.gamehandler.controller.GameHandlerControllerImpl;
 import game.gamehandler.model.GameHandlerModelImpl;
 import game.player.Player;
+import menu.afterminigamemenu.controller.AfterMinigameMenuController;
 import menu.afterminigamemenu.controller.AfterMinigameMenuControllerImpl;
 import menu.common.controller.MenuController;
 import menu.gamecreationmenu.controller.GameCreationMenuControllerImpl;
@@ -73,7 +74,7 @@ public class ControllerFactoryFx<S> implements ControllerFactory {
     }
 
     @Override
-    public final MenuController createAfterMinigameMenuController() {
+    public final AfterMinigameMenuController createAfterMinigameMenuController() {
         var controller = new AfterMinigameMenuControllerImpl(this.stageManager);
         return controller;
     }
