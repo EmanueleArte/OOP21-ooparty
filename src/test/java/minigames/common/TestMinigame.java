@@ -1,10 +1,13 @@
 package minigames.common;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.List;
 import java.util.Map;
+import java.util.NoSuchElementException;
+
 import org.junit.jupiter.api.Test;
 import game.dice.model.DiceModel;
 import game.dice.model.DiceModelNoRepeatImpl;
@@ -31,10 +34,23 @@ class TestMinigame {
 
         @Override
         public boolean runGame() {
+            this.setCurrPlayer();
             this.setGameResults();
             return false;
         }
 
+    }
+
+    @Test
+    void testPlayerTurns() {
+        final MinigameModel m = new MinigameModelImpl(players, new DiceModelNoRepeatImpl());
+        assertThrows(NoSuchElementException.class, () -> m.getCurrPlayer());
+        m.runGame();
+        assertEquals(this.players.get(0), m.getCurrPlayer());
+        for (int i = 0; i < this.players.size(); i++) {
+            m.runGame();
+        }
+        assertEquals(this.players.get(this.players.size() - 1), m.getCurrPlayer());
     }
 
     @Test
@@ -49,6 +65,7 @@ class TestMinigame {
     @Test
     void testSortPlayerByScore() {
         final MinigameModel m = new MinigameModelImpl(players, new DiceModelNoRepeatImpl());
+        assertEquals(this.players, m.getGameResults());
         players.forEach(p -> m.scoreMapper(p, scores.get(players.indexOf(p))));
         final List<Player> orderedList = List.of(new PlayerImpl("Giovanni"), new PlayerImpl("Lorenzo"),
                 new PlayerImpl("Luca"), new PlayerImpl("Marco"));
