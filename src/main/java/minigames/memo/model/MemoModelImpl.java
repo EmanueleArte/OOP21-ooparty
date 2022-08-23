@@ -129,7 +129,11 @@ public class MemoModelImpl extends MinigameModelAbstr implements MemoModel {
     }
 
     private void initializePlayersScores() {
-        this.getPlayers().stream().forEach(p -> this.setScore(0));
+        this.getPlayers().stream().forEach(p -> {
+            this.setScore(0);
+            this.setCurrPlayer();
+        });
+
     }
 
 }
