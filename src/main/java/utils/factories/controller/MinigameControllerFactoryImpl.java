@@ -19,19 +19,18 @@ public class MinigameControllerFactoryImpl<S> implements MinigameControllerFacto
 
     @Override
     public final MinigameController createRandomMinigameController() {
-//        Random rand = new Random();
-//        switch (rand.nextInt(MinigameControllerFactoryImpl.MINIGAMES_NUMBER)) {
-//        case 0:
-//            return this.stageManager.getControllerFactory().createMastermindController(this.players);
-//        case 1:
-//            return this.stageManager.getControllerFactory().createWhoRisksWinsController(this.players);
-//        case 2:
-//            return this.stageManager.getControllerFactory().createMemoController(this.players);
-//        case 3:
+        Random rand = new Random();
+        switch (rand.nextInt(MinigameControllerFactoryImpl.MINIGAMES_NUMBER)) {
+        case 0:
+            return this.stageManager.getControllerFactory().createMastermindController(this.players);
+        case 1:
+            return this.stageManager.getControllerFactory().createWhoRisksWinsController(this.players);
+        case 2:
+            return this.stageManager.getControllerFactory().createMemoController(this.players);
+        case 3:
             return this.stageManager.getControllerFactory().createCutFromTheTeamController(this.players);
-//        default:
-//            return null;
-//        }
+        default:
+            return null;
+        }
     }
 }
-

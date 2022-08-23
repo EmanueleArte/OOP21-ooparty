@@ -60,7 +60,6 @@ public class CutFromTheTeamControllerImpl extends MinigameControllerAbstr implem
     public boolean nextTurn() {
         var temp = this.cutFromTheTeamModel.runGame();
         if (this.isOver()) {
-            System.out.println(this.cutFromTheTeamModel.getPlayersClassification());
             this.cutFromTheTeamView.enableCloseButton();
         }
         return temp;
