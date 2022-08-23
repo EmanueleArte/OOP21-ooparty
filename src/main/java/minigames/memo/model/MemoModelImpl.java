@@ -84,7 +84,11 @@ public class MemoModelImpl extends MinigameModelAbstr implements MemoModel {
      */
     @Override
     public boolean isOver() {
-        return this.cards.isEmpty();
+        final var end = this.cards.isEmpty();
+        if (end) {
+            this.setGameResults();
+        }
+        return end;
     }
 
     /**
