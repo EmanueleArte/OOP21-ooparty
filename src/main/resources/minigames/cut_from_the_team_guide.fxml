@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.net.*?>
+<?import java.net.URL?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
@@ -13,7 +13,7 @@
 
 <VBox alignment="CENTER" minHeight="-Infinity" minWidth="-Infinity" prefHeight="2160.0" prefWidth="3840.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="minigames.common.view.MinigameGuideViewControllerImpl">
    <stylesheets> 
-     <URL value="@../fonts/fonts.css"/> 
+     <URL value="@../fonts/fonts.css" /> 
    </stylesheets>
    <children>
       <BorderPane prefHeight="735.0" prefWidth="1000.0">
@@ -38,7 +38,7 @@
                                     <Font size="36.0" />
                                  </font>
                               </Label>
-                              <TextArea fx:id="rulesTxtArea" editable="false" focusTraversable="false" prefHeight="403.0" prefWidth="500.0" text="In Cut from the Team players line up and take turns cutting one of the ten wires, (nplayers - 1) of which are &quot;live.&quot; A player who cuts a dead wire is safe and moves to the back of the line. A player who cuts a &quot;live&quot; wire is eliminated. The minigame continues until one player remains, and that player wins." wrapText="true">
+                              <TextArea fx:id="rulesTxtArea" editable="false" focusTraversable="false" prefHeight="403.0" prefWidth="500.0" text="In Cut from the Team players line up and take turns cutting one of the ten wires.  The number of &quot;live&quot; wires is equal to the number of player minus one. A player who cuts a dead wire is safe and moves to the back of the line. A player who cuts a &quot;live&quot; wire is eliminated. The minigame continues until one player remains, and that player wins." wrapText="true">
                                  <font>
                                     <Font size="18.0" />
                                  </font>
@@ -52,7 +52,7 @@
                                     <Font size="36.0" />
                                  </font>
                               </Label>
-                              <TextArea fx:id="htpTxtArea" editable="false" focusTraversable="false" prefHeight="403.0" prefWidth="496.0" text="Dipende dall'implementazione..." translateX="2.0" wrapText="true">
+                              <TextArea fx:id="htpTxtArea" editable="false" focusTraversable="false" prefHeight="403.0" prefWidth="496.0" text="When the game pops up, the player sees a list of ten button, each representing a wire. The player has to click a button to check if it is live or not." translateX="2.0" wrapText="true">
                                  <font>
                                     <Font size="18.0" />
                                  </font>
