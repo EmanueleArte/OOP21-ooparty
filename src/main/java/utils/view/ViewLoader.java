@@ -70,7 +70,7 @@ public interface ViewLoader<S> {
      *
      * @param controller the controller to be used
      */
-    void createCutFromTheTeamView(GenericController memoControllerImpl);
+    void createCutFromTheTeamView(GenericController controller);
 
     /**
      * This method creates a dice view.
