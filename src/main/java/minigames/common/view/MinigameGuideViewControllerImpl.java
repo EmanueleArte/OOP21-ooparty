@@ -21,7 +21,7 @@ public class MinigameGuideViewControllerImpl implements MinigameGuideViewControl
 
     @Override
     public final void startMinigame() {
-        this.minigameController.startGame();
+        this.minigameController.startMinigame();
     }
 
 }
