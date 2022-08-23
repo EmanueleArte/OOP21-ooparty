@@ -16,7 +16,7 @@ public interface CutFromTheTeamController extends MinigameController {
     /**
      * This method picks a rope.
      *
-     * @param cardValue the value of the rope.
+     * @param ropeValue the value of the rope.
      */
     void pickRope(Boolean ropeValue);
 
