@@ -178,7 +178,8 @@ public class GameHandlerControllerImpl extends GenericControllerAbstr
 
     @Override
     public final void showAfterMinigameMenu() {
-        AfterMinigameMenuController afterMinigameMenuController = this.getStageManager().getControllerFactory().createAfterMinigameMenuController();
+        AfterMinigameMenuController afterMinigameMenuController = this.getStageManager().getControllerFactory()
+                .createAfterMinigameMenuController();
         afterMinigameMenuController.createMenu();
         afterMinigameMenuController.makeLeaderboard(this.model.getTurnOrder());
     }
@@ -186,7 +187,8 @@ public class GameHandlerControllerImpl extends GenericControllerAbstr
     @Override
     public final void endGame() {
         this.getStageManager().popScene();
-        AfterMinigameMenuController afterMinigameMenuController = this.getStageManager().getControllerFactory().createAfterMinigameMenuController();
+        AfterMinigameMenuController afterMinigameMenuController = this.getStageManager().getControllerFactory()
+                .createAfterMinigameMenuController();
         afterMinigameMenuController.createMenu();
         afterMinigameMenuController.makeEndGameLeaderboard(this.model.getLeaderboard());
     }
