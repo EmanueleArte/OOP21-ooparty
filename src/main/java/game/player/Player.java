@@ -113,7 +113,6 @@ public interface Player {
      * Takes away life points from the player.
      * 
      * @param damage the amount of life to be taken away
-     * @param gameMap the game map
      */
     void loseLifePoints(int damage);
 
@@ -149,6 +148,7 @@ public interface Player {
      * Uses one powerup and removes it from the list.
      * 
      * @param powerupType type of powerup to use
+     * @param target      the target of the powerup
      */
     void usePowerup(String powerupType, Player target);
 

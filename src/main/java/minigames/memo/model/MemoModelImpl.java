@@ -30,7 +30,7 @@ public class MemoModelImpl extends MinigameModelAbstr implements MemoModel {
      * @param players the players of the game.
      * @param dice    the dice controller.
      */
-    public <S> MemoModelImpl(final List<Player> players, final DiceModel dice) {
+    public MemoModelImpl(final List<Player> players, final DiceModel dice) {
         super(players, dice);
         this.cards = this.initialiseCards();
         this.changeTurn();
@@ -84,7 +84,11 @@ public class MemoModelImpl extends MinigameModelAbstr implements MemoModel {
      */
     @Override
     public boolean isOver() {
-        return this.cards.isEmpty();
+        final var end = this.cards.isEmpty();
+        if (end) {
+            this.setGameResults();
+        }
+        return end;
     }
 
     /**
@@ -129,11 +133,7 @@ public class MemoModelImpl extends MinigameModelAbstr implements MemoModel {
     }
 
     private void initializePlayersScores() {
-        this.getPlayers().stream().forEach(p -> {
-            this.setScore(0);
-            this.setCurrPlayer();
-        });
-
+        this.getPlayers().forEach(p -> this.scoreMapper(p, 0));
     }
 
 }

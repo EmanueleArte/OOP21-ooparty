@@ -23,7 +23,7 @@ public class MastermindControllerImpl extends MinigameControllerAbstr implements
 
     /**
      * Builder for {@link MastermindControllerImpl}.
-     * 
+     *
      * @param <S>   the scenes of the stage
      * @param s     the {@link StageManager}
      * @param model the {@link MastermindModel}
