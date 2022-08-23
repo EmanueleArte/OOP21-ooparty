@@ -24,6 +24,9 @@ import javafx.geometry.VPos;
 import javafx.scene.Group;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
+import javafx.scene.control.ButtonBar;
+import javafx.scene.control.ButtonBar.ButtonData;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -255,11 +258,15 @@ public class GameHandlerViewControllerImpl implements GenericViewController, Gam
                 GridPane.setValignment(l, VPos.CENTER);
             });
         } catch (IOException e) {
-            Alert errorAlert = new Alert(AlertType.ERROR);
+            Alert errorAlert = new Alert(AlertType.ERROR, "Error", new ButtonType("Close", ButtonData.CANCEL_CLOSE));
+            System.out.println(errorAlert.getButtonTypes().get(0).getButtonData());
             errorAlert.setHeaderText("Error");
-            errorAlert.setContentText("Error while loading the map layout");
-            errorAlert.showAndWait();
+            errorAlert.setContentText("Error while loading the map layout.");
+            errorAlert.showAndWait()
+                    .filter(response -> response.getButtonData() == ButtonData.CANCEL_CLOSE)
+                    .ifPresent(response -> System.exit(1));
         }
+
 
 
         mapGrid.setHgap(GRID_SPACING);
