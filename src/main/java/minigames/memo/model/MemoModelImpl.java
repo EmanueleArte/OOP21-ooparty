@@ -30,7 +30,7 @@ public class MemoModelImpl extends MinigameModelAbstr implements MemoModel {
      * @param players the players of the game.
      * @param dice    the dice controller.
      */
-    public <S> MemoModelImpl(final List<Player> players, final DiceModel dice) {
+    public MemoModelImpl(final List<Player> players, final DiceModel dice) {
         super(players, dice);
         this.cards = this.initialiseCards();
         this.changeTurn();

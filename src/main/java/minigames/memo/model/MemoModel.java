@@ -26,6 +26,8 @@ public interface MemoModel extends MinigameModel {
 
     /**
      * This method sets the value of the next card to be chosen.
+     *
+     * @param cardValue the value of the card chosen.
      */
     void setValue(int cardValue);
 

@@ -14,7 +14,7 @@ import utils.view.GenericViewController;
 
 /**
  * Implementation of {@link MemoController} and extension of
- * {@link GenericControllerAbstr}.
+ * {@link utils.controller.GenericControllerAbstr GenericControllerAbstr}.
  */
 public class MemoControllerImpl extends MinigameControllerAbstr implements MemoController {
 
@@ -23,10 +23,11 @@ public class MemoControllerImpl extends MinigameControllerAbstr implements MemoC
 
     /**
      * Builder for {@link MemoControllerImpl}.
-     * 
-     * @param <S>     the scenes of the stage.
-     * @param s       the {@link StageManager}.
-     * @param players the list of players.
+     *
+     * @param <S>   the scenes of the stage
+     * @param s     the {@link StageManager}
+     * @param model the {@link MemoModel}
+     * @param dice  the {@link DiceController}
      */
     public <S> MemoControllerImpl(final StageManager<S> s, final MemoModel model, final DiceController dice) {
         super(s, dice);
