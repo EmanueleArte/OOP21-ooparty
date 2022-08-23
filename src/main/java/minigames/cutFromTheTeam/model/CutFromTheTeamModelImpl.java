@@ -63,6 +63,7 @@ public class CutFromTheTeamModelImpl extends MinigameModelAbstr implements CutFr
         }
         this.ropes.remove(!ropeChosen);
         this.setScore(this.getScore() + SCORE_FOR_EACH_ROPE_GUESSED);
+        this.changeTurn();
         return false;
     }
 
@@ -79,11 +80,15 @@ public class CutFromTheTeamModelImpl extends MinigameModelAbstr implements CutFr
      */
     @Override
     public boolean isOver() {
-        return this.deadPlayer.size() >= this.getPlayers().size() - 1;
+        final var end = this.deadPlayer.size() >= this.getPlayers().size() - 1;
+        if (end) {
+            this.setGameResults();
+        }
+        return end;
     }
 
     private void changeTurn() {
-        if (this.deadPlayer.size() >= this.getPlayers().size() - 1) {
+        if (this.isOver()) {
             throw new IllegalStateException("The game is over");
         }
         if (!this.hasNextPlayer()) {
@@ -103,7 +108,7 @@ public class CutFromTheTeamModelImpl extends MinigameModelAbstr implements CutFr
     }
 
     private void initializePlayersScores() {
-        this.getPlayers().stream().forEach(p -> this.setScore(0));
+        this.getPlayers().stream().forEach(p -> this.scoreMapper(p, 0));
     }
 
 }
