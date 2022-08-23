@@ -50,7 +50,7 @@ public class CutFromTheTeamModelImpl extends MinigameModelAbstr implements CutFr
     /**
      * {@inheritDoc}
      *
-     * @return {@code true} if this turn , {@code false} otherwise.
+     * @return {@code true} if this the rope was a bomb, {@code false} otherwise.
      *
      * @throws IllegalStateException if the game is over.
      */
@@ -66,13 +66,13 @@ public class CutFromTheTeamModelImpl extends MinigameModelAbstr implements CutFr
         }
         final var ropeChosen = this.ropeChosen.get();
         this.ropeChosen = Optional.empty();
+        this.ropes.remove(ropeChosen);
+        this.setScore(this.getScore() + (ropeChosen ? 0 : SCORE_FOR_EACH_ROPE_GUESSED));
         if (ropeChosen) {
             this.deadPlayer.add(this.getCurrPlayer());
         }
-        this.ropes.remove(!ropeChosen);
-        this.setScore(this.getScore() + SCORE_FOR_EACH_ROPE_GUESSED);
         this.changeTurn();
-        return false;
+        return ropeChosen;
     }
 
     /**
@@ -90,19 +90,16 @@ public class CutFromTheTeamModelImpl extends MinigameModelAbstr implements CutFr
     public boolean isOver() {
         final var end = this.deadPlayer.size() >= this.getPlayers().size() - 1;
         if (end) {
+            this.setScore(this.getScore() + SCORE_FOR_EACH_ROPE_GUESSED);
             this.setGameResults();
         }
         return end;
     }
 
     private void changeTurn() {
-        if (this.isOver()) {
-            throw new IllegalStateException("The game is over");
-        }
         if (!this.hasNextPlayer()) {
             this.setPlayerIterator(
                     this.getPlayers().stream().filter(p -> !this.deadPlayer.contains(p)).collect(Collectors.toList()));
-
         }
         this.setCurrPlayer();
         this.ropeChosen = Optional.empty();

@@ -42,7 +42,7 @@ public class CutFromTheTeamControllerImpl extends MinigameControllerAbstr implem
         this.getStageManager().getGui().getViewLoader().createCutFromTheTeamGuideView(guideController);
 
         this.cutFromTheTeamView.start(this.cutFromTheTeamModel.getRopes());
-        this.cutFromTheTeamView.setPlayerLabelText(this.cutFromTheTeamModel.getCurrPlayer());
+        this.updateCurrentPlayerLabel();
     }
 
     /**
@@ -60,7 +60,8 @@ public class CutFromTheTeamControllerImpl extends MinigameControllerAbstr implem
     public boolean nextTurn() {
         var temp = this.cutFromTheTeamModel.runGame();
         if (this.isOver()) {
-            this.closeGame();
+            System.out.println(this.cutFromTheTeamModel.getPlayersClassification());
+            this.cutFromTheTeamView.enableCloseButton();
         }
         return temp;
     }

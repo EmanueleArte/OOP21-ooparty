@@ -2,7 +2,6 @@ package minigames;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.List;
@@ -31,7 +30,7 @@ public class TestCutFromTheTeamModel {
         m.runGame();
         assertFalse(m.isOver());
         m.setRope(true);
-        assertThrows(new IllegalStateException().getClass(), () -> m.runGame());
+        m.runGame();
         assertTrue(m.isOver());
     }
 
@@ -46,7 +45,8 @@ public class TestCutFromTheTeamModel {
         m.runGame();
         assertEquals(m.getCurrPlayer().getNickname(), players.get(1).getNickname());
         m.setRope(true);
-        assertThrows(new IllegalStateException().getClass(), () -> m.runGame());
+        m.runGame();
+        assertTrue(m.isOver());
     }
 
 }

@@ -18,4 +18,9 @@ public interface CutFromTheTeamViewController extends MinigameViewController {
      */
     void start(List<Boolean> ropes);
 
+    /**
+     * This method enables the button that closes the game.
+     */
+    void enableCloseButton();
+
 }
