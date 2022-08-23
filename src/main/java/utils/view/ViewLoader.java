@@ -56,7 +56,7 @@ public interface ViewLoader<S> {
      *
      * @param controller the controller to be used
      */
-    void createMemoView(GenericController memoControllerImpl);
+    void createMemoView(GenericController controller);
 
     /**
      * This method creates a dice view.
