@@ -16,8 +16,6 @@ import utils.graphics.controller.StageManager;
 import utils.view.GenericViewController;
 import utils.enums.PlayerTurnProgress;
 import utils.enums.TurnProgress;
-import utils.factories.controller.ControllerFactory;
-import utils.factories.controller.ControllerFactoryFx;
 import utils.factories.controller.MinigameControllerFactory;
 import utils.factories.controller.MinigameControllerFactoryImpl;
 
