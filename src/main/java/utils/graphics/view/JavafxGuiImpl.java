@@ -34,7 +34,7 @@ public class JavafxGuiImpl extends JFrame implements JavafxGui {
     private FXMLLoader loader;
     private final JFrame frame;
     private Optional<Parent> root;
-    private final ViewLoader<?> viewFactory;
+    private final ViewLoader<?> viewLoader;
 
     /**
      * Builds a new {@link JavafxGuiImpl}.
@@ -47,7 +47,7 @@ public class JavafxGuiImpl extends JFrame implements JavafxGui {
         this.mainStage = Optional.empty();
         this.root = Optional.empty();
         this.frame = new JFrame(title);
-        this.viewFactory = new ViewLoaderFx<>(s);
+        this.viewLoader = new ViewLoaderFx<>(s);
     }
 
     @Override
@@ -99,8 +99,8 @@ public class JavafxGuiImpl extends JFrame implements JavafxGui {
     }
 
     @Override
-    public final ViewLoader<?> getViewFactory() {
-        return this.viewFactory;
+    public final ViewLoader<?> getViewLoader() {
+        return this.viewLoader;
     }
 
 }

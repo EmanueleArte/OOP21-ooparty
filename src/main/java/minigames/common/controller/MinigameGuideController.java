@@ -7,5 +7,5 @@ public interface MinigameGuideController {
     /**
      * This method starts the game associated to the guide.
      */
-    void startGame();
+    void startMinigame();
 }

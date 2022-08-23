@@ -29,12 +29,24 @@ public enum PlayerTurnProgress {
      */
     END_OF_TURN;
 
-    public static PlayerTurnProgress next(final PlayerTurnProgress turn) {
-        return turn.ordinal() == values().length - 1 ? values()[0] : values()[turn.ordinal() + 1];
+    /**
+     * This method returns the next step of a player turn progress.
+     * 
+     * @param playerTurnProgress the {@link PlayerTurnProgress} to increment
+     * @return the next step
+     */
+    public static PlayerTurnProgress next(final PlayerTurnProgress playerTurnProgress) {
+        return playerTurnProgress.ordinal() == values().length - 1 ? values()[0] : values()[playerTurnProgress.ordinal() + 1];
     }
 
-    public static PlayerTurnProgress previous(final PlayerTurnProgress turn) {
-        return turn.ordinal() == 0 ? values()[values().length - 1] : values()[turn.ordinal() - 1];
+    /**
+     * This method returns the previous step of a player turn progress.
+     * 
+     * @param playerTurnProgress the {@link PlayerTurnProgress} to decrement
+     * @return the previous step
+     */
+    public static PlayerTurnProgress previous(final PlayerTurnProgress playerTurnProgress) {
+        return playerTurnProgress.ordinal() == 0 ? values()[values().length - 1] : values()[playerTurnProgress.ordinal() - 1];
     }
 
 }

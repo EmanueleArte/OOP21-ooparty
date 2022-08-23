@@ -13,13 +13,15 @@ import minigames.common.controller.MinigameController;
 import utils.controller.GenericController;
 import utils.controller.GenericControllerAbstr;
 import utils.graphics.controller.StageManager;
-import utils.view.GenericViewUtils;
 import utils.view.GenericViewController;
 import utils.enums.PlayerTurnProgress;
 import utils.enums.TurnProgress;
 import utils.factories.controller.MinigameControllerFactory;
 import utils.factories.controller.MinigameControllerFactoryImpl;
 
+/**
+ * Implementation of {@link GameHandlerController}.
+ */
 public class GameHandlerControllerImpl extends GenericControllerAbstr
         implements GenericController, GameHandlerController {
 
@@ -28,6 +30,14 @@ public class GameHandlerControllerImpl extends GenericControllerAbstr
     private DiceController dice;
     private final MinigameControllerFactory<?> minigameFactory;
 
+    /**
+     * Constructor for this class.
+     * 
+     * @param <S>            the scenes of the stage
+     * @param s              the {@link StageManager}
+     * @param diceController the {@link DiceController}
+     * @param model          the {@link GameHandlerModel}
+     */
     public <S> GameHandlerControllerImpl(final StageManager<S> s, final DiceController diceController,
             final GameHandlerModel model) {
         super(s);
@@ -38,14 +48,14 @@ public class GameHandlerControllerImpl extends GenericControllerAbstr
 
     @Override
     public final void start() {
-        GenericViewUtils.createScene(this.getStageManager(), this, "game/game.fxml");
+        this.getStageManager().getGui().getViewLoader().createGameHandlerView(this);
     }
 
     @Override
     public final void setViewController(final GenericViewController viewController) {
         if (viewController instanceof GameHandlerViewControllerImpl) {
             this.viewController = (GameHandlerViewControllerImpl) viewController;
-            this.viewController.initialize(this.model.getPlayers(), this, this.model.getGameMap());
+            this.viewController.initialize(this.model.getPlayers(), this.model.getGameMap());
         } else {
             throw new IllegalArgumentException("The parameter must be an instance of GameHandlerViewControllerImpl");
         }
@@ -73,7 +83,8 @@ public class GameHandlerControllerImpl extends GenericControllerAbstr
                     Player currentPlayer = this.model.getCurrentPlayer().get();
                     switch (playerProgress.get()) {
                     case SHOW_BANNER:
-                        this.viewController.showBanner(this.model.getCurrentPlayer().get().getNickname().toUpperCase() + "'S TURN");
+                        this.viewController.showBanner(
+                                this.model.getCurrentPlayer().get().getNickname().toUpperCase() + "'S TURN");
                         break;
                     case HIDE_BANNER:
                         this.viewController.hideBanner();

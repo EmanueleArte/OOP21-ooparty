@@ -3,7 +3,7 @@ package minigames.mastermind.model;
 import minigames.common.model.MinigameModel;
 
 /**
- * This interface models the mastermind model and extension of {@link MinigameModel}.
+ * This interface models the mastermind model. Specialization of {@link MinigameModel}.
  */
 public interface MastermindModel extends MinigameModel {
 

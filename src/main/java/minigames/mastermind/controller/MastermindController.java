@@ -3,7 +3,7 @@ package minigames.mastermind.controller;
 import minigames.common.controller.MinigameController;
 
 /**
- * Extension of {@link MinigameController}.
+ * This interface models the Mastermind controller. Specialization of {@link MinigameController}.
  */
 public interface MastermindController extends MinigameController {
 

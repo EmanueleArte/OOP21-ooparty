@@ -55,33 +55,38 @@ public interface ControllerFactory {
     MenuController createPauseMenuController();
 
     /**
-     * This method creates a {@link AfterMinigameMenuController}.
+     * This method creates a {@link MenuController} for the after minigame menu.
      * 
-     * @return the {@link AfterMinigameMenuController} created
+     * @return the after minigame menu created
      */
-    MenuController createAfterMinigameController();
+    MenuController createAfterMinigameMenuController();
 
     /**
-     * This method creates a {@link MastermindController}.
+     * This method creates a
+     * {@link minigames.mastermind.controller.MastermindController
+     * MastermindController} for the minigame mastermind.
      * 
      * @param players the list of {@link Player} that participates to the minigame
-     * @return the {@link MastermindController} created
+     * @return the {@link MinigameController} created
      */
     MinigameController createMastermindController(List<Player> players);
 
     /**
-     * This method creates a {@link WhoRisksWinsController}.
+     * This method creates a
+     * {@link minigames.whoriskswins.controller.WhoRisksWinsController
+     * WhoRisksWinsController}.
      * 
      * @param players the list of {@link Player} that participates to the minigame
-     * @return the {@link WhoRisksWinsController} created
+     * @return the {@link MinigameController} created
      */
     MinigameController createWhoRisksWinsController(List<Player> players);
 
     /**
-     * This method creates a .
+     * This method creates a {@link minigames.memo.controller.MemoController
+     * MemoController}.
      * 
      * @param players the list of {@link Player} that participates to the minigame
-     * @return
+     * @return the {@link MinigameController} created
      */
     MinigameController createMemoController(List<Player> players);
 

@@ -15,14 +15,6 @@ import utils.graphics.view.Gui;
 public interface StageManager<S> {
 
     /**
-     * This method adds an FXML scene to the scene list.
-     * 
-     * @param fxmlUrl    the url of the fxml file to load
-     * @param controller the controller to be used
-     */
-    void addFXMLScene(String fxmlUrl, GenericController controller);
-
-    /**
      * This method adds an existing scene.
      * 
      * @param scene the scene to add

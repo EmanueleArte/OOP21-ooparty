@@ -1,5 +1,6 @@
 package game.gamehandler.view;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -21,6 +22,11 @@ import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.geometry.VPos;
 import javafx.scene.Group;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
+import javafx.scene.control.ButtonBar;
+import javafx.scene.control.ButtonBar.ButtonData;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -92,9 +98,7 @@ public class GameHandlerViewControllerImpl implements GenericViewController, Gam
     }
 
     @Override
-    public final void initialize(final List<Player> players, final GenericController controller, final GameMap gameMap) {
-        this.setController(controller);
-
+    public final void initialize(final List<Player> players, final GameMap gameMap) {
         List<Group> avatarsList = new ArrayList<Group>();
         this.avatars.getChildren().forEach(c -> {
             avatarsList.add((Group) c);
@@ -124,6 +128,11 @@ public class GameHandlerViewControllerImpl implements GenericViewController, Gam
         this.initializeMap(gameMap);
     }
 
+    /**
+     * This method gets called when a key is pressed on this scene.
+     * 
+     * @param ke the {@link KeyEvent}
+     */
     @FXML
     protected final void onKeyPressed(final KeyEvent ke) {
         if (ke.getCode().equals(KeyCode.ENTER) || ke.getCode().equals(KeyCode.SPACE)) {
@@ -134,6 +143,9 @@ public class GameHandlerViewControllerImpl implements GenericViewController, Gam
         }
     }
 
+    /**
+     * This method gets called when the mouse clicks on this scene.
+     */
     @FXML
     protected final void onClick() {
         this.controller.nextStep();
@@ -169,11 +181,9 @@ public class GameHandlerViewControllerImpl implements GenericViewController, Gam
         transition.setDuration(Duration.millis(1000));
         transition.setFromX(avatar.getTranslateX());
         transition.setFromY(avatar.getTranslateY());
-        transition.setToX(this.mapGrid.getChildren().get(
-                gameMap.getSquares().indexOf(gameMap.getPlayerPosition(p)))
+        transition.setToX(this.mapGrid.getChildren().get(gameMap.getSquares().indexOf(gameMap.getPlayerPosition(p)))
                 .getLayoutX());
-        transition.setToY(this.mapGrid.getChildren().get(
-                gameMap.getSquares().indexOf(gameMap.getPlayerPosition(p)))
+        transition.setToY(this.mapGrid.getChildren().get(gameMap.getSquares().indexOf(gameMap.getPlayerPosition(p)))
                 .getLayoutY());
         transition.play();
     }
@@ -214,41 +224,52 @@ public class GameHandlerViewControllerImpl implements GenericViewController, Gam
     private void initializeMap(final GameMap map) {
         MapLayoutReader reader = new SimpleMapLayoutReader();
         var layoutType = map.getLayout();
-        var layout = reader.loadMapLayout(layoutType);
 
-        map.getSquares().stream().map(s -> {
-            var img = getImage(s);
-            Label label = new Label();
+        try {
+            var layout = reader.loadMapLayout(layoutType);
 
-            if (img.isPresent()) {
-                ImageView view = new ImageView(img.get());
-                view.setFitHeight(ICON_DIM);
-                view.setPreserveRatio(true);
-                label.setGraphic(view);
-            } else {
-                if (map.getSquares().indexOf(s) == 0) {
-                    label.setText("Start");
+            map.getSquares().stream().map(s -> {
+                var img = getImage(s);
+                Label label = new Label();
+
+                if (img.isPresent()) {
+                    ImageView view = new ImageView(img.get());
+                    view.setFitHeight(ICON_DIM);
+                    view.setPreserveRatio(true);
+                    label.setGraphic(view);
+                } else {
+                    if (map.getSquares().indexOf(s) == 0) {
+                        label.setText("Start");
+                    }
                 }
-            }
 
-            label.setId(map.getSquares().indexOf(s) + "");
+                label.setId(map.getSquares().indexOf(s) + "");
 
-            label.setPrefWidth(SQUARE_WIDTH);
-            label.setPrefHeight(SQUARE_HEIGHT);
-            label.setAlignment(Pos.CENTER);
-            label.setBorder(new Border(
-                    new BorderStroke(Color.BLACK, BorderStrokeStyle.SOLID, CornerRadii.EMPTY, new BorderWidths(SQUARE_BORDER_WIDTH))));
-            label.setBackground(new Background(new BackgroundFill(Color.GRAY, CornerRadii.EMPTY, Insets.EMPTY)));
+                label.setPrefWidth(SQUARE_WIDTH);
+                label.setPrefHeight(SQUARE_HEIGHT);
+                label.setAlignment(Pos.CENTER);
+                label.setBorder(new Border(new BorderStroke(Color.BLACK, BorderStrokeStyle.SOLID, CornerRadii.EMPTY,
+                        new BorderWidths(SQUARE_BORDER_WIDTH))));
+                label.setBackground(new Background(new BackgroundFill(Color.GRAY, CornerRadii.EMPTY, Insets.EMPTY)));
 
-            return label;
-        }).forEach(l -> {
-            var index = Integer.parseInt(l.getId());
-            mapGrid.getChildren().add(l);
-            GridPane.setRowIndex(l, (int) layout.get(index).getY());
-            GridPane.setColumnIndex(l, (int) layout.get(index).getX());
-            GridPane.setHalignment(l, HPos.CENTER);
-            GridPane.setValignment(l, VPos.CENTER);
-        });
+                return label;
+            }).forEach(l -> {
+                var index = Integer.parseInt(l.getId());
+                mapGrid.getChildren().add(l);
+                GridPane.setRowIndex(l, (int) layout.get(index).getY());
+                GridPane.setColumnIndex(l, (int) layout.get(index).getX());
+                GridPane.setHalignment(l, HPos.CENTER);
+                GridPane.setValignment(l, VPos.CENTER);
+            });
+        } catch (IOException e) {
+            Alert errorAlert = new Alert(AlertType.ERROR, "Error", new ButtonType("Close", ButtonData.CANCEL_CLOSE));
+            System.out.println(errorAlert.getButtonTypes().get(0).getButtonData());
+            errorAlert.setHeaderText("Error");
+            errorAlert.setContentText("Error while loading the map layout.");
+            errorAlert.showAndWait()
+                    .filter(response -> response.getButtonData() == ButtonData.CANCEL_CLOSE)
+                    .ifPresent(response -> System.exit(1));
+        }
 
         mapGrid.setHgap(GRID_SPACING);
         mapGrid.setVgap(GRID_SPACING);

@@ -73,7 +73,7 @@ public class ControllerFactoryFx<S> implements ControllerFactory {
     }
 
     @Override
-    public final MenuController createAfterMinigameController() {
+    public final MenuController createAfterMinigameMenuController() {
         var controller = new AfterMinigameMenuControllerImpl(this.stageManager);
         return controller;
     }

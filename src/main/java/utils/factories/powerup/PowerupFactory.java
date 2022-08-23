@@ -1,4 +1,4 @@
-package utils.factories;
+package utils.factories.powerup;
 
 import game.powerup.GenericPowerup;
 

@@ -3,7 +3,7 @@ package minigames.whoriskswins.controller;
 import minigames.common.controller.MinigameController;
 
 /**
- * Extension of {@link MinigameController}.
+ * This interface models the Who risks wins controller. Specialization of {@link MinigameController}.
  */
 public interface WhoRisksWinsController extends MinigameController {
 
