@@ -82,20 +82,6 @@ public class ViewLoaderFx<S> implements ViewLoader<S> {
         this.createScene(controller, "menu/powerupmenu.fxml");
     }
 
-    /**
-     * This method creates a specific scene given the arguments and adds it to the
-     * scene list.
-     *
-     * @param controller the controller that act on the scene
-     * @param fxmlUrl    the url to the fxml file to open
-     */
-    @SuppressWarnings("unchecked")
-    private void createScene(final GenericController controller, final String fxmlUrl) {
-        final var currScene = ((JavafxGui) this.stageManager.getGui()).loadScene(fxmlUrl, controller);
-        this.stageManager.setLastGameController(controller);
-        this.stageManager.addScene((S) currScene);
-    }
-
     @Override
     public final void createMastermindGuideView(final GenericController controller) {
         this.createScene(controller, "minigames/mastermind_guide.fxml");
@@ -119,6 +105,20 @@ public class ViewLoaderFx<S> implements ViewLoader<S> {
     @Override
     public final void createCutFromTheTeamGuideView(final GenericController controller) {
         this.createScene(controller, "minigames/cut_from_the_team_guide.fxml");
+    }
+
+    /**
+     * This method creates a specific scene given the arguments and adds it to the
+     * scene list.
+     *
+     * @param controller the controller that act on the scene
+     * @param fxmlUrl    the url to the fxml file to open
+     */
+    @SuppressWarnings("unchecked")
+    private void createScene(final GenericController controller, final String fxmlUrl) {
+        final var currScene = ((JavafxGui) this.stageManager.getGui()).loadScene(fxmlUrl, controller);
+        this.stageManager.setLastGameController(controller);
+        this.stageManager.addScene((S) currScene);
     }
 
 }
