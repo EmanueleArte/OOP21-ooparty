@@ -13,7 +13,6 @@ import org.junit.jupiter.api.Test;
 import game.dice.model.DiceModelNoRepeatImpl;
 import game.player.Player;
 import game.player.PlayerImpl;
-import minigames.memo.model.MemoModel;
 import minigames.memo.model.MemoModelImpl;
 
 /**
@@ -22,7 +21,6 @@ import minigames.memo.model.MemoModelImpl;
 class TestMemoModel {
 
     private List<Player> players = List.of(new PlayerImpl("Luca"), new PlayerImpl("Giovanni"));
-    private MemoModel m;
 
     static final int NUMBER_OF_PAIRS_PER_PLAYER = 4;
     static final int SCORE_FOR_GUESSED_PAIR = 1;
