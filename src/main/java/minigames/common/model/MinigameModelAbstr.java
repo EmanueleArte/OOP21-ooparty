@@ -33,6 +33,7 @@ public abstract class MinigameModelAbstr extends GameModelAbstr implements Minig
         super(players);
         this.playersClassification = new LinkedHashMap<>();
         this.dice = diceModel;
+        this.gameResults = players;
     }
 
     @Override
