@@ -41,6 +41,14 @@ public class CutFromTheTeamModelImpl extends MinigameModelAbstr implements CutFr
 
     /**
      * {@inheritDoc}
+     */
+    @Override
+    public List<Boolean> getRopes() {
+        return List.copyOf(this.ropes);
+    }
+
+    /**
+     * {@inheritDoc}
      *
      * @return {@code true} if this turn , {@code false} otherwise.
      *

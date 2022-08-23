@@ -1,5 +1,7 @@
 package minigames.cutFromTheTeam.model;
 
+import java.util.List;
+
 import minigames.common.model.MinigameModel;
 
 /**
@@ -14,6 +16,13 @@ public interface CutFromTheTeamModel extends MinigameModel {
      * @param rope the index of the rope that will be cut.
      */
     void setRope(Boolean rope);
+
+    /**
+     * This method tells the active ropes.
+     *
+     * @return a list containing the active ropes.
+     */
+    List<Boolean> getRopes();
 
     /**
      * This method tells whether the game has ended.
