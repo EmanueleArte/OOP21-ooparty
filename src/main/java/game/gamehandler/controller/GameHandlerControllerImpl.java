@@ -16,8 +16,6 @@ import utils.graphics.controller.StageManager;
 import utils.view.GenericViewController;
 import utils.enums.PlayerTurnProgress;
 import utils.enums.TurnProgress;
-import utils.factories.controller.ControllerFactory;
-import utils.factories.controller.ControllerFactoryFx;
 import utils.factories.controller.MinigameControllerFactory;
 import utils.factories.controller.MinigameControllerFactoryImpl;
 
@@ -180,7 +178,8 @@ public class GameHandlerControllerImpl extends GenericControllerAbstr
 
     @Override
     public final void showAfterMinigameMenu() {
-        AfterMinigameMenuController afterMinigameMenuController = this.getStageManager().getControllerFactory().createAfterMinigameMenuController();
+        AfterMinigameMenuController afterMinigameMenuController = this.getStageManager().getControllerFactory()
+                .createAfterMinigameMenuController();
         afterMinigameMenuController.createMenu();
         afterMinigameMenuController.makeLeaderboard(this.model.getTurnOrder());
     }
@@ -188,7 +187,8 @@ public class GameHandlerControllerImpl extends GenericControllerAbstr
     @Override
     public final void endGame() {
         this.getStageManager().popScene();
-        AfterMinigameMenuController afterMinigameMenuController = this.getStageManager().getControllerFactory().createAfterMinigameMenuController();
+        AfterMinigameMenuController afterMinigameMenuController = this.getStageManager().getControllerFactory()
+                .createAfterMinigameMenuController();
         afterMinigameMenuController.createMenu();
         afterMinigameMenuController.makeEndGameLeaderboard(this.model.getLeaderboard());
     }
