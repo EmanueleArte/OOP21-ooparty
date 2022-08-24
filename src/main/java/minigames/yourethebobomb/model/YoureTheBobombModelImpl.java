@@ -1,11 +1,16 @@
 package minigames.yourethebobomb.model;
 
-import java.util.Collections;
-import java.util.LinkedList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Map;
+import java.util.Map.Entry;
 import java.util.Optional;
+import java.util.Random;
+import java.util.Set;
+import java.util.function.Function;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
+import java.util.stream.Stream;
 
 import game.dice.model.DiceModel;
 import game.player.Player;
@@ -17,12 +22,12 @@ import minigames.common.model.MinigameModelAbstr;
  */
 public class YoureTheBobombModelImpl extends MinigameModelAbstr implements YoureTheBobombModel {
 
-    private static final int TOTAL_ROPES_NUMBER = 10;
-    private static final int SCORE_FOR_EACH_ROPE_GUESSED = 1;
+    private static final int TOTAL_TILES_NUMBER = 4;
+    private static final int SCORE_FOR_EACH_TILE_GUESSED = 1;
 
-    private final List<Boolean> ropes;
-    private Optional<Boolean> ropeChosen;
-    private final List<Player> deadPlayer;
+    private final Map<Integer, Optional<Set<Player>>> tiles;
+    private Optional<Integer> tileChosen;
+    private final Set<Player> deadPlayer;
 
     /**
      * Builds a new {@link YoureTheBobombModelImpl}.
@@ -32,9 +37,9 @@ public class YoureTheBobombModelImpl extends MinigameModelAbstr implements Youre
      */
     public YoureTheBobombModelImpl(final List<Player> players, final DiceModel dice) {
         super(players, dice);
-        this.ropes = this.initializeAllRopes();
-        this.ropeChosen = Optional.empty();
-        this.deadPlayer = new LinkedList<>();
+        this.tiles = this.initializeTiles();
+        this.tileChosen = Optional.empty();
+        this.deadPlayer = new HashSet<>();
         this.changeTurn();
         this.initializePlayersScores();
     }
@@ -43,44 +48,47 @@ public class YoureTheBobombModelImpl extends MinigameModelAbstr implements Youre
      * {@inheritDoc}
      */
     @Override
-    public List<Boolean> getRopes() {
-        return List.copyOf(this.ropes);
+    public List<Integer> getTiles() {
+        return List.copyOf(this.tiles.keySet());
     }
 
     /**
      * {@inheritDoc}
-     *
-     * @return {@code true} if this the rope was a bomb, {@code false} otherwise.
-     *
-     * @throws IllegalStateException if the game is over.
      */
     public boolean runGame() {
         if (this.isOver()) {
-            throw new IllegalStateException("The game is already over");
+            return false;
         }
-        if (this.ropeChosen.isEmpty()) {
+        if (this.tileChosen.isEmpty()) {
             return false;
         }
         if (!this.hasCurrPlayer()) {
             this.changeTurn();
         }
-        final var ropeChosen = this.ropeChosen.get();
-        this.ropeChosen = Optional.empty();
-        this.ropes.remove(ropeChosen);
-        this.setScore(this.getScore() + (ropeChosen ? 0 : SCORE_FOR_EACH_ROPE_GUESSED));
-        if (ropeChosen) {
-            this.deadPlayer.add(this.getCurrPlayer());
-        }
+        this.eliminatePeople(this.tiles.get(this.getRandomTile()));
+        final var tileChosen = this.tileChosen.get();
+        this.tileChosen = Optional.empty();
+        this.chooseTile(tileChosen);
+        this.setScore(
+                this.getScore() + (this.deadPlayer.contains(this.getCurrPlayer()) ? 0 : SCORE_FOR_EACH_TILE_GUESSED));
         this.changeTurn();
-        return ropeChosen;
+        return !this.isOver();
     }
 
     /**
      * {@inheritDoc}
      */
     @Override
-    public void setRope(final Boolean rope) {
-        this.ropeChosen = Optional.of(rope);
+    public void chooseTile(final int tile) {
+        try {
+            this.tiles.replace(tile,
+                    Optional.of(Stream
+                            .concat(this.tiles.get(tile).stream().flatMap(Set::stream), Stream.of(this.getCurrPlayer()))
+                            .collect(Collectors.toSet())));
+            this.tileChosen = Optional.of(tile);
+        } catch (Exception e) {
+            System.out.println(e);
+        }
     }
 
     /**
@@ -88,12 +96,21 @@ public class YoureTheBobombModelImpl extends MinigameModelAbstr implements Youre
      */
     @Override
     public boolean isOver() {
-        final var end = this.deadPlayer.size() >= this.getPlayers().size() - 1;
+        final var end = this.tiles.size() <= 1;
         if (end) {
-            this.setScore(this.getScore() + SCORE_FOR_EACH_ROPE_GUESSED);
+            this.setScore(this.getScore() + SCORE_FOR_EACH_TILE_GUESSED);
             this.setGameResults();
         }
         return end;
+    }
+
+    private int getRandomTile() {
+        return this.tiles.entrySet().stream().map(Entry::getKey).collect(Collectors.toList())
+                .get(new Random().nextInt(this.tiles.size()));
+    }
+
+    private void eliminatePeople(final Optional<Set<Player>> players) {
+        this.deadPlayer.addAll(players.stream().flatMap(Set::stream).collect(Collectors.toList()));
     }
 
     private void changeTurn() {
@@ -102,14 +119,12 @@ public class YoureTheBobombModelImpl extends MinigameModelAbstr implements Youre
                     this.getPlayers().stream().filter(p -> !this.deadPlayer.contains(p)).collect(Collectors.toList()));
         }
         this.setCurrPlayer();
-        this.ropeChosen = Optional.empty();
+        this.tileChosen = Optional.empty();
     }
 
-    private List<Boolean> initializeAllRopes() {
-        final var listRopes = IntStream.range(0, TOTAL_ROPES_NUMBER).boxed().map(i -> i < this.getPlayers().size() - 1)
-                .collect(Collectors.toList());
-        Collections.shuffle(listRopes);
-        return listRopes;
+    private Map<Integer, Optional<Set<Player>>> initializeTiles() {
+        return IntStream.range(0, TOTAL_TILES_NUMBER).boxed()
+                .collect(Collectors.toMap(Function.identity(), i -> Optional.empty()));
     }
 
     private void initializePlayersScores() {

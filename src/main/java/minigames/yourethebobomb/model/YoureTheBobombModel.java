@@ -11,18 +11,18 @@ import minigames.common.model.MinigameModel;
 public interface YoureTheBobombModel extends MinigameModel {
 
     /**
-     * This method sets the rope that will be cut.
+     * This method sets the tile that will be chosen.
      *
-     * @param rope the index of the rope that will be cut.
+     * @param tile the index of the tile that will be chosen.
      */
-    void setRope(Boolean rope);
+    void chooseTile(int tile);
 
     /**
-     * This method tells the active ropes.
+     * This method tells the active tiles.
      *
-     * @return a list containing the active ropes.
+     * @return a list containing the active tiles.
      */
-    List<Boolean> getRopes();
+    List<Integer> getTiles();
 
     /**
      * This method tells whether the game has ended.
