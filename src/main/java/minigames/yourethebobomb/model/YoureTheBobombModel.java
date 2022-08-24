@@ -14,8 +14,10 @@ public interface YoureTheBobombModel extends MinigameModel {
      * This method sets the tile that will be chosen.
      *
      * @param tile the index of the tile that will be chosen.
+     * @return {@code true} if another player needs to choose the tile,
+     *         {@code false} otherwise.
      */
-    void chooseTile(int tile);
+    boolean chooseTile(int tile);
 
     /**
      * This method tells the active tiles.
@@ -24,10 +26,4 @@ public interface YoureTheBobombModel extends MinigameModel {
      */
     List<Integer> getTiles();
 
-    /**
-     * This method tells whether the game has ended.
-     *
-     * @return {@code true} if the game has ended, {@code false} otherwise.
-     */
-    boolean isOver();
 }

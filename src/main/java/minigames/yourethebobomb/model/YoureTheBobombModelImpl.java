@@ -26,7 +26,6 @@ public class YoureTheBobombModelImpl extends MinigameModelAbstr implements Youre
     private static final int SCORE_FOR_EACH_TILE_GUESSED = 1;
 
     private final Map<Integer, Optional<Set<Player>>> tiles;
-    private Optional<Integer> tileChosen;
     private final Set<Player> deadPlayer;
 
     /**
@@ -38,10 +37,8 @@ public class YoureTheBobombModelImpl extends MinigameModelAbstr implements Youre
     public YoureTheBobombModelImpl(final List<Player> players, final DiceModel dice) {
         super(players, dice);
         this.tiles = this.initializeTiles();
-        this.tileChosen = Optional.empty();
         this.deadPlayer = new HashSet<>();
         this.changeTurn();
-        this.initializePlayersScores();
     }
 
     /**
@@ -59,46 +56,34 @@ public class YoureTheBobombModelImpl extends MinigameModelAbstr implements Youre
         if (this.isOver()) {
             return false;
         }
-        if (this.tileChosen.isEmpty()) {
-            return false;
+        this.eliminateTileAndPeopleOnIt(this.getRandomTile());
+        this.getPlayers().stream().filter(p -> !this.deadPlayer.contains(p)).forEach(p -> this.scoreMapper(p,
+                this.getPlayersClassification().getOrDefault(p, 0) + SCORE_FOR_EACH_TILE_GUESSED));
+       return !this.isOver();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public boolean chooseTile(final int tile) {
+        if (this.tiles.containsKey(tile)) {
+            this.tiles.put(tile, Optional.of(Stream
+                    .concat(this.tiles.get(tile).stream().flatMap(Set::stream), Stream.of(this.getCurrPlayer()))
+                    .collect(Collectors.toSet())));
         }
-        if (!this.hasCurrPlayer()) {
-            this.changeTurn();
-        }
-        this.eliminatePeople(this.tiles.get(this.getRandomTile()));
-        final var tileChosen = this.tileChosen.get();
-        this.tileChosen = Optional.empty();
-        this.chooseTile(tileChosen);
-        this.setScore(
-                this.getScore() + (this.deadPlayer.contains(this.getCurrPlayer()) ? 0 : SCORE_FOR_EACH_TILE_GUESSED));
         this.changeTurn();
-        return !this.isOver();
+        return this.tiles.entrySet().stream().flatMap(e -> e.getValue().stream()).count() < this.getPlayers().size()
+                - this.deadPlayer.size();
     }
 
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public void chooseTile(final int tile) {
-        try {
-            this.tiles.replace(tile,
-                    Optional.of(Stream
-                            .concat(this.tiles.get(tile).stream().flatMap(Set::stream), Stream.of(this.getCurrPlayer()))
-                            .collect(Collectors.toSet())));
-            this.tileChosen = Optional.of(tile);
-        } catch (Exception e) {
-            System.out.println(e);
-        }
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public boolean isOver() {
+//    /**
+//     * {@inheritDoc}
+//     */
+//    @Override
+    private boolean isOver() {
         final var end = this.tiles.size() <= 1;
         if (end) {
-            this.setScore(this.getScore() + SCORE_FOR_EACH_TILE_GUESSED);
             this.setGameResults();
         }
         return end;
@@ -109,8 +94,9 @@ public class YoureTheBobombModelImpl extends MinigameModelAbstr implements Youre
                 .get(new Random().nextInt(this.tiles.size()));
     }
 
-    private void eliminatePeople(final Optional<Set<Player>> players) {
-        this.deadPlayer.addAll(players.stream().flatMap(Set::stream).collect(Collectors.toList()));
+    private void eliminateTileAndPeopleOnIt(final int tile) {
+        this.deadPlayer.addAll(this.tiles.get(tile).stream().flatMap(Set::stream).collect(Collectors.toList()));
+        this.tiles.remove(tile);
     }
 
     private void changeTurn() {
@@ -119,16 +105,11 @@ public class YoureTheBobombModelImpl extends MinigameModelAbstr implements Youre
                     this.getPlayers().stream().filter(p -> !this.deadPlayer.contains(p)).collect(Collectors.toList()));
         }
         this.setCurrPlayer();
-        this.tileChosen = Optional.empty();
     }
 
     private Map<Integer, Optional<Set<Player>>> initializeTiles() {
         return IntStream.range(0, TOTAL_TILES_NUMBER).boxed()
                 .collect(Collectors.toMap(Function.identity(), i -> Optional.empty()));
-    }
-
-    private void initializePlayersScores() {
-        this.getPlayers().stream().forEach(p -> this.scoreMapper(p, 0));
     }
 
 }
