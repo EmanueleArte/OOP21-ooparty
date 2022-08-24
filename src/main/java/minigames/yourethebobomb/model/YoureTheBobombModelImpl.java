@@ -82,7 +82,7 @@ public class YoureTheBobombModelImpl extends MinigameModelAbstr implements Youre
 //     */
 //    @Override
     private boolean isOver() {
-        final var end = this.tiles.size() <= 1;
+        final var end = this.tiles.size() <= 1 || (this.getPlayers().size() - this.deadPlayer.size() <= 1);
         if (end) {
             this.setGameResults();
         }
