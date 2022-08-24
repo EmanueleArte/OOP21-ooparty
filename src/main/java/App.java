@@ -1,8 +1,4 @@
-import java.util.List;
-
-import game.player.PlayerImpl;
 import javafx.scene.Scene;
-import utils.enums.PlayerColor;
 import utils.factories.controller.ControllerFactory;
 import utils.factories.controller.ControllerFactoryFx;
 import utils.graphics.controller.StageManager;
@@ -21,10 +17,7 @@ public final class App {
         ControllerFactory controllerFactory = new ControllerFactoryFx<>(stageManager);
         stageManager.setControllerFactory(controllerFactory);
         stageManager.run();
-//        stageManager.getControllerFactory().createMainMenuController().createMenu();
-        stageManager.getControllerFactory()
-                .createYoureTheBobombController(List.of(new PlayerImpl("" + 1, PlayerColor.RED.getColor()), new PlayerImpl("" + 2, PlayerColor.BLUE.getColor())))
-                .startGame();
+        stageManager.getControllerFactory().createMainMenuController().createMenu();
     }
 
     private App() {
