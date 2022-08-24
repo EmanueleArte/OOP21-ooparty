@@ -15,7 +15,7 @@
 <?import javafx.scene.text.Text?>
 <?import java.util.ArrayList?>
 
-<VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onKeyReleased="#onEnter" prefHeight="730.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="minigames.cutFromTheTeam.view.CutFromTheTeamViewControllerImpl">
+<VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onKeyReleased="#onEnter" prefHeight="730.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="minigames.cutfromtheteam.view.CutFromTheTeamViewControllerImpl">
    <stylesheets>
       <URL value="@../fonts/fonts.css"/>
    </stylesheets>

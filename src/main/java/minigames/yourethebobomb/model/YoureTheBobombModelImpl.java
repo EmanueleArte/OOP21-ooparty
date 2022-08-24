@@ -1,4 +1,4 @@
-package minigames.cutFromTheTeam.model;
+package minigames.yourethebobomb.model;
 
 import java.util.Collections;
 import java.util.LinkedList;
@@ -12,10 +12,10 @@ import game.player.Player;
 import minigames.common.model.MinigameModelAbstr;
 
 /**
- * Implementation of {@link CutFromTheTeamModel} and extension of
+ * Implementation of {@link YoureTheBobombModel} and extension of
  * {@link MinigameModelAbstr}.
  */
-public class CutFromTheTeamModelImpl extends MinigameModelAbstr implements CutFromTheTeamModel {
+public class YoureTheBobombModelImpl extends MinigameModelAbstr implements YoureTheBobombModel {
 
     private static final int TOTAL_ROPES_NUMBER = 10;
     private static final int SCORE_FOR_EACH_ROPE_GUESSED = 1;
@@ -25,12 +25,12 @@ public class CutFromTheTeamModelImpl extends MinigameModelAbstr implements CutFr
     private final List<Player> deadPlayer;
 
     /**
-     * Builds a new {@link CutFromTheTeamModelImpl}.
+     * Builds a new {@link YoureTheBobombModelImpl}.
      *
      * @param players the players of the game.
      * @param dice    the dice controller.
      */
-    public CutFromTheTeamModelImpl(final List<Player> players, final DiceModel dice) {
+    public YoureTheBobombModelImpl(final List<Player> players, final DiceModel dice) {
         super(players, dice);
         this.ropes = this.initializeAllRopes();
         this.ropeChosen = Optional.empty();

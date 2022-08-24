@@ -8,7 +8,7 @@ import minigames.common.controller.MinigameController;
 import utils.graphics.controller.StageManager;
 
 public class MinigameControllerFactoryImpl<S> implements MinigameControllerFactory<S> {
-    private static final int MINIGAMES_NUMBER = 4;
+    private static final int MINIGAMES_NUMBER = 5;
     private final StageManager<S> stageManager;
     private final List<Player> players;
 
@@ -20,7 +20,7 @@ public class MinigameControllerFactoryImpl<S> implements MinigameControllerFacto
     @Override
     public final MinigameController createRandomMinigameController() {
         Random rand = new Random();
-        switch (rand.nextInt(MinigameControllerFactoryImpl.MINIGAMES_NUMBER)) {
+        switch (3 /*rand.nextInt(MinigameControllerFactoryImpl.MINIGAMES_NUMBER)*/) {
         case 0:
             return this.stageManager.getControllerFactory().createMastermindController(this.players);
         case 1:
@@ -28,6 +28,8 @@ public class MinigameControllerFactoryImpl<S> implements MinigameControllerFacto
         case 2:
             return this.stageManager.getControllerFactory().createMemoController(this.players);
         case 3:
+            return this.stageManager.getControllerFactory().createYoureTheBobombController(this.players);
+        case 4:
             return this.stageManager.getControllerFactory().createCutFromTheTeamController(this.players);
         default:
             return null;

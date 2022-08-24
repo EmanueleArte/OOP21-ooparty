@@ -1,4 +1,4 @@
-package minigames.cutFromTheTeam.controller;
+package minigames.cutfromtheteam.controller;
 
 import java.util.List;
 
@@ -6,9 +6,9 @@ import game.dice.controller.DiceController;
 import game.player.Player;
 import minigames.common.controller.MinigameControllerAbstr;
 import minigames.common.controller.MinigameGuideControllerImpl;
-import minigames.cutFromTheTeam.model.CutFromTheTeamModel;
-import minigames.cutFromTheTeam.model.CutFromTheTeamModelImpl;
-import minigames.cutFromTheTeam.view.CutFromTheTeamViewController;
+import minigames.cutfromtheteam.model.CutFromTheTeamModel;
+import minigames.cutfromtheteam.model.CutFromTheTeamModelImpl;
+import minigames.cutfromtheteam.view.CutFromTheTeamViewController;
 import utils.controller.GenericController;
 import utils.graphics.controller.StageManager;
 import utils.view.GenericViewController;

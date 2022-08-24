@@ -11,7 +11,7 @@ import org.junit.jupiter.api.Test;
 import game.dice.model.DiceModelNoRepeatImpl;
 import game.player.Player;
 import game.player.PlayerImpl;
-import minigames.cutFromTheTeam.model.CutFromTheTeamModelImpl;
+import minigames.cutfromtheteam.model.CutFromTheTeamModelImpl;
 
 /**
  * Test class for CutFromTheTeamModelImpl.

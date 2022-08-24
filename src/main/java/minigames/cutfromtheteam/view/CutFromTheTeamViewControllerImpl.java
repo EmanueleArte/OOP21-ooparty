@@ -1,4 +1,4 @@
-package minigames.cutFromTheTeam.view;
+package minigames.cutfromtheteam.view;
 
 import java.util.HashMap;
 import java.util.List;
@@ -10,7 +10,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.input.KeyEvent;
 import minigames.common.view.MinigameViewControllerAbstr;
-import minigames.cutFromTheTeam.controller.CutFromTheTeamController;
+import minigames.cutfromtheteam.controller.CutFromTheTeamController;
 import utils.controller.GenericController;
 
 /**

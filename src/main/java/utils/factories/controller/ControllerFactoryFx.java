@@ -23,14 +23,16 @@ import menu.powerupmenu.controller.PowerupMenuController;
 import menu.powerupmenu.controller.PowerupMenuControllerImpl;
 import menu.powerupmenu.model.PowerupMenuModelImpl;
 import minigames.common.controller.MinigameController;
-import minigames.cutFromTheTeam.controller.CutFromTheTeamControllerImpl;
-import minigames.cutFromTheTeam.model.CutFromTheTeamModelImpl;
+import minigames.cutfromtheteam.controller.CutFromTheTeamControllerImpl;
+import minigames.cutfromtheteam.model.CutFromTheTeamModelImpl;
 import minigames.mastermind.controller.MastermindControllerImpl;
 import minigames.mastermind.model.MastermindModelImpl;
 import minigames.memo.controller.MemoControllerImpl;
 import minigames.memo.model.MemoModelImpl;
 import minigames.whoriskswins.controller.WhoRisksWinsControllerImpl;
 import minigames.whoriskswins.model.WhoRisksWinsModelImpl;
+import minigames.yourethebobomb.controller.YoureTheBobombControllerImpl;
+import minigames.yourethebobomb.model.YoureTheBobombModelImpl;
 import utils.graphics.controller.StageManager;
 
 public class ControllerFactoryFx<S> implements ControllerFactory {
@@ -102,6 +104,14 @@ public class ControllerFactoryFx<S> implements ControllerFactory {
         var diceController = this.createDiceController(true);
         var model = new MemoModelImpl(players, diceController.getModel());
         var controller = new MemoControllerImpl(this.stageManager, model, diceController);
+        return controller;
+    }
+
+    @Override
+    public final MinigameController createYoureTheBobombController(final List<Player> players) {
+        var diceController = this.createDiceController(true);
+        var model = new YoureTheBobombModelImpl(players, diceController.getModel());
+        var controller = new YoureTheBobombControllerImpl(this.stageManager, model, diceController);
         return controller;
     }
 
