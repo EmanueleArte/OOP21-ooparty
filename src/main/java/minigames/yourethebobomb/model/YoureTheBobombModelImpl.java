@@ -77,10 +77,6 @@ public class YoureTheBobombModelImpl extends MinigameModelAbstr implements Youre
                 - this.deadPlayer.size();
     }
 
-//    /**
-//     * {@inheritDoc}
-//     */
-//    @Override
     private boolean isOver() {
         final var end = this.tiles.size() <= 1 || (this.getPlayers().size() - this.deadPlayer.size() <= 1);
         if (end) {
@@ -97,6 +93,7 @@ public class YoureTheBobombModelImpl extends MinigameModelAbstr implements Youre
     private void eliminateTileAndPeopleOnIt(final int tile) {
         this.deadPlayer.addAll(this.tiles.get(tile).stream().flatMap(Set::stream).collect(Collectors.toList()));
         this.tiles.remove(tile);
+        this.tiles.forEach((k, v) -> this.tiles.put(k, Optional.empty()));
     }
 
     private void changeTurn() {
