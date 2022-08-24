@@ -38,10 +38,10 @@
                                     <RowConstraints minHeight="10.0" percentHeight="50.0" prefHeight="0.0" vgrow="SOMETIMES" />
                                 </rowConstraints>
                                  <children>
-                                    <Button fx:id="rope_0" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#pickRope" prefHeight="Infinity" prefWidth="Infinity" textAlignment="CENTER" />
-                                    <Button fx:id="rope_1" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#pickRope" prefHeight="Infinity" prefWidth="Infinity" textAlignment="CENTER" GridPane.columnIndex="1" />
-                                    <Button fx:id="rope_2" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#pickRope" prefHeight="Infinity" prefWidth="Infinity" textAlignment="CENTER" GridPane.rowIndex="1" />
-                                    <Button fx:id="rope_3" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#pickRope" prefHeight="Infinity" prefWidth="Infinity" textAlignment="CENTER" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                                    <Button fx:id="tile_0" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#pickTile" prefHeight="Infinity" prefWidth="Infinity" textAlignment="CENTER" />
+                                    <Button fx:id="tile_1" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#pickTile" prefHeight="Infinity" prefWidth="Infinity" textAlignment="CENTER" GridPane.columnIndex="1" />
+                                    <Button fx:id="tile_2" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#pickTile" prefHeight="Infinity" prefWidth="Infinity" textAlignment="CENTER" GridPane.rowIndex="1" />
+                                    <Button fx:id="tile_3" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#pickTile" prefHeight="Infinity" prefWidth="Infinity" textAlignment="CENTER" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                                  </children>
                               </GridPane>
                            </children>
@@ -49,7 +49,7 @@
                      </children>
                   </HBox>
                </children>
-               <Button fx:id="buttonToEnableExit" mnemonicParsing="false" onAction="#closeGame" text="Close Game" BorderPane.alignment="CENTER">
+               <Button fx:id="buttonNextTurn" mnemonicParsing="false" onAction="#nextTurn" text="Next turn" BorderPane.alignment="CENTER">
                    <VBox.margin>
                       <Insets top="10.0" />
                    </VBox.margin>
@@ -84,11 +84,11 @@
 
 
    <fx:define>
-      <ArrayList fx:id="ropes">
-         <fx:reference source="rope_0" />
-         <fx:reference source="rope_1" />
-         <fx:reference source="rope_2" />
-         <fx:reference source="rope_3" />
+      <ArrayList fx:id="tiles">
+         <fx:reference source="tile_0" />
+         <fx:reference source="tile_1" />
+         <fx:reference source="tile_2" />
+         <fx:reference source="tile_3" />
       </ArrayList>
    </fx:define>
 </VBox>
