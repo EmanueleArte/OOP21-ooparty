@@ -17,6 +17,7 @@ This software is developed by:
 - Mastermind
 - Who risks wins
 - Memo
+- Cut from the team
 
 
 ## Build
