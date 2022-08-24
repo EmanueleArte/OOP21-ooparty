@@ -20,7 +20,7 @@ public class MinigameControllerFactoryImpl<S> implements MinigameControllerFacto
     @Override
     public final MinigameController createRandomMinigameController() {
         Random rand = new Random();
-        switch (3 /*rand.nextInt(MinigameControllerFactoryImpl.MINIGAMES_NUMBER)*/) {
+        switch (rand.nextInt(MinigameControllerFactoryImpl.MINIGAMES_NUMBER)) {
         case 0:
             return this.stageManager.getControllerFactory().createMastermindController(this.players);
         case 1:

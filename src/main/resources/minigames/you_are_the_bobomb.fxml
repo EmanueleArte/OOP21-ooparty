@@ -30,27 +30,18 @@
                            <children>
                               <GridPane alignment="CENTER" layoutX="16.0" layoutY="1.0" prefHeight="455.0" prefWidth="870.0">
                                 <columnConstraints>
-                                    <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="200.0" minWidth="10.0" percentWidth="20.0" prefWidth="100.0" />
-                                    <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="200.0" minWidth="10.0" percentWidth="20.0" prefWidth="100.0" />
-                                    <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="200.0" minWidth="10.0" percentWidth="20.0" prefWidth="100.0" />
-                                    <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="200.0" minWidth="10.0" percentWidth="20.0" prefWidth="100.0" />
-                                    <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="200.0" minWidth="10.0" percentWidth="20.0" prefWidth="100.0" />
+                                    <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="200.0" minWidth="10.0" percentWidth="50.0" prefWidth="100.0" />
+                                    <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="200.0" minWidth="10.0" percentWidth="50.0" prefWidth="100.0" />
                                 </columnConstraints>
                                 <rowConstraints>
                                     <RowConstraints minHeight="10.0" percentHeight="50.0" prefHeight="0.0" valignment="CENTER" vgrow="SOMETIMES" />
                                     <RowConstraints minHeight="10.0" percentHeight="50.0" prefHeight="0.0" vgrow="SOMETIMES" />
                                 </rowConstraints>
                                  <children>
-                                    <Button fx:id="rope_0" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#pickRope" prefHeight="110.0" prefWidth="164.0" textAlignment="CENTER" />
-                                    <Button fx:id="rope_1" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#pickRope" prefHeight="110.0" prefWidth="164.0" textAlignment="CENTER" GridPane.columnIndex="1" />
-                                    <Button fx:id="rope_2" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#pickRope" prefHeight="110.0" prefWidth="164.0" textAlignment="CENTER" GridPane.columnIndex="2" />
-                                    <Button fx:id="rope_3" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#pickRope" prefHeight="110.0" prefWidth="164.0" textAlignment="CENTER" GridPane.columnIndex="3" />
-                                    <Button fx:id="rope_4" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#pickRope" prefHeight="110.0" prefWidth="164.0" textAlignment="CENTER" GridPane.columnIndex="4" />
-                                    <Button fx:id="rope_5" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#pickRope" prefHeight="110.0" prefWidth="164.0" textAlignment="CENTER" GridPane.rowIndex="1" />
-                                    <Button fx:id="rope_6" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#pickRope" prefHeight="110.0" prefWidth="164.0" textAlignment="CENTER" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                                    <Button fx:id="rope_7" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#pickRope" prefHeight="110.0" prefWidth="164.0" textAlignment="CENTER" GridPane.columnIndex="2" GridPane.rowIndex="1" />
-                                    <Button fx:id="rope_8" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#pickRope" prefHeight="110.0" prefWidth="164.0" textAlignment="CENTER" GridPane.columnIndex="3" GridPane.rowIndex="1" />
-                                    <Button fx:id="rope_9" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#pickRope" prefHeight="110.0" prefWidth="164.0" textAlignment="CENTER" GridPane.columnIndex="4" GridPane.rowIndex="1" />
+                                    <Button fx:id="rope_0" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#pickRope" prefHeight="Infinity" prefWidth="Infinity" textAlignment="CENTER" />
+                                    <Button fx:id="rope_1" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#pickRope" prefHeight="Infinity" prefWidth="Infinity" textAlignment="CENTER" GridPane.columnIndex="1" />
+                                    <Button fx:id="rope_2" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#pickRope" prefHeight="Infinity" prefWidth="Infinity" textAlignment="CENTER" GridPane.rowIndex="1" />
+                                    <Button fx:id="rope_3" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#pickRope" prefHeight="Infinity" prefWidth="Infinity" textAlignment="CENTER" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                                  </children>
                               </GridPane>
                            </children>
@@ -98,12 +89,6 @@
          <fx:reference source="rope_1" />
          <fx:reference source="rope_2" />
          <fx:reference source="rope_3" />
-         <fx:reference source="rope_4" />
-         <fx:reference source="rope_5" />
-         <fx:reference source="rope_6" />
-         <fx:reference source="rope_7" />
-         <fx:reference source="rope_8" />
-         <fx:reference source="rope_9" />
       </ArrayList>
    </fx:define>
 </VBox>

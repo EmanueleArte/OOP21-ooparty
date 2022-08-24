@@ -93,12 +93,12 @@ public interface ControllerFactory {
 
     /**
      * This method creates a
-     * {@link minigames.yourethebobomb.controller.CutFromTheTeamController
+     * {@link minigames.yourethebobomb.controller.YoureTheBobombController
      * YoureTheBobomb}.
      *
      * @param players the list of {@link Player} that participates to the minigame.
      * @return the
-     *         {@link minigames.yourethebobomb.controller.CutFromTheTeamController
+     *         {@link minigames.yourethebobomb.controller.YoureTheBobombController
      *         YoureTheBobomb} created.
      */
     MinigameController createYoureTheBobombController(List<Player> players);

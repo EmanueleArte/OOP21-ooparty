@@ -10,7 +10,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.input.KeyEvent;
 import minigames.common.view.MinigameViewControllerAbstr;
-import minigames.cutfromtheteam.controller.CutFromTheTeamController;
+import minigames.yourethebobomb.controller.YoureTheBobombController;
 import utils.controller.GenericController;
 
 /**
@@ -25,7 +25,7 @@ public class YoureTheBobombViewControllerImpl extends MinigameViewControllerAbst
     @FXML
     private Button buttonToEnableExit;
 
-    private CutFromTheTeamController controller;
+    private YoureTheBobombController controller;
     private Map<Button, Boolean> ropeValues = new HashMap<>();
 
     /**
@@ -41,10 +41,10 @@ public class YoureTheBobombViewControllerImpl extends MinigameViewControllerAbst
      */
     @Override
     public void setController(final GenericController controller) throws IllegalArgumentException {
-        if (!(controller instanceof CutFromTheTeamController)) {
+        if (!(controller instanceof YoureTheBobombController)) {
             throw new IllegalArgumentException("The parameter must be an instance of CutFromTheTeamController");
         }
-        this.controller = (CutFromTheTeamController) controller;
+        this.controller = (YoureTheBobombController) controller;
     }
 
     /**
