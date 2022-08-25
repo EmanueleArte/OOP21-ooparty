@@ -48,6 +48,7 @@ public class YoureTheBobombControllerImpl extends MinigameControllerAbstr implem
      */
     @Override
     public void pickTile(final int tile) {
+        this.view.putPlayerIntoTile(this.model.getCurrPlayer().getNickname(), tile);
         if (this.model.chooseTile(tile)) {
             return;
         }

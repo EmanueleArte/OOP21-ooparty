@@ -82,6 +82,16 @@ public class YoureTheBobombViewControllerImpl extends MinigameViewControllerAbst
      * {@inheritDoc}
      */
     @Override
+    public final void putPlayerIntoTile(final String nickname, final int tileNumber) {
+        Button tile = this.tileValues.entrySet().stream().filter(e -> e.getValue() == tileNumber).map(Map.Entry::getKey)
+                .findFirst().get();
+        tile.setText(tile.getText() + "\n" + nickname);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
     protected void onEnter(final KeyEvent ke) {
     }
 
