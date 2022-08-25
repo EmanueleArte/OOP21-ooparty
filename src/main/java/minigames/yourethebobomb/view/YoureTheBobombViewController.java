@@ -14,9 +14,9 @@ public interface YoureTheBobombViewController extends MinigameViewController {
      * This method acts as the constructor for the class
      * {@link YoureTheBobombViewControllerImpl}. It maps the buttons to their value.
      *
-     * @param ropes the number of buttons to keep.
+     * @param tiles the number of buttons to keep.
      */
-    void start(List<Boolean> ropes);
+    void start(List<Integer> tiles);
 
     /**
      * This method enables the button that closes the game.
