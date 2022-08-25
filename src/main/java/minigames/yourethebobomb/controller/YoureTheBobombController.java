@@ -14,17 +14,10 @@ public interface YoureTheBobombController extends MinigameController {
     void updateCurrentPlayerLabel();
 
     /**
-     * This method picks a rope.
+     * This method picks a tile.
      *
-     * @param ropeValue the value of the rope.
+     * @param tile the value of the rope.
      */
-    void pickRope(Boolean ropeValue);
-
-    /**
-     * This methods tells whether the game has ended.
-     *
-     * @return {@code true} if the game has ended, {@code false} otherwise.
-     */
-    boolean isOver();
+    void pickTile(int tile);
 
 }

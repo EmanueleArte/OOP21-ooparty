@@ -6,21 +6,57 @@ import game.dice.controller.DiceController;
 import game.player.Player;
 import minigames.common.controller.MinigameControllerAbstr;
 import minigames.common.controller.MinigameGuideControllerImpl;
-import minigames.yourethebobomb.model.YoureTheBobombModelImpl;
+import minigames.yourethebobomb.model.YoureTheBobombModel;
 import minigames.yourethebobomb.view.YoureTheBobombViewController;
 import utils.controller.GenericController;
 import utils.graphics.controller.StageManager;
 import utils.view.GenericViewController;
 
+/**
+ * Implementation of {@link YoureTheBobombController} and extension of
+ * {@link MinigameControllerAbstr}.
+ */
 public class YoureTheBobombControllerImpl extends MinigameControllerAbstr implements YoureTheBobombController {
 
-    private final YoureTheBobombModelImpl youreTheBobombModel;
-    private YoureTheBobombViewController youreTheBobombView;
+    private final YoureTheBobombModel model;
+    private YoureTheBobombViewController view;
 
-    public <S> YoureTheBobombControllerImpl(final StageManager<S> stageManager, final YoureTheBobombModelImpl model,
-            final DiceController diceController) {
-        super(stageManager, diceController);
-        this.youreTheBobombModel = model;
+    /**
+     * Builds a new {@link YoureTheBobombControllerImpl}.
+     *
+     * @param <S>   the scenes of the stage
+     * @param s     the {@link StageManager}
+     * @param model the {@link YoureTheBobombModel}
+     * @param dice  the {@link DiceController}
+     */
+    public <S> YoureTheBobombControllerImpl(final StageManager<S> s, final YoureTheBobombModel model,
+            final DiceController dice) {
+        super(s, dice);
+        this.model = model;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public void updateCurrentPlayerLabel() {
+        this.view.setPlayerLabelText(this.model.getCurrPlayer());
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public void pickTile(final int tile) {
+        if (this.model.chooseTile(tile)) {
+            return;
+        }
+        if (this.model.runGame()) {
+            this.setView();
+            return;
+        }
+        this.setView();
+        this.view.enableCloseButton();
     }
 
     /**
@@ -28,7 +64,7 @@ public class YoureTheBobombControllerImpl extends MinigameControllerAbstr implem
      */
     @Override
     public List<Player> getGameResults() {
-        return this.youreTheBobombModel.getGameResults();
+        return this.model.getGameResults();
     }
 
     /**
@@ -39,17 +75,7 @@ public class YoureTheBobombControllerImpl extends MinigameControllerAbstr implem
         this.getStageManager().getGui().getViewLoader().createYoureTheBobombView(this);
         final GenericController guideController = new MinigameGuideControllerImpl(this.getStageManager());
         this.getStageManager().getGui().getViewLoader().createYoureTheBobombGuideView(guideController);
-
-        this.youreTheBobombView.start(this.youreTheBobombModel.getRopes());
-        this.updateCurrentPlayerLabel();
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public void pickRope(final Boolean ropeValue) {
-        this.youreTheBobombModel.setRope(ropeValue);
+        this.setView();
     }
 
     /**
@@ -57,11 +83,7 @@ public class YoureTheBobombControllerImpl extends MinigameControllerAbstr implem
      */
     @Override
     public boolean nextTurn() {
-        var temp = this.youreTheBobombModel.runGame();
-        if (this.isOver()) {
-            this.youreTheBobombView.enableCloseButton();
-        }
-        return temp;
+        return false;
     }
 
     /**
@@ -70,7 +92,7 @@ public class YoureTheBobombControllerImpl extends MinigameControllerAbstr implem
     @Override
     public void setViewController(final GenericViewController viewController) {
         if (viewController instanceof YoureTheBobombViewController) {
-            this.youreTheBobombView = (YoureTheBobombViewController) viewController;
+            this.view = (YoureTheBobombViewController) viewController;
         } else {
             throw new IllegalArgumentException("The parameter must be an instance of YoureTheBobombViewController");
         }
@@ -81,23 +103,11 @@ public class YoureTheBobombControllerImpl extends MinigameControllerAbstr implem
      */
     @Override
     public GenericViewController getViewController() {
-        return this.youreTheBobombView;
+        return this.view;
     }
 
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public void updateCurrentPlayerLabel() {
-        this.youreTheBobombView.setPlayerLabelText(this.youreTheBobombModel.getCurrPlayer());
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public boolean isOver() {
-        return this.youreTheBobombModel.isOver();
+    private void setView() {
+        this.view.start(this.model.getTiles());
     }
 
 }
