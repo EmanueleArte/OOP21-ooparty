@@ -40,8 +40,6 @@ public class SimpleMapLayoutReader implements MapLayoutReader {
                 .map(el -> new Point2D(Integer.parseInt(el.split(";")[0]), Integer.parseInt(el.split(";")[1])))
                 .collect(Collectors.toList());
 
-        //scn.close();
-
         return list;
     }
 }
