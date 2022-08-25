@@ -14,7 +14,7 @@ public final class App {
      * @param args command line args.
      */
     public static void main(final String[] args) {
-        final StageManager<Scene> stageManager = new StageManagerImpl<>("OOparty", JavafxGuiImpl.class,
+        final StageManager<Scene> stageManager = new StageManagerImpl<>("OOParty", JavafxGuiImpl.class,
                 new SceneHandlerImpl<>());
         ControllerFactory controllerFactory = new ControllerFactoryFx<>(stageManager);
         stageManager.setControllerFactory(controllerFactory);
