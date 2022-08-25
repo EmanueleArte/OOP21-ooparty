@@ -8,6 +8,7 @@ import java.util.Optional;
 import java.util.Random;
 import java.util.Set;
 import java.util.function.Function;
+import java.util.function.Predicate;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 import java.util.stream.Stream;
@@ -38,6 +39,7 @@ public class YoureTheBobombModelImpl extends MinigameModelAbstr implements Youre
         super(players, dice);
         this.tiles = this.initializeTiles();
         this.deadPlayer = new HashSet<>();
+        this.setPlayersScore(p -> true, i -> 0);
         this.changeTurn();
     }
 
@@ -57,9 +59,8 @@ public class YoureTheBobombModelImpl extends MinigameModelAbstr implements Youre
             return false;
         }
         this.eliminateTileAndPeopleOnIt(this.getRandomTile());
-        this.getPlayers().stream().filter(p -> !this.deadPlayer.contains(p)).forEach(p -> this.scoreMapper(p,
-                this.getPlayersClassification().getOrDefault(p, 0) + SCORE_FOR_EACH_TILE_GUESSED));
-       return !this.isOver();
+        this.setPlayersScore(p -> !this.deadPlayer.contains(p), i -> i + SCORE_FOR_EACH_TILE_GUESSED);
+        return !this.isOver();
     }
 
     /**
@@ -68,11 +69,13 @@ public class YoureTheBobombModelImpl extends MinigameModelAbstr implements Youre
     @Override
     public boolean chooseTile(final int tile) {
         if (this.tiles.containsKey(tile)) {
-            this.tiles.put(tile, Optional.of(Stream
-                    .concat(this.tiles.get(tile).stream().flatMap(Set::stream), Stream.of(this.getCurrPlayer()))
-                    .collect(Collectors.toSet())));
+            this.tiles.put(tile,
+                    Optional.of(Stream
+                            .concat(this.tiles.get(tile).stream().flatMap(Set::stream), Stream.of(this.getCurrPlayer()))
+                            .collect(Collectors.toSet())));
+            this.changeTurn();
         }
-        this.changeTurn();
+        System.out.println(getCurrPlayer());
         return this.tiles.entrySet().stream().flatMap(e -> e.getValue().stream()).count() < this.getPlayers().size()
                 - this.deadPlayer.size();
     }
@@ -80,14 +83,14 @@ public class YoureTheBobombModelImpl extends MinigameModelAbstr implements Youre
     private boolean isOver() {
         final var end = this.tiles.size() <= 1 || (this.getPlayers().size() - this.deadPlayer.size() <= 1);
         if (end) {
+            System.out.println(this.getPlayersClassification());
             this.setGameResults();
         }
         return end;
     }
 
     private int getRandomTile() {
-        return this.tiles.entrySet().stream().map(Entry::getKey).collect(Collectors.toList())
-                .get(new Random().nextInt(this.tiles.size()));
+        return this.tiles.keySet().stream().collect(Collectors.toList()).get(new Random().nextInt(this.tiles.size()));
     }
 
     private void eliminateTileAndPeopleOnIt(final int tile) {
@@ -107,6 +110,11 @@ public class YoureTheBobombModelImpl extends MinigameModelAbstr implements Youre
     private Map<Integer, Optional<Set<Player>>> initializeTiles() {
         return IntStream.range(0, TOTAL_TILES_NUMBER).boxed()
                 .collect(Collectors.toMap(Function.identity(), i -> Optional.empty()));
+    }
+
+    private void setPlayersScore(final Predicate<Player> predicate, final Function<Integer, Integer> function) {
+        this.getPlayers().stream().filter(predicate::test)
+                .forEach(p -> this.scoreMapper(p, function.apply(this.getPlayersClassification().getOrDefault(p, 0))));
     }
 
 }
