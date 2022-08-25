@@ -44,6 +44,21 @@ gradlew build
 ```
 
 
+## Import into Eclipse
+
+Importing OOParty into Eclipse Ide could raise some problems. To fix them, if you are on linux or mac-os use:
+
+```bash
+./gradlew eclipse
+```
+
+If you are on Windows use:
+
+```ps
+gradlew eclipse
+```
+
+
 ## Run
 
 You can run OOParty on linux or mac-os with:
