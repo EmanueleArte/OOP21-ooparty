@@ -20,4 +20,8 @@ build/
 
 # Other
 .DS_Store
+.classpath
+<<<<<<< HEAD
+=======
 
+>>>>>>> 5e6aaca27b86902942e9c250ec05094862a64e09

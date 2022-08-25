@@ -1,67 +1,89 @@
 package minigames.common;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Optional;
+import java.util.NoSuchElementException;
 
 import org.junit.jupiter.api.Test;
+import game.dice.model.DiceModel;
+import game.dice.model.DiceModelNoRepeatImpl;
+import game.player.Player;
+import game.player.PlayerImpl;
+import minigames.common.model.MinigameModel;
+import minigames.common.model.MinigameModelAbstr;
 
+/**
+ * Test class for MinigameModelAbstr.
+ */
 class TestMinigame {
 
-	@Test
-	void testScoreMapper() {
-		List<String> players = List.of("Luca", "Giovanni", "Lorenzo", "Marco");
-		List<Integer> scores = List.of(4, 7, 5, 2);
-		
-		class MinigameImpl<U> extends MinigameAbstr<U> {
+    private final List<Player> players = List.of(new PlayerImpl("Luca"), new PlayerImpl("Giovanni"),
+            new PlayerImpl("Lorenzo"), new PlayerImpl("Marco"));
+    private final List<Integer> scores = List.of(4, 7, 5, 2);
+    private final List<Integer> scoresDupl = List.of(2, 7, 2, 5);
 
-			public MinigameImpl(final List<U> players) {
-				super(players);
-			}
+    class MinigameModelImpl extends MinigameModelAbstr {
 
-			@Override
-			public List<U> runGame() {
-				return null;
-			}
-			
-		}
-		
-		MinigameImpl<String> m = new MinigameImpl<String>(players);
-		players.forEach(p -> m.scoreMapper(p, scores.get(players.indexOf(p))));
-		Map<String, Integer> correctMap = Map.of("Luca", 4, "Giovanni", 7, "Lorenzo", 5, "Marco", 2);
-		assertEquals(correctMap, m.getPlayersClassification());
-	}
+        MinigameModelImpl(final List<Player> players, final DiceModel dice) {
+            super(players, dice);
+        }
 
-	
-	@Test
-	void testSortPlayerByScore() {
-		class MinigameImpl<U> extends MinigameAbstr<U> {
-			
-			public MinigameImpl() {
-				super();
-			}
+        @Override
+        public boolean runGame() {
+            this.setCurrPlayer();
+            this.setGameResults();
+            return false;
+        }
 
-			@Override
-			public List<U> runGame() {
-				return null;
-			}
-			
-		}
-		
-		MinigameImpl<String> m = new MinigameImpl<String>();
-		Map<String, Integer> simpleMap = Map.of("Luca", 4, "Giovanni", 7, "Lorenzo", 5, "Marco", 2);
-		m.setPlayersClassification(simpleMap);
-		List<String> orderedList = List.of("Giovanni", "Lorenzo", "Luca", "Marco");
-		assertEquals(orderedList, m.gameResults());
-		/*Map<Optional<String>, Integer> duplMap = Map.of(Optional.of("Luca"), 2, Optional.of("Giovanni"), 7, 
-				Optional.of("Lorenzo"), 2, Optional.of("Marco"), 6);
-		m.setPlayersClassification(duplMap);
-		List<Optional<String>> orderedDuplList = List.of(Optional.of("Giovanni"), Optional.of("Marco"), 
-				Optional.of("Luca"), Optional.of("Lorenzo"));
-		assertEquals(orderedDuplList, m.gameResults());*/
-	}
+    }
+
+    @Test
+    void testPlayerTurns() {
+        final MinigameModel m = new MinigameModelImpl(players, new DiceModelNoRepeatImpl());
+        assertThrows(NoSuchElementException.class, () -> m.getCurrPlayer());
+        m.runGame();
+        assertEquals(this.players.get(0), m.getCurrPlayer());
+        for (int i = 0; i < this.players.size(); i++) {
+            m.runGame();
+        }
+        assertEquals(this.players.get(this.players.size() - 1), m.getCurrPlayer());
+    }
+
+    @Test
+    void testScoreMapper() {
+        final MinigameModel m = new MinigameModelImpl(players, new DiceModelNoRepeatImpl());
+        players.forEach(p -> m.scoreMapper(p, scores.get(players.indexOf(p))));
+        final Map<Player, Integer> correctMap = Map.of(new PlayerImpl("Luca"), 4, new PlayerImpl("Giovanni"), 7,
+                new PlayerImpl("Lorenzo"), 5, new PlayerImpl("Marco"), 2);
+        assertEquals(correctMap, m.getPlayersClassification());
+    }
+
+    @Test
+    void testSortPlayerByScore() {
+        final MinigameModel m = new MinigameModelImpl(players, new DiceModelNoRepeatImpl());
+        assertEquals(this.players, m.getGameResults());
+        players.forEach(p -> m.scoreMapper(p, scores.get(players.indexOf(p))));
+        final List<Player> orderedList = List.of(new PlayerImpl("Giovanni"), new PlayerImpl("Lorenzo"),
+                new PlayerImpl("Luca"), new PlayerImpl("Marco"));
+        m.runGame();
+        assertEquals(orderedList, m.getGameResults());
+    }
+
+    @Test
+    void testSortPlayerByScoreWithDraws() {
+        final MinigameModel m = new MinigameModelImpl(players, new DiceModelNoRepeatImpl());
+        players.forEach(p -> m.scoreMapper(p, scoresDupl.get(players.indexOf(p))));
+        List<List<Player>> orderedDuplList = List.of(
+                List.of(new PlayerImpl("Giovanni"), new PlayerImpl("Marco"), new PlayerImpl("Luca"),
+                        new PlayerImpl("Lorenzo")),
+                List.of(new PlayerImpl("Giovanni"), new PlayerImpl("Marco"), new PlayerImpl("Lorenzo"),
+                        new PlayerImpl("Luca")));
+        m.runGame();
+        assertTrue(orderedDuplList.contains(m.getGameResults()));
+    }
 
 }
