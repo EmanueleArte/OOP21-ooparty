@@ -13,7 +13,6 @@ plugins {
      * The runnable jar will be found in build/libs/projectname-all.jar
      */
     id("com.github.johnrengelman.shadow") version "7.0.0"
-    id("org.openjfx.javafxplugin") version "0.0.13"
 }
 
 repositories {
@@ -24,10 +23,23 @@ val supportedPlatforms = listOf("linux", "mac", "win")
 
 val jUnitVersion = "5.7.1"
 
-val javaFxVersion="18"
+val javaFxVersion="18.0.2"
 
+val javaFXModules = listOf(
+    "base",
+    "controls",
+    "fxml",
+    "swing",
+    "graphics"
+)
 
 dependencies {
+    for (platform in supportedPlatforms) {
+        for (module in javaFXModules) {
+            implementation("org.openjfx:javafx-$module:$javaFxVersion:$platform")
+        }
+    }
+
     // JUnit API and testing engine
     testImplementation("org.junit.jupiter:junit-jupiter-api:$jUnitVersion")
     testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:$jUnitVersion")
@@ -45,11 +57,6 @@ tasks.withType<Test> {
 application {
     // Define the main class for the application
     mainClass.set("App")
-}
-
-javafx {
-    version = javaFxVersion
-    modules("javafx.base", "javafx.controls", "javafx.fxml", "javafx.swing", "javafx.graphics")
 }
 
 java {
