@@ -3,7 +3,6 @@ package minigames.yourethebobomb.model;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
-import java.util.Map.Entry;
 import java.util.Optional;
 import java.util.Random;
 import java.util.Set;
@@ -60,6 +59,7 @@ public class YoureTheBobombModelImpl extends MinigameModelAbstr implements Youre
         }
         this.eliminateTileAndPeopleOnIt(this.getRandomTile());
         this.setPlayersScore(p -> !this.deadPlayer.contains(p), i -> i + SCORE_FOR_EACH_TILE_GUESSED);
+        this.resetPlayerIterator();
         return !this.isOver();
     }
 
@@ -75,8 +75,8 @@ public class YoureTheBobombModelImpl extends MinigameModelAbstr implements Youre
                             .collect(Collectors.toSet())));
             this.changeTurn();
         }
-        return this.tiles.entrySet().stream().flatMap(e -> e.getValue().stream().flatMap(Set::stream)).count() < this.getPlayers().size()
-                - this.deadPlayer.size();
+        return this.tiles.entrySet().stream().flatMap(e -> e.getValue().stream().flatMap(Set::stream))
+                .count() < this.getPlayers().size() - this.deadPlayer.size();
     }
 
     private boolean isOver() {
@@ -99,9 +99,15 @@ public class YoureTheBobombModelImpl extends MinigameModelAbstr implements Youre
 
     private void changeTurn() {
         if (!this.hasNextPlayer()) {
-            this.setPlayerIterator(
-                    this.getPlayers().stream().filter(p -> !this.deadPlayer.contains(p)).collect(Collectors.toList()));
+            this.resetPlayerIterator();
+            return;
         }
+        this.setCurrPlayer();
+    }
+
+    private void resetPlayerIterator() {
+        this.setPlayerIterator(
+                this.getPlayers().stream().filter(p -> !this.deadPlayer.contains(p)).collect(Collectors.toList()));
         this.setCurrPlayer();
     }
 
