@@ -49,7 +49,7 @@
                      </children>
                   </HBox>
                </children>
-               <Button fx:id="buttonNextTurn" mnemonicParsing="false" onAction="#nextTurn" text="Next turn" BorderPane.alignment="CENTER">
+               <Button fx:id="closeGame" mnemonicParsing="false" onAction="#closeGame" text="Close game" BorderPane.alignment="CENTER">
                    <VBox.margin>
                       <Insets top="10.0" />
                    </VBox.margin>
