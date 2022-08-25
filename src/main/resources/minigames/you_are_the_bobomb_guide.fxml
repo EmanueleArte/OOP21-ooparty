@@ -52,7 +52,7 @@
                                     <Font size="36.0" />
                                  </font>
                               </Label>
-                              <TextArea fx:id="htpTxtArea" editable="false" focusTraversable="false" prefHeight="403.0" prefWidth="496.0" text="The player has to select a tile, clicking on the corresponding button. When every player has choosen a tile, press the 'Next turn' button to proceed with the game." translateX="2.0" wrapText="true">
+                              <TextArea fx:id="htpTxtArea" editable="false" focusTraversable="false" prefHeight="403.0" prefWidth="496.0" text="The player has to select a tile, clicking on the corresponding button. When a player has choosen a tile, the game proceed to the turn of the next player. Pressing 'Close game' at the end of the game, makes it end." translateX="2.0" wrapText="true">
                                  <font>
                                     <Font size="18.0" />
                                  </font>

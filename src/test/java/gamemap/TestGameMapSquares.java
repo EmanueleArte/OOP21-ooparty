@@ -69,6 +69,7 @@ public class TestGameMapSquares {
         assertEquals(this.p2.getStarsCount(), 0);
         this.p1.getPosition(this.gameMap).makeSpecialAction(p1);
         assertEquals(this.p1.getStarsCount(), 1);
+        assertEquals(this.p1.getCoinsCount(), 5);
     }
 
     @Test
