@@ -75,15 +75,13 @@ public class YoureTheBobombModelImpl extends MinigameModelAbstr implements Youre
                             .collect(Collectors.toSet())));
             this.changeTurn();
         }
-        System.out.println(getCurrPlayer());
-        return this.tiles.entrySet().stream().flatMap(e -> e.getValue().stream()).count() < this.getPlayers().size()
+        return this.tiles.entrySet().stream().flatMap(e -> e.getValue().stream().flatMap(Set::stream)).count() < this.getPlayers().size()
                 - this.deadPlayer.size();
     }
 
     private boolean isOver() {
         final var end = this.tiles.size() <= 1 || (this.getPlayers().size() - this.deadPlayer.size() <= 1);
         if (end) {
-            System.out.println(this.getPlayersClassification());
             this.setGameResults();
         }
         return end;
