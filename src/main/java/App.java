@@ -3,6 +3,7 @@ import utils.factories.controller.ControllerFactory;
 import utils.factories.controller.ControllerFactoryFx;
 import utils.graphics.controller.StageManager;
 import utils.graphics.controller.StageManagerImpl;
+import utils.graphics.model.SceneHandlerImpl;
 import utils.graphics.view.JavafxGuiImpl;
 
 public final class App {
@@ -13,7 +14,8 @@ public final class App {
      * @param args command line args.
      */
     public static void main(final String[] args) {
-        final StageManager<Scene> stageManager = new StageManagerImpl<>("OOparty", JavafxGuiImpl.class);
+        final StageManager<Scene> stageManager = new StageManagerImpl<>("OOparty", JavafxGuiImpl.class,
+                new SceneHandlerImpl<>());
         ControllerFactory controllerFactory = new ControllerFactoryFx<>(stageManager);
         stageManager.setControllerFactory(controllerFactory);
         stageManager.run();

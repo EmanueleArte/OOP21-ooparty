@@ -8,7 +8,6 @@ import minigames.common.controller.MinigameController;
 import utils.controller.GenericController;
 import utils.factories.controller.ControllerFactory;
 import utils.graphics.model.SceneHandler;
-import utils.graphics.model.SceneHandlerImpl;
 import utils.graphics.view.EmptyGui;
 import utils.graphics.view.Gui;
 
@@ -27,20 +26,23 @@ public class StageManagerImpl<S> implements StageManager<S> {
     /**
      * Builds a new {@link StageManagerImpl}.
      * 
-     * @param title    the title of the gui window
-     * @param guiClass the class of the gui
+     * @param title        the title of the gui window
+     * @param guiClass     the class of the gui
+     * @param sceneHandler the sceneHandler to be used
      */
-    public StageManagerImpl(final String title, final Class<?> guiClass) {
-        this.sceneHandler = new SceneHandlerImpl<>();
+    public StageManagerImpl(final String title, final Class<?> guiClass, final SceneHandler<S> sceneHandler) {
+        this.sceneHandler = sceneHandler;
         this.lastGameController = Optional.empty();
         this.setGui(title, guiClass);
     }
 
     /**
      * Builds a new {@link StageManagerImpl}.
+     * 
+     * @param sceneHandler the sceneHandler to be used
      */
-    public StageManagerImpl() {
-        this("", EmptyGui.class);
+    public StageManagerImpl(final SceneHandler<S> sceneHandler) {
+        this("", EmptyGui.class, sceneHandler);
     }
 
     @Override
